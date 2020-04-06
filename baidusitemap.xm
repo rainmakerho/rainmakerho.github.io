@@ -4,16 +4,20 @@
 
     
   <url>
-    <loc>https://rainmakerho.github.io/2020/03/18/2020002/</loc>
-    <lastmod>2020-03-18T08:07:25.126Z</lastmod>
+    <loc>https://rainmakerho.github.io/2020/04/06/2020003/</loc>
+    <lastmod>2020-04-06T10:10:56.098Z</lastmod>
     <data>
         <display>
-        <title>IIS 網站忽然全都出現 BC31007 無法開啟模組檔 的錯誤</title>
-        <pubTime>2020-03-18T07:56:53.000Z</pubTime>
+        <title>開啟 input file 檔案視窗後，VS.NET 偵錯也一併停止了</title>
+        <pubTime>2020-04-06T10:03:02.000Z</pubTime>
         
-        <tag>BC31007</tag>
+        <tag>debug</tag>
          
-        <tag>Temporary ASP.NET Fiels</tag>
+        <tag>input</tag>
+         
+        <tag>file</tag>
+         
+        <tag>vs.net</tag>
          
          
            
@@ -24,7 +28,7 @@
     
   <url>
     <loc>https://rainmakerho.github.io/2020/02/03/2020001/</loc>
-    <lastmod>2020-02-07T10:21:31.000Z</lastmod>
+    <lastmod>2020-04-05T06:15:06.486Z</lastmod>
     <data>
         <display>
         <title>Dependency Injection in ASP.NET Core</title>
@@ -35,6 +39,25 @@
         <tag>Dependency Injection</tag>
          
         <tag>DI</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://rainmakerho.github.io/2020/03/18/2020002/</loc>
+    <lastmod>2020-03-18T08:07:25.126Z</lastmod>
+    <data>
+        <display>
+        <title>IIS 網站忽然全都出現 BC31007 無法開啟模組檔 的錯誤</title>
+        <pubTime>2020-03-18T07:56:53.000Z</pubTime>
+        
+        <tag>BC31007</tag>
+         
+        <tag>Temporary ASP.NET Fiels</tag>
          
          
            
@@ -1080,9 +1103,9 @@
         <title>PDF 最後一頁才顯示頁尾</title>
         <pubTime>2018-11-29T06:46:17.000Z</pubTime>
         
-        <tag>aspose</tag>
-         
         <tag>pdf</tag>
+         
+        <tag>aspose</tag>
          
         <tag>cells</tag>
          
@@ -1837,11 +1860,11 @@
         <title>SmtpConnection.GetConnection NullReferenceException</title>
         <pubTime>2018-03-14T02:07:16.000Z</pubTime>
         
-        <tag>NullReferenceException</tag>
-         
         <tag>SmtpClient</tag>
          
         <tag>SmtpConnection.GetConnection</tag>
+         
+        <tag>NullReferenceException</tag>
          
         <tag>.net</tag>
          
@@ -1866,11 +1889,11 @@
         <title>System.NullReferenceException when Aspose.Pdf.License.SetLicense(String licenseName)</title>
         <pubTime>2018-03-13T06:54:05.000Z</pubTime>
         
+        <tag>NullReferenceException</tag>
+         
         <tag>Aspose</tag>
          
         <tag>SetLicense</tag>
-         
-        <tag>NullReferenceException</tag>
          
          
            
