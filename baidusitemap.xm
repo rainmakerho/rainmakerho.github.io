@@ -4,8 +4,35 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2020/05/07/2020004/</loc>
+    <lastmod>2020-05-07T03:46:05.216Z</lastmod>
+    <data>
+        <display>
+        <title>IE 列印時，沒有傳送 Session Cookies 資料，導致下個操作會把使用者登出</title>
+        <pubTime>2020-05-07T03:01:51.000Z</pubTime>
+        
+        <tag>IE</tag>
+         
+        <tag>Print</tag>
+         
+        <tag>Print dialog</tag>
+         
+        <tag>cookie missing</tag>
+         
+        <tag>without session</tag>
+         
+        <tag>cookieSameSite</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2020/04/06/2020003/</loc>
-    <lastmod>2020-04-06T10:10:56.098Z</lastmod>
+    <lastmod>2020-04-07T10:10:40.144Z</lastmod>
     <data>
         <display>
         <title>開啟 input file 檔案視窗後，VS.NET 偵錯也一併停止了</title>
@@ -1103,9 +1130,9 @@
         <title>PDF 最後一頁才顯示頁尾</title>
         <pubTime>2018-11-29T06:46:17.000Z</pubTime>
         
-        <tag>pdf</tag>
-         
         <tag>aspose</tag>
+         
+        <tag>pdf</tag>
          
         <tag>cells</tag>
          
@@ -1860,11 +1887,11 @@
         <title>SmtpConnection.GetConnection NullReferenceException</title>
         <pubTime>2018-03-14T02:07:16.000Z</pubTime>
         
+        <tag>NullReferenceException</tag>
+         
         <tag>SmtpClient</tag>
          
         <tag>SmtpConnection.GetConnection</tag>
-         
-        <tag>NullReferenceException</tag>
          
         <tag>.net</tag>
          
@@ -1889,11 +1916,11 @@
         <title>System.NullReferenceException when Aspose.Pdf.License.SetLicense(String licenseName)</title>
         <pubTime>2018-03-13T06:54:05.000Z</pubTime>
         
-        <tag>NullReferenceException</tag>
-         
         <tag>Aspose</tag>
          
         <tag>SetLicense</tag>
+         
+        <tag>NullReferenceException</tag>
          
          
            

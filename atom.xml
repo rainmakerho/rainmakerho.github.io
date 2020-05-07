@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2020-04-06T10:10:56.098Z</updated>
+  <updated>2020-05-07T03:46:05.216Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -17,13 +17,46 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>IE 列印時，沒有傳送 Session Cookies 資料，導致下個操作會把使用者登出</title>
+    <link href="https://rainmakerho.github.io/2020/05/07/2020004/"/>
+    <id>https://rainmakerho.github.io/2020/05/07/2020004/</id>
+    <published>2020-05-07T03:01:51.000Z</published>
+    <updated>2020-05-07T03:46:05.216Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>同事詢問，系統升級到 .NET 4.x 後，使用 IE 原本列印畫面時，系統好好的。但升級後，按下列印或是預覽列印後，卻會造成使用者被登出。</p><h3 id="研究"><a href="#研究" class="headerlink" title="研究"></a>研究</h3><p>透過 Fiddler 錄相關的 Request 發現，在出現 Print 視窗時，系統還會發一個 Request 給 Server，但這個 Request 卻沒有帶任何的 Cookies，所以導致 Server 端認為不是已登入使用者，所以就被導到登入頁。</p><img src="/2020/05/07/2020004/001.png" title="有cookie"><img src="/2020/05/07/2020004/002.png" title="Print卻沒有cookie"><p>感覺蠻奇怪的，開啟列印視窗時，居然發一個 Request ，原本是建議同事詢找一下，為什麼 windows.open 時，都會自動去發那個 Request 。<br>隔天，同事 Ian 有找到 <a href="https://stackoverflow.com/questions/59151616/ie-or-edge-print-dialog-box-send-request-to-server-without-session-because-same" target="_blank" rel="noopener">IE or Edge Print dialog box send request to server without session (because SameSite=Lax on session cookie)</a>，然後在 web.config 的 forms tag 中，多加入  cookieSameSite=”None” ，預設是 Lax<br>SameSite 是一種IETF草稿標準，旨在針對跨網站偽造要求（CSRF）攻擊提供一些保護。<br>表單驗證和會話狀態 cookie 的預設 SameSite 值已從 None 變更為 Lax。</p><p>依建議，如果要跟原本的行為一致就是設定回 None 。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span> </span><br><span class="line">  <span class="tag">&lt;<span class="name">appSettings</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">add</span> <span class="attr">key</span>=<span class="string">"aspnet:SuppressSameSiteNone"</span> <span class="attr">value</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">appSettings</span>&gt;</span></span><br><span class="line"> </span><br><span class="line">  <span class="tag">&lt;<span class="name">system.web</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">authentication</span>&gt;</span> </span><br><span class="line">      <span class="tag">&lt;<span class="name">forms</span> <span class="attr">cookieSameSite</span>=<span class="string">"None"</span> /&gt;</span> </span><br><span class="line">    <span class="tag">&lt;/<span class="name">authentication</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">sessionState</span> <span class="attr">cookieSameSite</span>=<span class="string">"None"</span> /&gt;</span> </span><br><span class="line">  <span class="tag">&lt;/<span class="name">system.web</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure></p><p>以上的暫時解，大家可依目前缺那個 Cookie 而去設定它，而且頁面也要實作 CSRF 的防護哦!<br>可以 check 的是，為什麼恕是要呼叫 /id 的那個 Request 。</p><h4 id="註"><a href="#註" class="headerlink" title="註:"></a>註:</h4><p>以上感謝 Jue, Evans, Ian 等同事的分享</p><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://stackoverflow.com/questions/59151616/ie-or-edge-print-dialog-box-send-request-to-server-without-session-because-same" target="_blank" rel="noopener">IE or Edge Print dialog box send request to server without session (because SameSite=Lax on session cookie)</a></p><p><a href="https://docs.microsoft.com/zh-tw/aspnet/samesite/system-web-samesite" target="_blank" rel="noopener">在 ASP.NET 中使用 SameSite cookie</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;同事詢問，系統升級到 .NET 4.x 後，使用 IE 原本列印畫面時，系統好好的。但升級後，按下列印或是預覽列印後，卻會造成使用者被登出。
+      
+    
+    </summary>
+    
+    
+      <category term="IE" scheme="https://rainmakerho.github.io/tags/IE/"/>
+    
+      <category term="Print" scheme="https://rainmakerho.github.io/tags/Print/"/>
+    
+      <category term="Print dialog" scheme="https://rainmakerho.github.io/tags/Print-dialog/"/>
+    
+      <category term="cookie missing" scheme="https://rainmakerho.github.io/tags/cookie-missing/"/>
+    
+      <category term="without session" scheme="https://rainmakerho.github.io/tags/without-session/"/>
+    
+      <category term="cookieSameSite" scheme="https://rainmakerho.github.io/tags/cookieSameSite/"/>
+    
+  </entry>
+  
+  <entry>
     <title>開啟 input file 檔案視窗後，VS.NET 偵錯也一併停止了</title>
     <link href="https://rainmakerho.github.io/2020/04/06/2020003/"/>
     <id>https://rainmakerho.github.io/2020/04/06/2020003/</id>
     <published>2020-04-06T10:03:02.000Z</published>
-    <updated>2020-04-06T10:10:56.098Z</updated>
+    <updated>2020-04-07T10:10:40.144Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>使用 VS.NET 直接偵錯時，遇到選擇 File 檔案視窗後，不管是按下「開啟」或是「取消」，VS.NET 的偵錯也一併會停止。<br><img src="/2020/04/06/2020003/001.png" title="Select Files"></p><h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>這是因為 VS.NET 的 Web 專案中有一個設定叫「在瀏覽視窗關閉時停止偵錯工具，在偵錯停止時關閉瀏覽器(S)」，它預設是勾選的。<br>所以當頁面中有 File 時，會開啟視窗，不管是按下「開啟」或是「取消」，它都算是”視窗關閉”，所以 VS.NET 偵錯就停止了哦!<br><img src="/2020/04/06/2020003/002.png" title="在瀏覽視窗關閉時停止偵錯工具，在偵錯停止時關閉瀏覽器(S)"></p>]]></content>
+    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>使用 VS.NET 直接偵錯時，遇到選擇 File 檔案視窗後，不管是按下「開啟」或是「取消」，VS.NET 的偵錯也一併會停止。<br><img src="/2020/04/06/2020003/001.png" title="Select Files"></p><h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>這是因為 VS.NET 的 Web 專案中有一個設定叫「在瀏覽視窗關閉時停止偵錯工具，在偵錯停止時關閉瀏覽器(S)」，它預設是勾選的。<br>所以當頁面中有 File 時，會開啟視窗，不管是按下「開啟」或是「取消」，它都算是”視窗關閉”，所以 VS.NET 偵錯就停止了哦!<br><img src="/2020/04/06/2020003/002.png" title="options"></p>]]></content>
     
     <summary type="html">
     
@@ -573,35 +606,6 @@
       <category term="windows" scheme="https://rainmakerho.github.io/tags/windows/"/>
     
       <category term="PuppeteerSharp" scheme="https://rainmakerho.github.io/tags/PuppeteerSharp/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ASP.NET WebControl.Attributes 無法 Remove 問題</title>
-    <link href="https://rainmakerho.github.io/2019/08/24/2019022/"/>
-    <id>https://rainmakerho.github.io/2019/08/24/2019022/</id>
-    <published>2019-08-24T09:50:18.000Z</published>
-    <updated>2019-08-24T10:21:24.000Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近同事詢問一個 Web 控制項 在 Form 上面的 Client Click 是沒問題的，但是把它放到了 DataGrid 之中，它就沒有作用。</p><h3 id="研究"><a href="#研究" class="headerlink" title="研究"></a>研究</h3><p>使用 Browser 開發者工具(F12)，去查看，並在 JS 的 event 中寫入 alert 程式碼，當按下那個 Web 控制項 時，程式並沒有順利跑進那個 click 的 event handler 之中。<br>於是往上查看發現，因為在 TR 有一個 onmousedown 事件處理，裡面寫著 onmousedown = “javascript:this.click()”，就把 Click 事件給吃掉了，難怪沒有進去那個 click event handler 之中。 透過 F12 把那個 onmousedown 屬性設定移除， Web 控制項 就可以順利運作了。</p><p>即然找到了問題，再來當然是將那個 onmousedown 屬性從 DataGrid 中的設定移除它，本來想再詢問為何當初會有這樣子的程式碼呢? 它的用意是什麼呢? 當初寫的人已不知去向了。<br>建議從元件或是那支程式去調整，因為有將那個 Web 控制項放進去的只有 2 支程式，而開發團隊也不敢去調整元件，所以就往改那 2 支程式去做。</p><p>所以就建議同事在 PreRender 時，將那個 DataGridItem.Attributes 裡面的 onmousedown 移除。<br>但同事反應不管寫在那裡都移不掉，我連進去看，程式有順利呼叫 Attributes.Remove(“onmousedown”)，但那個 onmousedown 卻還 Render 出去。</p><figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">'v10_tbA10_dgMaster 是 datagrid</span></span><br><span class="line"><span class="keyword">Protected</span> <span class="keyword">Sub</span> Page_PreRender(<span class="keyword">ByVal</span> sender <span class="keyword">As</span> <span class="built_in">Object</span>, <span class="keyword">ByVal</span> e <span class="keyword">As</span> System.EventArgs) <span class="keyword">Handles</span> <span class="keyword">Me</span>.PreRender</span><br><span class="line">  <span class="keyword">Dim</span> item <span class="keyword">As</span> DataGridItem</span><br><span class="line">  <span class="keyword">For</span> <span class="keyword">Each</span> item <span class="keyword">In</span> <span class="keyword">Me</span>.v10_tbA10_dgMaster.Items</span><br><span class="line">      item.Attributes.Remove(<span class="string">"onmousedown"</span>)</span><br><span class="line">  <span class="keyword">Next</span></span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Sub</span></span><br></pre></td></tr></table></figure><p>想說不可能呀!<br>於是將那些 Key 值印出來才發現，那個「onmousedown 」後面多了一個<strong>空白</strong>，難怪怎麼移都移不掉。<br>後來將程式改成如下，就順利解掉了。</p><figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">'v10_tbA10_dgMaster 是 datagrid</span></span><br><span class="line"><span class="keyword">Protected</span> <span class="keyword">Sub</span> Page_PreRender(<span class="keyword">ByVal</span> sender <span class="keyword">As</span> <span class="built_in">Object</span>, <span class="keyword">ByVal</span> e <span class="keyword">As</span> System.EventArgs) <span class="keyword">Handles</span> <span class="keyword">Me</span>.PreRender</span><br><span class="line">  <span class="keyword">Dim</span> item <span class="keyword">As</span> DataGridItem</span><br><span class="line">  <span class="keyword">For</span> <span class="keyword">Each</span> item <span class="keyword">In</span> <span class="keyword">Me</span>.v10_tbA10_dgMaster.Items</span><br><span class="line">      item.Attributes.Remove(<span class="string">"onmousedown "</span>)</span><br><span class="line">  <span class="keyword">Next</span></span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Sub</span></span><br></pre></td></tr></table></figure><p>程式呀~~ 真的是什麼都有可能發生 Q_Q<br>希望大家在解問題時，多些細心、耐心，一起努力 :)</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;最近同事詢問一個 Web 控制項 在 Form 上面的 Client Click 是沒問題的，但是把它放到了 DataGrid 之中，它就沒
-      
-    
-    </summary>
-    
-    
-      <category term="ASP.NET" scheme="https://rainmakerho.github.io/tags/ASP-NET/"/>
-    
-      <category term="程式什麼都有可能發生" scheme="https://rainmakerho.github.io/tags/%E7%A8%8B%E5%BC%8F%E4%BB%80%E9%BA%BC%E9%83%BD%E6%9C%89%E5%8F%AF%E8%83%BD%E7%99%BC%E7%94%9F/"/>
-    
-      <category term="DataGridItem" scheme="https://rainmakerho.github.io/tags/DataGridItem/"/>
-    
-      <category term="WebControl.Attributes" scheme="https://rainmakerho.github.io/tags/WebControl-Attributes/"/>
     
   </entry>
   
