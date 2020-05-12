@@ -4,8 +4,35 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2020/05/12/2020005/</loc>
+    <lastmod>2020-05-12T09:13:32.403Z</lastmod>
+    <data>
+        <display>
+        <title>ASP.NET Security Headers</title>
+        <pubTime>2020-05-12T01:29:40.000Z</pubTime>
+        
+        <tag>X-XSS-Protection</tag>
+         
+        <tag>Content-Security-Policy</tag>
+         
+        <tag>X-Frame-Options</tag>
+         
+        <tag>X-Content-Type-Options</tag>
+         
+        <tag>Feature-Policy</tag>
+         
+        <tag>Referrer-Policy</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2020/05/07/2020004/</loc>
-    <lastmod>2020-05-07T03:46:05.216Z</lastmod>
+    <lastmod>2020-05-07T05:19:40.743Z</lastmod>
     <data>
         <display>
         <title>IE 列印時，沒有傳送 Session Cookies 資料，導致下個操作會把使用者登出</title>
@@ -1887,11 +1914,11 @@
         <title>SmtpConnection.GetConnection NullReferenceException</title>
         <pubTime>2018-03-14T02:07:16.000Z</pubTime>
         
-        <tag>NullReferenceException</tag>
-         
         <tag>SmtpClient</tag>
          
         <tag>SmtpConnection.GetConnection</tag>
+         
+        <tag>NullReferenceException</tag>
          
         <tag>.net</tag>
          
@@ -1916,11 +1943,11 @@
         <title>System.NullReferenceException when Aspose.Pdf.License.SetLicense(String licenseName)</title>
         <pubTime>2018-03-13T06:54:05.000Z</pubTime>
         
+        <tag>NullReferenceException</tag>
+         
         <tag>Aspose</tag>
          
         <tag>SetLicense</tag>
-         
-        <tag>NullReferenceException</tag>
          
          
            
@@ -2031,13 +2058,13 @@
         <title>線上客服 + BOT 之路</title>
         <pubTime>2018-01-25T08:10:47.000Z</pubTime>
         
+        <tag>chatbot</tag>
+         
         <tag>QnA Maker</tag>
          
         <tag>LUIS</tag>
          
         <tag>Vital ESP</tag>
-         
-        <tag>chatbot</tag>
          
         <tag>FAQ</tag>
          
