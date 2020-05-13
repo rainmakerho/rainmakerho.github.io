@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2020-05-12T09:13:32.403Z</updated>
+  <updated>2020-05-13T07:05:57.453Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>透過 Audit.NET 及 DevAudit 來掃描 .NET 專案中套件是否有資安問題</title>
+    <link href="https://rainmakerho.github.io/2020/05/13/2020006/"/>
+    <id>https://rainmakerho.github.io/2020/05/13/2020006/</id>
+    <published>2020-05-13T06:34:14.000Z</published>
+    <updated>2020-05-13T07:05:57.453Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 OWASP Top 10 2017 中 A9 是 Using Components with Known Vulnerabilities。<br>所以我們需要常常檢視一下專案中使用到的套件是否有什麼資安問題，是否需要更新。<br>因此跟大家介紹 <a href="https://marketplace.visualstudio.com/items?itemName=VorSecurity.AuditNet" target="_blank" rel="noopener">Audit.Net</a> 這個 Visual Studio extension 及 <a href="https://github.com/OSSIndex/DevAudit" target="_blank" rel="noopener">OSSIndex/DevAudit</a> Command 工具。</p><h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><h4 id="Audit-NET"><a href="#Audit-NET" class="headerlink" title="Audit.NET"></a>Audit.NET</h4><p>使用 <a href="https://marketplace.visualstudio.com/items?itemName=VorSecurity.AuditNet" target="_blank" rel="noopener">Audit.Net</a> 時，從 Visual Studio Marketplace 下載安裝後，重新啟動 Visual Studio 後，在專案上按右鍵，選取 Audit NuGet Packages… 就可以逕行掃描，結果就會在錯誤清單中。<br><img src="/2020/05/13/2020006/01.png" title="Audit Packages"></p><img src="/2020/05/13/2020006/02.png" title="After Audit"><p>如果需要產生報表或是跟 Jenkins 整合，則可以使用 <a href="https://github.com/OSSIndex/DevAudit" target="_blank" rel="noopener">OSSIndex/DevAudit</a></p><h4 id="DevAudit"><a href="#DevAudit" class="headerlink" title="DevAudit"></a>DevAudit</h4><p><a href="https://github.com/OSSIndex/DevAudit" target="_blank" rel="noopener">OSSIndex/DevAudit</a> 是一個跨平台的工具，可以從 <a href="https://github.com/OSSIndex/DevAudit/releases" target="_blank" rel="noopener">DevAudit/Release</a> 下載解壓縮後，直接開啟 Command 視窗執行，例如要掃 NuGet 套件，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">devaudit nuget -f &quot;你的專案\packages.config&quot;</span><br></pre></td></tr></table></figure></p><p>它就會讀取專案的 Package 送到 Server 端驗證是否有什麼套件需要更新，如下圖，<br><img src="/2020/05/13/2020006/03.png" title="After devaudit Scan"></p><p>有了這些資訊後，就可以參考它的內容來進行升級或是調整系統 ^_^</p><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://marketplace.visualstudio.com/items?itemName=VorSecurity.AuditNet" target="_blank" rel="noopener">Audit.Net</a><br><a href="https://github.com/OSSIndex/DevAudit" target="_blank" rel="noopener">OSSIndex/DevAudit</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;在 OWASP Top 10 2017 中 A9 是 Using Components with Known Vulnerabilities
+      
+    
+    </summary>
+    
+    
+      <category term="Audit.NET" scheme="https://rainmakerho.github.io/tags/Audit-NET/"/>
+    
+      <category term="DevAudit" scheme="https://rainmakerho.github.io/tags/DevAudit/"/>
+    
+      <category term="OSSIndex" scheme="https://rainmakerho.github.io/tags/OSSIndex/"/>
+    
+  </entry>
   
   <entry>
     <title>ASP.NET Security Headers</title>
@@ -583,33 +610,6 @@
       <category term="LDAP" scheme="https://rainmakerho.github.io/tags/LDAP/"/>
     
       <category term="Novell.Directory.Ldap.NETStandard" scheme="https://rainmakerho.github.io/tags/Novell-Directory-Ldap-NETStandard/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>IE 不支援文化特性。參數名稱：name zh-Hant-TW 是無效的文化特性識別項。</title>
-    <link href="https://rainmakerho.github.io/2019/09/17/2019024/"/>
-    <id>https://rainmakerho.github.io/2019/09/17/2019024/</id>
-    <published>2019-09-17T01:32:14.000Z</published>
-    <updated>2019-09-17T01:44:02.000Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近公司的系統使用 Windows 10, IE 時，出現了以下的錯誤訊息<br><strong>不支援文化特性。<br>參數名稱：name<br>zh-Hant-TW 是無效的文化特性識別項。</strong></p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>在 Windows 8 時，可以參考「<a href="https://dotblogs.com.tw/rainmaker/2012/10/21/78733" target="_blank" rel="noopener">[IE]zh-Hant-TW 是無效的文化特性識別項。</a>」這篇的設定，但是到了 Windows 10 ，設定不知跑到了那裡去了。<br>後來同事 JN 有找到，分享出來，而其他同事也有在詢問，所以就一併分享給大家，如下圖，<br><img src="/2019/09/17/2019024/ie10_lange.jpg" title="win10語言設定"><br>設定-&gt;首頁-&gt;隱私權-&gt;一般 ，在右邊有一個「透過讓網站存取我的語言清單以提供當地相關內容」，將它關閉即可。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;最近公司的系統使用 Windows 10, IE 時，出現了以下的錯誤訊息&lt;br&gt;&lt;strong&gt;不支援文化特性。&lt;br&gt;參數名稱：name
-      
-    
-    </summary>
-    
-    
-      <category term="windows 10" scheme="https://rainmakerho.github.io/tags/windows-10/"/>
-    
-      <category term="ie" scheme="https://rainmakerho.github.io/tags/ie/"/>
-    
-      <category term="不支援文化特性" scheme="https://rainmakerho.github.io/tags/%E4%B8%8D%E6%94%AF%E6%8F%B4%E6%96%87%E5%8C%96%E7%89%B9%E6%80%A7/"/>
     
   </entry>
   

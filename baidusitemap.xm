@@ -4,6 +4,27 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2020/05/13/2020006/</loc>
+    <lastmod>2020-05-13T07:05:57.453Z</lastmod>
+    <data>
+        <display>
+        <title>透過 Audit.NET 及 DevAudit 來掃描 .NET 專案中套件是否有資安問題</title>
+        <pubTime>2020-05-13T06:34:14.000Z</pubTime>
+        
+        <tag>Audit.NET</tag>
+         
+        <tag>DevAudit</tag>
+         
+        <tag>OSSIndex</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2020/05/12/2020005/</loc>
     <lastmod>2020-05-12T09:13:32.403Z</lastmod>
     <data>
