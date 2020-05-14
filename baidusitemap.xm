@@ -4,29 +4,8 @@
 
     
   <url>
-    <loc>https://rainmakerho.github.io/2020/05/13/2020006/</loc>
-    <lastmod>2020-05-13T07:05:57.453Z</lastmod>
-    <data>
-        <display>
-        <title>透過 Audit.NET 及 DevAudit 來掃描 .NET 專案中套件是否有資安問題</title>
-        <pubTime>2020-05-13T06:34:14.000Z</pubTime>
-        
-        <tag>Audit.NET</tag>
-         
-        <tag>DevAudit</tag>
-         
-        <tag>OSSIndex</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://rainmakerho.github.io/2020/05/12/2020005/</loc>
-    <lastmod>2020-05-12T09:13:32.403Z</lastmod>
+    <lastmod>2020-05-14T05:30:41.312Z</lastmod>
     <data>
         <display>
         <title>ASP.NET Security Headers</title>
@@ -43,6 +22,27 @@
         <tag>Feature-Policy</tag>
          
         <tag>Referrer-Policy</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://rainmakerho.github.io/2020/05/13/2020006/</loc>
+    <lastmod>2020-05-13T07:05:57.453Z</lastmod>
+    <data>
+        <display>
+        <title>透過 Audit.NET 及 DevAudit 來掃描 .NET 專案中套件是否有資安問題</title>
+        <pubTime>2020-05-13T06:34:14.000Z</pubTime>
+        
+        <tag>Audit.NET</tag>
+         
+        <tag>DevAudit</tag>
+         
+        <tag>OSSIndex</tag>
          
          
            
@@ -1935,11 +1935,11 @@
         <title>SmtpConnection.GetConnection NullReferenceException</title>
         <pubTime>2018-03-14T02:07:16.000Z</pubTime>
         
+        <tag>NullReferenceException</tag>
+         
         <tag>SmtpClient</tag>
          
         <tag>SmtpConnection.GetConnection</tag>
-         
-        <tag>NullReferenceException</tag>
          
         <tag>.net</tag>
          
@@ -1964,11 +1964,11 @@
         <title>System.NullReferenceException when Aspose.Pdf.License.SetLicense(String licenseName)</title>
         <pubTime>2018-03-13T06:54:05.000Z</pubTime>
         
-        <tag>NullReferenceException</tag>
-         
         <tag>Aspose</tag>
          
         <tag>SetLicense</tag>
+         
+        <tag>NullReferenceException</tag>
          
          
            
@@ -2079,13 +2079,13 @@
         <title>線上客服 + BOT 之路</title>
         <pubTime>2018-01-25T08:10:47.000Z</pubTime>
         
-        <tag>chatbot</tag>
-         
         <tag>QnA Maker</tag>
          
         <tag>LUIS</tag>
          
         <tag>Vital ESP</tag>
+         
+        <tag>chatbot</tag>
          
         <tag>FAQ</tag>
          
