@@ -4,6 +4,37 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2020/05/15/2020007/</loc>
+    <lastmod>2020-05-15T10:38:55.158Z</lastmod>
+    <data>
+        <display>
+        <title>AuthenticationException: Authentication failed, see inner exception. Win32Exception: 接收到的訊息超出預期或格式不正確。WebException: 要求已經中止: 無法建立 SSL/TLS 的安全通道。</title>
+        <pubTime>2020-05-15T05:14:34.000Z</pubTime>
+        
+        <tag>2148734209</tag>
+         
+        <tag>TLS</tag>
+         
+        <tag>HTTPS</tag>
+         
+        <tag>無法建立 SSL/TLS 的安全通道</tag>
+         
+        <tag>WebException</tag>
+         
+        <tag>AuthenticationException</tag>
+         
+        <tag>基礎連接已關閉</tag>
+         
+        <tag>遠端主機已強制關閉一個現存的連線</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2020/05/12/2020005/</loc>
     <lastmod>2020-05-14T05:30:41.312Z</lastmod>
     <data>
@@ -2079,13 +2110,13 @@
         <title>線上客服 + BOT 之路</title>
         <pubTime>2018-01-25T08:10:47.000Z</pubTime>
         
+        <tag>chatbot</tag>
+         
         <tag>QnA Maker</tag>
          
         <tag>LUIS</tag>
          
         <tag>Vital ESP</tag>
-         
-        <tag>chatbot</tag>
          
         <tag>FAQ</tag>
          
