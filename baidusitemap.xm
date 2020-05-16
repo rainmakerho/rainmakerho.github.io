@@ -5,7 +5,7 @@
     
   <url>
     <loc>https://rainmakerho.github.io/2020/05/15/2020007/</loc>
-    <lastmod>2020-05-15T10:38:55.158Z</lastmod>
+    <lastmod>2020-05-16T00:30:01.859Z</lastmod>
     <data>
         <display>
         <title>AuthenticationException: Authentication failed, see inner exception. Win32Exception: 接收到的訊息超出預期或格式不正確。WebException: 要求已經中止: 無法建立 SSL/TLS 的安全通道。</title>
@@ -26,6 +26,10 @@
         <tag>基礎連接已關閉</tag>
          
         <tag>遠端主機已強制關閉一個現存的連線</tag>
+         
+        <tag>接收到的訊息超出預期或格式不正確</tag>
+         
+        <tag>2148074278</tag>
          
          
            
@@ -422,9 +426,9 @@
         <title>Chrome Version 77 列印遇到標楷體(DFKai-SB) Print 成 PDF 會破字問題</title>
         <pubTime>2019-10-04T08:58:46.000Z</pubTime>
         
-        <tag>PDF</tag>
-         
         <tag>Chrome</tag>
+         
+        <tag>PDF</tag>
          
         <tag>77</tag>
          
@@ -1966,11 +1970,11 @@
         <title>SmtpConnection.GetConnection NullReferenceException</title>
         <pubTime>2018-03-14T02:07:16.000Z</pubTime>
         
-        <tag>NullReferenceException</tag>
-         
         <tag>SmtpClient</tag>
          
         <tag>SmtpConnection.GetConnection</tag>
+         
+        <tag>NullReferenceException</tag>
          
         <tag>.net</tag>
          
@@ -1995,11 +1999,11 @@
         <title>System.NullReferenceException when Aspose.Pdf.License.SetLicense(String licenseName)</title>
         <pubTime>2018-03-13T06:54:05.000Z</pubTime>
         
+        <tag>NullReferenceException</tag>
+         
         <tag>Aspose</tag>
          
         <tag>SetLicense</tag>
-         
-        <tag>NullReferenceException</tag>
          
          
            
@@ -2110,13 +2114,13 @@
         <title>線上客服 + BOT 之路</title>
         <pubTime>2018-01-25T08:10:47.000Z</pubTime>
         
-        <tag>chatbot</tag>
-         
         <tag>QnA Maker</tag>
          
         <tag>LUIS</tag>
          
         <tag>Vital ESP</tag>
+         
+        <tag>chatbot</tag>
          
         <tag>FAQ</tag>
          
