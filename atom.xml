@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2020-05-16T00:30:01.859Z</updated>
+  <updated>2020-05-19T09:15:44.279Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>透過 Content-Security-Policy 修正 Mixed Content Link 問題</title>
+    <link href="https://rainmakerho.github.io/2020/05/19/2020008/"/>
+    <id>https://rainmakerho.github.io/2020/05/19/2020008/</id>
+    <published>2020-05-19T08:44:09.000Z</published>
+    <updated>2020-05-19T09:15:44.279Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在網站上，雖然用 https ，但有些 image 還是使用 http 去 link ，這會產生 Mixed Content 的問題，如下，<br><img src="/2020/05/19/2020008/01.png" title="https Mixed Content"></p><h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><h4 id="web-config"><a href="#web-config" class="headerlink" title="web.config"></a>web.config</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">system.webServer</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">httpProtocol</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">customHeaders</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">add</span> <span class="attr">name</span>=<span class="string">"Content-Security-Policy"</span> <span class="attr">value</span>=<span class="string">"upgrade-insecure-requests;"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">customHeaders</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">httpProtocol</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure><h4 id="Layout-cshtml"><a href="#Layout-cshtml" class="headerlink" title="_Layout.cshtml"></a>_Layout.cshtml</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"Content-Security-Policy"</span> <span class="attr">content</span>=<span class="string">"upgrade-insecure-requests;"</span>&gt;</span></span><br></pre></td></tr></table></figure><h4 id="Startup-cs"><a href="#Startup-cs" class="headerlink" title="Startup.cs"></a>Startup.cs</h4><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">app.Use(<span class="keyword">async</span> (context, next) =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    context.Response.Headers.Add(</span><br><span class="line">        <span class="string">"Content-Security-Policy"</span>,</span><br><span class="line">        <span class="string">"upgrade-insecure-requests;"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">await</span> next();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://advancedweb.hu/how-to-handle-mixed-content-with-csp/" target="_blank" rel="noopener">How to handle mixed content with CSP</a><br><a href="https://rainmakerho.github.io/2020/05/12/2020005/">ASP.NET Security Headers</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;在網站上，雖然用 https ，但有些 image 還是使用 http 去 link ，這會產生 Mixed Content 的問題，如下，
+      
+    
+    </summary>
+    
+    
+      <category term="Mixed Content" scheme="https://rainmakerho.github.io/tags/Mixed-Content/"/>
+    
+      <category term="CSP" scheme="https://rainmakerho.github.io/tags/CSP/"/>
+    
+      <category term="Content-Security-Policy" scheme="https://rainmakerho.github.io/tags/Content-Security-Policy/"/>
+    
+      <category term="upgrade-insecure-requests" scheme="https://rainmakerho.github.io/tags/upgrade-insecure-requests/"/>
+    
+  </entry>
   
   <entry>
     <title>AuthenticationException: Authentication failed, see inner exception. Win32Exception: 接收到的訊息超出預期或格式不正確。WebException: 要求已經中止: 無法建立 SSL/TLS 的安全通道。</title>
@@ -103,9 +132,9 @@
     </summary>
     
     
-      <category term="X-XSS-Protection" scheme="https://rainmakerho.github.io/tags/X-XSS-Protection/"/>
-    
       <category term="Content-Security-Policy" scheme="https://rainmakerho.github.io/tags/Content-Security-Policy/"/>
+    
+      <category term="X-XSS-Protection" scheme="https://rainmakerho.github.io/tags/X-XSS-Protection/"/>
     
       <category term="X-Frame-Options" scheme="https://rainmakerho.github.io/tags/X-Frame-Options/"/>
     
@@ -485,9 +514,9 @@
     </summary>
     
     
-      <category term="Chrome" scheme="https://rainmakerho.github.io/tags/Chrome/"/>
-    
       <category term="PDF" scheme="https://rainmakerho.github.io/tags/PDF/"/>
+    
+      <category term="Chrome" scheme="https://rainmakerho.github.io/tags/Chrome/"/>
     
       <category term="77" scheme="https://rainmakerho.github.io/tags/77/"/>
     
@@ -593,33 +622,6 @@
       <category term="FontRepository" scheme="https://rainmakerho.github.io/tags/FontRepository/"/>
     
       <category term="MSGothic" scheme="https://rainmakerho.github.io/tags/MSGothic/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>為什麼 aspnet_client 目錄中的檔案都無法下載，Status 為 401</title>
-    <link href="https://rainmakerho.github.io/2019/09/17/2019026/"/>
-    <id>https://rainmakerho.github.io/2019/09/17/2019026/</id>
-    <published>2019-09-17T05:52:25.000Z</published>
-    <updated>2019-09-17T06:14:53.000Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近同事詢問，系統 Link 到 aspnet_client 中的 js 檔案時，都無法下載，出現 401 Unauthorized 。<br>同事確認「匿名驗證」也有啟用，怎麼還會噴 401 呢?</p><h3 id="研究與解決"><a href="#研究與解決" class="headerlink" title="研究與解決"></a>研究與解決</h3><p>連到本機直接瀏覽那個檔案，錯誤內容為「401.3 - Unauthorized」，詳細資料為「因為網頁伺服器上此資源的存取控制清單 (ACL) 設定或加密設定的緣故，您沒有檢視此目錄或網頁的權限。」。</p><p>看來應該跟目錄的安全性有關係，於是再看一下它的根目錄所在路徑，發現它並不是預設的位置(c:\interpub\wwwroot)。<br>所以我先將 IIS 根目錄改回預設的 c:\interpub\wwwroot ，然後再用 Browser 瀏覽 aspnet_client 中的隨便一個 js ，它是會下載的。<br>於是跟預設的跟目錄安全性比對一下發現，目前的這個根目錄下的 aspnet_client 目錄，少了 Everyone 這個使用者。<br>於是在一樣的目錄安全性中加入 Everyone ，並授與 Read 的權限，再試看看就可以了哦!</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;最近同事詢問，系統 Link 到 aspnet_client 中的 js 檔案時，都無法下載，出現 401 Unauthorized 。&lt;b
-      
-    
-    </summary>
-    
-    
-      <category term="iis" scheme="https://rainmakerho.github.io/tags/iis/"/>
-    
-      <category term="aspnet_client" scheme="https://rainmakerho.github.io/tags/aspnet-client/"/>
-    
-      <category term="Unauthorized" scheme="https://rainmakerho.github.io/tags/Unauthorized/"/>
     
   </entry>
   

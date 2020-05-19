@@ -4,6 +4,29 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2020/05/19/2020008/</loc>
+    <lastmod>2020-05-19T09:15:44.279Z</lastmod>
+    <data>
+        <display>
+        <title>透過 Content-Security-Policy 修正 Mixed Content Link 問題</title>
+        <pubTime>2020-05-19T08:44:09.000Z</pubTime>
+        
+        <tag>Mixed Content</tag>
+         
+        <tag>CSP</tag>
+         
+        <tag>Content-Security-Policy</tag>
+         
+        <tag>upgrade-insecure-requests</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2020/05/15/2020007/</loc>
     <lastmod>2020-05-16T00:30:01.859Z</lastmod>
     <data>
@@ -46,9 +69,9 @@
         <title>ASP.NET Security Headers</title>
         <pubTime>2020-05-12T01:29:40.000Z</pubTime>
         
-        <tag>X-XSS-Protection</tag>
-         
         <tag>Content-Security-Policy</tag>
+         
+        <tag>X-XSS-Protection</tag>
          
         <tag>X-Frame-Options</tag>
          
@@ -426,9 +449,9 @@
         <title>Chrome Version 77 列印遇到標楷體(DFKai-SB) Print 成 PDF 會破字問題</title>
         <pubTime>2019-10-04T08:58:46.000Z</pubTime>
         
-        <tag>Chrome</tag>
-         
         <tag>PDF</tag>
+         
+        <tag>Chrome</tag>
          
         <tag>77</tag>
          
