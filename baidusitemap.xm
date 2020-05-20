@@ -5,17 +5,17 @@
     
   <url>
     <loc>https://rainmakerho.github.io/2020/05/19/2020008/</loc>
-    <lastmod>2020-05-19T09:15:44.279Z</lastmod>
+    <lastmod>2020-05-20T05:03:29.428Z</lastmod>
     <data>
         <display>
         <title>透過 Content-Security-Policy 修正 Mixed Content Link 問題</title>
         <pubTime>2020-05-19T08:44:09.000Z</pubTime>
         
+        <tag>Content-Security-Policy</tag>
+         
         <tag>Mixed Content</tag>
          
         <tag>CSP</tag>
-         
-        <tag>Content-Security-Policy</tag>
          
         <tag>upgrade-insecure-requests</tag>
          
@@ -69,9 +69,9 @@
         <title>ASP.NET Security Headers</title>
         <pubTime>2020-05-12T01:29:40.000Z</pubTime>
         
-        <tag>Content-Security-Policy</tag>
-         
         <tag>X-XSS-Protection</tag>
+         
+        <tag>Content-Security-Policy</tag>
          
         <tag>X-Frame-Options</tag>
          
@@ -1236,9 +1236,9 @@
         <title>PDF 最後一頁才顯示頁尾</title>
         <pubTime>2018-11-29T06:46:17.000Z</pubTime>
         
-        <tag>aspose</tag>
-         
         <tag>pdf</tag>
+         
+        <tag>aspose</tag>
          
         <tag>cells</tag>
          
@@ -1993,11 +1993,11 @@
         <title>SmtpConnection.GetConnection NullReferenceException</title>
         <pubTime>2018-03-14T02:07:16.000Z</pubTime>
         
+        <tag>NullReferenceException</tag>
+         
         <tag>SmtpClient</tag>
          
         <tag>SmtpConnection.GetConnection</tag>
-         
-        <tag>NullReferenceException</tag>
          
         <tag>.net</tag>
          
@@ -2022,11 +2022,11 @@
         <title>System.NullReferenceException when Aspose.Pdf.License.SetLicense(String licenseName)</title>
         <pubTime>2018-03-13T06:54:05.000Z</pubTime>
         
-        <tag>NullReferenceException</tag>
-         
         <tag>Aspose</tag>
          
         <tag>SetLicense</tag>
+         
+        <tag>NullReferenceException</tag>
          
          
            
