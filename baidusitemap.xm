@@ -4,6 +4,29 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2020/06/12/2020009/</loc>
+    <lastmod>2020-06-12T07:11:48.901Z</lastmod>
+    <data>
+        <display>
+        <title>'DatabaseFacade' 未包含 'Migrate' 的定義，也找不到可接受類型 'DatabaseFacade' 第一個引數的可存取擴充方法 'Migrate'</title>
+        <pubTime>2020-06-12T07:00:05.000Z</pubTime>
+        
+        <tag>DatabaseFacade</tag>
+         
+        <tag>Migrate</tag>
+         
+        <tag>EntityFrameworkCore</tag>
+         
+        <tag>DbContext</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2020/05/19/2020008/</loc>
     <lastmod>2020-05-20T05:03:29.428Z</lastmod>
     <data>
@@ -1093,8 +1116,6 @@
         <title>使用 OpenTracing - Jaeger (AP整合)</title>
         <pubTime>2019-01-15T05:13:41.000Z</pubTime>
         
-        <tag>BFv4</tag>
-         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -1108,6 +1129,8 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
+         
+        <tag>BFv4</tag>
          
         <tag>NodeJS</tag>
          
@@ -1126,8 +1149,6 @@
         <title>使用 OpenTracing - Jaeger</title>
         <pubTime>2019-01-04T06:02:45.000Z</pubTime>
         
-        <tag>BFv4</tag>
-         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -1141,6 +1162,8 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
+         
+        <tag>BFv4</tag>
          
          
            
@@ -1236,9 +1259,9 @@
         <title>PDF 最後一頁才顯示頁尾</title>
         <pubTime>2018-11-29T06:46:17.000Z</pubTime>
         
-        <tag>pdf</tag>
-         
         <tag>aspose</tag>
+         
+        <tag>pdf</tag>
          
         <tag>cells</tag>
          
@@ -1418,9 +1441,9 @@
         <title>Microsoft Botframework + Adaptive Cards 快速打造 Chatbot 之 2</title>
         <pubTime>2018-09-17T01:29:38.000Z</pubTime>
         
-        <tag>chatbot</tag>
-         
         <tag>botframework</tag>
+         
+        <tag>chatbot</tag>
          
         <tag>adaptivecard</tag>
          
@@ -1487,9 +1510,9 @@
         <title>Microsoft Botframework + Adaptive Cards 快速打造 Chatbot</title>
         <pubTime>2018-08-02T09:55:13.000Z</pubTime>
         
-        <tag>chatbot</tag>
-         
         <tag>botframework</tag>
+         
+        <tag>chatbot</tag>
          
         <tag>Adaptive Cards</tag>
          
@@ -2064,9 +2087,9 @@
         <title>使用 Botframework 的 Bot 如何 Debug 到 BotBuilder Source ?</title>
         <pubTime>2018-02-01T01:47:18.000Z</pubTime>
         
-        <tag>botframework</tag>
-         
         <tag>C#</tag>
+         
+        <tag>botframework</tag>
          
         <tag>BotBuilder</tag>
          
@@ -2162,9 +2185,9 @@
         <title>客製 BotDataStore ，將 Bot State 資料存到 SQL Server之中</title>
         <pubTime>2018-01-26T05:11:04.000Z</pubTime>
         
-        <tag>chatbot</tag>
-         
         <tag>botframework</tag>
+         
+        <tag>chatbot</tag>
          
         <tag>BotDataStore</tag>
          
