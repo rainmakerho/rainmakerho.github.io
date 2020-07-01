@@ -4,6 +4,29 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2020/07/01/2020010/</loc>
+    <lastmod>2020-07-01T10:48:39.007Z</lastmod>
+    <data>
+        <display>
+        <title>Uncaught DOMException: Blocked a frame with origin</title>
+        <pubTime>2020-07-01T09:49:43.000Z</pubTime>
+        
+        <tag>X-Frame-Options</tag>
+         
+        <tag>iframe</tag>
+         
+        <tag>Uncaught DOMException</tag>
+         
+        <tag>Blocked a frame with origin</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2020/06/12/2020009/</loc>
     <lastmod>2020-06-12T07:11:48.901Z</lastmod>
     <data>
@@ -1116,6 +1139,8 @@
         <title>使用 OpenTracing - Jaeger (AP整合)</title>
         <pubTime>2019-01-15T05:13:41.000Z</pubTime>
         
+        <tag>BFv4</tag>
+         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -1129,8 +1154,6 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
-         
-        <tag>BFv4</tag>
          
         <tag>NodeJS</tag>
          
@@ -1149,6 +1172,8 @@
         <title>使用 OpenTracing - Jaeger</title>
         <pubTime>2019-01-04T06:02:45.000Z</pubTime>
         
+        <tag>BFv4</tag>
+         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -1162,8 +1187,6 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
-         
-        <tag>BFv4</tag>
          
          
            
@@ -1441,9 +1464,9 @@
         <title>Microsoft Botframework + Adaptive Cards 快速打造 Chatbot 之 2</title>
         <pubTime>2018-09-17T01:29:38.000Z</pubTime>
         
-        <tag>botframework</tag>
-         
         <tag>chatbot</tag>
+         
+        <tag>botframework</tag>
          
         <tag>adaptivecard</tag>
          
@@ -1510,9 +1533,9 @@
         <title>Microsoft Botframework + Adaptive Cards 快速打造 Chatbot</title>
         <pubTime>2018-08-02T09:55:13.000Z</pubTime>
         
-        <tag>botframework</tag>
-         
         <tag>chatbot</tag>
+         
+        <tag>botframework</tag>
          
         <tag>Adaptive Cards</tag>
          
@@ -2185,9 +2208,9 @@
         <title>客製 BotDataStore ，將 Bot State 資料存到 SQL Server之中</title>
         <pubTime>2018-01-26T05:11:04.000Z</pubTime>
         
-        <tag>botframework</tag>
-         
         <tag>chatbot</tag>
+         
+        <tag>botframework</tag>
          
         <tag>BotDataStore</tag>
          
