@@ -5,17 +5,17 @@
     
   <url>
     <loc>https://rainmakerho.github.io/2020/07/07/2020011/</loc>
-    <lastmod>2020-07-07T06:01:58.716Z</lastmod>
+    <lastmod>2020-07-07T09:46:56.947Z</lastmod>
     <data>
         <display>
-        <title>Aspose.Words 讓設定 SectionStart.OddPage 的隱藏頁能顯示頁碼</title>
+        <title>Aspose.Words 讓設定 SectionBreakOddPage 的隱藏頁能顯示頁碼</title>
         <pubTime>2020-07-07T03:54:44.000Z</pubTime>
         
         <tag>Aspose.Words</tag>
          
         <tag>SectionStart</tag>
          
-        <tag>SectionStart.OddPage</tag>
+        <tag>SectionBreakOddPage</tag>
          
         <tag>PageNumber</tag>
          
@@ -997,13 +997,13 @@
         <title>document.[formName] is undefined</title>
         <pubTime>2019-03-16T05:48:31.000Z</pubTime>
         
+        <tag>軟體求生</tag>
+         
         <tag>js</tag>
          
         <tag>document.formName</tag>
          
         <tag>undefined</tag>
-         
-        <tag>軟體求生</tag>
          
         <tag>asp.net 4</tag>
          
@@ -1063,11 +1063,11 @@
         <title>Inheritance security rules violated by type: 'System.Net.Http.WebRequestHandler'</title>
         <pubTime>2019-02-23T02:41:55.000Z</pubTime>
         
-        <tag>軟體求生</tag>
-         
         <tag>System.Net.Http</tag>
          
         <tag>4.1.0.0</tag>
+         
+        <tag>軟體求生</tag>
          
          
            
@@ -2062,11 +2062,11 @@
         <title>SmtpConnection.GetConnection NullReferenceException</title>
         <pubTime>2018-03-14T02:07:16.000Z</pubTime>
         
+        <tag>NullReferenceException</tag>
+         
         <tag>SmtpClient</tag>
          
         <tag>SmtpConnection.GetConnection</tag>
-         
-        <tag>NullReferenceException</tag>
          
         <tag>.net</tag>
          
@@ -2091,11 +2091,11 @@
         <title>System.NullReferenceException when Aspose.Pdf.License.SetLicense(String licenseName)</title>
         <pubTime>2018-03-13T06:54:05.000Z</pubTime>
         
-        <tag>NullReferenceException</tag>
-         
         <tag>Aspose</tag>
          
         <tag>SetLicense</tag>
+         
+        <tag>NullReferenceException</tag>
          
          
            
