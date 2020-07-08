@@ -4,11 +4,34 @@
 
     
   <url>
-    <loc>https://rainmakerho.github.io/2020/07/07/2020011/</loc>
-    <lastmod>2020-07-07T09:46:56.947Z</lastmod>
+    <loc>https://rainmakerho.github.io/2019/10/24/2019032/</loc>
+    <lastmod>2020-07-08T09:31:18.155Z</lastmod>
     <data>
         <display>
-        <title>Aspose.Words 讓設定 SectionBreakOddPage 的隱藏頁能顯示頁碼</title>
+        <title>HTTP 錯誤 500.52 - URL Rewrite Module Error.</title>
+        <pubTime>2019-10-24T02:14:24.000Z</pubTime>
+        
+        <tag>RewriteModule</tag>
+         
+        <tag>2147942433</tag>
+         
+        <tag>overrideModeDefault=&quot;Deny&quot;</tag>
+         
+        <tag>allowedServerVariables</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://rainmakerho.github.io/2020/07/07/2020011/</loc>
+    <lastmod>2020-07-07T09:53:07.355Z</lastmod>
+    <data>
+        <display>
+        <title>透過 Aspose.Words 讓設定 SectionBreakOddPage 的隱藏頁能顯示Header及Footer</title>
         <pubTime>2020-07-07T03:54:44.000Z</pubTime>
         
         <tag>Aspose.Words</tag>
@@ -458,29 +481,6 @@
         <tag>Html</tag>
          
         <tag>Excell</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://rainmakerho.github.io/2019/10/24/2019032/</loc>
-    <lastmod>2019-10-25T03:55:41.000Z</lastmod>
-    <data>
-        <display>
-        <title>HTTP 錯誤 500.52 - URL Rewrite Module Error.</title>
-        <pubTime>2019-10-24T02:14:24.000Z</pubTime>
-        
-        <tag>RewriteModule</tag>
-         
-        <tag>2147942433</tag>
-         
-        <tag>overrideModeDefault=&quot;Deny&quot;</tag>
-         
-        <tag>allowedServerVariables</tag>
          
          
            
@@ -997,13 +997,13 @@
         <title>document.[formName] is undefined</title>
         <pubTime>2019-03-16T05:48:31.000Z</pubTime>
         
-        <tag>軟體求生</tag>
-         
         <tag>js</tag>
          
         <tag>document.formName</tag>
          
         <tag>undefined</tag>
+         
+        <tag>軟體求生</tag>
          
         <tag>asp.net 4</tag>
          
@@ -1063,11 +1063,11 @@
         <title>Inheritance security rules violated by type: 'System.Net.Http.WebRequestHandler'</title>
         <pubTime>2019-02-23T02:41:55.000Z</pubTime>
         
+        <tag>軟體求生</tag>
+         
         <tag>System.Net.Http</tag>
          
         <tag>4.1.0.0</tag>
-         
-        <tag>軟體求生</tag>
          
          
            
