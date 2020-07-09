@@ -4,6 +4,29 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2020/07/07/2020011/</loc>
+    <lastmod>2020-07-09T07:46:28.165Z</lastmod>
+    <data>
+        <display>
+        <title>透過 Aspose.Words 讓設定 SectionBreakOddPage 的隱藏頁能顯示Header及Footer</title>
+        <pubTime>2020-07-07T03:54:44.000Z</pubTime>
+        
+        <tag>Aspose.Words</tag>
+         
+        <tag>SectionStart</tag>
+         
+        <tag>SectionBreakOddPage</tag>
+         
+        <tag>PageNumber</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2019/10/24/2019032/</loc>
     <lastmod>2020-07-08T09:31:18.155Z</lastmod>
     <data>
@@ -18,29 +41,6 @@
         <tag>overrideModeDefault=&quot;Deny&quot;</tag>
          
         <tag>allowedServerVariables</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://rainmakerho.github.io/2020/07/07/2020011/</loc>
-    <lastmod>2020-07-07T09:53:07.355Z</lastmod>
-    <data>
-        <display>
-        <title>透過 Aspose.Words 讓設定 SectionBreakOddPage 的隱藏頁能顯示Header及Footer</title>
-        <pubTime>2020-07-07T03:54:44.000Z</pubTime>
-        
-        <tag>Aspose.Words</tag>
-         
-        <tag>SectionStart</tag>
-         
-        <tag>SectionBreakOddPage</tag>
-         
-        <tag>PageNumber</tag>
          
          
            
@@ -1512,9 +1512,9 @@
         <title>.NET Exception Handling</title>
         <pubTime>2018-08-21T08:31:47.000Z</pubTime>
         
-        <tag>c#</tag>
-         
         <tag>.net</tag>
+         
+        <tag>c#</tag>
          
         <tag>exception</tag>
          
@@ -2133,9 +2133,9 @@
         <title>使用 Botframework 的 Bot 如何 Debug 到 BotBuilder Source ?</title>
         <pubTime>2018-02-01T01:47:18.000Z</pubTime>
         
-        <tag>botframework</tag>
-         
         <tag>C#</tag>
+         
+        <tag>botframework</tag>
          
         <tag>BotBuilder</tag>
          
