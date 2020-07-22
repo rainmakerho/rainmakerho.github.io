@@ -4,6 +4,31 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2020/07/21/2020012/</loc>
+    <lastmod>2020-07-22T05:26:27.247Z</lastmod>
+    <data>
+        <display>
+        <title>The frame attempting navigation is sandboxed, and is therefore disallowed from navigating its ancestors.</title>
+        <pubTime>2020-07-21T05:50:24.000Z</pubTime>
+        
+        <tag>iframe</tag>
+         
+        <tag>sandbox</tag>
+         
+        <tag>target</tag>
+         
+        <tag>_parent</tag>
+         
+        <tag>Unsafe JavaScript</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2020/07/07/2020011/</loc>
     <lastmod>2020-07-15T01:44:05.010Z</lastmod>
     <data>
@@ -2206,13 +2231,13 @@
         <title>線上客服 + BOT 之路</title>
         <pubTime>2018-01-25T08:10:47.000Z</pubTime>
         
+        <tag>chatbot</tag>
+         
         <tag>QnA Maker</tag>
          
         <tag>LUIS</tag>
          
         <tag>Vital ESP</tag>
-         
-        <tag>chatbot</tag>
          
         <tag>FAQ</tag>
          
