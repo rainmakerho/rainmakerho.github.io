@@ -5,7 +5,7 @@
     
   <url>
     <loc>https://rainmakerho.github.io/2020/07/21/2020012/</loc>
-    <lastmod>2020-07-22T05:26:27.247Z</lastmod>
+    <lastmod>2020-07-22T05:39:35.689Z</lastmod>
     <data>
         <display>
         <title>The frame attempting navigation is sandboxed, and is therefore disallowed from navigating its ancestors.</title>
@@ -1022,13 +1022,13 @@
         <title>document.[formName] is undefined</title>
         <pubTime>2019-03-16T05:48:31.000Z</pubTime>
         
-        <tag>軟體求生</tag>
-         
         <tag>js</tag>
          
         <tag>document.formName</tag>
          
         <tag>undefined</tag>
+         
+        <tag>軟體求生</tag>
          
         <tag>asp.net 4</tag>
          
@@ -1088,11 +1088,11 @@
         <title>Inheritance security rules violated by type: 'System.Net.Http.WebRequestHandler'</title>
         <pubTime>2019-02-23T02:41:55.000Z</pubTime>
         
+        <tag>軟體求生</tag>
+         
         <tag>System.Net.Http</tag>
          
         <tag>4.1.0.0</tag>
-         
-        <tag>軟體求生</tag>
          
          
            
@@ -1187,8 +1187,6 @@
         <title>使用 OpenTracing - Jaeger (AP整合)</title>
         <pubTime>2019-01-15T05:13:41.000Z</pubTime>
         
-        <tag>BFv4</tag>
-         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -1202,6 +1200,8 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
+         
+        <tag>BFv4</tag>
          
         <tag>NodeJS</tag>
          
@@ -1220,8 +1220,6 @@
         <title>使用 OpenTracing - Jaeger</title>
         <pubTime>2019-01-04T06:02:45.000Z</pubTime>
         
-        <tag>BFv4</tag>
-         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -1235,6 +1233,8 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
+         
+        <tag>BFv4</tag>
          
          
            
@@ -2231,13 +2231,13 @@
         <title>線上客服 + BOT 之路</title>
         <pubTime>2018-01-25T08:10:47.000Z</pubTime>
         
-        <tag>chatbot</tag>
-         
         <tag>QnA Maker</tag>
          
         <tag>LUIS</tag>
          
         <tag>Vital ESP</tag>
+         
+        <tag>chatbot</tag>
          
         <tag>FAQ</tag>
          
