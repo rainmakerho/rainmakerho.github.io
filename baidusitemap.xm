@@ -5,7 +5,7 @@
     
   <url>
     <loc>https://rainmakerho.github.io/2020/07/21/2020012/</loc>
-    <lastmod>2020-07-22T09:51:42.187Z</lastmod>
+    <lastmod>2020-07-22T10:00:03.709Z</lastmod>
     <data>
         <display>
         <title>The frame attempting navigation is sandboxed, and is therefore disallowed from navigating its ancestors.</title>
@@ -449,9 +449,9 @@
         <title>Error code 1 for command [ios]</title>
         <pubTime>2019-11-27T00:41:52.000Z</pubTime>
         
-        <tag>cordova</tag>
-         
         <tag>mac</tag>
+         
+        <tag>cordova</tag>
          
          
            
@@ -2231,13 +2231,13 @@
         <title>線上客服 + BOT 之路</title>
         <pubTime>2018-01-25T08:10:47.000Z</pubTime>
         
-        <tag>chatbot</tag>
-         
         <tag>QnA Maker</tag>
          
         <tag>LUIS</tag>
          
         <tag>Vital ESP</tag>
+         
+        <tag>chatbot</tag>
          
         <tag>FAQ</tag>
          
