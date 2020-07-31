@@ -4,6 +4,29 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2020/07/30/2020013/</loc>
+    <lastmod>2020-07-31T01:44:33.278Z</lastmod>
+    <data>
+        <display>
+        <title>Blazor WebAssembly 與 Server 相互轉換</title>
+        <pubTime>2020-07-30T14:29:29.000Z</pubTime>
+        
+        <tag>Blazor</tag>
+         
+        <tag>WebAssembly</tag>
+         
+        <tag>Server</tag>
+         
+        <tag>Convert</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2020/07/21/2020012/</loc>
     <lastmod>2020-07-22T10:00:03.709Z</lastmod>
     <data>
@@ -1022,13 +1045,13 @@
         <title>document.[formName] is undefined</title>
         <pubTime>2019-03-16T05:48:31.000Z</pubTime>
         
-        <tag>軟體求生</tag>
-         
         <tag>js</tag>
          
         <tag>document.formName</tag>
          
         <tag>undefined</tag>
+         
+        <tag>軟體求生</tag>
          
         <tag>asp.net 4</tag>
          
@@ -1088,11 +1111,11 @@
         <title>Inheritance security rules violated by type: 'System.Net.Http.WebRequestHandler'</title>
         <pubTime>2019-02-23T02:41:55.000Z</pubTime>
         
+        <tag>軟體求生</tag>
+         
         <tag>System.Net.Http</tag>
          
         <tag>4.1.0.0</tag>
-         
-        <tag>軟體求生</tag>
          
          
            
