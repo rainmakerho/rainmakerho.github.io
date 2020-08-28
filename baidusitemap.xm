@@ -4,8 +4,37 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2020/08/26/2020017/</loc>
+    <lastmod>2020-08-28T05:31:00.611Z</lastmod>
+    <data>
+        <display>
+        <title>有效地使用 ASP.NET Core Logging - 2</title>
+        <pubTime>2020-08-26T14:06:37.000Z</pubTime>
+        
+        <tag>ASP.NET Core</tag>
+         
+        <tag>Logging</tag>
+         
+        <tag>Api</tag>
+         
+        <tag>MVC</tag>
+         
+        <tag>GetTokenAsync</tag>
+         
+        <tag>DelegatingHandler</tag>
+         
+        <tag>IExceptionHandlerPathFeature</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2020/08/05/2020014/</loc>
-    <lastmod>2020-08-28T00:55:58.277Z</lastmod>
+    <lastmod>2020-08-28T01:02:07.840Z</lastmod>
     <data>
         <display>
         <title>有效地使用 ASP.NET Core Logging - 1</title>
