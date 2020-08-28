@@ -4,8 +4,87 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2020/08/05/2020014/</loc>
+    <lastmod>2020-08-28T00:55:58.277Z</lastmod>
+    <data>
+        <display>
+        <title>有效地使用 ASP.NET Core Logging - 1</title>
+        <pubTime>2020-08-05T01:37:07.000Z</pubTime>
+        
+        <tag>ASP.NET Core</tag>
+         
+        <tag>Logging</tag>
+         
+        <tag>Api</tag>
+         
+        <tag>MVC</tag>
+         
+        <tag>GetTokenAsync</tag>
+         
+        <tag>DelegatingHandler</tag>
+         
+        <tag>IExceptionHandlerPathFeature</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://rainmakerho.github.io/2020/08/13/2020016/</loc>
+    <lastmod>2020-08-13T10:24:41.422Z</lastmod>
+    <data>
+        <display>
+        <title>ASP.NET Forms Authentication Cookie 在 Chrome 中無法被寫入</title>
+        <pubTime>2020-08-13T12:46:06.000Z</pubTime>
+        
+        <tag>Chrome</tag>
+         
+        <tag>ASP.NET</tag>
+         
+        <tag>cookieSameSite</tag>
+         
+        <tag>Forms Authentication Cookie</tag>
+         
+        <tag>cross-site cookie</tag>
+         
+        <tag>None</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://rainmakerho.github.io/2020/08/13/2020015/</loc>
+    <lastmod>2020-08-13T10:08:35.843Z</lastmod>
+    <data>
+        <display>
+        <title>透過 SharpSvn 取出某路徑的所有檔案(SVN Export)</title>
+        <pubTime>2020-08-13T10:10:24.000Z</pubTime>
+        
+        <tag>svn</tag>
+         
+        <tag>sharpsvn</tag>
+         
+        <tag>export</tag>
+         
+        <tag>prefix svn-</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2020/07/30/2020013/</loc>
-    <lastmod>2020-07-31T01:44:33.278Z</lastmod>
+    <lastmod>2020-08-13T06:23:33.862Z</lastmod>
     <data>
         <display>
         <title>Blazor WebAssembly 與 Server 相互轉換</title>
@@ -1045,13 +1124,13 @@
         <title>document.[formName] is undefined</title>
         <pubTime>2019-03-16T05:48:31.000Z</pubTime>
         
+        <tag>軟體求生</tag>
+         
         <tag>js</tag>
          
         <tag>document.formName</tag>
          
         <tag>undefined</tag>
-         
-        <tag>軟體求生</tag>
          
         <tag>asp.net 4</tag>
          
@@ -1111,11 +1190,11 @@
         <title>Inheritance security rules violated by type: 'System.Net.Http.WebRequestHandler'</title>
         <pubTime>2019-02-23T02:41:55.000Z</pubTime>
         
-        <tag>軟體求生</tag>
-         
         <tag>System.Net.Http</tag>
          
         <tag>4.1.0.0</tag>
+         
+        <tag>軟體求生</tag>
          
          
            
@@ -2231,11 +2310,11 @@
         <title>The bot's MSA appId or password is incorrect.</title>
         <pubTime>2018-02-01T03:52:05.000Z</pubTime>
         
-        <tag>botframework</tag>
-         
         <tag>MSA appId or password is incorrect</tag>
          
         <tag>c#</tag>
+         
+        <tag>botframework</tag>
          
         <tag>botframework-emulator</tag>
          
