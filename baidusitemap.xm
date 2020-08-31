@@ -5,7 +5,7 @@
     
   <url>
     <loc>https://rainmakerho.github.io/2020/08/29/2020018/</loc>
-    <lastmod>2020-08-31T05:06:00.496Z</lastmod>
+    <lastmod>2020-08-31T07:59:18.262Z</lastmod>
     <data>
         <display>
         <title>有效地使用 ASP.NET Core Logging - 3</title>
@@ -2249,11 +2249,11 @@
         <title>SmtpConnection.GetConnection NullReferenceException</title>
         <pubTime>2018-03-14T02:07:16.000Z</pubTime>
         
+        <tag>NullReferenceException</tag>
+         
         <tag>SmtpClient</tag>
          
         <tag>SmtpConnection.GetConnection</tag>
-         
-        <tag>NullReferenceException</tag>
          
         <tag>.net</tag>
          
@@ -2278,11 +2278,11 @@
         <title>System.NullReferenceException when Aspose.Pdf.License.SetLicense(String licenseName)</title>
         <pubTime>2018-03-13T06:54:05.000Z</pubTime>
         
-        <tag>NullReferenceException</tag>
-         
         <tag>Aspose</tag>
          
         <tag>SetLicense</tag>
+         
+        <tag>NullReferenceException</tag>
          
          
            
