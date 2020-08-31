@@ -4,12 +4,43 @@
 
     
   <url>
-    <loc>https://rainmakerho.github.io/2020/08/26/2020017/</loc>
-    <lastmod>2020-08-28T05:31:00.611Z</lastmod>
+    <loc>https://rainmakerho.github.io/2020/08/29/2020018/</loc>
+    <lastmod>2020-08-31T05:06:00.496Z</lastmod>
     <data>
         <display>
-        <title>有效地使用 ASP.NET Core Logging - 2</title>
-        <pubTime>2020-08-26T14:06:37.000Z</pubTime>
+        <title>有效地使用 ASP.NET Core Logging - 3</title>
+        <pubTime>2020-08-29T06:23:06.000Z</pubTime>
+        
+        <tag>ASP.NET Core</tag>
+         
+        <tag>Logging</tag>
+         
+        <tag>Api</tag>
+         
+        <tag>MVC</tag>
+         
+        <tag>GetTokenAsync</tag>
+         
+        <tag>DelegatingHandler</tag>
+         
+        <tag>IExceptionHandlerPathFeature</tag>
+         
+        <tag>BeginScope</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://rainmakerho.github.io/2020/08/05/2020014/</loc>
+    <lastmod>2020-08-28T10:17:00.549Z</lastmod>
+    <data>
+        <display>
+        <title>有效地使用 ASP.NET Core Logging - 1</title>
+        <pubTime>2020-08-05T01:37:07.000Z</pubTime>
         
         <tag>ASP.NET Core</tag>
          
@@ -33,12 +64,12 @@
 
     
   <url>
-    <loc>https://rainmakerho.github.io/2020/08/05/2020014/</loc>
-    <lastmod>2020-08-28T01:02:07.840Z</lastmod>
+    <loc>https://rainmakerho.github.io/2020/08/26/2020017/</loc>
+    <lastmod>2020-08-28T05:31:00.611Z</lastmod>
     <data>
         <display>
-        <title>有效地使用 ASP.NET Core Logging - 1</title>
-        <pubTime>2020-08-05T01:37:07.000Z</pubTime>
+        <title>有效地使用 ASP.NET Core Logging - 2</title>
+        <pubTime>2020-08-26T14:06:37.000Z</pubTime>
         
         <tag>ASP.NET Core</tag>
          
@@ -2218,11 +2249,11 @@
         <title>SmtpConnection.GetConnection NullReferenceException</title>
         <pubTime>2018-03-14T02:07:16.000Z</pubTime>
         
-        <tag>NullReferenceException</tag>
-         
         <tag>SmtpClient</tag>
          
         <tag>SmtpConnection.GetConnection</tag>
+         
+        <tag>NullReferenceException</tag>
          
         <tag>.net</tag>
          
@@ -2247,11 +2278,11 @@
         <title>System.NullReferenceException when Aspose.Pdf.License.SetLicense(String licenseName)</title>
         <pubTime>2018-03-13T06:54:05.000Z</pubTime>
         
+        <tag>NullReferenceException</tag>
+         
         <tag>Aspose</tag>
          
         <tag>SetLicense</tag>
-         
-        <tag>NullReferenceException</tag>
          
          
            
@@ -2339,11 +2370,11 @@
         <title>The bot's MSA appId or password is incorrect.</title>
         <pubTime>2018-02-01T03:52:05.000Z</pubTime>
         
+        <tag>botframework</tag>
+         
         <tag>MSA appId or password is incorrect</tag>
          
         <tag>c#</tag>
-         
-        <tag>botframework</tag>
          
         <tag>botframework-emulator</tag>
          
@@ -2362,13 +2393,13 @@
         <title>線上客服 + BOT 之路</title>
         <pubTime>2018-01-25T08:10:47.000Z</pubTime>
         
+        <tag>chatbot</tag>
+         
         <tag>QnA Maker</tag>
          
         <tag>LUIS</tag>
          
         <tag>Vital ESP</tag>
-         
-        <tag>chatbot</tag>
          
         <tag>FAQ</tag>
          
