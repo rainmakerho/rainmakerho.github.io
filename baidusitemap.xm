@@ -4,6 +4,68 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2020/05/15/2020007/</loc>
+    <lastmod>2020-09-10T05:58:08.496Z</lastmod>
+    <data>
+        <display>
+        <title>AuthenticationException: Authentication failed, see inner exception. Win32Exception: 接收到的訊息超出預期或格式不正確。WebException: 要求已經中止: 無法建立 SSL/TLS 的安全通道。</title>
+        <pubTime>2020-05-15T05:14:34.000Z</pubTime>
+        
+        <tag>2148734209</tag>
+         
+        <tag>TLS</tag>
+         
+        <tag>HTTPS</tag>
+         
+        <tag>無法建立 SSL/TLS 的安全通道</tag>
+         
+        <tag>WebException</tag>
+         
+        <tag>AuthenticationException</tag>
+         
+        <tag>基礎連接已關閉</tag>
+         
+        <tag>遠端主機已強制關閉一個現存的連線</tag>
+         
+        <tag>接收到的訊息超出預期或格式不正確</tag>
+         
+        <tag>2148074278</tag>
+         
+        <tag>需要伺服器名稱指示</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://rainmakerho.github.io/2020/09/09/2020019/</loc>
+    <lastmod>2020-09-10T05:48:52.354Z</lastmod>
+    <data>
+        <display>
+        <title>ASP.NET Core Corss-Origin Requests(CORS)</title>
+        <pubTime>2020-09-09T14:29:46.000Z</pubTime>
+        
+        <tag>ASP.NET Core</tag>
+         
+        <tag>CORS</tag>
+         
+        <tag>Corss-Origin Requests</tag>
+         
+        <tag>405</tag>
+         
+        <tag>preflight</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2020/08/29/2020018/</loc>
     <lastmod>2020-08-31T07:59:18.262Z</lastmod>
     <data>
@@ -297,41 +359,6 @@
         <tag>CSP</tag>
          
         <tag>upgrade-insecure-requests</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://rainmakerho.github.io/2020/05/15/2020007/</loc>
-    <lastmod>2020-05-16T00:30:01.859Z</lastmod>
-    <data>
-        <display>
-        <title>AuthenticationException: Authentication failed, see inner exception. Win32Exception: 接收到的訊息超出預期或格式不正確。WebException: 要求已經中止: 無法建立 SSL/TLS 的安全通道。</title>
-        <pubTime>2020-05-15T05:14:34.000Z</pubTime>
-        
-        <tag>2148734209</tag>
-         
-        <tag>TLS</tag>
-         
-        <tag>HTTPS</tag>
-         
-        <tag>無法建立 SSL/TLS 的安全通道</tag>
-         
-        <tag>WebException</tag>
-         
-        <tag>AuthenticationException</tag>
-         
-        <tag>基礎連接已關閉</tag>
-         
-        <tag>遠端主機已強制關閉一個現存的連線</tag>
-         
-        <tag>接收到的訊息超出預期或格式不正確</tag>
-         
-        <tag>2148074278</tag>
          
          
            
@@ -2393,13 +2420,13 @@
         <title>線上客服 + BOT 之路</title>
         <pubTime>2018-01-25T08:10:47.000Z</pubTime>
         
-        <tag>chatbot</tag>
-         
         <tag>QnA Maker</tag>
          
         <tag>LUIS</tag>
          
         <tag>Vital ESP</tag>
+         
+        <tag>chatbot</tag>
          
         <tag>FAQ</tag>
          
