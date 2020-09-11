@@ -4,6 +4,33 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2020/09/09/2020019/</loc>
+    <lastmod>2020-09-11T08:19:30.938Z</lastmod>
+    <data>
+        <display>
+        <title>ASP.NET Core Cross-Origin Resource Sharing(CORS)</title>
+        <pubTime>2020-09-09T14:29:46.000Z</pubTime>
+        
+        <tag>ASP.NET Core</tag>
+         
+        <tag>CORS</tag>
+         
+        <tag>Corss-Origin Requests</tag>
+         
+        <tag>405</tag>
+         
+        <tag>preflight</tag>
+         
+        <tag>blocked by CORS</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2020/05/15/2020007/</loc>
     <lastmod>2020-09-10T05:58:08.496Z</lastmod>
     <data>
@@ -32,31 +59,6 @@
         <tag>2148074278</tag>
          
         <tag>需要伺服器名稱指示</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://rainmakerho.github.io/2020/09/09/2020019/</loc>
-    <lastmod>2020-09-10T05:48:52.354Z</lastmod>
-    <data>
-        <display>
-        <title>ASP.NET Core Corss-Origin Requests(CORS)</title>
-        <pubTime>2020-09-09T14:29:46.000Z</pubTime>
-        
-        <tag>ASP.NET Core</tag>
-         
-        <tag>CORS</tag>
-         
-        <tag>Corss-Origin Requests</tag>
-         
-        <tag>405</tag>
-         
-        <tag>preflight</tag>
          
          
            
@@ -1519,9 +1521,9 @@
         <title>PDF 最後一頁才顯示頁尾</title>
         <pubTime>2018-11-29T06:46:17.000Z</pubTime>
         
-        <tag>aspose</tag>
-         
         <tag>pdf</tag>
+         
+        <tag>aspose</tag>
          
         <tag>cells</tag>
          
