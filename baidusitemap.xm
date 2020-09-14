@@ -4,6 +4,29 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2020/09/13/2020020/</loc>
+    <lastmod>2020-09-14T08:18:50.484Z</lastmod>
+    <data>
+        <display>
+        <title>Blazor Server 使用 EF Core 噴 Invalid attempt to call ReadAsync when reader is closed. Or A second operation started on this context before a previous operation completed.</title>
+        <pubTime>2020-09-13T07:40:39.000Z</pubTime>
+        
+        <tag>Blazor Server</tag>
+         
+        <tag>EF Core</tag>
+         
+        <tag>Invalid attempt to call ReadAsync when reader is closed</tag>
+         
+        <tag>A second operation started on this context before a previous operation completed</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2020/09/09/2020019/</loc>
     <lastmod>2020-09-11T08:19:30.938Z</lastmod>
     <data>
@@ -1521,9 +1544,9 @@
         <title>PDF 最後一頁才顯示頁尾</title>
         <pubTime>2018-11-29T06:46:17.000Z</pubTime>
         
-        <tag>pdf</tag>
-         
         <tag>aspose</tag>
+         
+        <tag>pdf</tag>
          
         <tag>cells</tag>
          

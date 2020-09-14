@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2020-09-11T08:19:30.938Z</updated>
+  <updated>2020-09-14T08:18:50.484Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Blazor Server 使用 EF Core 噴 Invalid attempt to call ReadAsync when reader is closed. Or A second operation started on this context before a previous operation completed.</title>
+    <link href="https://rainmakerho.github.io/2020/09/13/2020020/"/>
+    <id>https://rainmakerho.github.io/2020/09/13/2020020/</id>
+    <published>2020-09-13T07:40:39.000Z</published>
+    <updated>2020-09-14T08:18:50.484Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 ASP.NET Core 中，EF Core 的 DI 通常是設定成 Scoped。<br>但 Blazor Server 的 Scoped 是以 SignalR Connection 來看的，所以並不是之前 ASP.NET Core 的每次 Request。<br>所以如果直接在 Blazor Server 中使用 EF Core 的 DbContext 時，有時會噴以下的錯誤，</p><blockquote><p>Invalid attempt to call ReadAsync when reader is closed.</p></blockquote><blockquote><p>A second operation started on this context before a previous operation completed. This is usually caused by different threads using the same instance of DbContext. For more information on how to avoid threading issues with DbContext</p></blockquote><h3 id="解決方式"><a href="#解決方式" class="headerlink" title="解決方式"></a>解決方式</h3><h4 id="解法1-讓頁面繼承-OwningComponentBase"><a href="#解法1-讓頁面繼承-OwningComponentBase" class="headerlink" title="解法1 : 讓頁面繼承 OwningComponentBase"></a>解法1 : 讓頁面繼承 OwningComponentBase</h4><p>讓 Service 的生命週期變成是以 Page 為 Base ，也就是使用者切換頁面時，那個注入的服務才會 Release 掉。<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">@inherits OwningComponentBase&lt;SyncfusionHelpDeskService&gt;</span><br><span class="line"></span><br><span class="line">@code&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">async</span> Task <span class="title">HandleValidSubmit</span>(<span class="params">EditContext context</span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">try</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">var</span> tickets = <span class="keyword">new</span> HelpDeskTickets();</span><br><span class="line">            <span class="comment">//使用時，直接取用 Service 就是 SyncfusionHelpDeskService 物件</span></span><br><span class="line">            <span class="keyword">var</span> result = Service.CreateTicketAsync(tickets);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span> (Exception ex)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// error handle</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>但有這在同一個頁面中的 Method ，如果同時操作 async &amp; sync 的 DbContext Method ，就有可能出現 Invalid attempt to call ReadAsync when reader is closed.</p><h4 id="解法2-改用-Transient"><a href="#解法2-改用-Transient" class="headerlink" title="解法2 : 改用 Transient"></a>解法2 : 改用 Transient</h4><h4 id="解法3-要使用時，再透過-IServiceScopeFactory-CreateScope-建立"><a href="#解法3-要使用時，再透過-IServiceScopeFactory-CreateScope-建立" class="headerlink" title="解法3 : 要使用時，再透過 IServiceScopeFactory.CreateScope 建立"></a>解法3 : 要使用時，再透過 IServiceScopeFactory.CreateScope 建立</h4><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@inject IServiceScopeFactory serviceScopeFactory</span><br><span class="line">@* other razor page code ... *@</span><br><span class="line">@code&#123;</span><br><span class="line">    [<span class="meta">CascadingParameter</span>]</span><br><span class="line">    <span class="keyword">private</span> Task&lt;AuthenticationState&gt; authenticationStateTask &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> IQueryable&lt;HelpDeskTickets&gt; QryHelpDeskTickets &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">private</span> HelpDeskTickets SelectedTicket = <span class="keyword">new</span> HelpDeskTickets();</span><br><span class="line"></span><br><span class="line">    HelpDeskTicket objHelpDeskTicket = <span class="keyword">new</span> HelpDeskTicket &#123; TicketDate = DateTime.Now &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">bool</span> DeleteRecordConfirmVisibility &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125; = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">bool</span> EditDialogVisiblity &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125; = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// page command event</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ConfirmDeleteYes</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">using</span> (<span class="keyword">var</span> scope = serviceScopeFactory.CreateScope())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">var</span> serviceProvider = scope.ServiceProvider;</span><br><span class="line">            <span class="keyword">var</span> service = serviceProvider.GetRequiredService&lt;SyncfusionHelpDeskService&gt;();</span><br><span class="line">            <span class="comment">// call service delete data</span></span><br><span class="line">            <span class="keyword">var</span> result = service.DeleteHelpDeskTickets(SelectedTicket);</span><br><span class="line">            <span class="keyword">if</span> (result)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">this</span>.DeleteRecordConfirmVisibility = <span class="literal">false</span>;</span><br><span class="line">                <span class="comment">// call service get query data </span></span><br><span class="line">                QryHelpDeskTickets = service.GetHelpDeskTickets().ToList().AsQueryable();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>但如果有把 DbContext 直接回傳 IQueryable Bind 到 Blazor 控制項的話，也會噴 A second operation started on this context before a previous operation completed 的錯哦!</p><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://www.roundthecode.com/dotnet/blazor/using-entity-framework-in-a-blazor-server-application" target="_blank" rel="noopener">Using Entity Framework in a Blazor Server Application</a><br><a href="https://chrissainty.com/an-introduction-to-owningcomponentbase/" target="_blank" rel="noopener">An Introduction to OwningComponentBase</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;在 ASP.NET Core 中，EF Core 的 DI 通常是設定成 Scoped。&lt;br&gt;但 Blazor Server 的 Scop
+      
+    
+    </summary>
+    
+    
+      <category term="Blazor Server" scheme="https://rainmakerho.github.io/tags/Blazor-Server/"/>
+    
+      <category term="EF Core" scheme="https://rainmakerho.github.io/tags/EF-Core/"/>
+    
+      <category term="Invalid attempt to call ReadAsync when reader is closed" scheme="https://rainmakerho.github.io/tags/Invalid-attempt-to-call-ReadAsync-when-reader-is-closed/"/>
+    
+      <category term="A second operation started on this context before a previous operation completed" scheme="https://rainmakerho.github.io/tags/A-second-operation-started-on-this-context-before-a-previous-operation-completed/"/>
+    
+  </entry>
   
   <entry>
     <title>ASP.NET Core Cross-Origin Resource Sharing(CORS)</title>
@@ -608,31 +637,6 @@
       <category term="Dependency Injection" scheme="https://rainmakerho.github.io/tags/Dependency-Injection/"/>
     
       <category term="DI" scheme="https://rainmakerho.github.io/tags/DI/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>EF Core, Startup project &#39;xxx.Data.csproj&#39; targets framework &#39;.NETStandard&#39;. There is no runtime associated with this framework</title>
-    <link href="https://rainmakerho.github.io/2019/12/30/2019038/"/>
-    <id>https://rainmakerho.github.io/2019/12/30/2019038/</id>
-    <published>2019-12-30T02:49:22.000Z</published>
-    <updated>2019-12-30T04:01:18.000Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 .net core 專案中，當我們將 Data 專案拆到另一個 .NETStandard 專案時，在他的目錄下，執行 <strong>dotnet ef dbcontext</strong> 相關 Command 時，會噴以下的錯誤</p><blockquote><p>Startup project ‘OdeToFood.Data.csproj’ targets framework ‘.NETStandard’. There is no runtime associated with this framework, and projects targeting it cannot be executed directly. To use the Entity Framework Core .NET Command-line Tools with this project, add an executable project targeting .NET Core or .NET Framework that references this project, and set it as the startup project using –startup-project; or, update this project to cross-target .NET Core or .NET Framework. For more information on using the EF Core Tools with .NET Standard projects, see <a href="https://go.microsoft.com/fwlink/?linkid=2034781" target="_blank" rel="noopener">https://go.microsoft.com/fwlink/?linkid=2034781</a></p></blockquote><h3 id="研究"><a href="#研究" class="headerlink" title="研究"></a>研究</h3><p>這是因為它並不知道目前這個專案要使用的是 .NET Core 或是 .NET Framework，所以這時，只要多設定 –startup-project 去指定到參考這個專案的主專案就可以了哦!<br>註: 主專案要加入 Microsoft.EntityFrameworkCore.Design 這個 Nuget 套件哦!<br>例如原本我是下</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">dotnet ef dbcontext list</span><br></pre></td></tr></table></figure><p>要多加入 –startup-project 的設定</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">dotnet ef dbcontext list --startup-project ../OdeToFood</span><br></pre></td></tr></table></figure><p>或是簡寫 -s</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">dotnet ef dbcontext list -s ../OdeToFood/OdeToFood.csproj</span><br></pre></td></tr></table></figure><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://stackoverflow.com/questions/48673987/trying-to-set-up-entity-framework-core-in-net-standard-project" target="_blank" rel="noopener">Trying to set-up Entity Framework core in .Net Standard project</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;在 .net core 專案中，當我們將 Data 專案拆到另一個 .NETStandard 專案時，在他的目錄下，執行 &lt;strong&gt;d
-      
-    
-    </summary>
-    
-    
-      <category term="ef core" scheme="https://rainmakerho.github.io/tags/ef-core/"/>
-    
-      <category term=".NETStandard" scheme="https://rainmakerho.github.io/tags/NETStandard/"/>
     
   </entry>
   
