@@ -1749,9 +1749,9 @@
         <title>Microsoft Botframework + Adaptive Cards 快速打造 Chatbot 之 2</title>
         <pubTime>2018-09-17T01:29:38.000Z</pubTime>
         
-        <tag>chatbot</tag>
-         
         <tag>botframework</tag>
+         
+        <tag>chatbot</tag>
          
         <tag>adaptivecard</tag>
          
@@ -1818,9 +1818,9 @@
         <title>Microsoft Botframework + Adaptive Cards 快速打造 Chatbot</title>
         <pubTime>2018-08-02T09:55:13.000Z</pubTime>
         
-        <tag>chatbot</tag>
-         
         <tag>botframework</tag>
+         
+        <tag>chatbot</tag>
          
         <tag>Adaptive Cards</tag>
          
@@ -2324,11 +2324,11 @@
         <title>SmtpConnection.GetConnection NullReferenceException</title>
         <pubTime>2018-03-14T02:07:16.000Z</pubTime>
         
+        <tag>NullReferenceException</tag>
+         
         <tag>SmtpClient</tag>
          
         <tag>SmtpConnection.GetConnection</tag>
-         
-        <tag>NullReferenceException</tag>
          
         <tag>.net</tag>
          
@@ -2353,11 +2353,11 @@
         <title>System.NullReferenceException when Aspose.Pdf.License.SetLicense(String licenseName)</title>
         <pubTime>2018-03-13T06:54:05.000Z</pubTime>
         
-        <tag>NullReferenceException</tag>
-         
         <tag>Aspose</tag>
          
         <tag>SetLicense</tag>
+         
+        <tag>NullReferenceException</tag>
          
          
            
@@ -2493,9 +2493,9 @@
         <title>客製 BotDataStore ，將 Bot State 資料存到 SQL Server之中</title>
         <pubTime>2018-01-26T05:11:04.000Z</pubTime>
         
-        <tag>chatbot</tag>
-         
         <tag>botframework</tag>
+         
+        <tag>chatbot</tag>
          
         <tag>BotDataStore</tag>
          
