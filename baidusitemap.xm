@@ -2324,11 +2324,11 @@
         <title>SmtpConnection.GetConnection NullReferenceException</title>
         <pubTime>2018-03-14T02:07:16.000Z</pubTime>
         
-        <tag>NullReferenceException</tag>
-         
         <tag>SmtpClient</tag>
          
         <tag>SmtpConnection.GetConnection</tag>
+         
+        <tag>NullReferenceException</tag>
          
         <tag>.net</tag>
          
@@ -2353,11 +2353,11 @@
         <title>System.NullReferenceException when Aspose.Pdf.License.SetLicense(String licenseName)</title>
         <pubTime>2018-03-13T06:54:05.000Z</pubTime>
         
+        <tag>NullReferenceException</tag>
+         
         <tag>Aspose</tag>
          
         <tag>SetLicense</tag>
-         
-        <tag>NullReferenceException</tag>
          
          
            
