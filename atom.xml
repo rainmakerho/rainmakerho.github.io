@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2020-09-24T15:40:25.638Z</updated>
+  <updated>2020-10-19T03:53:57.436Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>為什麼專案透過 Visual Studio 建置成功，但錯誤清單卻有一堆的錯誤?</title>
+    <link href="https://rainmakerho.github.io/2020/10/19/Why-VS-Build-succeed-But-Have-Errors/"/>
+    <id>https://rainmakerho.github.io/2020/10/19/Why-VS-Build-succeed-But-Have-Errors/</id>
+    <published>2020-10-19T03:33:24.000Z</published>
+    <updated>2020-10-19T03:53:57.436Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>今天透過 Visual Studio 建置專案時，在 錯誤清單視窗 中卻出現一堆錯誤，但點過去卻沒有錯誤。<br>而專案卻建置成功，怎麼一回事呢?</p><h3 id="解決"><a href="#解決" class="headerlink" title="解決"></a>解決</h3><p>從網路上找到「<a href="https://weblog.west-wind.com/posts/2018/Aug/07/Fixing-Visual-Studio-Intellisense-Errors" target="_blank" rel="noopener">Fixing Visual Studio Intellisense Errors</a>」這篇也是一樣的狀況。</p><p>可以先在 錯誤清單視窗 右邊的下拉選項，從「組建 + IntelliSense」改成「組建」，就可以發現那些錯誤就不見了。</p><img src="/2020/10/19/Why-VS-Build-succeed-But-Have-Errors/01.png" title="錯誤清單視窗"><p>這樣可以先專心在是否可以建置成功上面。<br>當建置成功後，再切回到 組建 + IntelliSense ，如果還是有錯誤的話，網路上的解法是把 .vs Folder 刪除掉。</p><p>我將 Visual Studio 重啟後，原本 IntelliSense 的一堆錯誤也就一併消失了。</p><p>有這困擾的朋友可以試看看哦!</p><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://weblog.west-wind.com/posts/2018/Aug/07/Fixing-Visual-Studio-Intellisense-Errors" target="_blank" rel="noopener">Fixing Visual Studio Intellisense Errors</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;今天透過 Visual Studio 建置專案時，在 錯誤清單視窗 中卻出現一堆錯誤，但點過去卻沒有錯誤。&lt;br&gt;而專案卻建置成功，怎麼一回
+      
+    
+    </summary>
+    
+    
+      <category term="Visual Studio" scheme="https://rainmakerho.github.io/tags/Visual-Studio/"/>
+    
+      <category term="Build Succeed" scheme="https://rainmakerho.github.io/tags/Build-Succeed/"/>
+    
+      <category term="Errors" scheme="https://rainmakerho.github.io/tags/Errors/"/>
+    
+      <category term="Intellisense" scheme="https://rainmakerho.github.io/tags/Intellisense/"/>
+    
+  </entry>
   
   <entry>
     <title>SCRIPT429: Automation 伺服程式無法產生物件</title>
@@ -614,31 +643,6 @@
       <category term="file" scheme="https://rainmakerho.github.io/tags/file/"/>
     
       <category term="vs.net" scheme="https://rainmakerho.github.io/tags/vs-net/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>IIS 網站忽然全都出現 BC31007 無法開啟模組檔 的錯誤</title>
-    <link href="https://rainmakerho.github.io/2020/03/18/2020002/"/>
-    <id>https://rainmakerho.github.io/2020/03/18/2020002/</id>
-    <published>2020-03-18T07:56:53.000Z</published>
-    <updated>2020-03-18T08:07:25.126Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>今天同事詢問他的 Windows 2012R2 Server 上的網站居然全都出現 BC31007: 無法開啟模組檔 ‘C:\Windows\Micriosft.NET\Framework\v4.0.300319\Temporary ASP.NET Files...vb’ 系統錯誤，如下，</p><img src="/2020/03/18/2020002/001.png" title="bc31007"><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>後來找到 <a href="https://stackoverflow.com/questions/23248388/asp-net-site-wont-run-after-windows-update-compilation-error-temporary-asp-net" target="_blank" rel="noopener">Asp.net site wont run after windows update, Compilation error “Temporary ASP.NET Files”</a> ，建議 IIS_USERS 對 C:\Windows\Temp 目錄，有完全控制權限就可以了。</p><p>同事依設定後，網站就順利可以執行了哦 ^_^</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;今天同事詢問他的 Windows 2012R2 Server 上的網站居然全都出現 BC31007: 無法開啟模組檔 ‘C:\Windows
-      
-    
-    </summary>
-    
-    
-      <category term="BC31007" scheme="https://rainmakerho.github.io/tags/BC31007/"/>
-    
-      <category term="Temporary ASP.NET Fiels" scheme="https://rainmakerho.github.io/tags/Temporary-ASP-NET-Fiels/"/>
     
   </entry>
   

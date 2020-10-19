@@ -4,6 +4,29 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2020/10/19/Why-VS-Build-succeed-But-Have-Errors/</loc>
+    <lastmod>2020-10-19T03:53:57.436Z</lastmod>
+    <data>
+        <display>
+        <title>為什麼專案透過 Visual Studio 建置成功，但錯誤清單卻有一堆的錯誤?</title>
+        <pubTime>2020-10-19T03:33:24.000Z</pubTime>
+        
+        <tag>Visual Studio</tag>
+         
+        <tag>Build Succeed</tag>
+         
+        <tag>Errors</tag>
+         
+        <tag>Intellisense</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2020/09/24/2020021/</loc>
     <lastmod>2020-09-24T15:40:25.638Z</lastmod>
     <data>
@@ -2468,13 +2491,13 @@
         <title>線上客服 + BOT 之路</title>
         <pubTime>2018-01-25T08:10:47.000Z</pubTime>
         
+        <tag>chatbot</tag>
+         
         <tag>QnA Maker</tag>
          
         <tag>LUIS</tag>
          
         <tag>Vital ESP</tag>
-         
-        <tag>chatbot</tag>
          
         <tag>FAQ</tag>
          
