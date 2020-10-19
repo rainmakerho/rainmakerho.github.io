@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2020-10-19T03:53:57.436Z</updated>
+  <updated>2020-10-19T08:23:24.996Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,74 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>.NET 使用 XOR 來做簡單的加密及資料追蹤處理</title>
+    <link href="https://rainmakerho.github.io/2020/10/19/net-xor/"/>
+    <id>https://rainmakerho.github.io/2020/10/19/net-xor/</id>
+    <published>2020-10-19T07:46:11.000Z</published>
+    <updated>2020-10-19T08:23:24.996Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>有些系統會在畫面上加上浮水印以避免資料被使用者列出外洩出去，作法可以參考 <a href="https://dotblogs.com.tw/rainmaker/2012/08/23/74238" target="_blank" rel="noopener">[ASP.NET]建立有浮水印的網頁</a> 。<br>另外可以在畫面上多輸出一個亂數值，而這個亂數值是可以代表這個使用者的。<br>最簡單的就是使用 XOR 的方式。</p><h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 將前後面的 Byte Array 進行 XOR 運算</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name="input"&gt;</span><span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name="key"&gt;</span><span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;returns&gt;</span><span class="doctag">&lt;/returns&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] <span class="title">Xor</span>(<span class="params"><span class="keyword">byte</span>[] input, <span class="keyword">byte</span>[] key</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">byte</span>[] output = <span class="keyword">new</span> <span class="keyword">byte</span>[input.Length];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; input.Length; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        output[i] = (<span class="keyword">byte</span>)(input[i] ^ key[i % key.Length]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> output;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>所以假設有個功能代號為 Func000001, 使用者 TDD123 及 使用者 CII456 , XOR 出來的值分別為 12312A52020364747400 及 053C2757050673797905 .<br>而這2個流水號並不會讓使用者認為是他們的代號。<br>但如果這份資料洩漏出去，就可以拿那些 流水號 與 功能代號 做一次的 XOR 就可以知道是那個使用者 洩漏出去的。 程式如下，<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> funId = <span class="string">"Func000001"</span>;</span><br><span class="line"><span class="keyword">var</span> inputBytes = Encoding.UTF8.GetBytes(funId);</span><br><span class="line"><span class="keyword">var</span> userId_1 = <span class="string">"TDD123"</span>;</span><br><span class="line"><span class="keyword">var</span> userId_1Bytes = Encoding.UTF8.GetBytes(userId_1);</span><br><span class="line"><span class="keyword">var</span> userId_2 = <span class="string">"CII456"</span>;</span><br><span class="line"><span class="keyword">var</span> userId_2Bytes = Encoding.UTF8.GetBytes(userId_2);</span><br><span class="line"><span class="keyword">var</span> user1Input = BitConverter.ToString(Xor(inputBytes, userId_1Bytes)).Replace(<span class="string">"-"</span>, <span class="keyword">string</span>.Empty);</span><br><span class="line"><span class="keyword">var</span> user2Input = BitConverter.ToString(Xor(inputBytes, userId_2Bytes)).Replace(<span class="string">"-"</span>, <span class="keyword">string</span>.Empty);</span><br><span class="line"><span class="comment">//解回 userids</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> userId_1_De = Encoding.UTF8.GetString(Xor(inputBytes, Enumerable.Range(<span class="number">0</span>, user1Input.Length / <span class="number">2</span>)</span><br><span class="line">    .Select(x =&gt; Convert.ToByte(user1Input.Substring(x * <span class="number">2</span>, <span class="number">2</span>), <span class="number">16</span>))</span><br><span class="line">    .ToArray()));</span><br><span class="line"><span class="comment">//TDD123TDD123T</span></span><br><span class="line"><span class="keyword">var</span> userId_2_De = Encoding.UTF8.GetString(Xor(inputBytes, Enumerable.Range(<span class="number">0</span>, user2Input.Length / <span class="number">2</span>)</span><br><span class="line">    .Select(x =&gt; Convert.ToByte(user2Input.Substring(x * <span class="number">2</span>, <span class="number">2</span>), <span class="number">16</span>))</span><br><span class="line">    .ToArray()));</span><br><span class="line"><span class="comment">//CII456CII456C</span></span><br></pre></td></tr></table></figure></p><p>可以從上面的範例發現，原本的資料與 XOR 過的資料再做一次 XOR ，就可以知道原本的使用者代號。</p><p>註: </p><ul><li>如果網頁浮水印怕被使用者透過 F12 把它去掉的話，可以設一個 Timer ，每幾秒就再設定浮水印一次，這樣即使透過工具拿掉後，又會再呈現出來。</li><li>上述的功能代號也可以轉成是機敏的資料，只要有 XOR 過的資料，就可以回追原本的使用者。</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;有些系統會在畫面上加上浮水印以避免資料被使用者列出外洩出去，作法可以參考 &lt;a href=&quot;https://dotblogs.com.tw/
+      
+    
+    </summary>
+    
+    
+      <category term=".NET" scheme="https://rainmakerho.github.io/tags/NET/"/>
+    
+      <category term="XOR" scheme="https://rainmakerho.github.io/tags/XOR/"/>
+    
+      <category term="Base64" scheme="https://rainmakerho.github.io/tags/Base64/"/>
+    
+      <category term="Encrypt" scheme="https://rainmakerho.github.io/tags/Encrypt/"/>
+    
+      <category term="Decrypt" scheme="https://rainmakerho.github.io/tags/Decrypt/"/>
+    
+      <category term="加密" scheme="https://rainmakerho.github.io/tags/%E5%8A%A0%E5%AF%86/"/>
+    
+      <category term="解密" scheme="https://rainmakerho.github.io/tags/%E8%A7%A3%E5%AF%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>.NET Base64、Hex Encode/Decode</title>
+    <link href="https://rainmakerho.github.io/2020/10/19/hex-base64-encode-decode/"/>
+    <id>https://rainmakerho.github.io/2020/10/19/hex-base64-encode-decode/</id>
+    <published>2020-10-19T06:54:23.000Z</published>
+    <updated>2020-10-19T07:23:15.879Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在開發中常常會用到轉 Base64 字串，再轉回 byte array 。<br>最近因為某系統需要將 Base64 字串後面的 = 去掉，<br>在轉回來時需要再把 = 補回去，那要怎麼補呢?</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> input = <span class="string">"abcd"</span>;</span><br><span class="line"><span class="keyword">var</span> inputByteArray = Encoding.UTF8.GetBytes(<span class="string">"abcd"</span>);</span><br><span class="line"><span class="keyword">var</span> resultNoTrimEnd = Convert.ToBase64String(inputByteArray);</span><br><span class="line"><span class="keyword">var</span> base64Decodeinput = Encoding.UTF8.GetString(Convert.FromBase64String(resultNoTrimEnd));</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> result = Convert.ToBase64String(inputByteArray)</span><br><span class="line">    .TrimEnd(<span class="string">'='</span>);</span><br><span class="line"><span class="comment">//這裡要加幾個 = ???</span></span><br></pre></td></tr></table></figure><h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><p>可以依 Base64 字串的長度去 Mod 4 ，如果餘數為 2 ，就補 2個 = ，如果餘數為 3 ，就補 1 個 = 。<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> input = <span class="string">"abcd"</span>;</span><br><span class="line"><span class="keyword">var</span> inputByteArray = Encoding.UTF8.GetBytes(<span class="string">"abcd"</span>);</span><br><span class="line"><span class="keyword">var</span> resultNoTrimEnd = Convert.ToBase64String(inputByteArray);</span><br><span class="line"><span class="keyword">var</span> base64Decodeinput = Encoding.UTF8.GetString(Convert.FromBase64String(resultNoTrimEnd));</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> result = Convert.ToBase64String(inputByteArray)</span><br><span class="line">    .TrimEnd(<span class="string">'='</span>);</span><br><span class="line"><span class="comment">//這裡要加幾個 </span></span><br><span class="line"><span class="comment">//如果餘數為 2 ，就補 2個 = ，如果餘數為 3 ，就補 1 個 =</span></span><br><span class="line"><span class="keyword">switch</span> (result.Length % <span class="number">4</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">        result += <span class="string">"=="</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">        result += <span class="string">"="</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> resultWithTrimEnd = Encoding.UTF8.GetString(Convert.FromBase64String(result));</span><br></pre></td></tr></table></figure></p><p>所以整理的 Function 如下，<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 使用 [$#] 取代 [+/]，不使用 [=] 做為 Padding</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">string</span> <span class="title">Base64Encode</span>(<span class="params"><span class="keyword">byte</span>[] input</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> result = Convert.ToBase64String(input)</span><br><span class="line">        .TrimEnd(<span class="string">'='</span>)</span><br><span class="line">        .Replace(<span class="string">'+'</span>, <span class="string">'$'</span>)</span><br><span class="line">        .Replace(<span class="string">'/'</span>, <span class="string">'#'</span>);</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用 [$#] 取代 [+/]，不使用 [=] 做為 Padding</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] <span class="title">Base64Decode</span>(<span class="params"><span class="keyword">string</span> input</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> encoded = input.Replace(<span class="string">'$'</span>, <span class="string">'+'</span>).Replace(<span class="string">'#'</span>, <span class="string">'/'</span>).TrimEnd(<span class="string">'='</span>);</span><br><span class="line">    <span class="keyword">var</span> d = encoded.Length % <span class="number">4</span>;</span><br><span class="line">    <span class="keyword">switch</span> (d)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">            encoded += <span class="string">"=="</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">            encoded += <span class="string">"="</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> result = Convert.FromBase64String(encoded);</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 將16進制的字串轉成 Byte Array</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name="hex"&gt;</span><span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;returns&gt;</span><span class="doctag">&lt;/returns&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] <span class="title">HexDecode</span>(<span class="params"><span class="keyword">string</span> hex</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> Enumerable.Range(<span class="number">0</span>, hex.Length / <span class="number">2</span>)</span><br><span class="line">        .Select(x =&gt; Convert.ToByte(hex.Substring(x * <span class="number">2</span>, <span class="number">2</span>), <span class="number">16</span>))</span><br><span class="line">        .ToArray();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 將 Byte Array 轉成 16進制的字串</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name="hexBytes"&gt;</span><span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;returns&gt;</span><span class="doctag">&lt;/returns&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">string</span> <span class="title">HexEncode</span>(<span class="params"><span class="keyword">byte</span>[] hexBytes</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> BitConverter</span><br><span class="line">        .ToString(hexBytes)</span><br><span class="line">        .Replace(<span class="string">"-"</span>, <span class="keyword">string</span>.Empty)</span><br><span class="line">        .ToLower();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://medium.com/@nikitafed9292/net-base64-decoding-workaround-82b797162b6e" target="_blank" rel="noopener">.NET base64 decoding workaround</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;在開發中常常會用到轉 Base64 字串，再轉回 byte array 。&lt;br&gt;最近因為某系統需要將 Base64 字串後面的 = 去掉，
+      
+    
+    </summary>
+    
+    
+      <category term=".NET" scheme="https://rainmakerho.github.io/tags/NET/"/>
+    
+      <category term="Base64" scheme="https://rainmakerho.github.io/tags/Base64/"/>
+    
+      <category term="csharp" scheme="https://rainmakerho.github.io/tags/csharp/"/>
+    
+      <category term="Hex" scheme="https://rainmakerho.github.io/tags/Hex/"/>
+    
+      <category term="Encode" scheme="https://rainmakerho.github.io/tags/Encode/"/>
+    
+      <category term="Decode" scheme="https://rainmakerho.github.io/tags/Decode/"/>
+    
+  </entry>
   
   <entry>
     <title>為什麼專案透過 Visual Studio 建置成功，但錯誤清單卻有一堆的錯誤?</title>
@@ -581,68 +649,6 @@
       <category term="Feature-Policy" scheme="https://rainmakerho.github.io/tags/Feature-Policy/"/>
     
       <category term="Referrer-Policy" scheme="https://rainmakerho.github.io/tags/Referrer-Policy/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>IE 列印時，沒有傳送 Session Cookies 資料，導致下個操作會把使用者登出</title>
-    <link href="https://rainmakerho.github.io/2020/05/07/2020004/"/>
-    <id>https://rainmakerho.github.io/2020/05/07/2020004/</id>
-    <published>2020-05-07T03:01:51.000Z</published>
-    <updated>2020-05-07T05:19:40.743Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>同事詢問，系統升級到 .NET 4.x 後，使用 IE 原本列印畫面時，系統好好的。但升級後，按下列印或是預覽列印後，卻會造成使用者被登出。</p><h3 id="研究"><a href="#研究" class="headerlink" title="研究"></a>研究</h3><p>透過 Fiddler 錄相關的 Request 發現，在出現 Print 視窗時，系統還會發一個 Request 給 Server，但這個 Request 卻沒有帶任何的 Cookies，所以導致 Server 端認為不是已登入使用者，所以就被導到登入頁。</p><img src="/2020/05/07/2020004/001.png" title="有cookie"><img src="/2020/05/07/2020004/002.png" title="Print卻沒有cookie"><p>感覺蠻奇怪的，開啟列印視窗時，居然發一個 Request ，原本是建議同事詢找一下，為什麼 windows.open 時，都會自動去發那個 Request 。<br>隔天，同事 Ian 有找到 <a href="https://stackoverflow.com/questions/59151616/ie-or-edge-print-dialog-box-send-request-to-server-without-session-because-same" target="_blank" rel="noopener">IE or Edge Print dialog box send request to server without session (because SameSite=Lax on session cookie)</a>，然後在 web.config 的 forms tag 中，多加入  cookieSameSite=”None” ，預設是 Lax<br>SameSite 是一種IETF草稿標準，旨在針對跨網站偽造要求（CSRF）攻擊提供一些保護。<br>表單驗證和會話狀態 cookie 的預設 SameSite 值已從 None 變更為 Lax。</p><p>依建議，如果要跟原本的行為一致就是設定回 None 。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span> </span><br><span class="line">  <span class="tag">&lt;<span class="name">appSettings</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">add</span> <span class="attr">key</span>=<span class="string">"aspnet:SuppressSameSiteNone"</span> <span class="attr">value</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">appSettings</span>&gt;</span></span><br><span class="line"> </span><br><span class="line">  <span class="tag">&lt;<span class="name">system.web</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">authentication</span>&gt;</span> </span><br><span class="line">      <span class="tag">&lt;<span class="name">forms</span> <span class="attr">cookieSameSite</span>=<span class="string">"None"</span> /&gt;</span> </span><br><span class="line">    <span class="tag">&lt;/<span class="name">authentication</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">sessionState</span> <span class="attr">cookieSameSite</span>=<span class="string">"None"</span> /&gt;</span> </span><br><span class="line">  <span class="tag">&lt;/<span class="name">system.web</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure></p><p>以上的暫時解，大家可依目前缺那個 Cookie 而去設定它，而且頁面也要實作 CSRF 的防護哦!<br>可以 check 的是，為什麼恕是要呼叫 /id 的那個 Request 。</p><h4 id="註"><a href="#註" class="headerlink" title="註:"></a>註:</h4><p>以上感謝 Jue, Evans, Ian 等同事的分享</p><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://stackoverflow.com/questions/59151616/ie-or-edge-print-dialog-box-send-request-to-server-without-session-because-same" target="_blank" rel="noopener">IE or Edge Print dialog box send request to server without session (because SameSite=Lax on session cookie)</a></p><p><a href="https://docs.microsoft.com/zh-tw/aspnet/samesite/system-web-samesite" target="_blank" rel="noopener">在 ASP.NET 中使用 SameSite cookie</a></p><p><a href="https://social.msdn.microsoft.com/Forums/en-US/b13ece92-909e-464a-bb23-6b7c1a615406/print-of-iframe-reloads-resources-and-doesnt-send-samesite-cookie-after-kb4511872-security-update?forum=iewebdevelopment" target="_blank" rel="noopener">print of iframe reloads resources and doesnt send sameSite cookie after kb4511872 security update</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;同事詢問，系統升級到 .NET 4.x 後，使用 IE 原本列印畫面時，系統好好的。但升級後，按下列印或是預覽列印後，卻會造成使用者被登出。
-      
-    
-    </summary>
-    
-    
-      <category term="IE" scheme="https://rainmakerho.github.io/tags/IE/"/>
-    
-      <category term="Print" scheme="https://rainmakerho.github.io/tags/Print/"/>
-    
-      <category term="Print dialog" scheme="https://rainmakerho.github.io/tags/Print-dialog/"/>
-    
-      <category term="cookie missing" scheme="https://rainmakerho.github.io/tags/cookie-missing/"/>
-    
-      <category term="without session" scheme="https://rainmakerho.github.io/tags/without-session/"/>
-    
-      <category term="cookieSameSite" scheme="https://rainmakerho.github.io/tags/cookieSameSite/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>開啟 input file 檔案視窗後，VS.NET 偵錯也一併停止了</title>
-    <link href="https://rainmakerho.github.io/2020/04/06/2020003/"/>
-    <id>https://rainmakerho.github.io/2020/04/06/2020003/</id>
-    <published>2020-04-06T10:03:02.000Z</published>
-    <updated>2020-04-07T10:10:40.144Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>使用 VS.NET 直接偵錯時，遇到選擇 File 檔案視窗後，不管是按下「開啟」或是「取消」，VS.NET 的偵錯也一併會停止。<br><img src="/2020/04/06/2020003/001.png" title="Select Files"></p><h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>這是因為 VS.NET 的 Web 專案中有一個設定叫「在瀏覽視窗關閉時停止偵錯工具，在偵錯停止時關閉瀏覽器(S)」，它預設是勾選的。<br>所以當頁面中有 File 時，會開啟視窗，不管是按下「開啟」或是「取消」，它都算是”視窗關閉”，所以 VS.NET 偵錯就停止了哦!<br><img src="/2020/04/06/2020003/002.png" title="options"></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;使用 VS.NET 直接偵錯時，遇到選擇 File 檔案視窗後，不管是按下「開啟」或是「取消」，VS.NET 的偵錯也一併會停止。&lt;br&gt;&lt;
-      
-    
-    </summary>
-    
-    
-      <category term="debug" scheme="https://rainmakerho.github.io/tags/debug/"/>
-    
-      <category term="input" scheme="https://rainmakerho.github.io/tags/input/"/>
-    
-      <category term="file" scheme="https://rainmakerho.github.io/tags/file/"/>
-    
-      <category term="vs.net" scheme="https://rainmakerho.github.io/tags/vs-net/"/>
     
   </entry>
   

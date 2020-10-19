@@ -4,6 +4,62 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2020/10/19/net-xor/</loc>
+    <lastmod>2020-10-19T08:23:24.996Z</lastmod>
+    <data>
+        <display>
+        <title>.NET 使用 XOR 來做簡單的加密及資料追蹤處理</title>
+        <pubTime>2020-10-19T07:46:11.000Z</pubTime>
+        
+        <tag>.NET</tag>
+         
+        <tag>XOR</tag>
+         
+        <tag>Base64</tag>
+         
+        <tag>Encrypt</tag>
+         
+        <tag>Decrypt</tag>
+         
+        <tag>加密</tag>
+         
+        <tag>解密</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://rainmakerho.github.io/2020/10/19/hex-base64-encode-decode/</loc>
+    <lastmod>2020-10-19T07:23:15.879Z</lastmod>
+    <data>
+        <display>
+        <title>.NET Base64、Hex Encode/Decode</title>
+        <pubTime>2020-10-19T06:54:23.000Z</pubTime>
+        
+        <tag>.NET</tag>
+         
+        <tag>Base64</tag>
+         
+        <tag>csharp</tag>
+         
+        <tag>Hex</tag>
+         
+        <tag>Encode</tag>
+         
+        <tag>Decode</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2020/10/19/Why-VS-Build-succeed-But-Have-Errors/</loc>
     <lastmod>2020-10-19T03:53:57.436Z</lastmod>
     <data>
@@ -2491,13 +2547,13 @@
         <title>線上客服 + BOT 之路</title>
         <pubTime>2018-01-25T08:10:47.000Z</pubTime>
         
-        <tag>chatbot</tag>
-         
         <tag>QnA Maker</tag>
          
         <tag>LUIS</tag>
          
         <tag>Vital ESP</tag>
+         
+        <tag>chatbot</tag>
          
         <tag>FAQ</tag>
          
