@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2020-10-26T03:28:01.774Z</updated>
+  <updated>2020-10-26T06:13:05.677Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>make_JAR_from_java_file</title>
+    <title>將一個 java 檔案建置成 jar 檔，執行會發生 no main manifest attribute 的錯誤</title>
     <link href="https://rainmakerho.github.io/2020/10/26/make-JAR-from-java-file/"/>
     <id>https://rainmakerho.github.io/2020/10/26/make-JAR-from-java-file/</id>
     <published>2020-10-26T03:20:58.000Z</published>
-    <updated>2020-10-26T03:28:01.774Z</updated>
+    <updated>2020-10-26T06:13:05.677Z</updated>
     
     <content type="html"><![CDATA[<h3 id="問題及解法"><a href="#問題及解法" class="headerlink" title="問題及解法"></a>問題及解法</h3><p>最近寫一個 Fake 的 Java 程式，想要將它直接 Build 成 JAR 檔案。<br>但是在執行 java -jar 時，卻會出現 no main manifest attribute, in rm.jar<br>因為在建立 jar 時沒有跟他說 main 的 class 是那一個，所以會噴那個錯誤。<br>參考 <a href="https://docs.oracle.com/javase/tutorial/deployment/jar/appman.html" target="_blank" rel="noopener">Java Setting an Application’s Entry Point</a> ，<br>所以在建立 jar 時，記得給它 main 所在的那個類別就可以了，如下 (MyApp 就是有 main method 的 class)，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jar cfe rm.jar MyApp MyApp.class</span><br></pre></td></tr></table></figure></p><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://docs.oracle.com/javase/tutorial/deployment/jar/appman.html" target="_blank" rel="noopener">Java Setting an Application’s Entry Point</a></p>]]></content>
     
@@ -570,11 +570,11 @@
     </summary>
     
     
-      <category term="Content-Security-Policy" scheme="https://rainmakerho.github.io/tags/Content-Security-Policy/"/>
-    
       <category term="Mixed Content" scheme="https://rainmakerho.github.io/tags/Mixed-Content/"/>
     
       <category term="CSP" scheme="https://rainmakerho.github.io/tags/CSP/"/>
+    
+      <category term="Content-Security-Policy" scheme="https://rainmakerho.github.io/tags/Content-Security-Policy/"/>
     
       <category term="upgrade-insecure-requests" scheme="https://rainmakerho.github.io/tags/upgrade-insecure-requests/"/>
     

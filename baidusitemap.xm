@@ -5,10 +5,10 @@
     
   <url>
     <loc>https://rainmakerho.github.io/2020/10/26/make-JAR-from-java-file/</loc>
-    <lastmod>2020-10-26T03:28:01.774Z</lastmod>
+    <lastmod>2020-10-26T06:13:05.677Z</lastmod>
     <data>
         <display>
-        <title>make_JAR_from_java_file</title>
+        <title>將一個 java 檔案建置成 jar 檔，執行會發生 no main manifest attribute 的錯誤</title>
         <pubTime>2020-10-26T03:20:58.000Z</pubTime>
         
         <tag>java</tag>
@@ -504,11 +504,11 @@
         <title>透過 Content-Security-Policy 修正 Mixed Content Link 問題</title>
         <pubTime>2020-05-19T08:44:09.000Z</pubTime>
         
-        <tag>Content-Security-Policy</tag>
-         
         <tag>Mixed Content</tag>
          
         <tag>CSP</tag>
+         
+        <tag>Content-Security-Policy</tag>
          
         <tag>upgrade-insecure-requests</tag>
          
@@ -527,9 +527,9 @@
         <title>ASP.NET Security Headers</title>
         <pubTime>2020-05-12T01:29:40.000Z</pubTime>
         
-        <tag>X-XSS-Protection</tag>
-         
         <tag>Content-Security-Policy</tag>
+         
+        <tag>X-XSS-Protection</tag>
          
         <tag>X-Frame-Options</tag>
          
@@ -2572,13 +2572,13 @@
         <title>線上客服 + BOT 之路</title>
         <pubTime>2018-01-25T08:10:47.000Z</pubTime>
         
+        <tag>chatbot</tag>
+         
         <tag>QnA Maker</tag>
          
         <tag>LUIS</tag>
          
         <tag>Vital ESP</tag>
-         
-        <tag>chatbot</tag>
          
         <tag>FAQ</tag>
          
