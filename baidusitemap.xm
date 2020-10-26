@@ -4,8 +4,31 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2020/10/26/make-JAR-from-java-file/</loc>
+    <lastmod>2020-10-26T03:28:01.774Z</lastmod>
+    <data>
+        <display>
+        <title>make_JAR_from_java_file</title>
+        <pubTime>2020-10-26T03:20:58.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+        <tag>jar</tag>
+         
+        <tag>class</tag>
+         
+        <tag>no main manifest attribute</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2020/10/19/net-xor/</loc>
-    <lastmod>2020-10-19T08:23:24.996Z</lastmod>
+    <lastmod>2020-10-19T08:44:22.681Z</lastmod>
     <data>
         <display>
         <title>.NET 使用 XOR 來做簡單的加密及資料追蹤處理</title>
@@ -13,9 +36,9 @@
         
         <tag>.NET</tag>
          
-        <tag>XOR</tag>
-         
         <tag>Base64</tag>
+         
+        <tag>XOR</tag>
          
         <tag>Encrypt</tag>
          
@@ -24,6 +47,8 @@
         <tag>加密</tag>
          
         <tag>解密</tag>
+         
+        <tag>追蹤</tag>
          
          
            
@@ -42,9 +67,9 @@
         
         <tag>.NET</tag>
          
-        <tag>Base64</tag>
-         
         <tag>csharp</tag>
+         
+        <tag>Base64</tag>
          
         <tag>Hex</tag>
          

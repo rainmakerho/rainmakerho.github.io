@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2020-10-19T08:23:24.996Z</updated>
+  <updated>2020-10-26T03:28:01.774Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -17,11 +17,40 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>make_JAR_from_java_file</title>
+    <link href="https://rainmakerho.github.io/2020/10/26/make-JAR-from-java-file/"/>
+    <id>https://rainmakerho.github.io/2020/10/26/make-JAR-from-java-file/</id>
+    <published>2020-10-26T03:20:58.000Z</published>
+    <updated>2020-10-26T03:28:01.774Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="問題及解法"><a href="#問題及解法" class="headerlink" title="問題及解法"></a>問題及解法</h3><p>最近寫一個 Fake 的 Java 程式，想要將它直接 Build 成 JAR 檔案。<br>但是在執行 java -jar 時，卻會出現 no main manifest attribute, in rm.jar<br>因為在建立 jar 時沒有跟他說 main 的 class 是那一個，所以會噴那個錯誤。<br>參考 <a href="https://docs.oracle.com/javase/tutorial/deployment/jar/appman.html" target="_blank" rel="noopener">Java Setting an Application’s Entry Point</a> ，<br>所以在建立 jar 時，記得給它 main 所在的那個類別就可以了，如下 (MyApp 就是有 main method 的 class)，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jar cfe rm.jar MyApp MyApp.class</span><br></pre></td></tr></table></figure></p><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://docs.oracle.com/javase/tutorial/deployment/jar/appman.html" target="_blank" rel="noopener">Java Setting an Application’s Entry Point</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;問題及解法&quot;&gt;&lt;a href=&quot;#問題及解法&quot; class=&quot;headerlink&quot; title=&quot;問題及解法&quot;&gt;&lt;/a&gt;問題及解法&lt;/h3&gt;&lt;p&gt;最近寫一個 Fake 的 Java 程式，想要將它直接 Build 成 JAR 檔案。&lt;br&gt;但是在執行 java 
+      
+    
+    </summary>
+    
+    
+      <category term="java" scheme="https://rainmakerho.github.io/tags/java/"/>
+    
+      <category term="jar" scheme="https://rainmakerho.github.io/tags/jar/"/>
+    
+      <category term="class" scheme="https://rainmakerho.github.io/tags/class/"/>
+    
+      <category term="no main manifest attribute" scheme="https://rainmakerho.github.io/tags/no-main-manifest-attribute/"/>
+    
+  </entry>
+  
+  <entry>
     <title>.NET 使用 XOR 來做簡單的加密及資料追蹤處理</title>
     <link href="https://rainmakerho.github.io/2020/10/19/net-xor/"/>
     <id>https://rainmakerho.github.io/2020/10/19/net-xor/</id>
     <published>2020-10-19T07:46:11.000Z</published>
-    <updated>2020-10-19T08:23:24.996Z</updated>
+    <updated>2020-10-19T08:44:22.681Z</updated>
     
     <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>有些系統會在畫面上加上浮水印以避免資料被使用者列出外洩出去，作法可以參考 <a href="https://dotblogs.com.tw/rainmaker/2012/08/23/74238" target="_blank" rel="noopener">[ASP.NET]建立有浮水印的網頁</a> 。<br>另外可以在畫面上多輸出一個亂數值，而這個亂數值是可以代表這個使用者的。<br>最簡單的就是使用 XOR 的方式。</p><h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 將前後面的 Byte Array 進行 XOR 運算</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name="input"&gt;</span><span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name="key"&gt;</span><span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;returns&gt;</span><span class="doctag">&lt;/returns&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] <span class="title">Xor</span>(<span class="params"><span class="keyword">byte</span>[] input, <span class="keyword">byte</span>[] key</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">byte</span>[] output = <span class="keyword">new</span> <span class="keyword">byte</span>[input.Length];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; input.Length; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        output[i] = (<span class="keyword">byte</span>)(input[i] ^ key[i % key.Length]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> output;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>所以假設有個功能代號為 Func000001, 使用者 TDD123 及 使用者 CII456 , XOR 出來的值分別為 12312A52020364747400 及 053C2757050673797905 .<br>而這2個流水號並不會讓使用者認為是他們的代號。<br>但如果這份資料洩漏出去，就可以拿那些 流水號 與 功能代號 做一次的 XOR 就可以知道是那個使用者 洩漏出去的。 程式如下，<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> funId = <span class="string">"Func000001"</span>;</span><br><span class="line"><span class="keyword">var</span> inputBytes = Encoding.UTF8.GetBytes(funId);</span><br><span class="line"><span class="keyword">var</span> userId_1 = <span class="string">"TDD123"</span>;</span><br><span class="line"><span class="keyword">var</span> userId_1Bytes = Encoding.UTF8.GetBytes(userId_1);</span><br><span class="line"><span class="keyword">var</span> userId_2 = <span class="string">"CII456"</span>;</span><br><span class="line"><span class="keyword">var</span> userId_2Bytes = Encoding.UTF8.GetBytes(userId_2);</span><br><span class="line"><span class="keyword">var</span> user1Input = BitConverter.ToString(Xor(inputBytes, userId_1Bytes)).Replace(<span class="string">"-"</span>, <span class="keyword">string</span>.Empty);</span><br><span class="line"><span class="keyword">var</span> user2Input = BitConverter.ToString(Xor(inputBytes, userId_2Bytes)).Replace(<span class="string">"-"</span>, <span class="keyword">string</span>.Empty);</span><br><span class="line"><span class="comment">//解回 userids</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> userId_1_De = Encoding.UTF8.GetString(Xor(inputBytes, Enumerable.Range(<span class="number">0</span>, user1Input.Length / <span class="number">2</span>)</span><br><span class="line">    .Select(x =&gt; Convert.ToByte(user1Input.Substring(x * <span class="number">2</span>, <span class="number">2</span>), <span class="number">16</span>))</span><br><span class="line">    .ToArray()));</span><br><span class="line"><span class="comment">//TDD123TDD123T</span></span><br><span class="line"><span class="keyword">var</span> userId_2_De = Encoding.UTF8.GetString(Xor(inputBytes, Enumerable.Range(<span class="number">0</span>, user2Input.Length / <span class="number">2</span>)</span><br><span class="line">    .Select(x =&gt; Convert.ToByte(user2Input.Substring(x * <span class="number">2</span>, <span class="number">2</span>), <span class="number">16</span>))</span><br><span class="line">    .ToArray()));</span><br><span class="line"><span class="comment">//CII456CII456C</span></span><br></pre></td></tr></table></figure></p><p>可以從上面的範例發現，原本的資料與 XOR 過的資料再做一次 XOR ，就可以知道原本的使用者代號。</p><p>註: </p><ul><li>如果網頁浮水印怕被使用者透過 F12 把它去掉的話，可以設一個 Timer ，每幾秒就再設定浮水印一次，這樣即使透過工具拿掉後，又會再呈現出來。</li><li>上述的功能代號也可以轉成是機敏的資料，只要有 XOR 過的資料，就可以回追原本的使用者。</li></ul>]]></content>
     
@@ -37,9 +66,9 @@
     
       <category term=".NET" scheme="https://rainmakerho.github.io/tags/NET/"/>
     
-      <category term="XOR" scheme="https://rainmakerho.github.io/tags/XOR/"/>
-    
       <category term="Base64" scheme="https://rainmakerho.github.io/tags/Base64/"/>
+    
+      <category term="XOR" scheme="https://rainmakerho.github.io/tags/XOR/"/>
     
       <category term="Encrypt" scheme="https://rainmakerho.github.io/tags/Encrypt/"/>
     
@@ -48,6 +77,8 @@
       <category term="加密" scheme="https://rainmakerho.github.io/tags/%E5%8A%A0%E5%AF%86/"/>
     
       <category term="解密" scheme="https://rainmakerho.github.io/tags/%E8%A7%A3%E5%AF%86/"/>
+    
+      <category term="追蹤" scheme="https://rainmakerho.github.io/tags/%E8%BF%BD%E8%B9%A4/"/>
     
   </entry>
   
@@ -72,9 +103,9 @@
     
       <category term=".NET" scheme="https://rainmakerho.github.io/tags/NET/"/>
     
-      <category term="Base64" scheme="https://rainmakerho.github.io/tags/Base64/"/>
-    
       <category term="csharp" scheme="https://rainmakerho.github.io/tags/csharp/"/>
+    
+      <category term="Base64" scheme="https://rainmakerho.github.io/tags/Base64/"/>
     
       <category term="Hex" scheme="https://rainmakerho.github.io/tags/Hex/"/>
     
@@ -616,39 +647,6 @@
       <category term="DevAudit" scheme="https://rainmakerho.github.io/tags/DevAudit/"/>
     
       <category term="OSSIndex" scheme="https://rainmakerho.github.io/tags/OSSIndex/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ASP.NET Security Headers</title>
-    <link href="https://rainmakerho.github.io/2020/05/12/2020005/"/>
-    <id>https://rainmakerho.github.io/2020/05/12/2020005/</id>
-    <published>2020-05-12T01:29:40.000Z</published>
-    <updated>2020-05-14T05:30:41.312Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>Browser 可以透過 Http Header 來啟用一些保護機制，所以可以透過設定這些 Header 來讓我們的 Web Application 更安全。<br>要測試網頁的安全性 Header 是否有設定可以到 <a href="https://securityheaders.com/" target="_blank" rel="noopener">https://securityheaders.com/</a> 這個網站來掃看看。</p><h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><p>如果在 Local 開發沒有對外的話，可以透過 <a href="https://ngrok.com/" target="_blank" rel="noopener">ngrok</a> 來建立對外的 url。<br>例如我的網站是 localhost:44375 ，那在 Command 視窗中輸入 ngrok http -host-header=”localhost:44375” 44375 ，它就會幫我建立對外的網站<br><img src="/2020/05/12/2020005/001.png" title="ngrok"></p><p>再來透過 <a href="https://securityheaders.com/" target="_blank" rel="noopener">https://securityheaders.com/</a> 來掃，<br><img src="/2020/05/12/2020005/002.png" title="第一次掃"><br>從上面可以發現很多 Header 都沒有設定，所以可以參考它下面說明去設定它。</p><p>其中的 <strong>Content-Security-Policy</strong> 它的設定很多，所以可以透過 <a href="https://report-uri.com/home/generate" target="_blank" rel="noopener">https://report-uri.com/home/generate</a> 來幫我們建立想要的 csp 的值，如下圖<br><img src="/2020/05/12/2020005/003.png" title="透過UI來建立CSP"></p><p>在防 Clickjacking 時，目前我們是設定 X-Frame-Options ，透過 CSP 設定 frame-ancestors 也是一樣的，如果 Browser 有 Support CSP 的話，請優先設定 CSP 的 frame-ancestors。<br>Clickjacking 就是惡意的網站透過 iframe 把我們的網站放進去他們的網站之中，通常將它設定成透明的，如下，<br><img src="/2020/05/12/2020005/004.png" title="Clickjacking"></p><p>當設定了 X-Frame-Options 後，在惡意網站中，就不會顯示我們的網站，如下，<br><img src="/2020/05/12/2020005/005.png" title="X-Frame-Options"></p><p>最後加了以下的 Security Headers ，大家可以參考一下，<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">system.webServer</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">httpProtocol</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">customHeaders</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">remove</span> <span class="attr">name</span>=<span class="string">"X-Powered-By"</span> /&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">add</span> <span class="attr">name</span>=<span class="string">"X-XSS-Protection"</span> <span class="attr">value</span>=<span class="string">"1; mode:block"</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">add</span> <span class="attr">name</span>=<span class="string">"X-Frame-Options"</span> <span class="attr">value</span>=<span class="string">"SAMEORIGIN"</span> /&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">add</span> <span class="attr">name</span>=<span class="string">"Content-Security-Policy"</span> <span class="attr">value</span>=<span class="string">"default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; frame-src 'self'; frame-ancestors 'self';"</span> /&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">add</span> <span class="attr">name</span>=<span class="string">"X-Content-Type-Options"</span> <span class="attr">value</span>=<span class="string">"nosniff"</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">add</span> <span class="attr">name</span>=<span class="string">"Feature-Policy"</span> <span class="attr">value</span>=<span class="string">"camera 'none'"</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">add</span> <span class="attr">name</span>=<span class="string">"Referrer-Policy"</span> <span class="attr">value</span>=<span class="string">"origin"</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">add</span> <span class="attr">name</span>=<span class="string">"Strict-Transport-Security"</span> <span class="attr">value</span>=<span class="string">"max-age=31536000;includeSubDomains"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">customHeaders</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">httpProtocol</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">security</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">requestFiltering</span> <span class="attr">removeServerHeader</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">security</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">system.webServer</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">system.web</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">httpRuntime</span> </span></span><br><span class="line"><span class="tag">            <span class="attr">enableVersionHeader</span>=<span class="string">"false"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">system.web</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure></p><p>在引用 CDN 的js, css 時，現在都會有 integrity ，它是引用檔案的 Hash 值，可以避免引用檔案被竄改.<br>Referrer-Policy 除了直接設定在 Header 那，在 A Link 也可以透過 rel 設定，例如 <strong>rel=”noreferrer</strong></p><p>最後有調整了Headers後，網站評等從 F 變成了 A ，<br><img src="/2020/05/12/2020005/006.png" title="加了Headers後"></p><h3 id="參考網站"><a href="#參考網站" class="headerlink" title="參考網站"></a>參考網站</h3><p><a href="https://securityheaders.com/" target="_blank" rel="noopener">Security Headers</a><br><a href="https://report-uri.com/home/generate" target="_blank" rel="noopener">Content-Security-Policy Generate</a><br><a href="https://www.techwyse.com/blog/search-engine-optimization/what-you-need-to-know-about-rel-noreferrer-attribute/" target="_blank" rel="noopener">What You Need to Know about rel=”noreferrer” Attribute</a><br><a href="https://caniuse.com/" target="_blank" rel="noopener">Can I use</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;Browser 可以透過 Http Header 來啟用一些保護機制，所以可以透過設定這些 Header 來讓我們的 Web Applic
-      
-    
-    </summary>
-    
-    
-      <category term="X-XSS-Protection" scheme="https://rainmakerho.github.io/tags/X-XSS-Protection/"/>
-    
-      <category term="Content-Security-Policy" scheme="https://rainmakerho.github.io/tags/Content-Security-Policy/"/>
-    
-      <category term="X-Frame-Options" scheme="https://rainmakerho.github.io/tags/X-Frame-Options/"/>
-    
-      <category term="X-Content-Type-Options" scheme="https://rainmakerho.github.io/tags/X-Content-Type-Options/"/>
-    
-      <category term="Feature-Policy" scheme="https://rainmakerho.github.io/tags/Feature-Policy/"/>
-    
-      <category term="Referrer-Policy" scheme="https://rainmakerho.github.io/tags/Referrer-Policy/"/>
     
   </entry>
   
