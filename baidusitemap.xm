@@ -4,6 +4,31 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2020/10/29/cannot-find-method-propertyInfo-getValue/</loc>
+    <lastmod>2020-10-29T01:50:05.265Z</lastmod>
+    <data>
+        <display>
+        <title>找不到方法: 'System.Object System.Reflection.PropertyInfo.GetValue(System.Object)'</title>
+        <pubTime>2020-10-29T01:09:44.000Z</pubTime>
+        
+        <tag>.NET 4</tag>
+         
+        <tag>.NET 4.5</tag>
+         
+        <tag>PropertyInfo.GetValue(System.Object)</tag>
+         
+        <tag>Cannot find method definition</tag>
+         
+        <tag>CS1501</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2020/10/26/make-JAR-from-java-file/</loc>
     <lastmod>2020-10-26T06:13:05.677Z</lastmod>
     <data>
@@ -504,11 +529,11 @@
         <title>透過 Content-Security-Policy 修正 Mixed Content Link 問題</title>
         <pubTime>2020-05-19T08:44:09.000Z</pubTime>
         
+        <tag>Content-Security-Policy</tag>
+         
         <tag>Mixed Content</tag>
          
         <tag>CSP</tag>
-         
-        <tag>Content-Security-Policy</tag>
          
         <tag>upgrade-insecure-requests</tag>
          
@@ -527,9 +552,9 @@
         <title>ASP.NET Security Headers</title>
         <pubTime>2020-05-12T01:29:40.000Z</pubTime>
         
-        <tag>Content-Security-Policy</tag>
-         
         <tag>X-XSS-Protection</tag>
+         
+        <tag>Content-Security-Policy</tag>
          
         <tag>X-Frame-Options</tag>
          
@@ -1363,13 +1388,13 @@
         <title>document.[formName] is undefined</title>
         <pubTime>2019-03-16T05:48:31.000Z</pubTime>
         
-        <tag>軟體求生</tag>
-         
         <tag>js</tag>
          
         <tag>document.formName</tag>
          
         <tag>undefined</tag>
+         
+        <tag>軟體求生</tag>
          
         <tag>asp.net 4</tag>
          
@@ -1429,11 +1454,11 @@
         <title>Inheritance security rules violated by type: 'System.Net.Http.WebRequestHandler'</title>
         <pubTime>2019-02-23T02:41:55.000Z</pubTime>
         
+        <tag>軟體求生</tag>
+         
         <tag>System.Net.Http</tag>
          
         <tag>4.1.0.0</tag>
-         
-        <tag>軟體求生</tag>
          
          
            
