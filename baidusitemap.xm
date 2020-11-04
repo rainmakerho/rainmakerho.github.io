@@ -4,6 +4,35 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2020/11/05/net-ad-user-login/</loc>
+    <lastmod>2020-11-04T23:23:21.621Z</lastmod>
+    <data>
+        <display>
+        <title>C# User AD 帳號密碼驗證</title>
+        <pubTime>2020-11-04T23:02:06.000Z</pubTime>
+        
+        <tag>C#</tag>
+         
+        <tag>.NET</tag>
+         
+        <tag>AD</tag>
+         
+        <tag>User</tag>
+         
+        <tag>Login</tag>
+         
+        <tag>LDAP 伺服器無法使用</tag>
+         
+        <tag>提供的認證無效</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2020/10/29/cannot-find-method-propertyInfo-getValue/</loc>
     <lastmod>2020-10-29T01:50:05.265Z</lastmod>
     <data>
@@ -1388,13 +1417,13 @@
         <title>document.[formName] is undefined</title>
         <pubTime>2019-03-16T05:48:31.000Z</pubTime>
         
+        <tag>軟體求生</tag>
+         
         <tag>js</tag>
          
         <tag>document.formName</tag>
          
         <tag>undefined</tag>
-         
-        <tag>軟體求生</tag>
          
         <tag>asp.net 4</tag>
          
@@ -1454,11 +1483,11 @@
         <title>Inheritance security rules violated by type: 'System.Net.Http.WebRequestHandler'</title>
         <pubTime>2019-02-23T02:41:55.000Z</pubTime>
         
-        <tag>軟體求生</tag>
-         
         <tag>System.Net.Http</tag>
          
         <tag>4.1.0.0</tag>
+         
+        <tag>軟體求生</tag>
          
          
            
@@ -2524,9 +2553,9 @@
         <title>使用 Botframework 的 Bot 如何 Debug 到 BotBuilder Source ?</title>
         <pubTime>2018-02-01T01:47:18.000Z</pubTime>
         
-        <tag>botframework</tag>
-         
         <tag>C#</tag>
+         
+        <tag>botframework</tag>
          
         <tag>BotBuilder</tag>
          
@@ -2597,13 +2626,13 @@
         <title>線上客服 + BOT 之路</title>
         <pubTime>2018-01-25T08:10:47.000Z</pubTime>
         
-        <tag>chatbot</tag>
-         
         <tag>QnA Maker</tag>
          
         <tag>LUIS</tag>
          
         <tag>Vital ESP</tag>
+         
+        <tag>chatbot</tag>
          
         <tag>FAQ</tag>
          

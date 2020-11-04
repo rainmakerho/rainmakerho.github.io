@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2020-10-29T01:50:05.265Z</updated>
+  <updated>2020-11-04T23:23:21.621Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,41 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>C# User AD 帳號密碼驗證</title>
+    <link href="https://rainmakerho.github.io/2020/11/05/net-ad-user-login/"/>
+    <id>https://rainmakerho.github.io/2020/11/05/net-ad-user-login/</id>
+    <published>2020-11-04T23:02:06.000Z</published>
+    <updated>2020-11-04T23:23:21.621Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在之前有寫一篇「<a href="https://dotblogs.com.tw/rainmaker/2017/03/27/152935" target="_blank" rel="noopener">C# User LDAP 帳號密碼驗證</a>」，<br>但在使用者是使用 uid={userId},ou=people,dc=gss,dc=com 的這種串法，<br>很多時候，我們跟本就不知要整個怎麼串，使用上也很不方便。</p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>要知道那個可以先透過 <a href="https://docs.microsoft.com/en-us/sysinternals/downloads/adexplorer" target="_blank" rel="noopener">Active Directory Explorer</a> 來看，<br>但還是不方便。<br>在 <a href="https://rainmakerho.github.io/2019/09/17/2019025/">.NET Core AD 帳密驗證</a> 這篇可以直接給帳號/密碼就可以驗證呀!<br>所以 … 使用 System.DirectoryServices.Protocols.LdapConnection 也是可以的哦!<br>程式如下，<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//port number: 636 or 389</span></span><br><span class="line"><span class="keyword">var</span> ldi = <span class="keyword">new</span> LdapDirectoryIdentifier(<span class="string">"yourdcserver.com.tw"</span>, <span class="number">636</span>);</span><br><span class="line"><span class="keyword">using</span> (<span class="keyword">var</span> ldapConnection =</span><br><span class="line">        <span class="keyword">new</span> System.DirectoryServices.Protocols.LdapConnection(ldi))</span><br><span class="line">&#123;</span><br><span class="line">    Console.WriteLine(<span class="string">"LdapConnection is created successfully."</span>);</span><br><span class="line">    ldapConnection.AuthType = AuthType.Basic;</span><br><span class="line">    ldapConnection.SessionOptions.ProtocolVersion = <span class="number">3</span>;</span><br><span class="line">    <span class="keyword">var</span> nc = <span class="keyword">new</span> NetworkCredential(<span class="string">"youraccount@rmtech.com.tw"</span>,</span><br><span class="line">        <span class="string">"your pwd"</span>);  </span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">    &#123;</span><br><span class="line">        ldapConnection.Bind(nc);</span><br><span class="line">    &#125;<span class="keyword">catch</span> (Exception ex)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(ex.Message == <span class="string">"提供的認證無效。"</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine(<span class="string">"帳密不對"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine(ex);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    Console.WriteLine(<span class="string">"LdapConnection authentication success"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>如果帳密不對的話，就會馬上噴「提供的認證無效, 」的錯誤。<br>如果你發現，連很久，然後出現「LDAP 伺服器無法使用, ErrorCode:81」的錯誤，請檢查那台 DC Server 是不是沒有開 Port 讓你連，或是連的 Port 是否正確。</p><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://dotblogs.com.tw/rainmaker/2017/03/27/152935" target="_blank" rel="noopener">C# User LDAP 帳號密碼驗證</a><br><a href="https://docs.microsoft.com/en-us/sysinternals/downloads/adexplorer" target="_blank" rel="noopener">Active Directory Explorer</a><br><a href="https://rainmakerho.github.io/2019/09/17/2019025/">.NET Core AD 帳密驗證</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;在之前有寫一篇「&lt;a href=&quot;https://dotblogs.com.tw/rainmaker/2017/03/27/152935&quot; 
+      
+    
+    </summary>
+    
+    
+      <category term="C#" scheme="https://rainmakerho.github.io/tags/C/"/>
+    
+      <category term=".NET" scheme="https://rainmakerho.github.io/tags/NET/"/>
+    
+      <category term="AD" scheme="https://rainmakerho.github.io/tags/AD/"/>
+    
+      <category term="User" scheme="https://rainmakerho.github.io/tags/User/"/>
+    
+      <category term="Login" scheme="https://rainmakerho.github.io/tags/Login/"/>
+    
+      <category term="LDAP 伺服器無法使用" scheme="https://rainmakerho.github.io/tags/LDAP-%E4%BC%BA%E6%9C%8D%E5%99%A8%E7%84%A1%E6%B3%95%E4%BD%BF%E7%94%A8/"/>
+    
+      <category term="提供的認證無效" scheme="https://rainmakerho.github.io/tags/%E6%8F%90%E4%BE%9B%E7%9A%84%E8%AA%8D%E8%AD%89%E7%84%A1%E6%95%88/"/>
+    
+  </entry>
   
   <entry>
     <title>找不到方法: &#39;System.Object System.Reflection.PropertyInfo.GetValue(System.Object)&#39;</title>
@@ -608,49 +643,6 @@
       <category term="CSP" scheme="https://rainmakerho.github.io/tags/CSP/"/>
     
       <category term="upgrade-insecure-requests" scheme="https://rainmakerho.github.io/tags/upgrade-insecure-requests/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>AuthenticationException: Authentication failed, see inner exception. Win32Exception: 接收到的訊息超出預期或格式不正確。WebException: 要求已經中止: 無法建立 SSL/TLS 的安全通道。</title>
-    <link href="https://rainmakerho.github.io/2020/05/15/2020007/"/>
-    <id>https://rainmakerho.github.io/2020/05/15/2020007/</id>
-    <published>2020-05-15T05:14:34.000Z</published>
-    <updated>2020-09-10T05:58:08.496Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>今天同事詢問透過 .NET Core HttpClient 去 Call Https 網頁時，會噴 <strong>The SSL connection could not be established Win32Exception (0x80090326): 接收到的訊息超出預期或格式不正確</strong> 的錯誤，詳細如下，</p><blockquote><p>System.Net.Http.HttpRequestException: The SSL connection could not be established, see inner exception.<br>   —&gt; System.Security.Authentication.AuthenticationException: Authentication failed, see inner exception.<br>   —&gt; System.ComponentModel.Win32Exception (0x80090326): 接收到的訊息超出預期或格式不正確。<br>       — End of inner exception stack trace —<br>       at System.Net.Security.SslStream.StartSendAuthResetSignal(ProtocolToken message, AsyncProtocolRequest asyncRequest, ExceptionDispatchInfo exception)<br>       at System.Net.Security.SslStream.CheckCompletionBeforeNextReceive(ProtocolToken message, AsyncProtocolRequest asyncRequest)<br>       at System.Net.Security.SslStream.StartSendBlob(Byte[] incoming, Int32 count, AsyncProtocolRequest asyncRequest)<br>       at System.Net.Security.SslStream.ProcessReceivedBlob(Byte[] buffer, Int32 count, AsyncProtocolRequest asyncRequest)<br>       at System.Net.Security.SslStream.StartReadFrame(Byte[] buffer, Int32 readBytes, AsyncProtocolRequest asyncRequest)<br>       at System.Net.Security.SslStream.PartialFrameCallback(AsyncProtocolRequest asyncRequest)</p></blockquote><h3 id="研究"><a href="#研究" class="headerlink" title="研究"></a>研究</h3><p>在網路上有找到<a href="https://github.com/dotnet/runtime/issues/33186" target="_blank" rel="noopener">TLS handshake failures are not clear with SChannel</a>這篇有提到似乎是因為 Cipher 的問題。<br>於是使用以下的 Console 程式在本機上測試卻沒有任何問題，<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">async</span> Task <span class="title">Main</span>(<span class="params"><span class="keyword">string</span>[] args</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> client = <span class="keyword">new</span> HttpClient();</span><br><span class="line">    <span class="keyword">var</span> response =</span><br><span class="line">        <span class="keyword">await</span> client.GetAsync(<span class="string">"https://store.gsscloud.com/"</span>);</span><br><span class="line">    response.EnsureSuccessStatusCode();</span><br><span class="line">    <span class="keyword">string</span> responseBody = <span class="keyword">await</span> response.Content.ReadAsStringAsync();</span><br><span class="line">    Console.WriteLine(responseBody);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>拿到正式機去執行就真的發生一樣錯誤。<br>於是到<a href="https://www.ssllabs.com/ssltest/analyze.html" target="_blank" rel="noopener">SSL Server Test</a>測試一下該網站 Support 幾種 Cipher ，結果只 Support 3 種 384 的。<br>於是透過<a href="https://www.nartac.com/Products/IISCrypto/" target="_blank" rel="noopener">IIS Crypto Tool</a> 將本機 384 Bits 的 Cipher 都取消，重開機再執行測試程式真的發生一樣的錯誤。</p><h4 id="NET-Core-的程式會噴以下的錯誤，"><a href="#NET-Core-的程式會噴以下的錯誤，" class="headerlink" title=".NET Core 的程式會噴以下的錯誤，"></a>.NET Core 的程式會噴以下的錯誤，</h4><p><img src="01.png" width="600" alt="NET Core Call Https Error" title="NET Core Error"><br>System.Net.Http.HttpRequestException<br>  HResult=0x80131501<br>  Message=The SSL connection could not be established, see inner exception.<br>  Source=System.Net.Http<br>  StackTrace:<br>   at System.Net.Http.ConnectHelper.<establishsslconnectionasynccore>d__4.MoveNext()</establishsslconnectionasynccore></p><p>內部例外狀況 1:<br>AuthenticationException: Authentication failed, see inner exception.</p><p>內部例外狀況 2:<br>Win32Exception: 接收到的訊息超出預期或格式不正確。</p><h4 id="NET-Framework-的程式，錯誤訊息如下，"><a href="#NET-Framework-的程式，錯誤訊息如下，" class="headerlink" title=".NET Framework 的程式，錯誤訊息如下，"></a>.NET Framework 的程式，錯誤訊息如下，</h4><p><img src="02.png" width="600" alt="NET Framework Call Https Error" title="NET Framework Error"><br>System.Net.Http.HttpRequestException<br>  HResult=0x80131500<br>  Message=傳送要求時發生錯誤。<br>  Source=mscorlib<br>  StackTrace:<br>   於 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)<br>內部例外狀況 1:<br>WebException: 要求已經中止: 無法建立 SSL/TLS 的安全通道。</p><p>而透過 Wireshark 來看，錯誤是<strong>Handshake Failure</strong><br><img src="03.png" width="600" alt="Wireshark Https Handshake Failure" title="Handshake Failure"></p><p>即然猜到了真正原因，於是就將 Server 需要的 Cipher 再加進去。<br><img src="04.png" width="600" alt="Add Cipher " title="Add Cipher"></p><p>重開機後，再執行程式就沒有問題了，透過 Wireshark 來看，在 Client Hello 送上去的 Cipher 就有包含 Server 允許的 Cipher ，也正常出現 Server Hello<br><img src="05.png" width="600" alt="Https Client Hello And Server Hello" title="Client Hello"></p><p>後來同事使用<a href="https://www.nartac.com/Products/IISCrypto/" target="_blank" rel="noopener">IIS Crypto Tool</a>在正式機上檢視，果然沒有那些 384 的 Cipher。</p><h4 id="WebException-基礎連接已關閉-傳送時發生未預期的錯誤。-遠端主機已強制關閉一個現存的連線"><a href="#WebException-基礎連接已關閉-傳送時發生未預期的錯誤。-遠端主機已強制關閉一個現存的連線" class="headerlink" title="WebException: 基礎連接已關閉: 傳送時發生未預期的錯誤。 遠端主機已強制關閉一個現存的連線"></a>WebException: 基礎連接已關閉: 傳送時發生未預期的錯誤。 遠端主機已強制關閉一個現存的連線</h4><p>有時如果使用不允許的通訊協定，例如 Server 只允許 TLSv1.2 ，Client 給 TLSv1 就會產生以下的錯誤，<br>System.Net.Http.HttpRequestException<br>  HResult=0x80131500<br>  Message=傳送要求時發生錯誤。</p><p>內部例外狀況 1:<br>WebException: 基礎連接已關閉: 傳送時發生未預期的錯誤。</p><p>內部例外狀況 2:<br>IOException: 無法從傳輸連接讀取資料: 遠端主機已強制關閉一個現存的連線。。</p><p>內部例外狀況 3:<br>SocketException: 遠端主機已強制關閉一個現存的連線。<br><img src="07.png" width="600" alt="遠端主機已強制關閉一個現存的連線" title="遠端主機已強制關閉一個現存的連線"></p><p>而透過Wireshark 來看，就可以看到 GG 在 Reset，因為它的 Client Hello 走的是 TLSV1<br><img src="06.png" width="600" alt="https Server Reset" title="https Server Reset"></p><p>這錯大部份出現在 .NET Framework 身上，因為 .NET Framework 預設是 TLSV1.0 。<br>所以程式要加上<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">System.Net.ServicePointManager.SecurityProtocol =</span><br><span class="line">    SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;</span><br></pre></td></tr></table></figure></p><h4 id="Wireshark-使用-Filter"><a href="#Wireshark-使用-Filter" class="headerlink" title="Wireshark 使用 Filter"></a>Wireshark 使用 Filter</h4><p>透過 Wireshark 來錄封包時，有時資料太多不好找，這時可以使用 Filter 的功能，例如我本機是 10.211.55.3 ，而 Server 是 54.238.55.188<br>就可以下以下的 Filter來看這2邊的資訊，<br>(ip.src == 54.238.55.188 or ip.src == 10.211.55.3 ) and (ip.dst == 54.238.55.188 or ip.dst == 10.211.55.3)<br><img src="08.png" width="600" alt="Wireshark Filter" title="Wireshark Filter"></p><p>以上是最近遇到程式呼叫 https 遇到問題的整理，希望對大家有幫助。<br>如果是在開發機上使用自簽憑證則可以參考<a href="https://stackoverflow.com/questions/12553277/allowing-untrusted-ssl-certificates-with-httpclient" target="_blank" rel="noopener">Allowing Untrusted SSL Certificates with HttpClient</a></p><ul><li>註: 最近客戶端的程式(Java)在呼叫 IIS Https 網站時，會發生 RESET 的狀況，後來客戶發現是因為 IIS 在 https 繫結設定時，主機名稱欄位的下方有一個「需要伺服器名稱指示(N)」有勾起來，導致客戶的 Java 程式呼叫會失敗。 如果以上的方式測過還是會發生 RESET 的問題，可以試著將不要勾選 「需要伺服器名稱指示(N)」 試試看哦 ! 感謝同事 Geo, Tina 的分享。<img src="/2020/05/15/2020007/09.png" title="SNI"></li></ul><h3 id="參考資訊"><a href="#參考資訊" class="headerlink" title="參考資訊"></a>參考資訊</h3><p><a href="https://github.com/dotnet/runtime/issues/33186" target="_blank" rel="noopener">TLS handshake failures are not clear with SChannel</a><br><a href="https://www.ssllabs.com/ssltest/analyze.html" target="_blank" rel="noopener">SSL Server Test</a><br><a href="https://www.nartac.com/Products/IISCrypto/" target="_blank" rel="noopener">IIS Crypto Tool</a><br><a href="https://stackoverflow.com/questions/12553277/allowing-untrusted-ssl-certificates-with-httpclient" target="_blank" rel="noopener">Allowing Untrusted SSL Certificates with HttpClient</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;今天同事詢問透過 .NET Core HttpClient 去 Call Https 網頁時，會噴 &lt;strong&gt;The SSL conn
-      
-    
-    </summary>
-    
-    
-      <category term="2148734209" scheme="https://rainmakerho.github.io/tags/2148734209/"/>
-    
-      <category term="TLS" scheme="https://rainmakerho.github.io/tags/TLS/"/>
-    
-      <category term="HTTPS" scheme="https://rainmakerho.github.io/tags/HTTPS/"/>
-    
-      <category term="無法建立 SSL/TLS 的安全通道" scheme="https://rainmakerho.github.io/tags/%E7%84%A1%E6%B3%95%E5%BB%BA%E7%AB%8B-SSL-TLS-%E7%9A%84%E5%AE%89%E5%85%A8%E9%80%9A%E9%81%93/"/>
-    
-      <category term="WebException" scheme="https://rainmakerho.github.io/tags/WebException/"/>
-    
-      <category term="AuthenticationException" scheme="https://rainmakerho.github.io/tags/AuthenticationException/"/>
-    
-      <category term="基礎連接已關閉" scheme="https://rainmakerho.github.io/tags/%E5%9F%BA%E7%A4%8E%E9%80%A3%E6%8E%A5%E5%B7%B2%E9%97%9C%E9%96%89/"/>
-    
-      <category term="遠端主機已強制關閉一個現存的連線" scheme="https://rainmakerho.github.io/tags/%E9%81%A0%E7%AB%AF%E4%B8%BB%E6%A9%9F%E5%B7%B2%E5%BC%B7%E5%88%B6%E9%97%9C%E9%96%89%E4%B8%80%E5%80%8B%E7%8F%BE%E5%AD%98%E7%9A%84%E9%80%A3%E7%B7%9A/"/>
-    
-      <category term="接收到的訊息超出預期或格式不正確" scheme="https://rainmakerho.github.io/tags/%E6%8E%A5%E6%94%B6%E5%88%B0%E7%9A%84%E8%A8%8A%E6%81%AF%E8%B6%85%E5%87%BA%E9%A0%90%E6%9C%9F%E6%88%96%E6%A0%BC%E5%BC%8F%E4%B8%8D%E6%AD%A3%E7%A2%BA/"/>
-    
-      <category term="2148074278" scheme="https://rainmakerho.github.io/tags/2148074278/"/>
-    
-      <category term="需要伺服器名稱指示" scheme="https://rainmakerho.github.io/tags/%E9%9C%80%E8%A6%81%E4%BC%BA%E6%9C%8D%E5%99%A8%E5%90%8D%E7%A8%B1%E6%8C%87%E7%A4%BA/"/>
     
   </entry>
   
