@@ -4,6 +4,35 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2020/11/06/create-custom-fonts-eudc/</loc>
+    <lastmod>2020-11-06T04:41:30.235Z</lastmod>
+    <data>
+        <display>
+        <title>Windows 透過「造字程式」來造字</title>
+        <pubTime>2020-11-06T03:34:18.000Z</pubTime>
+        
+        <tag>自造字</tag>
+         
+        <tag>EUDC</tag>
+         
+        <tag>Windows</tag>
+         
+        <tag>Font</tag>
+         
+        <tag>造字程式</tag>
+         
+        <tag>950</tag>
+         
+        <tag>1252</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2020/11/05/net-ad-user-login/</loc>
     <lastmod>2020-11-04T23:23:21.621Z</lastmod>
     <data>
@@ -2553,9 +2582,9 @@
         <title>使用 Botframework 的 Bot 如何 Debug 到 BotBuilder Source ?</title>
         <pubTime>2018-02-01T01:47:18.000Z</pubTime>
         
-        <tag>C#</tag>
-         
         <tag>botframework</tag>
+         
+        <tag>C#</tag>
          
         <tag>BotBuilder</tag>
          
@@ -2626,13 +2655,13 @@
         <title>線上客服 + BOT 之路</title>
         <pubTime>2018-01-25T08:10:47.000Z</pubTime>
         
+        <tag>chatbot</tag>
+         
         <tag>QnA Maker</tag>
          
         <tag>LUIS</tag>
          
         <tag>Vital ESP</tag>
-         
-        <tag>chatbot</tag>
          
         <tag>FAQ</tag>
          

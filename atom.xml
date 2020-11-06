@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2020-11-04T23:23:21.621Z</updated>
+  <updated>2020-11-06T04:41:30.235Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,41 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Windows 透過「造字程式」來造字</title>
+    <link href="https://rainmakerho.github.io/2020/11/06/create-custom-fonts-eudc/"/>
+    <id>https://rainmakerho.github.io/2020/11/06/create-custom-fonts-eudc/</id>
+    <published>2020-11-06T03:34:18.000Z</published>
+    <updated>2020-11-06T04:41:30.235Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>有朋友詢問為何他透過「造字程式」建立自已的字型時，卻跟 <a href="https://dotblogs.com.tw/rainmaker/2016/03/09/232711" target="_blank" rel="noopener">讓瀏覽器顯示使用者自造字(EUDC)的方式</a> 這篇不同，<br>在機碼中卻沒有出現?</p><h3 id="驗證"><a href="#驗證" class="headerlink" title="驗證"></a>驗證</h3><p>從 Windows 找尋「造字程式」，並執行。<br><img src="/2020/11/06/create-custom-fonts-eudc/01.png" title="造字程式"></p><p>因為我當時是 Link 到 標楷體，所以開啟 「造字程式」後，存檔後，再造 Big5 及 Unicode 的自造字後.<br><img src="/2020/11/06/create-custom-fonts-eudc/02.png" title="Link字型"></p><p>在「編輯」功能中，選擇 「儲存字元」 後，在機碼就可以看到了哦!<br><img src="/2020/11/06/create-custom-fonts-eudc/03.png" title="儲存"></p><img src="/2020/11/06/create-custom-fonts-eudc/04.png" title="機碼"><p>後來朋友因為使用英文版的作業系統，所以機碼是出現在 <strong>電腦\HKEY_CURRENT_USER\EUDC\1252</strong> 而不是 繁體中文作業系統的 <strong>電腦\HKEY_CURRENT_USER\EUDC\950</strong>.</p><blockquote><p>註: assume that the code page has the identifier 1252, the default Windows code page for English.<a href="https://docs.microsoft.com/zh-tw/windows/win32/intl/eudc" target="_blank" rel="noopener">EUDC</a></p></blockquote><p>Chen-Chun，有推一些線上將 tte 轉成 woff 的網站，也一併分享給大家</p><p><a href="https://opentype.jp/woffconv.htm?fbclid=IwAR0Chrt8arD6zIaSVnYaaoszE7E6iSGUAh71ICBTADlcYAgitmZKbMtRi5E" target="_blank" rel="noopener">tte to woff (日文本機軟體)</a><br><a href="https://everythingfonts.com/" target="_blank" rel="noopener">woff to ttf, svg等 (線上服務)</a></p><p>感謝 Chen-Chun 的分享! </p><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://dotblogs.com.tw/rainmaker/2016/03/09/232711" target="_blank" rel="noopener">讓瀏覽器顯示使用者自造字(EUDC)的方式</a><br><a href="https://docs.microsoft.com/zh-tw/windows/win32/intl/eudc" target="_blank" rel="noopener">EUDC</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;有朋友詢問為何他透過「造字程式」建立自已的字型時，卻跟 &lt;a href=&quot;https://dotblogs.com.tw/rainmaker
+      
+    
+    </summary>
+    
+    
+      <category term="自造字" scheme="https://rainmakerho.github.io/tags/%E8%87%AA%E9%80%A0%E5%AD%97/"/>
+    
+      <category term="EUDC" scheme="https://rainmakerho.github.io/tags/EUDC/"/>
+    
+      <category term="Windows" scheme="https://rainmakerho.github.io/tags/Windows/"/>
+    
+      <category term="Font" scheme="https://rainmakerho.github.io/tags/Font/"/>
+    
+      <category term="造字程式" scheme="https://rainmakerho.github.io/tags/%E9%80%A0%E5%AD%97%E7%A8%8B%E5%BC%8F/"/>
+    
+      <category term="950" scheme="https://rainmakerho.github.io/tags/950/"/>
+    
+      <category term="1252" scheme="https://rainmakerho.github.io/tags/1252/"/>
+    
+  </entry>
   
   <entry>
     <title>C# User AD 帳號密碼驗證</title>
@@ -614,35 +649,6 @@
       <category term="EntityFrameworkCore" scheme="https://rainmakerho.github.io/tags/EntityFrameworkCore/"/>
     
       <category term="DbContext" scheme="https://rainmakerho.github.io/tags/DbContext/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>透過 Content-Security-Policy 修正 Mixed Content Link 問題</title>
-    <link href="https://rainmakerho.github.io/2020/05/19/2020008/"/>
-    <id>https://rainmakerho.github.io/2020/05/19/2020008/</id>
-    <published>2020-05-19T08:44:09.000Z</published>
-    <updated>2020-05-20T05:03:29.428Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在網站上，雖然用 https ，但有些 image 還是使用 http 去 link ，這會產生 Mixed Content 的問題，如下，<br><img src="/2020/05/19/2020008/01.png" title="https Mixed Content"></p><h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><h4 id="web-config"><a href="#web-config" class="headerlink" title="web.config"></a>web.config</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">system.webServer</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">httpProtocol</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">customHeaders</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">add</span> <span class="attr">name</span>=<span class="string">"Content-Security-Policy"</span> <span class="attr">value</span>=<span class="string">"upgrade-insecure-requests;"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">customHeaders</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">httpProtocol</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure><h4 id="Layout-cshtml"><a href="#Layout-cshtml" class="headerlink" title="_Layout.cshtml"></a>_Layout.cshtml</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"Content-Security-Policy"</span> <span class="attr">content</span>=<span class="string">"upgrade-insecure-requests;"</span>&gt;</span></span><br></pre></td></tr></table></figure><h4 id="Startup-cs"><a href="#Startup-cs" class="headerlink" title="Startup.cs"></a>Startup.cs</h4><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">app.Use(<span class="keyword">async</span> (context, next) =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    context.Response.Headers.Add(</span><br><span class="line">        <span class="string">"Content-Security-Policy"</span>,</span><br><span class="line">        <span class="string">"upgrade-insecure-requests;"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">await</span> next();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>當這樣設定後，會把原本是用 http 的link 改成 https 了哦! </p><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://advancedweb.hu/how-to-handle-mixed-content-with-csp/" target="_blank" rel="noopener">How to handle mixed content with CSP</a><br><a href="https://rainmakerho.github.io/2020/05/12/2020005/">ASP.NET Security Headers</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;在網站上，雖然用 https ，但有些 image 還是使用 http 去 link ，這會產生 Mixed Content 的問題，如下，
-      
-    
-    </summary>
-    
-    
-      <category term="Content-Security-Policy" scheme="https://rainmakerho.github.io/tags/Content-Security-Policy/"/>
-    
-      <category term="Mixed Content" scheme="https://rainmakerho.github.io/tags/Mixed-Content/"/>
-    
-      <category term="CSP" scheme="https://rainmakerho.github.io/tags/CSP/"/>
-    
-      <category term="upgrade-insecure-requests" scheme="https://rainmakerho.github.io/tags/upgrade-insecure-requests/"/>
     
   </entry>
   
