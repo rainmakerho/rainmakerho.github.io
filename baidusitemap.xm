@@ -4,6 +4,33 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2020/11/10/Improper-Restriction-of-XXE-Ref/</loc>
+    <lastmod>2020-11-10T01:06:53.493Z</lastmod>
+    <data>
+        <display>
+        <title>Improper Restriction of XXE Ref</title>
+        <pubTime>2020-11-10T00:50:40.000Z</pubTime>
+        
+        <tag>.NET</tag>
+         
+        <tag>checkmarx</tag>
+         
+        <tag>XXE</tag>
+         
+        <tag>XmlDocument</tag>
+         
+        <tag>XmlResolver</tag>
+         
+        <tag>DtdProcessing.Prohibit</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2020/11/06/create-custom-fonts-eudc/</loc>
     <lastmod>2020-11-06T04:41:30.235Z</lastmod>
     <data>
@@ -1572,8 +1599,6 @@
         <title>使用 OpenTracing - Jaeger (BFv3 使用 Dynamic Proxy)</title>
         <pubTime>2019-01-20T10:31:40.000Z</pubTime>
         
-        <tag>Autofac</tag>
-         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -1589,6 +1614,8 @@
         <tag>BFv3</tag>
          
         <tag>Dynamic Proxy</tag>
+         
+        <tag>Autofac</tag>
          
         <tag>EnableClassInterceptors</tag>
          
@@ -1940,11 +1967,11 @@
          
         <tag>botframework</tag>
          
+        <tag>Autofac</tag>
+         
         <tag>adaptivecard</tag>
          
         <tag>adaptive</tag>
-         
-        <tag>Autofac</tag>
          
          
            
@@ -2582,9 +2609,9 @@
         <title>使用 Botframework 的 Bot 如何 Debug 到 BotBuilder Source ?</title>
         <pubTime>2018-02-01T01:47:18.000Z</pubTime>
         
-        <tag>botframework</tag>
-         
         <tag>C#</tag>
+         
+        <tag>botframework</tag>
          
         <tag>BotBuilder</tag>
          
@@ -2655,13 +2682,13 @@
         <title>線上客服 + BOT 之路</title>
         <pubTime>2018-01-25T08:10:47.000Z</pubTime>
         
-        <tag>chatbot</tag>
-         
         <tag>QnA Maker</tag>
          
         <tag>LUIS</tag>
          
         <tag>Vital ESP</tag>
+         
+        <tag>chatbot</tag>
          
         <tag>FAQ</tag>
          
