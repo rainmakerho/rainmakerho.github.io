@@ -4,35 +4,8 @@
 
     
   <url>
-    <loc>https://rainmakerho.github.io/2020/11/10/Improper-Restriction-of-XXE-Ref/</loc>
-    <lastmod>2020-11-11T07:59:49.736Z</lastmod>
-    <data>
-        <display>
-        <title>Improper Restriction of XXE Ref</title>
-        <pubTime>2020-11-10T00:50:40.000Z</pubTime>
-        
-        <tag>.NET</tag>
-         
-        <tag>checkmarx</tag>
-         
-        <tag>XXE</tag>
-         
-        <tag>XmlDocument</tag>
-         
-        <tag>XmlResolver</tag>
-         
-        <tag>DtdProcessing.Prohibit</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://rainmakerho.github.io/2020/11/11/aspnet-cookieless-url/</loc>
-    <lastmod>2020-11-11T07:53:52.809Z</lastmod>
+    <lastmod>2020-11-11T08:04:38.238Z</lastmod>
     <data>
         <display>
         <title>為什麼 Url 中有 (A(XXXX)) 在 ASP.NET 中，卻不會噴 404 或是錯誤，反而回正常的頁面(200)呢?</title>
@@ -55,6 +28,33 @@
         <tag>RemoveCookielessValuesFromPath</tag>
          
         <tag>HTTP GET with request body</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://rainmakerho.github.io/2020/11/10/Improper-Restriction-of-XXE-Ref/</loc>
+    <lastmod>2020-11-11T07:59:49.736Z</lastmod>
+    <data>
+        <display>
+        <title>Improper Restriction of XXE Ref</title>
+        <pubTime>2020-11-10T00:50:40.000Z</pubTime>
+        
+        <tag>.NET</tag>
+         
+        <tag>checkmarx</tag>
+         
+        <tag>XXE</tag>
+         
+        <tag>XmlDocument</tag>
+         
+        <tag>XmlResolver</tag>
+         
+        <tag>DtdProcessing.Prohibit</tag>
          
          
            
@@ -1506,13 +1506,13 @@
         <title>document.[formName] is undefined</title>
         <pubTime>2019-03-16T05:48:31.000Z</pubTime>
         
-        <tag>軟體求生</tag>
-         
         <tag>js</tag>
          
         <tag>document.formName</tag>
          
         <tag>undefined</tag>
+         
+        <tag>軟體求生</tag>
          
         <tag>asp.net 4</tag>
          
@@ -1572,11 +1572,11 @@
         <title>Inheritance security rules violated by type: 'System.Net.Http.WebRequestHandler'</title>
         <pubTime>2019-02-23T02:41:55.000Z</pubTime>
         
+        <tag>軟體求生</tag>
+         
         <tag>System.Net.Http</tag>
          
         <tag>4.1.0.0</tag>
-         
-        <tag>軟體求生</tag>
          
          
            
@@ -1814,9 +1814,9 @@
         <title>PDF 最後一頁才顯示頁尾</title>
         <pubTime>2018-11-29T06:46:17.000Z</pubTime>
         
-        <tag>aspose</tag>
-         
         <tag>pdf</tag>
+         
+        <tag>aspose</tag>
          
         <tag>cells</tag>
          
@@ -2642,9 +2642,9 @@
         <title>使用 Botframework 的 Bot 如何 Debug 到 BotBuilder Source ?</title>
         <pubTime>2018-02-01T01:47:18.000Z</pubTime>
         
-        <tag>C#</tag>
-         
         <tag>botframework</tag>
+         
+        <tag>C#</tag>
          
         <tag>BotBuilder</tag>
          
@@ -2715,13 +2715,13 @@
         <title>線上客服 + BOT 之路</title>
         <pubTime>2018-01-25T08:10:47.000Z</pubTime>
         
+        <tag>chatbot</tag>
+         
         <tag>QnA Maker</tag>
          
         <tag>LUIS</tag>
          
         <tag>Vital ESP</tag>
-         
-        <tag>chatbot</tag>
          
         <tag>FAQ</tag>
          
