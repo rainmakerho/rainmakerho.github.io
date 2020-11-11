@@ -4,41 +4,8 @@
 
     
   <url>
-    <loc>https://rainmakerho.github.io/2020/11/11/aspnet-cookieless-url/</loc>
-    <lastmod>2020-11-11T07:51:27.010Z</lastmod>
-    <data>
-        <display>
-        <title>為什麼 Url 中有 (A(XXXX)) 在 ASP.NET 中，卻不會噴 404 或是錯誤，反而回正常的頁面(200)呢?</title>
-        <pubTime>2020-11-11T03:36:28.000Z</pubTime>
-        
-        <tag>ASP.NET</tag>
-         
-        <tag>Cookieless</tag>
-         
-        <tag>A(XXXX)</tag>
-         
-        <tag>S(XXXX)</tag>
-         
-        <tag>F(XXXX)</tag>
-         
-        <tag>CookielessHelperClass</tag>
-         
-        <tag>RemoveCookielessValuesFromPath</tag>
-         
-        <tag>HTTP GET with request body</tag>
-         
-        <tag>Response._appPathModifier</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://rainmakerho.github.io/2020/11/10/Improper-Restriction-of-XXE-Ref/</loc>
-    <lastmod>2020-11-10T01:30:14.409Z</lastmod>
+    <lastmod>2020-11-11T07:59:49.736Z</lastmod>
     <data>
         <display>
         <title>Improper Restriction of XXE Ref</title>
@@ -55,6 +22,39 @@
         <tag>XmlResolver</tag>
          
         <tag>DtdProcessing.Prohibit</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://rainmakerho.github.io/2020/11/11/aspnet-cookieless-url/</loc>
+    <lastmod>2020-11-11T07:53:52.809Z</lastmod>
+    <data>
+        <display>
+        <title>為什麼 Url 中有 (A(XXXX)) 在 ASP.NET 中，卻不會噴 404 或是錯誤，反而回正常的頁面(200)呢?</title>
+        <pubTime>2020-11-11T03:36:28.000Z</pubTime>
+        
+        <tag>ASP.NET</tag>
+         
+        <tag>Cookieless</tag>
+         
+        <tag>Response._appPathModifier</tag>
+         
+        <tag>A(XXXX)</tag>
+         
+        <tag>S(XXXX)</tag>
+         
+        <tag>F(XXXX)</tag>
+         
+        <tag>CookielessHelperClass</tag>
+         
+        <tag>RemoveCookielessValuesFromPath</tag>
+         
+        <tag>HTTP GET with request body</tag>
          
          
            
@@ -2642,9 +2642,9 @@
         <title>使用 Botframework 的 Bot 如何 Debug 到 BotBuilder Source ?</title>
         <pubTime>2018-02-01T01:47:18.000Z</pubTime>
         
-        <tag>botframework</tag>
-         
         <tag>C#</tag>
+         
+        <tag>botframework</tag>
          
         <tag>BotBuilder</tag>
          
