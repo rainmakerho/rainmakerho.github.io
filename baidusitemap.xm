@@ -4,8 +4,41 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2020/11/11/aspnet-cookieless-url/</loc>
+    <lastmod>2020-11-11T07:51:27.010Z</lastmod>
+    <data>
+        <display>
+        <title>為什麼 Url 中有 (A(XXXX)) 在 ASP.NET 中，卻不會噴 404 或是錯誤，反而回正常的頁面(200)呢?</title>
+        <pubTime>2020-11-11T03:36:28.000Z</pubTime>
+        
+        <tag>ASP.NET</tag>
+         
+        <tag>Cookieless</tag>
+         
+        <tag>A(XXXX)</tag>
+         
+        <tag>S(XXXX)</tag>
+         
+        <tag>F(XXXX)</tag>
+         
+        <tag>CookielessHelperClass</tag>
+         
+        <tag>RemoveCookielessValuesFromPath</tag>
+         
+        <tag>HTTP GET with request body</tag>
+         
+        <tag>Response._appPathModifier</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2020/11/10/Improper-Restriction-of-XXE-Ref/</loc>
-    <lastmod>2020-11-10T01:06:53.493Z</lastmod>
+    <lastmod>2020-11-10T01:30:14.409Z</lastmod>
     <data>
         <display>
         <title>Improper Restriction of XXE Ref</title>
@@ -1599,6 +1632,8 @@
         <title>使用 OpenTracing - Jaeger (BFv3 使用 Dynamic Proxy)</title>
         <pubTime>2019-01-20T10:31:40.000Z</pubTime>
         
+        <tag>Autofac</tag>
+         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -1614,8 +1649,6 @@
         <tag>BFv3</tag>
          
         <tag>Dynamic Proxy</tag>
-         
-        <tag>Autofac</tag>
          
         <tag>EnableClassInterceptors</tag>
          
@@ -1967,11 +2000,11 @@
          
         <tag>botframework</tag>
          
-        <tag>Autofac</tag>
-         
         <tag>adaptivecard</tag>
          
         <tag>adaptive</tag>
+         
+        <tag>Autofac</tag>
          
          
            
@@ -2609,9 +2642,9 @@
         <title>使用 Botframework 的 Bot 如何 Debug 到 BotBuilder Source ?</title>
         <pubTime>2018-02-01T01:47:18.000Z</pubTime>
         
-        <tag>C#</tag>
-         
         <tag>botframework</tag>
+         
+        <tag>C#</tag>
          
         <tag>BotBuilder</tag>
          
