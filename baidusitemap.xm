@@ -4,6 +4,27 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2020/11/18/NET-Conf-2020/</loc>
+    <lastmod>2020-11-18T10:04:41.147Z</lastmod>
+    <data>
+        <display>
+        <title>.NET Conf 2020</title>
+        <pubTime>2020-11-18T07:00:10.000Z</pubTime>
+        
+        <tag>NET Conf</tag>
+         
+        <tag>dotNETConf</tag>
+         
+        <tag>dotNETConf 2020</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2020/11/11/aspnet-cookieless-url/</loc>
     <lastmod>2020-11-13T03:15:51.750Z</lastmod>
     <data>
@@ -12,6 +33,8 @@
         <pubTime>2020-11-11T03:36:28.000Z</pubTime>
         
         <tag>ASP.NET</tag>
+         
+        <tag>Cross-Site Scripting: Reflected</tag>
          
         <tag>Cookieless</tag>
          
@@ -28,8 +51,6 @@
         <tag>RemoveCookielessValuesFromPath</tag>
          
         <tag>HTTP GET with request body</tag>
-         
-        <tag>Cross-Site Scripting: Reflected</tag>
          
          
            
@@ -1839,9 +1860,9 @@
         <title>PDF 最後一頁才顯示頁尾</title>
         <pubTime>2018-11-29T06:46:17.000Z</pubTime>
         
-        <tag>aspose</tag>
-         
         <tag>pdf</tag>
+         
+        <tag>aspose</tag>
          
         <tag>cells</tag>
          
@@ -2596,11 +2617,11 @@
         <title>SmtpConnection.GetConnection NullReferenceException</title>
         <pubTime>2018-03-14T02:07:16.000Z</pubTime>
         
-        <tag>NullReferenceException</tag>
-         
         <tag>SmtpClient</tag>
          
         <tag>SmtpConnection.GetConnection</tag>
+         
+        <tag>NullReferenceException</tag>
          
         <tag>.net</tag>
          
@@ -2625,11 +2646,11 @@
         <title>System.NullReferenceException when Aspose.Pdf.License.SetLicense(String licenseName)</title>
         <pubTime>2018-03-13T06:54:05.000Z</pubTime>
         
+        <tag>NullReferenceException</tag>
+         
         <tag>Aspose</tag>
          
         <tag>SetLicense</tag>
-         
-        <tag>NullReferenceException</tag>
          
          
            
