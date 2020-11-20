@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2020-11-18T10:04:41.147Z</updated>
+  <updated>2020-11-20T05:51:21.177Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MSB3644	找不到 .NETFramework,Version=v4.6.2 的參考組件。</title>
+    <link href="https://rainmakerho.github.io/2020/11/20/MSB3644/"/>
+    <id>https://rainmakerho.github.io/2020/11/20/MSB3644/</id>
+    <published>2020-11-20T05:45:32.000Z</published>
+    <updated>2020-11-20T05:51:21.177Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>有時透過 Visual Studio 開啟別人的專案時，會直接顯示 <strong>MSB3644    找不到 .NETFramework,Version=v4.6.2 的參考組件。</strong> 的錯誤。</p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>其實它是說我們並沒有安裝對應的 .NET Framework 4.6.2 Developer Pack，<br>所以可以到 <a href="https://dotnet.microsoft.com/download/dotnet-framework" target="_blank" rel="noopener">.NET Framework Developer Pack</a> 下載安裝哦!</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;有時透過 Visual Studio 開啟別人的專案時，會直接顯示 &lt;strong&gt;MSB3644    找不到 .NETFramework
+      
+    
+    </summary>
+    
+    
+      <category term="MSB3644" scheme="https://rainmakerho.github.io/tags/MSB3644/"/>
+    
+      <category term="找不到 .NETFramework" scheme="https://rainmakerho.github.io/tags/%E6%89%BE%E4%B8%8D%E5%88%B0-NETFramework/"/>
+    
+      <category term="Developer Pack" scheme="https://rainmakerho.github.io/tags/Developer-Pack/"/>
+    
+  </entry>
   
   <entry>
     <title>.NET Conf 2020</title>
@@ -632,35 +659,6 @@
       <category term="DelegatingHandler" scheme="https://rainmakerho.github.io/tags/DelegatingHandler/"/>
     
       <category term="IExceptionHandlerPathFeature" scheme="https://rainmakerho.github.io/tags/IExceptionHandlerPathFeature/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Blazor WebAssembly 與 Server 相互轉換</title>
-    <link href="https://rainmakerho.github.io/2020/07/30/2020013/"/>
-    <id>https://rainmakerho.github.io/2020/07/30/2020013/</id>
-    <published>2020-07-30T14:29:29.000Z</published>
-    <updated>2020-08-13T06:23:33.862Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>開發 ASP.NET Core Blazor 時，可以選擇使用 Blazor WebAssembly (client-side) 或是 Blazor Server (server-side)的方式。<br>但是當選擇好了後，可以改成別的嗎?<br>例如 Blazor WebAssembly 改成 Blazor Server 或是 Blazor Server 改成 Blazor WebAssembly 嗎?</p><h3 id="研究"><a href="#研究" class="headerlink" title="研究"></a>研究</h3><p>在轉換前，先建立 Blazor WebAssembly 及 Blazor Server 來比較一下，如下，<br><img src="/2020/07/30/2020013/01.png" title="Blazor WebAssembly And Server"><br>我們可以發現，那些 Razor Page 大多可以在 WebAssembly or Server 上執行，<br>而 Server 專案中 Pages 目錄的 _Host.cshtml ，則可以對應到 WebAssembly 專案中 wwwroot 裡的 index.html，如下，</p><p>另外就是 Blazor WebAssembly 沒有 Startup.cs ，所以 Services 的 DI 設定，是寫在 Program.cs 之中。<br>所以，不管原本是 Blazor WebAssembly 或是 Blazor Server ，我們都可以將目前這個專案變成是給 Blazor WebAssembly 或是 Blazor Server 參考使用的共用專案。</p><h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><p>了解這些差異後，Blazor WebAssembly 與 Server 就相互轉換。</p><h4 id="新增專案"><a href="#新增專案" class="headerlink" title="新增專案"></a>新增專案</h4><p>例如我原本是使用 Blazor WebAssembly (remeberPws)，所以如果我要改用 Blazor Server 的話，就新增 Blazor Server 專案 (remeberPwds.Server)。<br>再將不需要的 Razor 檔案刪除，如下，<br><img src="/2020/07/30/2020013/02.png" title="Blazor Server"><br>只剩下 _Host.cshtml 、 Programs.cs 及 Starup.cs</p><h4 id="修改原有專案成為-Library"><a href="#修改原有專案成為-Library" class="headerlink" title="修改原有專案成為 Library"></a>修改原有專案成為 Library</h4><p>remeberPws 專案原本是 Web 專案，所以要改成 Razor 專案才可以給其他專案共用，所以，原本的內容如下，<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">Project</span> <span class="attr">Sdk</span>=<span class="string">"Microsoft.NET.Sdk.Web"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">PropertyGroup</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">TargetFramework</span>&gt;</span>netstandard2.1<span class="tag">&lt;/<span class="name">TargetFramework</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">RazorLangVersion</span>&gt;</span>3.0<span class="tag">&lt;/<span class="name">RazorLangVersion</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">PropertyGroup</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">ItemGroup</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">PackageReference</span> <span class="attr">Include</span>=<span class="string">"Microsoft.AspNetCore.Components.WebAssembly"</span> <span class="attr">Version</span>=<span class="string">"3.2.1"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">PackageReference</span> <span class="attr">Include</span>=<span class="string">"Microsoft.AspNetCore.Components.WebAssembly.Build"</span> <span class="attr">Version</span>=<span class="string">"3.2.1"</span> <span class="attr">PrivateAssets</span>=<span class="string">"all"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">PackageReference</span> <span class="attr">Include</span>=<span class="string">"Microsoft.AspNetCore.Components.WebAssembly.DevServer"</span> <span class="attr">Version</span>=<span class="string">"3.2.1"</span> <span class="attr">PrivateAssets</span>=<span class="string">"all"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">PackageReference</span> <span class="attr">Include</span>=<span class="string">"System.Net.Http.Json"</span> <span class="attr">Version</span>=<span class="string">"3.2.0"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ItemGroup</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">ItemGroup</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ProjectReference</span> <span class="attr">Include</span>=<span class="string">"..\remeberPwds.Shared\remeberPwds.Shared.csproj"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ItemGroup</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Project</span>&gt;</span></span><br></pre></td></tr></table></figure></p><ul><li>將 Sdk 從 Microsoft.NET.Sdk.Web 改成 Microsoft.NET.Sdk.Razor</li><li><p>PackageReference 中的參考原本是 WebAssembly ，要改成 Microsoft.AspNetCore.Components<br>所以調整後如下，</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Project</span> <span class="attr">Sdk</span>=<span class="string">"Microsoft.NET.Sdk.Razor"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">PropertyGroup</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">TargetFramework</span>&gt;</span>netstandard2.1<span class="tag">&lt;/<span class="name">TargetFramework</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">RazorLangVersion</span>&gt;</span>3.0<span class="tag">&lt;/<span class="name">RazorLangVersion</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">PropertyGroup</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">ItemGroup</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">PackageReference</span> <span class="attr">Include</span>=<span class="string">"Microsoft.AspNetCore.Components"</span> <span class="attr">Version</span>=<span class="string">"3.1.4"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">PackageReference</span> <span class="attr">Include</span>=<span class="string">"Microsoft.AspNetCore.Components.Web"</span> <span class="attr">Version</span>=<span class="string">"3.1.4"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">PackageReference</span> <span class="attr">Include</span>=<span class="string">"Microsoft.Extensions.Http"</span> <span class="attr">Version</span>=<span class="string">"3.1.4"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">PackageReference</span> <span class="attr">Include</span>=<span class="string">"System.Net.Http.Json"</span> <span class="attr">Version</span>=<span class="string">"3.2.0"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ItemGroup</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">ItemGroup</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ProjectReference</span> <span class="attr">Include</span>=<span class="string">"..\remeberPwds.Shared\remeberPwds.Shared.csproj"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ItemGroup</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">Project</span>&gt;</span></span><br></pre></td></tr></table></figure></li><li><p>將 _Imports.razor 中的 @using Microsoft.AspNetCore.Components.WebAssembly.Http 移除</p><img src="/2020/07/30/2020013/04.png" title="Remove WebAssembly Using"></li><li><p>將 App.razor 檔案 AppAssembly 的 typeof 從 Program 改成 App</p><img src="/2020/07/30/2020013/05.png" title="typeofApp"></li></ul><p>改完後，可以發現原有的專案已從 Web 專案變成了 Razor Library 專案，可以給別的專案參考使用</p><ul><li><p>Blazor Server 專案(remeberPwds.Server)，將原有的專案(remeberPws)加入參考</p></li><li><p>將 Program.cs 中設定 Service DI 的部份，搬到 Blazor Server 專案中的 Startup.cs 之中。</p><img src="/2020/07/30/2020013/03.png" title="Startup.cs"><p>註: 這裡有個需要注意的是 Blazor WebAssembly 的 Service.AddScoped 與 AddSingleton 效果是一樣的。 而 Blazor Server 的 AddScoped 是為 SignalR Connection 為主</p></li><li><p>Blazor Server 專案中的 _Host.cshtml CSS 要改參考到 原有的專案(remeberPws)裡面 ， component type 也要改用 原專案的 App。</p><img src="/2020/07/30/2020013/07.png" title="_Host.cshtml"><p>css 可以直接從(remeberPws)的wwwroot那直接拉進來。</p></li></ul><p>建置沒有錯誤後，請將啟始專案改為 Blazor Server 專案(remeberPwds.Server)</p><p>調整後的方案如下，<br><img src="/2020/07/30/2020013/06.png" title="After"></p><p>Blazor Server 專案(remeberPwds.Server) 可以正常運作，<br><img src="/2020/07/30/2020013/08.png" title="Running"></p><blockquote><p>所以如果原本是 Blazor Server 專案 要這樣轉成 Blazor WebAssembly 也是可以的哦!<br>只是需要注意的是，如果在 Blazor Server 中使用 EF Core ，則需要將它抽到 API 專案之中，<br>所以在方案的規劃中可以是 Blazor (Client or Server)專案 + Blazor App 專案 + Blazor Component 專案 + Shared Model 專案 + API 專案。</p></blockquote><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor" target="_blank" rel="noopener">Blazor</a><br><a href="https://blazor-university.com/" target="_blank" rel="noopener">Blazor University</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;開發 ASP.NET Core Blazor 時，可以選擇使用 Blazor WebAssembly (client-side) 或是 Bl
-      
-    
-    </summary>
-    
-    
-      <category term="Blazor" scheme="https://rainmakerho.github.io/tags/Blazor/"/>
-    
-      <category term="WebAssembly" scheme="https://rainmakerho.github.io/tags/WebAssembly/"/>
-    
-      <category term="Server" scheme="https://rainmakerho.github.io/tags/Server/"/>
-    
-      <category term="Convert" scheme="https://rainmakerho.github.io/tags/Convert/"/>
     
   </entry>
   

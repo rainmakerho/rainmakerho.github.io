@@ -4,6 +4,27 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2020/11/20/MSB3644/</loc>
+    <lastmod>2020-11-20T05:51:21.177Z</lastmod>
+    <data>
+        <display>
+        <title>MSB3644	找不到 .NETFramework,Version=v4.6.2 的參考組件。</title>
+        <pubTime>2020-11-20T05:45:32.000Z</pubTime>
+        
+        <tag>MSB3644</tag>
+         
+        <tag>找不到 .NETFramework</tag>
+         
+        <tag>Developer Pack</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2020/11/18/NET-Conf-2020/</loc>
     <lastmod>2020-11-18T10:04:41.147Z</lastmod>
     <data>
@@ -1860,9 +1881,9 @@
         <title>PDF 最後一頁才顯示頁尾</title>
         <pubTime>2018-11-29T06:46:17.000Z</pubTime>
         
-        <tag>pdf</tag>
-         
         <tag>aspose</tag>
+         
+        <tag>pdf</tag>
          
         <tag>cells</tag>
          
