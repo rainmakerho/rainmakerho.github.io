@@ -4,6 +4,60 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2020/12/08/corss-machines-forms-based-authentication-sso/</loc>
+    <lastmod>2020-12-08T03:01:38.678Z</lastmod>
+    <data>
+        <display>
+        <title>跨機器間的 Web Application 使用 forms-base authentication 來達到 Single sign-on(SSO)</title>
+        <pubTime>2020-12-08T01:24:07.000Z</pubTime>
+        
+        <tag>forms-base authentication</tag>
+         
+        <tag>跨機器</tag>
+         
+        <tag>Form驗證</tag>
+         
+        <tag>cookie</tag>
+         
+        <tag>domain</tag>
+         
+        <tag>Single sign-on</tag>
+         
+        <tag>SSO</tag>
+         
+        <tag>Reporting Service</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://rainmakerho.github.io/2020/11/18/NET-Conf-2020/</loc>
+    <lastmod>2020-11-20T06:25:33.473Z</lastmod>
+    <data>
+        <display>
+        <title>.NET Conf 2020</title>
+        <pubTime>2020-11-18T07:00:10.000Z</pubTime>
+        
+        <tag>NET Conf</tag>
+         
+        <tag>dotNETConf</tag>
+         
+        <tag>dotNETConf 2020</tag>
+         
+        <tag>.NET 5.0</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2020/11/20/MSB3644/</loc>
     <lastmod>2020-11-20T05:51:21.177Z</lastmod>
     <data>
@@ -16,27 +70,6 @@
         <tag>找不到 .NETFramework</tag>
          
         <tag>Developer Pack</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://rainmakerho.github.io/2020/11/18/NET-Conf-2020/</loc>
-    <lastmod>2020-11-18T10:04:41.147Z</lastmod>
-    <data>
-        <display>
-        <title>.NET Conf 2020</title>
-        <pubTime>2020-11-18T07:00:10.000Z</pubTime>
-        
-        <tag>NET Conf</tag>
-         
-        <tag>dotNETConf</tag>
-         
-        <tag>dotNETConf 2020</tag>
          
          
            
@@ -1573,13 +1606,13 @@
         <title>document.[formName] is undefined</title>
         <pubTime>2019-03-16T05:48:31.000Z</pubTime>
         
-        <tag>軟體求生</tag>
-         
         <tag>js</tag>
          
         <tag>document.formName</tag>
          
         <tag>undefined</tag>
+         
+        <tag>軟體求生</tag>
          
         <tag>asp.net 4</tag>
          
@@ -1639,11 +1672,11 @@
         <title>Inheritance security rules violated by type: 'System.Net.Http.WebRequestHandler'</title>
         <pubTime>2019-02-23T02:41:55.000Z</pubTime>
         
+        <tag>軟體求生</tag>
+         
         <tag>System.Net.Http</tag>
          
         <tag>4.1.0.0</tag>
-         
-        <tag>軟體求生</tag>
          
          
            
@@ -1738,8 +1771,6 @@
         <title>使用 OpenTracing - Jaeger (AP整合)</title>
         <pubTime>2019-01-15T05:13:41.000Z</pubTime>
         
-        <tag>BFv4</tag>
-         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -1753,6 +1784,8 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
+         
+        <tag>BFv4</tag>
          
         <tag>NodeJS</tag>
          
@@ -1771,8 +1804,6 @@
         <title>使用 OpenTracing - Jaeger</title>
         <pubTime>2019-01-04T06:02:45.000Z</pubTime>
         
-        <tag>BFv4</tag>
-         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -1786,6 +1817,8 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
+         
+        <tag>BFv4</tag>
          
          
            
@@ -2638,11 +2671,11 @@
         <title>SmtpConnection.GetConnection NullReferenceException</title>
         <pubTime>2018-03-14T02:07:16.000Z</pubTime>
         
+        <tag>NullReferenceException</tag>
+         
         <tag>SmtpClient</tag>
          
         <tag>SmtpConnection.GetConnection</tag>
-         
-        <tag>NullReferenceException</tag>
          
         <tag>.net</tag>
          
@@ -2667,11 +2700,11 @@
         <title>System.NullReferenceException when Aspose.Pdf.License.SetLicense(String licenseName)</title>
         <pubTime>2018-03-13T06:54:05.000Z</pubTime>
         
-        <tag>NullReferenceException</tag>
-         
         <tag>Aspose</tag>
          
         <tag>SetLicense</tag>
+         
+        <tag>NullReferenceException</tag>
          
          
            
