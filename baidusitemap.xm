@@ -5,7 +5,7 @@
     
   <url>
     <loc>https://rainmakerho.github.io/2020/12/08/corss-machines-forms-based-authentication-sso/</loc>
-    <lastmod>2020-12-08T03:01:38.678Z</lastmod>
+    <lastmod>2020-12-08T03:13:07.376Z</lastmod>
     <data>
         <display>
         <title>跨機器間的 Web Application 使用 forms-base authentication 來達到 Single sign-on(SSO)</title>
@@ -1771,6 +1771,8 @@
         <title>使用 OpenTracing - Jaeger (AP整合)</title>
         <pubTime>2019-01-15T05:13:41.000Z</pubTime>
         
+        <tag>BFv4</tag>
+         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -1784,8 +1786,6 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
-         
-        <tag>BFv4</tag>
          
         <tag>NodeJS</tag>
          
@@ -1804,6 +1804,8 @@
         <title>使用 OpenTracing - Jaeger</title>
         <pubTime>2019-01-04T06:02:45.000Z</pubTime>
         
+        <tag>BFv4</tag>
+         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -1817,8 +1819,6 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
-         
-        <tag>BFv4</tag>
          
          
            
