@@ -4,6 +4,29 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2020/12/09/webapi-http-method-put-400/</loc>
+    <lastmod>2020-12-09T07:52:21.231Z</lastmod>
+    <data>
+        <display>
+        <title>HTTP 400 , 在 Client 端透過 PUT 方式呼叫 Server API 時</title>
+        <pubTime>2020-12-09T07:23:37.000Z</pubTime>
+        
+        <tag>HTTP 400</tag>
+         
+        <tag>PUT</tag>
+         
+        <tag>UseHttpMethodOverride</tag>
+         
+        <tag>X-HTTP-Method-Override</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2020/12/08/corss-machines-forms-based-authentication-sso/</loc>
     <lastmod>2020-12-08T03:13:07.376Z</lastmod>
     <data>

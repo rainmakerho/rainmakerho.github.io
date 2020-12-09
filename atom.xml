@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2020-12-08T03:13:07.376Z</updated>
+  <updated>2020-12-09T07:52:21.231Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>HTTP 400 , 在 Client 端透過 PUT 方式呼叫 Server API 時</title>
+    <link href="https://rainmakerho.github.io/2020/12/09/webapi-http-method-put-400/"/>
+    <id>https://rainmakerho.github.io/2020/12/09/webapi-http-method-put-400/</id>
+    <published>2020-12-09T07:23:37.000Z</published>
+    <updated>2020-12-09T07:52:21.231Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近同事詢問一個問題，他們的系統在內部使用時，都沒有問題。<br>但是，如果透過外網連接使用時，卻會發生錯誤，但在 AP 卻找不到 Log 。<br>透過外網連接時，只是多透過了 Web Application Firewall (WAF) 。<br>透過 Chrome 的網路來看發現，透過 JS 透過 PUT 呼叫 Server API 時，卻回 400 的狀態，沒有任何的內容。</p><h3 id="研究"><a href="#研究" class="headerlink" title="研究"></a>研究</h3><img src="/2020/12/09/webapi-http-method-put-400/01.png" width="400" title="PUT"><p>內部網路使用正常，透過 WAF 卻出現 400 的狀況，而且 AP 也沒有收到那支程式 Request 的資料。<br>這顯然所有的事都指向了 WAF ，後來同事詢問客戶後發現， WAF 只允許 GET 及 POST 。<br>即然知道了限制，所以同事就依限制來調整程式。</p><p>如果是 ASP.NET Core 的話，則可以使用 <strong>app.UseHttpMethodOverride()</strong> 來讓 Client 端透過 post 的對應到 Server API 的 put 哦!<br>詳細請參考:<a href="https://vnextcoder.wordpress.com/2018/06/05/how-to-allow-http-method-override-dotnet-core/" target="_blank" rel="noopener">How to Allow HTTP Method Override ASP Dotnet Core</a></p><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.builder.httpmethodoverrideextensions.usehttpmethodoverride?view=aspnetcore-5.0" target="_blank" rel="noopener">HttpMethodOverrideExtensions.UseHttpMethodOverride Method</a><br><a href="https://vnextcoder.wordpress.com/2018/06/05/how-to-allow-http-method-override-dotnet-core/" target="_blank" rel="noopener">How to Allow HTTP Method Override ASP Dotnet Core</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;最近同事詢問一個問題，他們的系統在內部使用時，都沒有問題。&lt;br&gt;但是，如果透過外網連接使用時，卻會發生錯誤，但在 AP 卻找不到 Log 
+      
+    
+    </summary>
+    
+    
+      <category term="HTTP 400" scheme="https://rainmakerho.github.io/tags/HTTP-400/"/>
+    
+      <category term="PUT" scheme="https://rainmakerho.github.io/tags/PUT/"/>
+    
+      <category term="UseHttpMethodOverride" scheme="https://rainmakerho.github.io/tags/UseHttpMethodOverride/"/>
+    
+      <category term="X-HTTP-Method-Override" scheme="https://rainmakerho.github.io/tags/X-HTTP-Method-Override/"/>
+    
+  </entry>
   
   <entry>
     <title>跨機器間的 Web Application 使用 forms-base authentication 來達到 Single sign-on(SSO)</title>
@@ -634,35 +663,6 @@
       <category term="cross-site cookie" scheme="https://rainmakerho.github.io/tags/cross-site-cookie/"/>
     
       <category term="None" scheme="https://rainmakerho.github.io/tags/None/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>透過 SharpSvn 取出某路徑的所有檔案(SVN Export)</title>
-    <link href="https://rainmakerho.github.io/2020/08/13/2020015/"/>
-    <id>https://rainmakerho.github.io/2020/08/13/2020015/</id>
-    <published>2020-08-13T10:10:24.000Z</published>
-    <updated>2020-08-13T10:08:35.843Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>透過 SharpSvn 來 Export 時，在大多數的電腦上都沒問題的。<br>但在某台電腦中，在 Export 到某個檔案時，卻會將整個程式關畢，而那個檔名原本是 FRM10009.docx ，<br>卻會變成 svn-444AA7Ff 或是 svn-54A3A7Da 等 svn- 開頭的檔案。</p><h3 id="研究"><a href="#研究" class="headerlink" title="研究"></a>研究</h3><p>然而透過程式直接使用 SvnClient.Write 卻是可以的，所以只好改用一個一個檔案來取的方式。<br>以下為 Console App 程式。<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">region</span> 變數宣告</span></span><br><span class="line"><span class="keyword">string</span> svnId = <span class="string">"svn userid"</span>,</span><br><span class="line">   svnPwd = <span class="string">"svn userpwd"</span>,</span><br><span class="line">   svnPath = <span class="string">"SVNPath"</span>,</span><br><span class="line">   tempPath = <span class="string">"ExportPath"</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endregion</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//Delete Local all files and folders</span></span><br><span class="line"><span class="keyword">var</span> di = <span class="keyword">new</span> DirectoryInfo(tempPath);</span><br><span class="line"><span class="keyword">foreach</span> (FileInfo file <span class="keyword">in</span> di.EnumerateFiles())</span><br><span class="line">&#123;</span><br><span class="line">file.Delete();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">foreach</span> (DirectoryInfo dir <span class="keyword">in</span> di.EnumerateDirectories())</span><br><span class="line">&#123;</span><br><span class="line">dir.Delete(<span class="literal">true</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> client = <span class="keyword">new</span> SvnClient();</span><br><span class="line">client.Authentication.DefaultCredentials = <span class="keyword">new</span> NetworkCredential(svnId, svnPwd);</span><br><span class="line">SvnUriTarget folderTarget = <span class="keyword">new</span> SvnUriTarget(svnPath);</span><br><span class="line">Export(client, folderTarget, tempPath);</span><br><span class="line">Console.WriteLine(<span class="string">$"<span class="subst">&#123;new <span class="keyword">string</span>(<span class="string">'='</span>, <span class="number">30</span>)&#125;</span>"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 改用遞迴方式來一個一個取出檔案</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name="client"&gt;</span><span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name="svnTarget"&gt;</span><span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name="folderPath"&gt;</span><span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Export</span>(<span class="params">SvnClient client, SvnTarget svnTarget, <span class="keyword">string</span> folderPath</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">Console.WriteLine(<span class="string">$"<span class="subst">&#123;new <span class="keyword">string</span>(<span class="string">'='</span>, <span class="number">6</span>)&#125;</span><span class="subst">&#123;folderPath&#125;</span><span class="subst">&#123;new <span class="keyword">string</span>(<span class="string">'='</span>, <span class="number">6</span>)&#125;</span>"</span>);</span><br><span class="line"><span class="keyword">var</span> phyFolderPath = Path.Combine(folderPath, svnTarget.FileName);</span><br><span class="line"><span class="keyword">if</span> (!Directory.Exists(phyFolderPath))</span><br><span class="line">&#123;</span><br><span class="line">Directory.CreateDirectory(phyFolderPath);</span><br><span class="line">&#125;</span><br><span class="line">Collection&lt;SvnListEventArgs&gt; listResults;</span><br><span class="line"><span class="keyword">if</span> (client.GetList(svnTarget, <span class="keyword">out</span> listResults))</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">foreach</span> (SvnListEventArgs item <span class="keyword">in</span> listResults)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">switch</span> (item.Entry.NodeKind)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">case</span> SvnNodeKind.File:</span><br><span class="line"><span class="keyword">var</span> phyFilePath = Path.Combine(phyFolderPath, item.Path);</span><br><span class="line"><span class="keyword">using</span> (FileStream fileStream = File.Open(phyFilePath, FileMode.OpenOrCreate))</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">var</span> fileTarget = <span class="keyword">new</span> SvnUriTarget(item.Uri);</span><br><span class="line">client.Write(fileTarget, fileStream);</span><br><span class="line">&#125;</span><br><span class="line">Console.WriteLine(<span class="string">$"<span class="subst">&#123;item.Path&#125;</span>"</span>);</span><br><span class="line"><span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">case</span> SvnNodeKind.Directory:</span><br><span class="line"><span class="keyword">if</span>(Uri.Compare(item.BaseUri, item.Uri,</span><br><span class="line">UriComponents.Host | UriComponents.PathAndQuery,</span><br><span class="line">UriFormat.SafeUnescaped, StringComparison.OrdinalIgnoreCase)!=<span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line">Console.WriteLine(<span class="string">$"<span class="subst">&#123;new <span class="keyword">string</span>(<span class="string">'*'</span>, <span class="number">8</span>)&#125;</span>SubFolder:Start:<span class="subst">&#123;item.Name&#125;</span><span class="subst">&#123;new <span class="keyword">string</span>(<span class="string">'*'</span>, <span class="number">8</span>)&#125;</span>"</span>);</span><br><span class="line"><span class="comment">//child folder</span></span><br><span class="line"><span class="keyword">var</span> childTarget = <span class="keyword">new</span> SvnUriTarget(item.Uri);</span><br><span class="line">Export(client, childTarget, phyFolderPath);</span><br><span class="line">Console.WriteLine(<span class="string">$"<span class="subst">&#123;new <span class="keyword">string</span>(<span class="string">'*'</span>, <span class="number">8</span>)&#125;</span>SubFolder:End:<span class="subst">&#123;item.Name&#125;</span><span class="subst">&#123;new <span class="keyword">string</span>(<span class="string">'*'</span>, <span class="number">8</span>)&#125;</span>"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line"><span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">"Failed to retrieve files via SharpSvn"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://www.nuget.org/profiles/sharpsvn" target="_blank" rel="noopener">sharpsvn - NuGet Gallery</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;透過 SharpSvn 來 Export 時，在大多數的電腦上都沒問題的。&lt;br&gt;但在某台電腦中，在 Export 到某個檔案時，卻會將整個
-      
-    
-    </summary>
-    
-    
-      <category term="svn" scheme="https://rainmakerho.github.io/tags/svn/"/>
-    
-      <category term="sharpsvn" scheme="https://rainmakerho.github.io/tags/sharpsvn/"/>
-    
-      <category term="export" scheme="https://rainmakerho.github.io/tags/export/"/>
-    
-      <category term="prefix svn-" scheme="https://rainmakerho.github.io/tags/prefix-svn/"/>
     
   </entry>
   
