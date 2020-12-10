@@ -4,6 +4,35 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2020/12/10/opentelemetry-1/</loc>
+    <lastmod>2020-12-10T08:53:15.863Z</lastmod>
+    <data>
+        <display>
+        <title>OpenTelemetry 初探</title>
+        <pubTime>2020-12-10T07:46:13.000Z</pubTime>
+        
+        <tag>OpenTracing</tag>
+         
+        <tag>Jaeger</tag>
+         
+        <tag>HttpClient</tag>
+         
+        <tag>ASP.NET Core</tag>
+         
+        <tag>DelegatingHandler</tag>
+         
+        <tag>OpenTelemetry</tag>
+         
+        <tag>OpenCensus</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2020/12/09/webapi-http-method-put-400/</loc>
     <lastmod>2020-12-09T07:52:21.231Z</lastmod>
     <data>
@@ -1937,9 +1966,9 @@
         <title>PDF 最後一頁才顯示頁尾</title>
         <pubTime>2018-11-29T06:46:17.000Z</pubTime>
         
-        <tag>aspose</tag>
-         
         <tag>pdf</tag>
+         
+        <tag>aspose</tag>
          
         <tag>cells</tag>
          
@@ -2765,9 +2794,9 @@
         <title>使用 Botframework 的 Bot 如何 Debug 到 BotBuilder Source ?</title>
         <pubTime>2018-02-01T01:47:18.000Z</pubTime>
         
-        <tag>botframework</tag>
-         
         <tag>C#</tag>
+         
+        <tag>botframework</tag>
          
         <tag>BotBuilder</tag>
          

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2020-12-09T07:52:21.231Z</updated>
+  <updated>2020-12-10T08:53:15.863Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,41 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>OpenTelemetry 初探</title>
+    <link href="https://rainmakerho.github.io/2020/12/10/opentelemetry-1/"/>
+    <id>https://rainmakerho.github.io/2020/12/10/opentelemetry-1/</id>
+    <published>2020-12-10T07:46:13.000Z</published>
+    <updated>2020-12-10T08:53:15.863Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>記得 2019 年時，還在使用 OpenTracing ，過一陣子，就有 <a href="https://opentelemetry.io/" target="_blank" rel="noopener">OpenTelemetry</a> 的消息。<br>因為 <a href="https://opentracing.io/" target="_blank" rel="noopener">OpenTracing</a> 與 <a href="https://opencensus.io/" target="_blank" rel="noopener">OpenCensus</a> 都是用來做分佈式追蹤及記錄一些 Metrics 。<br>於是 Cloud Native Computing Foundation (CNCF) 整合 <a href="https://opentracing.io/" target="_blank" rel="noopener">OpenTracing</a> 與 <a href="https://opencensus.io/" target="_blank" rel="noopener">OpenCensus</a> ，<br>所以有了 <a href="https://opentelemetry.io/" target="_blank" rel="noopener">OpenTelemetry</a> ，它結合了 Traces, Metrics And Logs 。<br>所以我們可以改用 <a href="https://opentelemetry.io/" target="_blank" rel="noopener">OpenTelemetry</a>  來練習看看。</p><h3 id="練習"><a href="#練習" class="headerlink" title="練習"></a>練習</h3><p>我們可以取 <a href="https://github.com/rainmakerho/RMStore/tree/scope" target="_blank" rel="noopener">RMStore</a> 的方案來練習。</p><h4 id="加入套件"><a href="#加入套件" class="headerlink" title="加入套件"></a>加入套件</h4><p>因為使用的專案為 Razor Page 及 Web Api ，所以要加入以下幾個套件<br>OpenTelemetry.Extensions.Hosting<br>OpenTelemetry.Instrumentation.AspNetCore<br>OpenTelemetry.Instrumentation.Http<br>OpenTelemetry.Exporter.Jaeger</p><h4 id="修改專案"><a href="#修改專案" class="headerlink" title="修改專案"></a>修改專案</h4><p>在 WebUI 及 API 專案的 Startup.cs ，只要加入 AddOpenTelemetryTracing 的設定就可以了，<br>所以在 ConfigureServices Method 中加入以下的程式，<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//OpenTelemetry</span></span><br><span class="line">services.AddOpenTelemetryTracing((builder) =&gt; builder</span><br><span class="line">    .SetResourceBuilder(</span><br><span class="line">        ResourceBuilder.CreateDefault().AddService(<span class="string">"RMStore.WebUI or RMStore.API"</span>))</span><br><span class="line">    .AddAspNetCoreInstrumentation()</span><br><span class="line">    .AddHttpClientInstrumentation()</span><br><span class="line">    .AddJaegerExporter(jaegerOptions =&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        jaegerOptions.AgentHost = <span class="string">"localhost"</span>;</span><br><span class="line">        jaegerOptions.AgentPort = <span class="number">6831</span>;</span><br><span class="line">    &#125;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure></p><p>註: 上面程式中的 AddService 請依專案名稱調整。</p><ul><li>修改 WebUI 專案中的 Product.cshtml.cs GetProducts Method，<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">async</span> Task <span class="title">GetProducts</span>(<span class="params"><span class="keyword">string</span> productName</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    _logger.LogInformation(message: <span class="string">"RazorPage ENTRY: search products"</span>);</span><br><span class="line">    <span class="keyword">var</span> apiUrl = <span class="string">$"https://localhost:44330/product?productName=<span class="subst">&#123;HttpUtility.UrlEncode(productName)&#125;</span>"</span>;</span><br><span class="line">    <span class="keyword">if</span> (productName?.ToLower() == <span class="string">"patherror"</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        apiUrl = <span class="string">$"https://localhost:44330/productx?productName=<span class="subst">&#123;HttpUtility.UrlEncode(productName)&#125;</span>"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> request = <span class="keyword">new</span> HttpRequestMessage(HttpMethod.Get,apiUrl);</span><br><span class="line">    <span class="keyword">var</span> token = <span class="keyword">await</span> HttpContext.GetTokenAsync(OpenIdConnectParameterNames.AccessToken);</span><br><span class="line">    request.Headers.Add(<span class="string">"Authorization"</span>, <span class="string">$"Bearer <span class="subst">&#123;token&#125;</span>"</span>);</span><br><span class="line">    <span class="keyword">var</span> client = _clientFactory.CreateClient();</span><br><span class="line">    <span class="keyword">var</span> response = <span class="keyword">await</span> client.SendAsync(request);</span><br><span class="line">    <span class="keyword">var</span> productsJson = <span class="keyword">await</span> response.Content.ReadAsStringAsync();</span><br><span class="line">    Products = JsonConvert.DeserializeObject&lt;List&lt;Product&gt;&gt;(productsJson)</span><br><span class="line">            .OrderBy(p =&gt; p.ProductID).ToList();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul><p>註: 目前發現，如果在 HttpClient 中使用 DelegatingHandler 無法讓 AddHttpClientInstrumentation 處理到</p><h4 id="測試"><a href="#測試" class="headerlink" title="測試"></a>測試</h4><ol><li>將 Jaeger 執行起來</li><li>執行方案，就可以從 Jaeger 查到相關的行為</li><li>開啟 Browser 連到 <a href="http://localhost:16686/search" target="_blank" rel="noopener">http://localhost:16686/search</a> 即可以查到 WebUI -&gt; API 的 Tracing 資料哦!<img src="/2020/12/10/opentelemetry-1/01.png" title="Jaeger"></li></ol><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://opentelemetry.io/" target="_blank" rel="noopener">OpenTelemetry</a><br><a href="https://github.com/open-telemetry/opentelemetry-dotnet/blob/master/src/OpenTelemetry.Api/README.md#instrumenting-a-libraryapplication-with-net-activity-api" target="_blank" rel="noopener">OpenTelemetry .NET API</a><br><a href="https://opentracing.io/" target="_blank" rel="noopener">OpenTracing</a><br><a href="https://opencensus.io/" target="_blank" rel="noopener">OpenCensus</a> </p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;記得 2019 年時，還在使用 OpenTracing ，過一陣子，就有 &lt;a href=&quot;https://opentelemetry.io
+      
+    
+    </summary>
+    
+    
+      <category term="OpenTracing" scheme="https://rainmakerho.github.io/tags/OpenTracing/"/>
+    
+      <category term="Jaeger" scheme="https://rainmakerho.github.io/tags/Jaeger/"/>
+    
+      <category term="HttpClient" scheme="https://rainmakerho.github.io/tags/HttpClient/"/>
+    
+      <category term="ASP.NET Core" scheme="https://rainmakerho.github.io/tags/ASP-NET-Core/"/>
+    
+      <category term="DelegatingHandler" scheme="https://rainmakerho.github.io/tags/DelegatingHandler/"/>
+    
+      <category term="OpenTelemetry" scheme="https://rainmakerho.github.io/tags/OpenTelemetry/"/>
+    
+      <category term="OpenCensus" scheme="https://rainmakerho.github.io/tags/OpenCensus/"/>
+    
+  </entry>
   
   <entry>
     <title>HTTP 400 , 在 Client 端透過 PUT 方式呼叫 Server API 時</title>
@@ -630,39 +665,6 @@
       <category term="DelegatingHandler" scheme="https://rainmakerho.github.io/tags/DelegatingHandler/"/>
     
       <category term="IExceptionHandlerPathFeature" scheme="https://rainmakerho.github.io/tags/IExceptionHandlerPathFeature/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ASP.NET Forms Authentication Cookie 在 Chrome 中無法被寫入</title>
-    <link href="https://rainmakerho.github.io/2020/08/13/2020016/"/>
-    <id>https://rainmakerho.github.io/2020/08/13/2020016/</id>
-    <published>2020-08-13T12:46:06.000Z</published>
-    <updated>2020-08-13T10:24:41.422Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近同事詢問有一個蠻奇怪的問題，他使用 IE，Edge 可以正常登入系統，但使用 Chrome(V.81)卻無法登入。<br>系統是使用 ASP.NET Forms-Based Authentication 的方式，走 Https 。<br>於是請他用 Fiddler 錄看看執行的過程來比較看看差在那裡。</p><h3 id="研究"><a href="#研究" class="headerlink" title="研究"></a>研究</h3><p>透過 Edge 與 Chrome 的比較<br>下圖為 IE 錄下來的內容，<br><img src="/2020/08/13/2020016/01.png" title="IE的Cookies"></p><p>下圖為 Chrome 錄下來的內容，<br><img src="/2020/08/13/2020016/02.png" title="Chrome的Cookies"></p><p>可以發現 Forms Authentication Cookie 會存在 IE, Edge 之中，卻不存在 Chrome 之中。<br>即使有 Set-Cookie 還是不存在。<br>想說會是因為名稱我們使用 .DBAUTH 的關係嗎? 將 . 拿掉，Chrome 還是不 Work 。</p><p>記得那個系統之前有將 cookieSameSite 設定為 None ，所以就查了一下關於 cookieSameSite 的說明，在 <a href="https://docs.microsoft.com/en-us/aspnet/samesite/system-web-samesite" target="_blank" rel="noopener">Work with SameSite cookies in ASP.NET</a> 有一段，</p><blockquote><p>Cookies that assert SameSite=None must also be marked as Secure.</p></blockquote><p>再請同事看一下，Chrome 的 Console 是否有什麼訊息，結果真的有警告，<br><img src="/2020/08/13/2020016/03.png" title="Chrome Console"></p><blockquote><p>Mark cross-site cookies as Secure to allow setting them in cross-site contexts</p></blockquote><p>跟 <a href="https://docs.microsoft.com/en-us/aspnet/samesite/system-web-samesite" target="_blank" rel="noopener">Work with SameSite cookies in ASP.NET</a> 的說明一致，<br>當我們設定了 cookieSameSite 為 None 時，表示它是 cross-site cookie ，在 Chrome 中，必需設定它為 Secure 才可以。</p><p>所以就請同事將 forms 的設定將 requireSSL 設定為 true ， Chrome 就可以了哦! </p><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://github.com/salvoravida/react-adal/issues/97" target="_blank" rel="noopener">A future release of Chrome will only deliver cookies with cross-site requests if they are set with <code>SameSite=None</code> and <code>Secure</code></a><br><a href="https://docs.microsoft.com/en-us/aspnet/samesite/system-web-samesite" target="_blank" rel="noopener">Work with SameSite cookies in ASP.NET</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;最近同事詢問有一個蠻奇怪的問題，他使用 IE，Edge 可以正常登入系統，但使用 Chrome(V.81)卻無法登入。&lt;br&gt;系統是使用 A
-      
-    
-    </summary>
-    
-    
-      <category term="Chrome" scheme="https://rainmakerho.github.io/tags/Chrome/"/>
-    
-      <category term="ASP.NET" scheme="https://rainmakerho.github.io/tags/ASP-NET/"/>
-    
-      <category term="cookieSameSite" scheme="https://rainmakerho.github.io/tags/cookieSameSite/"/>
-    
-      <category term="Forms Authentication Cookie" scheme="https://rainmakerho.github.io/tags/Forms-Authentication-Cookie/"/>
-    
-      <category term="cross-site cookie" scheme="https://rainmakerho.github.io/tags/cross-site-cookie/"/>
-    
-      <category term="None" scheme="https://rainmakerho.github.io/tags/None/"/>
     
   </entry>
   
