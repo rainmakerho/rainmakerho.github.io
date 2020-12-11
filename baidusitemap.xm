@@ -4,35 +4,8 @@
 
     
   <url>
-    <loc>https://rainmakerho.github.io/2020/12/11/vs-docker-build-copy-fail/</loc>
-    <lastmod>2020-12-11T05:35:29.180Z</lastmod>
-    <data>
-        <display>
-        <title>COPY failed: file not found in build context or excluded by .dockerignore: stat solution/yourProject.csproj: file does not exist</title>
-        <pubTime>2020-12-11T05:12:15.000Z</pubTime>
-        
-        <tag>ASP.NET Core</tag>
-         
-        <tag>Docker</tag>
-         
-        <tag>Visual Studio 2019</tag>
-         
-        <tag>Dockerfile</tag>
-         
-        <tag>COPY failed</tag>
-         
-        <tag>Docker build</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://rainmakerho.github.io/2020/12/10/opentelemetry-1/</loc>
-    <lastmod>2020-12-11T01:26:22.669Z</lastmod>
+    <lastmod>2020-12-11T08:18:38.917Z</lastmod>
     <data>
         <display>
         <title>OpenTelemetry 初探</title>
@@ -51,6 +24,33 @@
         <tag>OpenTelemetry</tag>
          
         <tag>OpenCensus</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://rainmakerho.github.io/2020/12/11/vs-docker-build-copy-fail/</loc>
+    <lastmod>2020-12-11T05:35:29.180Z</lastmod>
+    <data>
+        <display>
+        <title>COPY failed: file not found in build context or excluded by .dockerignore: stat solution/yourProject.csproj: file does not exist</title>
+        <pubTime>2020-12-11T05:12:15.000Z</pubTime>
+        
+        <tag>ASP.NET Core</tag>
+         
+        <tag>Docker</tag>
+         
+        <tag>Visual Studio 2019</tag>
+         
+        <tag>Dockerfile</tag>
+         
+        <tag>COPY failed</tag>
+         
+        <tag>Docker build</tag>
          
          
            
@@ -1850,8 +1850,6 @@
         <title>使用 OpenTracing - Jaeger (AP整合)</title>
         <pubTime>2019-01-15T05:13:41.000Z</pubTime>
         
-        <tag>BFv4</tag>
-         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -1865,6 +1863,8 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
+         
+        <tag>BFv4</tag>
          
         <tag>NodeJS</tag>
          
@@ -1883,8 +1883,6 @@
         <title>使用 OpenTracing - Jaeger</title>
         <pubTime>2019-01-04T06:02:45.000Z</pubTime>
         
-        <tag>BFv4</tag>
-         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -1898,6 +1896,8 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
+         
+        <tag>BFv4</tag>
          
          
            
@@ -2750,11 +2750,11 @@
         <title>SmtpConnection.GetConnection NullReferenceException</title>
         <pubTime>2018-03-14T02:07:16.000Z</pubTime>
         
+        <tag>NullReferenceException</tag>
+         
         <tag>SmtpClient</tag>
          
         <tag>SmtpConnection.GetConnection</tag>
-         
-        <tag>NullReferenceException</tag>
          
         <tag>.net</tag>
          
@@ -2779,11 +2779,11 @@
         <title>System.NullReferenceException when Aspose.Pdf.License.SetLicense(String licenseName)</title>
         <pubTime>2018-03-13T06:54:05.000Z</pubTime>
         
-        <tag>NullReferenceException</tag>
-         
         <tag>Aspose</tag>
          
         <tag>SetLicense</tag>
+         
+        <tag>NullReferenceException</tag>
          
          
            
