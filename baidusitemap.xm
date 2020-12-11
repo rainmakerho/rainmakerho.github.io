@@ -4,8 +4,35 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2020/12/11/vs-docker-build-copy-fail/</loc>
+    <lastmod>2020-12-11T05:35:29.180Z</lastmod>
+    <data>
+        <display>
+        <title>COPY failed: file not found in build context or excluded by .dockerignore: stat solution/yourProject.csproj: file does not exist</title>
+        <pubTime>2020-12-11T05:12:15.000Z</pubTime>
+        
+        <tag>ASP.NET Core</tag>
+         
+        <tag>Docker</tag>
+         
+        <tag>Visual Studio 2019</tag>
+         
+        <tag>Dockerfile</tag>
+         
+        <tag>COPY failed</tag>
+         
+        <tag>Docker build</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2020/12/10/opentelemetry-1/</loc>
-    <lastmod>2020-12-10T08:53:15.863Z</lastmod>
+    <lastmod>2020-12-11T01:26:22.669Z</lastmod>
     <data>
         <display>
         <title>OpenTelemetry 初探</title>
@@ -1658,13 +1685,13 @@
         <title>document.[formName] is undefined</title>
         <pubTime>2019-03-16T05:48:31.000Z</pubTime>
         
+        <tag>軟體求生</tag>
+         
         <tag>js</tag>
          
         <tag>document.formName</tag>
          
         <tag>undefined</tag>
-         
-        <tag>軟體求生</tag>
          
         <tag>asp.net 4</tag>
          
@@ -1724,11 +1751,11 @@
         <title>Inheritance security rules violated by type: 'System.Net.Http.WebRequestHandler'</title>
         <pubTime>2019-02-23T02:41:55.000Z</pubTime>
         
-        <tag>軟體求生</tag>
-         
         <tag>System.Net.Http</tag>
          
         <tag>4.1.0.0</tag>
+         
+        <tag>軟體求生</tag>
          
          
            
@@ -1966,9 +1993,9 @@
         <title>PDF 最後一頁才顯示頁尾</title>
         <pubTime>2018-11-29T06:46:17.000Z</pubTime>
         
-        <tag>pdf</tag>
-         
         <tag>aspose</tag>
+         
+        <tag>pdf</tag>
          
         <tag>cells</tag>
          
@@ -2723,11 +2750,11 @@
         <title>SmtpConnection.GetConnection NullReferenceException</title>
         <pubTime>2018-03-14T02:07:16.000Z</pubTime>
         
-        <tag>NullReferenceException</tag>
-         
         <tag>SmtpClient</tag>
          
         <tag>SmtpConnection.GetConnection</tag>
+         
+        <tag>NullReferenceException</tag>
          
         <tag>.net</tag>
          
@@ -2752,11 +2779,11 @@
         <title>System.NullReferenceException when Aspose.Pdf.License.SetLicense(String licenseName)</title>
         <pubTime>2018-03-13T06:54:05.000Z</pubTime>
         
+        <tag>NullReferenceException</tag>
+         
         <tag>Aspose</tag>
          
         <tag>SetLicense</tag>
-         
-        <tag>NullReferenceException</tag>
          
          
            
@@ -2794,9 +2821,9 @@
         <title>使用 Botframework 的 Bot 如何 Debug 到 BotBuilder Source ?</title>
         <pubTime>2018-02-01T01:47:18.000Z</pubTime>
         
-        <tag>C#</tag>
-         
         <tag>botframework</tag>
+         
+        <tag>C#</tag>
          
         <tag>BotBuilder</tag>
          
@@ -2867,13 +2894,13 @@
         <title>線上客服 + BOT 之路</title>
         <pubTime>2018-01-25T08:10:47.000Z</pubTime>
         
+        <tag>chatbot</tag>
+         
         <tag>QnA Maker</tag>
          
         <tag>LUIS</tag>
          
         <tag>Vital ESP</tag>
-         
-        <tag>chatbot</tag>
          
         <tag>FAQ</tag>
          
