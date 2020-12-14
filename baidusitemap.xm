@@ -4,37 +4,8 @@
 
     
   <url>
-    <loc>https://rainmakerho.github.io/2020/12/10/opentelemetry-1/</loc>
-    <lastmod>2020-12-11T08:18:38.917Z</lastmod>
-    <data>
-        <display>
-        <title>OpenTelemetry 初探</title>
-        <pubTime>2020-12-10T07:46:13.000Z</pubTime>
-        
-        <tag>OpenTracing</tag>
-         
-        <tag>Jaeger</tag>
-         
-        <tag>HttpClient</tag>
-         
-        <tag>ASP.NET Core</tag>
-         
-        <tag>DelegatingHandler</tag>
-         
-        <tag>OpenTelemetry</tag>
-         
-        <tag>OpenCensus</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://rainmakerho.github.io/2020/12/11/vs-docker-build-copy-fail/</loc>
-    <lastmod>2020-12-11T05:35:29.180Z</lastmod>
+    <lastmod>2020-12-14T03:24:22.593Z</lastmod>
     <data>
         <display>
         <title>COPY failed: file not found in build context or excluded by .dockerignore: stat solution/yourProject.csproj: file does not exist</title>
@@ -51,6 +22,35 @@
         <tag>COPY failed</tag>
          
         <tag>Docker build</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://rainmakerho.github.io/2020/12/10/opentelemetry-1/</loc>
+    <lastmod>2020-12-11T08:18:38.917Z</lastmod>
+    <data>
+        <display>
+        <title>OpenTelemetry 初探</title>
+        <pubTime>2020-12-10T07:46:13.000Z</pubTime>
+        
+        <tag>OpenTracing</tag>
+         
+        <tag>Jaeger</tag>
+         
+        <tag>ASP.NET Core</tag>
+         
+        <tag>HttpClient</tag>
+         
+        <tag>DelegatingHandler</tag>
+         
+        <tag>OpenTelemetry</tag>
+         
+        <tag>OpenCensus</tag>
          
          
            
@@ -2871,11 +2871,11 @@
         <title>The bot's MSA appId or password is incorrect.</title>
         <pubTime>2018-02-01T03:52:05.000Z</pubTime>
         
-        <tag>botframework</tag>
-         
         <tag>MSA appId or password is incorrect</tag>
          
         <tag>c#</tag>
+         
+        <tag>botframework</tag>
          
         <tag>botframework-emulator</tag>
          
@@ -2894,13 +2894,13 @@
         <title>線上客服 + BOT 之路</title>
         <pubTime>2018-01-25T08:10:47.000Z</pubTime>
         
-        <tag>chatbot</tag>
-         
         <tag>QnA Maker</tag>
          
         <tag>LUIS</tag>
          
         <tag>Vital ESP</tag>
+         
+        <tag>chatbot</tag>
          
         <tag>FAQ</tag>
          
