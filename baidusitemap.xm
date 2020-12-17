@@ -4,6 +4,31 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2020/12/17/sql-transation-different-data-export/</loc>
+    <lastmod>2020-12-17T05:25:17.149Z</lastmod>
+    <data>
+        <display>
+        <title>SQL Server 找出某時間的異動資料(資料交換)</title>
+        <pubTime>2020-12-17T03:45:53.000Z</pubTime>
+        
+        <tag>SQL Server</tag>
+         
+        <tag>資料交換</tag>
+         
+        <tag>異動資料</tag>
+         
+        <tag>Database Snapshot</tag>
+         
+        <tag>資料庫快照集</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2020/12/11/vs-docker-build-copy-fail/</loc>
     <lastmod>2020-12-14T03:24:22.593Z</lastmod>
     <data>
@@ -42,9 +67,9 @@
          
         <tag>Jaeger</tag>
          
-        <tag>ASP.NET Core</tag>
-         
         <tag>HttpClient</tag>
+         
+        <tag>ASP.NET Core</tag>
          
         <tag>DelegatingHandler</tag>
          
@@ -1850,6 +1875,8 @@
         <title>使用 OpenTracing - Jaeger (AP整合)</title>
         <pubTime>2019-01-15T05:13:41.000Z</pubTime>
         
+        <tag>BFv4</tag>
+         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -1863,8 +1890,6 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
-         
-        <tag>BFv4</tag>
          
         <tag>NodeJS</tag>
          
@@ -1883,6 +1908,8 @@
         <title>使用 OpenTracing - Jaeger</title>
         <pubTime>2019-01-04T06:02:45.000Z</pubTime>
         
+        <tag>BFv4</tag>
+         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -1896,8 +1923,6 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
-         
-        <tag>BFv4</tag>
          
          
            
@@ -2871,11 +2896,11 @@
         <title>The bot's MSA appId or password is incorrect.</title>
         <pubTime>2018-02-01T03:52:05.000Z</pubTime>
         
+        <tag>botframework</tag>
+         
         <tag>MSA appId or password is incorrect</tag>
          
         <tag>c#</tag>
-         
-        <tag>botframework</tag>
          
         <tag>botframework-emulator</tag>
          
