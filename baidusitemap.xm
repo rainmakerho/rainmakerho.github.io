@@ -5,7 +5,7 @@
     
   <url>
     <loc>https://rainmakerho.github.io/2020/12/17/sql-transation-different-data-export/</loc>
-    <lastmod>2020-12-17T05:25:17.149Z</lastmod>
+    <lastmod>2020-12-18T09:26:23.046Z</lastmod>
     <data>
         <display>
         <title>SQL Server 找出某時間的異動資料(資料交換)</title>
