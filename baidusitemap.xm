@@ -4,6 +4,31 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2020/12/21/RecoverDeletedDataSQL/</loc>
+    <lastmod>2020-12-21T08:34:02.859Z</lastmod>
+    <data>
+        <display>
+        <title>透過 Transaction Log(fn_dblog) 找回被刪除的資料</title>
+        <pubTime>2020-12-21T07:48:07.000Z</pubTime>
+        
+        <tag>fn_dblog</tag>
+         
+        <tag>find Deleted records</tag>
+         
+        <tag>REVERSE</tag>
+         
+        <tag>定序</tag>
+         
+        <tag>COLLATE</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2020/12/17/sql-transation-different-data-export/</loc>
     <lastmod>2020-12-18T09:26:23.046Z</lastmod>
     <data>
@@ -2846,9 +2871,9 @@
         <title>使用 Botframework 的 Bot 如何 Debug 到 BotBuilder Source ?</title>
         <pubTime>2018-02-01T01:47:18.000Z</pubTime>
         
-        <tag>botframework</tag>
-         
         <tag>C#</tag>
+         
+        <tag>botframework</tag>
          
         <tag>BotBuilder</tag>
          
