@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2020-12-21T09:51:32.378Z</updated>
+  <updated>2020-12-23T04:06:14.608Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Refused to execute script ... because its MIME type (&#39;text/plain&#39;) is not executable, and strict MIME type checking is enabled</title>
+    <link href="https://rainmakerho.github.io/2020/12/23/pgAdmin-Chrome-MIME-type-not-executable/"/>
+    <id>https://rainmakerho.github.io/2020/12/23/pgAdmin-Chrome-MIME-type-not-executable/</id>
+    <published>2020-12-23T03:48:14.000Z</published>
+    <updated>2020-12-23T04:06:14.608Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>安裝完 PostgreSQL 後，透過 Browser 打開 PgAdmin 4 v4.8 時，發現畫面一直轉轉轉。<br>查看 Console 那有以下的錯誤，</p><blockquote><p>Refused to execute script … because its MIME type (‘text/plain’) is not executable, and strict MIME type checking is enabled</p></blockquote><img src="/2020/12/23/pgAdmin-Chrome-MIME-type-not-executable/01.png" title="pgAdmin4 v4.8 Error"><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>依 <a href="https://stackoverflow.com/questions/64974052/opening-pgadmin-4-in-chrome" target="_blank" rel="noopener">opening PgAdmin 4 in Chrome</a> 說明是因為機碼 <strong>HKEY_CLASSES_ROOT.js\Content Type</strong> 中，設定值為 <strong>text/plain</strong> 。<br><img src="/2020/12/23/pgAdmin-Chrome-MIME-type-not-executable/02.png" title="text/plain"></p><p>所以<br>1.將值改成 <strong>text/javascript</strong> </p><p>2.重開機</p><p>再開啟 pgAdmin4 就可以了哦!<br><img src="/2020/12/23/pgAdmin-Chrome-MIME-type-not-executable/03.png" title="ok"></p><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://stackoverflow.com/questions/64974052/opening-pgadmin-4-in-chrome" target="_blank" rel="noopener">opening PgAdmin 4 in Chrome</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;安裝完 PostgreSQL 後，透過 Browser 打開 PgAdmin 4 v4.8 時，發現畫面一直轉轉轉。&lt;br&gt;查看 Conso
+      
+    
+    </summary>
+    
+    
+      <category term="pgAdmin" scheme="https://rainmakerho.github.io/tags/pgAdmin/"/>
+    
+      <category term="MIME" scheme="https://rainmakerho.github.io/tags/MIME/"/>
+    
+      <category term="text/plain" scheme="https://rainmakerho.github.io/tags/text-plain/"/>
+    
+      <category term="not executable" scheme="https://rainmakerho.github.io/tags/not-executable/"/>
+    
+      <category term="strict MIME type" scheme="https://rainmakerho.github.io/tags/strict-MIME-type/"/>
+    
+  </entry>
   
   <entry>
     <title>透過 Transaction Log(fn_dblog) 找回被刪除的資料</title>
@@ -628,35 +659,6 @@
       <category term="Javascript" scheme="https://rainmakerho.github.io/tags/Javascript/"/>
     
       <category term="ActiveXObject" scheme="https://rainmakerho.github.io/tags/ActiveXObject/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Blazor Server 使用 EF Core 噴 Invalid attempt to call ReadAsync when reader is closed. Or A second operation started on this context before a previous operation completed.</title>
-    <link href="https://rainmakerho.github.io/2020/09/13/2020020/"/>
-    <id>https://rainmakerho.github.io/2020/09/13/2020020/</id>
-    <published>2020-09-13T07:40:39.000Z</published>
-    <updated>2020-09-14T08:18:50.484Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 ASP.NET Core 中，EF Core 的 DI 通常是設定成 Scoped。<br>但 Blazor Server 的 Scoped 是以 SignalR Connection 來看的，所以並不是之前 ASP.NET Core 的每次 Request。<br>所以如果直接在 Blazor Server 中使用 EF Core 的 DbContext 時，有時會噴以下的錯誤，</p><blockquote><p>Invalid attempt to call ReadAsync when reader is closed.</p></blockquote><blockquote><p>A second operation started on this context before a previous operation completed. This is usually caused by different threads using the same instance of DbContext. For more information on how to avoid threading issues with DbContext</p></blockquote><h3 id="解決方式"><a href="#解決方式" class="headerlink" title="解決方式"></a>解決方式</h3><h4 id="解法1-讓頁面繼承-OwningComponentBase"><a href="#解法1-讓頁面繼承-OwningComponentBase" class="headerlink" title="解法1 : 讓頁面繼承 OwningComponentBase"></a>解法1 : 讓頁面繼承 OwningComponentBase</h4><p>讓 Service 的生命週期變成是以 Page 為 Base ，也就是使用者切換頁面時，那個注入的服務才會 Release 掉。<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">@inherits OwningComponentBase&lt;SyncfusionHelpDeskService&gt;</span><br><span class="line"></span><br><span class="line">@code&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">async</span> Task <span class="title">HandleValidSubmit</span>(<span class="params">EditContext context</span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">try</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">var</span> tickets = <span class="keyword">new</span> HelpDeskTickets();</span><br><span class="line">            <span class="comment">//使用時，直接取用 Service 就是 SyncfusionHelpDeskService 物件</span></span><br><span class="line">            <span class="keyword">var</span> result = Service.CreateTicketAsync(tickets);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span> (Exception ex)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// error handle</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>但有這在同一個頁面中的 Method ，如果同時操作 async &amp; sync 的 DbContext Method ，就有可能出現 Invalid attempt to call ReadAsync when reader is closed.</p><h4 id="解法2-改用-Transient"><a href="#解法2-改用-Transient" class="headerlink" title="解法2 : 改用 Transient"></a>解法2 : 改用 Transient</h4><h4 id="解法3-要使用時，再透過-IServiceScopeFactory-CreateScope-建立"><a href="#解法3-要使用時，再透過-IServiceScopeFactory-CreateScope-建立" class="headerlink" title="解法3 : 要使用時，再透過 IServiceScopeFactory.CreateScope 建立"></a>解法3 : 要使用時，再透過 IServiceScopeFactory.CreateScope 建立</h4><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@inject IServiceScopeFactory serviceScopeFactory</span><br><span class="line">@* other razor page code ... *@</span><br><span class="line">@code&#123;</span><br><span class="line">    [<span class="meta">CascadingParameter</span>]</span><br><span class="line">    <span class="keyword">private</span> Task&lt;AuthenticationState&gt; authenticationStateTask &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> IQueryable&lt;HelpDeskTickets&gt; QryHelpDeskTickets &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">private</span> HelpDeskTickets SelectedTicket = <span class="keyword">new</span> HelpDeskTickets();</span><br><span class="line"></span><br><span class="line">    HelpDeskTicket objHelpDeskTicket = <span class="keyword">new</span> HelpDeskTicket &#123; TicketDate = DateTime.Now &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">bool</span> DeleteRecordConfirmVisibility &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125; = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">bool</span> EditDialogVisiblity &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125; = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// page command event</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ConfirmDeleteYes</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">using</span> (<span class="keyword">var</span> scope = serviceScopeFactory.CreateScope())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">var</span> serviceProvider = scope.ServiceProvider;</span><br><span class="line">            <span class="keyword">var</span> service = serviceProvider.GetRequiredService&lt;SyncfusionHelpDeskService&gt;();</span><br><span class="line">            <span class="comment">// call service delete data</span></span><br><span class="line">            <span class="keyword">var</span> result = service.DeleteHelpDeskTickets(SelectedTicket);</span><br><span class="line">            <span class="keyword">if</span> (result)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">this</span>.DeleteRecordConfirmVisibility = <span class="literal">false</span>;</span><br><span class="line">                <span class="comment">// call service get query data </span></span><br><span class="line">                QryHelpDeskTickets = service.GetHelpDeskTickets().ToList().AsQueryable();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>但如果有把 DbContext 直接回傳 IQueryable Bind 到 Blazor 控制項的話，也會噴 A second operation started on this context before a previous operation completed 的錯哦!</p><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://www.roundthecode.com/dotnet/blazor/using-entity-framework-in-a-blazor-server-application" target="_blank" rel="noopener">Using Entity Framework in a Blazor Server Application</a><br><a href="https://chrissainty.com/an-introduction-to-owningcomponentbase/" target="_blank" rel="noopener">An Introduction to OwningComponentBase</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;在 ASP.NET Core 中，EF Core 的 DI 通常是設定成 Scoped。&lt;br&gt;但 Blazor Server 的 Scop
-      
-    
-    </summary>
-    
-    
-      <category term="Blazor Server" scheme="https://rainmakerho.github.io/tags/Blazor-Server/"/>
-    
-      <category term="EF Core" scheme="https://rainmakerho.github.io/tags/EF-Core/"/>
-    
-      <category term="Invalid attempt to call ReadAsync when reader is closed" scheme="https://rainmakerho.github.io/tags/Invalid-attempt-to-call-ReadAsync-when-reader-is-closed/"/>
-    
-      <category term="A second operation started on this context before a previous operation completed" scheme="https://rainmakerho.github.io/tags/A-second-operation-started-on-this-context-before-a-previous-operation-completed/"/>
     
   </entry>
   

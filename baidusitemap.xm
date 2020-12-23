@@ -4,6 +4,31 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2020/12/23/pgAdmin-Chrome-MIME-type-not-executable/</loc>
+    <lastmod>2020-12-23T04:06:14.608Z</lastmod>
+    <data>
+        <display>
+        <title>Refused to execute script ... because its MIME type ('text/plain') is not executable, and strict MIME type checking is enabled</title>
+        <pubTime>2020-12-23T03:48:14.000Z</pubTime>
+        
+        <tag>pgAdmin</tag>
+         
+        <tag>MIME</tag>
+         
+        <tag>text/plain</tag>
+         
+        <tag>not executable</tag>
+         
+        <tag>strict MIME type</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2020/12/21/RecoverDeletedDataSQL/</loc>
     <lastmod>2020-12-21T09:51:32.378Z</lastmod>
     <data>
@@ -2045,9 +2070,9 @@
         <title>PDF 最後一頁才顯示頁尾</title>
         <pubTime>2018-11-29T06:46:17.000Z</pubTime>
         
-        <tag>pdf</tag>
-         
         <tag>aspose</tag>
+         
+        <tag>pdf</tag>
          
         <tag>cells</tag>
          
@@ -2946,13 +2971,13 @@
         <title>線上客服 + BOT 之路</title>
         <pubTime>2018-01-25T08:10:47.000Z</pubTime>
         
-        <tag>chatbot</tag>
-         
         <tag>QnA Maker</tag>
          
         <tag>LUIS</tag>
          
         <tag>Vital ESP</tag>
+         
+        <tag>chatbot</tag>
          
         <tag>FAQ</tag>
          
