@@ -4,6 +4,31 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2021/01/22/Azure-WebApp-PUT-DELETE-400/</loc>
+    <lastmod>2021-01-22T03:09:33.542Z</lastmod>
+    <data>
+        <display>
+        <title>Azure Web API Call PUT, DELETE 會回 404 的錯誤</title>
+        <pubTime>2021-01-22T02:35:30.000Z</pubTime>
+        
+        <tag>404</tag>
+         
+        <tag>Azure</tag>
+         
+        <tag>WebAPI</tag>
+         
+        <tag>PUT</tag>
+         
+        <tag>DELETE</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2020/12/31/NewIn-CSharp9-NET5/</loc>
     <lastmod>2020-12-31T08:00:57.351Z</lastmod>
     <data>
@@ -169,9 +194,9 @@
         <title>HTTP 400 , 在 Client 端透過 PUT 方式呼叫 Server API 時</title>
         <pubTime>2020-12-09T07:23:37.000Z</pubTime>
         
-        <tag>HTTP 400</tag>
-         
         <tag>PUT</tag>
+         
+        <tag>HTTP 400</tag>
          
         <tag>UseHttpMethodOverride</tag>
          
@@ -1952,6 +1977,8 @@
         <title>使用 OpenTracing - Jaeger (AP整合)</title>
         <pubTime>2019-01-15T05:13:41.000Z</pubTime>
         
+        <tag>BFv4</tag>
+         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -1965,8 +1992,6 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
-         
-        <tag>BFv4</tag>
          
         <tag>NodeJS</tag>
          
@@ -1985,6 +2010,8 @@
         <title>使用 OpenTracing - Jaeger</title>
         <pubTime>2019-01-04T06:02:45.000Z</pubTime>
         
+        <tag>BFv4</tag>
+         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -1998,8 +2025,6 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
-         
-        <tag>BFv4</tag>
          
          
            
@@ -2852,11 +2877,11 @@
         <title>SmtpConnection.GetConnection NullReferenceException</title>
         <pubTime>2018-03-14T02:07:16.000Z</pubTime>
         
+        <tag>NullReferenceException</tag>
+         
         <tag>SmtpClient</tag>
          
         <tag>SmtpConnection.GetConnection</tag>
-         
-        <tag>NullReferenceException</tag>
          
         <tag>.net</tag>
          
@@ -2881,11 +2906,11 @@
         <title>System.NullReferenceException when Aspose.Pdf.License.SetLicense(String licenseName)</title>
         <pubTime>2018-03-13T06:54:05.000Z</pubTime>
         
-        <tag>NullReferenceException</tag>
-         
         <tag>Aspose</tag>
          
         <tag>SetLicense</tag>
+         
+        <tag>NullReferenceException</tag>
          
          
            
