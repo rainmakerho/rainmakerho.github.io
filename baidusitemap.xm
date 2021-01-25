@@ -4,8 +4,31 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2021/01/25/Progressive-Web-Application-Install/</loc>
+    <lastmod>2021-01-25T09:59:32.844Z</lastmod>
+    <data>
+        <display>
+        <title>Progressive Web Application (PWA):Install App</title>
+        <pubTime>2021-01-25T08:43:26.000Z</pubTime>
+        
+        <tag>Progressive Web Application</tag>
+         
+        <tag>PWA</tag>
+         
+        <tag>Install</tag>
+         
+        <tag>manifest</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2021/01/22/Azure-WebApp-PUT-DELETE-400/</loc>
-    <lastmod>2021-01-22T03:09:33.542Z</lastmod>
+    <lastmod>2021-01-22T03:15:17.142Z</lastmod>
     <data>
         <display>
         <title>Azure Web API Call PUT, DELETE 會回 404 的錯誤</title>
@@ -3021,13 +3044,13 @@
         <title>線上客服 + BOT 之路</title>
         <pubTime>2018-01-25T08:10:47.000Z</pubTime>
         
+        <tag>chatbot</tag>
+         
         <tag>QnA Maker</tag>
          
         <tag>LUIS</tag>
          
         <tag>Vital ESP</tag>
-         
-        <tag>chatbot</tag>
          
         <tag>FAQ</tag>
          
