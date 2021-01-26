@@ -4,8 +4,39 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2021/01/27/Progressive-Web-Application-Cache-App-Shell/</loc>
+    <lastmod>2021-01-26T16:36:47.433Z</lastmod>
+    <data>
+        <display>
+        <title>Progressive Web Application (PWA):Cache App Shell</title>
+        <pubTime>2021-01-26T16:11:50.000Z</pubTime>
+        
+        <tag>Service Worker</tag>
+         
+        <tag>Progressive Web Application</tag>
+         
+        <tag>PWA</tag>
+         
+        <tag>Notification</tag>
+         
+        <tag>Web Push</tag>
+         
+        <tag>Cache</tag>
+         
+        <tag>App Shell</tag>
+         
+        <tag>Pre Cache</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2021/01/26/Progressive-Web-Application-Notification-WebPush/</loc>
-    <lastmod>2021-01-26T09:04:55.960Z</lastmod>
+    <lastmod>2021-01-26T09:46:11.834Z</lastmod>
     <data>
         <display>
         <title>Progressive Web Application (PWA):Notification and Web Push</title>
@@ -2933,11 +2964,11 @@
         <title>SmtpConnection.GetConnection NullReferenceException</title>
         <pubTime>2018-03-14T02:07:16.000Z</pubTime>
         
-        <tag>NullReferenceException</tag>
-         
         <tag>SmtpClient</tag>
          
         <tag>SmtpConnection.GetConnection</tag>
+         
+        <tag>NullReferenceException</tag>
          
         <tag>.net</tag>
          
@@ -2962,11 +2993,11 @@
         <title>System.NullReferenceException when Aspose.Pdf.License.SetLicense(String licenseName)</title>
         <pubTime>2018-03-13T06:54:05.000Z</pubTime>
         
+        <tag>NullReferenceException</tag>
+         
         <tag>Aspose</tag>
          
         <tag>SetLicense</tag>
-         
-        <tag>NullReferenceException</tag>
          
          
            
@@ -3004,9 +3035,9 @@
         <title>使用 Botframework 的 Bot 如何 Debug 到 BotBuilder Source ?</title>
         <pubTime>2018-02-01T01:47:18.000Z</pubTime>
         
-        <tag>C#</tag>
-         
         <tag>botframework</tag>
+         
+        <tag>C#</tag>
          
         <tag>BotBuilder</tag>
          
