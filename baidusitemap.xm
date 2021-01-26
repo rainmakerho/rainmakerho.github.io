@@ -5,7 +5,7 @@
     
   <url>
     <loc>https://rainmakerho.github.io/2021/01/27/Progressive-Web-Application-Cache-App-Shell/</loc>
-    <lastmod>2021-01-26T16:36:47.433Z</lastmod>
+    <lastmod>2021-01-26T17:02:03.561Z</lastmod>
     <data>
         <display>
         <title>Progressive Web Application (PWA):Cache App Shell</title>
@@ -2964,11 +2964,11 @@
         <title>SmtpConnection.GetConnection NullReferenceException</title>
         <pubTime>2018-03-14T02:07:16.000Z</pubTime>
         
+        <tag>NullReferenceException</tag>
+         
         <tag>SmtpClient</tag>
          
         <tag>SmtpConnection.GetConnection</tag>
-         
-        <tag>NullReferenceException</tag>
          
         <tag>.net</tag>
          
@@ -2993,11 +2993,11 @@
         <title>System.NullReferenceException when Aspose.Pdf.License.SetLicense(String licenseName)</title>
         <pubTime>2018-03-13T06:54:05.000Z</pubTime>
         
-        <tag>NullReferenceException</tag>
-         
         <tag>Aspose</tag>
          
         <tag>SetLicense</tag>
+         
+        <tag>NullReferenceException</tag>
          
          
            
