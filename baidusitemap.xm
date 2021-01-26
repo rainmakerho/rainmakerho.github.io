@@ -4,13 +4,44 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2021/01/26/Progressive-Web-Application-Notification-WebPush/</loc>
+    <lastmod>2021-01-26T09:04:55.960Z</lastmod>
+    <data>
+        <display>
+        <title>Progressive Web Application (PWA):Notification and Web Push</title>
+        <pubTime>2021-01-26T03:15:42.000Z</pubTime>
+        
+        <tag>Service Worker</tag>
+         
+        <tag>Progressive Web Application</tag>
+         
+        <tag>PWA</tag>
+         
+        <tag>Notification</tag>
+         
+        <tag>Web Push</tag>
+         
+        <tag>VAPID</tag>
+         
+        <tag>Voluntary Application Server Identification</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2021/01/25/Progressive-Web-Application-Install/</loc>
-    <lastmod>2021-01-25T09:59:32.844Z</lastmod>
+    <lastmod>2021-01-26T03:17:02.712Z</lastmod>
     <data>
         <display>
         <title>Progressive Web Application (PWA):Install App</title>
         <pubTime>2021-01-25T08:43:26.000Z</pubTime>
         
+        <tag>Service Worker</tag>
+         
         <tag>Progressive Web Application</tag>
          
         <tag>PWA</tag>
@@ -27,13 +58,36 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2018/05/16/2018017/</loc>
+    <lastmod>2021-01-25T10:29:13.735Z</lastmod>
+    <data>
+        <display>
+        <title>談談 MSDTC 的問題</title>
+        <pubTime>2018-05-16T03:01:04.000Z</pubTime>
+        
+        <tag>MSDTC</tag>
+         
+        <tag>firewall</tag>
+         
+        <tag>協力電腦異動管理員已經停用了對遠端/網路異動的支援</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2021/01/22/Azure-WebApp-PUT-DELETE-400/</loc>
-    <lastmod>2021-01-22T03:15:17.142Z</lastmod>
+    <lastmod>2021-01-25T10:26:46.985Z</lastmod>
     <data>
         <display>
         <title>Azure Web API Call PUT, DELETE 會回 404 的錯誤</title>
         <pubTime>2021-01-22T02:35:30.000Z</pubTime>
         
+        <tag>IIS</tag>
+         
         <tag>404</tag>
          
         <tag>Azure</tag>
@@ -2718,27 +2772,6 @@
 
     
   <url>
-    <loc>https://rainmakerho.github.io/2018/05/16/2018017/</loc>
-    <lastmod>2018-05-16T03:27:03.000Z</lastmod>
-    <data>
-        <display>
-        <title>談談 MSDTC 的問題</title>
-        <pubTime>2018-05-16T03:01:04.000Z</pubTime>
-        
-        <tag>MSDTC</tag>
-         
-        <tag>firewall</tag>
-         
-        <tag>協力電腦異動管理員已經停用了對遠端/網路異動的支援</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://rainmakerho.github.io/2018/05/10/2018016/</loc>
     <lastmod>2018-05-10T09:12:55.000Z</lastmod>
     <data>
@@ -2971,9 +3004,9 @@
         <title>使用 Botframework 的 Bot 如何 Debug 到 BotBuilder Source ?</title>
         <pubTime>2018-02-01T01:47:18.000Z</pubTime>
         
-        <tag>botframework</tag>
-         
         <tag>C#</tag>
+         
+        <tag>botframework</tag>
          
         <tag>BotBuilder</tag>
          
@@ -3044,13 +3077,13 @@
         <title>線上客服 + BOT 之路</title>
         <pubTime>2018-01-25T08:10:47.000Z</pubTime>
         
-        <tag>chatbot</tag>
-         
         <tag>QnA Maker</tag>
          
         <tag>LUIS</tag>
          
         <tag>Vital ESP</tag>
+         
+        <tag>chatbot</tag>
          
         <tag>FAQ</tag>
          
