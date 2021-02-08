@@ -4,6 +4,89 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2021/02/06/mssql-multi-rows-variable-assignment-orderby/</loc>
+    <lastmod>2021-02-08T02:45:45.257Z</lastmod>
+    <data>
+        <display>
+        <title>MSSQL 透過 Select 指定變數串接欄位值遇到 Order By 的問題 (Multi-Row Variable Assignment and ORDER BY)</title>
+        <pubTime>2021-02-06T04:58:42.000Z</pubTime>
+        
+        <tag>order by</tag>
+         
+        <tag>variable</tag>
+         
+        <tag>mssql</tag>
+         
+        <tag>select</tag>
+         
+        <tag>FOR XML PATH</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://rainmakerho.github.io/2021/02/05/Migrate-MS-SQL-to-PostgreSQL-bcp/</loc>
+    <lastmod>2021-02-05T09:13:42.745Z</lastmod>
+    <data>
+        <display>
+        <title>將 Microsoft SQL Server Database 資料轉到 PostgreSQL - BCP/Import</title>
+        <pubTime>2021-02-05T08:13:14.000Z</pubTime>
+        
+        <tag>MSSQL</tag>
+         
+        <tag>PostgreSQL</tag>
+         
+        <tag>Migration</tag>
+         
+        <tag>ODBC</tag>
+         
+        <tag>Database</tag>
+         
+        <tag>SSMS</tag>
+         
+        <tag>BCP</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://rainmakerho.github.io/2021/02/04/Migrate-MS-SQL-to-PostgreSQL-1/</loc>
+    <lastmod>2021-02-05T08:21:58.562Z</lastmod>
+    <data>
+        <display>
+        <title>將 Microsoft SQL Server Database 資料轉到 PostgreSQL - SSMS Export</title>
+        <pubTime>2021-02-04T01:34:21.000Z</pubTime>
+        
+        <tag>MSSQL</tag>
+         
+        <tag>PostgreSQL</tag>
+         
+        <tag>Migration</tag>
+         
+        <tag>ODBC</tag>
+         
+        <tag>Database</tag>
+         
+        <tag>SSMS</tag>
+         
+        <tag>Export</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2021/01/27/Progressive-Web-Application-Cache-App-Shell/</loc>
     <lastmod>2021-01-26T17:02:03.561Z</lastmod>
     <data>
