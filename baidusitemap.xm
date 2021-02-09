@@ -4,22 +4,32 @@
 
     
   <url>
-    <loc>https://rainmakerho.github.io/2021/02/06/mssql-multi-rows-variable-assignment-orderby/</loc>
-    <lastmod>2021-02-08T02:45:45.257Z</lastmod>
+    <loc>https://rainmakerho.github.io/2021/02/09/migrate-MSSQL-to-PostgreSQL-MTK/</loc>
+    <lastmod>2021-02-09T07:04:22.482Z</lastmod>
     <data>
         <display>
-        <title>MSSQL 透過 Select 指定變數串接欄位值遇到 Order By 的問題 (Multi-Row Variable Assignment and ORDER BY)</title>
-        <pubTime>2021-02-06T04:58:42.000Z</pubTime>
+        <title>將 Microsoft SQL Server Database 資料轉到 PostgreSQL - Migration Toolkit</title>
+        <pubTime>2021-02-09T05:58:22.000Z</pubTime>
         
-        <tag>order by</tag>
+        <tag>MSSQL</tag>
          
-        <tag>variable</tag>
+        <tag>PostgreSQL</tag>
          
-        <tag>mssql</tag>
+        <tag>Migration</tag>
          
-        <tag>select</tag>
+        <tag>ODBC</tag>
          
-        <tag>FOR XML PATH</tag>
+        <tag>Database</tag>
+         
+        <tag>SSMS</tag>
+         
+        <tag>MigrationToolkit</tag>
+         
+        <tag>MTK</tag>
+         
+        <tag>JDBC</tag>
+         
+        <tag>Connection refused</tag>
          
          
            
@@ -30,7 +40,7 @@
     
   <url>
     <loc>https://rainmakerho.github.io/2021/02/05/Migrate-MS-SQL-to-PostgreSQL-bcp/</loc>
-    <lastmod>2021-02-05T09:13:42.745Z</lastmod>
+    <lastmod>2021-02-09T06:05:31.269Z</lastmod>
     <data>
         <display>
         <title>將 Microsoft SQL Server Database 資料轉到 PostgreSQL - BCP/Import</title>
@@ -49,6 +59,31 @@
         <tag>SSMS</tag>
          
         <tag>BCP</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://rainmakerho.github.io/2021/02/06/mssql-multi-rows-variable-assignment-orderby/</loc>
+    <lastmod>2021-02-08T02:45:45.257Z</lastmod>
+    <data>
+        <display>
+        <title>MSSQL 透過 Select 指定變數串接欄位值遇到 Order By 的問題 (Multi-Row Variable Assignment and ORDER BY)</title>
+        <pubTime>2021-02-06T04:58:42.000Z</pubTime>
+        
+        <tag>order by</tag>
+         
+        <tag>variable</tag>
+         
+        <tag>mssql</tag>
+         
+        <tag>select</tag>
+         
+        <tag>FOR XML PATH</tag>
          
          
            
