@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2021-02-17T02:36:42.798Z</updated>
+  <updated>2021-02-23T02:32:04.294Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,41 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>failed: Error during WebSocket handshake: net::ERR_CONNECTION_RESET</title>
+    <link href="https://rainmakerho.github.io/2021/02/22/failed-Error-during-WebScoket-handshake/"/>
+    <id>https://rainmakerho.github.io/2021/02/22/failed-Error-during-WebScoket-handshake/</id>
+    <published>2021-02-22T03:03:45.000Z</published>
+    <updated>2021-02-23T02:32:04.294Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近同事9G 詢問他們的系統在內容同仁執行都沒問題，但是如果透過外網連接的話，就會發生以下的錯誤<br><strong>failed: Error during WebSocket handshake: net::ERR_CONNECTION_RESET</strong></p><h3 id="測試"><a href="#測試" class="headerlink" title="測試"></a>測試</h3><p>連到 <a href="https://www.piesocket.com/websocket-tester" target="_blank" rel="noopener">piesocket </a> 輸入 WSS 的 URL 來測試，如下，<br><img src="/2021/02/22/failed-Error-during-WebScoket-handshake/01.png" title="Test WebSocket Online"><br>可以發現它有錯誤，查看 Console 它的錯誤就是 <strong>failed: Error during WebSocket handshake: net::ERR_CONNECTION_RESET</strong></p><p>同事9G系統的架構是 nginx <-> web-ap(docker) ， 記得另一個案子也是使用 WebScoket ，但因為客戶 Firewall 的關係，所以造成 WebScoket 發生錯誤。<br>詢問同事Vantist ，他回答因為客戶的 Firewall 沒有 pass Http 的2個 Header 分別如下，<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Upgrade: websocket</span><br><span class="line">Connection: Upgrade</span><br></pre></td></tr></table></figure></-></p><p>同事9G 在 nginx 那有設定上述的那2個 header ，於是請他把那2個設定從 nginx 拿掉。<br>再執行程式，就會發生一樣的 <strong>failed: Error during WebSocket handshake: net::ERR_CONNECTION_RESET</strong> 錯誤。</p><p>客戶的透過外網的架構猜想是 WAF <-> nginx <-> web-ap(docker) ，所以應該是因為那2個 Header 沒有 pass 到 nginx ，所以導致系統 WebScoket 錯誤，所以就請同事跟客戶確認是否有將 WebScoket 停用。</-></-></p><p>在網路上有查到關於 NetScaler 在針對 WebScoket 有設定，詳細可參考 <a href="https://msandbu.org/setting-up-websocket-access-on-citrix-netscaler/" target="_blank" rel="noopener">Setting up WebSocket access on Citrix NetScaler</a> </p><p>如果有類似的問題，可以請大家 Check 一下是否是因為那2個 Header 沒有傳到 Web Server 哦!</p><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://www.piesocket.com/websocket-tester" target="_blank" rel="noopener">Test &amp; Debug WebSocket Server Connections Online.</a><br><a href="https://msandbu.org/setting-up-websocket-access-on-citrix-netscaler/" target="_blank" rel="noopener">Setting up WebSocket access on Citrix NetScaler</a><br><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Protocol_upgrade_mechanism" target="_blank" rel="noopener">Protocol upgrade mechanism</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;最近同事9G 詢問他們的系統在內容同仁執行都沒問題，但是如果透過外網連接的話，就會發生以下的錯誤&lt;br&gt;&lt;strong&gt;failed: Er
+      
+    
+    </summary>
+    
+    
+      <category term="WebScoket" scheme="https://rainmakerho.github.io/tags/WebScoket/"/>
+    
+      <category term="nginx" scheme="https://rainmakerho.github.io/tags/nginx/"/>
+    
+      <category term="WAF" scheme="https://rainmakerho.github.io/tags/WAF/"/>
+    
+      <category term="Error during WebSocket handshake" scheme="https://rainmakerho.github.io/tags/Error-during-WebSocket-handshake/"/>
+    
+      <category term="ERR_CONNECTION_RESET" scheme="https://rainmakerho.github.io/tags/ERR-CONNECTION-RESET/"/>
+    
+      <category term="外網" scheme="https://rainmakerho.github.io/tags/%E5%A4%96%E7%B6%B2/"/>
+    
+      <category term="Citrix NetScaler" scheme="https://rainmakerho.github.io/tags/Citrix-NetScaler/"/>
+    
+  </entry>
   
   <entry>
     <title>將 Microsoft SQL Server Database 資料轉到 PostgreSQL - Migration Toolkit</title>
@@ -636,47 +671,6 @@
       <category term="MethodInfo" scheme="https://rainmakerho.github.io/tags/MethodInfo/"/>
     
       <category term="Invoke" scheme="https://rainmakerho.github.io/tags/Invoke/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>為什麼 Url 中有 (A(XXXX)) 在 ASP.NET 中，卻不會噴 404 或是錯誤，反而回正常的頁面(200)呢?</title>
-    <link href="https://rainmakerho.github.io/2020/11/11/aspnet-cookieless-url/"/>
-    <id>https://rainmakerho.github.io/2020/11/11/aspnet-cookieless-url/</id>
-    <published>2020-11-11T03:36:28.000Z</published>
-    <updated>2020-11-13T03:15:51.750Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近同事詢問，為什麼 <a href="http://rm-nb/ap1/(A(abc))/Login" target="_blank" rel="noopener">http://rm-nb/ap1/(A(abc))/Login</a> 跟 <a href="http://rm-nb/ap1/Login" target="_blank" rel="noopener">http://rm-nb/ap1/Login</a> 一樣，都會被 Login Controller 處理到呢?<br>在 RouteConfig 明明沒有設定那樣子的 Route Path Pattern 呀!</p><h3 id="研究"><a href="#研究" class="headerlink" title="研究"></a>研究</h3><p>看到那個 Url 就像是 Cookieless 設定成 true ，所以把 SessionId 的值，放在 Url 上面。<br>但 web.config 的 cookieless 是設定 “UseCookies” (預設也是)，又不是設定 “UseUri” 這是怎麼一回事呢?</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">sessionState</span> <span class="attr">cookieless</span>=<span class="string">"UseCookies"</span> <span class="attr">mode</span>=<span class="string">"InProc"</span> <span class="attr">timeout</span>=<span class="string">"30"</span>  /&gt;</span></span><br></pre></td></tr></table></figure><p>參考 <a href="https://docs.microsoft.com/en-us/previous-versions/dotnet/articles/aa479315%28v=msdn.10%29" target="_blank" rel="noopener">Understand How the ASP.NET Cookieless Feature Works(.NET 2.X)</a> 可以發現， URL 上面的值可以是 A(XXXX), S(XXXX) 或是 F(XXXX) ，所以上面的 (A(XXXX)) 是符合的。如果你改成 a(XXXX) or b(XXXX) 就會去 Match 設定的 Route Path Pattern 哦!</p><p>但目前有個問題是，如果有黑箱去掃你的 Url 時，這時它在 URL 上去加入 A(XXXX) 時，而你的 Response 如果跟沒有加 A(XXXX) 時一樣，他就會認為有問題。<br>這…怎麼辦呢?</p><h4 id="為什麼有加-A-XXXX-跟沒加的狀況是一樣的呢"><a href="#為什麼有加-A-XXXX-跟沒加的狀況是一樣的呢" class="headerlink" title="為什麼有加 A(XXXX) 跟沒加的狀況是一樣的呢?"></a>為什麼有加 A(XXXX) 跟沒加的狀況是一樣的呢?</h4><p>在 Global.asax.cs 的 Application_BeginRequest event 中，<br>可以發現，加 A(XXXX) 跟沒加 的 Context.Request.Url 是一樣的，<br>那結果當然就會是一樣的。</p><h4 id="為什麼加-A-XXXX-跟沒加的-URL-在-Request-Url-會變成一樣呢"><a href="#為什麼加-A-XXXX-跟沒加的-URL-在-Request-Url-會變成一樣呢" class="headerlink" title="為什麼加 A(XXXX) 跟沒加的 URL 在 Request.Url 會變成一樣呢?"></a>為什麼加 A(XXXX) 跟沒加的 URL 在 Request.Url 會變成一樣呢?</h4><p>從 <a href="https://stackoverflow.com/questions/9089745/possible-bug-with-asp-net-mvc-3-routing" target="_blank" rel="noopener">Possible Bug With ASP.NET MVC 3 Routing?</a> 可以知道，在 HttpContext Init 時，就會檢查 Cookieless 的部份，如果有 SessionId 在 Url 上，就會將它移除(CookielessHelper.RemoveCookielessValuesFromPath())，所以我們在 Application_BeginRequest event 中看到有加 A(XXXX) 跟沒加 的 Context.Request.Url 是一樣的。<br><img src="/2020/11/11/aspnet-cookieless-url/01.png" title="HttpContext Init"><br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Init</span>(<span class="params">HttpRequest request, HttpResponse response</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">this</span>._request = request;</span><br><span class="line"><span class="keyword">this</span>._response = response;</span><br><span class="line"><span class="keyword">this</span>._utcTimestamp = DateTime.UtcNow;</span><br><span class="line"><span class="keyword">this</span>._principalContainer = <span class="keyword">this</span>;</span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">this</span>._wr <span class="keyword">is</span> IIS7WorkerRequest)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">this</span>._isIntegratedPipeline = <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (!(<span class="keyword">this</span>._wr <span class="keyword">is</span> StateHttpWorkerRequest))</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">this</span>.CookielessHelper.RemoveCookielessValuesFromPath();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// other codes ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>從 System.Web.Security 的 CookielessHelperClass RemoveCookielessValuesFromPath Method 可以發現，它將 SessionId 從 Url 中移除，並將它的值寫到了 Response._appPathModifier 這個私有變數之中，<br><img src="/2020/11/11/aspnet-cookieless-url/02.png" title="this._Context.Response.SetAppPathModifier"></p><p>從下面2張圖可以發現，取到的 Url 值都一樣，而有加 A(XXXX) 的值被移到了 Response._appPathModifier 之中。<br><img src="/2020/11/11/aspnet-cookieless-url/03.png" title="沒加上A(XXXX)"></p><img src="/2020/11/11/aspnet-cookieless-url/04.png" title="有加上A(XXXX)"><p>即然知道它會把值寫到 Response._appPathModifier 之中，如果程式確定不會 UseUri ，<br>就可以檢查 Response._appPathModifier 如果值不為 null ，就噴 404 的錯誤，如下，<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">Application_BeginRequest</span>(<span class="params"><span class="keyword">object</span> sender, EventArgs e</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="comment">//到這時，Url已被改成沒包含SessionId</span></span><br><span class="line"><span class="comment">//但它的值會放在 Response._appPathModifier 變數之中</span></span><br><span class="line"><span class="keyword">var</span> appPathModifierFieldInfo = Context.Response.GetType().GetField(<span class="string">"_appPathModifier"</span>,</span><br><span class="line"> BindingFlags.NonPublic | BindingFlags.Instance);</span><br><span class="line"><span class="keyword">var</span> appPathModifier = appPathModifierFieldInfo.GetValue(Context.Response);</span><br><span class="line"><span class="keyword">if</span> (appPathModifier != <span class="literal">null</span>)</span><br><span class="line">&#123;</span><br><span class="line"><span class="comment">//url 中有 SessionId</span></span><br><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> HttpException(<span class="number">404</span>, <span class="string">"Not found"</span>);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><ul><li>補充: 加入 Deny HTTP GET with request body<br>有時，黑箱也會測試在 Get 時，給你 Body 的資料，看你的程式會不會擋，也可以在 BeginRequest 多加入檢查如果 Get 又有 Body 的話，就回 403，如下，<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">Application_BeginRequest</span>(<span class="params"><span class="keyword">object</span> sender, EventArgs e</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">//到這時，Url已被改成沒包含SessionId</span></span><br><span class="line"><span class="comment">//但它的值會放在 Response._appPathModifier 變數之中</span></span><br><span class="line"><span class="keyword">var</span> appPathModifierFieldInfo = Context.Response.GetType().GetField(<span class="string">"_appPathModifier"</span>,</span><br><span class="line"> BindingFlags.NonPublic | BindingFlags.Instance);</span><br><span class="line"><span class="keyword">var</span> appPathModifier = appPathModifierFieldInfo.GetValue(Context.Response);</span><br><span class="line"><span class="keyword">if</span> (appPathModifier != <span class="literal">null</span>)</span><br><span class="line">&#123;</span><br><span class="line"><span class="comment">//url 中有 SessionId</span></span><br><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> HttpException(<span class="number">404</span>, <span class="string">"Not found"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//deny HTTP GET with request body</span></span><br><span class="line"><span class="keyword">if</span>(Request.HttpMethod == <span class="string">"GET"</span> &amp;&amp; Request.ContentLength &gt; <span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> HttpException(<span class="number">403</span>, <span class="string">"Forbidden"</span>);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://docs.microsoft.com/en-us/previous-versions/dotnet/articles/aa479315%28v=msdn.10%29" target="_blank" rel="noopener">Understand How the ASP.NET Cookieless Feature Works(.NET 2.X)</a><br><a href="https://docs.microsoft.com/en-us/previous-versions/dotnet/articles/ms972429%28v=msdn.10%29" target="_blank" rel="noopener">ASP.NET Session State .NET 1.X</a><br><a href="https://stackoverflow.com/questions/43593952/why-do-all-asp-net-mvc-websites-allow-and-ignore-the-string-f-in-front-o" target="_blank" rel="noopener">Why do all ASP.NET MVC websites allow and ignore the string “/(F())/” in front of ANY URL?</a><br><a href="https://stackoverflow.com/questions/9089745/possible-bug-with-asp-net-mvc-3-routing" target="_blank" rel="noopener">Possible Bug With ASP.NET MVC 3 Routing?</a><br><a href="https://stackoverflow.com/questions/47370804/cannot-disable-asp-net-cookieless-mode" target="_blank" rel="noopener">Cannot disable ASP.NET cookieless mode</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;最近同事詢問，為什麼 &lt;a href=&quot;http://rm-nb/ap1/(A(abc))/Login&quot; target=&quot;_blank&quot; r
-      
-    
-    </summary>
-    
-    
-      <category term="ASP.NET" scheme="https://rainmakerho.github.io/tags/ASP-NET/"/>
-    
-      <category term="Cross-Site Scripting: Reflected" scheme="https://rainmakerho.github.io/tags/Cross-Site-Scripting-Reflected/"/>
-    
-      <category term="Cookieless" scheme="https://rainmakerho.github.io/tags/Cookieless/"/>
-    
-      <category term="Response._appPathModifier" scheme="https://rainmakerho.github.io/tags/Response-appPathModifier/"/>
-    
-      <category term="A(XXXX)" scheme="https://rainmakerho.github.io/tags/A-XXXX/"/>
-    
-      <category term="S(XXXX)" scheme="https://rainmakerho.github.io/tags/S-XXXX/"/>
-    
-      <category term="F(XXXX)" scheme="https://rainmakerho.github.io/tags/F-XXXX/"/>
-    
-      <category term="CookielessHelperClass" scheme="https://rainmakerho.github.io/tags/CookielessHelperClass/"/>
-    
-      <category term="RemoveCookielessValuesFromPath" scheme="https://rainmakerho.github.io/tags/RemoveCookielessValuesFromPath/"/>
-    
-      <category term="HTTP GET with request body" scheme="https://rainmakerho.github.io/tags/HTTP-GET-with-request-body/"/>
     
   </entry>
   

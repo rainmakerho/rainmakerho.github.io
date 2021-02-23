@@ -4,6 +4,35 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2021/02/22/failed-Error-during-WebScoket-handshake/</loc>
+    <lastmod>2021-02-23T02:32:04.294Z</lastmod>
+    <data>
+        <display>
+        <title>failed: Error during WebSocket handshake: net::ERR_CONNECTION_RESET</title>
+        <pubTime>2021-02-22T03:03:45.000Z</pubTime>
+        
+        <tag>WebScoket</tag>
+         
+        <tag>nginx</tag>
+         
+        <tag>WAF</tag>
+         
+        <tag>Error during WebSocket handshake</tag>
+         
+        <tag>ERR_CONNECTION_RESET</tag>
+         
+        <tag>外網</tag>
+         
+        <tag>Citrix NetScaler</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2021/02/09/migrate-MSSQL-to-PostgreSQL-MTK/</loc>
     <lastmod>2021-02-17T02:36:42.798Z</lastmod>
     <data>
@@ -2346,9 +2375,9 @@
         <title>PDF 最後一頁才顯示頁尾</title>
         <pubTime>2018-11-29T06:46:17.000Z</pubTime>
         
-        <tag>pdf</tag>
-         
         <tag>aspose</tag>
+         
+        <tag>pdf</tag>
          
         <tag>cells</tag>
          
@@ -3082,11 +3111,11 @@
         <title>SmtpConnection.GetConnection NullReferenceException</title>
         <pubTime>2018-03-14T02:07:16.000Z</pubTime>
         
-        <tag>NullReferenceException</tag>
-         
         <tag>SmtpClient</tag>
          
         <tag>SmtpConnection.GetConnection</tag>
+         
+        <tag>NullReferenceException</tag>
          
         <tag>.net</tag>
          
@@ -3111,11 +3140,11 @@
         <title>System.NullReferenceException when Aspose.Pdf.License.SetLicense(String licenseName)</title>
         <pubTime>2018-03-13T06:54:05.000Z</pubTime>
         
+        <tag>NullReferenceException</tag>
+         
         <tag>Aspose</tag>
          
         <tag>SetLicense</tag>
-         
-        <tag>NullReferenceException</tag>
          
          
            
