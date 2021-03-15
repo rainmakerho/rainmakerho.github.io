@@ -4,6 +4,27 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2021/03/15/owasp-sql-injection/</loc>
+    <lastmod>2021-03-15T10:23:20.971Z</lastmod>
+    <data>
+        <display>
+        <title>OWASP Top 10 2017 - SQL Injection</title>
+        <pubTime>2021-03-15T05:52:17.000Z</pubTime>
+        
+        <tag>SQL Injection</tag>
+         
+        <tag>Blind SQL Injection</tag>
+         
+        <tag>OWASP Top 10</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2020/07/01/2020010/</loc>
     <lastmod>2021-03-03T03:46:41.619Z</lastmod>
     <data>
@@ -2067,13 +2088,13 @@
         <title>document.[formName] is undefined</title>
         <pubTime>2019-03-16T05:48:31.000Z</pubTime>
         
+        <tag>軟體求生</tag>
+         
         <tag>js</tag>
          
         <tag>document.formName</tag>
          
         <tag>undefined</tag>
-         
-        <tag>軟體求生</tag>
          
         <tag>asp.net 4</tag>
          
@@ -2133,11 +2154,11 @@
         <title>Inheritance security rules violated by type: 'System.Net.Http.WebRequestHandler'</title>
         <pubTime>2019-02-23T02:41:55.000Z</pubTime>
         
-        <tag>軟體求生</tag>
-         
         <tag>System.Net.Http</tag>
          
         <tag>4.1.0.0</tag>
+         
+        <tag>軟體求生</tag>
          
          
            
@@ -3255,13 +3276,13 @@
         <title>線上客服 + BOT 之路</title>
         <pubTime>2018-01-25T08:10:47.000Z</pubTime>
         
+        <tag>chatbot</tag>
+         
         <tag>QnA Maker</tag>
          
         <tag>LUIS</tag>
          
         <tag>Vital ESP</tag>
-         
-        <tag>chatbot</tag>
          
         <tag>FAQ</tag>
          
