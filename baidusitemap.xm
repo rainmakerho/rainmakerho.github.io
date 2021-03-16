@@ -5,7 +5,7 @@
     
   <url>
     <loc>https://rainmakerho.github.io/2021/03/15/owasp-sql-injection/</loc>
-    <lastmod>2021-03-15T10:29:06.187Z</lastmod>
+    <lastmod>2021-03-16T01:13:20.305Z</lastmod>
     <data>
         <display>
         <title>OWASP Top 10 2017 - SQL Injection</title>
@@ -3276,13 +3276,13 @@
         <title>線上客服 + BOT 之路</title>
         <pubTime>2018-01-25T08:10:47.000Z</pubTime>
         
+        <tag>chatbot</tag>
+         
         <tag>QnA Maker</tag>
          
         <tag>LUIS</tag>
          
         <tag>Vital ESP</tag>
-         
-        <tag>chatbot</tag>
          
         <tag>FAQ</tag>
          
