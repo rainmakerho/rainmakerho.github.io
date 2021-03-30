@@ -4,6 +4,27 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2021/03/29/postgresql-set-max-sequence-value-for-all-tables/</loc>
+    <lastmod>2021-03-30T02:44:16.895Z</lastmod>
+    <data>
+        <display>
+        <title>將 PostgreSQL 所有 Table 欄位預設值為 Sequence 的現值，改為欄位值的最大值</title>
+        <pubTime>2021-03-29T10:10:29.000Z</pubTime>
+        
+        <tag>PostgreSQL</tag>
+         
+        <tag>Sequence</tag>
+         
+        <tag>Migration Toolkit</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2021/03/15/owasp-sql-injection/</loc>
     <lastmod>2021-03-16T01:13:20.305Z</lastmod>
     <data>
@@ -3276,13 +3297,13 @@
         <title>線上客服 + BOT 之路</title>
         <pubTime>2018-01-25T08:10:47.000Z</pubTime>
         
-        <tag>chatbot</tag>
-         
         <tag>QnA Maker</tag>
          
         <tag>LUIS</tag>
          
         <tag>Vital ESP</tag>
+         
+        <tag>chatbot</tag>
          
         <tag>FAQ</tag>
          
