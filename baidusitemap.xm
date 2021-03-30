@@ -5,13 +5,15 @@
     
   <url>
     <loc>https://rainmakerho.github.io/2021/03/30/Reflected-XSS-All-Clients-MVC-Return-JSON/</loc>
-    <lastmod>2021-03-30T08:01:54.387Z</lastmod>
+    <lastmod>2021-03-30T08:05:32.523Z</lastmod>
     <data>
         <display>
         <title>ASP.NET MVC return JSON 被掃出 Reflected_XSS_All_Clients 問題</title>
         <pubTime>2021-03-30T05:11:25.000Z</pubTime>
         
         <tag>JSON</tag>
+         
+        <tag>MVC</tag>
          
         <tag>Checkmarx</tag>
          
@@ -1563,9 +1565,9 @@
         <title>Error code 1 for command [ios]</title>
         <pubTime>2019-11-27T00:41:52.000Z</pubTime>
         
-        <tag>mac</tag>
-         
         <tag>cordova</tag>
+         
+        <tag>mac</tag>
          
          
            
@@ -2444,9 +2446,9 @@
         <title>PDF 最後一頁才顯示頁尾</title>
         <pubTime>2018-11-29T06:46:17.000Z</pubTime>
         
-        <tag>aspose</tag>
-         
         <tag>pdf</tag>
+         
+        <tag>aspose</tag>
          
         <tag>cells</tag>
          
@@ -3324,13 +3326,13 @@
         <title>線上客服 + BOT 之路</title>
         <pubTime>2018-01-25T08:10:47.000Z</pubTime>
         
+        <tag>chatbot</tag>
+         
         <tag>QnA Maker</tag>
          
         <tag>LUIS</tag>
          
         <tag>Vital ESP</tag>
-         
-        <tag>chatbot</tag>
          
         <tag>FAQ</tag>
          
