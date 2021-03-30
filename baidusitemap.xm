@@ -4,6 +4,33 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2021/03/30/Reflected-XSS-All-Clients-MVC-Return-JSON/</loc>
+    <lastmod>2021-03-30T07:58:54.478Z</lastmod>
+    <data>
+        <display>
+        <title>ASP.NET MVC return JSON 被掃出 Reflected_XSS_All_Clients 問題</title>
+        <pubTime>2021-03-30T05:11:25.000Z</pubTime>
+        
+        <tag>JSON</tag>
+         
+        <tag>Checkmarx</tag>
+         
+        <tag>Reflected_XSS_All_Clients</tag>
+         
+        <tag>JsonNetResult</tag>
+         
+        <tag>JsonResult</tag>
+         
+        <tag>EscapeHtml</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2021/03/29/postgresql-set-max-sequence-value-for-all-tables/</loc>
     <lastmod>2021-03-30T02:44:16.895Z</lastmod>
     <data>
@@ -647,9 +674,9 @@
         <title>Code_Injection</title>
         <pubTime>2020-11-13T01:25:37.000Z</pubTime>
         
-        <tag>Code_Injection</tag>
-         
         <tag>Checkmarx</tag>
+         
+        <tag>Code_Injection</tag>
          
         <tag>MethodInfo</tag>
          
@@ -1630,9 +1657,9 @@
         <title>Chrome Version 77 列印遇到標楷體(DFKai-SB) Print 成 PDF 會破字問題</title>
         <pubTime>2019-10-04T08:58:46.000Z</pubTime>
         
-        <tag>PDF</tag>
-         
         <tag>Chrome</tag>
+         
+        <tag>PDF</tag>
          
         <tag>77</tag>
          
@@ -2109,13 +2136,13 @@
         <title>document.[formName] is undefined</title>
         <pubTime>2019-03-16T05:48:31.000Z</pubTime>
         
-        <tag>軟體求生</tag>
-         
         <tag>js</tag>
          
         <tag>document.formName</tag>
          
         <tag>undefined</tag>
+         
+        <tag>軟體求生</tag>
          
         <tag>asp.net 4</tag>
          
@@ -2175,11 +2202,11 @@
         <title>Inheritance security rules violated by type: 'System.Net.Http.WebRequestHandler'</title>
         <pubTime>2019-02-23T02:41:55.000Z</pubTime>
         
+        <tag>軟體求生</tag>
+         
         <tag>System.Net.Http</tag>
          
         <tag>4.1.0.0</tag>
-         
-        <tag>軟體求生</tag>
          
          
            
@@ -3297,13 +3324,13 @@
         <title>線上客服 + BOT 之路</title>
         <pubTime>2018-01-25T08:10:47.000Z</pubTime>
         
+        <tag>chatbot</tag>
+         
         <tag>QnA Maker</tag>
          
         <tag>LUIS</tag>
          
         <tag>Vital ESP</tag>
-         
-        <tag>chatbot</tag>
          
         <tag>FAQ</tag>
          
