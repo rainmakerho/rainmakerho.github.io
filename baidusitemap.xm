@@ -5,7 +5,7 @@
     
   <url>
     <loc>https://rainmakerho.github.io/2021/03/30/Reflected-XSS-All-Clients-MVC-Return-JSON/</loc>
-    <lastmod>2021-03-30T07:58:54.478Z</lastmod>
+    <lastmod>2021-03-30T08:01:54.387Z</lastmod>
     <data>
         <display>
         <title>ASP.NET MVC return JSON 被掃出 Reflected_XSS_All_Clients 問題</title>
@@ -1657,9 +1657,9 @@
         <title>Chrome Version 77 列印遇到標楷體(DFKai-SB) Print 成 PDF 會破字問題</title>
         <pubTime>2019-10-04T08:58:46.000Z</pubTime>
         
-        <tag>Chrome</tag>
-         
         <tag>PDF</tag>
+         
+        <tag>Chrome</tag>
          
         <tag>77</tag>
          
@@ -2136,13 +2136,13 @@
         <title>document.[formName] is undefined</title>
         <pubTime>2019-03-16T05:48:31.000Z</pubTime>
         
+        <tag>軟體求生</tag>
+         
         <tag>js</tag>
          
         <tag>document.formName</tag>
          
         <tag>undefined</tag>
-         
-        <tag>軟體求生</tag>
          
         <tag>asp.net 4</tag>
          
@@ -2202,11 +2202,11 @@
         <title>Inheritance security rules violated by type: 'System.Net.Http.WebRequestHandler'</title>
         <pubTime>2019-02-23T02:41:55.000Z</pubTime>
         
-        <tag>軟體求生</tag>
-         
         <tag>System.Net.Http</tag>
          
         <tag>4.1.0.0</tag>
+         
+        <tag>軟體求生</tag>
          
          
            
@@ -3324,13 +3324,13 @@
         <title>線上客服 + BOT 之路</title>
         <pubTime>2018-01-25T08:10:47.000Z</pubTime>
         
-        <tag>chatbot</tag>
-         
         <tag>QnA Maker</tag>
          
         <tag>LUIS</tag>
          
         <tag>Vital ESP</tag>
+         
+        <tag>chatbot</tag>
          
         <tag>FAQ</tag>
          
