@@ -4,16 +4,33 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2021/04/24/sql-injection-get-info-sqlplan-problems/</loc>
+    <lastmod>2021-04-24T13:38:09.833Z</lastmod>
+    <data>
+        <display>
+        <title>透過 SQL Injection 造成 SQL 錯誤取得 資料的問題</title>
+        <pubTime>2021-04-24T11:27:53.000Z</pubTime>
+        
+        <tag>SQL Injection</tag>
+         
+        <tag>SQLPlan</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2021/04/20/Use-ReflectionMagic-To-Clean-Reflection-Codes/</loc>
-    <lastmod>2021-04-20T09:41:21.263Z</lastmod>
+    <lastmod>2021-04-20T11:34:41.032Z</lastmod>
     <data>
         <display>
         <title>使用 ReflectionMagic 讓 Reflection 程式碼更簡潔</title>
         <pubTime>2021-04-20T09:04:15.000Z</pubTime>
         
         <tag>.NET</tag>
-         
-        <tag>MethodInfo</tag>
          
         <tag>Reflection</tag>
          
@@ -22,6 +39,8 @@
         <tag>Clean-Codes</tag>
          
         <tag>Invokemember</tag>
+         
+        <tag>MethodInfo</tag>
          
          
            
@@ -705,9 +724,9 @@
         
         <tag>Checkmarx</tag>
          
-        <tag>Code_Injection</tag>
-         
         <tag>MethodInfo</tag>
+         
+        <tag>Code_Injection</tag>
          
         <tag>Invoke</tag>
          
@@ -1306,11 +1325,11 @@
         <title>透過 Content-Security-Policy 修正 Mixed Content Link 問題</title>
         <pubTime>2020-05-19T08:44:09.000Z</pubTime>
         
+        <tag>Content-Security-Policy</tag>
+         
         <tag>Mixed Content</tag>
          
         <tag>CSP</tag>
-         
-        <tag>Content-Security-Policy</tag>
          
         <tag>upgrade-insecure-requests</tag>
          
@@ -1329,9 +1348,9 @@
         <title>ASP.NET Security Headers</title>
         <pubTime>2020-05-12T01:29:40.000Z</pubTime>
         
-        <tag>Content-Security-Policy</tag>
-         
         <tag>X-XSS-Protection</tag>
+         
+        <tag>Content-Security-Policy</tag>
          
         <tag>X-Frame-Options</tag>
          
@@ -3353,13 +3372,13 @@
         <title>線上客服 + BOT 之路</title>
         <pubTime>2018-01-25T08:10:47.000Z</pubTime>
         
+        <tag>chatbot</tag>
+         
         <tag>QnA Maker</tag>
          
         <tag>LUIS</tag>
          
         <tag>Vital ESP</tag>
-         
-        <tag>chatbot</tag>
          
         <tag>FAQ</tag>
          
