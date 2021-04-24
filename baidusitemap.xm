@@ -32,6 +32,8 @@
         
         <tag>.NET</tag>
          
+        <tag>MethodInfo</tag>
+         
         <tag>Reflection</tag>
          
         <tag>ReflectionMagic</tag>
@@ -39,8 +41,6 @@
         <tag>Clean-Codes</tag>
          
         <tag>Invokemember</tag>
-         
-        <tag>MethodInfo</tag>
          
          
            
@@ -724,9 +724,9 @@
         
         <tag>Checkmarx</tag>
          
-        <tag>MethodInfo</tag>
-         
         <tag>Code_Injection</tag>
+         
+        <tag>MethodInfo</tag>
          
         <tag>Invoke</tag>
          
@@ -880,9 +880,9 @@
         
         <tag>.NET</tag>
          
-        <tag>Base64</tag>
-         
         <tag>XOR</tag>
+         
+        <tag>Base64</tag>
          
         <tag>Encrypt</tag>
          
@@ -911,9 +911,9 @@
         
         <tag>.NET</tag>
          
-        <tag>csharp</tag>
-         
         <tag>Base64</tag>
+         
+        <tag>csharp</tag>
          
         <tag>Hex</tag>
          
@@ -2699,9 +2699,9 @@
         <title>.NET Exception Handling</title>
         <pubTime>2018-08-21T08:31:47.000Z</pubTime>
         
-        <tag>c#</tag>
-         
         <tag>.net</tag>
+         
+        <tag>c#</tag>
          
         <tag>exception</tag>
          
@@ -3299,9 +3299,9 @@
         <title>使用 Botframework 的 Bot 如何 Debug 到 BotBuilder Source ?</title>
         <pubTime>2018-02-01T01:47:18.000Z</pubTime>
         
-        <tag>botframework</tag>
-         
         <tag>C#</tag>
+         
+        <tag>botframework</tag>
          
         <tag>BotBuilder</tag>
          
@@ -3372,13 +3372,13 @@
         <title>線上客服 + BOT 之路</title>
         <pubTime>2018-01-25T08:10:47.000Z</pubTime>
         
-        <tag>chatbot</tag>
-         
         <tag>QnA Maker</tag>
          
         <tag>LUIS</tag>
          
         <tag>Vital ESP</tag>
+         
+        <tag>chatbot</tag>
          
         <tag>FAQ</tag>
          
