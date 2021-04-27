@@ -4,6 +4,29 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2021/04/27/using-source-link-visual-studio/</loc>
+    <lastmod>2021-04-27T06:43:58.445Z</lastmod>
+    <data>
+        <display>
+        <title>在 Visual Studion 中使用 Source Link 來 Debug</title>
+        <pubTime>2021-04-27T05:48:50.000Z</pubTime>
+        
+        <tag>Visual Studio</tag>
+         
+        <tag>Source Link</tag>
+         
+        <tag>Debug</tag>
+         
+        <tag>來源支持</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2021/04/24/sql-injection-get-info-sqlplan-problems/</loc>
     <lastmod>2021-04-24T13:38:09.833Z</lastmod>
     <data>
@@ -32,8 +55,6 @@
         
         <tag>.NET</tag>
          
-        <tag>MethodInfo</tag>
-         
         <tag>Reflection</tag>
          
         <tag>ReflectionMagic</tag>
@@ -41,6 +62,8 @@
         <tag>Clean-Codes</tag>
          
         <tag>Invokemember</tag>
+         
+        <tag>MethodInfo</tag>
          
          
            
@@ -722,11 +745,11 @@
         <title>Code_Injection</title>
         <pubTime>2020-11-13T01:25:37.000Z</pubTime>
         
-        <tag>Checkmarx</tag>
+        <tag>MethodInfo</tag>
          
         <tag>Code_Injection</tag>
          
-        <tag>MethodInfo</tag>
+        <tag>Checkmarx</tag>
          
         <tag>Invoke</tag>
          
@@ -880,9 +903,9 @@
         
         <tag>.NET</tag>
          
-        <tag>XOR</tag>
-         
         <tag>Base64</tag>
+         
+        <tag>XOR</tag>
          
         <tag>Encrypt</tag>
          
@@ -911,9 +934,9 @@
         
         <tag>.NET</tag>
          
-        <tag>Base64</tag>
-         
         <tag>csharp</tag>
+         
+        <tag>Base64</tag>
          
         <tag>Hex</tag>
          
@@ -2699,9 +2722,9 @@
         <title>.NET Exception Handling</title>
         <pubTime>2018-08-21T08:31:47.000Z</pubTime>
         
-        <tag>.net</tag>
-         
         <tag>c#</tag>
+         
+        <tag>.net</tag>
          
         <tag>exception</tag>
          
@@ -3299,9 +3322,9 @@
         <title>使用 Botframework 的 Bot 如何 Debug 到 BotBuilder Source ?</title>
         <pubTime>2018-02-01T01:47:18.000Z</pubTime>
         
-        <tag>C#</tag>
-         
         <tag>botframework</tag>
+         
+        <tag>C#</tag>
          
         <tag>BotBuilder</tag>
          
@@ -3372,13 +3395,13 @@
         <title>線上客服 + BOT 之路</title>
         <pubTime>2018-01-25T08:10:47.000Z</pubTime>
         
+        <tag>chatbot</tag>
+         
         <tag>QnA Maker</tag>
          
         <tag>LUIS</tag>
          
         <tag>Vital ESP</tag>
-         
-        <tag>chatbot</tag>
          
         <tag>FAQ</tag>
          
