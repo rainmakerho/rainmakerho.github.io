@@ -4,6 +4,33 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2021/05/06/mstsc-CredSSP-Error/</loc>
+    <lastmod>2021-05-06T06:05:02.025Z</lastmod>
+    <data>
+        <display>
+        <title>遠端桌面連線發生 發生驗證錯誤。這可能是因為 CredSSP 加密預示修復。</title>
+        <pubTime>2021-05-06T05:53:07.000Z</pubTime>
+        
+        <tag>RDP</tag>
+         
+        <tag>CredSSP</tag>
+         
+        <tag>mstsc</tag>
+         
+        <tag>遠端桌面</tag>
+         
+        <tag>Windows 10</tag>
+         
+        <tag>Oracle 更新加密</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2021/04/27/using-source-link-visual-studio/</loc>
     <lastmod>2021-04-27T06:43:58.445Z</lastmod>
     <data>
@@ -745,11 +772,11 @@
         <title>Code_Injection</title>
         <pubTime>2020-11-13T01:25:37.000Z</pubTime>
         
+        <tag>Checkmarx</tag>
+         
         <tag>MethodInfo</tag>
          
         <tag>Code_Injection</tag>
-         
-        <tag>Checkmarx</tag>
          
         <tag>Invoke</tag>
          
@@ -2207,13 +2234,13 @@
         <title>document.[formName] is undefined</title>
         <pubTime>2019-03-16T05:48:31.000Z</pubTime>
         
-        <tag>軟體求生</tag>
-         
         <tag>js</tag>
          
         <tag>document.formName</tag>
          
         <tag>undefined</tag>
+         
+        <tag>軟體求生</tag>
          
         <tag>asp.net 4</tag>
          
@@ -2273,11 +2300,11 @@
         <title>Inheritance security rules violated by type: 'System.Net.Http.WebRequestHandler'</title>
         <pubTime>2019-02-23T02:41:55.000Z</pubTime>
         
+        <tag>軟體求生</tag>
+         
         <tag>System.Net.Http</tag>
          
         <tag>4.1.0.0</tag>
-         
-        <tag>軟體求生</tag>
          
          
            
@@ -3395,13 +3422,13 @@
         <title>線上客服 + BOT 之路</title>
         <pubTime>2018-01-25T08:10:47.000Z</pubTime>
         
-        <tag>chatbot</tag>
-         
         <tag>QnA Maker</tag>
          
         <tag>LUIS</tag>
          
         <tag>Vital ESP</tag>
+         
+        <tag>chatbot</tag>
          
         <tag>FAQ</tag>
          
