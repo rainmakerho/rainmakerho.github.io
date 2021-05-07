@@ -5,7 +5,7 @@
     
   <url>
     <loc>https://rainmakerho.github.io/2021/05/06/vmdk-to-vhd-azure/</loc>
-    <lastmod>2021-05-07T09:14:42.279Z</lastmod>
+    <lastmod>2021-05-07T09:17:51.043Z</lastmod>
     <data>
         <display>
         <title>將 VMWare 的 VM 上傳到 Azure VM</title>
@@ -805,9 +805,9 @@
         <title>Code_Injection</title>
         <pubTime>2020-11-13T01:25:37.000Z</pubTime>
         
-        <tag>MethodInfo</tag>
-         
         <tag>Checkmarx</tag>
+         
+        <tag>MethodInfo</tag>
          
         <tag>Code_Injection</tag>
          
@@ -2782,9 +2782,9 @@
         <title>.NET Exception Handling</title>
         <pubTime>2018-08-21T08:31:47.000Z</pubTime>
         
-        <tag>c#</tag>
-         
         <tag>.net</tag>
+         
+        <tag>c#</tag>
          
         <tag>exception</tag>
          
@@ -3455,13 +3455,13 @@
         <title>線上客服 + BOT 之路</title>
         <pubTime>2018-01-25T08:10:47.000Z</pubTime>
         
-        <tag>chatbot</tag>
-         
         <tag>QnA Maker</tag>
          
         <tag>LUIS</tag>
          
         <tag>Vital ESP</tag>
+         
+        <tag>chatbot</tag>
          
         <tag>FAQ</tag>
          
