@@ -5,7 +5,7 @@
     
   <url>
     <loc>https://rainmakerho.github.io/2021/05/06/vmdk-to-vhd-azure/</loc>
-    <lastmod>2021-05-07T08:53:37.898Z</lastmod>
+    <lastmod>2021-05-07T09:14:42.279Z</lastmod>
     <data>
         <display>
         <title>將 VMWare 的 VM 上傳到 Azure VM</title>
@@ -94,9 +94,9 @@
         <title>透過 SQL Injection 造成 SQL 錯誤取得 資料的問題</title>
         <pubTime>2021-04-24T11:27:53.000Z</pubTime>
         
-        <tag>SQLPlan</tag>
-         
         <tag>SQL Injection</tag>
+         
+        <tag>SQLPlan</tag>
          
          
            
@@ -190,9 +190,9 @@
         <title>OWASP Top 10 2017 - SQL Injection</title>
         <pubTime>2021-03-15T05:52:17.000Z</pubTime>
         
-        <tag>SQL Injection</tag>
-         
         <tag>OWASP Top 10</tag>
+         
+        <tag>SQL Injection</tag>
          
         <tag>Blind SQL Injection</tag>
          
@@ -805,9 +805,9 @@
         <title>Code_Injection</title>
         <pubTime>2020-11-13T01:25:37.000Z</pubTime>
         
-        <tag>Checkmarx</tag>
-         
         <tag>MethodInfo</tag>
+         
+        <tag>Checkmarx</tag>
          
         <tag>Code_Injection</tag>
          
@@ -2432,6 +2432,8 @@
         <title>使用 OpenTracing - Jaeger (AP整合)</title>
         <pubTime>2019-01-15T05:13:41.000Z</pubTime>
         
+        <tag>BFv4</tag>
+         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -2445,8 +2447,6 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
-         
-        <tag>BFv4</tag>
          
         <tag>NodeJS</tag>
          
@@ -2465,6 +2465,8 @@
         <title>使用 OpenTracing - Jaeger</title>
         <pubTime>2019-01-04T06:02:45.000Z</pubTime>
         
+        <tag>BFv4</tag>
+         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -2478,8 +2480,6 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
-         
-        <tag>BFv4</tag>
          
          
            
