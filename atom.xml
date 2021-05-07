@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2021-05-06T06:05:02.025Z</updated>
+  <updated>2021-05-07T08:53:37.898Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,45 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>將 VMWare 的 VM 上傳到 Azure VM</title>
+    <link href="https://rainmakerho.github.io/2021/05/06/vmdk-to-vhd-azure/"/>
+    <id>https://rainmakerho.github.io/2021/05/06/vmdk-to-vhd-azure/</id>
+    <published>2021-05-06T08:38:05.000Z</published>
+    <updated>2021-05-07T08:53:37.898Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>以下介紹如何將一個 VMWare VM(vmdk) 移轉到 Azure 上。<br>開始之前請先下載並安裝以下軟體，<br><a href="https://www.microsoft.com/en-us/download/details.aspx?id=42497" target="_blank" rel="noopener">Microsoft Virtual Machine Converter 3.0</a> : 透過它的 PowerShell Cmdlet 來將 VMDK 轉成 VHD<br><a href="https://docs.microsoft.com/zh-tw/azure/storage/common/storage-use-azcopy-v10#download-and-install-azcopy" target="_blank" rel="noopener">AzCopy</a> : 透過它將 VHD 上傳到 Azure Disk (可與vmdk 放在相同目錄)<br><a href="https://docs.microsoft.com/zh-tw/cli/azure/install-azure-cli" target="_blank" rel="noopener">Azure CLI</a> : 透過它來建立 Azure Disk 並建立 Azure VM </p><h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><h4 id="一、將-vmdk-轉成-vhd"><a href="#一、將-vmdk-轉成-vhd" class="headerlink" title="一、將 vmdk 轉成 vhd"></a>一、將 vmdk 轉成 vhd</h4><p>需要透過 <a href="https://www.microsoft.com/en-us/download/details.aspx?id=42497" target="_blank" rel="noopener">Microsoft Virtual Machine Converter 3.0</a> 來將 VMDK 轉成 VHD<br>1.下載 <a href="https://www.microsoft.com/en-us/download/details.aspx?id=42497" target="_blank" rel="noopener">Microsoft Virtual Machine Converter 3.0</a> ，並安裝<br>2.以系統管理員身份開啟 Powershell ，執行以下指令(SourceLiteralPath 及 DestinationLiteralPath 請依vmdk 存放路徑來調整)，來將 vmdk 轉成 vhd<br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Import-Module</span> <span class="string">'C:\Program Files\Microsoft Virtual Machine Converter\MvmcCmdlet.psd1'</span></span><br><span class="line">ConvertTo-MvmcVirtualHardDisk -SourceLiteralPath <span class="string">"C:\vm\win2012.vmdk"</span> -DestinationLiteralPath <span class="string">"C:\vm\win2012.vhd"</span> -VhdType FixedHardDisk -VhdFormat Vhd</span><br></pre></td></tr></table></figure></p><img src="/2021/05/06/vmdk-to-vhd-azure/05.png" title="ConvertTo-MvmcVirtualHardDisk"><p>原本 vmdk檔 為 32GB 轉完後，VHD檔約為 60多GB<br><img src="/2021/05/06/vmdk-to-vhd-azure/01.png" title="vmdk2vhd"></p><p>註1:當轉成 VHD 後，用地端的 Hyper-V 開起來，測試看看運作是否正常，然後依 <a href="https://docs.microsoft.com/zh-tw/azure/virtual-machines/windows/prepare-for-upload-vhd-image" target="_blank" rel="noopener">準備 Windows VHD 或 VHDX 以上傳至 Azure</a> 的內容來設定 VM，並將 VMware Tools 移除…。<br>註2: 我只要將目前這一個 VM 上傳上去，所以不會使用執行 Sysprep 。</p><h4 id="二、將-VHD-檔設定為固定的大小-要整數GB-，例如將它改成-64GB-128GB-256GB-512GB-…"><a href="#二、將-VHD-檔設定為固定的大小-要整數GB-，例如將它改成-64GB-128GB-256GB-512GB-…" class="headerlink" title="二、將 VHD 檔設定為固定的大小(要整數GB)，例如將它改成 64GB/128GB/256GB/512GB …"></a>二、將 VHD 檔設定為固定的大小(要整數GB)，例如將它改成 64GB/128GB/256GB/512GB …</h4><p>1.以系統管理員身份開啟 Powershell 並將 VHD 檔案大小改成 64GB<br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Resize-VHD -Path c:\vm\win2012.vhd -SizeBytes <span class="number">64</span>GB</span><br></pre></td></tr></table></figure></p><p>2.將大小的位元組記錄下來(68,719,477,248 位元組)，<br><img src="/2021/05/06/vmdk-to-vhd-azure/02.png" title="64GBVHD"></p><h4 id="三、透過-Azure-CLI-建立空的-Azure-Disk"><a href="#三、透過-Azure-CLI-建立空的-Azure-Disk" class="headerlink" title="三、透過 Azure CLI 建立空的 Azure Disk"></a>三、透過 Azure CLI 建立空的 Azure Disk</h4><p>1.開啟 Command 視窗<br>2.登入 Azure<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">az login</span><br></pre></td></tr></table></figure></p><p>3.設定預設的訂閱<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">az account set --subscription &quot;你的Azure訂閱Id&quot;</span><br></pre></td></tr></table></figure></p><p>4.建立 資源群組(如果要使用即有資源群組也可以)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">az group create --location eastus --name vwwareVMs</span><br></pre></td></tr></table></figure></p><p>5.建立 Azure Disk 並將 Vhd 的大小設定到 –upload-size-bytes 參數<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">az disk create -n vmwareDisk -g vwwareVMs -l eastus --for-upload --upload-size-bytes 68719477248 --sku standardssd_lrs --hyper-v-generation V1</span><br></pre></td></tr></table></figure></p><p>註: VHD 的大小需與 Azure Disk 的大小相同，否則透過 AZCopy 時，會發生以下的錯誤</p><blockquote><p>source file is not same size as the destination page blob. Source size is {VHD大小} bytes but destination size is {azure disk大小} bytes.</p></blockquote><h4 id="四、透過-Azure-CLI-Azure-Disk-的可寫入-SAS"><a href="#四、透過-Azure-CLI-Azure-Disk-的可寫入-SAS" class="headerlink" title="四、透過 Azure CLI Azure Disk 的可寫入 SAS"></a>四、透過 Azure CLI Azure Disk 的可寫入 SAS</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">az disk grant-access -n vmwareDisk -g vwwareVMs --access-level Write --duration-in-seconds 86400</span><br></pre></td></tr></table></figure><img src="/2021/05/06/vmdk-to-vhd-azure/03.png" title="產生SAS"><h4 id="五、透過-AzCopy-將-vhd-上傳到-Azure-Disk"><a href="#五、透過-AzCopy-將-vhd-上傳到-Azure-Disk" class="headerlink" title="五、透過 AzCopy 將 vhd 上傳到 Azure Disk"></a>五、透過 AzCopy 將 vhd 上傳到 Azure Disk</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AzCopy.exe copy &quot;C:\VM\win2012.vhd&quot; &quot;上面accessSAS的值&quot; --blob-type PageBlob</span><br></pre></td></tr></table></figure><img src="/2021/05/06/vmdk-to-vhd-azure/04.png" title="AzCopy"><p>這裡就給它慢慢地上傳上去 …</p><img src="/2021/05/06/vmdk-to-vhd-azure/06.png" title="AzCopy_Completed"><h4 id="六、取消-Azure-Disk-的-SAS"><a href="#六、取消-Azure-Disk-的-SAS" class="headerlink" title="六、取消 Azure Disk 的 SAS"></a>六、取消 Azure Disk 的 SAS</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">az disk revoke-access -n vmwareDisk -g vwwareVMs</span><br></pre></td></tr></table></figure><h4 id="七、建立VM，設定-OS-Disk-為我們上傳上去的-vmwareDisk"><a href="#七、建立VM，設定-OS-Disk-為我們上傳上去的-vmwareDisk" class="headerlink" title="七、建立VM，設定 OS Disk 為我們上傳上去的 vmwareDisk"></a>七、建立VM，設定 OS Disk 為我們上傳上去的 vmwareDisk</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">az vm create --resource-group vwwareVMs --location eastus --name vmwareVM1 --os-type windows --attach-os-disk vmwareDisk</span><br></pre></td></tr></table></figure><img src="/2021/05/06/vmdk-to-vhd-azure/07.png" title="az_vm_create"><p>建立完成後，就可以透過 遠端連線 連進入，並將 VMware Tools 移除。<br>也可以在 Portal.Azure 中調整 VM 的大小。</p><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://docs.microsoft.com/zh-tw/azure/virtual-machines/windows/prepare-for-upload-vhd-image" target="_blank" rel="noopener">準備 Windows VHD 或 VHDX 以上傳至 Azure</a><br><a href="https://docs.microsoft.com/zh-tw/azure/virtual-machines/linux/disks-upload-vhd-to-managed-disk-cli" target="_blank" rel="noopener">將 VHD 上傳至 Azure，或將受控磁碟複製到另一個區域-Azure CLI</a><br><a href="https://www.sourceonetechnology.com/convert-vmware-vmdk-files-into-hyper-v-vhd/" target="_blank" rel="noopener">How to Convert VMware VMDK Files Into Hyper-V VHD Files</a><br><a href="https://docs.microsoft.com/en-us/powershell/module/hyper-v/resize-vhd?view=windowsserver2019-ps" target="_blank" rel="noopener">Resize-VHD</a><br><a href="https://www.microsoft.com/en-us/download/details.aspx?id=42497" target="_blank" rel="noopener">Microsoft Virtual Machine Converter 3.0</a><br><a href="https://gist.github.com/ayusmadi/156eb7c71e010ab740632f97946f341d" target="_blank" rel="noopener">The upload size in bytes # - 512 bytes for the VHD footer (# in this case) must be a multiple of MiB.</a><br><a href="https://azure.microsoft.com/zh-tw/pricing/details/managed-disks/" target="_blank" rel="noopener">受控磁碟-定價</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;以下介紹如何將一個 VMWare VM(vmdk) 移轉到 Azure 上。&lt;br&gt;開始之前請先下載並安裝以下軟體，&lt;br&gt;&lt;a href=
+      
+    
+    </summary>
+    
+    
+      <category term="Azure" scheme="https://rainmakerho.github.io/tags/Azure/"/>
+    
+      <category term="VMWare" scheme="https://rainmakerho.github.io/tags/VMWare/"/>
+    
+      <category term="vhd" scheme="https://rainmakerho.github.io/tags/vhd/"/>
+    
+      <category term="vmdk" scheme="https://rainmakerho.github.io/tags/vmdk/"/>
+    
+      <category term="VM" scheme="https://rainmakerho.github.io/tags/VM/"/>
+    
+      <category term="Azure CLI" scheme="https://rainmakerho.github.io/tags/Azure-CLI/"/>
+    
+      <category term="vmware migration" scheme="https://rainmakerho.github.io/tags/vmware-migration/"/>
+    
+      <category term="azcopy" scheme="https://rainmakerho.github.io/tags/azcopy/"/>
+    
+      <category term="ConvertTo-MvmcVirtualHardDisk" scheme="https://rainmakerho.github.io/tags/ConvertTo-MvmcVirtualHardDisk/"/>
+    
+  </entry>
   
   <entry>
     <title>遠端桌面連線發生 發生驗證錯誤。這可能是因為 CredSSP 加密預示修復。</title>
@@ -97,9 +136,9 @@
     </summary>
     
     
-      <category term="SQL Injection" scheme="https://rainmakerho.github.io/tags/SQL-Injection/"/>
-    
       <category term="SQLPlan" scheme="https://rainmakerho.github.io/tags/SQLPlan/"/>
+    
+      <category term="SQL Injection" scheme="https://rainmakerho.github.io/tags/SQL-Injection/"/>
     
   </entry>
   
@@ -217,9 +256,9 @@
     </summary>
     
     
-      <category term="OWASP Top 10" scheme="https://rainmakerho.github.io/tags/OWASP-Top-10/"/>
-    
       <category term="SQL Injection" scheme="https://rainmakerho.github.io/tags/SQL-Injection/"/>
+    
+      <category term="OWASP Top 10" scheme="https://rainmakerho.github.io/tags/OWASP-Top-10/"/>
     
       <category term="Blind SQL Injection" scheme="https://rainmakerho.github.io/tags/Blind-SQL-Injection/"/>
     
@@ -630,37 +669,6 @@
       <category term="COLLATE" scheme="https://rainmakerho.github.io/tags/COLLATE/"/>
     
       <category term="從 binary/varbinary 字串轉換成 datetime 時，轉換失敗" scheme="https://rainmakerho.github.io/tags/%E5%BE%9E-binary-varbinary-%E5%AD%97%E4%B8%B2%E8%BD%89%E6%8F%9B%E6%88%90-datetime-%E6%99%82%EF%BC%8C%E8%BD%89%E6%8F%9B%E5%A4%B1%E6%95%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SQL Server 找出某時間的異動資料(資料交換)</title>
-    <link href="https://rainmakerho.github.io/2020/12/17/sql-transation-different-data-export/"/>
-    <id>https://rainmakerho.github.io/2020/12/17/sql-transation-different-data-export/</id>
-    <published>2020-12-17T03:45:53.000Z</published>
-    <updated>2020-12-18T09:26:23.046Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近同事詢問要把有異動的資料轉到另一個資料庫(Sybase)去，是否有什麼好的方式呢?<br>想了一下，最簡單的方式就是找那某個異動時間之後的資料就可以了。<br>但是，那 … 被刪除的資料要如何找出來呢?</p><h3 id="研究與練習"><a href="#研究與練習" class="headerlink" title="研究與練習"></a>研究與練習</h3><p>想了一下，似乎可以透過 Database Snapshot 來達成。<br>測試的資料庫可以從 <a href="https://docs.microsoft.com/en-us/sql/samples/adventureworks-install-configure?view=sql-server-ver15&amp;tabs=ssms" target="_blank" rel="noopener">AdventureWorks sample databases Download</a> 下載。</p><h4 id="建立-Database-Snapshot"><a href="#建立-Database-Snapshot" class="headerlink" title="建立 Database Snapshot"></a>建立 Database Snapshot</h4><p>之所以要建立 <a href="https://docs.microsoft.com/zh-tw/sql/relational-databases/databases/database-snapshots-sql-server?view=sql-server-ver15" target="_blank" rel="noopener">資料庫快照集</a> 是因為，如果到了要轉出異動資料時，將 快照裡的資料表 與 原有資料庫中的資料表 Join 就可以知道那些是被刪除的資料。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">DATABASE</span> AdventureWorks_dbss1100 <span class="keyword">ON</span>  </span><br><span class="line">( <span class="keyword">NAME</span> = AdventureWorks2017, FILENAME =   </span><br><span class="line"><span class="string">'C:\temp\AdventureWorks_dbss1100.ss'</span> )  </span><br><span class="line"><span class="keyword">AS</span> <span class="keyword">SNAPSHOT</span> <span class="keyword">OF</span> AdventureWorks2017;  </span><br><span class="line">GO</span><br></pre></td></tr></table></figure></p><img src="/2020/12/17/sql-transation-different-data-export/01.png" title="資料庫快照集"><h4 id="資料操作"><a href="#資料操作" class="headerlink" title="資料操作"></a>資料操作</h4><p>以下分別進行 Inser , Update &amp; Delete<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- INSERT DATA</span></span><br><span class="line"><span class="keyword">DECLARE</span> @BEID <span class="built_in">INT</span>;</span><br><span class="line"><span class="keyword">DECLARE</span> @MOD_DATE DATETIME = <span class="string">'2020/12/17 11:20'</span>;</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> [Person].[BusinessEntity]</span><br><span class="line"><span class="keyword">VALUES</span>(NEWID(), @MOD_DATE);</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> @BEID = SCOPE_IDENTITY();</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> [Person].[Person] </span><br><span class="line">([BusinessEntityID], [PersonType], [NameStyle], [Title]</span><br><span class="line">, [FirstName], [MiddleName], [LastName], [Suffix]</span><br><span class="line">, [EmailPromotion], [AdditionalContactInfo], [Demographics]</span><br><span class="line">, [rowguid], [ModifiedDate]) </span><br><span class="line"><span class="keyword">VALUES</span> </span><br><span class="line">(@BEID, N<span class="string">'EM'</span>, <span class="number">0</span>, <span class="literal">NULL</span></span><br><span class="line">, N<span class="string">'Rainmaker'</span>, N<span class="string">'D'</span>, N<span class="string">'Ho'</span>, <span class="literal">NULL</span></span><br><span class="line">, <span class="number">1</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span></span><br><span class="line">, NEWID(), @MOD_DATE);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- MODIFY DATA</span></span><br><span class="line"><span class="keyword">UPDATE</span> [Person].[Person]</span><br><span class="line"><span class="keyword">SET</span> MiddleName = <span class="string">'D'</span>, </span><br><span class="line">[ModifiedDate] = <span class="keyword">GETDATE</span>()</span><br><span class="line"><span class="keyword">Where</span> BusinessEntityID = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- Delete Data</span></span><br><span class="line"><span class="keyword">Delete</span> <span class="keyword">FROM</span> Sales.SalesOrderHeader</span><br><span class="line"><span class="keyword">WHERE</span> SalesOrderID = <span class="number">75123</span>;</span><br></pre></td></tr></table></figure></p><p>所以如果要找出 2020/12/17 11:00 之後的異動，就可以依 來找，<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 找出某時間點之後差異的資料</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> [Person].[Person]</span><br><span class="line"><span class="keyword">WHERE</span> ModifiedDate &gt; <span class="string">'2020/12/17 11:00'</span>;</span><br></pre></td></tr></table></figure></p><img src="/2020/12/17/sql-transation-different-data-export/02.png" title="Find Insert and Update Data"><p>刪除的資料，就可以用 快照裡的資料表 與 原有資料庫中的資料表 Join ，如下，<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 那被刪除的資料呢?</span></span><br><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> AdventureWorks_dbss1100.Sales.SalesOrderHeader SN</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> Sales.SalesOrderHeader SO</span><br><span class="line"><span class="keyword">ON</span> SN.SalesOrderID = SO.SalesOrderID</span><br><span class="line"><span class="keyword">WHERE</span> SO.SalesOrderID <span class="keyword">IS</span> <span class="literal">NULL</span></span><br></pre></td></tr></table></figure></p><img src="/2020/12/17/sql-transation-different-data-export/03.png" title="Find deleted data"><p>那如果要找新增的資料呢?<br>一樣的方式，只是這次是要找在 SNAPSHOT 資料表為 Null 。<br>以上面有針對 Person.Person 新增一筆資料，所以找出它的方式如下SQL，<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> SN.BusinessEntityID, PS.*</span><br><span class="line"><span class="keyword">FROM</span> AdventureWorks_dbss1100.Person.Person SN</span><br><span class="line"><span class="keyword">RIGHT</span> <span class="keyword">JOIN</span> Person.Person PS</span><br><span class="line"><span class="keyword">ON</span> SN.BusinessEntityID = PS.BusinessEntityID</span><br><span class="line"><span class="keyword">WHERE</span> SN.BusinessEntityID <span class="keyword">IS</span> <span class="literal">NULL</span></span><br></pre></td></tr></table></figure></p><img src="/2020/12/17/sql-transation-different-data-export/04.png" title="Find 新增的資料"><p>所以在每次匯出異動資料後，就可以再建立那時間點的 資料庫快照 ，之後再跟原有資料表 Join 就可以了哦!</p><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://docs.microsoft.com/en-us/sql/samples/adventureworks-install-configure?view=sql-server-ver15&amp;tabs=ssms" target="_blank" rel="noopener">AdventureWorks sample databases Download</a><br><a href="https://www.mssqltips.com/sqlservertip/3603/sql-server-database-snapshots-for-data-comparison/" target="_blank" rel="noopener">SQL Server Database Snapshots for Data Comparison</a><br><a href="https://docs.microsoft.com/zh-tw/sql/relational-databases/databases/database-snapshots-sql-server?view=sql-server-ver15" target="_blank" rel="noopener">資料庫快照集</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;最近同事詢問要把有異動的資料轉到另一個資料庫(Sybase)去，是否有什麼好的方式呢?&lt;br&gt;想了一下，最簡單的方式就是找那某個異動時間之後
-      
-    
-    </summary>
-    
-    
-      <category term="SQL Server" scheme="https://rainmakerho.github.io/tags/SQL-Server/"/>
-    
-      <category term="資料交換" scheme="https://rainmakerho.github.io/tags/%E8%B3%87%E6%96%99%E4%BA%A4%E6%8F%9B/"/>
-    
-      <category term="異動資料" scheme="https://rainmakerho.github.io/tags/%E7%95%B0%E5%8B%95%E8%B3%87%E6%96%99/"/>
-    
-      <category term="Database Snapshot" scheme="https://rainmakerho.github.io/tags/Database-Snapshot/"/>
-    
-      <category term="資料庫快照集" scheme="https://rainmakerho.github.io/tags/%E8%B3%87%E6%96%99%E5%BA%AB%E5%BF%AB%E7%85%A7%E9%9B%86/"/>
     
   </entry>
   

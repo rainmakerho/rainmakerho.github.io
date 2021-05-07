@@ -4,6 +4,39 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2021/05/06/vmdk-to-vhd-azure/</loc>
+    <lastmod>2021-05-07T08:53:37.898Z</lastmod>
+    <data>
+        <display>
+        <title>將 VMWare 的 VM 上傳到 Azure VM</title>
+        <pubTime>2021-05-06T08:38:05.000Z</pubTime>
+        
+        <tag>Azure</tag>
+         
+        <tag>VMWare</tag>
+         
+        <tag>vhd</tag>
+         
+        <tag>vmdk</tag>
+         
+        <tag>VM</tag>
+         
+        <tag>Azure CLI</tag>
+         
+        <tag>vmware migration</tag>
+         
+        <tag>azcopy</tag>
+         
+        <tag>ConvertTo-MvmcVirtualHardDisk</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2021/05/06/mstsc-CredSSP-Error/</loc>
     <lastmod>2021-05-06T06:05:02.025Z</lastmod>
     <data>
@@ -61,9 +94,9 @@
         <title>透過 SQL Injection 造成 SQL 錯誤取得 資料的問題</title>
         <pubTime>2021-04-24T11:27:53.000Z</pubTime>
         
-        <tag>SQL Injection</tag>
-         
         <tag>SQLPlan</tag>
+         
+        <tag>SQL Injection</tag>
          
          
            
@@ -157,9 +190,9 @@
         <title>OWASP Top 10 2017 - SQL Injection</title>
         <pubTime>2021-03-15T05:52:17.000Z</pubTime>
         
-        <tag>OWASP Top 10</tag>
-         
         <tag>SQL Injection</tag>
+         
+        <tag>OWASP Top 10</tag>
          
         <tag>Blind SQL Injection</tag>
          
@@ -2234,13 +2267,13 @@
         <title>document.[formName] is undefined</title>
         <pubTime>2019-03-16T05:48:31.000Z</pubTime>
         
+        <tag>軟體求生</tag>
+         
         <tag>js</tag>
          
         <tag>document.formName</tag>
          
         <tag>undefined</tag>
-         
-        <tag>軟體求生</tag>
          
         <tag>asp.net 4</tag>
          
@@ -2300,11 +2333,11 @@
         <title>Inheritance security rules violated by type: 'System.Net.Http.WebRequestHandler'</title>
         <pubTime>2019-02-23T02:41:55.000Z</pubTime>
         
-        <tag>軟體求生</tag>
-         
         <tag>System.Net.Http</tag>
          
         <tag>4.1.0.0</tag>
+         
+        <tag>軟體求生</tag>
          
          
            
@@ -2399,8 +2432,6 @@
         <title>使用 OpenTracing - Jaeger (AP整合)</title>
         <pubTime>2019-01-15T05:13:41.000Z</pubTime>
         
-        <tag>BFv4</tag>
-         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -2414,6 +2445,8 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
+         
+        <tag>BFv4</tag>
          
         <tag>NodeJS</tag>
          
@@ -2432,8 +2465,6 @@
         <title>使用 OpenTracing - Jaeger</title>
         <pubTime>2019-01-04T06:02:45.000Z</pubTime>
         
-        <tag>BFv4</tag>
-         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -2447,6 +2478,8 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
+         
+        <tag>BFv4</tag>
          
          
            
@@ -3422,13 +3455,13 @@
         <title>線上客服 + BOT 之路</title>
         <pubTime>2018-01-25T08:10:47.000Z</pubTime>
         
+        <tag>chatbot</tag>
+         
         <tag>QnA Maker</tag>
          
         <tag>LUIS</tag>
          
         <tag>Vital ESP</tag>
-         
-        <tag>chatbot</tag>
          
         <tag>FAQ</tag>
          
