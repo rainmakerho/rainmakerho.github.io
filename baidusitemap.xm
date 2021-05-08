@@ -5,10 +5,10 @@
     
   <url>
     <loc>https://rainmakerho.github.io/2021/05/06/vmdk-to-vhd-azure/</loc>
-    <lastmod>2021-05-07T09:17:51.043Z</lastmod>
+    <lastmod>2021-05-08T07:43:10.042Z</lastmod>
     <data>
         <display>
-        <title>將 VMWare 的 VM 上傳到 Azure VM</title>
+        <title>將 VMWare 的 VMDK 移轉到 Azure VM, VMDK file to Azure VM</title>
         <pubTime>2021-05-06T08:38:05.000Z</pubTime>
         
         <tag>Azure</tag>
@@ -94,9 +94,9 @@
         <title>透過 SQL Injection 造成 SQL 錯誤取得 資料的問題</title>
         <pubTime>2021-04-24T11:27:53.000Z</pubTime>
         
-        <tag>SQL Injection</tag>
-         
         <tag>SQLPlan</tag>
+         
+        <tag>SQL Injection</tag>
          
          
            
@@ -190,9 +190,9 @@
         <title>OWASP Top 10 2017 - SQL Injection</title>
         <pubTime>2021-03-15T05:52:17.000Z</pubTime>
         
-        <tag>OWASP Top 10</tag>
-         
         <tag>SQL Injection</tag>
+         
+        <tag>OWASP Top 10</tag>
          
         <tag>Blind SQL Injection</tag>
          
@@ -2432,8 +2432,6 @@
         <title>使用 OpenTracing - Jaeger (AP整合)</title>
         <pubTime>2019-01-15T05:13:41.000Z</pubTime>
         
-        <tag>BFv4</tag>
-         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -2447,6 +2445,8 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
+         
+        <tag>BFv4</tag>
          
         <tag>NodeJS</tag>
          
@@ -2465,8 +2465,6 @@
         <title>使用 OpenTracing - Jaeger</title>
         <pubTime>2019-01-04T06:02:45.000Z</pubTime>
         
-        <tag>BFv4</tag>
-         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -2480,6 +2478,8 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
+         
+        <tag>BFv4</tag>
          
          
            
@@ -2782,9 +2782,9 @@
         <title>.NET Exception Handling</title>
         <pubTime>2018-08-21T08:31:47.000Z</pubTime>
         
-        <tag>.net</tag>
-         
         <tag>c#</tag>
+         
+        <tag>.net</tag>
          
         <tag>exception</tag>
          
@@ -3311,11 +3311,11 @@
         <title>SmtpConnection.GetConnection NullReferenceException</title>
         <pubTime>2018-03-14T02:07:16.000Z</pubTime>
         
-        <tag>NullReferenceException</tag>
-         
         <tag>SmtpClient</tag>
          
         <tag>SmtpConnection.GetConnection</tag>
+         
+        <tag>NullReferenceException</tag>
          
         <tag>.net</tag>
          
@@ -3340,11 +3340,11 @@
         <title>System.NullReferenceException when Aspose.Pdf.License.SetLicense(String licenseName)</title>
         <pubTime>2018-03-13T06:54:05.000Z</pubTime>
         
+        <tag>NullReferenceException</tag>
+         
         <tag>Aspose</tag>
          
         <tag>SetLicense</tag>
-         
-        <tag>NullReferenceException</tag>
          
          
            
