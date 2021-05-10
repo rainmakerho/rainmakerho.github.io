@@ -5,10 +5,10 @@
     
   <url>
     <loc>https://rainmakerho.github.io/2021/05/06/vmdk-to-vhd-azure/</loc>
-    <lastmod>2021-05-08T07:43:10.042Z</lastmod>
+    <lastmod>2021-05-10T02:42:17.902Z</lastmod>
     <data>
         <display>
-        <title>將 VMWare 的 VMDK 移轉到 Azure VM, VMDK file to Azure VM</title>
+        <title>將 VMWare 的 VMDK 移轉到 Azure VM, VMDK to Azure VM</title>
         <pubTime>2021-05-06T08:38:05.000Z</pubTime>
         
         <tag>Azure</tag>
@@ -94,9 +94,9 @@
         <title>透過 SQL Injection 造成 SQL 錯誤取得 資料的問題</title>
         <pubTime>2021-04-24T11:27:53.000Z</pubTime>
         
-        <tag>SQLPlan</tag>
-         
         <tag>SQL Injection</tag>
+         
+        <tag>SQLPlan</tag>
          
          
            
@@ -190,9 +190,9 @@
         <title>OWASP Top 10 2017 - SQL Injection</title>
         <pubTime>2021-03-15T05:52:17.000Z</pubTime>
         
-        <tag>SQL Injection</tag>
-         
         <tag>OWASP Top 10</tag>
+         
+        <tag>SQL Injection</tag>
          
         <tag>Blind SQL Injection</tag>
          
@@ -805,9 +805,9 @@
         <title>Code_Injection</title>
         <pubTime>2020-11-13T01:25:37.000Z</pubTime>
         
-        <tag>Checkmarx</tag>
-         
         <tag>MethodInfo</tag>
+         
+        <tag>Checkmarx</tag>
          
         <tag>Code_Injection</tag>
          
@@ -3311,11 +3311,11 @@
         <title>SmtpConnection.GetConnection NullReferenceException</title>
         <pubTime>2018-03-14T02:07:16.000Z</pubTime>
         
+        <tag>NullReferenceException</tag>
+         
         <tag>SmtpClient</tag>
          
         <tag>SmtpConnection.GetConnection</tag>
-         
-        <tag>NullReferenceException</tag>
          
         <tag>.net</tag>
          
@@ -3340,11 +3340,11 @@
         <title>System.NullReferenceException when Aspose.Pdf.License.SetLicense(String licenseName)</title>
         <pubTime>2018-03-13T06:54:05.000Z</pubTime>
         
-        <tag>NullReferenceException</tag>
-         
         <tag>Aspose</tag>
          
         <tag>SetLicense</tag>
+         
+        <tag>NullReferenceException</tag>
          
          
            
@@ -3382,9 +3382,9 @@
         <title>使用 Botframework 的 Bot 如何 Debug 到 BotBuilder Source ?</title>
         <pubTime>2018-02-01T01:47:18.000Z</pubTime>
         
-        <tag>botframework</tag>
-         
         <tag>C#</tag>
+         
+        <tag>botframework</tag>
          
         <tag>BotBuilder</tag>
          
