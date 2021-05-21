@@ -4,30 +4,43 @@
 
     
   <url>
-    <loc>https://rainmakerho.github.io/2021/05/06/vmdk-to-vhd-azure/</loc>
-    <lastmod>2021-05-10T02:42:17.902Z</lastmod>
+    <loc>https://rainmakerho.github.io/2021/05/21/Path-Traversal-Vulnerability-Checkmarx/</loc>
+    <lastmod>2021-05-21T06:02:27.355Z</lastmod>
     <data>
         <display>
-        <title>將 VMWare 的 VMDK 移轉到 Azure VM, VMDK to Azure VM</title>
+        <title>Checkmarx Path Traversal 的解法</title>
+        <pubTime>2021-05-21T05:40:16.000Z</pubTime>
+        
+        <tag>Replace</tag>
+         
+        <tag>Path Traversal</tag>
+         
+        <tag>Checkmarx</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://rainmakerho.github.io/2021/05/06/vmdk-to-vhd-azure/</loc>
+    <lastmod>2021-05-11T05:20:43.931Z</lastmod>
+    <data>
+        <display>
+        <title>將 VMDK (VHD) 移轉到 Azure</title>
         <pubTime>2021-05-06T08:38:05.000Z</pubTime>
         
-        <tag>Azure</tag>
+        <tag>VMDK</tag>
          
-        <tag>VMWare</tag>
-         
-        <tag>vhd</tag>
-         
-        <tag>vmdk</tag>
-         
-        <tag>VM</tag>
+        <tag>VHD</tag>
          
         <tag>Azure CLI</tag>
          
-        <tag>vmware migration</tag>
+        <tag>VMDK to Azure</tag>
          
-        <tag>azcopy</tag>
-         
-        <tag>ConvertTo-MvmcVirtualHardDisk</tag>
+        <tag>VHD to Azure</tag>
          
          
            
@@ -805,9 +818,9 @@
         <title>Code_Injection</title>
         <pubTime>2020-11-13T01:25:37.000Z</pubTime>
         
-        <tag>MethodInfo</tag>
-         
         <tag>Checkmarx</tag>
+         
+        <tag>MethodInfo</tag>
          
         <tag>Code_Injection</tag>
          
@@ -963,9 +976,9 @@
         
         <tag>.NET</tag>
          
-        <tag>Base64</tag>
-         
         <tag>XOR</tag>
+         
+        <tag>Base64</tag>
          
         <tag>Encrypt</tag>
          
@@ -994,9 +1007,9 @@
         
         <tag>.NET</tag>
          
-        <tag>csharp</tag>
-         
         <tag>Base64</tag>
+         
+        <tag>csharp</tag>
          
         <tag>Hex</tag>
          
@@ -1408,11 +1421,11 @@
         <title>透過 Content-Security-Policy 修正 Mixed Content Link 問題</title>
         <pubTime>2020-05-19T08:44:09.000Z</pubTime>
         
-        <tag>Content-Security-Policy</tag>
-         
         <tag>Mixed Content</tag>
          
         <tag>CSP</tag>
+         
+        <tag>Content-Security-Policy</tag>
          
         <tag>upgrade-insecure-requests</tag>
          
@@ -1431,9 +1444,9 @@
         <title>ASP.NET Security Headers</title>
         <pubTime>2020-05-12T01:29:40.000Z</pubTime>
         
-        <tag>X-XSS-Protection</tag>
-         
         <tag>Content-Security-Policy</tag>
+         
+        <tag>X-XSS-Protection</tag>
          
         <tag>X-Frame-Options</tag>
          
@@ -2432,6 +2445,8 @@
         <title>使用 OpenTracing - Jaeger (AP整合)</title>
         <pubTime>2019-01-15T05:13:41.000Z</pubTime>
         
+        <tag>BFv4</tag>
+         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -2445,8 +2460,6 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
-         
-        <tag>BFv4</tag>
          
         <tag>NodeJS</tag>
          
@@ -2465,6 +2478,8 @@
         <title>使用 OpenTracing - Jaeger</title>
         <pubTime>2019-01-04T06:02:45.000Z</pubTime>
         
+        <tag>BFv4</tag>
+         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -2478,8 +2493,6 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
-         
-        <tag>BFv4</tag>
          
          
            
@@ -3382,9 +3395,9 @@
         <title>使用 Botframework 的 Bot 如何 Debug 到 BotBuilder Source ?</title>
         <pubTime>2018-02-01T01:47:18.000Z</pubTime>
         
-        <tag>C#</tag>
-         
         <tag>botframework</tag>
+         
+        <tag>C#</tag>
          
         <tag>BotBuilder</tag>
          
