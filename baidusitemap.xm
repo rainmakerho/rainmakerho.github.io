@@ -4,6 +4,31 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2021/05/31/IE-Slow-Https/</loc>
+    <lastmod>2021-05-31T01:58:08.840Z</lastmod>
+    <data>
+        <display>
+        <title>IE 跑網頁很慢 (HTTPS)</title>
+        <pubTime>2021-05-31T01:16:24.000Z</pubTime>
+        
+        <tag>IE</tag>
+         
+        <tag>Slow</tag>
+         
+        <tag>Https</tag>
+         
+        <tag>此網站的安全性憑證有問題</tag>
+         
+        <tag>檢查伺服器憑證撤銷</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2021/05/06/vmdk-to-vhd-azure/</loc>
     <lastmod>2021-05-21T07:27:32.670Z</lastmod>
     <data>
@@ -38,9 +63,9 @@
         
         <tag>Replace</tag>
          
-        <tag>Checkmarx</tag>
-         
         <tag>Path Traversal</tag>
+         
+        <tag>Checkmarx</tag>
          
          
            
@@ -1421,11 +1446,11 @@
         <title>透過 Content-Security-Policy 修正 Mixed Content Link 問題</title>
         <pubTime>2020-05-19T08:44:09.000Z</pubTime>
         
+        <tag>Content-Security-Policy</tag>
+         
         <tag>Mixed Content</tag>
          
         <tag>CSP</tag>
-         
-        <tag>Content-Security-Policy</tag>
          
         <tag>upgrade-insecure-requests</tag>
          
@@ -1444,9 +1469,9 @@
         <title>ASP.NET Security Headers</title>
         <pubTime>2020-05-12T01:29:40.000Z</pubTime>
         
-        <tag>Content-Security-Policy</tag>
-         
         <tag>X-XSS-Protection</tag>
+         
+        <tag>Content-Security-Policy</tag>
          
         <tag>X-Frame-Options</tag>
          
@@ -3395,9 +3420,9 @@
         <title>使用 Botframework 的 Bot 如何 Debug 到 BotBuilder Source ?</title>
         <pubTime>2018-02-01T01:47:18.000Z</pubTime>
         
-        <tag>botframework</tag>
-         
         <tag>C#</tag>
+         
+        <tag>botframework</tag>
          
         <tag>BotBuilder</tag>
          

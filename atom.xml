@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2021-05-21T06:02:27.355Z</updated>
+  <updated>2021-05-31T01:58:08.840Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>IE 跑網頁很慢 (HTTPS)</title>
+    <link href="https://rainmakerho.github.io/2021/05/31/IE-Slow-Https/"/>
+    <id>https://rainmakerho.github.io/2021/05/31/IE-Slow-Https/</id>
+    <published>2021-05-31T01:16:24.000Z</published>
+    <updated>2021-05-31T01:58:08.840Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>有時常常會在 Server 上開啟 IE 測試網頁是否正常。<br>當開啟 IE 輸入 https 的網頁後，會發現跑了很久後才出現。<br>但如果用 Chrome 的話，一下子就出現了。</p><h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>如果 IE 先出來的網頁是 「此網站的安全性憑證有問題」，按下「繼續瀏覽此網站」才會真的進入網頁，如下圖所示，<br><img src="/2021/05/31/IE-Slow-Https/01.png" title="此網站的安全性憑證有問題"><br>假如使用 localhost or ip 走 FQDN的憑證，就會發生不一致的狀況。<br>而 IE 預設會去驗證憑證，如下，</p><p>所以，如果要避免被這種狀況，可先取消 IE 的驗證憑證選項，等測試完成後，再回復預設值，如下，<br>IE =&gt; 網際網路選項 =&gt; 進階 Tab =&gt; 安全性(區段)<br>取消以下2個勾選</p><ul><li style="list-style: none"><input type="checkbox"> 檢查伺服器憑證撤銷</li><li style="list-style: none"><input type="checkbox"> 檢查發行者的憑證是否被撤銷</li></ul><img src="/2021/05/31/IE-Slow-Https/02.png" title="驗證憑證選項"><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://stackoverflow.com/questions/31190231/first-https-connection-is-very-slow-in-internet-explorer-11-what-can-it-be" target="_blank" rel="noopener">First HTTPS connection is very slow in Internet Explorer 11, what can it be?</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;有時常常會在 Server 上開啟 IE 測試網頁是否正常。&lt;br&gt;當開啟 IE 輸入 https 的網頁後，會發現跑了很久後才出現。&lt;br
+      
+    
+    </summary>
+    
+    
+      <category term="IE" scheme="https://rainmakerho.github.io/tags/IE/"/>
+    
+      <category term="Slow" scheme="https://rainmakerho.github.io/tags/Slow/"/>
+    
+      <category term="Https" scheme="https://rainmakerho.github.io/tags/Https/"/>
+    
+      <category term="此網站的安全性憑證有問題" scheme="https://rainmakerho.github.io/tags/%E6%AD%A4%E7%B6%B2%E7%AB%99%E7%9A%84%E5%AE%89%E5%85%A8%E6%80%A7%E6%86%91%E8%AD%89%E6%9C%89%E5%95%8F%E9%A1%8C/"/>
+    
+      <category term="檢查伺服器憑證撤銷" scheme="https://rainmakerho.github.io/tags/%E6%AA%A2%E6%9F%A5%E4%BC%BA%E6%9C%8D%E5%99%A8%E6%86%91%E8%AD%89%E6%92%A4%E9%8A%B7/"/>
+    
+  </entry>
   
   <entry>
     <title>Checkmarx Path Traversal 的解法</title>
@@ -37,9 +68,9 @@
     
       <category term="Replace" scheme="https://rainmakerho.github.io/tags/Replace/"/>
     
-      <category term="Checkmarx" scheme="https://rainmakerho.github.io/tags/Checkmarx/"/>
-    
       <category term="Path Traversal" scheme="https://rainmakerho.github.io/tags/Path-Traversal/"/>
+    
+      <category term="Checkmarx" scheme="https://rainmakerho.github.io/tags/Checkmarx/"/>
     
   </entry>
   
@@ -624,37 +655,6 @@
       <category term="pattern matching" scheme="https://rainmakerho.github.io/tags/pattern-matching/"/>
     
       <category term="Immutable Class" scheme="https://rainmakerho.github.io/tags/Immutable-Class/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Refused to execute script ... because its MIME type (&#39;text/plain&#39;) is not executable, and strict MIME type checking is enabled</title>
-    <link href="https://rainmakerho.github.io/2020/12/23/pgAdmin-Chrome-MIME-type-not-executable/"/>
-    <id>https://rainmakerho.github.io/2020/12/23/pgAdmin-Chrome-MIME-type-not-executable/</id>
-    <published>2020-12-23T03:48:14.000Z</published>
-    <updated>2020-12-23T09:29:59.009Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>安裝完 PostgreSQL 後，透過 Browser 打開 PgAdmin 4 v4.8 時，發現畫面一直轉轉轉。<br>查看 Console 那有以下的錯誤，</p><blockquote><p>Refused to execute script … because its MIME type (‘text/plain’) is not executable, and strict MIME type checking is enabled</p></blockquote><img src="/2020/12/23/pgAdmin-Chrome-MIME-type-not-executable/01.png" title="pgAdmin4 v4.8 Error"><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>依 <a href="https://stackoverflow.com/questions/64974052/opening-pgadmin-4-in-chrome" target="_blank" rel="noopener">opening PgAdmin 4 in Chrome</a> 說明是因為機碼 <strong>HKEY_CLASSES_ROOT.js\Content Type</strong> 中，設定值為 <strong>text/plain</strong> 。<br><img src="/2020/12/23/pgAdmin-Chrome-MIME-type-not-executable/02.png" title="text/plain"></p><p>所以</p><blockquote><p>1.將值改成 <strong>text/javascript</strong> </p></blockquote><blockquote><p>2.重開機</p></blockquote><p>再開啟 pgAdmin4 就可以了哦!<br><img src="/2020/12/23/pgAdmin-Chrome-MIME-type-not-executable/03.png" title="ok"></p><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://stackoverflow.com/questions/64974052/opening-pgadmin-4-in-chrome" target="_blank" rel="noopener">opening PgAdmin 4 in Chrome</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;安裝完 PostgreSQL 後，透過 Browser 打開 PgAdmin 4 v4.8 時，發現畫面一直轉轉轉。&lt;br&gt;查看 Conso
-      
-    
-    </summary>
-    
-    
-      <category term="pgAdmin" scheme="https://rainmakerho.github.io/tags/pgAdmin/"/>
-    
-      <category term="MIME" scheme="https://rainmakerho.github.io/tags/MIME/"/>
-    
-      <category term="text/plain" scheme="https://rainmakerho.github.io/tags/text-plain/"/>
-    
-      <category term="not executable" scheme="https://rainmakerho.github.io/tags/not-executable/"/>
-    
-      <category term="strict MIME type" scheme="https://rainmakerho.github.io/tags/strict-MIME-type/"/>
     
   </entry>
   
