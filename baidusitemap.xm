@@ -4,6 +4,58 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2021/06/07/type-javascript-mime-error/</loc>
+    <lastmod>2021-06-07T08:39:42.073Z</lastmod>
+    <data>
+        <display>
+        <title>透過 ashx render javascript 內容居然無效?</title>
+        <pubTime>2021-06-07T08:00:00.000Z</pubTime>
+        
+        <tag>X-Content-Type-Options</tag>
+         
+        <tag>type/javascript</tag>
+         
+        <tag>text/javascript</tag>
+         
+        <tag>mime</tag>
+         
+        <tag>SEC7112</tag>
+         
+        <tag>ashx</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://rainmakerho.github.io/2019/10/24/2019032/</loc>
+    <lastmod>2021-06-03T06:06:29.342Z</lastmod>
+    <data>
+        <display>
+        <title>HTTP 錯誤 500.52 - URL Rewrite Module Error.</title>
+        <pubTime>2019-10-24T02:14:24.000Z</pubTime>
+        
+        <tag>RewriteModule</tag>
+         
+        <tag>2147942433</tag>
+         
+        <tag>overrideModeDefault=&quot;Deny&quot;</tag>
+         
+        <tag>allowedServerVariables</tag>
+         
+        <tag>The iisnode module is unable to start the node.exe process.</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2021/05/31/IE-Slow-Https/</loc>
     <lastmod>2021-05-31T01:58:08.840Z</lastmod>
     <data>
@@ -1384,29 +1436,6 @@
         <tag>SectionBreakOddPage</tag>
          
         <tag>PageNumber</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://rainmakerho.github.io/2019/10/24/2019032/</loc>
-    <lastmod>2020-07-08T09:31:18.155Z</lastmod>
-    <data>
-        <display>
-        <title>HTTP 錯誤 500.52 - URL Rewrite Module Error.</title>
-        <pubTime>2019-10-24T02:14:24.000Z</pubTime>
-        
-        <tag>RewriteModule</tag>
-         
-        <tag>2147942433</tag>
-         
-        <tag>overrideModeDefault=&quot;Deny&quot;</tag>
-         
-        <tag>allowedServerVariables</tag>
          
          
            
