@@ -5,7 +5,7 @@
     
   <url>
     <loc>https://rainmakerho.github.io/2021/06/07/type-javascript-mime-error/</loc>
-    <lastmod>2021-06-07T08:39:42.073Z</lastmod>
+    <lastmod>2021-06-07T08:47:11.129Z</lastmod>
     <data>
         <display>
         <title>透過 ashx render javascript 內容居然無效?</title>
