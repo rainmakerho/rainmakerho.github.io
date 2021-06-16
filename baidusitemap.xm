@@ -4,6 +4,39 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2021/06/16/CSP-script-src-unsafe-inline/</loc>
+    <lastmod>2021-06-16T11:38:32.408Z</lastmod>
+    <data>
+        <display>
+        <title>CSP script-src unsafe-inline</title>
+        <pubTime>2021-06-16T08:41:06.000Z</pubTime>
+        
+        <tag>csp</tag>
+         
+        <tag>Content Security Policy</tag>
+         
+        <tag>default-src</tag>
+         
+        <tag>unsafe-inline</tag>
+         
+        <tag>modernizr-2.8.3.js</tag>
+         
+        <tag>sha256-CwE3Bg0VYQOIdNAkbB/Btdkhul49qZuwgNCMPgNY5zw=</tag>
+         
+        <tag>sha256-MZKTI0Eg1N13tshpFaVW65co/LeICXq4hyVx6GWVlK0=</tag>
+         
+        <tag>sha256-LpfmXS+4ZtL2uPRZgkoR29Ghbxcfime/CsD/4w5VujE=</tag>
+         
+        <tag>sha256-YJO/M9OgDKEBRKGqp4Zd07dzlagbB+qmKgThG52u/Mk=</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2021/06/07/type-javascript-mime-error/</loc>
     <lastmod>2021-06-07T08:47:11.129Z</lastmod>
     <data>
@@ -1884,9 +1917,9 @@
         
         <tag>IIS</tag>
          
-        <tag>403</tag>
-         
         <tag>AppScan</tag>
+         
+        <tag>403</tag>
          
         <tag>偵測到隱藏目錄</tag>
          
@@ -2499,8 +2532,6 @@
         <title>使用 OpenTracing - Jaeger (AP整合)</title>
         <pubTime>2019-01-15T05:13:41.000Z</pubTime>
         
-        <tag>BFv4</tag>
-         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -2514,6 +2545,8 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
+         
+        <tag>BFv4</tag>
          
         <tag>NodeJS</tag>
          
@@ -2532,8 +2565,6 @@
         <title>使用 OpenTracing - Jaeger</title>
         <pubTime>2019-01-04T06:02:45.000Z</pubTime>
         
-        <tag>BFv4</tag>
-         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -2547,6 +2578,8 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
+         
+        <tag>BFv4</tag>
          
          
            
@@ -3378,11 +3411,11 @@
         <title>SmtpConnection.GetConnection NullReferenceException</title>
         <pubTime>2018-03-14T02:07:16.000Z</pubTime>
         
-        <tag>NullReferenceException</tag>
-         
         <tag>SmtpClient</tag>
          
         <tag>SmtpConnection.GetConnection</tag>
+         
+        <tag>NullReferenceException</tag>
          
         <tag>.net</tag>
          
@@ -3407,11 +3440,11 @@
         <title>System.NullReferenceException when Aspose.Pdf.License.SetLicense(String licenseName)</title>
         <pubTime>2018-03-13T06:54:05.000Z</pubTime>
         
+        <tag>NullReferenceException</tag>
+         
         <tag>Aspose</tag>
          
         <tag>SetLicense</tag>
-         
-        <tag>NullReferenceException</tag>
          
          
            
@@ -3449,9 +3482,9 @@
         <title>使用 Botframework 的 Bot 如何 Debug 到 BotBuilder Source ?</title>
         <pubTime>2018-02-01T01:47:18.000Z</pubTime>
         
-        <tag>C#</tag>
-         
         <tag>botframework</tag>
+         
+        <tag>C#</tag>
          
         <tag>BotBuilder</tag>
          

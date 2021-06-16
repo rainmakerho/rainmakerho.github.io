@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2021-06-07T08:47:11.129Z</updated>
+  <updated>2021-06-16T11:38:32.408Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,45 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CSP script-src unsafe-inline</title>
+    <link href="https://rainmakerho.github.io/2021/06/16/CSP-script-src-unsafe-inline/"/>
+    <id>https://rainmakerho.github.io/2021/06/16/CSP-script-src-unsafe-inline/</id>
+    <published>2021-06-16T08:41:06.000Z</published>
+    <updated>2021-06-16T11:38:32.408Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>同事詢問了一個 ZAP Scanning Report 中風險的問題， <strong>Medium script-src CSP: script-src unsafe-inline</strong><br>因為web.config中設定了 Content Security Policy 的值，如下，</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">system.webServer</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">httpProtocol</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">customHeaders</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">add</span> <span class="attr">name</span>=<span class="string">"Content-Security-Policy"</span> <span class="attr">value</span>=<span class="string">"default-src *; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline';"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">customHeaders</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">httpProtocol</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">system.webServer</span>&gt;</span></span><br></pre></td></tr></table></figure><h3 id="研究"><a href="#研究" class="headerlink" title="研究"></a>研究</h3><p>因為 Razor View 中會使用到 inline 的 Javascript ，所以在 CSP 的 script-src 會加上 <strong>unsafe-inline</strong> 。<br>但 OWASP ZAP 覺得它不安全。那怎麼辦呢?<br>當然就要將它拿掉啦~ 所以將它拿掉後，原本 inline 的 js 就不 work 了。<br>而在 Console 中有請我們改用 hash or nonce 的方式。</p><blockquote><p>Refused to execute inline script because it violates the following Content Security Policy directive: “script-src ‘self’ ‘unsafe-eval’”. Either the ‘unsafe-inline’ keyword, a hash (‘sha256-AVYwM+H46yBZAmewbW/qx/Gh1U6eAlJqAcgD+cPIMvk=’), or a nonce (‘nonce-…’) is required to enable inline execution.</p></blockquote><p>最簡單的方式就是使用 nonce- 的方式，<br>所以就在 CSP 中加入 ‘nonce-cm1vaw==’ 如下，<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">system.webServer</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">httpProtocol</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">customHeaders</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">add</span> <span class="attr">name</span>=<span class="string">"Content-Security-Policy"</span> <span class="attr">value</span>=<span class="string">"default-src *; script-src 'self' 'nonce-cm1vaw==' 'unsafe-eval'; style-src 'self' 'nonce-cm1vaw==';"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">customHeaders</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">httpProtocol</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">system.webServer</span>&gt;</span></span><br></pre></td></tr></table></figure></p><p>這樣設定後 in-line 就解決了，但 Console 在 modernizr-2.8.3.js:134 出現 4 個錯誤，</p><blockquote><p>modernizr-2.8.3.js:134 Refused to apply inline style because it violates the following Content Security Policy directive: “style-src ‘self’ ‘nonce-cm1vaw==’”. Either the ‘unsafe-inline’ keyword, a hash (‘sha256-CwE3Bg0VYQOIdNAkbB/Btdkhul49qZuwgNCMPgNY5zw=’), or a nonce (‘nonce-…’) is required to enable inline execution.<br>modernizr-2.8.3.js:134 Refused to apply inline style because it violates the following Content Security Policy directive: “style-src ‘self’ ‘nonce-cm1vaw==’”. Either the ‘unsafe-inline’ keyword, a hash (‘sha256-MZKTI0Eg1N13tshpFaVW65co/LeICXq4hyVx6GWVlK0=’), or a nonce (‘nonce-…’) is required to enable inline execution.<br>modernizr-2.8.3.js:134 Refused to apply inline style because it violates the following Content Security Policy directive: “style-src ‘self’ ‘nonce-cm1vaw==’”. Either the ‘unsafe-inline’ keyword, a hash (‘sha256-LpfmXS+4ZtL2uPRZgkoR29Ghbxcfime/CsD/4w5VujE=’), or a nonce (‘nonce-…’) is required to enable inline execution.<br>modernizr-2.8.3.js:134 Refused to apply inline style because it violates the following Content Security Policy directive: “style-src ‘self’ ‘nonce-cm1vaw==’”. Either the ‘unsafe-inline’ keyword, a hash (‘sha256-YJO/M9OgDKEBRKGqp4Zd07dzlagbB+qmKgThG52u/Mk=’), or a nonce (‘nonce-…’) is required to enable inline execution.</p></blockquote><p>查看了一下，因為 modernizr-2.8.3.js 有使用到 inline style，而剛才的設定中，把 style-src 中的 ‘unsafe-inline’ 也改成用 nonce-的方式，所以Browser就跟我們說，要加入 nonce or hash 的方式，它有4個，把那4個 sha256 加進去也可以，但要加4個。<br>所以還是使用 nonce- 的方式會比較容易，只是這樣要改 modernizr-2.8.3.js 。<br>在第 121 行，原本是<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">style = [<span class="string">'&amp;#173;'</span>,<span class="string">'&lt;style id="s'</span>, mod, <span class="string">'"&gt;'</span>, rule, <span class="string">'&lt;/style&gt;'</span>].join(<span class="string">''</span>);</span><br></pre></td></tr></table></figure></p><p>它是 inline 的 style ，所以要加上 nonce- ，改成如下，<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">style = [<span class="string">'&amp;#173;'</span>, <span class="string">'&lt;style id="s'</span>, mod, <span class="string">'" nonce=\"cm1vaw==\"&gt;'</span>, rule, <span class="string">'&lt;/style&gt;'</span>].join(<span class="string">''</span>);</span><br></pre></td></tr></table></figure></p><p>這樣就都 ok 了。</p><ul><li>註: 用了 nonce-value 後，就不需再加 strict-dynamic</li></ul><h3 id="回顧"><a href="#回顧" class="headerlink" title="回顧"></a>回顧</h3><p>在上面透過 nonce-value 來取代 unsafe-inline 解決資安Report的問題。<br>而 CSP 中的 default-src <em>; 是將全部的CSP集合設為 </em> ，可參考 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/default-src#no_inheritance_with_default-src" target="_blank" rel="noopener">CSP: default-src</a> 的範例說明。<br>筆者認為，如果對 CSP 的各項集合不是很熟悉的話，先一個一個來設定，例如，我一開始會先設定 frame-src ‘self’ 。<br>如果需要再針對 script-src or style-src 再加進去設定。<br>像有的黑箱工具會檢查有沒有 CSP ，這時設定 frame-src ‘self’ 就 PASS 了，也不會影響到原有其他的行為。<br>也可以將要設定的值，設定在 Content-Security-Policy-Report-Only 中，這樣 Console 會出現錯誤，但不會影響正常的執行。</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">system.webServer</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">httpProtocol</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">customHeaders</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">add</span> <span class="attr">name</span>=<span class="string">"Content-Security-Policy"</span> <span class="attr">value</span>=<span class="string">"frame-src 'self';"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">add</span> <span class="attr">name</span>=<span class="string">"Content-Security-Policy-Report-Only"</span> <span class="attr">value</span>=<span class="string">"default-src 'self';"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">customHeaders</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">httpProtocol</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">system.webServer</span>&gt;</span></span><br></pre></td></tr></table></figure><p>以上針對 CSP 的設定希望對大家有幫助，有任何問題也請跟我連絡討論。</p><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/default-src" target="_blank" rel="noopener">CSP: default-src</a><br><a href="https://content-security-policy.com/nonce/" target="_blank" rel="noopener">Using a nonce with CSP Script</a><br><a href="https://content-security-policy.com/examples/allow-inline-style/" target="_blank" rel="noopener">CSP Inline Styles</a><br><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy-Report-Only" target="_blank" rel="noopener">Content-Security-Policy-Report-Only</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;同事詢問了一個 ZAP Scanning Report 中風險的問題， &lt;strong&gt;Medium script-src CSP: scr
+      
+    
+    </summary>
+    
+    
+      <category term="csp" scheme="https://rainmakerho.github.io/tags/csp/"/>
+    
+      <category term="Content Security Policy" scheme="https://rainmakerho.github.io/tags/Content-Security-Policy/"/>
+    
+      <category term="default-src" scheme="https://rainmakerho.github.io/tags/default-src/"/>
+    
+      <category term="unsafe-inline" scheme="https://rainmakerho.github.io/tags/unsafe-inline/"/>
+    
+      <category term="modernizr-2.8.3.js" scheme="https://rainmakerho.github.io/tags/modernizr-2-8-3-js/"/>
+    
+      <category term="sha256-CwE3Bg0VYQOIdNAkbB/Btdkhul49qZuwgNCMPgNY5zw=" scheme="https://rainmakerho.github.io/tags/sha256-CwE3Bg0VYQOIdNAkbB-Btdkhul49qZuwgNCMPgNY5zw/"/>
+    
+      <category term="sha256-MZKTI0Eg1N13tshpFaVW65co/LeICXq4hyVx6GWVlK0=" scheme="https://rainmakerho.github.io/tags/sha256-MZKTI0Eg1N13tshpFaVW65co-LeICXq4hyVx6GWVlK0/"/>
+    
+      <category term="sha256-LpfmXS+4ZtL2uPRZgkoR29Ghbxcfime/CsD/4w5VujE=" scheme="https://rainmakerho.github.io/tags/sha256-LpfmXS-4ZtL2uPRZgkoR29Ghbxcfime-CsD-4w5VujE/"/>
+    
+      <category term="sha256-YJO/M9OgDKEBRKGqp4Zd07dzlagbB+qmKgThG52u/Mk=" scheme="https://rainmakerho.github.io/tags/sha256-YJO-M9OgDKEBRKGqp4Zd07dzlagbB-qmKgThG52u-Mk/"/>
+    
+  </entry>
   
   <entry>
     <title>透過 ashx render javascript 內容居然無效?</title>
@@ -624,39 +663,6 @@
       <category term="Install" scheme="https://rainmakerho.github.io/tags/Install/"/>
     
       <category term="manifest" scheme="https://rainmakerho.github.io/tags/manifest/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Azure Web API Call PUT, DELETE 會回 404 的錯誤</title>
-    <link href="https://rainmakerho.github.io/2021/01/22/Azure-WebApp-PUT-DELETE-400/"/>
-    <id>https://rainmakerho.github.io/2021/01/22/Azure-WebApp-PUT-DELETE-400/</id>
-    <published>2021-01-22T02:35:30.000Z</published>
-    <updated>2021-01-25T10:26:46.985Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近將 ASP.NET Core 的程式分佈上 Azure Web APP 上，<br>在測試時，在打 GET, POST 都沒問題，<br>但在呼叫 DELETE 時，卻會回 404 的錯誤。</p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>因為我選擇的部署平台是 Windows IIS ，<br>似乎是因為 IIS WebDAV 的問題。<br>所以在 web.config 那需要將它 Remove 掉。<br>所以可以直接在 Portal.Azure  上，透過 App Service Editor 來直接調整 web.config。<br><img src="/2021/01/22/Azure-WebApp-PUT-DELETE-400/01.png" title="Open App Service Editor"><br><img src="/2021/01/22/Azure-WebApp-PUT-DELETE-400/02.png" title="Remove WebDAV Module and Handler"><br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">location</span> <span class="attr">path</span>=<span class="string">"."</span> <span class="attr">inheritInChildApplications</span>=<span class="string">"false"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">system.webServer</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">modules</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!--add remove WebDAV Module--&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">remove</span> <span class="attr">name</span>=<span class="string">"WebDAVModule"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">modules</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">handlers</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!--add remove WebDAV handler --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">remove</span> <span class="attr">name</span>=<span class="string">"WebDAV"</span> /&gt;</span></span><br><span class="line">                <span class="comment">&lt;!-- other handlers ... --&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">handlers</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">aspNetCore</span> <span class="attr">processPath</span>=<span class="string">"dotnet"</span> <span class="attr">arguments</span>=<span class="string">".\你的.dll"</span> <span class="attr">stdoutLogEnabled</span>=<span class="string">"false"</span> <span class="attr">stdoutLogFile</span>=<span class="string">"\\?\%home%\LogFiles\stdout"</span> <span class="attr">hostingModel</span>=<span class="string">"inprocess"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">system.webServer</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">location</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure></p><p>註:感謝 Garry江 的幫忙 ^_^ </p><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://stackoverflow.com/questions/48188895/asp-net-core-with-iis-http-verb-not-allowed" target="_blank" rel="noopener">ASP.NET Core with IIS - HTTP Verb Not Allowed</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;最近將 ASP.NET Core 的程式分佈上 Azure Web APP 上，&lt;br&gt;在測試時，在打 GET, POST 都沒問題，&lt;br
-      
-    
-    </summary>
-    
-    
-      <category term="IIS" scheme="https://rainmakerho.github.io/tags/IIS/"/>
-    
-      <category term="404" scheme="https://rainmakerho.github.io/tags/404/"/>
-    
-      <category term="Azure" scheme="https://rainmakerho.github.io/tags/Azure/"/>
-    
-      <category term="WebAPI" scheme="https://rainmakerho.github.io/tags/WebAPI/"/>
-    
-      <category term="PUT" scheme="https://rainmakerho.github.io/tags/PUT/"/>
-    
-      <category term="DELETE" scheme="https://rainmakerho.github.io/tags/DELETE/"/>
     
   </entry>
   
