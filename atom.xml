@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2021-06-16T11:38:32.408Z</updated>
+  <updated>2021-06-18T05:55:32.058Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>在應用程式層級之外使用註冊為 allowDefinition=MachineToApplication 的區段發生錯誤，錯誤的原因可能是虛擬目錄尚未在 IIS 中設定為應用程式。</title>
+    <link href="https://rainmakerho.github.io/2021/06/18/web-config-allowDefinition-MachineToApplication-Error/"/>
+    <id>https://rainmakerho.github.io/2021/06/18/web-config-allowDefinition-MachineToApplication-Error/</id>
+    <published>2021-06-18T05:23:40.000Z</published>
+    <updated>2021-06-18T05:55:32.058Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>同事詢問透過 Visual Studio 建置網站時，出現了 <strong>allowDefinition=MachineToApplication</strong> 的錯誤</p><blockquote><p>在應用程式層級之外使用註冊為 allowDefinition=MachineToApplication 的區段發生錯誤，錯誤的原因可能是虛擬目錄尚未在 IIS 中設定為應用程式。<br>It is an error to use a section registered as allowDefinition=’MachineToApplication’ beyond application level.</p></blockquote><img src="/2021/06/18/web-config-allowDefinition-MachineToApplication-Error/01.png" title="web.config"><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>因為 system.web 下的 sessionState 區段的確是需要在 應用程式的目錄之下，或許那個 web.config 並不在專案的目錄之下，而是在專案的子目錄之中。<br>結果再看一下上面的圖，上面居然有2個 web.config 檔案。<br>請同事將 mouse 移到錯誤的那個 web.config tab 上，果然那個 web.config 不在專案的 根目錄之下。<br>應該是不小心 Copy 進去的，請同事刪掉重建問題就解決了哦! </p><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://stackoverflow.com/questions/16307112/web-config-allowdefinition-machinetoapplication-error/16307412" target="_blank" rel="noopener">web.config allowDefinition=MachineToApplication error</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;同事詢問透過 Visual Studio 建置網站時，出現了 &lt;strong&gt;allowDefinition=MachineToApplic
+      
+    
+    </summary>
+    
+    
+      <category term="IIS" scheme="https://rainmakerho.github.io/tags/IIS/"/>
+    
+      <category term="web.config" scheme="https://rainmakerho.github.io/tags/web-config/"/>
+    
+      <category term="allowDefinition=MachineToApplication error" scheme="https://rainmakerho.github.io/tags/allowDefinition-MachineToApplication-error/"/>
+    
+      <category term="sessionState" scheme="https://rainmakerho.github.io/tags/sessionState/"/>
+    
+  </entry>
   
   <entry>
     <title>CSP script-src unsafe-inline</title>
@@ -632,37 +661,6 @@
       <category term="VAPID" scheme="https://rainmakerho.github.io/tags/VAPID/"/>
     
       <category term="Voluntary Application Server Identification" scheme="https://rainmakerho.github.io/tags/Voluntary-Application-Server-Identification/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Progressive Web Application (PWA):Install App</title>
-    <link href="https://rainmakerho.github.io/2021/01/25/Progressive-Web-Application-Install/"/>
-    <id>https://rainmakerho.github.io/2021/01/25/Progressive-Web-Application-Install/</id>
-    <published>2021-01-25T08:43:26.000Z</published>
-    <updated>2021-01-26T03:17:02.712Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>Progressive Web Application (PWA) 可以讓使用者連到該網站後，進行安裝。<br>要有什麼條件才可以讓你的 PWA 程式是可以被安裝的呢?</p><h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><h4 id="html-head-設定"><a href="#html-head-設定" class="headerlink" title="html head 設定"></a>html head 設定</h4><p>在 html 的 head 中要設定 manifest、apple-touch-icon 等資訊，如下，<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"manifest"</span> <span class="attr">href</span>=<span class="string">"manifest.json"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"preload"</span> <span class="attr">href</span>=<span class="string">"manifest.json"</span> <span class="attr">as</span>=<span class="string">"manifest"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"apple-touch-icon"</span> <span class="attr">href</span>=<span class="string">"assets/apple-icon-180.jpg"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"preload"</span> <span class="attr">href</span>=<span class="string">"assets/apple-icon-180.jpg"</span> <span class="attr">as</span>=<span class="string">"image"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"apple-mobile-web-app-capable"</span> <span class="attr">content</span>=<span class="string">"yes"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">async</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/pwacompat"</span> <span class="attr">crossorigin</span>=<span class="string">"anonymous"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p><h4 id="serviceWorker"><a href="#serviceWorker" class="headerlink" title="serviceWorker"></a>serviceWorker</h4><p>serviceWorker js file 中要監聽 fetch event，<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">self.addEventListener(<span class="string">'fetch'</span>, () =&gt; &#123;</span><br><span class="line"> <span class="comment">// …</span></span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p><h4 id="manifest-json"><a href="#manifest-json" class="headerlink" title="manifest.json"></a>manifest.json</h4><p>簡單的 manifest.json 設定如下<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"><span class="attr">"name"</span>: <span class="string">"GSS PWA Sample"</span>,</span><br><span class="line"><span class="attr">"short_name"</span>: <span class="string">"GSSPwaSample"</span>,</span><br><span class="line"><span class="attr">"description"</span>: <span class="string">"GSS Progressive Web Apps - Sample"</span>,</span><br><span class="line"><span class="attr">"start_url"</span>: <span class="string">"/"</span>,</span><br><span class="line"><span class="attr">"display"</span>: <span class="string">"standalone"</span>,</span><br><span class="line"><span class="attr">"orientation"</span>: <span class="string">"portrait"</span>,</span><br><span class="line"><span class="attr">"theme_color"</span>: <span class="string">"#417505"</span>,</span><br><span class="line"><span class="attr">"background_color"</span>: <span class="string">"#7ed321"</span>,</span><br><span class="line"><span class="attr">"icons"</span>: [</span><br><span class="line">  &#123;</span><br><span class="line"><span class="attr">"src"</span>: <span class="string">"assets/manifest-icon-192.png"</span>,</span><br><span class="line"><span class="attr">"sizes"</span>: <span class="string">"192x192"</span>,</span><br><span class="line"><span class="attr">"type"</span>: <span class="string">"image/png"</span>,</span><br><span class="line"><span class="attr">"purpose"</span>: <span class="string">"maskable any"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line"><span class="attr">"src"</span>: <span class="string">"assets/manifest-icon-512.png"</span>,</span><br><span class="line"><span class="attr">"sizes"</span>: <span class="string">"512x512"</span>,</span><br><span class="line"><span class="attr">"type"</span>: <span class="string">"image/png"</span>,</span><br><span class="line"><span class="attr">"purpose"</span>: <span class="string">"maskable any"</span></span><br><span class="line">  &#125;</span><br><span class="line">]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>當然，icons 所在的圖檔也是必需存在的哦。</p><p>開啟 Chrome 的開發者工具，點選 Application ，再點左上方的 Manifest 。<br>如果看到沒有任何錯誤會警告，就表示這個 Web App 可以被安裝，如下圖，<br><img src="/2021/01/25/Progressive-Web-Application-Install/01.png" title="Manifest"></p><h4 id="透過-Browser-安裝的方式"><a href="#透過-Browser-安裝的方式" class="headerlink" title="透過 Browser 安裝的方式"></a>透過 Browser 安裝的方式</h4><p>而透過 Browser 的安裝方式有 4 種。<br>1.在 Browser 網址列上按上 +圈 ，如上面的圖。<br>2.手機透過 Browser 會顯示安裝的畫面<br><img src="/2021/01/25/Progressive-Web-Application-Install/02.png" title="Manifest"></p><p>3.在 Browser 右上方 按下點點點後，選擇 安裝「你的AP」…<br><img src="/2021/01/25/Progressive-Web-Application-Install/03.png" title="Manifest"></p><p>4.畫面上的 Button ，按下後，顯示 安裝「你的AP」…<br><img src="/2021/01/25/Progressive-Web-Application-Install/04.png" title="Manifest"></p><p>要如何讓使用者按下Button後，出現安裝 App 呢?<br>1.在畫面上建立 Button<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"btnInstall"</span> <span class="attr">class</span>=<span class="string">"btn btn-success"</span>&gt;</span>Install App<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure></p><p>2.監聽 beforeinstallprompt ，並將 event 物件存下來<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> installPromptEvent;</span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'beforeinstallprompt'</span>, event =&gt; &#123;</span><br><span class="line">    <span class="comment">// we prevent a banner or infobar to appear</span></span><br><span class="line">    event.preventDefault();</span><br><span class="line">    <span class="comment">// we save the event for later usage</span></span><br><span class="line">    installPromptEvent = event</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p><p>3.Button click 事件時，呼叫 beforeinstallprompt event 的 prompt method<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> installAppButton = <span class="built_in">document</span>.getElementById(<span class="string">"btnInstall"</span>);</span><br><span class="line">installAppButton.addEventListener(<span class="string">'click'</span>, event =&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (installPromptEvent) &#123;</span><br><span class="line">        installPromptEvent.prompt();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// Prompt not available: Display fallback instructions</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p><p>註:beforeinstallprompt event 只在 Chromium-based browser 有效</p><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://tomitm.github.io/appmanifest/" target="_blank" rel="noopener">Web App Manifest Generator</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;Progressive Web Application (PWA) 可以讓使用者連到該網站後，進行安裝。&lt;br&gt;要有什麼條件才可以讓你的 P
-      
-    
-    </summary>
-    
-    
-      <category term="Service Worker" scheme="https://rainmakerho.github.io/tags/Service-Worker/"/>
-    
-      <category term="Progressive Web Application" scheme="https://rainmakerho.github.io/tags/Progressive-Web-Application/"/>
-    
-      <category term="PWA" scheme="https://rainmakerho.github.io/tags/PWA/"/>
-    
-      <category term="Install" scheme="https://rainmakerho.github.io/tags/Install/"/>
-    
-      <category term="manifest" scheme="https://rainmakerho.github.io/tags/manifest/"/>
     
   </entry>
   

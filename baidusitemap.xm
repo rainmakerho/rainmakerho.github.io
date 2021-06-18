@@ -4,6 +4,29 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2021/06/18/web-config-allowDefinition-MachineToApplication-Error/</loc>
+    <lastmod>2021-06-18T05:55:32.058Z</lastmod>
+    <data>
+        <display>
+        <title>在應用程式層級之外使用註冊為 allowDefinition=MachineToApplication 的區段發生錯誤，錯誤的原因可能是虛擬目錄尚未在 IIS 中設定為應用程式。</title>
+        <pubTime>2021-06-18T05:23:40.000Z</pubTime>
+        
+        <tag>IIS</tag>
+         
+        <tag>web.config</tag>
+         
+        <tag>allowDefinition=MachineToApplication error</tag>
+         
+        <tag>sessionState</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2021/06/16/CSP-script-src-unsafe-inline/</loc>
     <lastmod>2021-06-16T11:38:32.408Z</lastmod>
     <data>
@@ -1917,9 +1940,9 @@
         
         <tag>IIS</tag>
          
-        <tag>AppScan</tag>
-         
         <tag>403</tag>
+         
+        <tag>AppScan</tag>
          
         <tag>偵測到隱藏目錄</tag>
          
@@ -2532,6 +2555,8 @@
         <title>使用 OpenTracing - Jaeger (AP整合)</title>
         <pubTime>2019-01-15T05:13:41.000Z</pubTime>
         
+        <tag>BFv4</tag>
+         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -2545,8 +2570,6 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
-         
-        <tag>BFv4</tag>
          
         <tag>NodeJS</tag>
          
@@ -2565,6 +2588,8 @@
         <title>使用 OpenTracing - Jaeger</title>
         <pubTime>2019-01-04T06:02:45.000Z</pubTime>
         
+        <tag>BFv4</tag>
+         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -2578,8 +2603,6 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
-         
-        <tag>BFv4</tag>
          
          
            
@@ -3411,11 +3434,11 @@
         <title>SmtpConnection.GetConnection NullReferenceException</title>
         <pubTime>2018-03-14T02:07:16.000Z</pubTime>
         
+        <tag>NullReferenceException</tag>
+         
         <tag>SmtpClient</tag>
          
         <tag>SmtpConnection.GetConnection</tag>
-         
-        <tag>NullReferenceException</tag>
          
         <tag>.net</tag>
          
@@ -3440,11 +3463,11 @@
         <title>System.NullReferenceException when Aspose.Pdf.License.SetLicense(String licenseName)</title>
         <pubTime>2018-03-13T06:54:05.000Z</pubTime>
         
-        <tag>NullReferenceException</tag>
-         
         <tag>Aspose</tag>
          
         <tag>SetLicense</tag>
+         
+        <tag>NullReferenceException</tag>
          
          
            
