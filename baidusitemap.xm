@@ -4,6 +4,27 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2021/06/23/Add-Migration-VS-EFCore/</loc>
+    <lastmod>2021-06-23T11:14:59.596Z</lastmod>
+    <data>
+        <display>
+        <title>無法辨識 'Add-Migration' 詞彙是否為 Cmdlet、函數、指令檔或可執行程式的名稱。請檢查名稱拼字是否正確，如果包含路徑的話，請確認路徑是否正確，然後再試一次。</title>
+        <pubTime>2021-06-23T11:01:05.000Z</pubTime>
+        
+        <tag>EntityFrameworkCore</tag>
+         
+        <tag>Add-Migration</tag>
+         
+        <tag>Microsoft.EntityFrameworkCore.Tools</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2021/06/18/web-config-allowDefinition-MachineToApplication-Error/</loc>
     <lastmod>2021-06-18T05:55:32.058Z</lastmod>
     <data>
