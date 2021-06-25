@@ -4,6 +4,29 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2021/06/25/Checkmarx-Client-Side-Only-Validation/</loc>
+    <lastmod>2021-06-25T03:38:19.166Z</lastmod>
+    <data>
+        <display>
+        <title>Checkmarx Client_Side_Only_Validation</title>
+        <pubTime>2021-06-25T03:24:14.000Z</pubTime>
+        
+        <tag>Checkmarx</tag>
+         
+        <tag>Client_Side_Only_Validation</tag>
+         
+        <tag>Page.IsValid</tag>
+         
+        <tag>Page.Validate()</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2021/06/23/Add-Migration-VS-EFCore/</loc>
     <lastmod>2021-06-23T11:14:59.596Z</lastmod>
     <data>
@@ -192,9 +215,9 @@
         
         <tag>Replace</tag>
          
-        <tag>Path Traversal</tag>
-         
         <tag>Checkmarx</tag>
+         
+        <tag>Path Traversal</tag>
          
          
            
@@ -3599,13 +3622,13 @@
         <title>線上客服 + BOT 之路</title>
         <pubTime>2018-01-25T08:10:47.000Z</pubTime>
         
+        <tag>chatbot</tag>
+         
         <tag>QnA Maker</tag>
          
         <tag>LUIS</tag>
          
         <tag>Vital ESP</tag>
-         
-        <tag>chatbot</tag>
          
         <tag>FAQ</tag>
          
