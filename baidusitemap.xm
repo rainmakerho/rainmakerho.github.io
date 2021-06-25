@@ -4,8 +4,43 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2021/06/16/CSP-script-src-unsafe-inline/</loc>
+    <lastmod>2021-06-25T08:15:53.414Z</lastmod>
+    <data>
+        <display>
+        <title>CSP script-src unsafe-inline</title>
+        <pubTime>2021-06-16T08:41:06.000Z</pubTime>
+        
+        <tag>csp</tag>
+         
+        <tag>Content Security Policy</tag>
+         
+        <tag>default-src</tag>
+         
+        <tag>unsafe-inline</tag>
+         
+        <tag>modernizr-2.8.3.js</tag>
+         
+        <tag>sha256-CwE3Bg0VYQOIdNAkbB/Btdkhul49qZuwgNCMPgNY5zw=</tag>
+         
+        <tag>sha256-MZKTI0Eg1N13tshpFaVW65co/LeICXq4hyVx6GWVlK0=</tag>
+         
+        <tag>sha256-LpfmXS+4ZtL2uPRZgkoR29Ghbxcfime/CsD/4w5VujE=</tag>
+         
+        <tag>sha256-YJO/M9OgDKEBRKGqp4Zd07dzlagbB+qmKgThG52u/Mk=</tag>
+         
+        <tag>Missing Content Security Policy</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2021/06/25/Checkmarx-Client-Side-Only-Validation/</loc>
-    <lastmod>2021-06-25T03:38:19.166Z</lastmod>
+    <lastmod>2021-06-25T07:21:09.836Z</lastmod>
     <data>
         <display>
         <title>Checkmarx Client_Side_Only_Validation</title>
@@ -62,39 +97,6 @@
         <tag>allowDefinition=MachineToApplication error</tag>
          
         <tag>sessionState</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://rainmakerho.github.io/2021/06/16/CSP-script-src-unsafe-inline/</loc>
-    <lastmod>2021-06-16T11:38:32.408Z</lastmod>
-    <data>
-        <display>
-        <title>CSP script-src unsafe-inline</title>
-        <pubTime>2021-06-16T08:41:06.000Z</pubTime>
-        
-        <tag>csp</tag>
-         
-        <tag>Content Security Policy</tag>
-         
-        <tag>default-src</tag>
-         
-        <tag>unsafe-inline</tag>
-         
-        <tag>modernizr-2.8.3.js</tag>
-         
-        <tag>sha256-CwE3Bg0VYQOIdNAkbB/Btdkhul49qZuwgNCMPgNY5zw=</tag>
-         
-        <tag>sha256-MZKTI0Eg1N13tshpFaVW65co/LeICXq4hyVx6GWVlK0=</tag>
-         
-        <tag>sha256-LpfmXS+4ZtL2uPRZgkoR29Ghbxcfime/CsD/4w5VujE=</tag>
-         
-        <tag>sha256-YJO/M9OgDKEBRKGqp4Zd07dzlagbB+qmKgThG52u/Mk=</tag>
          
          
            
@@ -1575,11 +1577,11 @@
         <title>透過 Content-Security-Policy 修正 Mixed Content Link 問題</title>
         <pubTime>2020-05-19T08:44:09.000Z</pubTime>
         
-        <tag>Content-Security-Policy</tag>
-         
         <tag>Mixed Content</tag>
          
         <tag>CSP</tag>
+         
+        <tag>Content-Security-Policy</tag>
          
         <tag>upgrade-insecure-requests</tag>
          
@@ -1598,9 +1600,9 @@
         <title>ASP.NET Security Headers</title>
         <pubTime>2020-05-12T01:29:40.000Z</pubTime>
         
-        <tag>X-XSS-Protection</tag>
-         
         <tag>Content-Security-Policy</tag>
+         
+        <tag>X-XSS-Protection</tag>
          
         <tag>X-Frame-Options</tag>
          
@@ -2599,8 +2601,6 @@
         <title>使用 OpenTracing - Jaeger (AP整合)</title>
         <pubTime>2019-01-15T05:13:41.000Z</pubTime>
         
-        <tag>BFv4</tag>
-         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -2614,6 +2614,8 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
+         
+        <tag>BFv4</tag>
          
         <tag>NodeJS</tag>
          
@@ -2632,8 +2634,6 @@
         <title>使用 OpenTracing - Jaeger</title>
         <pubTime>2019-01-04T06:02:45.000Z</pubTime>
         
-        <tag>BFv4</tag>
-         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -2647,6 +2647,8 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
+         
+        <tag>BFv4</tag>
          
          
            
