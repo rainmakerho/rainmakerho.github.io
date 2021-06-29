@@ -4,8 +4,39 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2021/06/29/BC30201-Expression-expected/</loc>
+    <lastmod>2021-06-29T06:24:56.953Z</lastmod>
+    <data>
+        <display>
+        <title>BC30201: 必須有運算式。 BC30201: Expression expected</title>
+        <pubTime>2021-06-29T05:16:18.000Z</pubTime>
+        
+        <tag>VB.NET</tag>
+         
+        <tag>Visual Basic</tag>
+         
+        <tag>BC30201</tag>
+         
+        <tag>BC30035</tag>
+         
+        <tag>BC30157</tag>
+         
+        <tag>BC30205</tag>
+         
+        <tag>system.codedom</tag>
+         
+        <tag>compiler</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2021/06/16/CSP-script-src-unsafe-inline/</loc>
-    <lastmod>2021-06-25T08:15:53.414Z</lastmod>
+    <lastmod>2021-06-26T04:52:34.735Z</lastmod>
     <data>
         <display>
         <title>CSP script-src unsafe-inline</title>
@@ -1577,11 +1608,11 @@
         <title>透過 Content-Security-Policy 修正 Mixed Content Link 問題</title>
         <pubTime>2020-05-19T08:44:09.000Z</pubTime>
         
+        <tag>Content-Security-Policy</tag>
+         
         <tag>Mixed Content</tag>
          
         <tag>CSP</tag>
-         
-        <tag>Content-Security-Policy</tag>
          
         <tag>upgrade-insecure-requests</tag>
          
@@ -1600,9 +1631,9 @@
         <title>ASP.NET Security Headers</title>
         <pubTime>2020-05-12T01:29:40.000Z</pubTime>
         
-        <tag>Content-Security-Policy</tag>
-         
         <tag>X-XSS-Protection</tag>
+         
+        <tag>Content-Security-Policy</tag>
          
         <tag>X-Frame-Options</tag>
          
@@ -2601,6 +2632,8 @@
         <title>使用 OpenTracing - Jaeger (AP整合)</title>
         <pubTime>2019-01-15T05:13:41.000Z</pubTime>
         
+        <tag>BFv4</tag>
+         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -2614,8 +2647,6 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
-         
-        <tag>BFv4</tag>
          
         <tag>NodeJS</tag>
          
@@ -2634,6 +2665,8 @@
         <title>使用 OpenTracing - Jaeger</title>
         <pubTime>2019-01-04T06:02:45.000Z</pubTime>
         
+        <tag>BFv4</tag>
+         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -2647,8 +2680,6 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
-         
-        <tag>BFv4</tag>
          
          
            
@@ -2951,9 +2982,9 @@
         <title>.NET Exception Handling</title>
         <pubTime>2018-08-21T08:31:47.000Z</pubTime>
         
-        <tag>c#</tag>
-         
         <tag>.net</tag>
+         
+        <tag>c#</tag>
          
         <tag>exception</tag>
          
@@ -3480,11 +3511,11 @@
         <title>SmtpConnection.GetConnection NullReferenceException</title>
         <pubTime>2018-03-14T02:07:16.000Z</pubTime>
         
-        <tag>NullReferenceException</tag>
-         
         <tag>SmtpClient</tag>
          
         <tag>SmtpConnection.GetConnection</tag>
+         
+        <tag>NullReferenceException</tag>
          
         <tag>.net</tag>
          
@@ -3509,11 +3540,11 @@
         <title>System.NullReferenceException when Aspose.Pdf.License.SetLicense(String licenseName)</title>
         <pubTime>2018-03-13T06:54:05.000Z</pubTime>
         
+        <tag>NullReferenceException</tag>
+         
         <tag>Aspose</tag>
          
         <tag>SetLicense</tag>
-         
-        <tag>NullReferenceException</tag>
          
          
            
@@ -3624,13 +3655,13 @@
         <title>線上客服 + BOT 之路</title>
         <pubTime>2018-01-25T08:10:47.000Z</pubTime>
         
-        <tag>chatbot</tag>
-         
         <tag>QnA Maker</tag>
          
         <tag>LUIS</tag>
          
         <tag>Vital ESP</tag>
+         
+        <tag>chatbot</tag>
          
         <tag>FAQ</tag>
          
