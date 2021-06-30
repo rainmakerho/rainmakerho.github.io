@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2021-06-29T06:24:56.953Z</updated>
+  <updated>2021-06-30T10:27:45.299Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Checkmarx Dangerous_File_Upload</title>
+    <link href="https://rainmakerho.github.io/2021/06/30/Checkmarx-Dangerous-File-Upload/"/>
+    <id>https://rainmakerho.github.io/2021/06/30/Checkmarx-Dangerous-File-Upload/</id>
+    <published>2021-06-30T10:05:40.000Z</published>
+    <updated>2021-06-30T10:27:45.299Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近系統透過 Checkmarx 掃描時，有掃出 Dangerous_File_Upload 的 issue。<br>主要是針對上傳檔案時，要對它進行檔案的驗證。例如，</p><ol><li>將檔案存到資料庫或是檔案管理系統。</li><li>如果要存檔的話，不可以存到 Web 應用程式的範圍之外，例如應用程式是在 D:\RMWeb ，不能將檔案存到 D:\OMGDIR 的目錄。</li><li>該檔案是不能在 Server 端執行的檔案，例如 ASPX, PHP … </li><li>驗證上傳檔案的允許附檔名(例如，.GIF, .JPG, .PNG …)，必要時要驗證內容是否與允許的附檔名是否一致，要檢查附檔名是否一致可參考 <a href="https://github.com/rainmakerho/FileExtensionValidation" target="_blank" rel="noopener">FileExtensionValidation</a>。</li></ol><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>從上面的說明中，檔案要透過 <a href="https://rainmakerho.github.io/2021/05/21/Path-Traversal-Vulnerability-Checkmarx/">Checkmarx Path Traversal 的解法</a> 的處理，再參考上面的說明來處理。</p><p>如果呼叫上傳檔案物件的 <strong>PostedFile.SaveAs</strong> 表示是要存到 Local ，這時，一定要符合上面第二點。<br>所以檔案路徑一定要透過 <strong>Server.MapPath</strong> 才會 Pass 哦!</p><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://rainmakerho.github.io/2021/05/21/Path-Traversal-Vulnerability-Checkmarx/">Checkmarx Path Traversal 的解法</a><br><a href="https://github.com/rainmakerho/FileExtensionValidation" target="_blank" rel="noopener">FileExtensionValidation</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;最近系統透過 Checkmarx 掃描時，有掃出 Dangerous_File_Upload 的 issue。&lt;br&gt;主要是針對上傳檔案時，
+      
+    
+    </summary>
+    
+    
+      <category term="checkmarx" scheme="https://rainmakerho.github.io/tags/checkmarx/"/>
+    
+      <category term="Dangerous_File_Upload" scheme="https://rainmakerho.github.io/tags/Dangerous-File-Upload/"/>
+    
+      <category term="PostedFile.SaveAs" scheme="https://rainmakerho.github.io/tags/PostedFile-SaveAs/"/>
+    
+      <category term="Server.MapPath" scheme="https://rainmakerho.github.io/tags/Server-MapPath/"/>
+    
+  </entry>
   
   <entry>
     <title>BC30201: 必須有運算式。 BC30201: Expression expected</title>
@@ -614,41 +643,6 @@
       <category term="select" scheme="https://rainmakerho.github.io/tags/select/"/>
     
       <category term="FOR XML PATH" scheme="https://rainmakerho.github.io/tags/FOR-XML-PATH/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>將 Microsoft SQL Server Database 資料轉到 PostgreSQL - BCP/Import</title>
-    <link href="https://rainmakerho.github.io/2021/02/05/Migrate-MS-SQL-to-PostgreSQL-bcp/"/>
-    <id>https://rainmakerho.github.io/2021/02/05/Migrate-MS-SQL-to-PostgreSQL-bcp/</id>
-    <published>2021-02-05T08:13:14.000Z</published>
-    <updated>2021-02-09T06:05:31.269Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>以下筆者將介紹如何將 Microsoft SQL Server Database 資料轉到 PostgreSQL Database。<br>環境 : Windows Server 2019, Microsoft SQL Server 2019, PostgreSQL V.13<br>使用的方式是先將 MSSQL資料表 建立到 PostgreSQL ，<br>再透過 BCP 將資料轉成 csv 後，再 Import 到 PostgreSQL</p><h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><p>準備資料請參考 <a href="https://rainmakerho.github.io/2021/02/04/Migrate-MS-SQL-to-PostgreSQL-1/">將 Microsoft SQL Server Database 資料轉到 PostgreSQL - SSMS Export</a> </p><h4 id="轉出-Table-Schema"><a href="#轉出-Table-Schema" class="headerlink" title="轉出 Table Schema"></a>轉出 Table Schema</h4><p>透過 SSMS 將資料表 Schema 轉成 Script， 在 ms2postgre1 DB 上按右鍵選擇 <strong>工作-&gt;產生指令碼(E)</strong><br><img src="/2021/02/05/Migrate-MS-SQL-to-PostgreSQL-bcp/01.png" title="產生指令碼(E)"></p><p>先產生資料表 Schema<br><img src="/2021/02/05/Migrate-MS-SQL-to-PostgreSQL-bcp/02.png" title="選Tables"></p><p>只產生 Schema (它還可以產生資料， Schema &amp; Data)，我們只需要 Schema<br><img src="/2021/02/05/Migrate-MS-SQL-to-PostgreSQL-bcp/03.png" title="Schema Only"></p><p>再來就將它存成檔案(msschema.sql)<br><img src="/2021/02/05/Migrate-MS-SQL-to-PostgreSQL-bcp/04.png" title="Save Schema File"></p><h4 id="轉成-PostgreSQL-Table-Schema"><a href="#轉成-PostgreSQL-Table-Schema" class="headerlink" title="轉成 PostgreSQL Table Schema"></a>轉成 PostgreSQL Table Schema</h4><p>再來要透過 <a href="https://github.com/dalibo/sqlserver2pgsql" target="_blank" rel="noopener">sqlserver2pgsql</a> 來將 MSSQL Table Schema Script 轉成 PostgreSQL 的 Table Schema Script。<br>因為它需要 Perl ，所以請 <a href="https://www.perl.org/get.html" target="_blank" rel="noopener">Download Perl </a> 並安裝它。<br>開啟 Command 視窗執行 sqlserver2pgsql<br><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">perl sqlserver2pgsql.pl -f msschema.sql -b ob_script.sql -a oa_script.sql -u ou_script.sql</span><br></pre></td></tr></table></figure></p><img src="/2021/02/05/Migrate-MS-SQL-to-PostgreSQL-bcp/05.png" title="sqlserver2pgsql.pl"><p>執行完成後，會產生 3 個script 檔，可以查看檔案的內容<br>ob_script 是建立 table schema<br>oa_script 是建立 table 的 primary key<br>最後就是 check 一下 ou_script 的內容<br>因為這次只是建立 table ，所以 ou_script 裡面並沒有任何有影響的 script</p><h4 id="透過-psql-執行-script-檔"><a href="#透過-psql-執行-script-檔" class="headerlink" title="透過 psql 執行 script 檔"></a>透過 psql 執行 script 檔</h4><p>檔案產生好之後，就可以直接透過 psql 來執行，我安裝的版本是 13 ，所以 path 預設是 C:\Program Files\PostgreSQL\13\bin<br>切到該目錄後，依續執行 Script，<br><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">psql -h localhost -d ms2postgre1 -f C:\MSSQL2PostgreSQL\sqlserver2pgsql\ob_script.sql -U postgres</span><br></pre></td></tr></table></figure></p><img src="/2021/02/05/Migrate-MS-SQL-to-PostgreSQL-bcp/06.png" title="psql ob_script.sql"><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">psql -h localhost -d ms2postgre1 -f C:\MSSQL2PostgreSQL\sqlserver2pgsql\oa_script.sql -U postgres</span><br></pre></td></tr></table></figure><img src="/2021/02/05/Migrate-MS-SQL-to-PostgreSQL-bcp/07.png" title="psql oa_script.sql"><p>執行完成後，就可以到 PostgreSQL 查看 DB 中是否已建立好 Table1 &amp; Table2 這2個 Table<br><img src="/2021/02/05/Migrate-MS-SQL-to-PostgreSQL-bcp/08.png" title="PostgreSQL DB"></p><h4 id="透過-bcp-轉出資料"><a href="#透過-bcp-轉出資料" class="headerlink" title="透過 bcp 轉出資料"></a>透過 bcp 轉出資料</h4><p>資料表完成了，就可以將資料轉成 csv 來匯入，預設的分隔符號為 tab， 並以 UTF8 編碼<br><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">bcp ms2postgre1.dbo.Table1 OUT C:\MSSQL2PostgreSQL\Table1.csv -T -c -C <span class="number">65001</span></span><br><span class="line">bcp ms2postgre1.dbo.Table2 OUT C:\MSSQL2PostgreSQL\Table2.csv -T -c -C <span class="number">65001</span></span><br></pre></td></tr></table></figure></p><img src="/2021/02/05/Migrate-MS-SQL-to-PostgreSQL-bcp/09.png" title="bcp"><ul><li>-C 65001 : 是設定輸出的編碼為 UTF-8 </li></ul><h4 id="轉入資料"><a href="#轉入資料" class="headerlink" title="轉入資料"></a>轉入資料</h4><p>table 建立好了，資料檔也準備好了，就可以將資料匯入，所以在 Table 上面按右建，選取 <strong>Import/Export…</strong><br><img src="/2021/02/05/Migrate-MS-SQL-to-PostgreSQL-bcp/10.png" title="Import"></p><p>設定 Import ，選取檔案, Format 選擇 csv, 設定編碼為 <strong>UTF-8</strong> ，分隔符號為 <strong>tab</strong><br><img src="/2021/02/05/Migrate-MS-SQL-to-PostgreSQL-bcp/11.png" title="Select Import File"><br>按下 ok 後，就可以將資料轉入</p><ul><li>也可在 psql 中執行 copy public.table2 FROM ‘C:\MSSQL2PostgreSQL\Table2.csv’ DELIMITER E’\t’ ENCODING ‘UTF8’ NULL AS ‘’;</li></ul><p>2個檔案都轉入完成後，可以查看資料是否正確，以下我們查看 Table2 的資料<br><img src="/2021/02/05/Migrate-MS-SQL-to-PostgreSQL-bcp/12.png" title="Verify Data"></p><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://github.com/dalibo/sqlserver2pgsql" target="_blank" rel="noopener">sqlserver2pgsql</a><br><a href="https://www.perl.org/get.html" target="_blank" rel="noopener">Perl Download</a><br><a href="https://rainmakerho.github.io/2021/02/04/Migrate-MS-SQL-to-PostgreSQL-1/">將 Microsoft SQL Server Database 資料轉到 PostgreSQL - SSMS Export</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;以下筆者將介紹如何將 Microsoft SQL Server Database 資料轉到 PostgreSQL Database。&lt;br&gt;
-      
-    
-    </summary>
-    
-    
-      <category term="MSSQL" scheme="https://rainmakerho.github.io/tags/MSSQL/"/>
-    
-      <category term="PostgreSQL" scheme="https://rainmakerho.github.io/tags/PostgreSQL/"/>
-    
-      <category term="Migration" scheme="https://rainmakerho.github.io/tags/Migration/"/>
-    
-      <category term="ODBC" scheme="https://rainmakerho.github.io/tags/ODBC/"/>
-    
-      <category term="Database" scheme="https://rainmakerho.github.io/tags/Database/"/>
-    
-      <category term="SSMS" scheme="https://rainmakerho.github.io/tags/SSMS/"/>
-    
-      <category term="BCP" scheme="https://rainmakerho.github.io/tags/BCP/"/>
     
   </entry>
   

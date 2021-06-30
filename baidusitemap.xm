@@ -4,6 +4,29 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2021/06/30/Checkmarx-Dangerous-File-Upload/</loc>
+    <lastmod>2021-06-30T10:27:45.299Z</lastmod>
+    <data>
+        <display>
+        <title>Checkmarx Dangerous_File_Upload</title>
+        <pubTime>2021-06-30T10:05:40.000Z</pubTime>
+        
+        <tag>checkmarx</tag>
+         
+        <tag>Dangerous_File_Upload</tag>
+         
+        <tag>PostedFile.SaveAs</tag>
+         
+        <tag>Server.MapPath</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2021/06/29/BC30201-Expression-expected/</loc>
     <lastmod>2021-06-29T06:24:56.953Z</lastmod>
     <data>
@@ -1894,9 +1917,9 @@
         <title>Error code 1 for command [ios]</title>
         <pubTime>2019-11-27T00:41:52.000Z</pubTime>
         
-        <tag>mac</tag>
-         
         <tag>cordova</tag>
+         
+        <tag>mac</tag>
          
          
            
@@ -2467,13 +2490,13 @@
         <title>document.[formName] is undefined</title>
         <pubTime>2019-03-16T05:48:31.000Z</pubTime>
         
-        <tag>軟體求生</tag>
-         
         <tag>js</tag>
          
         <tag>document.formName</tag>
          
         <tag>undefined</tag>
+         
+        <tag>軟體求生</tag>
          
         <tag>asp.net 4</tag>
          
@@ -2533,11 +2556,11 @@
         <title>Inheritance security rules violated by type: 'System.Net.Http.WebRequestHandler'</title>
         <pubTime>2019-02-23T02:41:55.000Z</pubTime>
         
+        <tag>軟體求生</tag>
+         
         <tag>System.Net.Http</tag>
          
         <tag>4.1.0.0</tag>
-         
-        <tag>軟體求生</tag>
          
          
            
@@ -2982,9 +3005,9 @@
         <title>.NET Exception Handling</title>
         <pubTime>2018-08-21T08:31:47.000Z</pubTime>
         
-        <tag>.net</tag>
-         
         <tag>c#</tag>
+         
+        <tag>.net</tag>
          
         <tag>exception</tag>
          
@@ -3511,11 +3534,11 @@
         <title>SmtpConnection.GetConnection NullReferenceException</title>
         <pubTime>2018-03-14T02:07:16.000Z</pubTime>
         
+        <tag>NullReferenceException</tag>
+         
         <tag>SmtpClient</tag>
          
         <tag>SmtpConnection.GetConnection</tag>
-         
-        <tag>NullReferenceException</tag>
          
         <tag>.net</tag>
          
@@ -3540,11 +3563,11 @@
         <title>System.NullReferenceException when Aspose.Pdf.License.SetLicense(String licenseName)</title>
         <pubTime>2018-03-13T06:54:05.000Z</pubTime>
         
-        <tag>NullReferenceException</tag>
-         
         <tag>Aspose</tag>
          
         <tag>SetLicense</tag>
+         
+        <tag>NullReferenceException</tag>
          
          
            
@@ -3582,9 +3605,9 @@
         <title>使用 Botframework 的 Bot 如何 Debug 到 BotBuilder Source ?</title>
         <pubTime>2018-02-01T01:47:18.000Z</pubTime>
         
-        <tag>botframework</tag>
-         
         <tag>C#</tag>
+         
+        <tag>botframework</tag>
          
         <tag>BotBuilder</tag>
          
