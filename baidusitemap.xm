@@ -4,8 +4,33 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2021/07/03/jsonserializer-deserialize-fails/</loc>
+    <lastmod>2021-07-03T12:46:46.945Z</lastmod>
+    <data>
+        <display>
+        <title>System.Text.Json.Deserialize<TValue> 轉回的物件值都是 null</title>
+        <pubTime>2021-07-03T11:14:51.000Z</pubTime>
+        
+        <tag>Json.Deserialize</tag>
+         
+        <tag>JsonSerializerOptions</tag>
+         
+        <tag>PropertyNameCaseInsensitive</tag>
+         
+        <tag>PropertyNamingPolicy</tag>
+         
+        <tag>JsonNamingPolicy.CamelCase</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2021/06/30/Checkmarx-Dangerous-File-Upload/</loc>
-    <lastmod>2021-06-30T10:27:45.299Z</lastmod>
+    <lastmod>2021-07-01T03:19:08.340Z</lastmod>
     <data>
         <display>
         <title>Checkmarx Dangerous_File_Upload</title>
@@ -1917,9 +1942,9 @@
         <title>Error code 1 for command [ios]</title>
         <pubTime>2019-11-27T00:41:52.000Z</pubTime>
         
-        <tag>cordova</tag>
-         
         <tag>mac</tag>
+         
+        <tag>cordova</tag>
          
          
            
@@ -2490,13 +2515,13 @@
         <title>document.[formName] is undefined</title>
         <pubTime>2019-03-16T05:48:31.000Z</pubTime>
         
+        <tag>軟體求生</tag>
+         
         <tag>js</tag>
          
         <tag>document.formName</tag>
          
         <tag>undefined</tag>
-         
-        <tag>軟體求生</tag>
          
         <tag>asp.net 4</tag>
          
@@ -2556,11 +2581,11 @@
         <title>Inheritance security rules violated by type: 'System.Net.Http.WebRequestHandler'</title>
         <pubTime>2019-02-23T02:41:55.000Z</pubTime>
         
-        <tag>軟體求生</tag>
-         
         <tag>System.Net.Http</tag>
          
         <tag>4.1.0.0</tag>
+         
+        <tag>軟體求生</tag>
          
          
            
@@ -3534,11 +3559,11 @@
         <title>SmtpConnection.GetConnection NullReferenceException</title>
         <pubTime>2018-03-14T02:07:16.000Z</pubTime>
         
-        <tag>NullReferenceException</tag>
-         
         <tag>SmtpClient</tag>
          
         <tag>SmtpConnection.GetConnection</tag>
+         
+        <tag>NullReferenceException</tag>
          
         <tag>.net</tag>
          
@@ -3563,11 +3588,11 @@
         <title>System.NullReferenceException when Aspose.Pdf.License.SetLicense(String licenseName)</title>
         <pubTime>2018-03-13T06:54:05.000Z</pubTime>
         
+        <tag>NullReferenceException</tag>
+         
         <tag>Aspose</tag>
          
         <tag>SetLicense</tag>
-         
-        <tag>NullReferenceException</tag>
          
          
            
@@ -3605,9 +3630,9 @@
         <title>使用 Botframework 的 Bot 如何 Debug 到 BotBuilder Source ?</title>
         <pubTime>2018-02-01T01:47:18.000Z</pubTime>
         
-        <tag>C#</tag>
-         
         <tag>botframework</tag>
+         
+        <tag>C#</tag>
          
         <tag>BotBuilder</tag>
          
