@@ -5,7 +5,7 @@
     
   <url>
     <loc>https://rainmakerho.github.io/2018/05/16/2018017/</loc>
-    <lastmod>2021-07-07T03:28:01.328Z</lastmod>
+    <lastmod>2021-07-07T03:30:28.595Z</lastmod>
     <data>
         <display>
         <title>System.InvalidOperationException 當登記分置交易時發生錯誤</title>
@@ -15,13 +15,13 @@
          
         <tag>EnlistNonNullDistributedTransaction</tag>
          
+        <tag>EnlistDistributedTransaction</tag>
+         
         <tag>MSDTC</tag>
          
         <tag>firewall</tag>
          
         <tag>協力電腦異動管理員已經停用了對遠端/網路異動的支援</tag>
-         
-        <tag>EnlistDistributedTransaction</tag>
          
          
            
@@ -2647,6 +2647,8 @@
         <title>使用 OpenTracing - Jaeger (BFv3 使用 Dynamic Proxy)</title>
         <pubTime>2019-01-20T10:31:40.000Z</pubTime>
         
+        <tag>Autofac</tag>
+         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -2662,8 +2664,6 @@
         <tag>BFv3</tag>
          
         <tag>Dynamic Proxy</tag>
-         
-        <tag>Autofac</tag>
          
         <tag>EnableClassInterceptors</tag>
          
@@ -3015,11 +3015,11 @@
          
         <tag>botframework</tag>
          
-        <tag>Autofac</tag>
-         
         <tag>adaptivecard</tag>
          
         <tag>adaptive</tag>
+         
+        <tag>Autofac</tag>
          
          
            
@@ -3709,13 +3709,13 @@
         <title>線上客服 + BOT 之路</title>
         <pubTime>2018-01-25T08:10:47.000Z</pubTime>
         
-        <tag>chatbot</tag>
-         
         <tag>QnA Maker</tag>
          
         <tag>LUIS</tag>
          
         <tag>Vital ESP</tag>
+         
+        <tag>chatbot</tag>
          
         <tag>FAQ</tag>
          
