@@ -4,6 +4,56 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2018/05/16/2018017/</loc>
+    <lastmod>2021-07-07T03:28:01.328Z</lastmod>
+    <data>
+        <display>
+        <title>System.InvalidOperationException 當登記分置交易時發生錯誤</title>
+        <pubTime>2018-05-16T03:01:04.000Z</pubTime>
+        
+        <tag>當登記分置交易時發生錯誤</tag>
+         
+        <tag>EnlistNonNullDistributedTransaction</tag>
+         
+        <tag>MSDTC</tag>
+         
+        <tag>firewall</tag>
+         
+        <tag>協力電腦異動管理員已經停用了對遠端/網路異動的支援</tag>
+         
+        <tag>EnlistDistributedTransaction</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://rainmakerho.github.io/2021/06/25/Checkmarx-Client-Side-Only-Validation/</loc>
+    <lastmod>2021-07-06T08:24:59.437Z</lastmod>
+    <data>
+        <display>
+        <title>Checkmarx Client_Side_Only_Validation</title>
+        <pubTime>2021-06-25T03:24:14.000Z</pubTime>
+        
+        <tag>Checkmarx</tag>
+         
+        <tag>Client_Side_Only_Validation</tag>
+         
+        <tag>Page.IsValid</tag>
+         
+        <tag>Page.Validate()</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2021/07/03/jsonserializer-deserialize-fails/</loc>
     <lastmod>2021-07-03T12:46:46.945Z</lastmod>
     <data>
@@ -109,29 +159,6 @@
         <tag>sha256-YJO/M9OgDKEBRKGqp4Zd07dzlagbB+qmKgThG52u/Mk=</tag>
          
         <tag>Missing Content Security Policy</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://rainmakerho.github.io/2021/06/25/Checkmarx-Client-Side-Only-Validation/</loc>
-    <lastmod>2021-06-25T07:21:09.836Z</lastmod>
-    <data>
-        <display>
-        <title>Checkmarx Client_Side_Only_Validation</title>
-        <pubTime>2021-06-25T03:24:14.000Z</pubTime>
-        
-        <tag>Checkmarx</tag>
-         
-        <tag>Client_Side_Only_Validation</tag>
-         
-        <tag>Page.IsValid</tag>
-         
-        <tag>Page.Validate()</tag>
          
          
            
@@ -721,27 +748,6 @@
         <tag>Install</tag>
          
         <tag>manifest</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://rainmakerho.github.io/2018/05/16/2018017/</loc>
-    <lastmod>2021-01-25T10:29:13.735Z</lastmod>
-    <data>
-        <display>
-        <title>談談 MSDTC 的問題</title>
-        <pubTime>2018-05-16T03:01:04.000Z</pubTime>
-        
-        <tag>MSDTC</tag>
-         
-        <tag>firewall</tag>
-         
-        <tag>協力電腦異動管理員已經停用了對遠端/網路異動的支援</tag>
          
          
            
@@ -2641,8 +2647,6 @@
         <title>使用 OpenTracing - Jaeger (BFv3 使用 Dynamic Proxy)</title>
         <pubTime>2019-01-20T10:31:40.000Z</pubTime>
         
-        <tag>Autofac</tag>
-         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -2658,6 +2662,8 @@
         <tag>BFv3</tag>
          
         <tag>Dynamic Proxy</tag>
+         
+        <tag>Autofac</tag>
          
         <tag>EnableClassInterceptors</tag>
          
@@ -3009,11 +3015,11 @@
          
         <tag>botframework</tag>
          
+        <tag>Autofac</tag>
+         
         <tag>adaptivecard</tag>
          
         <tag>adaptive</tag>
-         
-        <tag>Autofac</tag>
          
          
            
@@ -3703,13 +3709,13 @@
         <title>線上客服 + BOT 之路</title>
         <pubTime>2018-01-25T08:10:47.000Z</pubTime>
         
+        <tag>chatbot</tag>
+         
         <tag>QnA Maker</tag>
          
         <tag>LUIS</tag>
          
         <tag>Vital ESP</tag>
-         
-        <tag>chatbot</tag>
          
         <tag>FAQ</tag>
          
