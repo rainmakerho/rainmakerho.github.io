@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2021-07-03T12:46:46.945Z</updated>
+  <updated>2021-07-11T05:46:55.153Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,41 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>透過 AsyncResultFilter 來處理 Entity Mapper 成 DTO</title>
+    <link href="https://rainmakerho.github.io/2021/07/11/ResultFilter-AutoMapper/"/>
+    <id>https://rainmakerho.github.io/2021/07/11/ResultFilter-AutoMapper/</id>
+    <published>2021-07-11T05:19:31.000Z</published>
+    <updated>2021-07-11T05:46:55.153Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>一般來說，在 Controller 中透過 Repository 取回 Entity 的資料後，會再透過 Mapper 來將它轉成 DTO 傳給 Client 。例如，<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">HttpGet</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> IActionResult <span class="title">GetBooks</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> bookEntities =  _bookRepository.GetBooksAsync().Result;</span><br><span class="line">    <span class="comment">//這段從 Entity 轉成 DTO 經常寫在 Action 中</span></span><br><span class="line">    <span class="keyword">var</span> books = _mapper.Map&lt;IEnumerable&lt;Models.Book&gt;&gt;(bookEntities);</span><br><span class="line">    <span class="keyword">return</span> Ok(books);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>上面的範例雖然只有一行，但卻都是相同的程式碼，這時可以將它抽到 ResultFilterAttribute 之中。</p><h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><p>建立 BooksResultFilterAttribute 來繼承 ResultFilterAttribute 實作 OnResultExecutionAsync Method。<br>因為會使用到 AutoMapper ，所以可以從 Constructor 中取得，或是透過 HttpContext.RequestServices.GetRequiredService ，<br>使用後者方式比較簡潔一些。<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">BooksResultFilterAttribute</span>: <span class="title">ResultFilterAttribute</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">async</span> Task <span class="title">OnResultExecutionAsync</span>(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">        ResultExecutingContext context</span></span></span><br><span class="line"><span class="function"><span class="params">        , ResultExecutionDelegate next</span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> resultFromAction = context.Result <span class="keyword">as</span> ObjectResult;</span><br><span class="line">        <span class="keyword">if</span> (resultFromAction?.Value == <span class="literal">null</span></span><br><span class="line">            || resultFromAction.StatusCode &lt; <span class="number">200</span></span><br><span class="line">            || resultFromAction.StatusCode &gt;= <span class="number">300</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//如果錯誤或是沒資料則不處理</span></span><br><span class="line">            <span class="keyword">await</span> next();</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//取得 AutoMapper</span></span><br><span class="line">        <span class="keyword">var</span> mapper = context.HttpContext.RequestServices.GetRequiredService&lt;IMapper&gt;();</span><br><span class="line">        <span class="comment">//將結果從 Entity 轉成 DTO</span></span><br><span class="line">        resultFromAction.Value = mapper.Map&lt;IEnumerable&lt;Models.Book&gt;&gt;(resultFromAction.Value);</span><br><span class="line">        <span class="keyword">await</span> next();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>所以原本寫在 Action 之中的 Mapper 程式移到了 ResultFilterAttribute 後，只需在 Action 宣告使用該 Attribute 即可。<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">HttpGet</span>]</span><br><span class="line">[<span class="meta">BooksResultFilter()</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> IActionResult <span class="title">GetBooks</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> bookEntities =  _bookRepository.GetBooksAsync().Result;</span><br><span class="line">    <span class="keyword">return</span> Ok(bookEntities);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>如果整個 Controller 都是 Return 相同的 DTO ，則可以加在 Controller 上哦!</p><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://code-maze.com/action-filters-aspnetcore/" target="_blank" rel="noopener">Implementing Action Filters in ASP.NET Core</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;一般來說，在 Controller 中透過 Repository 取回 Entity 的資料後，會再透過 Mapper 來將它轉成 DTO 
+      
+    
+    </summary>
+    
+    
+      <category term="ResultFilter" scheme="https://rainmakerho.github.io/tags/ResultFilter/"/>
+    
+      <category term="Entity" scheme="https://rainmakerho.github.io/tags/Entity/"/>
+    
+      <category term="DTO" scheme="https://rainmakerho.github.io/tags/DTO/"/>
+    
+      <category term="ViewModel" scheme="https://rainmakerho.github.io/tags/ViewModel/"/>
+    
+      <category term="ResultFilterAttribute" scheme="https://rainmakerho.github.io/tags/ResultFilterAttribute/"/>
+    
+      <category term="OnResultExecutionAsync" scheme="https://rainmakerho.github.io/tags/OnResultExecutionAsync/"/>
+    
+      <category term="AutoMapper" scheme="https://rainmakerho.github.io/tags/AutoMapper/"/>
+    
+  </entry>
   
   <entry>
     <title>System.Text.Json.Deserialize&lt;TValue&gt; 轉回的物件值都是 null</title>
@@ -602,47 +637,6 @@
       <category term="外網" scheme="https://rainmakerho.github.io/tags/%E5%A4%96%E7%B6%B2/"/>
     
       <category term="Citrix NetScaler" scheme="https://rainmakerho.github.io/tags/Citrix-NetScaler/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>將 Microsoft SQL Server Database 資料轉到 PostgreSQL - Migration Toolkit</title>
-    <link href="https://rainmakerho.github.io/2021/02/09/migrate-MSSQL-to-PostgreSQL-MTK/"/>
-    <id>https://rainmakerho.github.io/2021/02/09/migrate-MSSQL-to-PostgreSQL-MTK/</id>
-    <published>2021-02-09T05:58:22.000Z</published>
-    <updated>2021-02-17T02:36:42.798Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在前篇 <a href="https://rainmakerho.github.io/2021/02/05/Migrate-MS-SQL-to-PostgreSQL-bcp/">將 Microsoft SQL Server Database 資料轉到 PostgreSQL - BCP/Import</a> 使用蠻花工的，<br>所以我們可以透過 EDB 的 <a href="https://www.enterprisedb.com/downloads/edb-migration-toolkit" target="_blank" rel="noopener">Migration Toolkit</a> 來幫我們將 MSSQL 的資料轉到 PostgreSQL 。</p><h3 id="練習"><a href="#練習" class="headerlink" title="練習"></a>練習</h3><h4 id="安装-JDK"><a href="#安装-JDK" class="headerlink" title="安装 JDK"></a>安装 JDK</h4><p>因為 Migration Toolkit 需要 JDK ，如果已安裝過，請跳過此步驟。<br>到 <a href="https://jdk.java.net/15/" target="_blank" rel="noopener">JDK</a>下載解壓縮，我是放到 C:\jdk-15.0.2 目錄，<br>並設定環境變數 JAVA_HOME 設定為 C:\jdk-15.0.2，C:\jdk-15.0.2\bin 加到 Path 變數之中。<br><img src="/2021/02/09/migrate-MSSQL-to-PostgreSQL-MTK/01.png" title="jdk"></p><h4 id="安装-Migration-Toolkit"><a href="#安装-Migration-Toolkit" class="headerlink" title="安装 Migration Toolkit"></a>安装 Migration Toolkit</h4><p>到 <a href="https://www.enterprisedb.com/downloads/edb-migration-toolkit" target="_blank" rel="noopener">Migration Toolkit Download</a> 下載直接安裝，<br>預設目錄為 C:\Program Files\edb\mtk 。</p><h4 id="安裝-JDBC-Drivers"><a href="#安裝-JDBC-Drivers" class="headerlink" title="安裝 JDBC Drivers"></a>安裝 JDBC Drivers</h4><p>因為我們會使用到 SQL Server 及 PostgreSQL ，所以就分別下載它們。<br>PostgreSQL 的 jar 檔直接 Copy 到 C:\Program Files\edb\mtk\lib 目錄，<br>SQL Server 的 JDBC Drivers 則解壓縮後，將 jtds-&lt;版本號&gt;.jar 檔也 Copy 到 C:\Program Files\edb\mtk\lib 目錄。</p><h4 id="設定-toolkit-properties"><a href="#設定-toolkit-properties" class="headerlink" title="設定 toolkit.properties"></a>設定 toolkit.properties</h4><p>開啟 “C:\Program Files\edb\mtk\etc\toolkit.properties” 設定來源 DB (MSSQL) 及 目標 DB (PostgreSQL)<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">SRC_DB_URL</span>=jdbc:jtds:sqlserver://<span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">1433</span>/ms2postgre1</span><br><span class="line"><span class="attr">SRC_DB_USER</span>=dbuser</span><br><span class="line"><span class="attr">SRC_DB_PASSWORD</span>=dbpwd</span><br><span class="line"></span><br><span class="line"><span class="attr">TARGET_DB_URL</span>=jdbc:postgresql://<span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">5432</span>/ms2postgre1</span><br><span class="line"><span class="attr">TARGET_DB_USER</span>=postgres</span><br><span class="line"><span class="attr">TARGET_DB_PASSWORD</span>=dbpwd</span><br></pre></td></tr></table></figure></p><ul><li>註: 目標 PostgreSQL DB 請先建立一個空的資料庫。</li></ul><h4 id="執行-runMTK-bat"><a href="#執行-runMTK-bat" class="headerlink" title="執行 runMTK.bat"></a>執行 runMTK.bat</h4><p>設定完成後，開啟 Command 視窗，執行 runMTK.bat (這裡是將 MSSQL dbo 對應到 postgreSQL 的 public Schema)<br><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">runMTK.bat -sourcedbtype sqlserver -targetdbtype postgresql -targetSchema public dbo</span><br></pre></td></tr></table></figure></p><img src="/2021/02/09/migrate-MSSQL-to-PostgreSQL-MTK/02.png" title="runMTK.bat"><p>如果執行時發生 <strong>Connection refused: connect</strong> 的錯誤，那應該是因為 MSSQL 沒有啟用 TCP/IP 的協定，<br>請參考 <a href="https://la.mathworks.com/help/database/ug/microsoft-sql-server-jdbc-windows.html" target="_blank" rel="noopener">Microsoft SQL Server JDBC for Windows</a> ，<br>開啟 Sql Server Configuration Manager ，選擇 [SQL Server 網路組態] -&gt; [MSSQLSERVER 的通訊協定] 啟用 TCP/IP<br> <img src="/2021/02/09/migrate-MSSQL-to-PostgreSQL-MTK/03.png" title="SQL Server 網路組態"></p><p>在移轉過程中如果有發生錯誤，可以開啟 Log 檔來查看問題及最後的結果。<br><img src="/2021/02/09/migrate-MSSQL-to-PostgreSQL-MTK/04.png" title="Log"></p><h4 id="以下狀況無法轉檔成功"><a href="#以下狀況無法轉檔成功" class="headerlink" title="以下狀況無法轉檔成功"></a>以下狀況無法轉檔成功</h4><ol><li>SQL numeric 欄位設定成 IDENTITY</li><li>varbinary 資料型態</li></ol><p>另外，如果您的資料不是很多，則可以使用 <a href="https://www.dbsofts.com/download/" target="_blank" rel="noopener">ESF Database Migration Toolkit</a>，<br>它的試用版可以轉<strong>每個資料表最多 50,000 筆資料</strong>。</p><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://blog.yumc.pw/posts/MigrationToolkit-Usage/" target="_blank" rel="noopener">MigrationToolkit 数据库迁移工具的使用</a><br><a href="https://rainmakerho.github.io/2021/02/05/Migrate-MS-SQL-to-PostgreSQL-bcp/">將 Microsoft SQL Server Database 資料轉到 PostgreSQL - BCP/Import</a><br><a href="https://rainmakerho.github.io/2021/02/04/Migrate-MS-SQL-to-PostgreSQL-1/">將 Microsoft SQL Server Database 資料轉到 PostgreSQL - SSMS Export</a><br><a href="https://www.enterprisedb.com/downloads/edb-migration-toolkit" target="_blank" rel="noopener">Migration Toolkit Download</a><br><a href="https://la.mathworks.com/help/database/ug/microsoft-sql-server-jdbc-windows.html" target="_blank" rel="noopener">Microsoft SQL Server JDBC for Windows</a><br><a href="https://www.enterprisedb.com/edb-docs/d/edb-postgres-migration-toolkit/user-guides/user-guide/54.0.0/index.html" target="_blank" rel="noopener">Migration Toolkit User Guide</a><br><a href="https://www.enterprisedb.com/downloads/third-party-jdbc-drivers" target="_blank" rel="noopener">JDBC Drivers</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;在前篇 &lt;a href=&quot;https://rainmakerho.github.io/2021/02/05/Migrate-MS-SQL-
-      
-    
-    </summary>
-    
-    
-      <category term="MSSQL" scheme="https://rainmakerho.github.io/tags/MSSQL/"/>
-    
-      <category term="PostgreSQL" scheme="https://rainmakerho.github.io/tags/PostgreSQL/"/>
-    
-      <category term="Migration" scheme="https://rainmakerho.github.io/tags/Migration/"/>
-    
-      <category term="ODBC" scheme="https://rainmakerho.github.io/tags/ODBC/"/>
-    
-      <category term="Database" scheme="https://rainmakerho.github.io/tags/Database/"/>
-    
-      <category term="SSMS" scheme="https://rainmakerho.github.io/tags/SSMS/"/>
-    
-      <category term="MigrationToolkit" scheme="https://rainmakerho.github.io/tags/MigrationToolkit/"/>
-    
-      <category term="MTK" scheme="https://rainmakerho.github.io/tags/MTK/"/>
-    
-      <category term="JDBC" scheme="https://rainmakerho.github.io/tags/JDBC/"/>
-    
-      <category term="Connection refused" scheme="https://rainmakerho.github.io/tags/Connection-refused/"/>
     
   </entry>
   

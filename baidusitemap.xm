@@ -4,6 +4,35 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2021/07/11/ResultFilter-AutoMapper/</loc>
+    <lastmod>2021-07-11T05:46:55.153Z</lastmod>
+    <data>
+        <display>
+        <title>透過 AsyncResultFilter 來處理 Entity Mapper 成 DTO</title>
+        <pubTime>2021-07-11T05:19:31.000Z</pubTime>
+        
+        <tag>ResultFilter</tag>
+         
+        <tag>Entity</tag>
+         
+        <tag>DTO</tag>
+         
+        <tag>ViewModel</tag>
+         
+        <tag>ResultFilterAttribute</tag>
+         
+        <tag>OnResultExecutionAsync</tag>
+         
+        <tag>AutoMapper</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2018/05/16/2018017/</loc>
     <lastmod>2021-07-07T03:30:28.595Z</lastmod>
     <data>
@@ -3565,11 +3594,11 @@
         <title>SmtpConnection.GetConnection NullReferenceException</title>
         <pubTime>2018-03-14T02:07:16.000Z</pubTime>
         
+        <tag>NullReferenceException</tag>
+         
         <tag>SmtpClient</tag>
          
         <tag>SmtpConnection.GetConnection</tag>
-         
-        <tag>NullReferenceException</tag>
          
         <tag>.net</tag>
          
@@ -3594,11 +3623,11 @@
         <title>System.NullReferenceException when Aspose.Pdf.License.SetLicense(String licenseName)</title>
         <pubTime>2018-03-13T06:54:05.000Z</pubTime>
         
-        <tag>NullReferenceException</tag>
-         
         <tag>Aspose</tag>
          
         <tag>SetLicense</tag>
+         
+        <tag>NullReferenceException</tag>
          
          
            
