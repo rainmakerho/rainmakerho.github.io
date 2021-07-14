@@ -4,11 +4,40 @@
 
     
   <url>
-    <loc>https://rainmakerho.github.io/2021/07/14/Heap-Inspection-MVC-SecureString/</loc>
-    <lastmod>2021-07-14T03:40:48.764Z</lastmod>
+    <loc>https://rainmakerho.github.io/2021/07/14/Heap-Inspection-MVC5-SecureString/</loc>
+    <lastmod>2021-07-14T06:40:38.947Z</lastmod>
     <data>
         <display>
-        <title>Heap Inspection in MVC - SecureString</title>
+        <title>Heap Inspection in ASP.NET MVC 5 - SecureString</title>
+        <pubTime>2021-07-14T06:17:30.000Z</pubTime>
+        
+        <tag>Checkmarx</tag>
+         
+        <tag>Heap Inspection</tag>
+         
+        <tag>MVC5</tag>
+         
+        <tag>Custom Model Binder</tag>
+         
+        <tag>SecureString</tag>
+         
+        <tag>Password</tag>
+         
+        <tag>netFramework</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://rainmakerho.github.io/2021/07/14/Heap-Inspection-MVC-SecureString/</loc>
+    <lastmod>2021-07-14T06:18:46.959Z</lastmod>
+    <data>
+        <display>
+        <title>Heap Inspection in ASP.NET Core MVC - SecureString</title>
         <pubTime>2021-07-14T02:34:51.000Z</pubTime>
         
         <tag>MVC</tag>
@@ -32,23 +61,23 @@
     
   <url>
     <loc>https://rainmakerho.github.io/2021/07/14/Heap-Inspection-RazorPages/</loc>
-    <lastmod>2021-07-14T03:09:10.485Z</lastmod>
+    <lastmod>2021-07-14T06:18:41.280Z</lastmod>
     <data>
         <display>
-        <title>Heap Inspection in Razor Pages - SecureString</title>
+        <title>Heap Inspection in  ASP.NET Core Razor Pages - SecureString</title>
         <pubTime>2021-07-14T01:54:49.000Z</pubTime>
         
         <tag>Checkmarx</tag>
          
         <tag>Heap Inspection</tag>
          
-        <tag>Razor Page</tag>
-         
         <tag>Custom Model Binder</tag>
          
         <tag>SecureString</tag>
          
         <tag>Password</tag>
+         
+        <tag>Razor Page</tag>
          
          
            
@@ -475,9 +504,9 @@
         <title>透過 SQL Injection 造成 SQL 錯誤取得 資料的問題</title>
         <pubTime>2021-04-24T11:27:53.000Z</pubTime>
         
-        <tag>SQLPlan</tag>
-         
         <tag>SQL Injection</tag>
+         
+        <tag>SQLPlan</tag>
          
          
            
@@ -571,9 +600,9 @@
         <title>OWASP Top 10 2017 - SQL Injection</title>
         <pubTime>2021-03-15T05:52:17.000Z</pubTime>
         
-        <tag>SQL Injection</tag>
-         
         <tag>OWASP Top 10</tag>
+         
+        <tag>SQL Injection</tag>
          
         <tag>Blind SQL Injection</tag>
          
@@ -2604,13 +2633,13 @@
         <title>document.[formName] is undefined</title>
         <pubTime>2019-03-16T05:48:31.000Z</pubTime>
         
-        <tag>軟體求生</tag>
-         
         <tag>js</tag>
          
         <tag>document.formName</tag>
          
         <tag>undefined</tag>
+         
+        <tag>軟體求生</tag>
          
         <tag>asp.net 4</tag>
          
@@ -2670,11 +2699,11 @@
         <title>Inheritance security rules violated by type: 'System.Net.Http.WebRequestHandler'</title>
         <pubTime>2019-02-23T02:41:55.000Z</pubTime>
         
+        <tag>軟體求生</tag>
+         
         <tag>System.Net.Http</tag>
          
         <tag>4.1.0.0</tag>
-         
-        <tag>軟體求生</tag>
          
          
            
@@ -2769,6 +2798,8 @@
         <title>使用 OpenTracing - Jaeger (AP整合)</title>
         <pubTime>2019-01-15T05:13:41.000Z</pubTime>
         
+        <tag>BFv4</tag>
+         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -2782,8 +2813,6 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
-         
-        <tag>BFv4</tag>
          
         <tag>NodeJS</tag>
          
@@ -2802,6 +2831,8 @@
         <title>使用 OpenTracing - Jaeger</title>
         <pubTime>2019-01-04T06:02:45.000Z</pubTime>
         
+        <tag>BFv4</tag>
+         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -2815,8 +2846,6 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
-         
-        <tag>BFv4</tag>
          
          
            
