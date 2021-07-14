@@ -4,26 +4,24 @@
 
     
   <url>
-    <loc>https://rainmakerho.github.io/2021/07/14/Heap-Inspection-MVC5-SecureString/</loc>
-    <lastmod>2021-07-14T06:40:38.947Z</lastmod>
+    <loc>https://rainmakerho.github.io/2021/07/14/Heap-Inspection-MVC-byteArray/</loc>
+    <lastmod>2021-07-14T09:20:19.290Z</lastmod>
     <data>
         <display>
-        <title>Heap Inspection in ASP.NET MVC 5 - SecureString</title>
-        <pubTime>2021-07-14T06:17:30.000Z</pubTime>
+        <title>Heap Inspection in ASP.NET Core MVC - byte Array</title>
+        <pubTime>2021-07-14T08:32:28.000Z</pubTime>
         
+        <tag>MVC</tag>
+         
         <tag>Checkmarx</tag>
          
         <tag>Heap Inspection</tag>
          
-        <tag>MVC5</tag>
-         
         <tag>Custom Model Binder</tag>
          
-        <tag>SecureString</tag>
+        <tag>byte Array</tag>
          
         <tag>Password</tag>
-         
-        <tag>netFramework</tag>
          
          
            
@@ -34,7 +32,7 @@
     
   <url>
     <loc>https://rainmakerho.github.io/2021/07/14/Heap-Inspection-MVC-SecureString/</loc>
-    <lastmod>2021-07-14T06:18:46.959Z</lastmod>
+    <lastmod>2021-07-14T09:11:58.914Z</lastmod>
     <data>
         <display>
         <title>Heap Inspection in ASP.NET Core MVC - SecureString</title>
@@ -48,9 +46,38 @@
          
         <tag>Custom Model Binder</tag>
          
+        <tag>Password</tag>
+         
         <tag>SecureString</tag>
          
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://rainmakerho.github.io/2021/07/14/Heap-Inspection-MVC5-SecureString/</loc>
+    <lastmod>2021-07-14T06:40:38.947Z</lastmod>
+    <data>
+        <display>
+        <title>Heap Inspection in ASP.NET MVC 5 - SecureString</title>
+        <pubTime>2021-07-14T06:17:30.000Z</pubTime>
+        
+        <tag>Checkmarx</tag>
+         
+        <tag>Heap Inspection</tag>
+         
+        <tag>Custom Model Binder</tag>
+         
         <tag>Password</tag>
+         
+        <tag>MVC5</tag>
+         
+        <tag>SecureString</tag>
+         
+        <tag>netFramework</tag>
          
          
            
@@ -73,9 +100,9 @@
          
         <tag>Custom Model Binder</tag>
          
-        <tag>SecureString</tag>
-         
         <tag>Password</tag>
+         
+        <tag>SecureString</tag>
          
         <tag>Razor Page</tag>
          
@@ -2633,13 +2660,13 @@
         <title>document.[formName] is undefined</title>
         <pubTime>2019-03-16T05:48:31.000Z</pubTime>
         
+        <tag>軟體求生</tag>
+         
         <tag>js</tag>
          
         <tag>document.formName</tag>
          
         <tag>undefined</tag>
-         
-        <tag>軟體求生</tag>
          
         <tag>asp.net 4</tag>
          
@@ -2699,11 +2726,11 @@
         <title>Inheritance security rules violated by type: 'System.Net.Http.WebRequestHandler'</title>
         <pubTime>2019-02-23T02:41:55.000Z</pubTime>
         
-        <tag>軟體求生</tag>
-         
         <tag>System.Net.Http</tag>
          
         <tag>4.1.0.0</tag>
+         
+        <tag>軟體求生</tag>
          
          
            
@@ -3677,11 +3704,11 @@
         <title>SmtpConnection.GetConnection NullReferenceException</title>
         <pubTime>2018-03-14T02:07:16.000Z</pubTime>
         
-        <tag>NullReferenceException</tag>
-         
         <tag>SmtpClient</tag>
          
         <tag>SmtpConnection.GetConnection</tag>
+         
+        <tag>NullReferenceException</tag>
          
         <tag>.net</tag>
          
@@ -3706,11 +3733,11 @@
         <title>System.NullReferenceException when Aspose.Pdf.License.SetLicense(String licenseName)</title>
         <pubTime>2018-03-13T06:54:05.000Z</pubTime>
         
+        <tag>NullReferenceException</tag>
+         
         <tag>Aspose</tag>
          
         <tag>SetLicense</tag>
-         
-        <tag>NullReferenceException</tag>
          
          
            
@@ -3821,13 +3848,13 @@
         <title>線上客服 + BOT 之路</title>
         <pubTime>2018-01-25T08:10:47.000Z</pubTime>
         
-        <tag>chatbot</tag>
-         
         <tag>QnA Maker</tag>
          
         <tag>LUIS</tag>
          
         <tag>Vital ESP</tag>
+         
+        <tag>chatbot</tag>
          
         <tag>FAQ</tag>
          
