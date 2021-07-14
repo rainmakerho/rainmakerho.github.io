@@ -4,6 +4,60 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2021/07/14/Heap-Inspection-MVC-SecureString/</loc>
+    <lastmod>2021-07-14T03:40:48.764Z</lastmod>
+    <data>
+        <display>
+        <title>Heap Inspection in MVC - SecureString</title>
+        <pubTime>2021-07-14T02:34:51.000Z</pubTime>
+        
+        <tag>MVC</tag>
+         
+        <tag>Checkmarx</tag>
+         
+        <tag>Heap Inspection</tag>
+         
+        <tag>Custom Model Binder</tag>
+         
+        <tag>SecureString</tag>
+         
+        <tag>Password</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://rainmakerho.github.io/2021/07/14/Heap-Inspection-RazorPages/</loc>
+    <lastmod>2021-07-14T03:09:10.485Z</lastmod>
+    <data>
+        <display>
+        <title>Heap Inspection in Razor Pages - SecureString</title>
+        <pubTime>2021-07-14T01:54:49.000Z</pubTime>
+        
+        <tag>Checkmarx</tag>
+         
+        <tag>Heap Inspection</tag>
+         
+        <tag>Razor Page</tag>
+         
+        <tag>Custom Model Binder</tag>
+         
+        <tag>SecureString</tag>
+         
+        <tag>Password</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2021/07/11/ResultFilter-AutoMapper/</loc>
     <lastmod>2021-07-11T05:46:55.153Z</lastmod>
     <data>
@@ -421,9 +475,9 @@
         <title>透過 SQL Injection 造成 SQL 錯誤取得 資料的問題</title>
         <pubTime>2021-04-24T11:27:53.000Z</pubTime>
         
-        <tag>SQL Injection</tag>
-         
         <tag>SQLPlan</tag>
+         
+        <tag>SQL Injection</tag>
          
          
            
@@ -517,9 +571,9 @@
         <title>OWASP Top 10 2017 - SQL Injection</title>
         <pubTime>2021-03-15T05:52:17.000Z</pubTime>
         
-        <tag>OWASP Top 10</tag>
-         
         <tag>SQL Injection</tag>
+         
+        <tag>OWASP Top 10</tag>
          
         <tag>Blind SQL Injection</tag>
          
@@ -2715,8 +2769,6 @@
         <title>使用 OpenTracing - Jaeger (AP整合)</title>
         <pubTime>2019-01-15T05:13:41.000Z</pubTime>
         
-        <tag>BFv4</tag>
-         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -2730,6 +2782,8 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
+         
+        <tag>BFv4</tag>
          
         <tag>NodeJS</tag>
          
@@ -2748,8 +2802,6 @@
         <title>使用 OpenTracing - Jaeger</title>
         <pubTime>2019-01-04T06:02:45.000Z</pubTime>
         
-        <tag>BFv4</tag>
-         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -2763,6 +2815,8 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
+         
+        <tag>BFv4</tag>
          
          
            
@@ -3738,13 +3792,13 @@
         <title>線上客服 + BOT 之路</title>
         <pubTime>2018-01-25T08:10:47.000Z</pubTime>
         
+        <tag>chatbot</tag>
+         
         <tag>QnA Maker</tag>
          
         <tag>LUIS</tag>
          
         <tag>Vital ESP</tag>
-         
-        <tag>chatbot</tag>
          
         <tag>FAQ</tag>
          
