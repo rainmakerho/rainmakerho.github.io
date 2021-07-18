@@ -4,8 +4,35 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2021/07/18/Checkmarx-Custom-Preset-Do-Not-Work/</loc>
+    <lastmod>2021-07-18T07:09:21.071Z</lastmod>
+    <data>
+        <display>
+        <title>使用 Checkmarx 自定的 Preset 掃描，卻沒有作用?</title>
+        <pubTime>2021-07-18T06:50:11.000Z</pubTime>
+        
+        <tag>Checkmarx</tag>
+         
+        <tag>Preset</tag>
+         
+        <tag>JavaScript_Server_Side_Vulnerabilities</tag>
+         
+        <tag>Custom</tag>
+         
+        <tag>Jenkins</tag>
+         
+        <tag>Incremental</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2021/07/14/Heap-Inspection-MVC-byteArray/</loc>
-    <lastmod>2021-07-14T09:20:19.290Z</lastmod>
+    <lastmod>2021-07-14T09:28:12.873Z</lastmod>
     <data>
         <display>
         <title>Heap Inspection in ASP.NET Core MVC - byte Array</title>
@@ -19,9 +46,9 @@
          
         <tag>Custom Model Binder</tag>
          
-        <tag>byte Array</tag>
-         
         <tag>Password</tag>
+         
+        <tag>byte Array</tag>
          
          
            
@@ -46,9 +73,9 @@
          
         <tag>Custom Model Binder</tag>
          
-        <tag>Password</tag>
-         
         <tag>SecureString</tag>
+         
+        <tag>Password</tag>
          
          
            
@@ -71,11 +98,11 @@
          
         <tag>Custom Model Binder</tag>
          
+        <tag>SecureString</tag>
+         
         <tag>Password</tag>
          
         <tag>MVC5</tag>
-         
-        <tag>SecureString</tag>
          
         <tag>netFramework</tag>
          
@@ -100,9 +127,9 @@
          
         <tag>Custom Model Binder</tag>
          
-        <tag>Password</tag>
-         
         <tag>SecureString</tag>
+         
+        <tag>Password</tag>
          
         <tag>Razor Page</tag>
          
@@ -3704,11 +3731,11 @@
         <title>SmtpConnection.GetConnection NullReferenceException</title>
         <pubTime>2018-03-14T02:07:16.000Z</pubTime>
         
+        <tag>NullReferenceException</tag>
+         
         <tag>SmtpClient</tag>
          
         <tag>SmtpConnection.GetConnection</tag>
-         
-        <tag>NullReferenceException</tag>
          
         <tag>.net</tag>
          
@@ -3733,11 +3760,11 @@
         <title>System.NullReferenceException when Aspose.Pdf.License.SetLicense(String licenseName)</title>
         <pubTime>2018-03-13T06:54:05.000Z</pubTime>
         
-        <tag>NullReferenceException</tag>
-         
         <tag>Aspose</tag>
          
         <tag>SetLicense</tag>
+         
+        <tag>NullReferenceException</tag>
          
          
            
