@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2021-07-18T07:09:21.071Z</updated>
+  <updated>2021-07-18T07:19:15.678Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>使用 Checkmarx 自定的 Preset 掃描，卻沒有作用?</title>
+    <title>明明是 Client 端的 JavaScript，Checkmarx 卻出 JavaScript_Server_Side_Vulnerabilities 的相關 Issues</title>
     <link href="https://rainmakerho.github.io/2021/07/18/Checkmarx-Custom-Preset-Do-Not-Work/"/>
     <id>https://rainmakerho.github.io/2021/07/18/Checkmarx-Custom-Preset-Do-Not-Work/</id>
     <published>2021-07-18T06:50:11.000Z</published>
-    <updated>2021-07-18T07:09:21.071Z</updated>
+    <updated>2021-07-18T07:19:15.678Z</updated>
     
     <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>Checkmarx 的 Preset 在 JavaScript 是包含 Client 與 Server 端(NodeJS)，<br>當直接使用預設的 OWASP TOP 10 - 2017 去掃 ASP.NET MVC 專案時，<br>卻會被掃出 JavaScript\Cx\JavaScript_Server_Side_Vulnerabilities\Stored_XSS 等 NodeJS 的問題。<br>所以解法之法就是自定 Preset ， Clone 自 OWASP TOP 10 - 2017 ，<br>並取消勾選 JavaScript_Server_Side_Vulnerabilities 。<br><img src="/2021/07/18/Checkmarx-Custom-Preset-Do-Not-Work/01.png" title="自定Preset"></p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>於是在 Jenkins 那設定好自定的 Checkmarx Preset 後，讓 Checkmarx 重新掃一次。<br>QQ<br>結果原本的 JavaScript\Cx\JavaScript_Server_Side_Vulnerabilities\Stored_XSS 還是被掃出來。<br>在 Checkmarx 看專案的 Preset 的確是 自定的Preset 。</p><p>後來同事 Fenny 說是因為 「異動掃描」，也就是因為為了掃描效率，<br>在 Jenkins 的 Checkmarx 設定，通常會將 Incremental 選項勾起來。</p><p>所以取消勾選 Incremental 再讓 Checkmarx 掃一次後，<br>JavaScript\Cx\JavaScript_Server_Side_Vulnerabilities\ 的 Issue 就沒有出現了。</p>]]></content>
     
@@ -37,11 +37,11 @@
     
       <category term="Checkmarx" scheme="https://rainmakerho.github.io/tags/Checkmarx/"/>
     
+      <category term="Custom" scheme="https://rainmakerho.github.io/tags/Custom/"/>
+    
       <category term="Preset" scheme="https://rainmakerho.github.io/tags/Preset/"/>
     
       <category term="JavaScript_Server_Side_Vulnerabilities" scheme="https://rainmakerho.github.io/tags/JavaScript-Server-Side-Vulnerabilities/"/>
-    
-      <category term="Custom" scheme="https://rainmakerho.github.io/tags/Custom/"/>
     
       <category term="Jenkins" scheme="https://rainmakerho.github.io/tags/Jenkins/"/>
     
@@ -173,13 +173,13 @@
     
       <category term="Heap Inspection" scheme="https://rainmakerho.github.io/tags/Heap-Inspection/"/>
     
+      <category term="Razor Page" scheme="https://rainmakerho.github.io/tags/Razor-Page/"/>
+    
       <category term="Custom Model Binder" scheme="https://rainmakerho.github.io/tags/Custom-Model-Binder/"/>
     
       <category term="SecureString" scheme="https://rainmakerho.github.io/tags/SecureString/"/>
     
       <category term="Password" scheme="https://rainmakerho.github.io/tags/Password/"/>
-    
-      <category term="Razor Page" scheme="https://rainmakerho.github.io/tags/Razor-Page/"/>
     
   </entry>
   

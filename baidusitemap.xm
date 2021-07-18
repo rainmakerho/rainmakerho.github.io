@@ -5,19 +5,19 @@
     
   <url>
     <loc>https://rainmakerho.github.io/2021/07/18/Checkmarx-Custom-Preset-Do-Not-Work/</loc>
-    <lastmod>2021-07-18T07:09:21.071Z</lastmod>
+    <lastmod>2021-07-18T07:19:15.678Z</lastmod>
     <data>
         <display>
-        <title>使用 Checkmarx 自定的 Preset 掃描，卻沒有作用?</title>
+        <title>明明是 Client 端的 JavaScript，Checkmarx 卻出 JavaScript_Server_Side_Vulnerabilities 的相關 Issues</title>
         <pubTime>2021-07-18T06:50:11.000Z</pubTime>
         
         <tag>Checkmarx</tag>
          
+        <tag>Custom</tag>
+         
         <tag>Preset</tag>
          
         <tag>JavaScript_Server_Side_Vulnerabilities</tag>
-         
-        <tag>Custom</tag>
          
         <tag>Jenkins</tag>
          
@@ -125,13 +125,13 @@
          
         <tag>Heap Inspection</tag>
          
+        <tag>Razor Page</tag>
+         
         <tag>Custom Model Binder</tag>
          
         <tag>SecureString</tag>
          
         <tag>Password</tag>
-         
-        <tag>Razor Page</tag>
          
          
            
@@ -3852,11 +3852,11 @@
         <title>The bot's MSA appId or password is incorrect.</title>
         <pubTime>2018-02-01T03:52:05.000Z</pubTime>
         
-        <tag>botframework</tag>
-         
         <tag>MSA appId or password is incorrect</tag>
          
         <tag>c#</tag>
+         
+        <tag>botframework</tag>
          
         <tag>botframework-emulator</tag>
          
