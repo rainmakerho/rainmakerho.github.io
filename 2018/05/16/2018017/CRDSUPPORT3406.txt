@@ -1,0 +1,73 @@
+﻿===== 標題 =====
+電腦異動管理員已經停用了對遠端/網路異動的支援。
+
+===== 問題分類(ASP, Component, SQL, IIS, Performance, System, etc...) =====
+MSDTC
+
+===== 問題現象(描述問題發生時的症狀） =====
+＊環境說明: 
+AP Serve與DB Server在是分開的, 而且在不同的Domain, AP Server與DB Server的OS都是Windows 2003
+
+＊問題現象:
+在程式裡加入Transaction的話, 會出現錯誤訊息:
+"電腦異動管理員已經停用了對遠端/網路異動的支援。"
+英文翻譯: The transaction manager has disabled its support for remote/network transactions
+
+＊之前Tony的Support有遇到過, 原因是:
+Windows2003 預設是關閉網路 DTC 的，只有本機能夠通
+可以透過下列步驟修正:
+    Steps to Enable Network DTC Access
+    Click Start, point to Control Panel, and then click Add or Remove Programs. 
+    Click Add/Remove Windows Components. 
+    Select Application Server, and then click Details. 
+    Select Enable network DTC access, and then click OK. 
+    Click Next. 
+    Click Finish. 
+    Stop and then restart the Distributed Transaction Coordinator service. 
+    Stop and then restart any resource manager services that participates in the distributed transaction (such as Microsoft SQL Server or Microsoft Message Queue Server).
+＊參考網址: 
+   http://support.microsoft.com/?id=817064
+   
+補充: 可在 "元件服務/我的電腦/內容" 查看MSDTC頁籤的安全性設定裡查看Netwrok DTC的設定.
+
+＊做完之後, 出現另外一個問題, 錯誤訊息: 
+"異動已經以暗示或者明確的方式認可或中止了"
+英文翻譯: The transaction has already been implicitly or explicitly committed or aborted 
+
+＊經過測試, 發現跨網域才會出現這個錯誤. 原因是:
+The MSDTC proxy may not correctly authenticate MSDTC when the communicating computers are not in the same domain.
+
+＊修正方式:
+在AP Server
+turn off the remote procedure call (RPC) security by setting the DWORD value for the TurnOffRpcSecurity registry value to 1. 
+Start Registry Editor (Regedt32.exe), and then set the value of the HKLM\software\microsoft\msdtc\TurnOffRpcSecurity registry key to 1. 
+
+＊參考網址: 
+   http://support.microsoft.com/default.aspx?scid=kb;en-us;827805
+
+＊注意: 設完之後要重新啟動MSDTC才會有效
+
+＊可用關鍵字去 Google 查詢
+    HOW TO: Enable Network DTC Access in Windows Server 2003
+    (0x8004d00e):The transaction has already been implicitly or explicitly committed or aborted
+    MSDTC Fails to Mutually Authenticate When Computers Do Not Run in the Same Domain
+
+===== 問題原因（描述問題發生的原因） =====
+* Network DTC Access沒有Enable
+* 在不同Domain時, MSDTC的Authenticate不成功
+
+===== 修正描述（如何修正此問題） =====
+
+===== 是否要更換此元件的依據 =====
+
+===== Release 版本 =====
+
+===== 關鍵字 =====
+MSDTC, Windows 2003, Network DTC, transaction, Domain
+
+===== 備註 =====
+如果錯誤訊息是:
+"協力電腦異動管理員已經停用了對遠端/網路異動的支援。"
+英文翻譯: The partner transaction manager has disabled its support for remote/network transactions
+代表DB Server沒有Enable Network DTC Access
+
