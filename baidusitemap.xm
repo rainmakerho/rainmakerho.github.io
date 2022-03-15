@@ -4,8 +4,35 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2022/03/15/datatable-distinct-dataview-slow/</loc>
+    <lastmod>2022-03-15T10:36:58.022Z</lastmod>
+    <data>
+        <display>
+        <title>DataTable 透過 DataView 來做 Distinct 會很慢</title>
+        <pubTime>2022-03-15T09:59:01.000Z</pubTime>
+        
+        <tag>DataTable</tag>
+         
+        <tag>Slow</tag>
+         
+        <tag>Distinct</tag>
+         
+        <tag>DataView</tag>
+         
+        <tag>DataTable.AsEnumerable</tag>
+         
+        <tag>Linq</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2022/03/11/get-contenttype-from-file-extensions/</loc>
-    <lastmod>2022-03-11T13:26:00.178Z</lastmod>
+    <lastmod>2022-03-11T14:16:13.325Z</lastmod>
     <data>
         <display>
         <title>.NET 從附檔名取得 ContentType (MIME Type)</title>
@@ -374,9 +401,9 @@
         <title>將 PDF 轉成 Tiff or PNG</title>
         <pubTime>2021-12-01T08:55:08.000Z</pubTime>
         
-        <tag>C#</tag>
-         
         <tag>PDF</tag>
+         
+        <tag>C#</tag>
          
         <tag>PNG</tag>
          
@@ -601,9 +628,9 @@
         
         <tag>DataTable</tag>
          
-        <tag>JsonConvert.SerializeObject</tag>
-         
         <tag>Reflected_XSS_All_Clients</tag>
+         
+        <tag>JsonConvert.SerializeObject</tag>
          
         <tag>JsonSerializerSettings</tag>
          
@@ -3186,9 +3213,9 @@
         <title>Chrome Version 77 列印遇到標楷體(DFKai-SB) Print 成 PDF 會破字問題</title>
         <pubTime>2019-10-04T08:58:46.000Z</pubTime>
         
-        <tag>Chrome</tag>
-         
         <tag>PDF</tag>
+         
+        <tag>Chrome</tag>
          
         <tag>77</tag>
          
@@ -4688,11 +4715,11 @@
         <title>SmtpConnection.GetConnection NullReferenceException</title>
         <pubTime>2018-03-14T02:07:16.000Z</pubTime>
         
-        <tag>NullReferenceException</tag>
-         
         <tag>SmtpClient</tag>
          
         <tag>SmtpConnection.GetConnection</tag>
+         
+        <tag>NullReferenceException</tag>
          
         <tag>.net</tag>
          
@@ -4717,11 +4744,11 @@
         <title>System.NullReferenceException when Aspose.Pdf.License.SetLicense(String licenseName)</title>
         <pubTime>2018-03-13T06:54:05.000Z</pubTime>
         
+        <tag>NullReferenceException</tag>
+         
         <tag>Aspose</tag>
          
         <tag>SetLicense</tag>
-         
-        <tag>NullReferenceException</tag>
          
          
            
