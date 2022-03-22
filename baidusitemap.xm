@@ -5,7 +5,7 @@
     
   <url>
     <loc>https://rainmakerho.github.io/2022/03/22/visual-studio-adding-certificate-to-trusted-root-failed/</loc>
-    <lastmod>2022-03-22T15:11:21.004Z</lastmod>
+    <lastmod>2022-03-22T15:24:52.041Z</lastmod>
     <data>
         <display>
         <title>Microsoft Visual Studio 無法將憑證新增至受信任的根憑證存放區 - 無法信任憑證</title>
@@ -40,8 +40,6 @@
          
         <tag>OAuth 2.0</tag>
          
-        <tag>public client</tag>
-         
         <tag>PKCE</tag>
          
         <tag>Proof Key for Code Exchange</tag>
@@ -49,6 +47,8 @@
         <tag>claiming URLs</tag>
          
         <tag>Custom URL Scheme</tag>
+         
+        <tag>public client</tag>
          
          
            
@@ -186,13 +186,13 @@
         
         <tag>OAuth 2.0</tag>
          
+        <tag>public client</tag>
+         
         <tag>Implicit Flow</tag>
          
         <tag>response_type=token</tag>
          
         <tag>response_mode=fragment</tag>
-         
-        <tag>public client</tag>
          
         <tag>token flow</tag>
          
@@ -401,9 +401,9 @@
         <title>Checkmarx V9.4 在 Heap_Inspection 的改變(ASPX)</title>
         <pubTime>2021-12-28T01:09:40.000Z</pubTime>
         
-        <tag>ASP.NET</tag>
-         
         <tag>ASPX</tag>
+         
+        <tag>ASP.NET</tag>
          
         <tag>Checkmarx</tag>
          
@@ -3700,13 +3700,13 @@
         <title>document.[formName] is undefined</title>
         <pubTime>2019-03-16T05:48:31.000Z</pubTime>
         
+        <tag>軟體求生</tag>
+         
         <tag>js</tag>
          
         <tag>document.formName</tag>
          
         <tag>undefined</tag>
-         
-        <tag>軟體求生</tag>
          
         <tag>asp.net 4</tag>
          
@@ -3766,11 +3766,11 @@
         <title>Inheritance security rules violated by type: 'System.Net.Http.WebRequestHandler'</title>
         <pubTime>2019-02-23T02:41:55.000Z</pubTime>
         
-        <tag>軟體求生</tag>
-         
         <tag>System.Net.Http</tag>
          
         <tag>4.1.0.0</tag>
+         
+        <tag>軟體求生</tag>
          
          
            
@@ -4008,9 +4008,9 @@
         <title>PDF 最後一頁才顯示頁尾</title>
         <pubTime>2018-11-29T06:46:17.000Z</pubTime>
         
-        <tag>aspose</tag>
-         
         <tag>pdf</tag>
+         
+        <tag>aspose</tag>
          
         <tag>cells</tag>
          
@@ -4744,11 +4744,11 @@
         <title>SmtpConnection.GetConnection NullReferenceException</title>
         <pubTime>2018-03-14T02:07:16.000Z</pubTime>
         
-        <tag>NullReferenceException</tag>
-         
         <tag>SmtpClient</tag>
          
         <tag>SmtpConnection.GetConnection</tag>
+         
+        <tag>NullReferenceException</tag>
          
         <tag>.net</tag>
          
@@ -4773,11 +4773,11 @@
         <title>System.NullReferenceException when Aspose.Pdf.License.SetLicense(String licenseName)</title>
         <pubTime>2018-03-13T06:54:05.000Z</pubTime>
         
+        <tag>NullReferenceException</tag>
+         
         <tag>Aspose</tag>
          
         <tag>SetLicense</tag>
-         
-        <tag>NullReferenceException</tag>
          
          
            
@@ -4865,11 +4865,11 @@
         <title>The bot's MSA appId or password is incorrect.</title>
         <pubTime>2018-02-01T03:52:05.000Z</pubTime>
         
+        <tag>botframework</tag>
+         
         <tag>MSA appId or password is incorrect</tag>
          
         <tag>c#</tag>
-         
-        <tag>botframework</tag>
          
         <tag>botframework-emulator</tag>
          

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2022-03-22T15:11:21.004Z</updated>
+  <updated>2022-03-22T15:24:52.041Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://rainmakerho.github.io/2022/03/22/visual-studio-adding-certificate-to-trusted-root-failed/"/>
     <id>https://rainmakerho.github.io/2022/03/22/visual-studio-adding-certificate-to-trusted-root-failed/</id>
     <published>2022-03-22T14:35:35.000Z</published>
-    <updated>2022-03-22T15:11:21.004Z</updated>
+    <updated>2022-03-22T15:24:52.041Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>今天開啟 Visual Studio Web 專案執行時，先是提示「要信任 ASP.NET Core SSL 憑證嗎?」，按下「是」後，卻噴「無法信任憑證」的錯誤，<br><img src="/2022/03/22/visual-studio-adding-certificate-to-trusted-root-failed/01.png" title="要信任 ASP.NET Core SSL 憑證嗎?"></p><img src="/2022/03/22/visual-studio-adding-certificate-to-trusted-root-failed/02.png" title="無法將憑證新增至受信任的根憑證存放區"><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>開啟「管理電腦憑證」，在<strong>憑證-本機電腦</strong>的 <strong>個人/憑證</strong> 中有一個 <strong>localhost</strong> 的憑證，查看它的詳細資料中憑證指紋與Browser的並不相同。</p><blockquote><p>註:如果 Browser 查看憑證內容中的 憑證指紋與 個人/憑證 中有的 <strong>localhost</strong> 相同，則可以將它移到 <strong>受信任的根憑證授權單位/憑證</strong> 之中。</p></blockquote><p>所以參考 <a href="https://docs.microsoft.com/en-us/dotnet/core/additional-tools/self-signed-certificates-guide" target="_blank" rel="noopener">Generate self-signed certificates with the .NET CLI</a> 重新建立一個 ASP.NET Core 的自簽憑證，</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">dotnet dev-certs https -ep $env:USERPROFILE\.aspnet\https\aspnetapp.pfx -p 你的憑證pwd</span><br></pre></td></tr></table></figure><p>並將它放到 <strong>受信任的根憑證授權單位/憑證</strong> 之中，</p><p>再重新開啟 Visual Studio Web 專案，執行 Debug 就正常了。</p><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://stackoverflow.com/questions/47413183/visual-studio-2017-gives-adding-the-certificate-to-the-trusted-root-certificate" target="_blank" rel="noopener">Visual Studio 2017 gives ‘Adding the Certificate to The Trusted Root Certificates store failed with the following Errror’</a><br><a href="https://docs.microsoft.com/en-us/dotnet/core/additional-tools/self-signed-certificates-guide" target="_blank" rel="noopener">Generate self-signed certificates with the .NET CLI</a></p>]]></content>
+    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>今天開啟 Visual Studio Web 專案執行時，先是提示「要信任 ASP.NET Core SSL 憑證嗎?」，按下「是」後，卻噴「無法信任憑證」的錯誤，<br><img src="/2022/03/22/visual-studio-adding-certificate-to-trusted-root-failed/01.png" title="要信任 ASP.NET Core SSL 憑證嗎?"></p><img src="/2022/03/22/visual-studio-adding-certificate-to-trusted-root-failed/02.png" title="無法將憑證新增至受信任的根憑證存放區"><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>開啟「管理電腦憑證」，在<strong>憑證-本機電腦</strong>的 <strong>個人/憑證</strong> 中有一個 <strong>localhost</strong> 的憑證，查看它的詳細資料中憑證指紋與Browser的並不相同。</p><blockquote><p>註:如果 Browser 查看憑證內容中的 憑證指紋與 個人/憑證 中有的 <strong>localhost</strong> 相同，則可以將它移到 <strong>受信任的根憑證授權單位/憑證</strong> 之中。</p></blockquote><p>所以參考 <a href="https://docs.microsoft.com/en-us/dotnet/core/additional-tools/self-signed-certificates-guide" target="_blank" rel="noopener">Generate self-signed certificates with the .NET CLI</a> 重新建立一個 ASP.NET Core 的自簽憑證，</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">dotnet dev-certs https -ep $env:USERPROFILE\.aspnet\https\aspnetapp.pfx -p 你的憑證pwd</span><br></pre></td></tr></table></figure><p>並將它放到 <strong>受信任的根憑證授權單位/憑證</strong> 之中，</p><img src="/2022/03/22/visual-studio-adding-certificate-to-trusted-root-failed/03.png" title="受信任的根憑證授權單位/憑證"><p>再重新開啟 Visual Studio Web 專案，執行 Debug 就正常了。</p><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://stackoverflow.com/questions/47413183/visual-studio-2017-gives-adding-the-certificate-to-the-trusted-root-certificate" target="_blank" rel="noopener">Visual Studio 2017 gives ‘Adding the Certificate to The Trusted Root Certificates store failed with the following Errror’</a><br><a href="https://docs.microsoft.com/en-us/dotnet/core/additional-tools/self-signed-certificates-guide" target="_blank" rel="noopener">Generate self-signed certificates with the .NET CLI</a></p>]]></content>
     
     <summary type="html">
     
@@ -223,8 +223,6 @@
     
       <category term="OAuth 2.0" scheme="https://rainmakerho.github.io/tags/OAuth-2-0/"/>
     
-      <category term="public client" scheme="https://rainmakerho.github.io/tags/public-client/"/>
-    
       <category term="PKCE" scheme="https://rainmakerho.github.io/tags/PKCE/"/>
     
       <category term="Proof Key for Code Exchange" scheme="https://rainmakerho.github.io/tags/Proof-Key-for-Code-Exchange/"/>
@@ -232,6 +230,8 @@
       <category term="claiming URLs" scheme="https://rainmakerho.github.io/tags/claiming-URLs/"/>
     
       <category term="Custom URL Scheme" scheme="https://rainmakerho.github.io/tags/Custom-URL-Scheme/"/>
+    
+      <category term="public client" scheme="https://rainmakerho.github.io/tags/public-client/"/>
     
   </entry>
   
@@ -256,13 +256,13 @@
     
       <category term="OAuth 2.0" scheme="https://rainmakerho.github.io/tags/OAuth-2-0/"/>
     
+      <category term="public client" scheme="https://rainmakerho.github.io/tags/public-client/"/>
+    
       <category term="Implicit Flow" scheme="https://rainmakerho.github.io/tags/Implicit-Flow/"/>
     
       <category term="response_type=token" scheme="https://rainmakerho.github.io/tags/response-type-token/"/>
     
       <category term="response_mode=fragment" scheme="https://rainmakerho.github.io/tags/response-mode-fragment/"/>
-    
-      <category term="public client" scheme="https://rainmakerho.github.io/tags/public-client/"/>
     
       <category term="token flow" scheme="https://rainmakerho.github.io/tags/token-flow/"/>
     
@@ -522,9 +522,9 @@
     </summary>
     
     
-      <category term="ASP.NET" scheme="https://rainmakerho.github.io/tags/ASP-NET/"/>
-    
       <category term="ASPX" scheme="https://rainmakerho.github.io/tags/ASPX/"/>
+    
+      <category term="ASP.NET" scheme="https://rainmakerho.github.io/tags/ASP-NET/"/>
     
       <category term="Checkmarx" scheme="https://rainmakerho.github.io/tags/Checkmarx/"/>
     
