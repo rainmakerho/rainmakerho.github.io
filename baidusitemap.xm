@@ -4,6 +4,35 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2022/04/06/unicode-surrogate-pair/</loc>
+    <lastmod>2022-04-06T11:45:20.979Z</lastmod>
+    <data>
+        <display>
+        <title>for loop 讀取字串中的字，有些字會是「亂碼」? Surrogate pair</title>
+        <pubTime>2022-04-06T06:03:10.000Z</pubTime>
+        
+        <tag>自造字</tag>
+         
+        <tag>unicode</tag>
+         
+        <tag>Surrogate pair</tag>
+         
+        <tag>CJK Compatibility</tag>
+         
+        <tag>難字</tag>
+         
+        <tag>Char.IsSurrogatePair</tag>
+         
+        <tag>Char.ConvertToUtf32</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2022/03/29/azure-webapp-nodejs-internal-server-error/</loc>
     <lastmod>2022-03-29T02:49:53.037Z</lastmod>
     <data>

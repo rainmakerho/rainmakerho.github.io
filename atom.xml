@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2022-03-29T02:49:53.037Z</updated>
+  <updated>2022-04-06T11:45:20.979Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,41 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>for loop 讀取字串中的字，有些字會是「亂碼」? Surrogate pair</title>
+    <link href="https://rainmakerho.github.io/2022/04/06/unicode-surrogate-pair/"/>
+    <id>https://rainmakerho.github.io/2022/04/06/unicode-surrogate-pair/</id>
+    <published>2022-04-06T06:03:10.000Z</published>
+    <updated>2022-04-06T11:45:20.979Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近同事開會時，提到一個 unicode 的問題，<br>而 unicode 的問題，大多是 Big5 編碼時才會遇到，例如「堃」這個字。<br>當使用 utf8 編碼後，常常遇到的問題，大多是「自造字」(EUDC)的問題。<br>同事給的字是 「善」 這個字，但它卻跟一般的 「善」 不同。<br>「善」 vs 「善」 差在那裡呢?</p><h3 id="研究"><a href="#研究" class="headerlink" title="研究"></a>研究</h3><p>如果把 「善」 vs 「善」 貼到 Notepad (Windows 10 繁體中文版)中，會發現，前面的 善 變成了一個”白方框”，如下，<br><img src="/2022/04/06/unicode-surrogate-pair/01.png" title="unicode-Surrogate-pair"></p><p>直覺來看，應該是「自造字」，但以 Chrome Browser 來開啟它，卻又可以正常顯示，這就表示它 <strong>不是</strong>「自造字」(EUDC)。<br>所以可以從 <a href="https://unicode-table.com/" target="_blank" rel="noopener">unicode-table.com</a> 來查詢，<br>一般 「善」 這個字則是 CJK， escape 出來內容是 <strong>%u5584</strong><br><img src="/2022/04/06/unicode-surrogate-pair/03.png" title="U+5584"><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">escape</span>(<span class="string">'善'</span>); </span><br><span class="line"><span class="comment">// %u5584</span></span><br></pre></td></tr></table></figure></p><p>而有問題的 「善」 這個字是 <strong>CJK Compatibility Ideograph-2F846</strong> ,<br>escape 出來卻是 <strong>%uD87E%uDC46</strong><br><img src="/2022/04/06/unicode-surrogate-pair/02.png" title="U+2F846"><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">escape</span>(<span class="string">'善'</span>); </span><br><span class="line"><span class="comment">// %uD87E%uDC46</span></span><br></pre></td></tr></table></figure></p><p>它在 <a href="https://unicode-table.com/" target="_blank" rel="noopener">unicode-table.com</a> 可以找到，所以它是 <strong>unicode</strong>，<br>從 <strong>%uD87E%uDC46</strong> 來看，別人只有一個 code unit，它卻有 <strong>2個</strong>。<br>所以它是 <strong>Surrogate pair</strong> </p><blockquote><p>Surrogate pair is a representation for a single abstract character that consists of a sequence of code units of two 16-bit code units, where the first value of the pair is a high-surrogate code unit and the second value is a low-surrogate code unit.</p></blockquote><p>Surrogate pair(High-surrogate: 0xD800 ~ 0xDBFF, Low-surrogate: 0xDC00 ~ 0xDFFF) ，<br>大多用在 emoji (表情符號)及擴充字，這個 「善」 就是 CJK 擴充字。</p><p>那回過頭來，Surrogate pair 會有什麼問題呢?<br>就是透過 for loop 處理字串時，它會變<strong>亂碼</strong>，</p><h4 id="JavaScript-處理"><a href="#JavaScript-處理" class="headerlink" title="JavaScript 處理"></a>JavaScript 處理</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'a善b善c善d'</span>; <span class="comment">//length:9</span></span><br><span class="line"><span class="comment">//es5</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; str.length; i++) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"for-loop charAt"</span>, str.charAt(i));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><img src="/2022/04/06/unicode-surrogate-pair/04.png" title="js亂碼"><p>那要怎麼辦才能取到正常的字呢?<br>判斷如果是 High-surrogate 就取下一個 code unit，再判斷是否為 Low-surrogate，是則一次取2個 code unit，如下，<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getSymbols</span>(<span class="params">string</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> index = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">var</span> length = string.length;</span><br><span class="line">    <span class="keyword">var</span> output = [];</span><br><span class="line">    <span class="keyword">for</span> (; index &lt; length; ++index) &#123;</span><br><span class="line">        <span class="keyword">var</span> charCode = string.charCodeAt(index);</span><br><span class="line">        <span class="keyword">if</span> (charCode &gt;= <span class="number">0xD800</span> &amp;&amp; charCode &lt;= <span class="number">0xDBFF</span>) &#123;</span><br><span class="line">            charCode = string.charCodeAt(index + <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">if</span> (charCode &gt;= <span class="number">0xDC00</span> &amp;&amp; charCode &lt;= <span class="number">0xDFFF</span>) &#123;</span><br><span class="line">                output.push(string.slice(index, index + <span class="number">2</span>));</span><br><span class="line">                ++index;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        output.push(string.charAt(index));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> output;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> str = <span class="string">'a善b善c善d'</span>;</span><br><span class="line"><span class="comment">//es5</span></span><br><span class="line"><span class="keyword">var</span> strAry2 = getSymbols(str);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; strAry2.length; i++) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"getSymbols:"</span>, strAry2[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><img src="/2022/04/06/unicode-surrogate-pair/06.png" title="getSymbols"><p>如果ES6直接使用 Array.from 就行了，<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> strAry = <span class="built_in">Array</span>.from(str); <span class="comment">//strAry length:7</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; strAry.length; i++) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"Array.from"</span>, strAry[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><img src="/2022/04/06/unicode-surrogate-pair/05.png" title="Array.from"><ul><li>註: Most JavaScript engines use UTF-16 encoding</li></ul><h4 id="NET-處理"><a href="#NET-處理" class="headerlink" title=".NET 處理"></a>.NET 處理</h4><p>如果直接 for each 也是會變亂碼，<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">"a善b善c善d"</span>;</span><br><span class="line"><span class="keyword">foreach</span> (<span class="keyword">char</span> c <span class="keyword">in</span> str)</span><br><span class="line">&#123;</span><br><span class="line">    Console.WriteLine(<span class="string">$"foreach char:<span class="subst">&#123;c&#125;</span>"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><img src="/2022/04/06/unicode-surrogate-pair/07.png" title="CSharp foreach"><p>所以也是要判斷是否為 Surrogate pair，可利用 <a href="https://docs.microsoft.com/en-us/dotnet/api/system.char.issurrogatepair" target="_blank" rel="noopener">Char.IsSurrogatePair</a> + <a href="https://docs.microsoft.com/en-us/dotnet/api/system.char.converttoutf32" target="_blank" rel="noopener">Char.ConvertToUtf32</a> ，如下，<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">"a善b善c善d"</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; str.Length; i += Char.IsSurrogatePair(str, i) ? <span class="number">2</span> : <span class="number">1</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> x = Char.ConvertToUtf32(str, i);</span><br><span class="line">    <span class="keyword">var</span> chrStr = Char.ConvertFromUtf32(x);</span><br><span class="line">    Console.WriteLine(<span class="string">"U+&#123;0:X4&#125; &#123;1&#125; at &#123;2&#125;"</span>, x, chrStr, i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><img src="/2022/04/06/unicode-surrogate-pair/08.png" title="Char.IsSurrogatePair"><p>所以 for-loop 處理字串時，要檢查是否會有 Surrogate Pair 的狀況。</p><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://dmitripavlutin.com/what-every-javascript-developer-should-know-about-unicode/" target="_blank" rel="noopener">What every JavaScript developer should know about Unicode</a><br><a href="https://mathiasbynens.be/notes/javascript-unicode" target="_blank" rel="noopener">JavaScript has a Unicode problem</a><br><a href="https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about-unicode-and-character-sets-no-excuses/" target="_blank" rel="noopener">The Absolute Minimum Every Software Developer Absolutely, Positively Must Know About Unicode and Character Sets (No Excuses!)</a><br><a href="https://www.lighttag.io/blog/unicode-surrogate-pairs/" target="_blank" rel="noopener">Javascript String Offsets And Unicode Surrogate Pairs</a><br><a href="https://www.unicodepedia.com/groups/cjk-compatibility-ideographs-supplement/" target="_blank" rel="noopener">CJK Compatibility Ideographs Supplement</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;最近同事開會時，提到一個 unicode 的問題，&lt;br&gt;而 unicode 的問題，大多是 Big5 編碼時才會遇到，例如「堃」這個字。&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="自造字" scheme="https://rainmakerho.github.io/tags/%E8%87%AA%E9%80%A0%E5%AD%97/"/>
+    
+      <category term="unicode" scheme="https://rainmakerho.github.io/tags/unicode/"/>
+    
+      <category term="Surrogate pair" scheme="https://rainmakerho.github.io/tags/Surrogate-pair/"/>
+    
+      <category term="CJK Compatibility" scheme="https://rainmakerho.github.io/tags/CJK-Compatibility/"/>
+    
+      <category term="難字" scheme="https://rainmakerho.github.io/tags/%E9%9B%A3%E5%AD%97/"/>
+    
+      <category term="Char.IsSurrogatePair" scheme="https://rainmakerho.github.io/tags/Char-IsSurrogatePair/"/>
+    
+      <category term="Char.ConvertToUtf32" scheme="https://rainmakerho.github.io/tags/Char-ConvertToUtf32/"/>
+    
+  </entry>
   
   <entry>
     <title>azure nodejs webapp The page cannot be displayed because an internal server error has occurred.</title>
@@ -607,37 +642,6 @@
       <category term="GhostscriptProcessor" scheme="https://rainmakerho.github.io/tags/GhostscriptProcessor/"/>
     
       <category term="GhostscriptRasterizer" scheme="https://rainmakerho.github.io/tags/GhostscriptRasterizer/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Azure AD 地端的 Web App 透過 RBAC 存取 Azure Key Vault</title>
-    <link href="https://rainmakerho.github.io/2021/11/28/Azure-WebApp-Access-KeyVault-RBAC/"/>
-    <id>https://rainmakerho.github.io/2021/11/28/Azure-WebApp-Access-KeyVault-RBAC/</id>
-    <published>2021-11-28T08:14:34.000Z</published>
-    <updated>2021-11-28T08:29:20.000Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>我們在 Azure AD 中註冊一個地端 Web App (myapp)，而它註冊後，同時也會有一個 azure service principal 叫 myapp。<br>如果要在 myapp 中取得放在 Azure Key Vault 中的 Secret 要怎麼設定呢?</p><h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><p>設定方式及程式寫作方式可依<a href="https://docs.microsoft.com/en-us/azure/key-vault/general/tutorial-net-create-vault-azure-web-app" target="_blank" rel="noopener">Tutorial: Use a managed identity to connect Key Vault to an Azure web app in .NET</a>。<br>但因為系統是放在地端，所以要將 DefaultAzureCredential 改用 <a href="https://azuresdkdocs.blob.core.windows.net/$web/dotnet/Azure.Identity/1.0.0/api/Azure.Identity/Azure.Identity.ClientSecretCredential.html" target="_blank" rel="noopener">ClientSecretCredential</a> 。<br>因為 <a href="https://azuresdkdocs.blob.core.windows.net/$web/dotnet/Azure.Identity/1.0.0/api/Azure.Identity/Azure.Identity.ClientSecretCredential.html" target="_blank" rel="noopener">ClientSecretCredential</a> 需要 tenantId, clientId 及 clientSecret ，<br>所以需要在 myapp 的 Manage -&gt; Certificates &amp; secrets 功能中，新增一個 Client Secret 並取得它的值即可。</p><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://docs.microsoft.com/en-us/azure/key-vault/general/tutorial-net-create-vault-azure-web-app" target="_blank" rel="noopener">Tutorial: Use a managed identity to connect Key Vault to an Azure web app in .NET</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;我們在 Azure AD 中註冊一個地端 Web App (myapp)，而它註冊後，同時也會有一個 azure service princ
-      
-    
-    </summary>
-    
-    
-      <category term="Azure" scheme="https://rainmakerho.github.io/tags/Azure/"/>
-    
-      <category term="Key Vault" scheme="https://rainmakerho.github.io/tags/Key-Vault/"/>
-    
-      <category term="RBAC" scheme="https://rainmakerho.github.io/tags/RBAC/"/>
-    
-      <category term="DefaultAzureCredential" scheme="https://rainmakerho.github.io/tags/DefaultAzureCredential/"/>
-    
-      <category term="ClientSecretCredential" scheme="https://rainmakerho.github.io/tags/ClientSecretCredential/"/>
     
   </entry>
   
