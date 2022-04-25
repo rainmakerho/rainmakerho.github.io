@@ -4,6 +4,27 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2022/04/25/requestsizelimit-attribute-not-working-abp/</loc>
+    <lastmod>2022-04-25T09:02:45.163Z</lastmod>
+    <data>
+        <display>
+        <title>RequestSizeLimit 屬性在 Abp Framework 中，沒有作用</title>
+        <pubTime>2022-04-25T08:13:44.000Z</pubTime>
+        
+        <tag>RequestSizeLimit</tag>
+         
+        <tag>Abp Framework</tag>
+         
+        <tag>HttpContext.Features.MaxRequestBodySize</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2022/04/22/aspnetcore-request-entity-too-large/</loc>
     <lastmod>2022-04-22T15:33:47.731Z</lastmod>
     <data>
@@ -3954,6 +3975,8 @@
         <title>使用 OpenTracing - Jaeger (AP整合)</title>
         <pubTime>2019-01-15T05:13:41.000Z</pubTime>
         
+        <tag>BFv4</tag>
+         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -3967,8 +3990,6 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
-         
-        <tag>BFv4</tag>
          
         <tag>NodeJS</tag>
          
@@ -3987,6 +4008,8 @@
         <title>使用 OpenTracing - Jaeger</title>
         <pubTime>2019-01-04T06:02:45.000Z</pubTime>
         
+        <tag>BFv4</tag>
+         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -4000,8 +4023,6 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
-         
-        <tag>BFv4</tag>
          
          
            
@@ -4977,13 +4998,13 @@
         <title>線上客服 + BOT 之路</title>
         <pubTime>2018-01-25T08:10:47.000Z</pubTime>
         
+        <tag>chatbot</tag>
+         
         <tag>QnA Maker</tag>
          
         <tag>LUIS</tag>
          
         <tag>Vital ESP</tag>
-         
-        <tag>chatbot</tag>
          
         <tag>FAQ</tag>
          

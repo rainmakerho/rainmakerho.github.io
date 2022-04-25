@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2022-04-22T15:33:47.731Z</updated>
+  <updated>2022-04-25T09:02:45.163Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>RequestSizeLimit 屬性在 Abp Framework 中，沒有作用</title>
+    <link href="https://rainmakerho.github.io/2022/04/25/requestsizelimit-attribute-not-working-abp/"/>
+    <id>https://rainmakerho.github.io/2022/04/25/requestsizelimit-attribute-not-working-abp/</id>
+    <published>2022-04-25T08:13:44.000Z</published>
+    <updated>2022-04-25T09:02:45.163Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 <a href="https://rainmakerho.github.io/2022/04/22/aspnetcore-request-entity-too-large/">ASP.NET Core File Upload Size Limit</a> 說明，當設定整個系統的上傳檔案大小後，<br>如果要針對某個 Method 調整成別 Size ，<br>可以透過設定 <strong>RequestSizeLimit</strong> 屬性來達成。<br>最近使用 Abp Framework 來測試時，使用 <a href="https://community.abp.io/posts/file-uploaddownload-with-blob-storage-system-in-asp.net-core-abp-framework-d01cbe12" target="_blank" rel="noopener">File Upload/Download with BLOB Storage System in ASP.NET Core &amp; ABP Framework</a> 範例來測試上傳檔案，設定 <strong>RequestSizeLimit</strong> 屬性卻沒有效果。</p><h3 id="研究-求助"><a href="#研究-求助" class="headerlink" title="研究/求助"></a>研究/求助</h3><p>所以一樣在 Action Method 那設定 <strong>RequestSizeLimit</strong> 屬性，限制為 2011 Bytes，<br>並設定中斷點來查看 <strong>HttpContext.Features.MaxRequestBodySize</strong>，<br>發現它的值並沒有變成 2011，而是預設值 <strong>30,000,000</strong><br><img src="https://camo.githubusercontent.com/d983570b90b6e7dbde92c12094334700d274b0e98d73ca500bf528bdb471eaa7/68747470733a2f2f736174303270617030303166696c65732e73746f726167652e6c6976652e636f6d2f7934705039544f5535714d48774f59616c774d61546e58714a56484477636758364a2d2d714d6a636734734e716c447874544578306b316c346173704e627268675f7659305a32637a6658325a526b4e47484e485f6e416c426473685a554b70626856704d45777438755235744f754d6f484c485a69474931634c49686c315754635366347a4a7869324d4e477849364b3639644e6971797666726c457a75457a5a4477784376523753754b434d2f6162704d617852657153697a652e706e673f707369643d312677696474683d31333430266865696768743d343431" alt="HttpContext.Features.MaxRequestBodySize"></p><p>而且 Log 裡面有一段是說 IHttpRequestBodySizeFeature 是 read-only</p><blockquote><p>[WRN] A request body size limit could not be applied. The IHttpRequestBodySizeFeature for the server is read-only.</p></blockquote><p>所以就在 abp github 上填一個 issue 求助，<br><a href="https://github.com/abpframework/abp/issues/12336" target="_blank" rel="noopener">RequestSizeLimit attribute not working</a><br>他們的回覆很快速，一天就有了結果。<br>因為 RequestSizeLimit 屬性與 Abp Framework 有些衝突，<br>所以目前是無法正常運作的。<br>所以只能透過自定義的屬性搭配 Middleware 來設定 HttpContext.Features.MaxRequestBodySize 的值，如下，<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (MultiTenancyConsts.IsEnabled)</span><br><span class="line">&#123;</span><br><span class="line">    app.Use(<span class="keyword">async</span> (httpContext, next) =&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> endpoint = httpContext.GetEndpoint();</span><br><span class="line">        <span class="keyword">var</span> requestSizeLimitAttribute = endpoint?.Metadata.GetMetadata&lt;MyRequestSizeLimitAttribute&gt;();</span><br><span class="line">        <span class="keyword">if</span> (requestSizeLimitAttribute != <span class="literal">null</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">var</span> maxRequestBodySizeFeature = httpContext.Features.Get&lt;IHttpMaxRequestBodySizeFeature&gt;();</span><br><span class="line">            <span class="keyword">if</span> (maxRequestBodySizeFeature != <span class="literal">null</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                maxRequestBodySizeFeature.MaxRequestBodySize = requestSizeLimitAttribute.Bytes;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">await</span> next();</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    app.UseMultiTenancy();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">[<span class="meta">AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = true)</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MyRequestSizeLimitAttribute</span> : <span class="title">Attribute</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">long</span> Bytes &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyRequestSizeLimitAttribute</span>(<span class="params"><span class="keyword">long</span> bytes</span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Bytes = bytes;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">[<span class="meta">HttpPost</span>]</span><br><span class="line">[<span class="meta">Route(<span class="meta-string">"upload"</span>)</span>]</span><br><span class="line">[<span class="meta">MyRequestSizeLimit(20)</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">async</span> Task&lt;IActionResult&gt; <span class="title">UploadAsync</span>(<span class="params">IFormFile formFile</span>)</span></span><br></pre></td></tr></table></figure></p><p>使用 MyRequestSizeLimit 後，HttpContext.Features.MaxRequestBodySize 的值，就是 MyRequestSizeLimit 設定值。</p><h3 id="參考資訊"><a href="#參考資訊" class="headerlink" title="參考資訊"></a>參考資訊</h3><p><a href="https://github.com/abpframework/abp/issues/12336" target="_blank" rel="noopener">RequestSizeLimit attribute not working</a><br><a href="https://rainmakerho.github.io/2022/04/22/aspnetcore-request-entity-too-large/">ASP.NET Core File Upload Size Limit</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;在 &lt;a href=&quot;https://rainmakerho.github.io/2022/04/22/aspnetcore-request
+      
+    
+    </summary>
+    
+    
+      <category term="RequestSizeLimit" scheme="https://rainmakerho.github.io/tags/RequestSizeLimit/"/>
+    
+      <category term="Abp Framework" scheme="https://rainmakerho.github.io/tags/Abp-Framework/"/>
+    
+      <category term="HttpContext.Features.MaxRequestBodySize" scheme="https://rainmakerho.github.io/tags/HttpContext-Features-MaxRequestBodySize/"/>
+    
+  </entry>
   
   <entry>
     <title>ASP.NET Core File Upload Size Limit</title>
@@ -608,41 +635,6 @@
       <category term="OpenSSL configuration error" scheme="https://rainmakerho.github.io/tags/OpenSSL-configuration-error/"/>
     
       <category term="Windows 10 環境變數" scheme="https://rainmakerho.github.io/tags/Windows-10-%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Checkmarx V9.4 在 Heap_Inspection 的改變(ASPX)</title>
-    <link href="https://rainmakerho.github.io/2021/12/28/Heap-Inspection-ASPX/"/>
-    <id>https://rainmakerho.github.io/2021/12/28/Heap-Inspection-ASPX/</id>
-    <published>2021-12-28T01:09:40.000Z</published>
-    <updated>2021-12-28T01:32:48.000Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>之前在 ASP.NET WebForm ASPX 中，只要有 Password 等機敏性名稱的元件、屬性及變數都會被 Checkmarx 找出 <strong>Heap Inspection</strong> ，例如登入頁面的 <code>&lt;asp:TextBox ID=&quot;txtPassword&quot; TextMode=&quot;Password&quot; runat=&quot;server&quot;&gt;&lt;/asp:TextBox&gt;</code> 欄位。而且該問題還是<strong>中風險</strong>(在 Checkmarx V8.9測試)。<br><img src="/2021/12/28/Heap-Inspection-ASPX/01.png" title="Checkmarx V8.9"></p><h3 id="Checkmarx-V9-4"><a href="#Checkmarx-V9-4" class="headerlink" title="Checkmarx V9.4"></a>Checkmarx V9.4</h3><p>把相同的程式碼放到 Checkmarx V9.4 有以下幾點改變，</p><ol><li>風險等級由變成了<strong>低風險</strong></li><li><strong>全域屬性/變數</strong>才會被判斷為 Heap Inspection 風險<img src="/2021/12/28/Heap-Inspection-ASPX/02.png" title="Checkmarx V9.4"></li></ol><p>所以只要在 Login 的事件處理中，接收到 Password 欄位值，<br>並進行使用者帳/密驗證，在 Checkmarx V9.4 中判斷出 Heap_Inspection 的風險。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;之前在 ASP.NET WebForm ASPX 中，只要有 Password 等機敏性名稱的元件、屬性及變數都會被 Checkmarx 找
-      
-    
-    </summary>
-    
-    
-      <category term="ASPX" scheme="https://rainmakerho.github.io/tags/ASPX/"/>
-    
-      <category term="ASP.NET" scheme="https://rainmakerho.github.io/tags/ASP-NET/"/>
-    
-      <category term="Checkmarx" scheme="https://rainmakerho.github.io/tags/Checkmarx/"/>
-    
-      <category term="Password" scheme="https://rainmakerho.github.io/tags/Password/"/>
-    
-      <category term="Heap Inspection" scheme="https://rainmakerho.github.io/tags/Heap-Inspection/"/>
-    
-      <category term="Heap_Inspection" scheme="https://rainmakerho.github.io/tags/Heap-Inspection/"/>
-    
-      <category term="WebForm" scheme="https://rainmakerho.github.io/tags/WebForm/"/>
     
   </entry>
   
