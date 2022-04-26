@@ -517,11 +517,11 @@
          
         <tag>Checkmarx</tag>
          
-        <tag>Password</tag>
-         
         <tag>Heap Inspection</tag>
          
         <tag>Heap_Inspection</tag>
+         
+        <tag>Password</tag>
          
         <tag>WebForm</tag>
          
@@ -573,11 +573,11 @@
         
         <tag>Jenkins</tag>
          
+        <tag>Password</tag>
+         
         <tag>資安</tag>
          
         <tag>使用者密碼</tag>
-         
-        <tag>Password</tag>
          
          
            
@@ -1213,9 +1213,9 @@
          
         <tag>Checkmarx</tag>
          
-        <tag>Password</tag>
-         
         <tag>Heap Inspection</tag>
+         
+        <tag>Password</tag>
          
         <tag>Custom Model Binder</tag>
          
@@ -1240,9 +1240,9 @@
          
         <tag>Checkmarx</tag>
          
-        <tag>Password</tag>
-         
         <tag>Heap Inspection</tag>
+         
+        <tag>Password</tag>
          
         <tag>Custom Model Binder</tag>
          
@@ -1265,9 +1265,9 @@
         
         <tag>Checkmarx</tag>
          
-        <tag>Password</tag>
-         
         <tag>Heap Inspection</tag>
+         
+        <tag>Password</tag>
          
         <tag>Custom Model Binder</tag>
          
@@ -1294,9 +1294,9 @@
         
         <tag>Checkmarx</tag>
          
-        <tag>Password</tag>
-         
         <tag>Heap Inspection</tag>
+         
+        <tag>Password</tag>
          
         <tag>Custom Model Binder</tag>
          
@@ -4998,13 +4998,13 @@
         <title>線上客服 + BOT 之路</title>
         <pubTime>2018-01-25T08:10:47.000Z</pubTime>
         
-        <tag>chatbot</tag>
-         
         <tag>QnA Maker</tag>
          
         <tag>LUIS</tag>
          
         <tag>Vital ESP</tag>
+         
+        <tag>chatbot</tag>
          
         <tag>FAQ</tag>
          
