@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2022-04-26T02:08:05.078Z</updated>
+  <updated>2022-04-28T05:59:25.315Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -17,13 +17,44 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Teams 中的 Bot 是 Disabled 狀態</title>
+    <link href="https://rainmakerho.github.io/2022/04/28/teams-bot-disabled/"/>
+    <id>https://rainmakerho.github.io/2022/04/28/teams-bot-disabled/</id>
+    <published>2022-04-28T03:54:39.000Z</published>
+    <updated>2022-04-28T05:59:25.315Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>同事將寫好的 Teams Bot 上傳到 Teams 後，要使用 Bot 時，卻發現它是 Disabled 的狀態。<br><img src="/2022/04/28/teams-bot-disabled/01.png" title="Bot-Disabled"></p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>在 <a href="https://admin.teams.microsoft.com/policies/manage-apps" target="_blank" rel="noopener">Microsoft Teams admin center - Manage apps(管理應用程式) 功能</a> 畫面中，<br>按下 「Org-wide app settings(全域應用程式設定)」 Button，<br>發現 <strong>發行到市集的新協力廠商應用程式</strong> 及 <strong>與自訂應用程式戶動</strong> 沒有開啟，<br>將它們設定成開啟後， Bot 就可以使用了哦!<br><img src="/2022/04/28/teams-bot-disabled/02.png" title="全域應用程式設定"></p><p>如果要測試 Teams Bot 有沒有問題，也可以透過 <a href="https://dev.teams.microsoft.com/appvalidation.html" target="_blank" rel="noopener">Teams app validator</a> 來驗證看看。</p><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://dev.teams.microsoft.com/appvalidation.html" target="_blank" rel="noopener">Teams app validator</a><br><a href="https://admin.teams.microsoft.com" target="_blank" rel="noopener">Microsoft Teams admin center</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;同事將寫好的 Teams Bot 上傳到 Teams 後，要使用 Bot 時，卻發現它是 Disabled 的狀態。&lt;br&gt;&lt;img src
+      
+    
+    </summary>
+    
+    
+      <category term="Teams" scheme="https://rainmakerho.github.io/tags/Teams/"/>
+    
+      <category term="Bot" scheme="https://rainmakerho.github.io/tags/Bot/"/>
+    
+      <category term="Disabled" scheme="https://rainmakerho.github.io/tags/Disabled/"/>
+    
+      <category term="Teams app validator" scheme="https://rainmakerho.github.io/tags/Teams-app-validator/"/>
+    
+      <category term="Org-wide app settings" scheme="https://rainmakerho.github.io/tags/Org-wide-app-settings/"/>
+    
+  </entry>
+  
+  <entry>
     <title>RequestSizeLimit 屬性在 Abp Framework 中，沒有作用</title>
     <link href="https://rainmakerho.github.io/2022/04/25/requestsizelimit-attribute-not-working-abp/"/>
     <id>https://rainmakerho.github.io/2022/04/25/requestsizelimit-attribute-not-working-abp/</id>
     <published>2022-04-25T08:13:44.000Z</published>
-    <updated>2022-04-26T02:08:05.078Z</updated>
+    <updated>2022-04-26T02:21:20.968Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 <a href="https://rainmakerho.github.io/2022/04/22/aspnetcore-request-entity-too-large/">ASP.NET Core File Upload Size Limit</a> 說明，當設定整個系統的上傳檔案大小後，<br>如果要針對某個 Method 調整成別 Size ，<br>可以透過設定 <strong>RequestSizeLimit</strong> 屬性來達成。<br>最近使用 Abp Framework 來測試時，使用 <a href="https://community.abp.io/posts/file-uploaddownload-with-blob-storage-system-in-asp.net-core-abp-framework-d01cbe12" target="_blank" rel="noopener">File Upload/Download with BLOB Storage System in ASP.NET Core &amp; ABP Framework</a> 範例來測試上傳檔案，設定 <strong>RequestSizeLimit</strong> 屬性卻沒有效果。</p><h3 id="研究-求助"><a href="#研究-求助" class="headerlink" title="研究/求助"></a>研究/求助</h3><p>所以一樣在 Action Method 那設定 <strong>RequestSizeLimit</strong> 屬性，限制為 2011 Bytes，<br>並設定中斷點來查看 <strong>HttpContext.Features.MaxRequestBodySize</strong>，<br>發現它的值並沒有變成 2011，而是預設值 <strong>30,000,000</strong><br><img src="https://sat02pap001files.storage.live.com/y4pVWQoO4G1YfyC4jgnfiVhwn3BY6b53_vWdXADTklslUvDF-Me_WCCMK7Hy4qXCllbLjgovEwKiP9djGQCSqAEhZDZf4W3b1k2yXuDyEP6wrjuHQwh9suAu8hxHtgUdgl6iNLicL7_3FVnG1Fx1Beu629HPAcSBlHa3KjvrnSOsTU/abpMaxReqSize.png?psid=1&amp;width=1340&amp;height=441" alt="HttpContext.Features.MaxRequestBodySize"></p><p>而且 Log 裡面有一段是說 IHttpRequestBodySizeFeature 是 read-only</p><blockquote><p>[WRN] A request body size limit could not be applied. The IHttpRequestBodySizeFeature for the server is read-only.</p></blockquote><p>所以就在 abp github 上填一個 issue 求助，<br><a href="https://github.com/abpframework/abp/issues/12336" target="_blank" rel="noopener">RequestSizeLimit attribute not working</a><br>他們的回覆很快速，一天就有了結果。<br>因為 RequestSizeLimit 屬性與 Abp Framework 有些衝突，<br>所以目前是無法正常運作的。<br>所以只能透過自定義的屬性搭配 Middleware 來設定 HttpContext.Features.MaxRequestBodySize 的值，如下，<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (MultiTenancyConsts.IsEnabled)</span><br><span class="line">&#123;</span><br><span class="line">    app.Use(<span class="keyword">async</span> (httpContext, next) =&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> endpoint = httpContext.GetEndpoint();</span><br><span class="line">        <span class="keyword">var</span> requestSizeLimitAttribute = endpoint?.Metadata.GetMetadata&lt;MyRequestSizeLimitAttribute&gt;();</span><br><span class="line">        <span class="keyword">if</span> (requestSizeLimitAttribute != <span class="literal">null</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">var</span> maxRequestBodySizeFeature = httpContext.Features.Get&lt;IHttpMaxRequestBodySizeFeature&gt;();</span><br><span class="line">            <span class="keyword">if</span> (maxRequestBodySizeFeature != <span class="literal">null</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                maxRequestBodySizeFeature.MaxRequestBodySize = requestSizeLimitAttribute.Bytes;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">await</span> next();</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    app.UseMultiTenancy();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">[<span class="meta">AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = true)</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MyRequestSizeLimitAttribute</span> : <span class="title">Attribute</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">long</span> Bytes &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyRequestSizeLimitAttribute</span>(<span class="params"><span class="keyword">long</span> bytes</span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Bytes = bytes;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">[<span class="meta">HttpPost</span>]</span><br><span class="line">[<span class="meta">Route(<span class="meta-string">"upload"</span>)</span>]</span><br><span class="line">[<span class="meta">MyRequestSizeLimit(20)</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">async</span> Task&lt;IActionResult&gt; <span class="title">UploadAsync</span>(<span class="params">IFormFile formFile</span>)</span></span><br></pre></td></tr></table></figure></p><p>使用 MyRequestSizeLimit 後，HttpContext.Features.MaxRequestBodySize 的值，就是 MyRequestSizeLimit 設定值。</p><h3 id="參考資訊"><a href="#參考資訊" class="headerlink" title="參考資訊"></a>參考資訊</h3><p><a href="https://github.com/abpframework/abp/issues/12336" target="_blank" rel="noopener">RequestSizeLimit attribute not working</a><br><a href="https://rainmakerho.github.io/2022/04/22/aspnetcore-request-entity-too-large/">ASP.NET Core File Upload Size Limit</a></p>]]></content>
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 <a href="https://rainmakerho.github.io/2022/04/22/aspnetcore-request-entity-too-large/">ASP.NET Core File Upload Size Limit</a> 說明，當設定整個系統的上傳檔案大小後，<br>如果要針對某個 Method 調整成別 Size ，<br>可以透過設定 <strong>RequestSizeLimit</strong> 屬性來達成。<br>最近使用 Abp Framework 來測試時，使用 <a href="https://community.abp.io/posts/file-uploaddownload-with-blob-storage-system-in-asp.net-core-abp-framework-d01cbe12" target="_blank" rel="noopener">File Upload/Download with BLOB Storage System in ASP.NET Core &amp; ABP Framework</a> 範例來測試上傳檔案，設定 <strong>RequestSizeLimit</strong> 屬性卻沒有效果。</p><h3 id="研究-求助"><a href="#研究-求助" class="headerlink" title="研究/求助"></a>研究/求助</h3><p>所以一樣在 Action Method 那設定 <strong>RequestSizeLimit</strong> 屬性，限制為 2011 Bytes，<br>並設定中斷點來查看 <strong>HttpContext.Features.MaxRequestBodySize</strong>，<br>發現它的值並沒有變成 2011，而是預設值 <strong>30,000,000</strong><br><img src="https://sat02pap001files.storage.live.com/y4pVWQoO4G1YfyC4jgnfiVhwn3BY6b53_vWdXADTklslUvDF-Me_WCCMK7Hy4qXCllbLjgovEwKiP9djGQCSqAEhZDZf4W3b1k2yXuDyEP6wrjuHQwh9suAu8hxHtgUdgl6iNLicL7_3FVnG1Fx1Beu629HPAcSBlHa3KjvrnSOsTU/abpMaxReqSize.png?psid=1&amp;width=938&amp;height=308" alt="HttpContext.Features.MaxRequestBodySize"></p><p>而且 Log 裡面有一段是說 IHttpRequestBodySizeFeature 是 read-only</p><blockquote><p>[WRN] A request body size limit could not be applied. The IHttpRequestBodySizeFeature for the server is read-only.</p></blockquote><p>所以就在 abp github 上填一個 issue 求助，<br><a href="https://github.com/abpframework/abp/issues/12336" target="_blank" rel="noopener">RequestSizeLimit attribute not working</a><br>他們的回覆很快速，一天就有了結果。<br>因為 RequestSizeLimit 屬性與 Abp Framework 有些衝突，<br>所以目前是無法正常運作的。<br>所以只能透過自定義的屬性搭配 Middleware 來設定 HttpContext.Features.MaxRequestBodySize 的值，如下，<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (MultiTenancyConsts.IsEnabled)</span><br><span class="line">&#123;</span><br><span class="line">    app.Use(<span class="keyword">async</span> (httpContext, next) =&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> endpoint = httpContext.GetEndpoint();</span><br><span class="line">        <span class="keyword">var</span> requestSizeLimitAttribute = endpoint?.Metadata.GetMetadata&lt;MyRequestSizeLimitAttribute&gt;();</span><br><span class="line">        <span class="keyword">if</span> (requestSizeLimitAttribute != <span class="literal">null</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">var</span> maxRequestBodySizeFeature = httpContext.Features.Get&lt;IHttpMaxRequestBodySizeFeature&gt;();</span><br><span class="line">            <span class="keyword">if</span> (maxRequestBodySizeFeature != <span class="literal">null</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                maxRequestBodySizeFeature.MaxRequestBodySize = requestSizeLimitAttribute.Bytes;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">await</span> next();</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    app.UseMultiTenancy();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">[<span class="meta">AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = true)</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MyRequestSizeLimitAttribute</span> : <span class="title">Attribute</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">long</span> Bytes &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyRequestSizeLimitAttribute</span>(<span class="params"><span class="keyword">long</span> bytes</span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Bytes = bytes;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">[<span class="meta">HttpPost</span>]</span><br><span class="line">[<span class="meta">Route(<span class="meta-string">"upload"</span>)</span>]</span><br><span class="line">[<span class="meta">MyRequestSizeLimit(20)</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">async</span> Task&lt;IActionResult&gt; <span class="title">UploadAsync</span>(<span class="params">IFormFile formFile</span>)</span></span><br></pre></td></tr></table></figure></p><p>使用 MyRequestSizeLimit 後，HttpContext.Features.MaxRequestBodySize 的值，就是 MyRequestSizeLimit 設定值。</p><h3 id="參考資訊"><a href="#參考資訊" class="headerlink" title="參考資訊"></a>參考資訊</h3><p><a href="https://github.com/abpframework/abp/issues/12336" target="_blank" rel="noopener">RequestSizeLimit attribute not working</a><br><a href="https://rainmakerho.github.io/2022/04/22/aspnetcore-request-entity-too-large/">ASP.NET Core File Upload Size Limit</a></p>]]></content>
     
     <summary type="html">
     
@@ -358,6 +389,8 @@
     
       <category term="OAuth 2.0" scheme="https://rainmakerho.github.io/tags/OAuth-2-0/"/>
     
+      <category term="public client" scheme="https://rainmakerho.github.io/tags/public-client/"/>
+    
       <category term="PKCE" scheme="https://rainmakerho.github.io/tags/PKCE/"/>
     
       <category term="Proof Key for Code Exchange" scheme="https://rainmakerho.github.io/tags/Proof-Key-for-Code-Exchange/"/>
@@ -365,8 +398,6 @@
       <category term="claiming URLs" scheme="https://rainmakerho.github.io/tags/claiming-URLs/"/>
     
       <category term="Custom URL Scheme" scheme="https://rainmakerho.github.io/tags/Custom-URL-Scheme/"/>
-    
-      <category term="public client" scheme="https://rainmakerho.github.io/tags/public-client/"/>
     
   </entry>
   
@@ -391,13 +422,13 @@
     
       <category term="OAuth 2.0" scheme="https://rainmakerho.github.io/tags/OAuth-2-0/"/>
     
-      <category term="public client" scheme="https://rainmakerho.github.io/tags/public-client/"/>
-    
       <category term="Implicit Flow" scheme="https://rainmakerho.github.io/tags/Implicit-Flow/"/>
     
       <category term="response_type=token" scheme="https://rainmakerho.github.io/tags/response-type-token/"/>
     
       <category term="response_mode=fragment" scheme="https://rainmakerho.github.io/tags/response-mode-fragment/"/>
+    
+      <category term="public client" scheme="https://rainmakerho.github.io/tags/public-client/"/>
     
       <category term="token flow" scheme="https://rainmakerho.github.io/tags/token-flow/"/>
     
@@ -606,35 +637,6 @@
       <category term="CentOS" scheme="https://rainmakerho.github.io/tags/CentOS/"/>
     
       <category term="forceConsistentCasingInFileNames" scheme="https://rainmakerho.github.io/tags/forceConsistentCasingInFileNames/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>npm install - OpenSSL configuration error</title>
-    <link href="https://rainmakerho.github.io/2022/01/10/npm-OpenSSL-configuration-error/"/>
-    <id>https://rainmakerho.github.io/2022/01/10/npm-OpenSSL-configuration-error/</id>
-    <published>2022-01-10T02:42:46.000Z</published>
-    <updated>2022-01-10T03:57:34.000Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>在 Windows 10 X64, 更新 NodeJS 到 V17 後，執行 <code>npm install</code> 時，噴以 <code>OpenSSL configuration error</code> 的錯誤</p><blockquote><p>OpenSSL configuration error: 404F0000:error:80000002:system library:BIO_new_file:No such file or</p></blockquote><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>看了 <a href="https://github.com/nodejs/node/issues/40547" target="_blank" rel="noopener">17.0.1 win10 x64 OpenSSL configuration error</a> 後，<br>在環境變數中的系統變數有一個 <strong>OPENSSL_CONF</strong> ，它的值是 <code>C:\Program Files\PostgreSQL\psqlODBC\etc\openssl.cnf</code> 。<br>開啟檔案總管查看 etc 中是否有 openssl.cnf 的檔案，它又不存在。<br>所以就將 系統變數 <strong>OPENSSL_CONF</strong> 刪除，另開一個視窗來下 npm install 就沒有問題了哦!</p><ul><li>開啟 Windows 10 環境變數: 設定 -&gt; 系統 -&gt; 關於 -&gt; 進階系統設定 (在右邊 相關設定 下面的Link)</li></ul><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://github.com/nodejs/node/issues/40547" target="_blank" rel="noopener">17.0.1 win10 x64 OpenSSL configuration error</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;在 Windows 10 X64, 更新 NodeJS 到 V17 後，執行 &lt;code&gt;npm install&lt;/code&gt; 時，噴以 &lt;
-      
-    
-    </summary>
-    
-    
-      <category term="node" scheme="https://rainmakerho.github.io/tags/node/"/>
-    
-      <category term="npm" scheme="https://rainmakerho.github.io/tags/npm/"/>
-    
-      <category term="OpenSSL configuration error" scheme="https://rainmakerho.github.io/tags/OpenSSL-configuration-error/"/>
-    
-      <category term="Windows 10 環境變數" scheme="https://rainmakerho.github.io/tags/Windows-10-%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8/"/>
     
   </entry>
   

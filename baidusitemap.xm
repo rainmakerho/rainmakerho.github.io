@@ -4,8 +4,33 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2022/04/28/teams-bot-disabled/</loc>
+    <lastmod>2022-04-28T05:59:25.315Z</lastmod>
+    <data>
+        <display>
+        <title>Teams 中的 Bot 是 Disabled 狀態</title>
+        <pubTime>2022-04-28T03:54:39.000Z</pubTime>
+        
+        <tag>Teams</tag>
+         
+        <tag>Bot</tag>
+         
+        <tag>Disabled</tag>
+         
+        <tag>Teams app validator</tag>
+         
+        <tag>Org-wide app settings</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2022/04/25/requestsizelimit-attribute-not-working-abp/</loc>
-    <lastmod>2022-04-26T02:08:05.078Z</lastmod>
+    <lastmod>2022-04-26T02:21:20.968Z</lastmod>
     <data>
         <display>
         <title>RequestSizeLimit 屬性在 Abp Framework 中，沒有作用</title>
@@ -150,6 +175,8 @@
          
         <tag>OAuth 2.0</tag>
          
+        <tag>public client</tag>
+         
         <tag>PKCE</tag>
          
         <tag>Proof Key for Code Exchange</tag>
@@ -157,8 +184,6 @@
         <tag>claiming URLs</tag>
          
         <tag>Custom URL Scheme</tag>
-         
-        <tag>public client</tag>
          
          
            
@@ -296,13 +321,13 @@
         
         <tag>OAuth 2.0</tag>
          
-        <tag>public client</tag>
-         
         <tag>Implicit Flow</tag>
          
         <tag>response_type=token</tag>
          
         <tag>response_mode=fragment</tag>
+         
+        <tag>public client</tag>
          
         <tag>token flow</tag>
          
@@ -511,9 +536,9 @@
         <title>Checkmarx V9.4 在 Heap_Inspection 的改變(ASPX)</title>
         <pubTime>2021-12-28T01:09:40.000Z</pubTime>
         
-        <tag>ASPX</tag>
-         
         <tag>ASP.NET</tag>
+         
+        <tag>ASPX</tag>
          
         <tag>Checkmarx</tag>
          
@@ -767,9 +792,9 @@
         
         <tag>DataTable</tag>
          
-        <tag>Reflected_XSS_All_Clients</tag>
-         
         <tag>JsonConvert.SerializeObject</tag>
+         
+        <tag>Reflected_XSS_All_Clients</tag>
          
         <tag>JsonSerializerSettings</tag>
          
@@ -4300,9 +4325,9 @@
         <title>Microsoft Botframework + Adaptive Cards 快速打造 Chatbot 之 2</title>
         <pubTime>2018-09-17T01:29:38.000Z</pubTime>
         
-        <tag>chatbot</tag>
-         
         <tag>botframework</tag>
+         
+        <tag>chatbot</tag>
          
         <tag>adaptivecard</tag>
          
@@ -4369,9 +4394,9 @@
         <title>Microsoft Botframework + Adaptive Cards 快速打造 Chatbot</title>
         <pubTime>2018-08-02T09:55:13.000Z</pubTime>
         
-        <tag>chatbot</tag>
-         
         <tag>botframework</tag>
+         
+        <tag>chatbot</tag>
          
         <tag>Adaptive Cards</tag>
          
@@ -4854,11 +4879,11 @@
         <title>SmtpConnection.GetConnection NullReferenceException</title>
         <pubTime>2018-03-14T02:07:16.000Z</pubTime>
         
+        <tag>NullReferenceException</tag>
+         
         <tag>SmtpClient</tag>
          
         <tag>SmtpConnection.GetConnection</tag>
-         
-        <tag>NullReferenceException</tag>
          
         <tag>.net</tag>
          
@@ -4883,11 +4908,11 @@
         <title>System.NullReferenceException when Aspose.Pdf.License.SetLicense(String licenseName)</title>
         <pubTime>2018-03-13T06:54:05.000Z</pubTime>
         
-        <tag>NullReferenceException</tag>
-         
         <tag>Aspose</tag>
          
         <tag>SetLicense</tag>
+         
+        <tag>NullReferenceException</tag>
          
          
            
@@ -5023,9 +5048,9 @@
         <title>客製 BotDataStore ，將 Bot State 資料存到 SQL Server之中</title>
         <pubTime>2018-01-26T05:11:04.000Z</pubTime>
         
-        <tag>chatbot</tag>
-         
         <tag>botframework</tag>
+         
+        <tag>chatbot</tag>
          
         <tag>BotDataStore</tag>
          
