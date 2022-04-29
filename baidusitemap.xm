@@ -4,6 +4,33 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2022/04/29/teams-app-access-meetings-behalf-user/</loc>
+    <lastmod>2022-04-29T06:42:32.628Z</lastmod>
+    <data>
+        <display>
+        <title>Teams App 代替使用者建立線上會議，讓該使用者為會議主持人</title>
+        <pubTime>2022-04-29T02:53:08.000Z</pubTime>
+        
+        <tag>Teams</tag>
+         
+        <tag>meetings</tag>
+         
+        <tag>behalf of a user</tag>
+         
+        <tag>Microsoft Graph</tag>
+         
+        <tag>No Application Access Policy found for this app.</tag>
+         
+        <tag>Access Policy</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2022/04/28/teams-bot-disabled/</loc>
     <lastmod>2022-04-28T05:59:25.315Z</lastmod>
     <data>
@@ -175,8 +202,6 @@
          
         <tag>OAuth 2.0</tag>
          
-        <tag>public client</tag>
-         
         <tag>PKCE</tag>
          
         <tag>Proof Key for Code Exchange</tag>
@@ -184,6 +209,8 @@
         <tag>claiming URLs</tag>
          
         <tag>Custom URL Scheme</tag>
+         
+        <tag>public client</tag>
          
          
            
@@ -321,13 +348,13 @@
         
         <tag>OAuth 2.0</tag>
          
+        <tag>public client</tag>
+         
         <tag>Implicit Flow</tag>
          
         <tag>response_type=token</tag>
          
         <tag>response_mode=fragment</tag>
-         
-        <tag>public client</tag>
          
         <tag>token flow</tag>
          
@@ -536,9 +563,9 @@
         <title>Checkmarx V9.4 在 Heap_Inspection 的改變(ASPX)</title>
         <pubTime>2021-12-28T01:09:40.000Z</pubTime>
         
-        <tag>ASP.NET</tag>
-         
         <tag>ASPX</tag>
+         
+        <tag>ASP.NET</tag>
          
         <tag>Checkmarx</tag>
          
@@ -792,9 +819,9 @@
         
         <tag>DataTable</tag>
          
-        <tag>JsonConvert.SerializeObject</tag>
-         
         <tag>Reflected_XSS_All_Clients</tag>
+         
+        <tag>JsonConvert.SerializeObject</tag>
          
         <tag>JsonSerializerSettings</tag>
          
@@ -4000,8 +4027,6 @@
         <title>使用 OpenTracing - Jaeger (AP整合)</title>
         <pubTime>2019-01-15T05:13:41.000Z</pubTime>
         
-        <tag>BFv4</tag>
-         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -4015,6 +4040,8 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
+         
+        <tag>BFv4</tag>
          
         <tag>NodeJS</tag>
          
@@ -4033,8 +4060,6 @@
         <title>使用 OpenTracing - Jaeger</title>
         <pubTime>2019-01-04T06:02:45.000Z</pubTime>
         
-        <tag>BFv4</tag>
-         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -4048,6 +4073,8 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
+         
+        <tag>BFv4</tag>
          
          
            
@@ -4325,9 +4352,9 @@
         <title>Microsoft Botframework + Adaptive Cards 快速打造 Chatbot 之 2</title>
         <pubTime>2018-09-17T01:29:38.000Z</pubTime>
         
-        <tag>botframework</tag>
-         
         <tag>chatbot</tag>
+         
+        <tag>botframework</tag>
          
         <tag>adaptivecard</tag>
          
@@ -4394,9 +4421,9 @@
         <title>Microsoft Botframework + Adaptive Cards 快速打造 Chatbot</title>
         <pubTime>2018-08-02T09:55:13.000Z</pubTime>
         
-        <tag>botframework</tag>
-         
         <tag>chatbot</tag>
+         
+        <tag>botframework</tag>
          
         <tag>Adaptive Cards</tag>
          
@@ -4950,9 +4977,9 @@
         <title>使用 Botframework 的 Bot 如何 Debug 到 BotBuilder Source ?</title>
         <pubTime>2018-02-01T01:47:18.000Z</pubTime>
         
-        <tag>C#</tag>
-         
         <tag>botframework</tag>
+         
+        <tag>C#</tag>
          
         <tag>BotBuilder</tag>
          
@@ -5048,9 +5075,9 @@
         <title>客製 BotDataStore ，將 Bot State 資料存到 SQL Server之中</title>
         <pubTime>2018-01-26T05:11:04.000Z</pubTime>
         
-        <tag>botframework</tag>
-         
         <tag>chatbot</tag>
+         
+        <tag>botframework</tag>
          
         <tag>BotDataStore</tag>
          

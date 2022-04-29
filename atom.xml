@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2022-04-28T05:59:25.315Z</updated>
+  <updated>2022-04-29T06:42:32.628Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,39 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Teams App 代替使用者建立線上會議，讓該使用者為會議主持人</title>
+    <link href="https://rainmakerho.github.io/2022/04/29/teams-app-access-meetings-behalf-user/"/>
+    <id>https://rainmakerho.github.io/2022/04/29/teams-app-access-meetings-behalf-user/</id>
+    <published>2022-04-29T02:53:08.000Z</published>
+    <updated>2022-04-29T06:42:32.628Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>Application 可以設定所需要的 Permissions，<br>再透過 Microsoft Graph API 去存取。<br>而所需的 Permissions ，可以區分成 <strong>Delegated</strong> 及 <strong>Application</strong>，<br>詳細可以參考 <a href="https://docs.microsoft.com/en-us/graph/permissions-reference" target="_blank" rel="noopener">Microsoft Graph permissions reference</a>。<br>大部份是設定 <strong>Delegated</strong> 的 Permissions 讓 End User 去做自已的事，<br>我們有個情境需要替使用者建立一個線上會議，所以需要的就是 <strong>Application</strong> 的 <strong>OnlineMeetings.ReadWrite.All</strong> Permission。</p><h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><h4 id="1-在-Azure-AD-註冊-App"><a href="#1-在-Azure-AD-註冊-App" class="headerlink" title="1.在 Azure AD 註冊 App"></a>1.在 Azure AD 註冊 App</h4><p>所以可以依 <a href="https://docs.microsoft.com/en-us/graph/auth-v2-service" target="_blank" rel="noopener">Get access without a user</a> 來註冊 App 並設定 <strong>User.Read.All</strong>(測試用) 及 <strong>OnlineMeetings.ReadWrite.All</strong> Permissions，並建立 App 的 Client secrets。</p><h4 id="2-Grant-admin-consent"><a href="#2-Grant-admin-consent" class="headerlink" title="2.Grant admin consent"></a>2.Grant admin consent</h4><p>註冊好之後，請 Azure AD 管理人員到 Azure Active Directory -&gt; App registrations 找到 註冊的 App ，<br>點選該 App ，再點選 API permissions 去 <strong>Grant admin consent</strong><br><img src="/2022/04/29/teams-app-access-meetings-behalf-user/01.png" title="Grant admin consent"></p><h4 id="3-取回-App-的-Token"><a href="#3-取回-App-的-Token" class="headerlink" title="3.取回 App 的 Token"></a>3.取回 App 的 Token</h4><p>依 <a href="https://docs.microsoft.com/en-us/graph/auth-v2-service" target="_blank" rel="noopener">Get access without a user</a> 的 <strong>4. Get an access token</strong> ，<br>依 Application (client) ID 及 Client secrets，Scope 給 <strong><a href="https://graph.microsoft.com/.default" target="_blank" rel="noopener">https://graph.microsoft.com/.default</a></strong> 來取回 Token。<br><img src="/2022/04/29/teams-app-access-meetings-behalf-user/02.png" title="Get App access token"></p><h4 id="4-取得使用者資訊"><a href="#4-取得使用者資訊" class="headerlink" title="4.取得使用者資訊"></a>4.取得使用者資訊</h4><p>依 <a href="https://docs.microsoft.com/en-us/graph/auth-v2-service" target="_blank" rel="noopener">Get access without a user</a> 的 <strong>5. Use the access token to call Microsoft Graph</strong> ，拿上述取得的 Token 來取回使用者資資訊，<br><img src="/2022/04/29/teams-app-access-meetings-behalf-user/03.png" title="取得使用者資訊"></p><h4 id="5-替某個使用者建立線上會議"><a href="#5-替某個使用者建立線上會議" class="headerlink" title="5.替某個使用者建立線上會議"></a>5.替某個使用者建立線上會議</h4><p>依 <a href="https://docs.microsoft.com/en-us/graph/api/application-post-onlinemeetings?view=graph-rest-1.0&amp;amp%3Btabs=http&amp;tabs=http" target="_blank" rel="noopener">Create onlineMeeting</a> ，拿上述取得的 Token ，使用 <code>POST /users/{userId}/onlineMeetings</code>，為該使用者建立線上會議。<br>結果會出現 <strong>No Application Access Policy found for this app.</strong> 的錯誤。<br>那是因為，如果 App 要為使用者建立線上會議，需要依 <a href="https://docs.microsoft.com/en-us/graph/cloud-communication-online-meeting-application-access-policy" target="_blank" rel="noopener">Allow applications to access online meetings on behalf of a user</a> 的設定。</p><p>以<strong>系統管理員</strong>身份開啟 Power Shell 視窗，連接到 Teams。<br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Import-Module</span> MicrosoftTeams</span><br><span class="line">Connect-MicrosoftTeams</span><br></pre></td></tr></table></figure></p><blockquote><p>註:如果沒有 MicrosoftTeams Module 請參考 <a href="https://docs.microsoft.com/en-us/microsoftteams/teams-powershell-install" target="_blank" rel="noopener">Install Microsoft Teams PowerShell Module</a> 安裝</p></blockquote><p>建立 Application Access Policy ，並將 App 加入<br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">New-CsApplicationAccessPolicy -Identity <span class="string">"teams-meetings-policy"</span> -AppIds <span class="string">"Application (client) ID"</span> -Description <span class="string">"Allow applications to access online meetings on behalf of a user"</span></span><br></pre></td></tr></table></figure></p><p>設定某個使用者去套用 Application Access Policy<br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Grant-CsApplicationAccessPolicy -PolicyName <span class="string">"teams-meetings-policy"</span> -Identity <span class="string">"使用者的ObjectId"</span></span><br></pre></td></tr></table></figure></p><blockquote><p>註:如果針對整個 tenant 可以設定 <code>-Global</code><br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Grant-CsApplicationAccessPolicy -PolicyName <span class="string">"teams-meetings-policy"</span> -Global</span><br></pre></td></tr></table></figure></p></blockquote><p>設定好之後，就可以透過 <code>POST /users/{userId}/onlineMeetings</code> 來幫該使用者建立線上會議<br><img src="/2022/04/29/teams-app-access-meetings-behalf-user/04.png" title="Create onlineMeetings"></p><blockquote><p>註:如果沒有設定使用者套用 Application Access Policy，則會出現 <strong>403</strong> <strong>No Application Access Policy found for this app.</strong> 的錯誤</p></blockquote><img src="/2022/04/29/teams-app-access-meetings-behalf-user/05.png" title="No Application Access Policy found for this app."><h4 id="6-Application-Access-Policy-相關設定"><a href="#6-Application-Access-Policy-相關設定" class="headerlink" title="6.Application Access Policy 相關設定"></a>6.Application Access Policy 相關設定</h4><p>增加 App 到 Policy<br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set-CsApplicationAccessPolicy -Identity <span class="string">"teams-meetings-policy"</span> -AppIds @&#123;Add=<span class="string">"新的Application (client) ID"</span>&#125;</span><br></pre></td></tr></table></figure></p><p>從 Policy 移除 App<br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set-CsApplicationAccessPolicy -Identity <span class="string">"teams-meetings-policy"</span> -AppIds @&#123;Remove=<span class="string">"要移的Application (client) ID"</span>&#125;</span><br></pre></td></tr></table></figure></p><p>設定 User 不套用 Access Policy<br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Grant-CsApplicationAccessPolicy -Identity <span class="string">"使用者的ObjectId"</span> -PolicyName <span class="literal">$Null</span></span><br></pre></td></tr></table></figure></p><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://docs.microsoft.com/en-us/graph/cloud-communication-online-meeting-application-access-policy" target="_blank" rel="noopener">Allow applications to access online meetings on behalf of a user</a><br><a href="https://blog.thoughtstuff.co.uk/2020/09/you-can-now-create-microsoft-teams-meetings-as-an-application-without-a-users-needing-to-be-present-heres-how-to-use-application-access-policy/" target="_blank" rel="noopener">You can now create Microsoft Teams meetings as an application without a users needing to be present: here’s how to use Application Access Policy</a><br><a href="https://docs.microsoft.com/en-us/microsoftteams/teams-powershell-install" target="_blank" rel="noopener">Install Microsoft Teams PowerShell Module</a><br><a href="https://docs.microsoft.com/en-us/graph/auth-v2-service" target="_blank" rel="noopener">Get access without a user</a><br><a href="https://docs.microsoft.com/en-us/graph/api/application-post-onlinemeetings?view=graph-rest-1.0&amp;amp%3Btabs=http&amp;tabs=http" target="_blank" rel="noopener">Create onlineMeeting</a><br><a href="https://docs.microsoft.com/en-us/microsoft-365/enterprise/manage-skype-for-business-online-with-microsoft-365-powershell?view=o365-worldwide" target="_blank" rel="noopener">Manage Skype for Business Online with PowerShell</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;Application 可以設定所需要的 Permissions，&lt;br&gt;再透過 Microsoft Graph API 去存取。&lt;br&gt;而
+      
+    
+    </summary>
+    
+    
+      <category term="Teams" scheme="https://rainmakerho.github.io/tags/Teams/"/>
+    
+      <category term="meetings" scheme="https://rainmakerho.github.io/tags/meetings/"/>
+    
+      <category term="behalf of a user" scheme="https://rainmakerho.github.io/tags/behalf-of-a-user/"/>
+    
+      <category term="Microsoft Graph" scheme="https://rainmakerho.github.io/tags/Microsoft-Graph/"/>
+    
+      <category term="No Application Access Policy found for this app." scheme="https://rainmakerho.github.io/tags/No-Application-Access-Policy-found-for-this-app/"/>
+    
+      <category term="Access Policy" scheme="https://rainmakerho.github.io/tags/Access-Policy/"/>
+    
+  </entry>
   
   <entry>
     <title>Teams 中的 Bot 是 Disabled 狀態</title>
@@ -389,8 +422,6 @@
     
       <category term="OAuth 2.0" scheme="https://rainmakerho.github.io/tags/OAuth-2-0/"/>
     
-      <category term="public client" scheme="https://rainmakerho.github.io/tags/public-client/"/>
-    
       <category term="PKCE" scheme="https://rainmakerho.github.io/tags/PKCE/"/>
     
       <category term="Proof Key for Code Exchange" scheme="https://rainmakerho.github.io/tags/Proof-Key-for-Code-Exchange/"/>
@@ -398,6 +429,8 @@
       <category term="claiming URLs" scheme="https://rainmakerho.github.io/tags/claiming-URLs/"/>
     
       <category term="Custom URL Scheme" scheme="https://rainmakerho.github.io/tags/Custom-URL-Scheme/"/>
+    
+      <category term="public client" scheme="https://rainmakerho.github.io/tags/public-client/"/>
     
   </entry>
   
@@ -422,13 +455,13 @@
     
       <category term="OAuth 2.0" scheme="https://rainmakerho.github.io/tags/OAuth-2-0/"/>
     
+      <category term="public client" scheme="https://rainmakerho.github.io/tags/public-client/"/>
+    
       <category term="Implicit Flow" scheme="https://rainmakerho.github.io/tags/Implicit-Flow/"/>
     
       <category term="response_type=token" scheme="https://rainmakerho.github.io/tags/response-type-token/"/>
     
       <category term="response_mode=fragment" scheme="https://rainmakerho.github.io/tags/response-mode-fragment/"/>
-    
-      <category term="public client" scheme="https://rainmakerho.github.io/tags/public-client/"/>
     
       <category term="token flow" scheme="https://rainmakerho.github.io/tags/token-flow/"/>
     
@@ -602,41 +635,6 @@
       <category term="03000086" scheme="https://rainmakerho.github.io/tags/03000086/"/>
     
       <category term="digital envelope routines::initialization error" scheme="https://rainmakerho.github.io/tags/digital-envelope-routines-initialization-error/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>error TS2307 Cannot find module</title>
-    <link href="https://rainmakerho.github.io/2022/01/10/error-TS2307-Cannot-find-module/"/>
-    <id>https://rainmakerho.github.io/2022/01/10/error-TS2307-Cannot-find-module/</id>
-    <published>2022-01-10T03:10:51.000Z</published>
-    <updated>2022-01-10T03:36:19.000Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>透過 CentOS 8 來 compile ts 檔時，居然噴<code>error TS2307 Cannot find module</code>的錯誤</p><blockquote><p>error TS2307: Cannot find module ‘./../adapters/WebChatAdapter’ or its corresponding type declarations.<br>8 import { WebChatAdapter } from ‘./../adapters/WebChatAdapter’;</p></blockquote><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>可是，原本在 Mac/Windows 中怎麼沒有錯誤呢?<br>TypeScript 的 import 在 Mac/Windows 是不分大小寫的，但在 CentOS 是有區分的。<br>而會發生那個錯誤是因為，程式碼中寫的是 from 檔名是大寫開頭的 <strong>W</strong>ebChatAdapter ，<br>但實際檔名卻是小寫開頭的 <strong>w</strong>ebChatAdapter。<br>所以將 from 的檔名改成小寫就可以了。<br><code>from &#39;./../adapters/WebChatAdapter&#39;</code> =&gt; <code>from &#39;./../adapters/webChatAdapter&#39;</code></p><p>而為了怕未來有類似的狀況，就在 tsconfig.json 中加入 <code>forceConsistentCasingInFileNames</code> 的設定(預設是 false)。<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"compilerOptions"</span>: &#123;</span><br><span class="line">        <span class="attr">"forceConsistentCasingInFileNames"</span>: <span class="literal">true</span> //確保檔案的大小寫一致</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>這樣在 Mac/Windows 有 import 跟 檔名大小寫不同時，也一樣會噴錯誤，就可以在開發時第一時間發現問題。</p><h3 id="參考資訊"><a href="#參考資訊" class="headerlink" title="參考資訊"></a>參考資訊</h3><p><a href="https://briandesousa.net/?p=870" target="_blank" rel="noopener">CASE-SENSITIVE IMPORT STATEMENTS IN TYPESCRIPT</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;透過 CentOS 8 來 compile ts 檔時，居然噴&lt;code&gt;error TS2307 Cannot find module&lt;/
-      
-    
-    </summary>
-    
-    
-      <category term="tsc" scheme="https://rainmakerho.github.io/tags/tsc/"/>
-    
-      <category term="TS2307" scheme="https://rainmakerho.github.io/tags/TS2307/"/>
-    
-      <category term="Cannot find module" scheme="https://rainmakerho.github.io/tags/Cannot-find-module/"/>
-    
-      <category term="import" scheme="https://rainmakerho.github.io/tags/import/"/>
-    
-      <category term="CASE-SENSITIVE" scheme="https://rainmakerho.github.io/tags/CASE-SENSITIVE/"/>
-    
-      <category term="CentOS" scheme="https://rainmakerho.github.io/tags/CentOS/"/>
-    
-      <category term="forceConsistentCasingInFileNames" scheme="https://rainmakerho.github.io/tags/forceConsistentCasingInFileNames/"/>
     
   </entry>
   
