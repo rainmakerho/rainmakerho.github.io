@@ -4,8 +4,35 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2022/05/04/teams-create-enable-online-meeting/</loc>
+    <lastmod>2022-05-04T03:22:44.806Z</lastmod>
+    <data>
+        <display>
+        <title>teams-create-enable-online-meeting</title>
+        <pubTime>2022-05-04T00:22:22.000Z</pubTime>
+        
+        <tag>OnlineMeetings.ReadWrite.All</tag>
+         
+        <tag>teams</tag>
+         
+        <tag>meeting</tag>
+         
+        <tag>outlook</tag>
+         
+        <tag>calendar</tag>
+         
+        <tag>Calendars.ReadWrite</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2022/04/29/teams-app-access-meetings-behalf-user/</loc>
-    <lastmod>2022-04-29T06:42:32.628Z</lastmod>
+    <lastmod>2022-05-04T03:15:03.816Z</lastmod>
     <data>
         <display>
         <title>Teams App 代替使用者建立線上會議，讓該使用者為會議主持人</title>
@@ -19,9 +46,32 @@
          
         <tag>Microsoft Graph</tag>
          
+        <tag>Access Policy</tag>
+         
         <tag>No Application Access Policy found for this app.</tag>
          
-        <tag>Access Policy</tag>
+        <tag>OnlineMeetings.ReadWrite.All</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://rainmakerho.github.io/2022/04/25/requestsizelimit-attribute-not-working-abp/</loc>
+    <lastmod>2022-05-04T03:09:59.869Z</lastmod>
+    <data>
+        <display>
+        <title>RequestSizeLimit 屬性在 Abp Framework 中，沒有作用</title>
+        <pubTime>2022-04-25T08:13:44.000Z</pubTime>
+        
+        <tag>RequestSizeLimit</tag>
+         
+        <tag>Abp Framework</tag>
+         
+        <tag>HttpContext.Features.MaxRequestBodySize</tag>
          
          
            
@@ -47,27 +97,6 @@
         <tag>Teams app validator</tag>
          
         <tag>Org-wide app settings</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://rainmakerho.github.io/2022/04/25/requestsizelimit-attribute-not-working-abp/</loc>
-    <lastmod>2022-04-26T02:21:20.968Z</lastmod>
-    <data>
-        <display>
-        <title>RequestSizeLimit 屬性在 Abp Framework 中，沒有作用</title>
-        <pubTime>2022-04-25T08:13:44.000Z</pubTime>
-        
-        <tag>RequestSizeLimit</tag>
-         
-        <tag>Abp Framework</tag>
-         
-        <tag>HttpContext.Features.MaxRequestBodySize</tag>
          
          
            
@@ -202,6 +231,8 @@
          
         <tag>OAuth 2.0</tag>
          
+        <tag>public client</tag>
+         
         <tag>PKCE</tag>
          
         <tag>Proof Key for Code Exchange</tag>
@@ -209,8 +240,6 @@
         <tag>claiming URLs</tag>
          
         <tag>Custom URL Scheme</tag>
-         
-        <tag>public client</tag>
          
          
            
@@ -348,13 +377,13 @@
         
         <tag>OAuth 2.0</tag>
          
-        <tag>public client</tag>
-         
         <tag>Implicit Flow</tag>
          
         <tag>response_type=token</tag>
          
         <tag>response_mode=fragment</tag>
+         
+        <tag>public client</tag>
          
         <tag>token flow</tag>
          
@@ -819,9 +848,9 @@
         
         <tag>DataTable</tag>
          
-        <tag>Reflected_XSS_All_Clients</tag>
-         
         <tag>JsonConvert.SerializeObject</tag>
+         
+        <tag>Reflected_XSS_All_Clients</tag>
          
         <tag>JsonSerializerSettings</tag>
          
@@ -4027,6 +4056,8 @@
         <title>使用 OpenTracing - Jaeger (AP整合)</title>
         <pubTime>2019-01-15T05:13:41.000Z</pubTime>
         
+        <tag>BFv4</tag>
+         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -4040,8 +4071,6 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
-         
-        <tag>BFv4</tag>
          
         <tag>NodeJS</tag>
          
@@ -4060,6 +4089,8 @@
         <title>使用 OpenTracing - Jaeger</title>
         <pubTime>2019-01-04T06:02:45.000Z</pubTime>
         
+        <tag>BFv4</tag>
+         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -4073,8 +4104,6 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
-         
-        <tag>BFv4</tag>
          
          
            
