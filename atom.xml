@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2022-05-04T03:22:44.806Z</updated>
+  <updated>2022-05-04T03:40:27.433Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>teams-create-enable-online-meeting</title>
+    <title>Teams 在 Calendar 上建立 會議 ，並設定它是線上會議</title>
     <link href="https://rainmakerho.github.io/2022/05/04/teams-create-enable-online-meeting/"/>
     <id>https://rainmakerho.github.io/2022/05/04/teams-create-enable-online-meeting/</id>
     <published>2022-05-04T00:22:22.000Z</published>
-    <updated>2022-05-04T03:22:44.806Z</updated>
+    <updated>2022-05-04T03:40:27.433Z</updated>
     
     <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 <a href="https://rainmakerho.github.io/2022/04/29/teams-app-access-meetings-behalf-user/">Teams App 代替使用者建立線上會議，讓該使用者為會議主持人</a> 可以透過 App 快速建立 <strong>線上會議</strong> 。<br>但這樣只是建立線上會議，跟 Calendar 無關，而且還要透過 Access Policy 去設定。<br>所以更方便的做法就是在 Calendar 上建立 會議 ，並設定它是線上會議，這樣就不用特別去設定 Access Policy。</p><h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><p>因為要建立 Calendar ，所以 App 需要的 Application permissions 為 <strong>Calendars.ReadWrite</strong>，而原本需要的 <strong>OnlineMeetings.ReadWrite.All</strong><br>權限則可以 <strong>Revoke admin consent</strong> 後，再 <strong>Remove premission</strong>。<br>將 App 從 Access Policy 中移除，移除套用 Access Policy 的使用者， 並將 Access Policy 移除。<br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 移除套用 Access Policy 的使用者</span></span><br><span class="line">Get-CsOnlineUser | Grant-CsApplicationAccessPolicy -PolicyName <span class="literal">$Null</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 將 App 從 Access Policy 中移除</span></span><br><span class="line">Set-CsApplicationAccessPolicy -Identity <span class="string">"teams-meetings-policy"</span> -AppIds @&#123;Remove=<span class="string">"要移的Application (client) ID"</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#將 Access Policy 移除</span></span><br><span class="line">Remove-CsApplicationAccessPolicy -Identity <span class="string">"teams-meetings-policy"</span></span><br></pre></td></tr></table></figure></p><p>加入 <strong>Calendars.ReadWrite</strong> 權限後，一樣需要 <strong>Grant admin consent</strong>。</p><p>再來就是取得 <strong>App 的 Token</strong><br>依 <a href="https://docs.microsoft.com/en-us/graph/auth-v2-service" target="_blank" rel="noopener">Get access without a user</a> 的 <strong>4. Get an access token</strong> ，<br>依 Application (client) ID 及 Client secrets，Scope 給 <strong><a href="https://graph.microsoft.com/.default" target="_blank" rel="noopener">https://graph.microsoft.com/.default</a></strong> 來取回 Token。<br><img src="https://rainmakerho.github.io/2022/04/29/teams-app-access-meetings-behalf-user/02.png" alt="Get App Token"></p><h4 id="在-Calendar-上建立-會議-，並設定它是線上會議"><a href="#在-Calendar-上建立-會議-，並設定它是線上會議" class="headerlink" title="在 Calendar 上建立 會議 ，並設定它是線上會議"></a>在 Calendar 上建立 會議 ，並設定它是線上會議</h4><p>依 <a href="https://docs.microsoft.com/en-us/graph/outlook-calendar-online-meetings?tabs=http" target="_blank" rel="noopener">Enable an event as an online meeting in an Outlook calendar</a>，拿上述取得的 App Token ，使用 <code>https://graph.microsoft.com/v1.0/users/{user Object Id}/events</code> ，並給會議的資訊，例如，<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"subject"</span>: <span class="string">"線上會議測試"</span>,</span><br><span class="line">  <span class="attr">"body"</span>: &#123;</span><br><span class="line">    <span class="attr">"contentType"</span>: <span class="string">"HTML"</span>,</span><br><span class="line">    <span class="attr">"content"</span>: <span class="string">"&lt;h3&gt;hello events&lt;/h3&gt;線上會議測試--- 有時間嗎?"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"start"</span>: &#123;</span><br><span class="line">      <span class="attr">"dateTime"</span>: <span class="string">"2022-05-03T18:00:00.0000000+08:00"</span>,</span><br><span class="line">      <span class="attr">"timeZone"</span>: <span class="string">"Pacific Standard Time"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"end"</span>: &#123;</span><br><span class="line">      <span class="attr">"dateTime"</span>: <span class="string">"2022-05-03T18:30:00.0000000+08:00"</span>,</span><br><span class="line">      <span class="attr">"timeZone"</span>: <span class="string">"Pacific Standard Time"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"location"</span>:&#123;</span><br><span class="line">      <span class="attr">"displayName"</span>:<span class="string">"666 會議室"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"attendees"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"emailAddress"</span>: &#123;</span><br><span class="line">        <span class="attr">"address"</span>:<span class="string">"rainmaker@rm.com.tw"</span>,</span><br><span class="line">        <span class="attr">"name"</span>: <span class="string">"rainmaker"</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">"type"</span>: <span class="string">"required"</span></span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"allowNewTimeProposals"</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">"isOnlineMeeting"</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">"onlineMeetingProvider"</span>: <span class="string">"teamsForBusiness"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>這樣就會在行事曆中顯示該線上會議，<br><img src="/2022/05/04/teams-create-enable-online-meeting/01.png" title="Post events"></p><img src="/2022/05/04/teams-create-enable-online-meeting/02.png" title="線上會議"><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://docs.microsoft.com/en-us/graph/outlook-calendar-online-meetings?tabs=http" target="_blank" rel="noopener">Enable an event as an online meeting in an Outlook calendar</a><br><a href="https://docs.microsoft.com/en-us/powershell/module/skype/grant-csapplicationaccesspolicy?view=skype-ps" target="_blank" rel="noopener">Grant-CsApplicationAccessPolicy</a></p>]]></content>
     
@@ -457,8 +457,6 @@
     
       <category term="OAuth 2.0" scheme="https://rainmakerho.github.io/tags/OAuth-2-0/"/>
     
-      <category term="public client" scheme="https://rainmakerho.github.io/tags/public-client/"/>
-    
       <category term="PKCE" scheme="https://rainmakerho.github.io/tags/PKCE/"/>
     
       <category term="Proof Key for Code Exchange" scheme="https://rainmakerho.github.io/tags/Proof-Key-for-Code-Exchange/"/>
@@ -466,6 +464,8 @@
       <category term="claiming URLs" scheme="https://rainmakerho.github.io/tags/claiming-URLs/"/>
     
       <category term="Custom URL Scheme" scheme="https://rainmakerho.github.io/tags/Custom-URL-Scheme/"/>
+    
+      <category term="public client" scheme="https://rainmakerho.github.io/tags/public-client/"/>
     
   </entry>
   
@@ -490,13 +490,13 @@
     
       <category term="OAuth 2.0" scheme="https://rainmakerho.github.io/tags/OAuth-2-0/"/>
     
+      <category term="public client" scheme="https://rainmakerho.github.io/tags/public-client/"/>
+    
       <category term="Implicit Flow" scheme="https://rainmakerho.github.io/tags/Implicit-Flow/"/>
     
       <category term="response_type=token" scheme="https://rainmakerho.github.io/tags/response-type-token/"/>
     
       <category term="response_mode=fragment" scheme="https://rainmakerho.github.io/tags/response-mode-fragment/"/>
-    
-      <category term="public client" scheme="https://rainmakerho.github.io/tags/public-client/"/>
     
       <category term="token flow" scheme="https://rainmakerho.github.io/tags/token-flow/"/>
     

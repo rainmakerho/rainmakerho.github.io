@@ -5,10 +5,10 @@
     
   <url>
     <loc>https://rainmakerho.github.io/2022/05/04/teams-create-enable-online-meeting/</loc>
-    <lastmod>2022-05-04T03:22:44.806Z</lastmod>
+    <lastmod>2022-05-04T03:40:27.433Z</lastmod>
     <data>
         <display>
-        <title>teams-create-enable-online-meeting</title>
+        <title>Teams 在 Calendar 上建立 會議 ，並設定它是線上會議</title>
         <pubTime>2022-05-04T00:22:22.000Z</pubTime>
         
         <tag>OnlineMeetings.ReadWrite.All</tag>
@@ -231,8 +231,6 @@
          
         <tag>OAuth 2.0</tag>
          
-        <tag>public client</tag>
-         
         <tag>PKCE</tag>
          
         <tag>Proof Key for Code Exchange</tag>
@@ -240,6 +238,8 @@
         <tag>claiming URLs</tag>
          
         <tag>Custom URL Scheme</tag>
+         
+        <tag>public client</tag>
          
          
            
@@ -377,13 +377,13 @@
         
         <tag>OAuth 2.0</tag>
          
+        <tag>public client</tag>
+         
         <tag>Implicit Flow</tag>
          
         <tag>response_type=token</tag>
          
         <tag>response_mode=fragment</tag>
-         
-        <tag>public client</tag>
          
         <tag>token flow</tag>
          
@@ -848,9 +848,9 @@
         
         <tag>DataTable</tag>
          
-        <tag>JsonConvert.SerializeObject</tag>
-         
         <tag>Reflected_XSS_All_Clients</tag>
+         
+        <tag>JsonConvert.SerializeObject</tag>
          
         <tag>JsonSerializerSettings</tag>
          
