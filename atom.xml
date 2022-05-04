@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2022-05-04T03:40:27.433Z</updated>
+  <updated>2022-05-04T07:58:20.792Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>System.Security.Authentication.AuthenticationException - The remote certificate is invalid because of errors in the certificate chain - PartialChain</title>
+    <link href="https://rainmakerho.github.io/2022/05/04/openidconnecthandler-getuserinformationasync-tls-error/"/>
+    <id>https://rainmakerho.github.io/2022/05/04/openidconnecthandler-getuserinformationasync-tls-error/</id>
+    <published>2022-05-04T07:15:31.000Z</published>
+    <updated>2022-05-04T07:58:20.792Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>我們有個 Web App 部署到正式環境，透過 Azure AD 登入後，<br>程式會轉到 Web App 的 <strong>/signin-azuread-oidc</strong> 然後它會轉址到錯誤頁面，<br>錯誤的Log如下，</p><blockquote><p>[ERR] Exception occurred while processing message.<br>System.Net.Http.HttpRequestException: The SSL connection could not be established, see inner exception.<br> —&gt; System.Security.Authentication.AuthenticationException: The remote certificate is invalid because of errors in the certificate chain: PartialChain<br>   at System.Net.Security.SslStream.SendAuthResetSignal(ProtocolToken message, ExceptionDispatchInfo exception)<br>   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](TIOAdapter adapter, Boolean receiveFirst, Byte[] reAuthenticationData, Boolean isApm)<br>   at System.Net.Http.ConnectHelper.EstablishSslConnectionAsyncCore(Boolean async, Stream stream, SslClientAuthenticationOptions sslOptions, CancellationToken cancellationToken)<br>   — End of inner exception stack trace —<br>   at System.Net.Http.ConnectHelper.EstablishSslConnectionAsyncCore(Boolean async, Stream stream, SslClientAuthenticationOptions sslOptions, CancellationToken cancellationToken)<br>   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)<br>   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)<br>   at System.Net.Http.HttpConnectionPool.GetHttpConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)<br>   at System.Net.Http.HttpConnectionPool.SendWithRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)<br>   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)<br>   at System.Net.Http.DiagnosticsHandler.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)<br>   at System.Net.Http.HttpClient.SendAsyncCore(HttpRequestMessage request, HttpCompletionOption completionOption, Boolean async, Boolean emitTelemetryStartStop, CancellationToken cancellationToken)<br>   at Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectHandler.GetUserInformationAsync(OpenIdConnectMessage message, JwtSecurityToken jwt, ClaimsPrincipal principal, AuthenticationProperties properties)<br>   at Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectHandler.HandleRemoteAuthenticateAsync()</p></blockquote><h3 id="解決"><a href="#解決" class="headerlink" title="解決"></a>解決</h3><p>因為不知道到 <strong>login.microsoftonline.com</strong> 登入後，<br><code>POST webap/signin-azuread-oidc</code> 後會發生錯誤，<br>從 Log 並不知道錯誤的 URL 是那一個，<br>所以請同事透過 VS.NET 並開啟 Fiddler 錄看看，<br>結果同事在 Fiddler 中發現它還會連到 <strong><a href="https://graph.microsoft.com" target="_blank" rel="noopener">https://graph.microsoft.com</a></strong>，<br>而在正式機開啟 Browser 連到 <strong><a href="https://graph.microsoft.com" target="_blank" rel="noopener">https://graph.microsoft.com</a></strong> ，<br>發現它會轉址到 <strong><a href="https://developer.microsoft.com/graph" target="_blank" rel="noopener">https://developer.microsoft.com/graph</a></strong>，<br>在網頁中，該網址會被 FortiGuard 擋掉。<br><img src="/2022/05/04/openidconnecthandler-getuserinformationasync-tls-error/01.png" title="FortiGuard Block URL"></p><p>後來申請正式機允許可以連出到 <strong><a href="https://developer.microsoft.com" target="_blank" rel="noopener">https://developer.microsoft.com</a></strong>，<br>Web App 就可以正常登入了。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;我們有個 Web App 部署到正式環境，透過 Azure AD 登入後，&lt;br&gt;程式會轉到 Web App 的 &lt;strong&gt;/sign
+      
+    
+    </summary>
+    
+    
+      <category term="Azure" scheme="https://rainmakerho.github.io/tags/Azure/"/>
+    
+      <category term="OpenIdConnectHandler.GetUserInformationAsync" scheme="https://rainmakerho.github.io/tags/OpenIdConnectHandler-GetUserInformationAsync/"/>
+    
+      <category term="OpenIdConnectHandler.HandleRemoteAuthenticateAsync" scheme="https://rainmakerho.github.io/tags/OpenIdConnectHandler-HandleRemoteAuthenticateAsync/"/>
+    
+      <category term="FortiGuard" scheme="https://rainmakerho.github.io/tags/FortiGuard/"/>
+    
+      <category term="SSL" scheme="https://rainmakerho.github.io/tags/SSL/"/>
+    
+  </entry>
   
   <entry>
     <title>Teams 在 Calendar 上建立 會議 ，並設定它是線上會議</title>
@@ -457,6 +488,8 @@
     
       <category term="OAuth 2.0" scheme="https://rainmakerho.github.io/tags/OAuth-2-0/"/>
     
+      <category term="public client" scheme="https://rainmakerho.github.io/tags/public-client/"/>
+    
       <category term="PKCE" scheme="https://rainmakerho.github.io/tags/PKCE/"/>
     
       <category term="Proof Key for Code Exchange" scheme="https://rainmakerho.github.io/tags/Proof-Key-for-Code-Exchange/"/>
@@ -464,8 +497,6 @@
       <category term="claiming URLs" scheme="https://rainmakerho.github.io/tags/claiming-URLs/"/>
     
       <category term="Custom URL Scheme" scheme="https://rainmakerho.github.io/tags/Custom-URL-Scheme/"/>
-    
-      <category term="public client" scheme="https://rainmakerho.github.io/tags/public-client/"/>
     
   </entry>
   
@@ -490,13 +521,13 @@
     
       <category term="OAuth 2.0" scheme="https://rainmakerho.github.io/tags/OAuth-2-0/"/>
     
-      <category term="public client" scheme="https://rainmakerho.github.io/tags/public-client/"/>
-    
       <category term="Implicit Flow" scheme="https://rainmakerho.github.io/tags/Implicit-Flow/"/>
     
       <category term="response_type=token" scheme="https://rainmakerho.github.io/tags/response-type-token/"/>
     
       <category term="response_mode=fragment" scheme="https://rainmakerho.github.io/tags/response-mode-fragment/"/>
+    
+      <category term="public client" scheme="https://rainmakerho.github.io/tags/public-client/"/>
     
       <category term="token flow" scheme="https://rainmakerho.github.io/tags/token-flow/"/>
     
@@ -610,35 +641,6 @@
       <category term="OWSAP Top 10 2021" scheme="https://rainmakerho.github.io/tags/OWSAP-Top-10-2021/"/>
     
       <category term="Missing_Object_Level_Authorization" scheme="https://rainmakerho.github.io/tags/Missing-Object-Level-Authorization/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>npm ERR! sqlite3@4.2.0 install</title>
-    <link href="https://rainmakerho.github.io/2022/01/13/npm-ERR-sqlite-install/"/>
-    <id>https://rainmakerho.github.io/2022/01/13/npm-ERR-sqlite-install/</id>
-    <published>2022-01-13T01:06:26.000Z</published>
-    <updated>2022-01-13T01:13:24.000Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近在 CentOS 8 上下載 NodeJS 的程式，然後下<code>npm install</code>，就發生 npm ERR! <a href="mailto:sqlite3@4.2.0" target="_blank" rel="noopener">sqlite3@4.2.0</a> install: <code>node-pre-gyp install --fallback-to-build</code> 的錯誤。</p><blockquote><p>npm ERR! <a href="mailto:sqlite3@4.2.0" target="_blank" rel="noopener">sqlite3@4.2.0</a> install: <code>node-pre-gyp install --fallback-to-build</code><br>npm ERR! Exit status 1<br>npm ERR!<br>npm ERR! Failed at the <a href="mailto:sqlite3@4.2.0" target="_blank" rel="noopener">sqlite3@4.2.0</a> install script.<br>npm ERR! This is probably not a problem with npm. There is likely additional logging output above.</p></blockquote><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>因為在 npm install sqlite 時，它會進行編譯，所以還需要安裝 python 及 make</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum install python2</span><br><span class="line">alias python='python2'</span><br><span class="line">yum install make</span><br></pre></td></tr></table></figure><p>之後再下 <code>npm install</code> 就可以了哦!</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;最近在 CentOS 8 上下載 NodeJS 的程式，然後下&lt;code&gt;npm install&lt;/code&gt;，就發生 npm ERR! &lt;
-      
-    
-    </summary>
-    
-    
-      <category term="node" scheme="https://rainmakerho.github.io/tags/node/"/>
-    
-      <category term="CentOS" scheme="https://rainmakerho.github.io/tags/CentOS/"/>
-    
-      <category term="sqlite" scheme="https://rainmakerho.github.io/tags/sqlite/"/>
-    
-      <category term="npm install" scheme="https://rainmakerho.github.io/tags/npm-install/"/>
     
   </entry>
   

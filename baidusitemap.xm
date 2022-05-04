@@ -4,6 +4,31 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2022/05/04/openidconnecthandler-getuserinformationasync-tls-error/</loc>
+    <lastmod>2022-05-04T07:58:20.792Z</lastmod>
+    <data>
+        <display>
+        <title>System.Security.Authentication.AuthenticationException - The remote certificate is invalid because of errors in the certificate chain - PartialChain</title>
+        <pubTime>2022-05-04T07:15:31.000Z</pubTime>
+        
+        <tag>Azure</tag>
+         
+        <tag>OpenIdConnectHandler.GetUserInformationAsync</tag>
+         
+        <tag>OpenIdConnectHandler.HandleRemoteAuthenticateAsync</tag>
+         
+        <tag>FortiGuard</tag>
+         
+        <tag>SSL</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2022/05/04/teams-create-enable-online-meeting/</loc>
     <lastmod>2022-05-04T03:40:27.433Z</lastmod>
     <data>
@@ -231,6 +256,8 @@
          
         <tag>OAuth 2.0</tag>
          
+        <tag>public client</tag>
+         
         <tag>PKCE</tag>
          
         <tag>Proof Key for Code Exchange</tag>
@@ -238,8 +265,6 @@
         <tag>claiming URLs</tag>
          
         <tag>Custom URL Scheme</tag>
-         
-        <tag>public client</tag>
          
          
            
@@ -377,13 +402,13 @@
         
         <tag>OAuth 2.0</tag>
          
-        <tag>public client</tag>
-         
         <tag>Implicit Flow</tag>
          
         <tag>response_type=token</tag>
          
         <tag>response_mode=fragment</tag>
+         
+        <tag>public client</tag>
          
         <tag>token flow</tag>
          
@@ -1350,11 +1375,11 @@
          
         <tag>Heap Inspection</tag>
          
+        <tag>MVC5</tag>
+         
         <tag>Custom Model Binder</tag>
          
         <tag>SecureString</tag>
-         
-        <tag>MVC5</tag>
          
         <tag>netFramework</tag>
          
@@ -4935,11 +4960,11 @@
         <title>SmtpConnection.GetConnection NullReferenceException</title>
         <pubTime>2018-03-14T02:07:16.000Z</pubTime>
         
-        <tag>NullReferenceException</tag>
-         
         <tag>SmtpClient</tag>
          
         <tag>SmtpConnection.GetConnection</tag>
+         
+        <tag>NullReferenceException</tag>
          
         <tag>.net</tag>
          
@@ -4964,11 +4989,11 @@
         <title>System.NullReferenceException when Aspose.Pdf.License.SetLicense(String licenseName)</title>
         <pubTime>2018-03-13T06:54:05.000Z</pubTime>
         
+        <tag>NullReferenceException</tag>
+         
         <tag>Aspose</tag>
          
         <tag>SetLicense</tag>
-         
-        <tag>NullReferenceException</tag>
          
          
            
