@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2022-05-04T07:58:20.792Z</updated>
+  <updated>2022-05-10T05:59:44.884Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,41 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JanusGraph 學習 - 以朋友關係為例</title>
+    <link href="https://rainmakerho.github.io/2022/05/10/gremlin-friends-examples/"/>
+    <id>https://rainmakerho.github.io/2022/05/10/gremlin-friends-examples/</id>
+    <published>2022-05-10T02:25:48.000Z</published>
+    <updated>2022-05-10T05:59:44.884Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>學習最好的方式就是練習，以下使用 person-&gt;friends-&gt;person 的朋友關係資料來練習。</p><ol><li>Dave 的朋友是那些人?</li><li>Dave 的朋友的朋友是那些人?</li><li>Ted 要如何關連到 Denise ?</li></ol><h3 id="環境準備"><a href="#環境準備" class="headerlink" title="環境準備"></a>環境準備</h3><p>使用 Docker 最方便，所以第一次透過 <code>docker run</code> 將 JanusGraph 下載下來並執行<br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --rm --name janusgraph-default docker.io/janusgraph/janusgraph:latest</span><br></pre></td></tr></table></figure></p><img src="/2022/05/10/gremlin-friends-examples/01.png" title="docker run"><p>如果要停止 janusgraph ，可執行 <code>docker stop janusgraph-default</code><br>要再執行 janusgraph ，可執行 <code>docker start janusgraph-default</code><br><img src="/2022/05/10/gremlin-friends-examples/02.png" title="docker stop/start"></p><p>當 JanusGraph 執行起來後，開啟 Gremlin Console<br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it janusgraph-default ./bin/gremlin.sh</span><br></pre></td></tr></table></figure></p><img src="/2022/05/10/gremlin-friends-examples/03.png" title="docker exec -it"><p>連到 JanusGraph 的 Gremlin Server，並將 Gremlin Console 切換到 Remote<br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">:remote connect tinkerpop.server conf/remote.yaml session</span><br><span class="line"></span><br><span class="line">:remote console</span><br></pre></td></tr></table></figure></p><img src="/2022/05/10/gremlin-friends-examples/04.png" title="gremlin console"><h3 id="新增資料"><a href="#新增資料" class="headerlink" title="新增資料"></a>新增資料</h3><p>在 Gremlin Console 中，貼上以下的 groovy 程式，以新增朋友的資料<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Remove any existing data to allow this to be rerun</span></span><br><span class="line">g.V().drop().iterate()</span><br><span class="line"></span><br><span class="line"><span class="comment">//Adds a person vertex with a name of Dave and saves it to a variable</span></span><br><span class="line">dave = g.addV(<span class="string">'person'</span>).property(<span class="string">'first_name'</span>, <span class="string">'Dave'</span>).next()</span><br><span class="line"><span class="comment">//Adds a person vertex with a name of Josh and saves it to a variable</span></span><br><span class="line">josh = g.addV(<span class="string">'person'</span>).property(<span class="string">'first_name'</span>, <span class="string">'Josh'</span>).next()</span><br><span class="line"><span class="comment">//Adds a person vertex with a name of Ted and saves it to a variable</span></span><br><span class="line">ted = g.addV(<span class="string">'person'</span>).property(<span class="string">'first_name'</span>, <span class="string">'Ted'</span>).next()</span><br><span class="line"><span class="comment">//Adds a person vertex with a name of Hank and saves it to a variable</span></span><br><span class="line">hank = g.addV(<span class="string">'person'</span>).property(<span class="string">'first_name'</span>, <span class="string">'Hank'</span>).next()</span><br><span class="line"></span><br><span class="line"><span class="comment">//Adds a friends edge between Dave and Ted</span></span><br><span class="line">g.addE(<span class="string">'friends'</span>).from(dave).to(ted).next()</span><br><span class="line"><span class="comment">//Adds a friends edge between Dave and Josh</span></span><br><span class="line">g.addE(<span class="string">'friends'</span>).from(dave).to(josh).next()</span><br><span class="line"><span class="comment">//Adds a friends edge between Dave and Hank</span></span><br><span class="line">g.addE(<span class="string">'friends'</span>).from(dave).to(hank).next()</span><br><span class="line"><span class="comment">//Adds a friends edge between Josh and Hank</span></span><br><span class="line">g.addE(<span class="string">'friends'</span>).from(josh).to(hank).next()</span><br><span class="line"><span class="comment">//Adds a friends edge between Ted and Josh</span></span><br><span class="line">g.addE(<span class="string">'friends'</span>).from(ted).to(josh).next()</span><br><span class="line"></span><br><span class="line"><span class="comment">//Adds a person vertex with a name of Kelly and saves it to a variable</span></span><br><span class="line">kelly = g.addV(<span class="string">'person'</span>).property(<span class="string">'first_name'</span>, <span class="string">'Kelly'</span>).next()</span><br><span class="line"><span class="comment">//Adds a person vertex with a name of Jim and saves it to a variable</span></span><br><span class="line">jim = g.addV(<span class="string">'person'</span>).property(<span class="string">'first_name'</span>, <span class="string">'Jim'</span>).next()</span><br><span class="line"><span class="comment">//Adds a person vertex with a name of Paras and saves it to a variable</span></span><br><span class="line">paras = g.addV(<span class="string">'person'</span>).property(<span class="string">'first_name'</span>, <span class="string">'Paras'</span>).next()</span><br><span class="line"><span class="comment">//Adds a person vertex with a name of Denise and saves it to a variable</span></span><br><span class="line">denise = g.addV(<span class="string">'person'</span>).property(<span class="string">'first_name'</span>, <span class="string">'Denise'</span>).next()</span><br><span class="line"></span><br><span class="line"><span class="comment">//Adds friends edges</span></span><br><span class="line">g.addE(<span class="string">'friends'</span>).from(dave).to(jim).</span><br><span class="line">        addE(<span class="string">'friends'</span>).from(dave).to(kelly).</span><br><span class="line">        addE(<span class="string">'friends'</span>).from(kelly).to(jim).</span><br><span class="line">        addE(<span class="string">'friends'</span>).from(kelly).to(denise).</span><br><span class="line">        addE(<span class="string">'friends'</span>).from(jim).to(denise).</span><br><span class="line">        addE(<span class="string">'friends'</span>).from(jim).to(paras).</span><br><span class="line">        addE(<span class="string">'friends'</span>).from(paras).to(denise).iterate()</span><br></pre></td></tr></table></figure></p><ul><li>註: 以上資料來自 <a href="https://www.ituring.com.cn/book/2889" target="_blank" rel="noopener">图数据库实战</a> 的《图数据库实战》源代码文件.zip</li></ul><h3 id="練習問題"><a href="#練習問題" class="headerlink" title="練習問題"></a>練習問題</h3><h4 id="Dave-的朋友是那些人"><a href="#Dave-的朋友是那些人" class="headerlink" title="Dave 的朋友是那些人?"></a>Dave 的朋友是那些人?</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g.V().has(&apos;person&apos;, &apos;first_name&apos;, &apos;Dave&apos;).outE(&apos;friends&apos;).inV().values(&apos;first_name&apos;)</span><br></pre></td></tr></table></figure><ul><li>註:<code>outE(&#39;friends&#39;) + inV()</code> 可以改用 <code>out(&#39;friends&#39;)</code>，所以 gremlin 可以改成<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g.V().has(<span class="string">'person'</span>, <span class="string">'first_name'</span>, <span class="string">'Dave'</span>).out(<span class="string">'friends'</span>).values(<span class="string">'first_name'</span>)</span><br></pre></td></tr></table></figure></li></ul><img src="/2022/05/10/gremlin-friends-examples/05.png" title="找朋友"><h4 id="Dave-的朋友的朋友是那些人"><a href="#Dave-的朋友的朋友是那些人" class="headerlink" title="Dave 的朋友的朋友是那些人?"></a>Dave 的朋友的朋友是那些人?</h4><p>朋友的朋友，就是找朋友 <strong>2</strong> 次，所以可以用 <code>times(2)</code><br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">g.V().has(<span class="string">'person'</span>, <span class="string">'first_name'</span>, <span class="string">'Dave'</span>).</span><br><span class="line">repeat(</span><br><span class="line">  out(<span class="string">'friends'</span>)</span><br><span class="line">).times(<span class="number">2</span>).values(<span class="string">'first_name'</span>)</span><br></pre></td></tr></table></figure></p><ul><li>註: 因為有重覆的人，可以使用 <code>dedup()</code> 去除重覆資料 Denise 就只會顯示一筆<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">g.V().has(<span class="string">'person'</span>, <span class="string">'first_name'</span>, <span class="string">'Dave'</span>).</span><br><span class="line">repeat(</span><br><span class="line">  out(<span class="string">'friends'</span>)</span><br><span class="line">).times(<span class="number">2</span>).</span><br><span class="line">dedup().</span><br><span class="line">values(<span class="string">'first_name'</span>)</span><br></pre></td></tr></table></figure></li></ul><img src="/2022/05/10/gremlin-friends-examples/06.png" title="找朋友的朋友"><h4 id="Ted-要如何關連到-Denise"><a href="#Ted-要如何關連到-Denise" class="headerlink" title="Ted 要如何關連到 Denise ?"></a>Ted 要如何關連到 Denise ?</h4><p>所以從 Ted <code>until</code> 到 Denise ，然後 <code>repeat</code> 來取出路徑，再顯示出 first_name<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">g.V().has(<span class="string">'person'</span>, <span class="string">'first_name'</span>, <span class="string">'Ted'</span>).</span><br><span class="line">until(has(<span class="string">'person'</span>, <span class="string">'first_name'</span>, <span class="string">'Denise'</span>)).</span><br><span class="line">repeat(</span><br><span class="line">both(<span class="string">'friends'</span>).simplePath()</span><br><span class="line">).path().by(values(<span class="string">'first_name'</span>))</span><br></pre></td></tr></table></figure></p><img src="/2022/05/10/gremlin-friends-examples/07.png" title="Ted 要如何關連到 Denise"><ul><li>註: GraphDatabase 的查詢通常是從 Vertex(Node) 開始，從 Edge 開始通常會有效能問題</li></ul><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="tactsunny.medium.com/out-vs-oute-janusgraph-and-gremlin-e19cebb9556e">out() vs. outE() — JanusGraph and Gremlin</a><br><a href="https://www.ituring.com.cn/book/2889" target="_blank" rel="noopener">图数据库实战</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;學習最好的方式就是練習，以下使用 person-&amp;gt;friends-&amp;gt;person 的朋友關係資料來練習。&lt;/p&gt;
+&lt;ol&gt;
+&lt;l
+      
+    
+    </summary>
+    
+    
+      <category term="GraphDatabase" scheme="https://rainmakerho.github.io/tags/GraphDatabase/"/>
+    
+      <category term="JanusGraph" scheme="https://rainmakerho.github.io/tags/JanusGraph/"/>
+    
+      <category term="Gremlin" scheme="https://rainmakerho.github.io/tags/Gremlin/"/>
+    
+      <category term="person" scheme="https://rainmakerho.github.io/tags/person/"/>
+    
+      <category term="friends" scheme="https://rainmakerho.github.io/tags/friends/"/>
+    
+      <category term="path()" scheme="https://rainmakerho.github.io/tags/path/"/>
+    
+  </entry>
   
   <entry>
     <title>System.Security.Authentication.AuthenticationException - The remote certificate is invalid because of errors in the certificate chain - PartialChain</title>
@@ -488,8 +523,6 @@
     
       <category term="OAuth 2.0" scheme="https://rainmakerho.github.io/tags/OAuth-2-0/"/>
     
-      <category term="public client" scheme="https://rainmakerho.github.io/tags/public-client/"/>
-    
       <category term="PKCE" scheme="https://rainmakerho.github.io/tags/PKCE/"/>
     
       <category term="Proof Key for Code Exchange" scheme="https://rainmakerho.github.io/tags/Proof-Key-for-Code-Exchange/"/>
@@ -497,6 +530,8 @@
       <category term="claiming URLs" scheme="https://rainmakerho.github.io/tags/claiming-URLs/"/>
     
       <category term="Custom URL Scheme" scheme="https://rainmakerho.github.io/tags/Custom-URL-Scheme/"/>
+    
+      <category term="public client" scheme="https://rainmakerho.github.io/tags/public-client/"/>
     
   </entry>
   
@@ -521,13 +556,13 @@
     
       <category term="OAuth 2.0" scheme="https://rainmakerho.github.io/tags/OAuth-2-0/"/>
     
+      <category term="public client" scheme="https://rainmakerho.github.io/tags/public-client/"/>
+    
       <category term="Implicit Flow" scheme="https://rainmakerho.github.io/tags/Implicit-Flow/"/>
     
       <category term="response_type=token" scheme="https://rainmakerho.github.io/tags/response-type-token/"/>
     
       <category term="response_mode=fragment" scheme="https://rainmakerho.github.io/tags/response-mode-fragment/"/>
-    
-      <category term="public client" scheme="https://rainmakerho.github.io/tags/public-client/"/>
     
       <category term="token flow" scheme="https://rainmakerho.github.io/tags/token-flow/"/>
     
@@ -614,33 +649,6 @@
       <category term="Checkmarx" scheme="https://rainmakerho.github.io/tags/Checkmarx/"/>
     
       <category term="Excessive_Data_Exposure" scheme="https://rainmakerho.github.io/tags/Excessive-Data-Exposure/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Missing Object Level Authorization</title>
-    <link href="https://rainmakerho.github.io/2022/01/23/Missing-Object-Level-Authorization/"/>
-    <id>https://rainmakerho.github.io/2022/01/23/Missing-Object-Level-Authorization/</id>
-    <published>2022-01-23T07:48:42.000Z</published>
-    <updated>2022-01-24T01:42:18.000Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>當透過 Checkmarx 集合為 OWASP TOP 10 - 2021 掃 ASP.NET MVC 時，<br>在一些有 Authorize 的 Action 上，如果接受一些 int, string 的參數直接當作DB的Filter，<br>Checkmarx 就會出 <strong>Missing Object Level Authorization</strong> 的中風險</p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>Checkmarx 認為這個 Action 除了登入者之外，<br>還需要特別的角色人員才可以執行它，<br>所以除了 <code>[Authorize]</code> 外是不行的，<br>需要改成 <code>[Authorize(Roles = &quot;某個角色&quot;)]</code>，<br>或是在Method中判斷是否為某個 User ，例如，<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!User.IsInRole(<span class="string">"某個角色"</span>))</span><br><span class="line">&#123;</span><br><span class="line">    ModelState.AddModelError(<span class="string">"Unauthorized"</span>, <span class="string">"Unauthorized access"</span>);</span><br><span class="line">    <span class="keyword">return</span> View();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>設定使用者及角色程式碼為，<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> userPrincipal =</span><br><span class="line">    <span class="keyword">new</span> GenericPrincipal(<span class="keyword">new</span> GenericIdentity(<span class="string">"使用者代號"</span>), <span class="keyword">new</span> <span class="keyword">string</span>[] &#123; <span class="string">"某個角色"</span>, <span class="string">"角色2"</span>&#125;);</span><br><span class="line">Context.User = userPrincipal;</span><br></pre></td></tr></table></figure></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;當透過 Checkmarx 集合為 OWASP TOP 10 - 2021 掃 ASP.NET MVC 時，&lt;br&gt;在一些有 Authori
-      
-    
-    </summary>
-    
-    
-      <category term="Checkmarx" scheme="https://rainmakerho.github.io/tags/Checkmarx/"/>
-    
-      <category term="OWSAP Top 10 2021" scheme="https://rainmakerho.github.io/tags/OWSAP-Top-10-2021/"/>
-    
-      <category term="Missing_Object_Level_Authorization" scheme="https://rainmakerho.github.io/tags/Missing-Object-Level-Authorization/"/>
     
   </entry>
   
