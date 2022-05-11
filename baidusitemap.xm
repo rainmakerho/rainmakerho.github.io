@@ -4,6 +4,33 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2022/05/11/AADSTS50011/</loc>
+    <lastmod>2022-05-11T08:20:37.136Z</lastmod>
+    <data>
+        <display>
+        <title>AADSTS50011 The redirect URI 'https://.../licensemanagement/signin-azuread-oidc' specified in the request does not match the redirect URIs configured for the application 'appid'</title>
+        <pubTime>2022-05-11T07:41:58.000Z</pubTime>
+        
+        <tag>AADSTS50011</tag>
+         
+        <tag>Azure</tag>
+         
+        <tag>Azure AD</tag>
+         
+        <tag>signin-azuread-oidc</tag>
+         
+        <tag>Redirect URIs</tag>
+         
+        <tag>case sensitivity</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2022/05/10/gremlin-friends-examples/</loc>
     <lastmod>2022-05-10T05:59:44.884Z</lastmod>
     <data>
@@ -1402,11 +1429,11 @@
          
         <tag>Heap Inspection</tag>
          
+        <tag>MVC5</tag>
+         
         <tag>Custom Model Binder</tag>
          
         <tag>SecureString</tag>
-         
-        <tag>MVC5</tag>
          
         <tag>netFramework</tag>
          
@@ -4108,8 +4135,6 @@
         <title>使用 OpenTracing - Jaeger (AP整合)</title>
         <pubTime>2019-01-15T05:13:41.000Z</pubTime>
         
-        <tag>BFv4</tag>
-         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -4123,6 +4148,8 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
+         
+        <tag>BFv4</tag>
          
         <tag>NodeJS</tag>
          
@@ -4141,8 +4168,6 @@
         <title>使用 OpenTracing - Jaeger</title>
         <pubTime>2019-01-04T06:02:45.000Z</pubTime>
         
-        <tag>BFv4</tag>
-         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -4156,6 +4181,8 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
+         
+        <tag>BFv4</tag>
          
          
            
