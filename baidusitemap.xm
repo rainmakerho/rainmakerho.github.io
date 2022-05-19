@@ -4,6 +4,35 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2022/05/19/CultureNotFoundException-zh-TW-pronun-not-supported/</loc>
+    <lastmod>2022-05-19T06:02:13.293Z</lastmod>
+    <data>
+        <display>
+        <title>不支援文化特性名稱 zh-TW_pronun。</title>
+        <pubTime>2022-05-19T05:41:23.000Z</pubTime>
+        
+        <tag>zh-Hant-TW</tag>
+         
+        <tag>zh-TW_pronun</tag>
+         
+        <tag>CultureNotFoundException</tag>
+         
+        <tag>Culture name zh-TW_pronun is not supported</tag>
+         
+        <tag>不支援文化特性名稱 zh-TW_pronun</tag>
+         
+        <tag>Windows 10</tag>
+         
+        <tag>變更排序方法</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2022/05/11/AADSTS50011/</loc>
     <lastmod>2022-05-11T08:20:37.136Z</lastmod>
     <data>
@@ -1429,11 +1458,11 @@
          
         <tag>Heap Inspection</tag>
          
-        <tag>MVC5</tag>
-         
         <tag>Custom Model Binder</tag>
          
         <tag>SecureString</tag>
+         
+        <tag>MVC5</tag>
          
         <tag>netFramework</tag>
          
@@ -1812,6 +1841,8 @@
         <title>遠端桌面連線發生 發生驗證錯誤。這可能是因為 CredSSP 加密預示修復。</title>
         <pubTime>2021-05-06T05:53:07.000Z</pubTime>
         
+        <tag>Windows 10</tag>
+         
         <tag>RDP</tag>
          
         <tag>CredSSP</tag>
@@ -1819,8 +1850,6 @@
         <tag>mstsc</tag>
          
         <tag>遠端桌面</tag>
-         
-        <tag>Windows 10</tag>
          
         <tag>Oracle 更新加密</tag>
          
@@ -3970,13 +3999,13 @@
         <title>document.[formName] is undefined</title>
         <pubTime>2019-03-16T05:48:31.000Z</pubTime>
         
+        <tag>軟體求生</tag>
+         
         <tag>js</tag>
          
         <tag>document.formName</tag>
          
         <tag>undefined</tag>
-         
-        <tag>軟體求生</tag>
          
         <tag>asp.net 4</tag>
          
@@ -4036,11 +4065,11 @@
         <title>Inheritance security rules violated by type: 'System.Net.Http.WebRequestHandler'</title>
         <pubTime>2019-02-23T02:41:55.000Z</pubTime>
         
-        <tag>軟體求生</tag>
-         
         <tag>System.Net.Http</tag>
          
         <tag>4.1.0.0</tag>
+         
+        <tag>軟體求生</tag>
          
          
            
@@ -4135,6 +4164,8 @@
         <title>使用 OpenTracing - Jaeger (AP整合)</title>
         <pubTime>2019-01-15T05:13:41.000Z</pubTime>
         
+        <tag>BFv4</tag>
+         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -4148,8 +4179,6 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
-         
-        <tag>BFv4</tag>
          
         <tag>NodeJS</tag>
          
@@ -4168,6 +4197,8 @@
         <title>使用 OpenTracing - Jaeger</title>
         <pubTime>2019-01-04T06:02:45.000Z</pubTime>
         
+        <tag>BFv4</tag>
+         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -4181,8 +4212,6 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
-         
-        <tag>BFv4</tag>
          
          
            
@@ -5158,13 +5187,13 @@
         <title>線上客服 + BOT 之路</title>
         <pubTime>2018-01-25T08:10:47.000Z</pubTime>
         
-        <tag>chatbot</tag>
-         
         <tag>QnA Maker</tag>
          
         <tag>LUIS</tag>
          
         <tag>Vital ESP</tag>
+         
+        <tag>chatbot</tag>
          
         <tag>FAQ</tag>
          

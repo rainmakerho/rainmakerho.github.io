@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2022-05-11T08:20:37.136Z</updated>
+  <updated>2022-05-19T06:02:13.293Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,41 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>不支援文化特性名稱 zh-TW_pronun。</title>
+    <link href="https://rainmakerho.github.io/2022/05/19/CultureNotFoundException-zh-TW-pronun-not-supported/"/>
+    <id>https://rainmakerho.github.io/2022/05/19/CultureNotFoundException-zh-TW-pronun-not-supported/</id>
+    <published>2022-05-19T05:41:23.000Z</published>
+    <updated>2022-05-19T06:02:13.293Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近同事拿到新的 NB 設定完成後，連到舊的 ASP.NET 系統，<br>結果網頁卻發生了 <strong>不支援文化特性名稱 zh-TW_pronun。參數名稱: name</strong> 的錯誤，</p><blockquote><p>System.Globalization.CultureInfo..ctor  &lt;System.ArgumentException&gt; 不支援文化特性名稱 zh-TW_pronun。參數名稱: name  </p></blockquote><h3 id="研究與解決"><a href="#研究與解決" class="headerlink" title="研究與解決"></a>研究與解決</h3><p>看見 <strong>不支援文化特性名稱</strong> 立馬就請他參考 <a href="https://rainmakerho.github.io/2019/09/17/2019024/">Windows 10, IE 不支援文化特性。參數名稱：name zh-Hant-TW 是無效的文化特性識別項。</a> 。<br>但詳細一看，雖然錯誤是一樣的，但 CultureName 卻是不同的，<br>一個是 <strong>zh-Hant-TW</strong> ，而這個卻是 <strong>zh-TW_pronun</strong>。</p><p>查詢 <strong>zh-TW_pronun</strong> ，看到 <a href="https://docs.microsoft.com/en-us/windows/win32/intl/sort-order-identifiers" target="_blank" rel="noopener">Sort Order Identifiers</a> 發現它跟 排序 有關係。<br>又查到 <a href="https://answers.microsoft.com/zh-hant/windows/forum/all/%E8%AE%8A%E6%9B%B4%E5%9C%B0%E5%8D%80%E6%8E%92/458d3c6a-8592-4720-97d9-004daae0eed6" target="_blank" rel="noopener">變更地區排序方法為注音，開始工具列右下角月曆無法顯示</a> 。</p><p>所以請同事檢查一下，將排序的設定值，從 <strong>注音</strong> 改回 <strong>筆劃數</strong> IE 就可以正常使用 Web 系統了。<br><img src="/2022/05/19/CultureNotFoundException-zh-TW-pronun-not-supported/01.png" title="變更排序方法"></p><ul><li>註: Windows 10 預設是 <strong>筆劃數</strong> </li></ul><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://rainmakerho.github.io/2019/09/17/2019024/">Windows 10, IE 不支援文化特性。參數名稱：name zh-Hant-TW 是無效的文化特性識別項。</a><br><a href="https://answers.microsoft.com/zh-hant/windows/forum/all/%E8%AE%8A%E6%9B%B4%E5%9C%B0%E5%8D%80%E6%8E%92/458d3c6a-8592-4720-97d9-004daae0eed6" target="_blank" rel="noopener">變更地區排序方法為注音，開始工具列右下角月曆無法顯示</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;最近同事拿到新的 NB 設定完成後，連到舊的 ASP.NET 系統，&lt;br&gt;結果網頁卻發生了 &lt;strong&gt;不支援文化特性名稱 zh-TW
+      
+    
+    </summary>
+    
+    
+      <category term="zh-Hant-TW" scheme="https://rainmakerho.github.io/tags/zh-Hant-TW/"/>
+    
+      <category term="zh-TW_pronun" scheme="https://rainmakerho.github.io/tags/zh-TW-pronun/"/>
+    
+      <category term="CultureNotFoundException" scheme="https://rainmakerho.github.io/tags/CultureNotFoundException/"/>
+    
+      <category term="Culture name zh-TW_pronun is not supported" scheme="https://rainmakerho.github.io/tags/Culture-name-zh-TW-pronun-is-not-supported/"/>
+    
+      <category term="不支援文化特性名稱 zh-TW_pronun" scheme="https://rainmakerho.github.io/tags/%E4%B8%8D%E6%94%AF%E6%8F%B4%E6%96%87%E5%8C%96%E7%89%B9%E6%80%A7%E5%90%8D%E7%A8%B1-zh-TW-pronun/"/>
+    
+      <category term="Windows 10" scheme="https://rainmakerho.github.io/tags/Windows-10/"/>
+    
+      <category term="變更排序方法" scheme="https://rainmakerho.github.io/tags/%E8%AE%8A%E6%9B%B4%E6%8E%92%E5%BA%8F%E6%96%B9%E6%B3%95/"/>
+    
+  </entry>
   
   <entry>
     <title>AADSTS50011 The redirect URI &#39;https://.../licensemanagement/signin-azuread-oidc&#39; specified in the request does not match the redirect URIs configured for the application &#39;appid&#39;</title>
@@ -629,34 +664,6 @@
       <category term="grant_type=authorization_code" scheme="https://rainmakerho.github.io/tags/grant-type-authorization-code/"/>
     
       <category term="private client" scheme="https://rainmakerho.github.io/tags/private-client/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Fiddler 無法錄到 HttpClient 發出的 Request</title>
-    <link href="https://rainmakerho.github.io/2022/02/11/fiddler-cannot-trace-httpclient/"/>
-    <id>https://rainmakerho.github.io/2022/02/11/fiddler-cannot-trace-httpclient/</id>
-    <published>2022-02-11T05:02:37.000Z</published>
-    <updated>2022-02-11T07:52:43.053Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>如果透過 Fiddler 錄不到 HttpClient 發出的 Request 。</p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>參考<a href="https://www.telerik.com/forums/no-traffic-seen-from-vs-2017-http-client-app-in-fiddler" target="_blank" rel="noopener">No traffic seen from VS 2017 HTTP Client app in Fiddler ?</a><br>可以透過 <code>netsh winhttp</code> 來設定 Proxy 轉向 Fiddler。<br>以系統管理者身份開啟 Command 視窗，輸入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netsh winhttp set proxy 127.0.0.1:8888</span><br></pre></td></tr></table></figure></p><p>如果要 Reset ，則可以輸入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netsh winhttp reset proxy</span><br></pre></td></tr></table></figure></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;如果透過 Fiddler 錄不到 HttpClient 發出的 Request 。&lt;/p&gt;
-&lt;h3 id=&quot;解法&quot;&gt;&lt;a href=&quot;#解法
-      
-    
-    </summary>
-    
-    
-      <category term="HttpClient" scheme="https://rainmakerho.github.io/tags/HttpClient/"/>
-    
-      <category term="Fiddler" scheme="https://rainmakerho.github.io/tags/Fiddler/"/>
-    
-      <category term="netsh winhttp" scheme="https://rainmakerho.github.io/tags/netsh-winhttp/"/>
     
   </entry>
   
