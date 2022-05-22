@@ -4,6 +4,27 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2022/05/22/sqlexception-80131904-error-40/</loc>
+    <lastmod>2022-05-22T09:06:38.551Z</lastmod>
+    <data>
+        <display>
+        <title>(0x80131904) Named Pipes Provider, error 40 - 無法開啟至 SQL Server 的連接</title>
+        <pubTime>2022-05-22T08:45:40.000Z</pubTime>
+        
+        <tag>SqlException (0x80131904)</tag>
+         
+        <tag>Named Pipes Provider</tag>
+         
+        <tag>Win32Exception(0x80004005)</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2022/05/19/CultureNotFoundException-zh-TW-pronun-not-supported/</loc>
     <lastmod>2022-05-19T06:02:13.293Z</lastmod>
     <data>
@@ -4164,8 +4185,6 @@
         <title>使用 OpenTracing - Jaeger (AP整合)</title>
         <pubTime>2019-01-15T05:13:41.000Z</pubTime>
         
-        <tag>BFv4</tag>
-         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -4179,6 +4198,8 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
+         
+        <tag>BFv4</tag>
          
         <tag>NodeJS</tag>
          
@@ -4197,8 +4218,6 @@
         <title>使用 OpenTracing - Jaeger</title>
         <pubTime>2019-01-04T06:02:45.000Z</pubTime>
         
-        <tag>BFv4</tag>
-         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -4212,6 +4231,8 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
+         
+        <tag>BFv4</tag>
          
          
            
