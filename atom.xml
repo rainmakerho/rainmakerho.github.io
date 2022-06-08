@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2022-05-22T09:06:38.551Z</updated>
+  <updated>2022-06-08T05:59:13.365Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>為什麼開啟 IE 時，會被關掉，並改用 Edge 呢?</title>
+    <link href="https://rainmakerho.github.io/2022/06/08/why-ie-always-open-edge/"/>
+    <id>https://rainmakerho.github.io/2022/06/08/why-ie-always-open-edge/</id>
+    <published>2022-06-08T05:28:18.000Z</published>
+    <updated>2022-06-08T05:59:13.365Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>在 Windows 10 開啟 Internet Explorer 時，會被關掉，並開啟 Edge，如下，<br><img src="/2022/06/08/why-ie-always-open-edge/01.gif" title="ie2edge"></p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>這是因為 Edge 的設定中，在 <strong>Internet Explorer 相容性</strong> 區段，<br><strong>在 Microsoft Edge 中以 Internet Explorer 開啟網站</strong> 選項被設定成了 <strong>永遠</strong>。<br>所以只要一開 Internet Explorer 就會立馬關掉它，並改用 Edge (InPrivate 模式除外)。</p><p>那要如何取消這個設定呢?<br>在 Edge 的網址列輸入 <code>edge://settings/defaultBrowser</code>，<br>將 <strong>在 Microsoft Edge 中以 Internet Explorer 開啟網站</strong> 的選項改成 <strong>永不</strong> 就可以了。<br>如果要在 Edge 中以 IE 模式開啟，則可以在 <strong>Internet Explorer 模式頁面</strong>新增要使用 IE 模式開啟的網站。</p><img src="/2022/06/08/why-ie-always-open-edge/02.png" title="Internet Explorer 相容性"><p>如果要長久性設定 IE 模式，則可以透過 Group Policy 設定，<br>詳細請參考 <a href="https://www.tbone.se/2022/03/01/start-disable-internet-explorer-before-its-to-late/" target="_blank" rel="noopener">Start disable Internet Explorer before it´s to late</a></p><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://www.tbone.se/2022/03/01/start-disable-internet-explorer-before-its-to-late/" target="_blank" rel="noopener">Start disable Internet Explorer before it´s to late</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;在 Windows 10 開啟 Internet Explorer 時，會被關掉，並開啟 Edge，如下，&lt;br&gt;&lt;img src=&quot;/20
+      
+    
+    </summary>
+    
+    
+      <category term="Win10" scheme="https://rainmakerho.github.io/tags/Win10/"/>
+    
+      <category term="IE11" scheme="https://rainmakerho.github.io/tags/IE11/"/>
+    
+      <category term="Windows 10" scheme="https://rainmakerho.github.io/tags/Windows-10/"/>
+    
+      <category term="Internet Explorer" scheme="https://rainmakerho.github.io/tags/Internet-Explorer/"/>
+    
+      <category term="Edge" scheme="https://rainmakerho.github.io/tags/Edge/"/>
+    
+  </entry>
   
   <entry>
     <title>(0x80131904) Named Pipes Provider, error 40 - 無法開啟至 SQL Server 的連接</title>
@@ -627,39 +658,6 @@
       <category term="Custom URL Scheme" scheme="https://rainmakerho.github.io/tags/Custom-URL-Scheme/"/>
     
       <category term="public client" scheme="https://rainmakerho.github.io/tags/public-client/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>OAuth 2.0 - Implicit Flow</title>
-    <link href="https://rainmakerho.github.io/2022/02/17/oAuth2-implicit-flow/"/>
-    <id>https://rainmakerho.github.io/2022/02/17/oAuth2-implicit-flow/</id>
-    <published>2022-02-17T01:24:26.000Z</published>
-    <updated>2022-02-23T15:40:43.190Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 <a href="https://rainmakerho.github.io/2022/02/15/oAuth2-Basic/">OAuth 2.0 - Authorization Code Flow</a> 了解它是先取回<strong>授權碼</strong>後再透過該<strong>授權碼</strong>，<strong>Client Id</strong>及<strong>Client Secret</strong>，再取回<strong>Access Token</strong>，透過它去存取 API。<br><strong>Client Secret</strong>相當於是 Password，如果是 Public Client(SPA, Native applications)，那就會讓別人知道<strong>Client Secret</strong>，<br>所以可以使用<strong>OAuth 2.0 - Implicit Flow</strong></p><p>以下使用<a href="https://www.oauth.com/playground/index.html" target="_blank" rel="noopener">OAuth 2.0 Playground</a>來演示。</p><h3 id="OAuth-2-0-Implicit-Flow"><a href="#OAuth-2-0-Implicit-Flow" class="headerlink" title="OAuth 2.0 - Implicit Flow"></a>OAuth 2.0 - Implicit Flow</h3><p>開始之前需要註冊 Client<br><img src="/2022/02/17/oAuth2-implicit-flow/01.png" title="Client Registration"></p><p>1.組出跟 Authorization Server 取回 Code 的 URL(authorize)，<br>response_type的值為<strong>token</strong>(表示我們直接取回<strong>Access Token</strong>)，client_id, redirect_uri為 Client 註冊的資訊，<br>state為防止 XSRF 準備的值，當 Authorization Server 回 Call 時，也會把接收到的 state 回傳回來，<br>scope 則為要求的 Resources，這裡給的值為 photo<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">https://authorization-server.com/authorize?</span><br><span class="line">  response_type=token</span><br><span class="line">  &amp;client_id=oW44Q708NN7dMkJT_ua2Vgbi</span><br><span class="line">  &amp;redirect_uri=https://www.oauth.com/playground/implicit.html</span><br><span class="line">  &amp;scope=photo</span><br><span class="line">  &amp;state=usBUtMUEzN1-ZKHy</span><br></pre></td></tr></table></figure></p><p>2.轉址到上述建立的 URL(Authorization Server 的 Authorization endpoint)，在 Authorization Server系統中，輸入使用者帳號及密碼<br><img src="/2022/02/17/oAuth2-implicit-flow/02.png" title="input user Credential"></p><p>3.顯示同意 Client 存取要求的 scope 權限(consent 畫面可以設定顯示與否)。<br><img src="/2022/02/17/oAuth2-implicit-flow/03.png" title="User Consent"></p><p>4.當使用者同意後，Authorization Server 會把產生的 <strong>access_token</strong> 及剛才傳過去的 state 一併傳回來給 redirect_uri 的網址(implicit.html)去驗證 state 值是否正確。<br><img src="/2022/02/17/oAuth2-implicit-flow/04.png" title="Verify the state parameter"></p><p>註:參數透過 # ，所以 <code>response_mode=fragment</code></p><p>5.解析 URL 取回 <strong>access_token</strong>，呼叫 API 時，加入 access_token 就可以了<br><img src="/2022/02/17/oAuth2-implicit-flow/05.png" title="token"></p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HttpClient client = <span class="keyword">new</span> HttpClient();</span><br><span class="line">client.DefaultRequestHeaders.Authorization = <span class="keyword">new</span> AuthenticationHeaderValue(<span class="string">"Bearer"</span>, access_token);</span><br></pre></td></tr></table></figure><h3 id="適用情境"><a href="#適用情境" class="headerlink" title="適用情境"></a>適用情境</h3><p>因為在取得 AccessToken 時，不會傳遞 client_secret ，所以適用於 public client，例如 SPA, Native applications，<br>建議使用 <a href="https://rainmakerho.github.io/2022/02/18/oAuth2-PKCE/">OAuth 2.0 - Authorization Code Flow With PKCE</a> 來代替 </p><ul><li>註: OAuth 2.1 就沒有 Implicit Flow</li></ul><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://www.oauth.com/playground/index.html" target="_blank" rel="noopener">OAuth 2.0 Playground</a><br><a href="https://rainmakerho.github.io/2022/02/15/oAuth2-Basic/">OAuth 2.0 - Authorization Code Flow</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;在 &lt;a href=&quot;https://rainmakerho.github.io/2022/02/15/oAuth2-Basic/&quot;&gt;OAu
-      
-    
-    </summary>
-    
-    
-      <category term="OAuth 2.0" scheme="https://rainmakerho.github.io/tags/OAuth-2-0/"/>
-    
-      <category term="public client" scheme="https://rainmakerho.github.io/tags/public-client/"/>
-    
-      <category term="Implicit Flow" scheme="https://rainmakerho.github.io/tags/Implicit-Flow/"/>
-    
-      <category term="response_type=token" scheme="https://rainmakerho.github.io/tags/response-type-token/"/>
-    
-      <category term="response_mode=fragment" scheme="https://rainmakerho.github.io/tags/response-mode-fragment/"/>
-    
-      <category term="token flow" scheme="https://rainmakerho.github.io/tags/token-flow/"/>
     
   </entry>
   
