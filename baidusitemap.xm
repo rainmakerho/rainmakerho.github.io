@@ -4,6 +4,29 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2022/06/15/kali-linux-win-wsl/</loc>
+    <lastmod>2022-06-15T03:34:51.730Z</lastmod>
+    <data>
+        <display>
+        <title>在 WSL2 中安裝 Kali Linux</title>
+        <pubTime>2022-06-15T03:27:34.000Z</pubTime>
+        
+        <tag>Windows</tag>
+         
+        <tag>Kali Linux</tag>
+         
+        <tag>WSL</tag>
+         
+        <tag>Kex</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2022/06/08/why-ie-always-open-edge/</loc>
     <lastmod>2022-06-08T05:59:13.365Z</lastmod>
     <data>
@@ -94,6 +117,8 @@
         
         <tag>zh-Hant-TW</tag>
          
+        <tag>Windows 10</tag>
+         
         <tag>zh-TW_pronun</tag>
          
         <tag>CultureNotFoundException</tag>
@@ -101,8 +126,6 @@
         <tag>Culture name zh-TW_pronun is not supported</tag>
          
         <tag>不支援文化特性名稱 zh-TW_pronun</tag>
-         
-        <tag>Windows 10</tag>
          
         <tag>變更排序方法</tag>
          
@@ -1922,8 +1945,6 @@
         <title>遠端桌面連線發生 發生驗證錯誤。這可能是因為 CredSSP 加密預示修復。</title>
         <pubTime>2021-05-06T05:53:07.000Z</pubTime>
         
-        <tag>Windows 10</tag>
-         
         <tag>RDP</tag>
          
         <tag>CredSSP</tag>
@@ -1931,6 +1952,8 @@
         <tag>mstsc</tag>
          
         <tag>遠端桌面</tag>
+         
+        <tag>Windows 10</tag>
          
         <tag>Oracle 更新加密</tag>
          
@@ -4245,6 +4268,8 @@
         <title>使用 OpenTracing - Jaeger (AP整合)</title>
         <pubTime>2019-01-15T05:13:41.000Z</pubTime>
         
+        <tag>BFv4</tag>
+         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -4258,8 +4283,6 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
-         
-        <tag>BFv4</tag>
          
         <tag>NodeJS</tag>
          
@@ -4278,6 +4301,8 @@
         <title>使用 OpenTracing - Jaeger</title>
         <pubTime>2019-01-04T06:02:45.000Z</pubTime>
         
+        <tag>BFv4</tag>
+         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -4291,8 +4316,6 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
-         
-        <tag>BFv4</tag>
          
          
            
@@ -5089,11 +5112,11 @@
         <title>SmtpConnection.GetConnection NullReferenceException</title>
         <pubTime>2018-03-14T02:07:16.000Z</pubTime>
         
+        <tag>NullReferenceException</tag>
+         
         <tag>SmtpClient</tag>
          
         <tag>SmtpConnection.GetConnection</tag>
-         
-        <tag>NullReferenceException</tag>
          
         <tag>.net</tag>
          
@@ -5118,11 +5141,11 @@
         <title>System.NullReferenceException when Aspose.Pdf.License.SetLicense(String licenseName)</title>
         <pubTime>2018-03-13T06:54:05.000Z</pubTime>
         
-        <tag>NullReferenceException</tag>
-         
         <tag>Aspose</tag>
          
         <tag>SetLicense</tag>
+         
+        <tag>NullReferenceException</tag>
          
          
            

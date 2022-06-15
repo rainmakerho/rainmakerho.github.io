@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2022-06-08T05:59:13.365Z</updated>
+  <updated>2022-06-15T03:34:51.730Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>在 WSL2 中安裝 Kali Linux</title>
+    <link href="https://rainmakerho.github.io/2022/06/15/kali-linux-win-wsl/"/>
+    <id>https://rainmakerho.github.io/2022/06/15/kali-linux-win-wsl/</id>
+    <published>2022-06-15T03:27:34.000Z</published>
+    <updated>2022-06-15T03:34:51.730Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>以往使用 Kali Linux 大多是透過 VM 的方式來建立，<br>如果是 Windows 10/11 的話，也可以透過 Windows Subsystem for Linux(WSL) 來取得 Kali Linux。<br>如果需要 GUI 的畫面，則可以安裝 Win-KeX</p><h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><p>以系統管理員身份執行開啟 PowerShell ，並執行<br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux</span><br></pre></td></tr></table></figure></p><p>重新開機</p><p>以系統管理員身份執行開啟 PowerShell ，並執行<br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart</span><br><span class="line">dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart</span><br></pre></td></tr></table></figure></p><p>重新開機</p><p>從<a href="https://aka.ms/wsl2kernel" target="_blank" rel="noopener">Linux 核心更新套件</a> 下載並安裝 WSL2 Linux 核心更新套件<br>以系統管理員身份執行開啟 PowerShell ，並執行<br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsl --set-default-version <span class="number">2</span></span><br></pre></td></tr></table></figure></p><p>從 Microsoft Store 搜尋 Kali Linux ，並<strong>取得</strong>它<br><img src="/2022/06/15/kali-linux-win-wsl/01.png" title="Kali Linux"></p><p>開啟 <strong>Kali Linux</strong> App，登入後，執行以下指令來安裝 Win-KeX<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install -y kali-win-kex</span><br></pre></td></tr></table></figure></p><p>要開啟 Kali Linux GUI ，則輸入 kex<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kex</span><br></pre></td></tr></table></figure></p><img src="/2022/06/15/kali-linux-win-wsl/02.png" title="Kali Linux GUI"><p>如果覺得預設版本的 Kali 程式太少，則可以安裝較大版本的 Kail，執行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install -y kali-linux-large</span><br></pre></td></tr></table></figure></p><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://www.kali.org/docs/wsl/win-kex/" target="_blank" rel="noopener">Win-KeX</a><br><a href="https://docs.microsoft.com/zh-tw/windows/wslinstall-manual#step-4---download-the-linux-kernel-update-package" target="_blank" rel="noopener">下載 Linux 核心更新套件</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;以往使用 Kali Linux 大多是透過 VM 的方式來建立，&lt;br&gt;如果是 Windows 10/11 的話，也可以透過 Windows
+      
+    
+    </summary>
+    
+    
+      <category term="Windows" scheme="https://rainmakerho.github.io/tags/Windows/"/>
+    
+      <category term="Kali Linux" scheme="https://rainmakerho.github.io/tags/Kali-Linux/"/>
+    
+      <category term="WSL" scheme="https://rainmakerho.github.io/tags/WSL/"/>
+    
+      <category term="Kex" scheme="https://rainmakerho.github.io/tags/Kex/"/>
+    
+  </entry>
   
   <entry>
     <title>為什麼開啟 IE 時，會被關掉，並改用 Edge 呢?</title>
@@ -95,6 +124,8 @@
     
       <category term="zh-Hant-TW" scheme="https://rainmakerho.github.io/tags/zh-Hant-TW/"/>
     
+      <category term="Windows 10" scheme="https://rainmakerho.github.io/tags/Windows-10/"/>
+    
       <category term="zh-TW_pronun" scheme="https://rainmakerho.github.io/tags/zh-TW-pronun/"/>
     
       <category term="CultureNotFoundException" scheme="https://rainmakerho.github.io/tags/CultureNotFoundException/"/>
@@ -102,8 +133,6 @@
       <category term="Culture name zh-TW_pronun is not supported" scheme="https://rainmakerho.github.io/tags/Culture-name-zh-TW-pronun-is-not-supported/"/>
     
       <category term="不支援文化特性名稱 zh-TW_pronun" scheme="https://rainmakerho.github.io/tags/%E4%B8%8D%E6%94%AF%E6%8F%B4%E6%96%87%E5%8C%96%E7%89%B9%E6%80%A7%E5%90%8D%E7%A8%B1-zh-TW-pronun/"/>
-    
-      <category term="Windows 10" scheme="https://rainmakerho.github.io/tags/Windows-10/"/>
     
       <category term="變更排序方法" scheme="https://rainmakerho.github.io/tags/%E8%AE%8A%E6%9B%B4%E6%8E%92%E5%BA%8F%E6%96%B9%E6%B3%95/"/>
     
@@ -623,41 +652,6 @@
       <category term="OAuth2" scheme="https://rainmakerho.github.io/tags/OAuth2/"/>
     
       <category term="Private-Use URI Scheme" scheme="https://rainmakerho.github.io/tags/Private-Use-URI-Scheme/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>OAuth 2.0 - Proof Key for Code Exchange (PKCE)</title>
-    <link href="https://rainmakerho.github.io/2022/02/18/oAuth2-PKCE/"/>
-    <id>https://rainmakerho.github.io/2022/02/18/oAuth2-PKCE/</id>
-    <published>2022-02-18T00:42:49.000Z</published>
-    <updated>2022-03-22T05:06:54.194Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 Native applications 因為是安裝在個人的設備上面，例如 手機，個人電腦。<br>這些 Native applications 通常會跟作業系統註冊 App-Claimed https URL (<a href="https://app.exp.com" target="_blank" rel="noopener">https://app.exp.com</a> 會開啟該 application) 或是使用 Custom URL Scheme(myapp://callback#token=…)。<br>因為<a href="https://rainmakerho.github.io/2022/02/17/oAuth2-implicit-flow/">OAuth 2.0 - Implicit Flow</a>可以用在 public client，<br>因為 Implicit Flow 比較不安全，所以現在大多改使用 PKCE，它是擴充自 Authorization Code Flow 。<br>在 <a href="https://rainmakerho.github.io/2022/02/15/oAuth2-Basic/">OAuth 2.0 - Authorization Code Flow</a> 在取得 Token 時，需要將 client_secret 一併傳出來取得 access token ，如果是 public client 就有可能會被知道 client_secret 的值，所以 PKCE 就是動態建立 Code Verifier 來取代 client_secret。<br>以下使用<a href="https://www.oauth.com/playground/authorization-code-with-pkce.html" target="_blank" rel="noopener">OAuth 2.0 Playground - pkce</a>來演示。</p><h3 id="OAuth-2-0-Authorization-Code-Flow-With-PKCE"><a href="#OAuth-2-0-Authorization-Code-Flow-With-PKCE" class="headerlink" title="OAuth 2.0 - Authorization Code Flow With PKCE"></a>OAuth 2.0 - Authorization Code Flow With PKCE</h3><p>1.建立 Code Verifier ( A-Z, a-z, 0-9, and the punctuation characters -._~ (hyphen, period, underscore, and tilde), between 43 and 128 characters long)<br>可透過 <strong>IdentityModel</strong> Nuget 套件的 CryptoRandom.CreateUniqueId 來建立<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> codeVerifier = CryptoRandom.CreateUniqueId(<span class="number">50</span>);</span><br></pre></td></tr></table></figure></p><p>2.建立 Code Challenge<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> codeChallenge = <span class="string">""</span>;</span><br><span class="line"><span class="keyword">using</span> (<span class="keyword">var</span> sha256 = SHA256.Create())</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">var</span> challengeBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(codeVerifier));</span><br><span class="line">    codeChallenge = Base64Url.Encode(challengeBytes);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><img src="/2022/02/18/oAuth2-PKCE/01.png" title="Code Verifier"><p>3.組出跟 Authorization Server 取回 Code 的 URL(authorize)，<br>response_type的值為<strong>code</strong>(表示我們要取回<strong>授權碼</strong>)，client_id, redirect_uri為 Client 註冊的資訊，<br>state為防止 XSRF 準備的值，當 Authorization Server 回 Call 時，也會把接收到的 state 回傳回來，<br>scope 則為要求的 Resources，這裡給的值為 photo 及 offline_access ，這裡是用 <strong>+</strong>，有些是使用 <strong>空白</strong> 分隔，<br>code_challenge就是前面 codeVerifier 透過 Sha256 算出 Hash 值轉成 Base64 字串，<br>為的就是在取 Access Token 時可以透過 codeVerfier 而不需傳遞 client_secret 。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">https://authorization-server.com/authorize?</span><br><span class="line">  response_type=code</span><br><span class="line">  &amp;client_id=d6O09tD6FCiCLxL6izEBBe3a</span><br><span class="line">  &amp;redirect_uri=https://www.oauth.com/playground/authorization-code-with-pkce.html</span><br><span class="line">  &amp;scope=photo+offline_access</span><br><span class="line">  &amp;state=s9IYwOaNw9iNRr89</span><br><span class="line">  &amp;code_challenge=LLruaPaJLgW0puyjcM5u9AbngsIXsUslae3eZNXT8YM</span><br><span class="line">  &amp;code_challenge_method=S256</span><br></pre></td></tr></table></figure></p><p>4.轉址到上述建立的 URL(Authorization Server 的 Authorization endpoint)，在 Authorization Server系統中，輸入使用者帳號及密碼<br><img src="/2022/02/18/oAuth2-PKCE/02.png" title="input user Credential"></p><p>5.顯示同意 Client 存取要求的 scope 權限(consent 畫面可以設定顯示與否)。<br><img src="/2022/02/18/oAuth2-PKCE/03.png" title="User Consent"></p><p>6.當使用者同意後，Authorization Server 會把產生的 code (授權碼)及剛才傳過去的 state 一併傳回來給 redirect_uri 的網址(authorization-code-with-pkce.html)去驗證 state 值是否正確。<br></p><p>註:參數透過 QueryString ，所以 <code>response_mode=query</code></p><p>7.組出要透過 Code 及 Code Verifier 來跟 Authorization Server 取回 AccessToken 的 URL(token)，<br>grant_type為authorization_code，code為剛才從 Authorization Server 取回的 授權碼<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">POST https://authorization-server.com/token</span><br><span class="line"></span><br><span class="line">grant_type=authorization_code</span><br><span class="line">&amp;client_id=d6O09tD6FCiCLxL6izEBBe3a</span><br><span class="line">&amp;client_secret=n9Esj_tJXmQoALz5GGx7pLsDaFEUvRiThVCfstiz1QSj0VvT</span><br><span class="line">&amp;redirect_uri=https://www.oauth.com/playground/authorization-code-with-pkce.html</span><br><span class="line">&amp;code=aLosw59x2JxvXGf4w35OXVWA9wUbqfoh32NmMgyziUsQKvWE</span><br><span class="line">&amp;code_verifier=ZDaKG5paqwvrjQ5luDSvxIMZgg9Ze2pySYWjRPFM1ZmvgkHE</span><br></pre></td></tr></table></figure></p><ul><li>註: 像 IdentityServer4 的 Client 可以設定 client_secret 不是必要的，所以 client_secret 就可以不需要傳遞</li></ul><p>8.Post後就會得到 AccessToken<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;token_type&quot;: &quot;Bearer&quot;,</span><br><span class="line">  &quot;expires_in&quot;: 86400,</span><br><span class="line">  &quot;access_token&quot;: &quot;OJ8LsvkJX75c4FvGVWQeCZ1m7k8hZwsMir-l1TpzE_6m2M7VmwX-gTR5_A_eGeAgcrBQbCrQ&quot;,</span><br><span class="line">  &quot;scope&quot;: &quot;photo offline_access&quot;,</span><br><span class="line">  &quot;refresh_token&quot;: &quot;ivHlMEInAeqqncUaMpGNCd31&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>要呼叫 API 時，加入 access_token 就可以了<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HttpClient client = <span class="keyword">new</span> HttpClient();</span><br><span class="line">client.DefaultRequestHeaders.Authorization = <span class="keyword">new</span> AuthenticationHeaderValue(<span class="string">"Bearer"</span>, access_token);</span><br></pre></td></tr></table></figure></p><ul><li>因為 scope 有 offline_access，所以 refresh_token 會一併回傳</li></ul><h3 id="適用情境"><a href="#適用情境" class="headerlink" title="適用情境"></a>適用情境</h3><p>因為在取得 AccessToken 時，不會傳遞 client_secret 改以 code_verifier 傳遞，所以適用於 public client，例如 SPA, Native applications<br>而 Private Application 則可以加上 PKCE 讓它更安全，原本使用 Implicit Flow 的 Public Application 請改使用 Authorization Code Flow + PKCE ，<br>並設定 client_secret 不是必要值。</p><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://www.oauth.com/oauth2-servers/pkce/" target="_blank" rel="noopener">Protecting Apps with PKCE</a><br><a href="https://www.oauth.com/oauth2-servers/redirect-uris/redirect-uris-native-apps/" target="_blank" rel="noopener">Redirect URLs for Native Apps</a><br><a href="https://docs.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/platform-apis/aa767914(v=vs.85" target="_blank" rel="noopener">Registering an Application to a URI Scheme</a>?redirectedfrom=MSDN)<br><a href="https://css-tricks.com/hyperlinking-beyond-the-web/" target="_blank" rel="noopener">Hyperlinking Beyond the Web</a><br><a href="https://dropbox.tech/developers/pkce--what-and-why-#:~:text=PKCE%20provides%20dynamic%20client%20secrets,you%20should%20switch%20to%20PKCE." target="_blank" rel="noopener">PKCE: What and Why?</a><br><a href="https://www.praetorian.com/blog/attacking-and-defending-oauth-2-0-part-1/" target="_blank" rel="noopener">Attacking and Defending OAuth 2.0 (Part 1 of 2: Introduction, Threats, and Best Practices)</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;在 Native applications 因為是安裝在個人的設備上面，例如 手機，個人電腦。&lt;br&gt;這些 Native applicati
-      
-    
-    </summary>
-    
-    
-      <category term="Private-Use URI Scheme" scheme="https://rainmakerho.github.io/tags/Private-Use-URI-Scheme/"/>
-    
-      <category term="OAuth 2.0" scheme="https://rainmakerho.github.io/tags/OAuth-2-0/"/>
-    
-      <category term="PKCE" scheme="https://rainmakerho.github.io/tags/PKCE/"/>
-    
-      <category term="Proof Key for Code Exchange" scheme="https://rainmakerho.github.io/tags/Proof-Key-for-Code-Exchange/"/>
-    
-      <category term="claiming URLs" scheme="https://rainmakerho.github.io/tags/claiming-URLs/"/>
-    
-      <category term="Custom URL Scheme" scheme="https://rainmakerho.github.io/tags/Custom-URL-Scheme/"/>
-    
-      <category term="public client" scheme="https://rainmakerho.github.io/tags/public-client/"/>
     
   </entry>
   
