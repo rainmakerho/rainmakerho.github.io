@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2022-06-15T03:34:51.730Z</updated>
+  <updated>2022-06-21T03:41:17.250Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,41 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>加密/解密的 Key 要放在那裡?</title>
+    <link href="https://rainmakerho.github.io/2022/06/21/save-key-options/"/>
+    <id>https://rainmakerho.github.io/2022/06/21/save-key-options/</id>
+    <published>2022-06-21T03:24:34.000Z</published>
+    <updated>2022-06-21T03:41:17.250Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>我們會使用 Key 來做 <strong>加密</strong>及<strong>解密</strong>，<br>那這個 Key 常常會被放在程式碼之中，<br>而在 Code Review 中，也常常被拿出來討論。<br>以下就整理放 Key 的一些選項，</p><h3 id="Key存放選項"><a href="#Key存放選項" class="headerlink" title="Key存放選項"></a>Key存放選項</h3><ol><li>在 <strong>加密/解密</strong> 程式碼中，但如果程式碼被別人看到，加密就會被破解</li><li>透過 Windows 作業系統保護，.NET 可透過 <a href="https://docs.microsoft.com/en-us/dotnet/api/system.security.cryptography.protecteddata.protect?view=dotnet-plat-ext-6.0" target="_blank" rel="noopener">ProtectedData.Protect / ProtectedData.Unprotect</a> 來將 Key 再進行加密存到設定檔中，要使用時，再解密回來使用</li><li>放在地端的 Vault 之中，目前最常見的就是使用 <a href="https://www.vaultproject.io/" target="_blank" rel="noopener">HashiCorp Vault</a></li><li>放在雲端的 Vault 之中，例如 Azure Key Vault or <a href="https://www.vaultproject.io/" target="_blank" rel="noopener">HashiCorp Vault</a></li></ol><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://docs.microsoft.com/en-us/dotnet/api/system.security.cryptography.protecteddata.protect?view=dotnet-plat-ext-6.0" target="_blank" rel="noopener">ProtectedData.Protect / ProtectedData.Unprotect</a><br><a href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/keyvault/Azure.Security.KeyVault.Secrets/samples/Sample3_GetSecrets.md" target="_blank" rel="noopener">Azure Key Vault Sample</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;我們會使用 Key 來做 &lt;strong&gt;加密&lt;/strong&gt;及&lt;strong&gt;解密&lt;/strong&gt;，&lt;br&gt;那這個 Key 常常會被放
+      
+    
+    </summary>
+    
+    
+      <category term="Encrypt" scheme="https://rainmakerho.github.io/tags/Encrypt/"/>
+    
+      <category term="Decrypt" scheme="https://rainmakerho.github.io/tags/Decrypt/"/>
+    
+      <category term="加密" scheme="https://rainmakerho.github.io/tags/%E5%8A%A0%E5%AF%86/"/>
+    
+      <category term="解密" scheme="https://rainmakerho.github.io/tags/%E8%A7%A3%E5%AF%86/"/>
+    
+      <category term="Key" scheme="https://rainmakerho.github.io/tags/Key/"/>
+    
+      <category term="ProtectedData" scheme="https://rainmakerho.github.io/tags/ProtectedData/"/>
+    
+      <category term="Vault" scheme="https://rainmakerho.github.io/tags/Vault/"/>
+    
+  </entry>
   
   <entry>
     <title>在 WSL2 中安裝 Kali Linux</title>
@@ -124,8 +159,6 @@
     
       <category term="zh-Hant-TW" scheme="https://rainmakerho.github.io/tags/zh-Hant-TW/"/>
     
-      <category term="Windows 10" scheme="https://rainmakerho.github.io/tags/Windows-10/"/>
-    
       <category term="zh-TW_pronun" scheme="https://rainmakerho.github.io/tags/zh-TW-pronun/"/>
     
       <category term="CultureNotFoundException" scheme="https://rainmakerho.github.io/tags/CultureNotFoundException/"/>
@@ -133,6 +166,8 @@
       <category term="Culture name zh-TW_pronun is not supported" scheme="https://rainmakerho.github.io/tags/Culture-name-zh-TW-pronun-is-not-supported/"/>
     
       <category term="不支援文化特性名稱 zh-TW_pronun" scheme="https://rainmakerho.github.io/tags/%E4%B8%8D%E6%94%AF%E6%8F%B4%E6%96%87%E5%8C%96%E7%89%B9%E6%80%A7%E5%90%8D%E7%A8%B1-zh-TW-pronun/"/>
+    
+      <category term="Windows 10" scheme="https://rainmakerho.github.io/tags/Windows-10/"/>
     
       <category term="變更排序方法" scheme="https://rainmakerho.github.io/tags/%E8%AE%8A%E6%9B%B4%E6%8E%92%E5%BA%8F%E6%96%B9%E6%B3%95/"/>
     
@@ -623,35 +658,6 @@
       <category term="OAuth" scheme="https://rainmakerho.github.io/tags/OAuth/"/>
     
       <category term="oidc" scheme="https://rainmakerho.github.io/tags/oidc/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Create Windows Form Application Custom URI Scheme</title>
-    <link href="https://rainmakerho.github.io/2022/02/21/Custom-URI-Scheme/"/>
-    <id>https://rainmakerho.github.io/2022/02/21/Custom-URI-Scheme/</id>
-    <published>2022-02-21T02:19:35.000Z</published>
-    <updated>2022-02-23T09:26:12.132Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>現在很多的桌面<strong>應用程式</strong>在登入時，會使用 OAuth2 ，所以在登入時，會開啟 Browser 到<strong>授權中心</strong>，讓<strong>使用者</strong>輸入帳/密後，再透過 Browser 來開啟 <strong>應用程式</strong>，如下，<br><img src="/2022/02/21/Custom-URI-Scheme/01.png" title="Open Native Application"><br>Windows Form 程式要如何做才可以達到這樣的功能呢?</p><h3 id="說明"><a href="#說明" class="headerlink" title="說明"></a>說明</h3><p>如果以 Windows 平台來看，只需要在機碼寫入設定值就可以了，<br>先在 <strong>HKEY_CLASSES_ROOT</strong> 機碼建立 <strong>AP Name</strong> (apname為 Tid-WinPKCE)的相關機碼如下，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">HKEY_CLASSES_ROOT</span><br><span class="line">   Tid-WinPKCE</span><br><span class="line">      (Default) = &quot;&quot;</span><br><span class="line">      URL Protocol = URL:Tid-WinPKCE Protocol&quot;&quot;</span><br><span class="line">      shell</span><br><span class="line">         open</span><br><span class="line">            command</span><br><span class="line">               (Default) = &quot;C:\Projects\OAuth2\Tid.WinPKCE.exe&quot; &quot;%1&quot;</span><br></pre></td></tr></table></figure></p><img src="/2022/02/21/Custom-URI-Scheme/03.png" title="Custom URI Scheme 註冊機碼"><p>所以當在 Browser 網址列入 <strong>Tid-WinPKCE</strong> 再按下　<strong>:</strong> ，可以發現 Browser 網址列最前面的圖示會變成<strong>地球</strong>的圖示，<br>再按下 Enter ，就會提示是否要開啟該 App。<br><img src="/2022/02/21/Custom-URI-Scheme/02.png" title="Custom URI Scheme Address">s</p><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://docs.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/platform-apis/aa767914(v=vs.85" target="_blank" rel="noopener">Registering an Application to a URI Scheme</a>?redirectedfrom=MSDN)<br><a href="https://css-tricks.com/hyperlinking-beyond-the-web/" target="_blank" rel="noopener">Hyperlinking Beyond the Web</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;現在很多的桌面&lt;strong&gt;應用程式&lt;/strong&gt;在登入時，會使用 OAuth2 ，所以在登入時，會開啟 Browser 到&lt;stro
-      
-    
-    </summary>
-    
-    
-      <category term="Custom URI Scheme" scheme="https://rainmakerho.github.io/tags/Custom-URI-Scheme/"/>
-    
-      <category term="Windows" scheme="https://rainmakerho.github.io/tags/Windows/"/>
-    
-      <category term="OAuth2" scheme="https://rainmakerho.github.io/tags/OAuth2/"/>
-    
-      <category term="Private-Use URI Scheme" scheme="https://rainmakerho.github.io/tags/Private-Use-URI-Scheme/"/>
     
   </entry>
   

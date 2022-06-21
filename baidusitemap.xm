@@ -4,6 +4,35 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2022/06/21/save-key-options/</loc>
+    <lastmod>2022-06-21T03:41:17.250Z</lastmod>
+    <data>
+        <display>
+        <title>加密/解密的 Key 要放在那裡?</title>
+        <pubTime>2022-06-21T03:24:34.000Z</pubTime>
+        
+        <tag>Encrypt</tag>
+         
+        <tag>Decrypt</tag>
+         
+        <tag>加密</tag>
+         
+        <tag>解密</tag>
+         
+        <tag>Key</tag>
+         
+        <tag>ProtectedData</tag>
+         
+        <tag>Vault</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2022/06/15/kali-linux-win-wsl/</loc>
     <lastmod>2022-06-15T03:34:51.730Z</lastmod>
     <data>
@@ -117,8 +146,6 @@
         
         <tag>zh-Hant-TW</tag>
          
-        <tag>Windows 10</tag>
-         
         <tag>zh-TW_pronun</tag>
          
         <tag>CultureNotFoundException</tag>
@@ -126,6 +153,8 @@
         <tag>Culture name zh-TW_pronun is not supported</tag>
          
         <tag>不支援文化特性名稱 zh-TW_pronun</tag>
+         
+        <tag>Windows 10</tag>
          
         <tag>變更排序方法</tag>
          
@@ -1945,6 +1974,8 @@
         <title>遠端桌面連線發生 發生驗證錯誤。這可能是因為 CredSSP 加密預示修復。</title>
         <pubTime>2021-05-06T05:53:07.000Z</pubTime>
         
+        <tag>Windows 10</tag>
+         
         <tag>RDP</tag>
          
         <tag>CredSSP</tag>
@@ -1952,8 +1983,6 @@
         <tag>mstsc</tag>
          
         <tag>遠端桌面</tag>
-         
-        <tag>Windows 10</tag>
          
         <tag>Oracle 更新加密</tag>
          
