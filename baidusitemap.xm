@@ -4,6 +4,29 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2022/06/21/wsl-could-not-resolve-host/</loc>
+    <lastmod>2022-06-21T05:51:06.529Z</lastmod>
+    <data>
+        <display>
+        <title>WSL Could not resolve host</title>
+        <pubTime>2022-06-21T05:32:40.000Z</pubTime>
+        
+        <tag>WSL</tag>
+         
+        <tag>Could not resolve host</tag>
+         
+        <tag>curl</tag>
+         
+        <tag>Windows Subsystem for Linux</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2022/06/21/save-key-options/</loc>
     <lastmod>2022-06-21T03:41:17.250Z</lastmod>
     <data>
@@ -472,6 +495,8 @@
          
         <tag>OAuth 2.0</tag>
          
+        <tag>public client</tag>
+         
         <tag>PKCE</tag>
          
         <tag>Proof Key for Code Exchange</tag>
@@ -479,8 +504,6 @@
         <tag>claiming URLs</tag>
          
         <tag>Custom URL Scheme</tag>
-         
-        <tag>public client</tag>
          
          
            
@@ -618,13 +641,13 @@
         
         <tag>OAuth 2.0</tag>
          
-        <tag>public client</tag>
-         
         <tag>Implicit Flow</tag>
          
         <tag>response_type=token</tag>
          
         <tag>response_mode=fragment</tag>
+         
+        <tag>public client</tag>
          
         <tag>token flow</tag>
          
@@ -4132,13 +4155,13 @@
         <title>document.[formName] is undefined</title>
         <pubTime>2019-03-16T05:48:31.000Z</pubTime>
         
-        <tag>軟體求生</tag>
-         
         <tag>js</tag>
          
         <tag>document.formName</tag>
          
         <tag>undefined</tag>
+         
+        <tag>軟體求生</tag>
          
         <tag>asp.net 4</tag>
          
@@ -4198,11 +4221,11 @@
         <title>Inheritance security rules violated by type: 'System.Net.Http.WebRequestHandler'</title>
         <pubTime>2019-02-23T02:41:55.000Z</pubTime>
         
+        <tag>軟體求生</tag>
+         
         <tag>System.Net.Http</tag>
          
         <tag>4.1.0.0</tag>
-         
-        <tag>軟體求生</tag>
          
          
            

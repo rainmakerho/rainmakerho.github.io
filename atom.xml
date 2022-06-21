@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2022-06-21T03:41:17.250Z</updated>
+  <updated>2022-06-21T05:51:06.529Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>WSL Could not resolve host</title>
+    <link href="https://rainmakerho.github.io/2022/06/21/wsl-could-not-resolve-host/"/>
+    <id>https://rainmakerho.github.io/2022/06/21/wsl-could-not-resolve-host/</id>
+    <published>2022-06-21T05:32:40.000Z</published>
+    <updated>2022-06-21T05:51:06.529Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 WSL 中透過 curl 取得網頁時，會發生 <strong>Could not resolve host</strong> 的錯誤，<br><strong>curl: (6) Could not resolve host: <a href="http://www.google.com" target="_blank" rel="noopener">www.google.com</a></strong></p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>查看<a href="https://github.com/microsoft/WSL/issues/4275" target="_blank" rel="noopener">Can not connect to internet in WSL 2</a>，因為無法解析 <a href="http://www.google.com" target="_blank" rel="noopener">www.google.com</a> ，<br>所以可以在 <strong>/etc/resolv.conf</strong> 加入 <strong>nameserver</strong>，<br>例如原本的內容為，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># generateResolvConf = false</span><br><span class="line">nameserver 172.25.240.1</span><br></pre></td></tr></table></figure></p><p>再加一項 nameserver 8.8.8.8 設定，如下，<br><code>sudo vi /etc/resolv.conf</code></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># generateResolvConf = false</span><br><span class="line">nameserver 8.8.8.8</span><br><span class="line">nameserver 172.25.240.1</span><br></pre></td></tr></table></figure><p>存檔後，就可以正常透過 curl 連了。</p><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://github.com/microsoft/WSL/issues/4275" target="_blank" rel="noopener">Can not connect to internet in WSL 2</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;在 WSL 中透過 curl 取得網頁時，會發生 &lt;strong&gt;Could not resolve host&lt;/strong&gt; 的錯誤，&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="WSL" scheme="https://rainmakerho.github.io/tags/WSL/"/>
+    
+      <category term="Could not resolve host" scheme="https://rainmakerho.github.io/tags/Could-not-resolve-host/"/>
+    
+      <category term="curl" scheme="https://rainmakerho.github.io/tags/curl/"/>
+    
+      <category term="Windows Subsystem for Linux" scheme="https://rainmakerho.github.io/tags/Windows-Subsystem-for-Linux/"/>
+    
+  </entry>
   
   <entry>
     <title>加密/解密的 Key 要放在那裡?</title>
@@ -629,35 +658,6 @@
       <category term="Resource Owner Password Credentials" scheme="https://rainmakerho.github.io/tags/Resource-Owner-Password-Credentials/"/>
     
       <category term="grant_type=password" scheme="https://rainmakerho.github.io/tags/grant-type-password/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>OpenID Connect Authorization Code Flow</title>
-    <link href="https://rainmakerho.github.io/2022/02/23/OpenId-oAuth2/"/>
-    <id>https://rainmakerho.github.io/2022/02/23/OpenId-oAuth2/</id>
-    <published>2022-02-23T09:09:14.000Z</published>
-    <updated>2022-03-19T04:49:29.965Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>OAuth是”Open Authorization”,它讓使用者在授權伺服器上，同意 Client App 代表使用者去存取資源 =&gt; 授權。<br>但在存取前，我們需要的是驗證(Authentication)這個使用者是誰及取得這個使用者的其他資訊。</p><p>而要取得使用者的一些資訊，例如，名稱、Email、地址等資訊，<br>如果都是從 authorize 及 token 這2個 endpoint 來拿，又有點不太合適，<br>則會從 OpenID Connect UserInfo endpoint (通常是 /userinfo)來取得。</p><h3 id="OpenID-Connect"><a href="#OpenID-Connect" class="headerlink" title="OpenID Connect"></a><a href="https://openid.net/connect/" target="_blank" rel="noopener">OpenID Connect</a></h3><p><a href="https://openid.net/connect/" target="_blank" rel="noopener">OpenID Connect</a>是架構在 OAuth 2.0 之上，可以讓我們在 Authorization Server(這時變成 Identity Provider) 登入認證完成後，取回 Access Token 外，還可以取回 Identity Token。<br>以下使用<a href="https://www.oauth.com/playground/oidc.html" target="_blank" rel="noopener">OpenID Connect Authorization Code Flow</a>來演示。</p><p>1.組出跟 Authorization Server 取回 Code 的 URL(authorize)，<br><strong>response_type</strong>的值為<strong>code</strong>(表示我們要取回<strong>授權碼</strong>)，client_id, redirect_uri為 Client 註冊的資訊，<br><strong>scope</strong> 則為要求的 Resources，這裡給的值為 openid, profile, email (identity 的資料)及 photo ，這裡是用 <strong>+</strong>，有些是使用 <strong>空白</strong> 分隔，<br><strong>state</strong> 為防止 XSRF 準備的值，當 Authorization Server 回 Call 時，也會把接收到的 state 回傳回來，<br><strong>nonce</strong> 會放在 Identity Token Payload 之中。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">https://authorization-server.com/authorize?</span><br><span class="line">  response_type=code</span><br><span class="line">  &amp;client_id=vMlmc7cEbsWF2CmFC_Uy7lgN</span><br><span class="line">  &amp;redirect_uri=https://www.oauth.com/playground/oidc.html</span><br><span class="line">  &amp;scope=openid+profile+email+photos</span><br><span class="line">  &amp;state=gBbLdtXyDGkC8mTP</span><br><span class="line">  &amp;nonce=9iX47YKplAznSlMH</span><br></pre></td></tr></table></figure></p><p>2.轉址到上述建立的 URL(Authorization Server 的 Authorization endpoint)，在 Authorization Server系統中，輸入使用者帳號及密碼<br><img src="/2022/02/23/OpenId-oAuth2/02.png" title="input user Credential"></p><p>3.顯示同意 Client 存取要求的 scope 權限(consent 畫面可以設定顯示與否)。<br><img src="/2022/02/23/OpenId-oAuth2/03.png" title="User Consent"></p><p>4.當使用者同意後，Authorization Server 會把產生的 code (授權碼)及剛才傳過去的 state 一併傳回來給 redirect_uri 的網址(oidc.html)去驗證 state 值是否正確。<br><img src="/2022/02/23/OpenId-oAuth2/04.png" title="Verify the state parameter"></p><p>註:參數透過 QueryString ，所以 <code>response_mode=query</code></p><p>5.組出要透過 Code 來跟 Authorization Server 取回 AccessToken 及 Identity Token 的 URL(token)，<br>grant_type為authorization_code，code為剛才從 Authorization Server 取回的 授權碼<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">POST https://authorization-server.com/token</span><br><span class="line"></span><br><span class="line">grant_type=authorization_code</span><br><span class="line">&amp;client_id=vMlmc7cEbsWF2CmFC_Uy7lgN</span><br><span class="line">&amp;client_secret=9234yuAokHSrB2LeBZOkZGMtvw6d_RzuarXFebXOcbqRMwci</span><br><span class="line">&amp;redirect_uri=https://www.oauth.com/playground/oidc.html</span><br><span class="line">&amp;code=9AKMAVWM5nF-jBlB3QYhNJ16jVcsgZfoKWhJz9ll74LlgvKe</span><br></pre></td></tr></table></figure></p><p>6.Post後就會得到 access_token 及 id_token<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;token_type&quot;: &quot;Bearer&quot;,</span><br><span class="line">  &quot;expires_in&quot;: 86400,</span><br><span class="line">  &quot;access_token&quot;: &quot;C4BAD186C2DE0EF771F5E7DD8E0CB114867D6AC278ADCCAE3F2FC2BE0F04A86D&quot;,</span><br><span class="line">  &quot;scope&quot;: &quot;openid profile email photo&quot;,</span><br><span class="line">  &quot;id_token&quot;: &quot;.....&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><ul><li>註: id_token 是 JWTs(Json Web Token)</li></ul><p>7.呼叫 <strong>userinfo</strong> Endpoint 取回使用者的相關資訊(可透過 IdentityModel 的擴充方法來取回使用者的資訊)<br>以下用 IdentityServer4 來測試，要求的 scopes 為 <strong>openid profile email address</strong><br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> userInfoResponse = <span class="keyword">await</span> tokenClient.GetUserInfoAsync(<span class="keyword">new</span> UserInfoRequest</span><br><span class="line">&#123;</span><br><span class="line">    Address = <span class="string">$"<span class="subst">&#123;IdpServer&#125;</span>/connect/userinfo"</span>,</span><br><span class="line">    Token = [上面取得的access_token]</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">var</span> claims = userInfoResponse.Claims;</span><br><span class="line"><span class="keyword">foreach</span> (<span class="keyword">var</span> claim <span class="keyword">in</span> claims)</span><br><span class="line">&#123;</span><br><span class="line">    System.Diagnostics.Debug.WriteLine(<span class="string">$"<span class="subst">&#123;claim.Type&#125;</span> =&gt; <span class="subst">&#123;claim.Value&#125;</span>"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>以下為使用 postman 取回的資料畫面，<br><img src="/2022/02/23/OpenId-oAuth2/05.png" title="User Info"></p><ul><li>註: 如果要 IdentityServer4 自動取得 User 的相關資料，則在設定 Client 時，可以設定 <code>AlwaysIncludeUserClaimsInIdToken = true</code></li></ul><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://rainmakerho.github.io/2022/02/15/oAuth2-Basic/">OAuth 2.0 - Authorization Code Flow</a><br><a href="https://rainmakerho.github.io/2022/02/18/oAuth2-PKCE/">OAuth 2.0 - Authorization Code Flow With PKCE</a><br><a href="https://rainmakerho.github.io/2022/02/17/oAuth2-implicit-flow/">OAuth 2.0 - Implicit Flow</a><br><a href="https://www.oauth.com/playground/" target="_blank" rel="noopener">OAuth 2.0 Playground</a><br><a href="https://openid.net/connect/" target="_blank" rel="noopener">OpenID Connect</a><br><a href="https://stackoverflow.com/questions/46844285/difference-between-oauth-2-0-state-and-openid-nonce-parameter-why-state-cou" target="_blank" rel="noopener">Difference between OAuth 2.0 “state” and OpenID “nonce” parameter? Why state could not be reused?</a><br><a href="https://darutk.medium.com/diagrams-of-all-the-openid-connect-flows-6968e3990660" target="_blank" rel="noopener">Diagrams of All The OpenID Connect Flows</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;OAuth是”Open Authorization”,它讓使用者在授權伺服器上，同意 Client App 代表使用者去存取資源 =&amp;gt;
-      
-    
-    </summary>
-    
-    
-      <category term="Authentication" scheme="https://rainmakerho.github.io/tags/Authentication/"/>
-    
-      <category term="OpenID Connect" scheme="https://rainmakerho.github.io/tags/OpenID-Connect/"/>
-    
-      <category term="OAuth" scheme="https://rainmakerho.github.io/tags/OAuth/"/>
-    
-      <category term="oidc" scheme="https://rainmakerho.github.io/tags/oidc/"/>
     
   </entry>
   
