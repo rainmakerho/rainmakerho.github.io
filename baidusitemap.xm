@@ -4,8 +4,31 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2022/06/30/dns-dumpster/</loc>
+    <lastmod>2022-06-30T05:43:22.438Z</lastmod>
+    <data>
+        <display>
+        <title>收集 Domain 資訊的好網站 DNSdumpster.com</title>
+        <pubTime>2022-06-30T05:25:51.000Z</pubTime>
+        
+        <tag>Red Team</tag>
+         
+        <tag>Reconnaissance</tag>
+         
+        <tag>DNS records</tag>
+         
+        <tag>IP addresses</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2022/06/23/metasploit-reverse-tcp/</loc>
-    <lastmod>2022-06-23T06:00:54.944Z</lastmod>
+    <lastmod>2022-06-23T07:12:46.747Z</lastmod>
     <data>
         <display>
         <title>Metasploit Framework - 遠端控制 Windows 電腦</title>
@@ -20,6 +43,8 @@
         <tag>msfvenom</tag>
          
         <tag>exploit/multi/handler</tag>
+         
+        <tag>msfconsole</tag>
          
          
            
@@ -520,6 +545,8 @@
          
         <tag>OAuth 2.0</tag>
          
+        <tag>public client</tag>
+         
         <tag>PKCE</tag>
          
         <tag>Proof Key for Code Exchange</tag>
@@ -527,8 +554,6 @@
         <tag>claiming URLs</tag>
          
         <tag>Custom URL Scheme</tag>
-         
-        <tag>public client</tag>
          
          
            
@@ -666,13 +691,13 @@
         
         <tag>OAuth 2.0</tag>
          
-        <tag>public client</tag>
-         
         <tag>Implicit Flow</tag>
          
         <tag>response_type=token</tag>
          
         <tag>response_mode=fragment</tag>
+         
+        <tag>public client</tag>
          
         <tag>token flow</tag>
          
@@ -5333,13 +5358,13 @@
         <title>線上客服 + BOT 之路</title>
         <pubTime>2018-01-25T08:10:47.000Z</pubTime>
         
-        <tag>chatbot</tag>
-         
         <tag>QnA Maker</tag>
          
         <tag>LUIS</tag>
          
         <tag>Vital ESP</tag>
+         
+        <tag>chatbot</tag>
          
         <tag>FAQ</tag>
          
