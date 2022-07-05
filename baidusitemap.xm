@@ -4,6 +4,52 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2022/07/05/ps-import-module-0x80131515/</loc>
+    <lastmod>2022-07-05T09:40:29.580Z</lastmod>
+    <data>
+        <display>
+        <title>Import-Module 出現 Could not load file or assembly or one of its dependencies. Operation is not supported. 0x80131515 錯誤</title>
+        <pubTime>2022-07-05T09:18:59.000Z</pubTime>
+        
+        <tag>zip</tag>
+         
+        <tag>0x80131515</tag>
+         
+        <tag>Import-Module</tag>
+         
+        <tag>dll</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://rainmakerho.github.io/2022/07/05/metasploit-mssql-payload/</loc>
+    <lastmod>2022-07-05T09:09:00.134Z</lastmod>
+    <data>
+        <display>
+        <title>Metasploit Framework - mssql_payload</title>
+        <pubTime>2022-07-05T08:13:26.000Z</pubTime>
+        
+        <tag>metasploit</tag>
+         
+        <tag>mssql_payload</tag>
+         
+        <tag>xp_cmdshell</tag>
+         
+        <tag>mssql</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2022/07/05/metasploit-portscan-tcp/</loc>
     <lastmod>2022-07-05T01:35:38.344Z</lastmod>
     <data>
@@ -572,8 +618,6 @@
          
         <tag>OAuth 2.0</tag>
          
-        <tag>public client</tag>
-         
         <tag>PKCE</tag>
          
         <tag>Proof Key for Code Exchange</tag>
@@ -581,6 +625,8 @@
         <tag>claiming URLs</tag>
          
         <tag>Custom URL Scheme</tag>
+         
+        <tag>public client</tag>
          
          
            
@@ -718,13 +764,13 @@
         
         <tag>OAuth 2.0</tag>
          
+        <tag>public client</tag>
+         
         <tag>Implicit Flow</tag>
          
         <tag>response_type=token</tag>
          
         <tag>response_mode=fragment</tag>
-         
-        <tag>public client</tag>
          
         <tag>token flow</tag>
          
@@ -1189,9 +1235,9 @@
         
         <tag>DataTable</tag>
          
-        <tag>Reflected_XSS_All_Clients</tag>
-         
         <tag>JsonConvert.SerializeObject</tag>
+         
+        <tag>Reflected_XSS_All_Clients</tag>
          
         <tag>JsonSerializerSettings</tag>
          
@@ -4540,9 +4586,9 @@
         <title>PDF 最後一頁才顯示頁尾</title>
         <pubTime>2018-11-29T06:46:17.000Z</pubTime>
         
-        <tag>aspose</tag>
-         
         <tag>pdf</tag>
+         
+        <tag>aspose</tag>
          
         <tag>cells</tag>
          
@@ -5385,13 +5431,13 @@
         <title>線上客服 + BOT 之路</title>
         <pubTime>2018-01-25T08:10:47.000Z</pubTime>
         
+        <tag>chatbot</tag>
+         
         <tag>QnA Maker</tag>
          
         <tag>LUIS</tag>
          
         <tag>Vital ESP</tag>
-         
-        <tag>chatbot</tag>
          
         <tag>FAQ</tag>
          
