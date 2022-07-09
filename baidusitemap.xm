@@ -4,6 +4,27 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2022/07/09/aspnet6-custom-logger/</loc>
+    <lastmod>2022-07-09T07:49:28.382Z</lastmod>
+    <data>
+        <display>
+        <title>ASP.NET Core 6 實作 Logger</title>
+        <pubTime>2022-07-09T06:24:24.000Z</pubTime>
+        
+        <tag>asp.net core</tag>
+         
+        <tag>logger</tag>
+         
+        <tag>custom</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2022/07/05/ps-import-module-0x80131515/</loc>
     <lastmod>2022-07-05T09:40:29.580Z</lastmod>
     <data>
@@ -1235,9 +1256,9 @@
         
         <tag>DataTable</tag>
          
-        <tag>JsonConvert.SerializeObject</tag>
-         
         <tag>Reflected_XSS_All_Clients</tag>
+         
+        <tag>JsonConvert.SerializeObject</tag>
          
         <tag>JsonSerializerSettings</tag>
          
@@ -5431,13 +5452,13 @@
         <title>線上客服 + BOT 之路</title>
         <pubTime>2018-01-25T08:10:47.000Z</pubTime>
         
-        <tag>chatbot</tag>
-         
         <tag>QnA Maker</tag>
          
         <tag>LUIS</tag>
          
         <tag>Vital ESP</tag>
+         
+        <tag>chatbot</tag>
          
         <tag>FAQ</tag>
          
