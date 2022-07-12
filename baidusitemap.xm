@@ -4,6 +4,54 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2022/07/12/tls-do-not-a-common-algorithm/</loc>
+    <lastmod>2022-07-12T05:02:11.911Z</lastmod>
+    <data>
+        <display>
+        <title>用戶端和伺服器無法溝通，因為它們沒有公用的演算法</title>
+        <pubTime>2022-07-12T03:56:27.000Z</pubTime>
+        
+        <tag>ASP.NET</tag>
+         
+        <tag>TLS</tag>
+         
+        <tag>TLS 1.2</tag>
+         
+        <tag>Disable TLS 1.1</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://rainmakerho.github.io/2022/07/12/cannot-find-command-dotnet-ef/</loc>
+    <lastmod>2022-07-12T03:52:43.013Z</lastmod>
+    <data>
+        <display>
+        <title>dotnet ef 因為找不到指定的命令或檔案，所以無法執行</title>
+        <pubTime>2022-07-12T02:34:55.000Z</pubTime>
+        
+        <tag>EF Core</tag>
+         
+        <tag>dotnet</tag>
+         
+        <tag>dotnet ef</tag>
+         
+        <tag>dotnet-ef</tag>
+         
+        <tag>因為找不到指定的命令或檔案，所以無法執行</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2022/07/09/aspnet6-custom-logger/</loc>
     <lastmod>2022-07-09T07:49:28.382Z</lastmod>
     <data>
@@ -1000,9 +1048,9 @@
         <title>Checkmarx V9.4 在 Heap_Inspection 的改變(ASPX)</title>
         <pubTime>2021-12-28T01:09:40.000Z</pubTime>
         
-        <tag>ASPX</tag>
-         
         <tag>ASP.NET</tag>
+         
+        <tag>ASPX</tag>
          
         <tag>Checkmarx</tag>
          
@@ -4607,9 +4655,9 @@
         <title>PDF 最後一頁才顯示頁尾</title>
         <pubTime>2018-11-29T06:46:17.000Z</pubTime>
         
-        <tag>pdf</tag>
-         
         <tag>aspose</tag>
+         
+        <tag>pdf</tag>
          
         <tag>cells</tag>
          
@@ -5308,11 +5356,11 @@
         <title>SmtpConnection.GetConnection NullReferenceException</title>
         <pubTime>2018-03-14T02:07:16.000Z</pubTime>
         
-        <tag>NullReferenceException</tag>
-         
         <tag>SmtpClient</tag>
          
         <tag>SmtpConnection.GetConnection</tag>
+         
+        <tag>NullReferenceException</tag>
          
         <tag>.net</tag>
          
@@ -5337,11 +5385,11 @@
         <title>System.NullReferenceException when Aspose.Pdf.License.SetLicense(String licenseName)</title>
         <pubTime>2018-03-13T06:54:05.000Z</pubTime>
         
+        <tag>NullReferenceException</tag>
+         
         <tag>Aspose</tag>
          
         <tag>SetLicense</tag>
-         
-        <tag>NullReferenceException</tag>
          
          
            
