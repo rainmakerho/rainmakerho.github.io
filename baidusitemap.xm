@@ -4,6 +4,33 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2022/07/29/mvc5-owin-azure-ad-openid/</loc>
+    <lastmod>2022-07-29T07:12:22.802Z</lastmod>
+    <data>
+        <display>
+        <title>ASP.NET MVC 使用 Microsoft.Owin.Security 驗證 Azure AD，並傳送自定參數</title>
+        <pubTime>2022-07-29T06:49:21.000Z</pubTime>
+        
+        <tag>ASP.NET MVC</tag>
+         
+        <tag>Azure AD</tag>
+         
+        <tag>Owin.Security</tag>
+         
+        <tag>Owin.Security.OpenIdConnect</tag>
+         
+        <tag>AuthenticationProperties</tag>
+         
+        <tag>AuthorizationCodeReceivedNotification</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2022/07/12/tls-do-not-a-common-algorithm/</loc>
     <lastmod>2022-07-12T05:02:11.911Z</lastmod>
     <data>

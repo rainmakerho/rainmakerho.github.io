@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2022-07-12T05:02:11.911Z</updated>
+  <updated>2022-07-29T07:12:22.802Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,39 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ASP.NET MVC 使用 Microsoft.Owin.Security 驗證 Azure AD，並傳送自定參數</title>
+    <link href="https://rainmakerho.github.io/2022/07/29/mvc5-owin-azure-ad-openid/"/>
+    <id>https://rainmakerho.github.io/2022/07/29/mvc5-owin-azure-ad-openid/</id>
+    <published>2022-07-29T06:49:21.000Z</published>
+    <updated>2022-07-29T07:12:22.802Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>同事在練習 <a href="https://docs.microsoft.com/zh-tw/learn/modules/msgraph-build-aspnetmvc-apps/5-exercise-add-auth" target="_blank" rel="noopener">將 Microsoft 驗證程式庫納入 ASP.NET MVC Web 應用程式</a> 時，想要在 <strong>AccountController</strong> 的 <strong>SignIn()</strong> 中，在轉址到 Azure AD 驗證登入前先存入某些參數，然後在 Azure AD 驗證登入成功後，取回該參數。</p><h3 id="準備環境"><a href="#準備環境" class="headerlink" title="準備環境"></a>準備環境</h3><p>透過 Visual Studio 新增 ASP.NET MVC 專案，並加入以下的 Nuget 套件，</p><ul><li>Microsoft.Owin</li><li>Microsoft.Owin.Host.SystemWeb</li><li>Microsoft.Owin.Security</li><li>Microsoft.Owin.Security.Cookies</li><li>Microsoft.Owin.Security.OpenIdConnect</li><li>Microsoft.Graph</li></ul><h3 id="測試"><a href="#測試" class="headerlink" title="測試"></a>測試</h3><p>要額外傳送參數，可以透過 <strong>AuthenticationProperties</strong> 的 Dictionary 來加入額外的參數。<br>所以在 <strong>AccountController</strong> 的 <strong>SignIn()</strong> 中，可以加入一個 tuid 的參數，如下，<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">SignIn</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// Signal OWIN to send an authorization request to Azure</span></span><br><span class="line">    <span class="keyword">var</span> authProps = <span class="keyword">new</span> AuthenticationProperties</span><br><span class="line">    &#123;</span><br><span class="line">        RedirectUri = <span class="string">"/"</span>,</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="comment">//加入額外要傳遞的參數到 Dictionary 之中</span></span><br><span class="line">    <span class="keyword">var</span> guid = Guid.NewGuid().ToString();</span><br><span class="line">    authProps.Dictionary.Add(<span class="string">"tuid"</span>, guid);</span><br><span class="line"></span><br><span class="line">    Request.GetOwinContext().Authentication.Challenge(</span><br><span class="line">            authProps,</span><br><span class="line">            OpenIdConnectAuthenticationDefaults.AuthenticationType);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><img src="/2022/07/29/mvc5-owin-azure-ad-openid/01.png" title="Dictionary.Add"><p>Azure AD 登入驗證完成後，會進入到 <strong>OnAuthorizationCodeReceivedAsync</strong> Method 之中，<br>就可以透過參數 <strong>notification</strong> 中的 <strong>AuthenticationTicket.Properties.Dictionary</strong> 取出參數值，如下，<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">async</span> Task <span class="title">OnAuthorizationCodeReceivedAsync</span>(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">            AuthorizationCodeReceivedNotification notification</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> tuid = <span class="keyword">string</span>.Empty;</span><br><span class="line">    <span class="keyword">if</span>(notification.AuthenticationTicket</span><br><span class="line">        .Properties.Dictionary.TryGetValue(<span class="string">"tuid"</span>, <span class="keyword">out</span> tuid))&#123;</span><br><span class="line">        <span class="comment">//正確取回 tuid 的值 ...</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> idClient = ConfidentialClientApplicationBuilder.Create(appId)</span><br><span class="line">        .WithRedirectUri(redirectUri)</span><br><span class="line">        .WithClientSecret(appSecret)</span><br><span class="line">        .Build();</span><br><span class="line">    <span class="comment">// ... 原範例程式碼</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><img src="/2022/07/29/mvc5-owin-azure-ad-openid/02.png" title="Dictionary.TryGetValue"><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://docs.microsoft.com/zh-tw/learn/modules/msgraph-build-aspnetmvc-apps/5-exercise-add-auth" target="_blank" rel="noopener">將 Microsoft 驗證程式庫納入 ASP.NET MVC Web 應用程式</a><br><a href="https://hajekj.net/2018/06/12/passing-state-through-authentication-in-asp-net-core/" target="_blank" rel="noopener">Passing state through authentication in ASP.NET Core</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;同事在練習 &lt;a href=&quot;https://docs.microsoft.com/zh-tw/learn/modules/msgraph-
+      
+    
+    </summary>
+    
+    
+      <category term="ASP.NET MVC" scheme="https://rainmakerho.github.io/tags/ASP-NET-MVC/"/>
+    
+      <category term="Azure AD" scheme="https://rainmakerho.github.io/tags/Azure-AD/"/>
+    
+      <category term="Owin.Security" scheme="https://rainmakerho.github.io/tags/Owin-Security/"/>
+    
+      <category term="Owin.Security.OpenIdConnect" scheme="https://rainmakerho.github.io/tags/Owin-Security-OpenIdConnect/"/>
+    
+      <category term="AuthenticationProperties" scheme="https://rainmakerho.github.io/tags/AuthenticationProperties/"/>
+    
+      <category term="AuthorizationCodeReceivedNotification" scheme="https://rainmakerho.github.io/tags/AuthorizationCodeReceivedNotification/"/>
+    
+  </entry>
   
   <entry>
     <title>用戶端和伺服器無法溝通，因為它們沒有公用的演算法</title>
@@ -606,37 +639,6 @@
       <category term="No Application Access Policy found for this app." scheme="https://rainmakerho.github.io/tags/No-Application-Access-Policy-found-for-this-app/"/>
     
       <category term="OnlineMeetings.ReadWrite.All" scheme="https://rainmakerho.github.io/tags/OnlineMeetings-ReadWrite-All/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Teams 中的 Bot 是 Disabled 狀態</title>
-    <link href="https://rainmakerho.github.io/2022/04/28/teams-bot-disabled/"/>
-    <id>https://rainmakerho.github.io/2022/04/28/teams-bot-disabled/</id>
-    <published>2022-04-28T03:54:39.000Z</published>
-    <updated>2022-04-28T05:59:25.315Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>同事將寫好的 Teams Bot 上傳到 Teams 後，要使用 Bot 時，卻發現它是 Disabled 的狀態。<br><img src="/2022/04/28/teams-bot-disabled/01.png" title="Bot-Disabled"></p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>在 <a href="https://admin.teams.microsoft.com/policies/manage-apps" target="_blank" rel="noopener">Microsoft Teams admin center - Manage apps(管理應用程式) 功能</a> 畫面中，<br>按下 「Org-wide app settings(全域應用程式設定)」 Button，<br>發現 <strong>發行到市集的新協力廠商應用程式</strong> 及 <strong>與自訂應用程式戶動</strong> 沒有開啟，<br>將它們設定成開啟後， Bot 就可以使用了哦!<br><img src="/2022/04/28/teams-bot-disabled/02.png" title="全域應用程式設定"></p><p>如果要測試 Teams Bot 有沒有問題，也可以透過 <a href="https://dev.teams.microsoft.com/appvalidation.html" target="_blank" rel="noopener">Teams app validator</a> 來驗證看看。</p><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://dev.teams.microsoft.com/appvalidation.html" target="_blank" rel="noopener">Teams app validator</a><br><a href="https://admin.teams.microsoft.com" target="_blank" rel="noopener">Microsoft Teams admin center</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;同事將寫好的 Teams Bot 上傳到 Teams 後，要使用 Bot 時，卻發現它是 Disabled 的狀態。&lt;br&gt;&lt;img src
-      
-    
-    </summary>
-    
-    
-      <category term="Teams" scheme="https://rainmakerho.github.io/tags/Teams/"/>
-    
-      <category term="Bot" scheme="https://rainmakerho.github.io/tags/Bot/"/>
-    
-      <category term="Disabled" scheme="https://rainmakerho.github.io/tags/Disabled/"/>
-    
-      <category term="Teams app validator" scheme="https://rainmakerho.github.io/tags/Teams-app-validator/"/>
-    
-      <category term="Org-wide app settings" scheme="https://rainmakerho.github.io/tags/Org-wide-app-settings/"/>
     
   </entry>
   
