@@ -4,6 +4,29 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2022/08/04/vscode-debug-console-readline-not-work/</loc>
+    <lastmod>2022-08-04T01:26:35.301Z</lastmod>
+    <data>
+        <display>
+        <title>使用 VS Code Debug 時，Console.ReadLine() 沒作用</title>
+        <pubTime>2022-08-04T01:10:31.000Z</pubTime>
+        
+        <tag>VSCode</tag>
+         
+        <tag>Console.ReadLine</tag>
+         
+        <tag>internalConsole</tag>
+         
+        <tag>偵錯主控台</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2022/07/29/mvc5-owin-azure-ad-openid/</loc>
     <lastmod>2022-07-29T07:12:22.802Z</lastmod>
     <data>
@@ -130,13 +153,13 @@
         <title>Metasploit Framework - mssql_payload</title>
         <pubTime>2022-07-05T08:13:26.000Z</pubTime>
         
+        <tag>mssql</tag>
+         
         <tag>metasploit</tag>
          
         <tag>mssql_payload</tag>
          
         <tag>xp_cmdshell</tag>
-         
-        <tag>mssql</tag>
          
          
            
@@ -1075,15 +1098,15 @@
         <title>Checkmarx V9.4 在 Heap_Inspection 的改變(ASPX)</title>
         <pubTime>2021-12-28T01:09:40.000Z</pubTime>
         
-        <tag>ASP.NET</tag>
-         
         <tag>ASPX</tag>
+         
+        <tag>ASP.NET</tag>
          
         <tag>Checkmarx</tag>
          
-        <tag>Password</tag>
-         
         <tag>Heap Inspection</tag>
+         
+        <tag>Password</tag>
          
         <tag>Heap_Inspection</tag>
          
@@ -1137,11 +1160,11 @@
         
         <tag>Jenkins</tag>
          
+        <tag>Password</tag>
+         
         <tag>資安</tag>
          
         <tag>使用者密碼</tag>
-         
-        <tag>Password</tag>
          
          
            
@@ -1331,9 +1354,9 @@
         
         <tag>DataTable</tag>
          
-        <tag>Reflected_XSS_All_Clients</tag>
-         
         <tag>JsonConvert.SerializeObject</tag>
+         
+        <tag>Reflected_XSS_All_Clients</tag>
          
         <tag>JsonSerializerSettings</tag>
          
@@ -1777,13 +1800,13 @@
          
         <tag>Checkmarx</tag>
          
-        <tag>Password</tag>
-         
         <tag>Heap Inspection</tag>
          
         <tag>Custom Model Binder</tag>
          
         <tag>byte Array</tag>
+         
+        <tag>Password</tag>
          
          
            
@@ -1804,11 +1827,11 @@
          
         <tag>Checkmarx</tag>
          
-        <tag>Password</tag>
-         
         <tag>Heap Inspection</tag>
          
         <tag>Custom Model Binder</tag>
+         
+        <tag>Password</tag>
          
         <tag>SecureString</tag>
          
@@ -1829,11 +1852,11 @@
         
         <tag>Checkmarx</tag>
          
-        <tag>Password</tag>
-         
         <tag>Heap Inspection</tag>
          
         <tag>Custom Model Binder</tag>
+         
+        <tag>Password</tag>
          
         <tag>SecureString</tag>
          
@@ -1858,11 +1881,11 @@
         
         <tag>Checkmarx</tag>
          
-        <tag>Password</tag>
-         
         <tag>Heap Inspection</tag>
          
         <tag>Custom Model Binder</tag>
+         
+        <tag>Password</tag>
          
         <tag>SecureString</tag>
          
@@ -5383,11 +5406,11 @@
         <title>SmtpConnection.GetConnection NullReferenceException</title>
         <pubTime>2018-03-14T02:07:16.000Z</pubTime>
         
+        <tag>NullReferenceException</tag>
+         
         <tag>SmtpClient</tag>
          
         <tag>SmtpConnection.GetConnection</tag>
-         
-        <tag>NullReferenceException</tag>
          
         <tag>.net</tag>
          
@@ -5412,11 +5435,11 @@
         <title>System.NullReferenceException when Aspose.Pdf.License.SetLicense(String licenseName)</title>
         <pubTime>2018-03-13T06:54:05.000Z</pubTime>
         
-        <tag>NullReferenceException</tag>
-         
         <tag>Aspose</tag>
          
         <tag>SetLicense</tag>
+         
+        <tag>NullReferenceException</tag>
          
          
            
@@ -5454,9 +5477,9 @@
         <title>使用 Botframework 的 Bot 如何 Debug 到 BotBuilder Source ?</title>
         <pubTime>2018-02-01T01:47:18.000Z</pubTime>
         
-        <tag>botframework</tag>
-         
         <tag>C#</tag>
+         
+        <tag>botframework</tag>
          
         <tag>BotBuilder</tag>
          
