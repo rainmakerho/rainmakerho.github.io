@@ -4,6 +4,37 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2022/08/29/timeout-expired-max-pool-size-reached/</loc>
+    <lastmod>2022-08-29T06:36:21.799Z</lastmod>
+    <data>
+        <display>
+        <title>Timeout expired. all pooled connections were in use and max pool size was reached. 自動關閉 Connection ?</title>
+        <pubTime>2022-08-29T03:27:36.000Z</pubTime>
+        
+        <tag>Connection Pooling</tag>
+         
+        <tag>Timeout</tag>
+         
+        <tag>Auto Close</tag>
+         
+        <tag>Connection</tag>
+         
+        <tag>Pool</tag>
+         
+        <tag>ExecuteReader</tag>
+         
+        <tag>ExecuteReaderAsync</tag>
+         
+        <tag>CloseConnection</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2022/08/04/vscode-debug-console-readline-not-work/</loc>
     <lastmod>2022-08-04T01:26:35.301Z</lastmod>
     <data>
@@ -153,13 +184,13 @@
         <title>Metasploit Framework - mssql_payload</title>
         <pubTime>2022-07-05T08:13:26.000Z</pubTime>
         
-        <tag>mssql</tag>
-         
         <tag>metasploit</tag>
          
         <tag>mssql_payload</tag>
          
         <tag>xp_cmdshell</tag>
+         
+        <tag>mssql</tag>
          
          
            
@@ -737,6 +768,8 @@
          
         <tag>OAuth 2.0</tag>
          
+        <tag>public client</tag>
+         
         <tag>PKCE</tag>
          
         <tag>Proof Key for Code Exchange</tag>
@@ -744,8 +777,6 @@
         <tag>claiming URLs</tag>
          
         <tag>Custom URL Scheme</tag>
-         
-        <tag>public client</tag>
          
          
            
@@ -883,13 +914,13 @@
         
         <tag>OAuth 2.0</tag>
          
-        <tag>public client</tag>
-         
         <tag>Implicit Flow</tag>
          
         <tag>response_type=token</tag>
          
         <tag>response_mode=fragment</tag>
+         
+        <tag>public client</tag>
          
         <tag>token flow</tag>
          
@@ -1098,15 +1129,15 @@
         <title>Checkmarx V9.4 在 Heap_Inspection 的改變(ASPX)</title>
         <pubTime>2021-12-28T01:09:40.000Z</pubTime>
         
-        <tag>ASPX</tag>
-         
         <tag>ASP.NET</tag>
+         
+        <tag>ASPX</tag>
          
         <tag>Checkmarx</tag>
          
-        <tag>Heap Inspection</tag>
-         
         <tag>Password</tag>
+         
+        <tag>Heap Inspection</tag>
          
         <tag>Heap_Inspection</tag>
          
@@ -1160,11 +1191,11 @@
         
         <tag>Jenkins</tag>
          
-        <tag>Password</tag>
-         
         <tag>資安</tag>
          
         <tag>使用者密碼</tag>
+         
+        <tag>Password</tag>
          
          
            
@@ -1354,9 +1385,9 @@
         
         <tag>DataTable</tag>
          
-        <tag>JsonConvert.SerializeObject</tag>
-         
         <tag>Reflected_XSS_All_Clients</tag>
+         
+        <tag>JsonConvert.SerializeObject</tag>
          
         <tag>JsonSerializerSettings</tag>
          
@@ -1800,13 +1831,13 @@
          
         <tag>Checkmarx</tag>
          
+        <tag>Password</tag>
+         
         <tag>Heap Inspection</tag>
          
         <tag>Custom Model Binder</tag>
          
         <tag>byte Array</tag>
-         
-        <tag>Password</tag>
          
          
            
@@ -1827,11 +1858,11 @@
          
         <tag>Checkmarx</tag>
          
+        <tag>Password</tag>
+         
         <tag>Heap Inspection</tag>
          
         <tag>Custom Model Binder</tag>
-         
-        <tag>Password</tag>
          
         <tag>SecureString</tag>
          
@@ -1852,11 +1883,11 @@
         
         <tag>Checkmarx</tag>
          
+        <tag>Password</tag>
+         
         <tag>Heap Inspection</tag>
          
         <tag>Custom Model Binder</tag>
-         
-        <tag>Password</tag>
          
         <tag>SecureString</tag>
          
@@ -1881,15 +1912,15 @@
         
         <tag>Checkmarx</tag>
          
+        <tag>Password</tag>
+         
         <tag>Heap Inspection</tag>
+         
+        <tag>Razor Page</tag>
          
         <tag>Custom Model Binder</tag>
          
-        <tag>Password</tag>
-         
         <tag>SecureString</tag>
-         
-        <tag>Razor Page</tag>
          
          
            
@@ -5477,9 +5508,9 @@
         <title>使用 Botframework 的 Bot 如何 Debug 到 BotBuilder Source ?</title>
         <pubTime>2018-02-01T01:47:18.000Z</pubTime>
         
-        <tag>C#</tag>
-         
         <tag>botframework</tag>
+         
+        <tag>C#</tag>
          
         <tag>BotBuilder</tag>
          
