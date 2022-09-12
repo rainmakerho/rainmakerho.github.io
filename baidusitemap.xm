@@ -4,18 +4,18 @@
 
     
   <url>
-    <loc>https://rainmakerho.github.io/2022/08/31/metasploit-privilege-escalation/</loc>
-    <lastmod>2022-08-31T09:58:48.765Z</lastmod>
+    <loc>https://rainmakerho.github.io/2022/09/12/abp-not-find-bundle-libs-abp-core-abp-css-Basic-Global/</loc>
+    <lastmod>2022-09-12T09:18:46.406Z</lastmod>
     <data>
         <display>
-        <title>Metasploit 提權</title>
-        <pubTime>2022-08-31T08:31:29.000Z</pubTime>
+        <title>Could not find the bundle file '/libs/abp/core/abp.css' for the bundle 'Basic.Global'!</title>
+        <pubTime>2022-09-12T08:55:47.000Z</pubTime>
         
-        <tag>metasploit</tag>
+        <tag>Abp</tag>
          
-        <tag>meterpreter</tag>
+        <tag>/libs/abp/core/abp.css</tag>
          
-        <tag>privilege escalation</tag>
+        <tag>Basic.Global</tag>
          
          
            
@@ -26,7 +26,7 @@
     
   <url>
     <loc>https://rainmakerho.github.io/2022/08/31/metasploit-meterpreter-session/</loc>
-    <lastmod>2022-08-31T08:27:01.647Z</lastmod>
+    <lastmod>2022-09-01T02:14:43.231Z</lastmod>
     <data>
         <display>
         <title>建立 Metasploit meterpreter session</title>
@@ -39,6 +39,27 @@
         <tag>Easy File Sharing Web Server</tag>
          
         <tag>nmap</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://rainmakerho.github.io/2022/08/31/metasploit-privilege-escalation/</loc>
+    <lastmod>2022-09-01T02:14:41.391Z</lastmod>
+    <data>
+        <display>
+        <title>Metasploit 提權</title>
+        <pubTime>2022-08-31T08:31:29.000Z</pubTime>
+        
+        <tag>metasploit</tag>
+         
+        <tag>meterpreter</tag>
+         
+        <tag>privilege escalation</tag>
          
          
            
@@ -1179,11 +1200,11 @@
          
         <tag>Checkmarx</tag>
          
+        <tag>Password</tag>
+         
         <tag>Heap Inspection</tag>
          
         <tag>Heap_Inspection</tag>
-         
-        <tag>Password</tag>
          
         <tag>WebForm</tag>
          
@@ -1235,11 +1256,11 @@
         
         <tag>Jenkins</tag>
          
-        <tag>Password</tag>
-         
         <tag>資安</tag>
          
         <tag>使用者密碼</tag>
+         
+        <tag>Password</tag>
          
          
            
@@ -1875,9 +1896,9 @@
          
         <tag>Checkmarx</tag>
          
-        <tag>Heap Inspection</tag>
-         
         <tag>Password</tag>
+         
+        <tag>Heap Inspection</tag>
          
         <tag>Custom Model Binder</tag>
          
@@ -1902,9 +1923,9 @@
          
         <tag>Checkmarx</tag>
          
-        <tag>Heap Inspection</tag>
-         
         <tag>Password</tag>
+         
+        <tag>Heap Inspection</tag>
          
         <tag>Custom Model Binder</tag>
          
@@ -1927,9 +1948,9 @@
         
         <tag>Checkmarx</tag>
          
-        <tag>Heap Inspection</tag>
-         
         <tag>Password</tag>
+         
+        <tag>Heap Inspection</tag>
          
         <tag>Custom Model Binder</tag>
          
@@ -1956,9 +1977,9 @@
         
         <tag>Checkmarx</tag>
          
-        <tag>Heap Inspection</tag>
-         
         <tag>Password</tag>
+         
+        <tag>Heap Inspection</tag>
          
         <tag>Custom Model Binder</tag>
          
