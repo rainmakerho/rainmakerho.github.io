@@ -4,8 +4,29 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2022/09/21/UseHttpsRedirection-not-redirect-https/</loc>
+    <lastmod>2022-09-21T09:38:21.175Z</lastmod>
+    <data>
+        <display>
+        <title>使用 app.UseHttpsRedirection() 不會強制轉 HTTPS ?</title>
+        <pubTime>2022-09-21T09:26:45.000Z</pubTime>
+        
+        <tag>IIS</tag>
+         
+        <tag>app.UseHttpsRedirection</tag>
+         
+        <tag>HttpsPort</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2022/09/12/abp-not-find-bundle-libs-abp-core-abp-css-Basic-Global/</loc>
-    <lastmod>2022-09-12T09:18:46.406Z</lastmod>
+    <lastmod>2022-09-12T09:31:11.295Z</lastmod>
     <data>
         <display>
         <title>Could not find the bundle file '/libs/abp/core/abp.css' for the bundle 'Basic.Global'!</title>
@@ -16,6 +37,8 @@
         <tag>/libs/abp/core/abp.css</tag>
          
         <tag>Basic.Global</tag>
+         
+        <tag>install-libs</tag>
          
          
            
@@ -251,11 +274,11 @@
         
         <tag>metasploit</tag>
          
+        <tag>mssql</tag>
+         
         <tag>mssql_payload</tag>
          
         <tag>xp_cmdshell</tag>
-         
-        <tag>mssql</tag>
          
          
            
@@ -534,9 +557,9 @@
         <title>AADSTS50011 The redirect URI 'https://.../licensemanagement/signin-azuread-oidc' specified in the request does not match the redirect URIs configured for the application 'appid'</title>
         <pubTime>2022-05-11T07:41:58.000Z</pubTime>
         
-        <tag>AADSTS50011</tag>
-         
         <tag>Azure</tag>
+         
+        <tag>AADSTS50011</tag>
          
         <tag>Azure AD</tag>
          
@@ -3125,9 +3148,9 @@
         <title>Windows 透過「造字程式」來造字</title>
         <pubTime>2020-11-06T03:34:18.000Z</pubTime>
         
-        <tag>自造字</tag>
-         
         <tag>Windows</tag>
+         
+        <tag>自造字</tag>
          
         <tag>EUDC</tag>
          
@@ -4658,8 +4681,6 @@
         <title>使用 OpenTracing - Jaeger (AP整合)</title>
         <pubTime>2019-01-15T05:13:41.000Z</pubTime>
         
-        <tag>BFv4</tag>
-         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -4673,6 +4694,8 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
+         
+        <tag>BFv4</tag>
          
         <tag>NodeJS</tag>
          
@@ -4691,8 +4714,6 @@
         <title>使用 OpenTracing - Jaeger</title>
         <pubTime>2019-01-04T06:02:45.000Z</pubTime>
         
-        <tag>BFv4</tag>
-         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -4706,6 +4727,8 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
+         
+        <tag>BFv4</tag>
          
          
            
@@ -5502,11 +5525,11 @@
         <title>SmtpConnection.GetConnection NullReferenceException</title>
         <pubTime>2018-03-14T02:07:16.000Z</pubTime>
         
+        <tag>NullReferenceException</tag>
+         
         <tag>SmtpClient</tag>
          
         <tag>SmtpConnection.GetConnection</tag>
-         
-        <tag>NullReferenceException</tag>
          
         <tag>.net</tag>
          
@@ -5531,11 +5554,11 @@
         <title>System.NullReferenceException when Aspose.Pdf.License.SetLicense(String licenseName)</title>
         <pubTime>2018-03-13T06:54:05.000Z</pubTime>
         
-        <tag>NullReferenceException</tag>
-         
         <tag>Aspose</tag>
          
         <tag>SetLicense</tag>
+         
+        <tag>NullReferenceException</tag>
          
          
            

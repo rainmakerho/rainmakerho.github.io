@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2022-09-12T09:18:46.406Z</updated>
+  <updated>2022-09-21T09:38:21.175Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -17,13 +17,40 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>使用 app.UseHttpsRedirection() 不會強制轉 HTTPS ?</title>
+    <link href="https://rainmakerho.github.io/2022/09/21/UseHttpsRedirection-not-redirect-https/"/>
+    <id>https://rainmakerho.github.io/2022/09/21/UseHttpsRedirection-not-redirect-https/</id>
+    <published>2022-09-21T09:26:45.000Z</published>
+    <updated>2022-09-21T09:38:21.175Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>同事在測試 ASP.NET Core Web 系統時，原本可以在 http 正常運作。<br>今天輸入 http 後，居然自動導到了 https 。<br>因為程式中有寫 <code>app.UseHttpsRedirection()</code> ，所以會把 http 轉到 https。<br>可是同事說，之前走 http 都可以，為什麼今天卻不OK了呢?</p><h3 id="釐清狀況"><a href="#釐清狀況" class="headerlink" title="釐清狀況"></a>釐清狀況</h3><p>最近有到 IIS 新增 https 繫結，而 <code>app.UseHttpsRedirection()</code> 會檢查如果 https 可以走的話，就會走 https。<br>之前可以是因為 IIS 上只有 http 繫結，並不能走 https ，所以 <strong>不會強制走到 https</strong>。</p><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://github.com/aspnet/Announcements/issues/301" target="_blank" rel="noopener">HttpsRedirectionMiddleware will not redirect to HTTPS if no port is available</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;同事在測試 ASP.NET Core Web 系統時，原本可以在 http 正常運作。&lt;br&gt;今天輸入 http 後，居然自動導到了 htt
+      
+    
+    </summary>
+    
+    
+      <category term="IIS" scheme="https://rainmakerho.github.io/tags/IIS/"/>
+    
+      <category term="app.UseHttpsRedirection" scheme="https://rainmakerho.github.io/tags/app-UseHttpsRedirection/"/>
+    
+      <category term="HttpsPort" scheme="https://rainmakerho.github.io/tags/HttpsPort/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Could not find the bundle file &#39;/libs/abp/core/abp.css&#39; for the bundle &#39;Basic.Global&#39;!</title>
     <link href="https://rainmakerho.github.io/2022/09/12/abp-not-find-bundle-libs-abp-core-abp-css-Basic-Global/"/>
     <id>https://rainmakerho.github.io/2022/09/12/abp-not-find-bundle-libs-abp-core-abp-css-Basic-Global/</id>
     <published>2022-09-12T08:55:47.000Z</published>
-    <updated>2022-09-12T09:18:46.406Z</updated>
+    <updated>2022-09-12T09:31:11.295Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>從 <a href="https://abp.io/get-started" target="_blank" rel="noopener">abp.io/get-started</a> 設定 UI Framework 為 MVC (Razor Pages) or Blazor Server UI，下載 Source 後，<br>透過 Visual Studio 建置執行後，會出現 <strong>Volo.Abp.AbpException: Could not find the bundle file ‘/libs/abp/core/abp.css’ for the bundle ‘Basic.Global’!</strong> 的錯誤</p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>依 <a href="https://blog.abp.io/abp/ABP.IO-Platform-5-2-RC-Has-Been-Published" target="_blank" rel="noopener">ABP.IO Platform 5.2 RC Has Been Published</a> 說明如下，</p><blockquote><p>With version 5.2, this folder is excluded from the source control by default, so every developer getting the solution must run abp install-libs in the UI project’s root directory to install these libraries.<br>所以當從 <a href="https://abp.io/get-started" target="_blank" rel="noopener">abp.io/get-started</a> 下載 Source 後，要在 UI 專案根目錄執行 <code>abp install-libs</code>，就會在 wwwroot 目錄中產生 libs 目錄。</p></blockquote><p>如果透過 apb cli 去建立專案，則會自動執行 <code>abp install-libs</code> ，所以建立完成後，UI 專案中的 wwwroot 目錄中就會有 <strong>libs</strong> 的目錄。</p><p>所以如果噴 <strong>Volo.Abp.AbpException: Could not find the bundle file ‘/libs/abp/core/abp.css’ for the bundle ‘Basic.Global’!</strong> 的錯誤，在 UI 專案根目錄執行 <code>abp install-libs</code> 就可以了哦~</p><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://support.abp.io/QA/Questions/2715/AbpException-Could-not-find-the-bundle-file-%27libsabpcoreabpcss%27-for-the-bundle-%27BasicGlobal%27" target="_blank" rel="noopener">AbpException: Could not find the bundle file ‘/libs/abp/core/abp.css’ for the bundle ‘Basic.Global’!</a><br><a href="https://blog.abp.io/abp/ABP.IO-Platform-5-2-RC-Has-Been-Published" target="_blank" rel="noopener">ABP.IO Platform 5.2 RC Has Been Published</a></p>]]></content>
+    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>從 <a href="https://abp.io/get-started" target="_blank" rel="noopener">abp.io/get-started</a> 設定 UI Framework 為 MVC (Razor Pages) or Blazor Server UI，下載 Source 後，<br>透過 Visual Studio 建置執行後，會出現 <strong>Volo.Abp.AbpException: Could not find the bundle file ‘/libs/abp/core/abp.css’ for the bundle ‘Basic.Global’!</strong> 的錯誤</p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>依 <a href="https://blog.abp.io/abp/ABP.IO-Platform-5-2-RC-Has-Been-Published" target="_blank" rel="noopener">ABP.IO Platform 5.2 RC Has Been Published</a> 說明如下，</p><blockquote><p>With version 5.2, this folder is excluded from the source control by default, so every developer getting the solution must run abp install-libs in the UI project’s root directory to install these libraries.<br>所以當從 <a href="https://abp.io/get-started" target="_blank" rel="noopener">abp.io/get-started</a> 下載 Source 後，要在 UI 專案根目錄執行 <code>abp install-libs</code>，就會在 wwwroot 目錄中產生 libs 目錄。</p></blockquote><p>如果透過 apb cli 去建立專案，則會自動執行 <code>abp install-libs</code> ，所以建立完成後，UI 專案中的 wwwroot 目錄中就會有 <strong>libs</strong> 的目錄。</p><p>所以如果噴 <strong>Volo.Abp.AbpException: Could not find the bundle file ‘/libs/abp/core/abp.css’ for the bundle ‘Basic.Global’!</strong> 的錯誤，在 UI 專案根目錄執行 <code>abp install-libs</code> ，或是從別的專案中，將 libs 目錄 Copy 到需要的專案 wwwroot 目錄之中。</p><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://support.abp.io/QA/Questions/2715/AbpException-Could-not-find-the-bundle-file-%27libsabpcoreabpcss%27-for-the-bundle-%27BasicGlobal%27" target="_blank" rel="noopener">AbpException: Could not find the bundle file ‘/libs/abp/core/abp.css’ for the bundle ‘Basic.Global’!</a><br><a href="https://blog.abp.io/abp/ABP.IO-Platform-5-2-RC-Has-Been-Published" target="_blank" rel="noopener">ABP.IO Platform 5.2 RC Has Been Published</a></p>]]></content>
     
     <summary type="html">
     
@@ -40,6 +67,8 @@
       <category term="/libs/abp/core/abp.css" scheme="https://rainmakerho.github.io/tags/libs-abp-core-abp-css/"/>
     
       <category term="Basic.Global" scheme="https://rainmakerho.github.io/tags/Basic-Global/"/>
+    
+      <category term="install-libs" scheme="https://rainmakerho.github.io/tags/install-libs/"/>
     
   </entry>
   
@@ -335,11 +364,11 @@
     
       <category term="metasploit" scheme="https://rainmakerho.github.io/tags/metasploit/"/>
     
+      <category term="mssql" scheme="https://rainmakerho.github.io/tags/mssql/"/>
+    
       <category term="mssql_payload" scheme="https://rainmakerho.github.io/tags/mssql-payload/"/>
     
       <category term="xp_cmdshell" scheme="https://rainmakerho.github.io/tags/xp-cmdshell/"/>
-    
-      <category term="mssql" scheme="https://rainmakerho.github.io/tags/mssql/"/>
     
   </entry>
   
@@ -586,41 +615,6 @@
       <category term="Named Pipes Provider" scheme="https://rainmakerho.github.io/tags/Named-Pipes-Provider/"/>
     
       <category term="Win32Exception(0x80004005)" scheme="https://rainmakerho.github.io/tags/Win32Exception-0x80004005/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>不支援文化特性名稱 zh-TW_pronun。</title>
-    <link href="https://rainmakerho.github.io/2022/05/19/CultureNotFoundException-zh-TW-pronun-not-supported/"/>
-    <id>https://rainmakerho.github.io/2022/05/19/CultureNotFoundException-zh-TW-pronun-not-supported/</id>
-    <published>2022-05-19T05:41:23.000Z</published>
-    <updated>2022-05-19T06:02:13.293Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近同事拿到新的 NB 設定完成後，連到舊的 ASP.NET 系統，<br>結果網頁卻發生了 <strong>不支援文化特性名稱 zh-TW_pronun。參數名稱: name</strong> 的錯誤，</p><blockquote><p>System.Globalization.CultureInfo..ctor  &lt;System.ArgumentException&gt; 不支援文化特性名稱 zh-TW_pronun。參數名稱: name  </p></blockquote><h3 id="研究與解決"><a href="#研究與解決" class="headerlink" title="研究與解決"></a>研究與解決</h3><p>看見 <strong>不支援文化特性名稱</strong> 立馬就請他參考 <a href="https://rainmakerho.github.io/2019/09/17/2019024/">Windows 10, IE 不支援文化特性。參數名稱：name zh-Hant-TW 是無效的文化特性識別項。</a> 。<br>但詳細一看，雖然錯誤是一樣的，但 CultureName 卻是不同的，<br>一個是 <strong>zh-Hant-TW</strong> ，而這個卻是 <strong>zh-TW_pronun</strong>。</p><p>查詢 <strong>zh-TW_pronun</strong> ，看到 <a href="https://docs.microsoft.com/en-us/windows/win32/intl/sort-order-identifiers" target="_blank" rel="noopener">Sort Order Identifiers</a> 發現它跟 排序 有關係。<br>又查到 <a href="https://answers.microsoft.com/zh-hant/windows/forum/all/%E8%AE%8A%E6%9B%B4%E5%9C%B0%E5%8D%80%E6%8E%92/458d3c6a-8592-4720-97d9-004daae0eed6" target="_blank" rel="noopener">變更地區排序方法為注音，開始工具列右下角月曆無法顯示</a> 。</p><p>所以請同事檢查一下，將排序的設定值，從 <strong>注音</strong> 改回 <strong>筆劃數</strong> IE 就可以正常使用 Web 系統了。<br><img src="/2022/05/19/CultureNotFoundException-zh-TW-pronun-not-supported/01.png" title="變更排序方法"></p><ul><li>註: Windows 10 預設是 <strong>筆劃數</strong> </li></ul><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://rainmakerho.github.io/2019/09/17/2019024/">Windows 10, IE 不支援文化特性。參數名稱：name zh-Hant-TW 是無效的文化特性識別項。</a><br><a href="https://answers.microsoft.com/zh-hant/windows/forum/all/%E8%AE%8A%E6%9B%B4%E5%9C%B0%E5%8D%80%E6%8E%92/458d3c6a-8592-4720-97d9-004daae0eed6" target="_blank" rel="noopener">變更地區排序方法為注音，開始工具列右下角月曆無法顯示</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;最近同事拿到新的 NB 設定完成後，連到舊的 ASP.NET 系統，&lt;br&gt;結果網頁卻發生了 &lt;strong&gt;不支援文化特性名稱 zh-TW
-      
-    
-    </summary>
-    
-    
-      <category term="zh-Hant-TW" scheme="https://rainmakerho.github.io/tags/zh-Hant-TW/"/>
-    
-      <category term="zh-TW_pronun" scheme="https://rainmakerho.github.io/tags/zh-TW-pronun/"/>
-    
-      <category term="CultureNotFoundException" scheme="https://rainmakerho.github.io/tags/CultureNotFoundException/"/>
-    
-      <category term="Culture name zh-TW_pronun is not supported" scheme="https://rainmakerho.github.io/tags/Culture-name-zh-TW-pronun-is-not-supported/"/>
-    
-      <category term="不支援文化特性名稱 zh-TW_pronun" scheme="https://rainmakerho.github.io/tags/%E4%B8%8D%E6%94%AF%E6%8F%B4%E6%96%87%E5%8C%96%E7%89%B9%E6%80%A7%E5%90%8D%E7%A8%B1-zh-TW-pronun/"/>
-    
-      <category term="Windows 10" scheme="https://rainmakerho.github.io/tags/Windows-10/"/>
-    
-      <category term="變更排序方法" scheme="https://rainmakerho.github.io/tags/%E8%AE%8A%E6%9B%B4%E6%8E%92%E5%BA%8F%E6%96%B9%E6%B3%95/"/>
     
   </entry>
   
