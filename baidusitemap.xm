@@ -4,6 +4,29 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2022/10/20/ado-pre-login-handshake-tcp-provider-error-0/</loc>
+    <lastmod>2022-10-21T01:12:16.478Z</lastmod>
+    <data>
+        <display>
+        <title>當 SQL Server 將 TLS 1.0/1.1 關掉之後的怪現象 - SSL 安全性錯誤 (pre-login handshake)</title>
+        <pubTime>2022-10-20T00:35:46.000Z</pubTime>
+        
+        <tag>.NET 1.1</tag>
+         
+        <tag>ADO.NET</tag>
+         
+        <tag>pre-login handshake</tag>
+         
+        <tag>TCP Provider</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2022/09/21/UseHttpsRedirection-not-redirect-https/</loc>
     <lastmod>2022-09-21T09:38:21.175Z</lastmod>
     <data>
@@ -557,9 +580,9 @@
         <title>AADSTS50011 The redirect URI 'https://.../licensemanagement/signin-azuread-oidc' specified in the request does not match the redirect URIs configured for the application 'appid'</title>
         <pubTime>2022-05-11T07:41:58.000Z</pubTime>
         
-        <tag>Azure</tag>
-         
         <tag>AADSTS50011</tag>
+         
+        <tag>Azure</tag>
          
         <tag>Azure AD</tag>
          
@@ -3148,9 +3171,9 @@
         <title>Windows 透過「造字程式」來造字</title>
         <pubTime>2020-11-06T03:34:18.000Z</pubTime>
         
-        <tag>Windows</tag>
-         
         <tag>自造字</tag>
+         
+        <tag>Windows</tag>
          
         <tag>EUDC</tag>
          
@@ -5669,13 +5692,13 @@
         <title>線上客服 + BOT 之路</title>
         <pubTime>2018-01-25T08:10:47.000Z</pubTime>
         
+        <tag>chatbot</tag>
+         
         <tag>QnA Maker</tag>
          
         <tag>LUIS</tag>
          
         <tag>Vital ESP</tag>
-         
-        <tag>chatbot</tag>
          
         <tag>FAQ</tag>
          

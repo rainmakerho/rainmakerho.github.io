@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2022-09-21T09:38:21.175Z</updated>
+  <updated>2022-10-21T01:12:16.478Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>當 SQL Server 將 TLS 1.0/1.1 關掉之後的怪現象 - SSL 安全性錯誤 (pre-login handshake)</title>
+    <link href="https://rainmakerho.github.io/2022/10/20/ado-pre-login-handshake-tcp-provider-error-0/"/>
+    <id>https://rainmakerho.github.io/2022/10/20/ado-pre-login-handshake-tcp-provider-error-0/</id>
+    <published>2022-10-20T00:35:46.000Z</published>
+    <updated>2022-10-21T01:12:16.478Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>發生問題的環境是 DB Server 為 MS SQL 2014, Client 為 Windows 10, 應用程式為 .NET 1.1 Windows Form Application。當透過 IIS Crypto 關掉 TLS 1.0/1.1 後，有些 Windows 10 Client 執行程式時，就會發生 <b>System.Data.SqlClient.ConnectionPool.GetConnection &lt;System.Data.SqlClient.SqlException&gt; SSL 安全性錯誤</b> 的錯誤。</p><h3 id="研究"><a href="#研究" class="headerlink" title="研究"></a>研究</h3><p>程式是沒有走 TLS 去連接 MS SQL，但卻發生 SSL 的錯誤，而且在 Server 上的 SQL Server Configuration Manager 工具中 SQL Server 網路組態中的 MSSQLSERVER 的通訊協定 TCP/IP 中，<br>「強制加密」屬性是設定成 <strong>否</strong>，如下圖。為什麼應用程式會變成要走 TLS 呢?<br><img src="/2022/10/20/ado-pre-login-handshake-tcp-provider-error-0/01.png" title="強制加密"></p><p>在 Client 端透過 ODBC 去連 SQL 又都是成功的，透過 SSMS 工具去連接，沒勾選「加密連接(Y)」也是可以連線的，勾選「加密連接(Y)」反而有憑證錯誤的問題，如下圖，<br><img src="/2022/10/20/ado-pre-login-handshake-tcp-provider-error-0/02.png" title="不受信任的授權單位發出的"></p><p>後來同事 Hihi 使用自已的 Win 10 執行程式卻是沒問題的。<br>這樣似乎跟我們程式中自動安裝 .NET 1.1 有關係，<br>於是將 .NET 1.1 移除後，再進行測試，卻是出現了 <strong>pre-login handshake. provider: TCP Provider</strong> 的錯誤，</p><blockquote><p>A connection was successfully established with the server, but then an error occurred during the pre-login handshake. (provider: TCP Provider, error: 0 - 遠端主機已強制關閉一個現存的連線。)</p></blockquote><p>這個錯誤在網路上似乎是因為 .NET 2.X 對 TLS 1.2 Support 的問題，所以要更新 .NET 3.5 。<br>後來同事從 Windows 10 image 中安裝 .NET 3.5 後，重開機，再執行程式就正常了。<br>以下記錄 System.Data.dll 的版本來比較一下，<br>有問題的版本號是 <strong>2.0.50727.8662</strong> ，<br>安裝 Windows 10 CD 中 .NET 3.5 後的版本號為 <strong>2.0.50727.9149</strong></p><p>所以我們後來的解法就是不安裝我們系統提供的 .NET 1.1 (這樣程式就會使用 .NET 2.X 的 Lib (Maybe))，<br>再安裝 Windows 10 CD 中的 .NET 3.5 ，就沒問題了。</p><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://blog.darkthread.net/blog/disable-tls-1-0-issues/" target="_blank" rel="noopener">Windows 停用 TLS 1.0 之配套作業整理</a><br><a href="http://w-type.blogspot.com/2019/04/net-framework-35-0x800f081f.html" target="_blank" rel="noopener">安裝 Net Framework 3.5 卻出現錯誤代碼 0x800F081F</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;發生問題的環境是 DB Server 為 MS SQL 2014, Client 為 Windows 10, 應用程式為 .NET 1.1 
+      
+    
+    </summary>
+    
+    
+      <category term=".NET 1.1" scheme="https://rainmakerho.github.io/tags/NET-1-1/"/>
+    
+      <category term="ADO.NET" scheme="https://rainmakerho.github.io/tags/ADO-NET/"/>
+    
+      <category term="pre-login handshake" scheme="https://rainmakerho.github.io/tags/pre-login-handshake/"/>
+    
+      <category term="TCP Provider" scheme="https://rainmakerho.github.io/tags/TCP-Provider/"/>
+    
+  </entry>
   
   <entry>
     <title>使用 app.UseHttpsRedirection() 不會強制轉 HTTPS ?</title>
@@ -588,33 +617,6 @@
       <category term="Internet Explorer" scheme="https://rainmakerho.github.io/tags/Internet-Explorer/"/>
     
       <category term="Edge" scheme="https://rainmakerho.github.io/tags/Edge/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>(0x80131904) Named Pipes Provider, error 40 - 無法開啟至 SQL Server 的連接</title>
-    <link href="https://rainmakerho.github.io/2022/05/22/sqlexception-80131904-error-40/"/>
-    <id>https://rainmakerho.github.io/2022/05/22/sqlexception-80131904-error-40/</id>
-    <published>2022-05-22T08:45:40.000Z</published>
-    <updated>2022-05-22T09:06:38.551Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>有個系統最近不定期會發生 <strong>System.Data.SqIClient.SqlException (0x80131904)</strong> 的錯誤，已持續一個月，詳細錯誤如下，</p><blockquote><p>System.Data.SqIClient.SqlException (0x80131904):建立連接至 SQL Server 時,發生網路相關或執行個體特定的錯誤。找不到或無法存取伺服器。确認執行個名稱是否正確,以及SQL Srver 是否設定為允許遠端連線。<br>(provider: Named Pipes Provider, error: 40 - 無法開啟至 SQL Server 的連接) –&gt;<br>System.ComponentModel.Win32Exception(0x80004005):找不到網路路徑</p></blockquote><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>問題狀況如下，</p><ul><li>錯誤不定時間發生</li><li>錯誤不在特定的程式</li><li>查看 DB 那些時間點，也沒有做什麼 備份，或是 ReBuild Index 的 Job</li><li>DB連線字串使用的是 ip ，但錯誤卻是 <strong>Named Pipes Provider, error: 40</strong></li></ul><p>DB連線字串並沒有特別設定 Max Pool 的大小，所以預設是 100 個。<br>判斷有可能是 Pool 滿了，所以發生了錯誤。<br>請同事依 <a href="https://dotblogs.azurewebsites.net/rainmaker/2017/04/26/143316" target="_blank" rel="noopener">已超過連接逾時的設定。在取得集區連接之前超過逾時等待的時間，可能的原因為所有的共用連接已在使用中，並已達共用集區大小的最大值。</a> 這篇查看一下目前 AP 所佔的 Pool 量是多少，<br>結果居然接近 100 ，所以就請同事在 DB連線字串中，加入 <strong>Max Pool Size</strong> ，並設定成 200 。</p><p>最近觀察2個星期已沒在發生以上的錯誤了。</p><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://www.huanlintalk.com/2012/05/net-connection-pool.html" target="_blank" rel="noopener">.NET Connection Pool 與連線相關問題整理</a><br><a href="https://docs.microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlconnection.connectionstring?view=netframework-4.8" target="_blank" rel="noopener">SqlConnection.ConnectionString Property</a><br><a href="https://dotblogs.azurewebsites.net/rainmaker/2017/04/26/143316" target="_blank" rel="noopener">已超過連接逾時的設定。在取得集區連接之前超過逾時等待的時間，可能的原因為所有的共用連接已在使用中，並已達共用集區大小的最大值。</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;有個系統最近不定期會發生 &lt;strong&gt;System.Data.SqIClient.SqlException (0x80131904)&lt;/
-      
-    
-    </summary>
-    
-    
-      <category term="SqlException (0x80131904)" scheme="https://rainmakerho.github.io/tags/SqlException-0x80131904/"/>
-    
-      <category term="Named Pipes Provider" scheme="https://rainmakerho.github.io/tags/Named-Pipes-Provider/"/>
-    
-      <category term="Win32Exception(0x80004005)" scheme="https://rainmakerho.github.io/tags/Win32Exception-0x80004005/"/>
     
   </entry>
   
