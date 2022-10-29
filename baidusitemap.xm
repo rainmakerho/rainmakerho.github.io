@@ -4,8 +4,64 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2022/10/28/ms-reporting-service-add-custom-font-woff-ttf/</loc>
+    <lastmod>2022-10-28T08:23:20.990Z</lastmod>
+    <data>
+        <display>
+        <title>為 SQL Server Reporting Services (SSRS) Preview 報表加上自造字(EUDC Font) Support</title>
+        <pubTime>2022-10-28T07:24:46.000Z</pubTime>
+        
+        <tag>自造字</tag>
+         
+        <tag>EUDC</tag>
+         
+        <tag>SSRS</tag>
+         
+        <tag>woff</tag>
+         
+        <tag>ttf</tag>
+         
+        <tag>空白框</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://rainmakerho.github.io/2022/04/06/unicode-surrogate-pair/</loc>
+    <lastmod>2022-10-28T07:21:58.741Z</lastmod>
+    <data>
+        <display>
+        <title>for loop 讀取字串中的字，有些字會是「亂碼」? 自造字? 難字? Font? Surrogate pair</title>
+        <pubTime>2022-04-06T06:03:10.000Z</pubTime>
+        
+        <tag>自造字</tag>
+         
+        <tag>unicode</tag>
+         
+        <tag>Surrogate pair</tag>
+         
+        <tag>CJK Compatibility</tag>
+         
+        <tag>難字</tag>
+         
+        <tag>Char.IsSurrogatePair</tag>
+         
+        <tag>Char.ConvertToUtf32</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2022/10/20/ado-pre-login-handshake-tcp-provider-error-0/</loc>
-    <lastmod>2022-10-21T01:12:16.478Z</lastmod>
+    <lastmod>2022-10-21T01:13:37.791Z</lastmod>
     <data>
         <display>
         <title>當 SQL Server 將 TLS 1.0/1.1 關掉之後的怪現象 - SSL 安全性錯誤 (pre-login handshake)</title>
@@ -297,11 +353,11 @@
         
         <tag>metasploit</tag>
          
-        <tag>mssql</tag>
-         
         <tag>mssql_payload</tag>
          
         <tag>xp_cmdshell</tag>
+         
+        <tag>mssql</tag>
          
          
            
@@ -785,35 +841,6 @@
 
     
   <url>
-    <loc>https://rainmakerho.github.io/2022/04/06/unicode-surrogate-pair/</loc>
-    <lastmod>2022-04-06T11:45:20.979Z</lastmod>
-    <data>
-        <display>
-        <title>for loop 讀取字串中的字，有些字會是「亂碼」? Surrogate pair</title>
-        <pubTime>2022-04-06T06:03:10.000Z</pubTime>
-        
-        <tag>自造字</tag>
-         
-        <tag>unicode</tag>
-         
-        <tag>Surrogate pair</tag>
-         
-        <tag>CJK Compatibility</tag>
-         
-        <tag>難字</tag>
-         
-        <tag>Char.IsSurrogatePair</tag>
-         
-        <tag>Char.ConvertToUtf32</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://rainmakerho.github.io/2022/03/29/azure-webapp-nodejs-internal-server-error/</loc>
     <lastmod>2022-03-29T02:49:53.037Z</lastmod>
     <data>
@@ -879,6 +906,8 @@
          
         <tag>OAuth 2.0</tag>
          
+        <tag>public client</tag>
+         
         <tag>PKCE</tag>
          
         <tag>Proof Key for Code Exchange</tag>
@@ -886,8 +915,6 @@
         <tag>claiming URLs</tag>
          
         <tag>Custom URL Scheme</tag>
-         
-        <tag>public client</tag>
          
          
            
@@ -1025,13 +1052,13 @@
         
         <tag>OAuth 2.0</tag>
          
-        <tag>public client</tag>
-         
         <tag>Implicit Flow</tag>
          
         <tag>response_type=token</tag>
          
         <tag>response_mode=fragment</tag>
+         
+        <tag>public client</tag>
          
         <tag>token flow</tag>
          
@@ -1998,11 +2025,11 @@
          
         <tag>Heap Inspection</tag>
          
+        <tag>MVC5</tag>
+         
         <tag>Custom Model Binder</tag>
          
         <tag>SecureString</tag>
-         
-        <tag>MVC5</tag>
          
         <tag>netFramework</tag>
          
@@ -4704,6 +4731,8 @@
         <title>使用 OpenTracing - Jaeger (AP整合)</title>
         <pubTime>2019-01-15T05:13:41.000Z</pubTime>
         
+        <tag>BFv4</tag>
+         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -4717,8 +4746,6 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
-         
-        <tag>BFv4</tag>
          
         <tag>NodeJS</tag>
          
@@ -4737,6 +4764,8 @@
         <title>使用 OpenTracing - Jaeger</title>
         <pubTime>2019-01-04T06:02:45.000Z</pubTime>
         
+        <tag>BFv4</tag>
+         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -4750,8 +4779,6 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
-         
-        <tag>BFv4</tag>
          
          
            
@@ -4847,9 +4874,9 @@
         <title>PDF 最後一頁才顯示頁尾</title>
         <pubTime>2018-11-29T06:46:17.000Z</pubTime>
         
-        <tag>aspose</tag>
-         
         <tag>pdf</tag>
+         
+        <tag>aspose</tag>
          
         <tag>cells</tag>
          
@@ -5054,9 +5081,9 @@
         <title>.NET Exception Handling</title>
         <pubTime>2018-08-21T08:31:47.000Z</pubTime>
         
-        <tag>c#</tag>
-         
         <tag>.net</tag>
+         
+        <tag>c#</tag>
          
         <tag>exception</tag>
          
@@ -5548,11 +5575,11 @@
         <title>SmtpConnection.GetConnection NullReferenceException</title>
         <pubTime>2018-03-14T02:07:16.000Z</pubTime>
         
-        <tag>NullReferenceException</tag>
-         
         <tag>SmtpClient</tag>
          
         <tag>SmtpConnection.GetConnection</tag>
+         
+        <tag>NullReferenceException</tag>
          
         <tag>.net</tag>
          
@@ -5577,11 +5604,11 @@
         <title>System.NullReferenceException when Aspose.Pdf.License.SetLicense(String licenseName)</title>
         <pubTime>2018-03-13T06:54:05.000Z</pubTime>
         
+        <tag>NullReferenceException</tag>
+         
         <tag>Aspose</tag>
          
         <tag>SetLicense</tag>
-         
-        <tag>NullReferenceException</tag>
          
          
            
