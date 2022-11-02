@@ -4,6 +4,31 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2022/11/02/co-e-server-exec-failure-80080005-office-word/</loc>
+    <lastmod>2022-11-02T03:15:56.381Z</lastmod>
+    <data>
+        <display>
+        <title>ASP.NET 使用 Interop.Word 會發生 0x80080005 (CO_E_SERVER_EXEC_FAILURE) 錯誤</title>
+        <pubTime>2022-11-02T02:54:05.000Z</pubTime>
+        
+        <tag>Office</tag>
+         
+        <tag>Word</tag>
+         
+        <tag>CO_E_SERVER_EXEC_FAILURE</tag>
+         
+        <tag>Application.Documents.open()</tag>
+         
+        <tag>0x80080005</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2022/10/28/ms-reporting-service-add-custom-font-woff-ttf/</loc>
     <lastmod>2022-10-28T08:23:20.990Z</lastmod>
     <data>
@@ -636,9 +661,9 @@
         <title>AADSTS50011 The redirect URI 'https://.../licensemanagement/signin-azuread-oidc' specified in the request does not match the redirect URIs configured for the application 'appid'</title>
         <pubTime>2022-05-11T07:41:58.000Z</pubTime>
         
-        <tag>AADSTS50011</tag>
-         
         <tag>Azure</tag>
+         
+        <tag>AADSTS50011</tag>
          
         <tag>Azure AD</tag>
          
@@ -1267,17 +1292,17 @@
         <title>Checkmarx V9.4 在 Heap_Inspection 的改變(ASPX)</title>
         <pubTime>2021-12-28T01:09:40.000Z</pubTime>
         
-        <tag>ASPX</tag>
-         
         <tag>ASP.NET</tag>
          
-        <tag>Checkmarx</tag>
+        <tag>ASPX</tag>
          
-        <tag>Password</tag>
+        <tag>Checkmarx</tag>
          
         <tag>Heap Inspection</tag>
          
         <tag>Heap_Inspection</tag>
+         
+        <tag>Password</tag>
          
         <tag>WebForm</tag>
          
@@ -1329,11 +1354,11 @@
         
         <tag>Jenkins</tag>
          
+        <tag>Password</tag>
+         
         <tag>資安</tag>
          
         <tag>使用者密碼</tag>
-         
-        <tag>Password</tag>
          
          
            
@@ -1969,9 +1994,9 @@
          
         <tag>Checkmarx</tag>
          
-        <tag>Password</tag>
-         
         <tag>Heap Inspection</tag>
+         
+        <tag>Password</tag>
          
         <tag>Custom Model Binder</tag>
          
@@ -1996,9 +2021,9 @@
          
         <tag>Checkmarx</tag>
          
-        <tag>Password</tag>
-         
         <tag>Heap Inspection</tag>
+         
+        <tag>Password</tag>
          
         <tag>Custom Model Binder</tag>
          
@@ -2021,15 +2046,15 @@
         
         <tag>Checkmarx</tag>
          
-        <tag>Password</tag>
-         
         <tag>Heap Inspection</tag>
          
-        <tag>MVC5</tag>
+        <tag>Password</tag>
          
         <tag>Custom Model Binder</tag>
          
         <tag>SecureString</tag>
+         
+        <tag>MVC5</tag>
          
         <tag>netFramework</tag>
          
@@ -2050,9 +2075,9 @@
         
         <tag>Checkmarx</tag>
          
-        <tag>Password</tag>
-         
         <tag>Heap Inspection</tag>
+         
+        <tag>Password</tag>
          
         <tag>Custom Model Binder</tag>
          
@@ -3728,11 +3753,11 @@
         <title>透過 Content-Security-Policy 修正 Mixed Content Link 問題</title>
         <pubTime>2020-05-19T08:44:09.000Z</pubTime>
         
-        <tag>Content-Security-Policy</tag>
-         
         <tag>Mixed Content</tag>
          
         <tag>CSP</tag>
+         
+        <tag>Content-Security-Policy</tag>
          
         <tag>upgrade-insecure-requests</tag>
          
@@ -3751,9 +3776,9 @@
         <title>ASP.NET Security Headers</title>
         <pubTime>2020-05-12T01:29:40.000Z</pubTime>
         
-        <tag>X-XSS-Protection</tag>
-         
         <tag>Content-Security-Policy</tag>
+         
+        <tag>X-XSS-Protection</tag>
          
         <tag>X-Frame-Options</tag>
          
@@ -4874,9 +4899,9 @@
         <title>PDF 最後一頁才顯示頁尾</title>
         <pubTime>2018-11-29T06:46:17.000Z</pubTime>
         
-        <tag>pdf</tag>
-         
         <tag>aspose</tag>
+         
+        <tag>pdf</tag>
          
         <tag>cells</tag>
          
@@ -5081,9 +5106,9 @@
         <title>.NET Exception Handling</title>
         <pubTime>2018-08-21T08:31:47.000Z</pubTime>
         
-        <tag>.net</tag>
-         
         <tag>c#</tag>
+         
+        <tag>.net</tag>
          
         <tag>exception</tag>
          
@@ -5575,11 +5600,11 @@
         <title>SmtpConnection.GetConnection NullReferenceException</title>
         <pubTime>2018-03-14T02:07:16.000Z</pubTime>
         
+        <tag>NullReferenceException</tag>
+         
         <tag>SmtpClient</tag>
          
         <tag>SmtpConnection.GetConnection</tag>
-         
-        <tag>NullReferenceException</tag>
          
         <tag>.net</tag>
          
@@ -5604,11 +5629,11 @@
         <title>System.NullReferenceException when Aspose.Pdf.License.SetLicense(String licenseName)</title>
         <pubTime>2018-03-13T06:54:05.000Z</pubTime>
         
-        <tag>NullReferenceException</tag>
-         
         <tag>Aspose</tag>
          
         <tag>SetLicense</tag>
+         
+        <tag>NullReferenceException</tag>
          
          
            
@@ -5719,13 +5744,13 @@
         <title>線上客服 + BOT 之路</title>
         <pubTime>2018-01-25T08:10:47.000Z</pubTime>
         
-        <tag>chatbot</tag>
-         
         <tag>QnA Maker</tag>
          
         <tag>LUIS</tag>
          
         <tag>Vital ESP</tag>
+         
+        <tag>chatbot</tag>
          
         <tag>FAQ</tag>
          
