@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2022-11-02T03:15:56.381Z</updated>
+  <updated>2022-11-04T07:47:15.280Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>System.Security.Cryptography.CryptographicException - The system cannot find the file specified.</title>
+    <link href="https://rainmakerho.github.io/2022/11/04/CryptographicException-the-system-cannot-find-the-file-specified/"/>
+    <id>https://rainmakerho.github.io/2022/11/04/CryptographicException-the-system-cannot-find-the-file-specified/</id>
+    <published>2022-11-04T07:37:24.000Z</published>
+    <updated>2022-11-04T07:47:15.280Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近同事詢問在 開發環境跑沒問題，一放到 Server 上程式就 GG 了。<br>將程式加上 log 來顯示，結果出現 <strong>System.Security.Cryptography.CryptographicException: The system cannot find the file specified.</strong> 的錯誤</p><blockquote><p>System.Security.Cryptography.CryptographicException: The system cannot find the file specified.<br>at System.Security.Cryptography.CryptographicException.ThrowCryptographicException(Int32 hr)<br>at System.Security.Cryptography.Utils.<em>CreateCSP(CspParameters param, Boolean randomKeyContainer, SafeProvHandle&amp; hProv)<br>at System.Security.Cryptography.Utils.CreateProvHandle(CspParameters parameters, Boolean randomKeyContainer)<br>at System.Security.Cryptography.Utils.GetKeyPairHelper(CspAlgorithmType keyType, CspParameters parameters, Boolean randomKeyContainer, Int32 dwKeySize, SafeProvHandle&amp; safeProvHandle, SafeKeyHandle&amp; safeKeyHandle)<br>at System.Security.Cryptography.RSACryptoServiceProvider.GetKeyPair()<br>at System.Security.Cryptography.RSACryptoServiceProvider..ctor(Int32 dwKeySize, CspParameters parameters, Boolean useDefaultKeySize)<br>at Org.BouncyCastle.Security.DotNetUtilities.CreateRSAProvider(RSAParameters rp) in /</em>/crypto/src/security/DotNetUtilities.cs:line 247<br>at Org.BouncyCastle.Security.DotNetUtilities.ToRSA(RsaKeyParameters rsaKey) in /_/crypto/src/security/DotNetUtilities.cs:line 158</p></blockquote><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>參考 <a href="https://stackoverflow.com/questions/17840825/cryptographicexception-was-unhandled-system-cannot-find-the-specified-file" target="_blank" rel="noopener">CryptographicException was unhandled: System cannot find the specified file</a> ，<br>因為 IIS 中的 Application Pool 進階設定中的 <strong>載入使用者設定檔(Load User Profile)</strong> 屬性預設是 false 。<br>所以程式中無法判別，所以只要將 <strong>載入使用者設定檔(Load User Profile)</strong> 屬性設定成 <strong>true</strong> 就可以了哦!</p><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://stackoverflow.com/questions/17840825/cryptographicexception-was-unhandled-system-cannot-find-the-specified-file" target="_blank" rel="noopener">CryptographicException was unhandled: System cannot find the specified file</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;最近同事詢問在 開發環境跑沒問題，一放到 Server 上程式就 GG 了。&lt;br&gt;將程式加上 log 來顯示，結果出現 &lt;strong&gt;S
+      
+    
+    </summary>
+    
+    
+      <category term="CryptographicException" scheme="https://rainmakerho.github.io/tags/CryptographicException/"/>
+    
+      <category term="BouncyCastle.Security" scheme="https://rainmakerho.github.io/tags/BouncyCastle-Security/"/>
+    
+      <category term="The system cannot find the file specified" scheme="https://rainmakerho.github.io/tags/The-system-cannot-find-the-file-specified/"/>
+    
+  </entry>
   
   <entry>
     <title>ASP.NET 使用 Interop.Word 會發生 0x80080005 (CO_E_SERVER_EXEC_FAILURE) 錯誤</title>
@@ -39,11 +66,11 @@
     
       <category term="Word" scheme="https://rainmakerho.github.io/tags/Word/"/>
     
+      <category term="0x80080005" scheme="https://rainmakerho.github.io/tags/0x80080005/"/>
+    
       <category term="CO_E_SERVER_EXEC_FAILURE" scheme="https://rainmakerho.github.io/tags/CO-E-SERVER-EXEC-FAILURE/"/>
     
       <category term="Application.Documents.open()" scheme="https://rainmakerho.github.io/tags/Application-Documents-open/"/>
-    
-      <category term="0x80080005" scheme="https://rainmakerho.github.io/tags/0x80080005/"/>
     
   </entry>
   
@@ -586,41 +613,6 @@
       <category term="curl" scheme="https://rainmakerho.github.io/tags/curl/"/>
     
       <category term="Windows Subsystem for Linux" scheme="https://rainmakerho.github.io/tags/Windows-Subsystem-for-Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>加密/解密的 Key 要放在那裡?</title>
-    <link href="https://rainmakerho.github.io/2022/06/21/save-key-options/"/>
-    <id>https://rainmakerho.github.io/2022/06/21/save-key-options/</id>
-    <published>2022-06-21T03:24:34.000Z</published>
-    <updated>2022-06-21T03:41:17.250Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>我們會使用 Key 來做 <strong>加密</strong>及<strong>解密</strong>，<br>那這個 Key 常常會被放在程式碼之中，<br>而在 Code Review 中，也常常被拿出來討論。<br>以下就整理放 Key 的一些選項，</p><h3 id="Key存放選項"><a href="#Key存放選項" class="headerlink" title="Key存放選項"></a>Key存放選項</h3><ol><li>在 <strong>加密/解密</strong> 程式碼中，但如果程式碼被別人看到，加密就會被破解</li><li>透過 Windows 作業系統保護，.NET 可透過 <a href="https://docs.microsoft.com/en-us/dotnet/api/system.security.cryptography.protecteddata.protect?view=dotnet-plat-ext-6.0" target="_blank" rel="noopener">ProtectedData.Protect / ProtectedData.Unprotect</a> 來將 Key 再進行加密存到設定檔中，要使用時，再解密回來使用</li><li>放在地端的 Vault 之中，目前最常見的就是使用 <a href="https://www.vaultproject.io/" target="_blank" rel="noopener">HashiCorp Vault</a></li><li>放在雲端的 Vault 之中，例如 Azure Key Vault or <a href="https://www.vaultproject.io/" target="_blank" rel="noopener">HashiCorp Vault</a></li></ol><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://docs.microsoft.com/en-us/dotnet/api/system.security.cryptography.protecteddata.protect?view=dotnet-plat-ext-6.0" target="_blank" rel="noopener">ProtectedData.Protect / ProtectedData.Unprotect</a><br><a href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/keyvault/Azure.Security.KeyVault.Secrets/samples/Sample3_GetSecrets.md" target="_blank" rel="noopener">Azure Key Vault Sample</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;我們會使用 Key 來做 &lt;strong&gt;加密&lt;/strong&gt;及&lt;strong&gt;解密&lt;/strong&gt;，&lt;br&gt;那這個 Key 常常會被放
-      
-    
-    </summary>
-    
-    
-      <category term="Encrypt" scheme="https://rainmakerho.github.io/tags/Encrypt/"/>
-    
-      <category term="Decrypt" scheme="https://rainmakerho.github.io/tags/Decrypt/"/>
-    
-      <category term="加密" scheme="https://rainmakerho.github.io/tags/%E5%8A%A0%E5%AF%86/"/>
-    
-      <category term="解密" scheme="https://rainmakerho.github.io/tags/%E8%A7%A3%E5%AF%86/"/>
-    
-      <category term="Key" scheme="https://rainmakerho.github.io/tags/Key/"/>
-    
-      <category term="ProtectedData" scheme="https://rainmakerho.github.io/tags/ProtectedData/"/>
-    
-      <category term="Vault" scheme="https://rainmakerho.github.io/tags/Vault/"/>
     
   </entry>
   

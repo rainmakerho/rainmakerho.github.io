@@ -4,6 +4,50 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2022/11/04/CryptographicException-the-system-cannot-find-the-file-specified/</loc>
+    <lastmod>2022-11-04T07:47:15.280Z</lastmod>
+    <data>
+        <display>
+        <title>System.Security.Cryptography.CryptographicException - The system cannot find the file specified.</title>
+        <pubTime>2022-11-04T07:37:24.000Z</pubTime>
+        
+        <tag>CryptographicException</tag>
+         
+        <tag>BouncyCastle.Security</tag>
+         
+        <tag>The system cannot find the file specified</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://rainmakerho.github.io/2021/06/25/Checkmarx-Client-Side-Only-Validation/</loc>
+    <lastmod>2022-11-03T07:10:59.262Z</lastmod>
+    <data>
+        <display>
+        <title>Checkmarx Client_Side_Only_Validation</title>
+        <pubTime>2021-06-25T03:24:14.000Z</pubTime>
+        
+        <tag>Checkmarx</tag>
+         
+        <tag>Client_Side_Only_Validation</tag>
+         
+        <tag>Page.IsValid</tag>
+         
+        <tag>Page.Validate()</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2022/11/02/co-e-server-exec-failure-80080005-office-word/</loc>
     <lastmod>2022-11-02T03:15:56.381Z</lastmod>
     <data>
@@ -15,11 +59,11 @@
          
         <tag>Word</tag>
          
+        <tag>0x80080005</tag>
+         
         <tag>CO_E_SERVER_EXEC_FAILURE</tag>
          
         <tag>Application.Documents.open()</tag>
-         
-        <tag>0x80080005</tag>
          
          
            
@@ -661,9 +705,9 @@
         <title>AADSTS50011 The redirect URI 'https://.../licensemanagement/signin-azuread-oidc' specified in the request does not match the redirect URIs configured for the application 'appid'</title>
         <pubTime>2022-05-11T07:41:58.000Z</pubTime>
         
-        <tag>Azure</tag>
-         
         <tag>AADSTS50011</tag>
+         
+        <tag>Azure</tag>
          
         <tag>Azure AD</tag>
          
@@ -931,8 +975,6 @@
          
         <tag>OAuth 2.0</tag>
          
-        <tag>public client</tag>
-         
         <tag>PKCE</tag>
          
         <tag>Proof Key for Code Exchange</tag>
@@ -940,6 +982,8 @@
         <tag>claiming URLs</tag>
          
         <tag>Custom URL Scheme</tag>
+         
+        <tag>public client</tag>
          
          
            
@@ -1077,13 +1121,13 @@
         
         <tag>OAuth 2.0</tag>
          
+        <tag>public client</tag>
+         
         <tag>Implicit Flow</tag>
          
         <tag>response_type=token</tag>
          
         <tag>response_mode=fragment</tag>
-         
-        <tag>public client</tag>
          
         <tag>token flow</tag>
          
@@ -1298,11 +1342,11 @@
          
         <tag>Checkmarx</tag>
          
+        <tag>Password</tag>
+         
         <tag>Heap Inspection</tag>
          
         <tag>Heap_Inspection</tag>
-         
-        <tag>Password</tag>
          
         <tag>WebForm</tag>
          
@@ -1354,11 +1398,11 @@
         
         <tag>Jenkins</tag>
          
-        <tag>Password</tag>
-         
         <tag>資安</tag>
          
         <tag>使用者密碼</tag>
+         
+        <tag>Password</tag>
          
          
            
@@ -1994,9 +2038,9 @@
          
         <tag>Checkmarx</tag>
          
-        <tag>Heap Inspection</tag>
-         
         <tag>Password</tag>
+         
+        <tag>Heap Inspection</tag>
          
         <tag>Custom Model Binder</tag>
          
@@ -2021,9 +2065,9 @@
          
         <tag>Checkmarx</tag>
          
-        <tag>Heap Inspection</tag>
-         
         <tag>Password</tag>
+         
+        <tag>Heap Inspection</tag>
          
         <tag>Custom Model Binder</tag>
          
@@ -2046,9 +2090,9 @@
         
         <tag>Checkmarx</tag>
          
-        <tag>Heap Inspection</tag>
-         
         <tag>Password</tag>
+         
+        <tag>Heap Inspection</tag>
          
         <tag>Custom Model Binder</tag>
          
@@ -2075,9 +2119,9 @@
         
         <tag>Checkmarx</tag>
          
-        <tag>Heap Inspection</tag>
-         
         <tag>Password</tag>
+         
+        <tag>Heap Inspection</tag>
          
         <tag>Custom Model Binder</tag>
          
@@ -2113,29 +2157,6 @@
         <tag>OnResultExecutionAsync</tag>
          
         <tag>AutoMapper</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://rainmakerho.github.io/2021/06/25/Checkmarx-Client-Side-Only-Validation/</loc>
-    <lastmod>2021-07-06T08:24:59.000Z</lastmod>
-    <data>
-        <display>
-        <title>Checkmarx Client_Side_Only_Validation</title>
-        <pubTime>2021-06-25T03:24:14.000Z</pubTime>
-        
-        <tag>Checkmarx</tag>
-         
-        <tag>Client_Side_Only_Validation</tag>
-         
-        <tag>Page.IsValid</tag>
-         
-        <tag>Page.Validate()</tag>
          
          
            
@@ -3753,11 +3774,11 @@
         <title>透過 Content-Security-Policy 修正 Mixed Content Link 問題</title>
         <pubTime>2020-05-19T08:44:09.000Z</pubTime>
         
+        <tag>Content-Security-Policy</tag>
+         
         <tag>Mixed Content</tag>
          
         <tag>CSP</tag>
-         
-        <tag>Content-Security-Policy</tag>
          
         <tag>upgrade-insecure-requests</tag>
          
@@ -3776,9 +3797,9 @@
         <title>ASP.NET Security Headers</title>
         <pubTime>2020-05-12T01:29:40.000Z</pubTime>
         
-        <tag>Content-Security-Policy</tag>
-         
         <tag>X-XSS-Protection</tag>
+         
+        <tag>Content-Security-Policy</tag>
          
         <tag>X-Frame-Options</tag>
          
@@ -5744,13 +5765,13 @@
         <title>線上客服 + BOT 之路</title>
         <pubTime>2018-01-25T08:10:47.000Z</pubTime>
         
+        <tag>chatbot</tag>
+         
         <tag>QnA Maker</tag>
          
         <tag>LUIS</tag>
          
         <tag>Vital ESP</tag>
-         
-        <tag>chatbot</tag>
          
         <tag>FAQ</tag>
          
