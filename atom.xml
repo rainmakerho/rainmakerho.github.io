@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2022-11-04T07:47:15.280Z</updated>
+  <updated>2022-11-09T03:21:51.087Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>AZ-305 考試經驗分享</title>
+    <link href="https://rainmakerho.github.io/2022/11/09/az305/"/>
+    <id>https://rainmakerho.github.io/2022/11/09/az305/</id>
+    <published>2022-11-09T02:54:59.000Z</published>
+    <updated>2022-11-09T03:21:51.087Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>到 <a href="https://www.uuu.com.tw/default.aspx" target="_blank" rel="noopener">恆逸</a> 上完 <a href="https://learn.microsoft.com/zh-tw/certifications/exams/az-305" target="_blank" rel="noopener">設計 Microsoft Azure 基礎結構解決方案</a> 課程之後，自然就是要透過考試來加強學習的成效。<br>上課老師說過，考試的題目範圍並不限於教材內容。<br>那要如何準備考試呢?</p><h3 id="準備考試"><a href="#準備考試" class="headerlink" title="準備考試"></a>準備考試</h3><h4 id="刷題"><a href="#刷題" class="headerlink" title="刷題"></a>刷題</h4><p>大家可能都是到 <a href="https://www.examtopics.com/exams/microsoft/az-305/" target="_blank" rel="noopener">examtopics.com-AZ305</a>來練習看看。<br>裡面有很多的題目可以練習，也可以看到針對同個題目，不同的見解，也會有許多的參考資料，<br>可以讓自已對 Azure 的運作又更熟悉了一些。<br>另外，因為大多數的練習網站免費的使用者，大多只會提供一些 Demo 題目，或是一半的題目。<br>所以這時的策略就是參考其他的網站，例如 <a href="https://www.certlibrary.com/exam/AZ-305" target="_blank" rel="noopener">certlibrary.com-AZ305</a>。</p><h4 id="看影片"><a href="#看影片" class="headerlink" title="看影片"></a>看影片</h4><p>另外在 youtube 上面也有人針對很多題目來講解，</p><p>1.<a href="https://www.youtube.com/watch?v=bf1w5UOdUI8" target="_blank" rel="noopener">AZ-305 Real Exam Questions Series</a>，由 <a href="https://www.youtube.com/c/DbSkyLimit" target="_blank" rel="noopener">DbSkyLimit</a> 所發佈，有 8 部影片，包含 120 個題目說明。</p><p>2.<a href="https://www.youtube.com/watch?v=JbEnkyswof0" target="_blank" rel="noopener">AZ-305 Designing Microsoft Azure Infrastructure Solutions Real Exam Q&amp;A 2022</a> 裡面有 40 個題目說明。</p><p>以上參考的資料，希望對大家有所幫助。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;到 &lt;a href=&quot;https://www.uuu.com.tw/default.aspx&quot; target=&quot;_blank&quot; rel=&quot;n
+      
+    
+    </summary>
+    
+    
+      <category term="AZ305" scheme="https://rainmakerho.github.io/tags/AZ305/"/>
+    
+      <category term="AZ-305" scheme="https://rainmakerho.github.io/tags/AZ-305/"/>
+    
+      <category term="Exam AZ-305" scheme="https://rainmakerho.github.io/tags/Exam-AZ-305/"/>
+    
+  </entry>
   
   <entry>
     <title>System.Security.Cryptography.CryptographicException - The system cannot find the file specified.</title>
@@ -584,35 +611,6 @@
       <category term="exploit/multi/handler" scheme="https://rainmakerho.github.io/tags/exploit-multi-handler/"/>
     
       <category term="msfconsole" scheme="https://rainmakerho.github.io/tags/msfconsole/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>WSL Could not resolve host</title>
-    <link href="https://rainmakerho.github.io/2022/06/21/wsl-could-not-resolve-host/"/>
-    <id>https://rainmakerho.github.io/2022/06/21/wsl-could-not-resolve-host/</id>
-    <published>2022-06-21T05:32:40.000Z</published>
-    <updated>2022-06-21T05:51:06.529Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 WSL 中透過 curl 取得網頁時，會發生 <strong>Could not resolve host</strong> 的錯誤，<br><strong>curl: (6) Could not resolve host: <a href="http://www.google.com" target="_blank" rel="noopener">www.google.com</a></strong></p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>查看<a href="https://github.com/microsoft/WSL/issues/4275" target="_blank" rel="noopener">Can not connect to internet in WSL 2</a>，因為無法解析 <a href="http://www.google.com" target="_blank" rel="noopener">www.google.com</a> ，<br>所以可以在 <strong>/etc/resolv.conf</strong> 加入 <strong>nameserver</strong>，<br>例如原本的內容為，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># generateResolvConf = false</span><br><span class="line">nameserver 172.25.240.1</span><br></pre></td></tr></table></figure></p><p>再加一項 nameserver 8.8.8.8 設定，如下，<br><code>sudo vi /etc/resolv.conf</code></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># generateResolvConf = false</span><br><span class="line">nameserver 8.8.8.8</span><br><span class="line">nameserver 172.25.240.1</span><br></pre></td></tr></table></figure><p>存檔後，就可以正常透過 curl 連了。</p><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://github.com/microsoft/WSL/issues/4275" target="_blank" rel="noopener">Can not connect to internet in WSL 2</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;在 WSL 中透過 curl 取得網頁時，會發生 &lt;strong&gt;Could not resolve host&lt;/strong&gt; 的錯誤，&lt;
-      
-    
-    </summary>
-    
-    
-      <category term="WSL" scheme="https://rainmakerho.github.io/tags/WSL/"/>
-    
-      <category term="Could not resolve host" scheme="https://rainmakerho.github.io/tags/Could-not-resolve-host/"/>
-    
-      <category term="curl" scheme="https://rainmakerho.github.io/tags/curl/"/>
-    
-      <category term="Windows Subsystem for Linux" scheme="https://rainmakerho.github.io/tags/Windows-Subsystem-for-Linux/"/>
     
   </entry>
   

@@ -4,6 +4,27 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2022/11/09/az305/</loc>
+    <lastmod>2022-11-09T03:21:51.087Z</lastmod>
+    <data>
+        <display>
+        <title>AZ-305 考試經驗分享</title>
+        <pubTime>2022-11-09T02:54:59.000Z</pubTime>
+        
+        <tag>AZ305</tag>
+         
+        <tag>AZ-305</tag>
+         
+        <tag>Exam AZ-305</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2022/11/04/CryptographicException-the-system-cannot-find-the-file-specified/</loc>
     <lastmod>2022-11-04T07:47:15.280Z</lastmod>
     <data>
@@ -1342,11 +1363,11 @@
          
         <tag>Checkmarx</tag>
          
-        <tag>Password</tag>
-         
         <tag>Heap Inspection</tag>
          
         <tag>Heap_Inspection</tag>
+         
+        <tag>Password</tag>
          
         <tag>WebForm</tag>
          
@@ -1398,11 +1419,11 @@
         
         <tag>Jenkins</tag>
          
+        <tag>Password</tag>
+         
         <tag>資安</tag>
          
         <tag>使用者密碼</tag>
-         
-        <tag>Password</tag>
          
          
            
@@ -2038,9 +2059,9 @@
          
         <tag>Checkmarx</tag>
          
-        <tag>Password</tag>
-         
         <tag>Heap Inspection</tag>
+         
+        <tag>Password</tag>
          
         <tag>Custom Model Binder</tag>
          
@@ -2065,9 +2086,9 @@
          
         <tag>Checkmarx</tag>
          
-        <tag>Password</tag>
-         
         <tag>Heap Inspection</tag>
+         
+        <tag>Password</tag>
          
         <tag>Custom Model Binder</tag>
          
@@ -2090,9 +2111,9 @@
         
         <tag>Checkmarx</tag>
          
-        <tag>Password</tag>
-         
         <tag>Heap Inspection</tag>
+         
+        <tag>Password</tag>
          
         <tag>Custom Model Binder</tag>
          
@@ -2119,9 +2140,9 @@
         
         <tag>Checkmarx</tag>
          
-        <tag>Password</tag>
-         
         <tag>Heap Inspection</tag>
+         
+        <tag>Password</tag>
          
         <tag>Custom Model Binder</tag>
          
