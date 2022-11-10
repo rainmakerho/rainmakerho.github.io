@@ -4,6 +4,33 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2022/11/10/non-null-assertion-operator-syntax/</loc>
+    <lastmod>2022-11-10T09:46:23.805Z</lastmod>
+    <data>
+        <display>
+        <title>C# 使用 non-null 的運算子</title>
+        <pubTime>2022-11-10T09:16:39.000Z</pubTime>
+        
+        <tag>C#</tag>
+         
+        <tag>NullReferenceException</tag>
+         
+        <tag>non-null</tag>
+         
+        <tag>!</tag>
+         
+        <tag>CS8600</tag>
+         
+        <tag>CS8602</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2022/11/09/az305/</loc>
     <lastmod>2022-11-09T08:21:42.362Z</lastmod>
     <data>
@@ -832,8 +859,6 @@
         <title>Teams 在 Calendar 上建立 會議 ，並設定它是線上會議</title>
         <pubTime>2022-05-04T00:22:22.000Z</pubTime>
         
-        <tag>OnlineMeetings.ReadWrite.All</tag>
-         
         <tag>teams</tag>
          
         <tag>meeting</tag>
@@ -843,6 +868,8 @@
         <tag>calendar</tag>
          
         <tag>Calendars.ReadWrite</tag>
+         
+        <tag>OnlineMeetings.ReadWrite.All</tag>
          
          
            
@@ -859,6 +886,8 @@
         <title>Teams App 代替使用者建立線上會議，讓該使用者為會議主持人</title>
         <pubTime>2022-04-29T02:53:08.000Z</pubTime>
         
+        <tag>OnlineMeetings.ReadWrite.All</tag>
+         
         <tag>Teams</tag>
          
         <tag>meetings</tag>
@@ -870,8 +899,6 @@
         <tag>Access Policy</tag>
          
         <tag>No Application Access Policy found for this app.</tag>
-         
-        <tag>OnlineMeetings.ReadWrite.All</tag>
          
          
            
@@ -1023,6 +1050,8 @@
          
         <tag>OAuth 2.0</tag>
          
+        <tag>public client</tag>
+         
         <tag>PKCE</tag>
          
         <tag>Proof Key for Code Exchange</tag>
@@ -1030,8 +1059,6 @@
         <tag>claiming URLs</tag>
          
         <tag>Custom URL Scheme</tag>
-         
-        <tag>public client</tag>
          
          
            
@@ -1169,13 +1196,13 @@
         
         <tag>OAuth 2.0</tag>
          
-        <tag>public client</tag>
-         
         <tag>Implicit Flow</tag>
          
         <tag>response_type=token</tag>
          
         <tag>response_mode=fragment</tag>
+         
+        <tag>public client</tag>
          
         <tag>token flow</tag>
          
@@ -1384,9 +1411,9 @@
         <title>Checkmarx V9.4 在 Heap_Inspection 的改變(ASPX)</title>
         <pubTime>2021-12-28T01:09:40.000Z</pubTime>
         
-        <tag>ASP.NET</tag>
-         
         <tag>ASPX</tag>
+         
+        <tag>ASP.NET</tag>
          
         <tag>Checkmarx</tag>
          
@@ -1640,9 +1667,9 @@
         
         <tag>DataTable</tag>
          
-        <tag>Reflected_XSS_All_Clients</tag>
-         
         <tag>JsonConvert.SerializeObject</tag>
+         
+        <tag>Reflected_XSS_All_Clients</tag>
          
         <tag>JsonSerializerSettings</tag>
          
@@ -2144,9 +2171,9 @@
          
         <tag>Custom Model Binder</tag>
          
-        <tag>SecureString</tag>
-         
         <tag>MVC5</tag>
+         
+        <tag>SecureString</tag>
          
         <tag>netFramework</tag>
          
