@@ -4,11 +4,48 @@
 
     
   <url>
-    <loc>https://rainmakerho.github.io/2022/11/15/aspose-kangxi-radical-word-2-pdf-square-box/</loc>
-    <lastmod>2022-11-15T03:07:40.847Z</lastmod>
+    <loc>https://rainmakerho.github.io/2022/11/15/aspose-kangxi-radical-dfkai-sb-pdf-square-box/</loc>
+    <lastmod>2022-11-15T06:23:37.551Z</lastmod>
     <data>
         <display>
-        <title>有些字透過 Aspose.Words 讀取 Word 檔，另存成 PDF 後，會變成空白框(square box)</title>
+        <title>標楷體(DFKai-SB)的Word檔中有些字透過 Aspose.Words 另存成 PDF 後，會變成"空白"字</title>
+        <pubTime>2022-11-15T03:43:15.000Z</pubTime>
+        
+        <tag>PDF</tag>
+         
+        <tag>Aspose</tag>
+         
+        <tag>DFKai-SB</tag>
+         
+        <tag>Word</tag>
+         
+        <tag>空白框</tag>
+         
+        <tag>square box</tag>
+         
+        <tag>kangxi radical</tag>
+         
+        <tag>unicode</tag>
+         
+        <tag>空白字</tag>
+         
+        <tag>標楷體</tag>
+         
+        <tag>全字庫</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://rainmakerho.github.io/2022/11/15/aspose-kangxi-radical-word-2-pdf-square-box/</loc>
+    <lastmod>2022-11-15T05:23:29.401Z</lastmod>
+    <data>
+        <display>
+        <title>有些字透過 Aspose.Words 讀取 Word 檔，另存成 PDF 後，會變成空白框(square box)或是變成 空白字</title>
         <pubTime>2022-11-15T01:41:59.000Z</pubTime>
         
         <tag>PDF</tag>
@@ -34,10 +71,10 @@
     
   <url>
     <loc>https://rainmakerho.github.io/2022/11/15/aspose-kangxi-radical-html-pdf-square-box/</loc>
-    <lastmod>2022-11-15T03:07:39.380Z</lastmod>
+    <lastmod>2022-11-15T05:23:27.589Z</lastmod>
     <data>
         <display>
-        <title>有些字透過 Aspose.Words 轉成 PDF 後，會變成空白框(square box)</title>
+        <title>有些字透過 Aspose.Words 轉成 PDF 後，會變成空白框(square box)或是變成 空白字</title>
         <pubTime>2022-11-15T00:55:54.000Z</pubTime>
         
         <tag>PDF</tag>
@@ -917,8 +954,6 @@
         <title>Teams 在 Calendar 上建立 會議 ，並設定它是線上會議</title>
         <pubTime>2022-05-04T00:22:22.000Z</pubTime>
         
-        <tag>OnlineMeetings.ReadWrite.All</tag>
-         
         <tag>teams</tag>
          
         <tag>meeting</tag>
@@ -928,6 +963,8 @@
         <tag>calendar</tag>
          
         <tag>Calendars.ReadWrite</tag>
+         
+        <tag>OnlineMeetings.ReadWrite.All</tag>
          
          
            
@@ -944,6 +981,8 @@
         <title>Teams App 代替使用者建立線上會議，讓該使用者為會議主持人</title>
         <pubTime>2022-04-29T02:53:08.000Z</pubTime>
         
+        <tag>OnlineMeetings.ReadWrite.All</tag>
+         
         <tag>Teams</tag>
          
         <tag>meetings</tag>
@@ -955,8 +994,6 @@
         <tag>Access Policy</tag>
          
         <tag>No Application Access Policy found for this app.</tag>
-         
-        <tag>OnlineMeetings.ReadWrite.All</tag>
          
          
            
@@ -1475,9 +1512,9 @@
          
         <tag>Checkmarx</tag>
          
-        <tag>Password</tag>
-         
         <tag>Heap Inspection</tag>
+         
+        <tag>Password</tag>
          
         <tag>Heap_Inspection</tag>
          
@@ -1502,11 +1539,11 @@
          
         <tag>C#</tag>
          
+        <tag>標楷體</tag>
+         
         <tag>PNG</tag>
          
         <tag>TIFF</tag>
-         
-        <tag>標楷體</tag>
          
         <tag>kaiu.tff</tag>
          
@@ -1531,11 +1568,11 @@
         
         <tag>Jenkins</tag>
          
+        <tag>Password</tag>
+         
         <tag>資安</tag>
          
         <tag>使用者密碼</tag>
-         
-        <tag>Password</tag>
          
          
            
@@ -2171,13 +2208,13 @@
          
         <tag>Checkmarx</tag>
          
-        <tag>Password</tag>
-         
         <tag>Heap Inspection</tag>
          
         <tag>Custom Model Binder</tag>
          
         <tag>byte Array</tag>
+         
+        <tag>Password</tag>
          
          
            
@@ -2198,11 +2235,11 @@
          
         <tag>Checkmarx</tag>
          
-        <tag>Password</tag>
-         
         <tag>Heap Inspection</tag>
          
         <tag>Custom Model Binder</tag>
+         
+        <tag>Password</tag>
          
         <tag>SecureString</tag>
          
@@ -2223,11 +2260,11 @@
         
         <tag>Checkmarx</tag>
          
-        <tag>Password</tag>
-         
         <tag>Heap Inspection</tag>
          
         <tag>Custom Model Binder</tag>
+         
+        <tag>Password</tag>
          
         <tag>SecureString</tag>
          
@@ -2252,15 +2289,15 @@
         
         <tag>Checkmarx</tag>
          
-        <tag>Password</tag>
-         
         <tag>Heap Inspection</tag>
          
         <tag>Custom Model Binder</tag>
          
-        <tag>SecureString</tag>
+        <tag>Password</tag>
          
         <tag>Razor Page</tag>
+         
+        <tag>SecureString</tag>
          
          
            
@@ -4883,6 +4920,8 @@
         <title>使用 OpenTracing - Jaeger (AP整合)</title>
         <pubTime>2019-01-15T05:13:41.000Z</pubTime>
         
+        <tag>BFv4</tag>
+         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -4896,8 +4935,6 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
-         
-        <tag>BFv4</tag>
          
         <tag>NodeJS</tag>
          
@@ -4916,6 +4953,8 @@
         <title>使用 OpenTracing - Jaeger</title>
         <pubTime>2019-01-04T06:02:45.000Z</pubTime>
         
+        <tag>BFv4</tag>
+         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -4929,8 +4968,6 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
-         
-        <tag>BFv4</tag>
          
          
            
@@ -5871,13 +5908,13 @@
         <title>線上客服 + BOT 之路</title>
         <pubTime>2018-01-25T08:10:47.000Z</pubTime>
         
+        <tag>chatbot</tag>
+         
         <tag>QnA Maker</tag>
          
         <tag>LUIS</tag>
          
         <tag>Vital ESP</tag>
-         
-        <tag>chatbot</tag>
          
         <tag>FAQ</tag>
          
