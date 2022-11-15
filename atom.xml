@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2022-11-10T09:46:23.805Z</updated>
+  <updated>2022-11-15T03:07:40.847Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,76 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>有些字透過 Aspose.Words 讀取 Word 檔，另存成 PDF 後，會變成空白框(square box)</title>
+    <link href="https://rainmakerho.github.io/2022/11/15/aspose-kangxi-radical-word-2-pdf-square-box/"/>
+    <id>https://rainmakerho.github.io/2022/11/15/aspose-kangxi-radical-word-2-pdf-square-box/</id>
+    <published>2022-11-15T01:41:59.000Z</published>
+    <updated>2022-11-15T03:07:40.847Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>有些情況在透過 Aspose.Words 另存成 PDF 檔後，<br>有些字在 PDF 中會變成 空白框(square box)，<br>但那些字又不自造字，怎麼會這樣子呢?<br>例如，<a href="https://unicode-table.com/en/2FA6/" target="_blank" rel="noopener">U+2FA6(⾦)</a> 這個字，可是在 Word 中明明可以正常顯示。<br><img src="/2022/11/15/aspose-kangxi-radical-word-2-pdf-square-box/01.png" title="square box in pdf"></p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>測試的 C# 程式如下(請先加入 Aspose.Words 套件)，</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> docxPath = <span class="string">@"c:\temp\h2docx.docx"</span>;</span><br><span class="line"><span class="keyword">var</span> pdfPath = <span class="string">@"c:\temp\h2pdf.pdf"</span>;</span><br><span class="line"><span class="keyword">var</span> doc = <span class="keyword">new</span> Aspose.Words.Document(docxPath);</span><br><span class="line">doc.Save(pdfPath);</span><br></pre></td></tr></table></figure><p>Word 檔 及 另存的 PDF 如上圖所示，<br>從 Word 檔中可以發現字型是使用「<strong>Times New Roman</strong>」，<br>有同事說，如果是 「<strong>Microsoft YaHei</strong>」 字型，在 PDF 中顯示似乎是正常的。</p><p>那…<br>我們要如何將 Word 中的字型全都改成 「<strong>Microsoft YaHei</strong>」 呢?</p><p>這時，我們可以透過 <a href="https://reference.aspose.com/words/net/aspose.words/document/accept/" target="_blank" rel="noopener">Document.Accept Method</a> 透過 <a href="https://reference.aspose.com/words/net/aspose.words/documentvisitor/" target="_blank" rel="noopener">DocumentVisitor</a> 將字型全都改成 「<strong>Microsoft YaHei</strong>」。<br>所以先新增一個繼承自 <a href="https://reference.aspose.com/words/net/aspose.words/documentvisitor/" target="_blank" rel="noopener">DocumentVisitor</a> 的 FontChanger Class，<br>來將字型改成 「<strong>Microsoft YaHei</strong>」。</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">FontChanger</span> : <span class="title">DocumentVisitor</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> <span class="keyword">string</span> _NewFont = <span class="string">"DFKai-SB"</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">FontChanger</span>(<span class="params"><span class="keyword">string</span> newFont</span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        _NewFont = newFont;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> VisitorAction <span class="title">VisitFieldEnd</span>(<span class="params">FieldEnd fieldEnd</span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">//Simply change font name</span></span><br><span class="line">        ResetFont(fieldEnd.Font);</span><br><span class="line">        <span class="keyword">return</span> VisitorAction.Continue;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> VisitorAction <span class="title">VisitFieldSeparator</span>(<span class="params">FieldSeparator fieldSeparator</span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        ResetFont(fieldSeparator.Font);</span><br><span class="line">        <span class="keyword">return</span> VisitorAction.Continue;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> VisitorAction <span class="title">VisitFieldStart</span>(<span class="params">FieldStart fieldStart</span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        ResetFont(fieldStart.Font);</span><br><span class="line">        <span class="keyword">return</span> VisitorAction.Continue;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> VisitorAction <span class="title">VisitFootnoteEnd</span>(<span class="params">Footnote footnote</span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        ResetFont(footnote.Font);</span><br><span class="line">        <span class="keyword">return</span> VisitorAction.Continue;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> VisitorAction <span class="title">VisitFormField</span>(<span class="params">FormField formField</span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        ResetFont(formField.Font);</span><br><span class="line">        <span class="keyword">return</span> VisitorAction.Continue;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> VisitorAction <span class="title">VisitParagraphEnd</span>(<span class="params">Paragraph paragraph</span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        ResetFont(paragraph.ParagraphBreakFont);</span><br><span class="line">        <span class="keyword">return</span> VisitorAction.Continue;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> VisitorAction <span class="title">VisitRun</span>(<span class="params">Run run</span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        ResetFont(run.Font);</span><br><span class="line">        <span class="keyword">return</span> VisitorAction.Continue;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> VisitorAction <span class="title">VisitSpecialChar</span>(<span class="params">SpecialChar specialChar</span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        ResetFont(specialChar.Font);</span><br><span class="line">        <span class="keyword">return</span> VisitorAction.Continue;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">ResetFont</span>(<span class="params">Aspose.Words.Font font</span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        font.Name = _NewFont;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>再來就是新增 FontChanger ，並呼叫 <a href="https://reference.aspose.com/words/net/aspose.words/document/accept/" target="_blank" rel="noopener">Document.Accept Method</a>，如下，</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> docxPath = <span class="string">@"c:\temp\h2docx.docx"</span>;</span><br><span class="line"><span class="keyword">var</span> pdfPath = <span class="string">@"c:\temp\h2pdf.pdf"</span>;</span><br><span class="line"><span class="keyword">var</span> doc = <span class="keyword">new</span> Aspose.Words.Document(docxPath);</span><br><span class="line"><span class="keyword">var</span> fontChanger= <span class="keyword">new</span> FontChanger(<span class="string">"Microsoft YaHei"</span>);</span><br><span class="line">doc.Accept(fontChanger);</span><br><span class="line">doc.Save(pdfPath);</span><br></pre></td></tr></table></figure><p>透過 FontChanger 將 Word 檔中的字型全換成 「<strong>Microsoft YaHei</strong>」 後，<br>再另存 PDF 檔後， <strong>U+2FA6(⾦)</strong> 這個字，也可以正常顯示了。</p><img src="/2022/11/15/aspose-kangxi-radical-word-2-pdf-square-box/02.png" title="square box in pdf"><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://unicode-table.com/en/2FA6/" target="_blank" rel="noopener">U+2FA6(⾦)</a><br><a href="https://www.fileformat.info/info/unicode/font/dfkai-sb/list.htm" target="_blank" rel="noopener">標楷體支援的 Unicode</a><br><a href="https://forum.aspose.com/t/word-kangxi-aspose-words-pdf/254888" target="_blank" rel="noopener">Word 檔中有 Kangxi 字，透過 Aspose.Words 另存成 PDF，該字無法呈現</a><br><a href="https://reference.aspose.com/words/net/aspose.words/document/accept/" target="_blank" rel="noopener">Document.Accept Method</a><br><a href="https://reference.aspose.com/words/net/aspose.words/documentvisitor/" target="_blank" rel="noopener">DocumentVisitor</a><br><a href="https://forum.aspose.com/t/change-text-font-of-whole-document-using-c/209319/2" target="_blank" rel="noopener">Change text font of whole document using C#</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;有些情況在透過 Aspose.Words 另存成 PDF 檔後，&lt;br&gt;有些字在 PDF 中會變成 空白框(square box)，&lt;br&gt;
+      
+    
+    </summary>
+    
+    
+      <category term="PDF" scheme="https://rainmakerho.github.io/tags/PDF/"/>
+    
+      <category term="Aspose" scheme="https://rainmakerho.github.io/tags/Aspose/"/>
+    
+      <category term="Word" scheme="https://rainmakerho.github.io/tags/Word/"/>
+    
+      <category term="空白框" scheme="https://rainmakerho.github.io/tags/%E7%A9%BA%E7%99%BD%E6%A1%86/"/>
+    
+      <category term="square box" scheme="https://rainmakerho.github.io/tags/square-box/"/>
+    
+      <category term="kangxi radical" scheme="https://rainmakerho.github.io/tags/kangxi-radical/"/>
+    
+      <category term="unicode" scheme="https://rainmakerho.github.io/tags/unicode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>有些字透過 Aspose.Words 轉成 PDF 後，會變成空白框(square box)</title>
+    <link href="https://rainmakerho.github.io/2022/11/15/aspose-kangxi-radical-html-pdf-square-box/"/>
+    <id>https://rainmakerho.github.io/2022/11/15/aspose-kangxi-radical-html-pdf-square-box/</id>
+    <published>2022-11-15T00:55:54.000Z</published>
+    <updated>2022-11-15T03:07:39.380Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>有些情況在透過 Aspose.Words 另存成 PDF 檔後，<br>有些字在 PDF 中會變成 空白框(square box)，<br>但那些字又不自造字，怎麼會這樣子呢?<br>例如，<a href="https://unicode-table.com/en/2FA6/" target="_blank" rel="noopener">U+2FA6(⾦)</a> 這個字，可是在 Word 中明明可以正常顯示。<br><img src="/2022/11/15/aspose-kangxi-radical-html-pdf-square-box/01.png" title="square box in pdf"></p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>測試的 C# 程式如下(請先加入 Aspose.Words 套件)，</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> docxPath = <span class="string">@"c:\temp\h2docx.docx"</span>;</span><br><span class="line"><span class="keyword">var</span> pdfPath = <span class="string">@"c:\temp\h2pdf.pdf"</span>;</span><br><span class="line"><span class="keyword">var</span> doc = <span class="keyword">new</span> Aspose.Words.Document();</span><br><span class="line"><span class="keyword">var</span> docBuilder = <span class="keyword">new</span> Aspose.Words.DocumentBuilder(doc);</span><br><span class="line"><span class="keyword">var</span> html = <span class="string">@"&lt;div&gt;U+2FA6(⾦) vs U+91D1(金)&lt;/div&gt;"</span>;</span><br><span class="line">docBuilder.InsertHtml(html);</span><br><span class="line">doc.Save(docxPath);</span><br><span class="line">doc.Save(pdfPath);</span><br></pre></td></tr></table></figure><p>產生的 Word 及 PDF 如上圖所示，<br>在 Word 檔中字型使用「<strong>Times New Roman</strong>」，<br>有同事說，如果是 「<strong>Microsoft YaHei</strong>」 字型，在 PDF 中顯示似乎是正常的。</p><p>那…<br>我們要如何將字型從 「<strong>Times New Roman</strong>」 改成 「<strong>Microsoft YaHei</strong>」 呢?<br>也就是將文字加到 Word Doc 時，就將字型設定成 「<strong>Microsoft YaHei</strong>」。</p><p>這時，我們可以透過 <a href="https://reference.aspose.com/words/net/aspose.words/inodechangingcallback/nodeinserted/" target="_blank" rel="noopener">INodeChangingCallback.NodeInserted method</a> ，在將文字寫到 Word 時，把字型強迫換成 「<strong>Microsoft YaHei</strong>」 。<br>所以建立一個 HandleNodeChangingFontChanger Class 來實作 INodeChangingCallback 介面，</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">HandleNodeChangingFontChanger</span> : <span class="title">INodeChangingCallback</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 預設為標楷體</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">string</span> _fontName = <span class="string">"DFKai-SB"</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">HandleNodeChangingFontChanger</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">HandleNodeChangingFontChanger</span>(<span class="params"><span class="keyword">string</span> fontName</span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        _fontName = fontName;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">void</span> INodeChangingCallback.NodeInserted(NodeChangingArgs args)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (args.Node.NodeType == NodeType.Run)</span><br><span class="line">        &#123;</span><br><span class="line">            Aspose.Words.Font font = ((Run)args.Node).Font;</span><br><span class="line">            font.Name = _fontName;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">void</span> INodeChangingCallback.NodeInserting(NodeChangingArgs args)</span><br><span class="line">    &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">void</span> INodeChangingCallback.NodeRemoved(NodeChangingArgs args)</span><br><span class="line">    &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">void</span> INodeChangingCallback.NodeRemoving(NodeChangingArgs args)</span><br><span class="line">    &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>再來就是設定 doc 的 NodeChangingCallback 屬性為上面建立的 HandleNodeChangingFontChanger Class，並設定要更改的字型為 「<strong>Microsoft YaHei</strong>」</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> docxPath = <span class="string">@"c:\temp\h2docx.docx"</span>;</span><br><span class="line"><span class="keyword">var</span> pdfPath = <span class="string">@"c:\temp\h2pdf.pdf"</span>;</span><br><span class="line"><span class="keyword">var</span> doc = <span class="keyword">new</span> Aspose.Words.Document();</span><br><span class="line"><span class="keyword">var</span> fontName = <span class="string">"Microsoft YaHei"</span>;</span><br><span class="line">doc.NodeChangingCallback = <span class="keyword">new</span> HandleNodeChangingFontChanger(fontName);</span><br><span class="line"><span class="keyword">var</span> docBuilder = <span class="keyword">new</span> Aspose.Words.DocumentBuilder(doc);</span><br><span class="line"><span class="keyword">var</span> html = <span class="string">@"&lt;div&gt;U+2FA6(⾦) vs U+91D1(金)&lt;/div&gt;"</span>;</span><br><span class="line">docBuilder.InsertHtml(html);</span><br><span class="line">doc.Save(docxPath);</span><br><span class="line">doc.Save(pdfPath);</span><br></pre></td></tr></table></figure><p>執行程式後可以發現 Word 中的字型已變成了 「<strong>Microsoft YaHei</strong>」 字型，<br>而在 PDF 中的 <strong>U+2FA6(⾦)</strong> 這個字，也可以正常顯示了。</p><img src="/2022/11/15/aspose-kangxi-radical-html-pdf-square-box/02.png" title="square box in pdf"><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://unicode-table.com/en/2FA6/" target="_blank" rel="noopener">U+2FA6(⾦)</a><br><a href="https://www.fileformat.info/info/unicode/font/dfkai-sb/list.htm" target="_blank" rel="noopener">標楷體支援的 Unicode</a><br><a href="https://reference.aspose.com/words/net/aspose.words/inodechangingcallback/nodeinserted/" target="_blank" rel="noopener">INodeChangingCallback.NodeInserted method</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;有些情況在透過 Aspose.Words 另存成 PDF 檔後，&lt;br&gt;有些字在 PDF 中會變成 空白框(square box)，&lt;br&gt;
+      
+    
+    </summary>
+    
+    
+      <category term="PDF" scheme="https://rainmakerho.github.io/tags/PDF/"/>
+    
+      <category term="Aspose" scheme="https://rainmakerho.github.io/tags/Aspose/"/>
+    
+      <category term="Word" scheme="https://rainmakerho.github.io/tags/Word/"/>
+    
+      <category term="空白框" scheme="https://rainmakerho.github.io/tags/%E7%A9%BA%E7%99%BD%E6%A1%86/"/>
+    
+      <category term="square box" scheme="https://rainmakerho.github.io/tags/square-box/"/>
+    
+      <category term="kangxi radical" scheme="https://rainmakerho.github.io/tags/kangxi-radical/"/>
+    
+      <category term="unicode" scheme="https://rainmakerho.github.io/tags/unicode/"/>
+    
+  </entry>
   
   <entry>
     <title>C# 使用 non-null 的運算子</title>
@@ -43,9 +113,9 @@
     
       <category term="!" scheme="https://rainmakerho.github.io/tags//"/>
     
-      <category term="CS8600" scheme="https://rainmakerho.github.io/tags/CS8600/"/>
-    
       <category term="CS8602" scheme="https://rainmakerho.github.io/tags/CS8602/"/>
+    
+      <category term="CS8600" scheme="https://rainmakerho.github.io/tags/CS8600/"/>
     
   </entry>
   
@@ -122,9 +192,9 @@
     </summary>
     
     
-      <category term="Office" scheme="https://rainmakerho.github.io/tags/Office/"/>
-    
       <category term="Word" scheme="https://rainmakerho.github.io/tags/Word/"/>
+    
+      <category term="Office" scheme="https://rainmakerho.github.io/tags/Office/"/>
     
       <category term="0x80080005" scheme="https://rainmakerho.github.io/tags/0x80080005/"/>
     
@@ -155,6 +225,8 @@
     
       <category term="自造字" scheme="https://rainmakerho.github.io/tags/%E8%87%AA%E9%80%A0%E5%AD%97/"/>
     
+      <category term="空白框" scheme="https://rainmakerho.github.io/tags/%E7%A9%BA%E7%99%BD%E6%A1%86/"/>
+    
       <category term="EUDC" scheme="https://rainmakerho.github.io/tags/EUDC/"/>
     
       <category term="SSRS" scheme="https://rainmakerho.github.io/tags/SSRS/"/>
@@ -162,8 +234,6 @@
       <category term="woff" scheme="https://rainmakerho.github.io/tags/woff/"/>
     
       <category term="ttf" scheme="https://rainmakerho.github.io/tags/ttf/"/>
-    
-      <category term="空白框" scheme="https://rainmakerho.github.io/tags/%E7%A9%BA%E7%99%BD%E6%A1%86/"/>
     
   </entry>
   
@@ -549,68 +619,6 @@
       <category term="xp_cmdshell" scheme="https://rainmakerho.github.io/tags/xp-cmdshell/"/>
     
       <category term="mssql" scheme="https://rainmakerho.github.io/tags/mssql/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Metasploit Framework - TCP Port Scan</title>
-    <link href="https://rainmakerho.github.io/2022/07/05/metasploit-portscan-tcp/"/>
-    <id>https://rainmakerho.github.io/2022/07/05/metasploit-portscan-tcp/</id>
-    <published>2022-07-05T01:17:29.000Z</published>
-    <updated>2022-07-05T01:35:38.344Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>除了使用 nmap 外，metasploit 也可以進行 portscan ，<br>透過 <code>search portscan</code> 可以找到 metasploit 提供的那些 portscan 模組<br><img src="/2022/07/05/metasploit-portscan-tcp/01.png" title="search portscan"></p><h3 id="使用-scanner-portscan-tcp"><a href="#使用-scanner-portscan-tcp" class="headerlink" title="使用 scanner/portscan/tcp"></a>使用 scanner/portscan/tcp</h3><p>要使用模組時，可以使用 use [列表index/名稱] ，<br>例如 <code>use 5</code> or <code>use scanner/portscan/tcp</code> </p><p>選擇使用的模組後，可以輸入 <code>show options</code> 來查看需要輸入那些參數，<br>再透過 <code>set [參數名] [值]</code> 來設定參數，<br>Required 為 yes ，表示該參數一定要設定值。</p><p>設定完成後，輸入 <code>run</code> 來執行。完整的指令如下，<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">search portscan</span><br><span class="line">use scanner/portscan/tcp</span><br><span class="line">show options</span><br><span class="line"><span class="built_in">set</span> RHOSTS 10.5.0.4</span><br><span class="line"><span class="built_in">set</span> THREADS 50</span><br><span class="line"><span class="built_in">set</span> PORTS 1-2000</span><br><span class="line">run</span><br></pre></td></tr></table></figure></p><ul><li>註: RHOSTS 是我們要掃的目標</li><li>註: PORTS 設定掃 1 ~ 2000 Port</li><li>註: 使用 50 個 Thread來執行</li><li>註: 如果要記住這些設定值，可輸入 <code>save</code> 將它們記錄在 DB 之中</li></ul><img src="/2022/07/05/metasploit-portscan-tcp/02.png" title="portscan">]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;除了使用 nmap 外，metasploit 也可以進行 portscan ，&lt;br&gt;透過 &lt;code&gt;search portscan&lt;/c
-      
-    
-    </summary>
-    
-    
-      <category term="metasploit" scheme="https://rainmakerho.github.io/tags/metasploit/"/>
-    
-      <category term="portscan" scheme="https://rainmakerho.github.io/tags/portscan/"/>
-    
-      <category term="tcp" scheme="https://rainmakerho.github.io/tags/tcp/"/>
-    
-      <category term="scanner" scheme="https://rainmakerho.github.io/tags/scanner/"/>
-    
-      <category term="auxiliary" scheme="https://rainmakerho.github.io/tags/auxiliary/"/>
-    
-      <category term="scanner/portscan/tcp" scheme="https://rainmakerho.github.io/tags/scanner-portscan-tcp/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>收集 Domain 資訊的好網站 DNSdumpster.com</title>
-    <link href="https://rainmakerho.github.io/2022/06/30/dns-dumpster/"/>
-    <id>https://rainmakerho.github.io/2022/06/30/dns-dumpster/</id>
-    <published>2022-06-30T05:25:51.000Z</published>
-    <updated>2022-06-30T05:43:22.438Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>有時想要收集某個 Domain 對外有那些 伺服器等等資訊，<br>可以下一些指令來收集，利如用 nmap 掃 cidr ， dnsrecon 等等。<br>介紹大家使用 <a href="https://dnsdumpster.com/" target="_blank" rel="noopener">dnsdumpster.com</a> 就可以收集到蠻詳細的資訊及圖表。</p><h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>使用介面很簡單，只要輸入要查詢的 domain ，再按下 Search 即可，<br><img src="/2022/06/30/dns-dumpster/01.png" title="Search"></p><p>很快就會傳回相關的資訊列表及圖表，如下，<br><img src="/2022/06/30/dns-dumpster/02.png" title="Search Result"></p><p>也可以下載 Excel 檔案及圖表，<br><img src="/2022/06/30/dns-dumpster/03.png" title="Download Result"></p><p>針對測試者就可以查看這些資訊來決定要測試的範圍，<br>針對MIS人員，可以定期查看是否有非預期對外的伺服器顯示在外面。</p><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://www.linode.com/docs/guides/red-team-reconnaissance-techniques/" target="_blank" rel="noopener">Red Team Reconnaissance Techniques</a><br><a href="https://dnsdumpster.com/" target="_blank" rel="noopener">dnsdumpster.com</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;有時想要收集某個 Domain 對外有那些 伺服器等等資訊，&lt;br&gt;可以下一些指令來收集，利如用 nmap 掃 cidr ， dnsreco
-      
-    
-    </summary>
-    
-    
-      <category term="Red Team" scheme="https://rainmakerho.github.io/tags/Red-Team/"/>
-    
-      <category term="Reconnaissance" scheme="https://rainmakerho.github.io/tags/Reconnaissance/"/>
-    
-      <category term="DNS records" scheme="https://rainmakerho.github.io/tags/DNS-records/"/>
-    
-      <category term="IP addresses" scheme="https://rainmakerho.github.io/tags/IP-addresses/"/>
     
   </entry>
   

@@ -4,6 +4,64 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2022/11/15/aspose-kangxi-radical-word-2-pdf-square-box/</loc>
+    <lastmod>2022-11-15T03:07:40.847Z</lastmod>
+    <data>
+        <display>
+        <title>有些字透過 Aspose.Words 讀取 Word 檔，另存成 PDF 後，會變成空白框(square box)</title>
+        <pubTime>2022-11-15T01:41:59.000Z</pubTime>
+        
+        <tag>PDF</tag>
+         
+        <tag>Aspose</tag>
+         
+        <tag>Word</tag>
+         
+        <tag>空白框</tag>
+         
+        <tag>square box</tag>
+         
+        <tag>kangxi radical</tag>
+         
+        <tag>unicode</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://rainmakerho.github.io/2022/11/15/aspose-kangxi-radical-html-pdf-square-box/</loc>
+    <lastmod>2022-11-15T03:07:39.380Z</lastmod>
+    <data>
+        <display>
+        <title>有些字透過 Aspose.Words 轉成 PDF 後，會變成空白框(square box)</title>
+        <pubTime>2022-11-15T00:55:54.000Z</pubTime>
+        
+        <tag>PDF</tag>
+         
+        <tag>Aspose</tag>
+         
+        <tag>Word</tag>
+         
+        <tag>空白框</tag>
+         
+        <tag>square box</tag>
+         
+        <tag>kangxi radical</tag>
+         
+        <tag>unicode</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2022/11/10/non-null-assertion-operator-syntax/</loc>
     <lastmod>2022-11-10T09:46:23.805Z</lastmod>
     <data>
@@ -19,9 +77,9 @@
          
         <tag>!</tag>
          
-        <tag>CS8600</tag>
-         
         <tag>CS8602</tag>
+         
+        <tag>CS8600</tag>
          
          
            
@@ -130,9 +188,9 @@
         <title>ASP.NET 使用 Interop.Word 會發生 0x80080005 (CO_E_SERVER_EXEC_FAILURE) 錯誤</title>
         <pubTime>2022-11-02T02:54:05.000Z</pubTime>
         
-        <tag>Office</tag>
-         
         <tag>Word</tag>
+         
+        <tag>Office</tag>
          
         <tag>0x80080005</tag>
          
@@ -157,6 +215,8 @@
         
         <tag>自造字</tag>
          
+        <tag>空白框</tag>
+         
         <tag>EUDC</tag>
          
         <tag>SSRS</tag>
@@ -164,8 +224,6 @@
         <tag>woff</tag>
          
         <tag>ttf</tag>
-         
-        <tag>空白框</tag>
          
          
            
@@ -859,6 +917,8 @@
         <title>Teams 在 Calendar 上建立 會議 ，並設定它是線上會議</title>
         <pubTime>2022-05-04T00:22:22.000Z</pubTime>
         
+        <tag>OnlineMeetings.ReadWrite.All</tag>
+         
         <tag>teams</tag>
          
         <tag>meeting</tag>
@@ -868,8 +928,6 @@
         <tag>calendar</tag>
          
         <tag>Calendars.ReadWrite</tag>
-         
-        <tag>OnlineMeetings.ReadWrite.All</tag>
          
          
            
@@ -886,8 +944,6 @@
         <title>Teams App 代替使用者建立線上會議，讓該使用者為會議主持人</title>
         <pubTime>2022-04-29T02:53:08.000Z</pubTime>
         
-        <tag>OnlineMeetings.ReadWrite.All</tag>
-         
         <tag>Teams</tag>
          
         <tag>meetings</tag>
@@ -899,6 +955,8 @@
         <tag>Access Policy</tag>
          
         <tag>No Application Access Policy found for this app.</tag>
+         
+        <tag>OnlineMeetings.ReadWrite.All</tag>
          
          
            
@@ -1050,8 +1108,6 @@
          
         <tag>OAuth 2.0</tag>
          
-        <tag>public client</tag>
-         
         <tag>PKCE</tag>
          
         <tag>Proof Key for Code Exchange</tag>
@@ -1059,6 +1115,8 @@
         <tag>claiming URLs</tag>
          
         <tag>Custom URL Scheme</tag>
+         
+        <tag>public client</tag>
          
          
            
@@ -1196,13 +1254,13 @@
         
         <tag>OAuth 2.0</tag>
          
+        <tag>public client</tag>
+         
         <tag>Implicit Flow</tag>
          
         <tag>response_type=token</tag>
          
         <tag>response_mode=fragment</tag>
-         
-        <tag>public client</tag>
          
         <tag>token flow</tag>
          
@@ -1667,9 +1725,9 @@
         
         <tag>DataTable</tag>
          
-        <tag>JsonConvert.SerializeObject</tag>
-         
         <tag>Reflected_XSS_All_Clients</tag>
+         
+        <tag>JsonConvert.SerializeObject</tag>
          
         <tag>JsonSerializerSettings</tag>
          
@@ -2171,9 +2229,9 @@
          
         <tag>Custom Model Binder</tag>
          
-        <tag>MVC5</tag>
-         
         <tag>SecureString</tag>
+         
+        <tag>MVC5</tag>
          
         <tag>netFramework</tag>
          
@@ -4825,8 +4883,6 @@
         <title>使用 OpenTracing - Jaeger (AP整合)</title>
         <pubTime>2019-01-15T05:13:41.000Z</pubTime>
         
-        <tag>BFv4</tag>
-         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -4840,6 +4896,8 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
+         
+        <tag>BFv4</tag>
          
         <tag>NodeJS</tag>
          
@@ -4858,8 +4916,6 @@
         <title>使用 OpenTracing - Jaeger</title>
         <pubTime>2019-01-04T06:02:45.000Z</pubTime>
         
-        <tag>BFv4</tag>
-         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -4873,6 +4929,8 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
+         
+        <tag>BFv4</tag>
          
          
            
@@ -5669,11 +5727,11 @@
         <title>SmtpConnection.GetConnection NullReferenceException</title>
         <pubTime>2018-03-14T02:07:16.000Z</pubTime>
         
+        <tag>NullReferenceException</tag>
+         
         <tag>SmtpClient</tag>
          
         <tag>SmtpConnection.GetConnection</tag>
-         
-        <tag>NullReferenceException</tag>
          
         <tag>.net</tag>
          
@@ -5698,11 +5756,11 @@
         <title>System.NullReferenceException when Aspose.Pdf.License.SetLicense(String licenseName)</title>
         <pubTime>2018-03-13T06:54:05.000Z</pubTime>
         
-        <tag>NullReferenceException</tag>
-         
         <tag>Aspose</tag>
          
         <tag>SetLicense</tag>
+         
+        <tag>NullReferenceException</tag>
          
          
            
