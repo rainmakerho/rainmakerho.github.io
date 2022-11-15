@@ -4,6 +4,33 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2022/11/15/Path-GetTempFileName-IOException-The-file-exists/</loc>
+    <lastmod>2022-11-15T09:19:56.349Z</lastmod>
+    <data>
+        <display>
+        <title>C# System.IO.Path.GetTempFileName 會產生 IOException 檔案存在(The file exists)的錯誤</title>
+        <pubTime>2022-11-15T07:24:30.000Z</pubTime>
+        
+        <tag>.NET</tag>
+         
+        <tag>CrystalReports</tag>
+         
+        <tag>ExportToHttpResponse</tag>
+         
+        <tag>檔案存在</tag>
+         
+        <tag>The file exists</tag>
+         
+        <tag>GetTempFileName</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2022/11/15/aspose-kangxi-radical-dfkai-sb-pdf-square-box/</loc>
     <lastmod>2022-11-15T06:23:37.551Z</lastmod>
     <data>
@@ -954,6 +981,8 @@
         <title>Teams 在 Calendar 上建立 會議 ，並設定它是線上會議</title>
         <pubTime>2022-05-04T00:22:22.000Z</pubTime>
         
+        <tag>OnlineMeetings.ReadWrite.All</tag>
+         
         <tag>teams</tag>
          
         <tag>meeting</tag>
@@ -963,8 +992,6 @@
         <tag>calendar</tag>
          
         <tag>Calendars.ReadWrite</tag>
-         
-        <tag>OnlineMeetings.ReadWrite.All</tag>
          
          
            
@@ -981,8 +1008,6 @@
         <title>Teams App 代替使用者建立線上會議，讓該使用者為會議主持人</title>
         <pubTime>2022-04-29T02:53:08.000Z</pubTime>
         
-        <tag>OnlineMeetings.ReadWrite.All</tag>
-         
         <tag>Teams</tag>
          
         <tag>meetings</tag>
@@ -994,6 +1019,8 @@
         <tag>Access Policy</tag>
          
         <tag>No Application Access Policy found for this app.</tag>
+         
+        <tag>OnlineMeetings.ReadWrite.All</tag>
          
          
            
@@ -2295,9 +2322,9 @@
          
         <tag>Password</tag>
          
-        <tag>Razor Page</tag>
-         
         <tag>SecureString</tag>
+         
+        <tag>Razor Page</tag>
          
          
            
@@ -4920,8 +4947,6 @@
         <title>使用 OpenTracing - Jaeger (AP整合)</title>
         <pubTime>2019-01-15T05:13:41.000Z</pubTime>
         
-        <tag>BFv4</tag>
-         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -4935,6 +4960,8 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
+         
+        <tag>BFv4</tag>
          
         <tag>NodeJS</tag>
          
@@ -4953,8 +4980,6 @@
         <title>使用 OpenTracing - Jaeger</title>
         <pubTime>2019-01-04T06:02:45.000Z</pubTime>
         
-        <tag>BFv4</tag>
-         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -4968,6 +4993,8 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
+         
+        <tag>BFv4</tag>
          
          
            
@@ -5764,11 +5791,11 @@
         <title>SmtpConnection.GetConnection NullReferenceException</title>
         <pubTime>2018-03-14T02:07:16.000Z</pubTime>
         
-        <tag>NullReferenceException</tag>
-         
         <tag>SmtpClient</tag>
          
         <tag>SmtpConnection.GetConnection</tag>
+         
+        <tag>NullReferenceException</tag>
          
         <tag>.net</tag>
          
@@ -5793,11 +5820,11 @@
         <title>System.NullReferenceException when Aspose.Pdf.License.SetLicense(String licenseName)</title>
         <pubTime>2018-03-13T06:54:05.000Z</pubTime>
         
+        <tag>NullReferenceException</tag>
+         
         <tag>Aspose</tag>
          
         <tag>SetLicense</tag>
-         
-        <tag>NullReferenceException</tag>
          
          
            
