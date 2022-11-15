@@ -5,13 +5,17 @@
     
   <url>
     <loc>https://rainmakerho.github.io/2022/11/15/Path-GetTempFileName-IOException-The-file-exists/</loc>
-    <lastmod>2022-11-15T09:19:56.349Z</lastmod>
+    <lastmod>2022-11-15T09:27:20.462Z</lastmod>
     <data>
         <display>
         <title>C# System.IO.Path.GetTempFileName 會產生 IOException 檔案存在(The file exists)的錯誤</title>
         <pubTime>2022-11-15T07:24:30.000Z</pubTime>
         
         <tag>.NET</tag>
+         
+        <tag>GetTempFileName</tag>
+         
+        <tag>IOException</tag>
          
         <tag>CrystalReports</tag>
          
@@ -20,8 +24,6 @@
         <tag>檔案存在</tag>
          
         <tag>The file exists</tag>
-         
-        <tag>GetTempFileName</tag>
          
          
            
@@ -1539,9 +1541,9 @@
          
         <tag>Checkmarx</tag>
          
-        <tag>Heap Inspection</tag>
-         
         <tag>Password</tag>
+         
+        <tag>Heap Inspection</tag>
          
         <tag>Heap_Inspection</tag>
          
@@ -1595,11 +1597,11 @@
         
         <tag>Jenkins</tag>
          
-        <tag>Password</tag>
-         
         <tag>資安</tag>
          
         <tag>使用者密碼</tag>
+         
+        <tag>Password</tag>
          
          
            
@@ -2235,13 +2237,13 @@
          
         <tag>Checkmarx</tag>
          
+        <tag>Password</tag>
+         
         <tag>Heap Inspection</tag>
          
         <tag>Custom Model Binder</tag>
          
         <tag>byte Array</tag>
-         
-        <tag>Password</tag>
          
          
            
@@ -2262,11 +2264,11 @@
          
         <tag>Checkmarx</tag>
          
+        <tag>Password</tag>
+         
         <tag>Heap Inspection</tag>
          
         <tag>Custom Model Binder</tag>
-         
-        <tag>Password</tag>
          
         <tag>SecureString</tag>
          
@@ -2287,11 +2289,11 @@
         
         <tag>Checkmarx</tag>
          
+        <tag>Password</tag>
+         
         <tag>Heap Inspection</tag>
          
         <tag>Custom Model Binder</tag>
-         
-        <tag>Password</tag>
          
         <tag>SecureString</tag>
          
@@ -2316,11 +2318,11 @@
         
         <tag>Checkmarx</tag>
          
+        <tag>Password</tag>
+         
         <tag>Heap Inspection</tag>
          
         <tag>Custom Model Binder</tag>
-         
-        <tag>Password</tag>
          
         <tag>SecureString</tag>
          
@@ -5791,11 +5793,11 @@
         <title>SmtpConnection.GetConnection NullReferenceException</title>
         <pubTime>2018-03-14T02:07:16.000Z</pubTime>
         
+        <tag>NullReferenceException</tag>
+         
         <tag>SmtpClient</tag>
          
         <tag>SmtpConnection.GetConnection</tag>
-         
-        <tag>NullReferenceException</tag>
          
         <tag>.net</tag>
          
@@ -5820,11 +5822,11 @@
         <title>System.NullReferenceException when Aspose.Pdf.License.SetLicense(String licenseName)</title>
         <pubTime>2018-03-13T06:54:05.000Z</pubTime>
         
-        <tag>NullReferenceException</tag>
-         
         <tag>Aspose</tag>
          
         <tag>SetLicense</tag>
+         
+        <tag>NullReferenceException</tag>
          
          
            
@@ -5935,13 +5937,13 @@
         <title>線上客服 + BOT 之路</title>
         <pubTime>2018-01-25T08:10:47.000Z</pubTime>
         
-        <tag>chatbot</tag>
-         
         <tag>QnA Maker</tag>
          
         <tag>LUIS</tag>
          
         <tag>Vital ESP</tag>
+         
+        <tag>chatbot</tag>
          
         <tag>FAQ</tag>
          
