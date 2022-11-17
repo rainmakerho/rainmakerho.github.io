@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2022/11/17/abp-structuring-solution-ddd/</loc>
+    <lastmod>2022-11-17T09:56:28.339Z</lastmod>
+    <data>
+        <display>
+        <title>探索 ABP Framework Web 方案</title>
+        <pubTime>2022-11-17T03:09:30.000Z</pubTime>
+        
+        <tag>ABP Framework</tag>
+         
+        <tag>DDD</tag>
+         
+        <tag>ABP</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+    
+  <url>
     <loc>https://rainmakerho.github.io/2022/11/15/Path-GetTempFileName-IOException-The-file-exists/</loc>
     <lastmod>2022-11-15T09:27:20.462Z</lastmod>
     <data>
@@ -1174,6 +1196,8 @@
          
         <tag>OAuth 2.0</tag>
          
+        <tag>public client</tag>
+         
         <tag>PKCE</tag>
          
         <tag>Proof Key for Code Exchange</tag>
@@ -1181,8 +1205,6 @@
         <tag>claiming URLs</tag>
          
         <tag>Custom URL Scheme</tag>
-         
-        <tag>public client</tag>
          
          
            
@@ -1320,13 +1342,13 @@
         
         <tag>OAuth 2.0</tag>
          
-        <tag>public client</tag>
-         
         <tag>Implicit Flow</tag>
          
         <tag>response_type=token</tag>
          
         <tag>response_mode=fragment</tag>
+         
+        <tag>public client</tag>
          
         <tag>token flow</tag>
          
@@ -1791,9 +1813,9 @@
         
         <tag>DataTable</tag>
          
-        <tag>Reflected_XSS_All_Clients</tag>
-         
         <tag>JsonConvert.SerializeObject</tag>
+         
+        <tag>Reflected_XSS_All_Clients</tag>
          
         <tag>JsonSerializerSettings</tag>
          
@@ -4949,6 +4971,8 @@
         <title>使用 OpenTracing - Jaeger (AP整合)</title>
         <pubTime>2019-01-15T05:13:41.000Z</pubTime>
         
+        <tag>BFv4</tag>
+         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -4962,8 +4986,6 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
-         
-        <tag>BFv4</tag>
          
         <tag>NodeJS</tag>
          
@@ -4982,6 +5004,8 @@
         <title>使用 OpenTracing - Jaeger</title>
         <pubTime>2019-01-04T06:02:45.000Z</pubTime>
         
+        <tag>BFv4</tag>
+         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -4995,8 +5019,6 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
-         
-        <tag>BFv4</tag>
          
          
            
