@@ -3,19 +3,20 @@
 
 
     
+    
   <url>
     <loc>https://rainmakerho.github.io/2022/11/17/abp-structuring-solution-ddd/</loc>
-    <lastmod>2022-11-17T09:56:28.339Z</lastmod>
+    <lastmod>2022-11-18T03:04:24.536Z</lastmod>
     <data>
         <display>
         <title>探索 ABP Framework Web 方案</title>
         <pubTime>2022-11-17T03:09:30.000Z</pubTime>
         
+        <tag>ABP</tag>
+         
         <tag>ABP Framework</tag>
          
         <tag>DDD</tag>
-         
-        <tag>ABP</tag>
          
          
            
@@ -24,10 +25,9 @@
     </url>
 
     
-    
   <url>
     <loc>https://rainmakerho.github.io/2022/11/15/Path-GetTempFileName-IOException-The-file-exists/</loc>
-    <lastmod>2022-11-15T09:27:20.462Z</lastmod>
+    <lastmod>2022-11-18T00:56:14.005Z</lastmod>
     <data>
         <display>
         <title>C# System.IO.Path.GetTempFileName 會產生 IOException 檔案存在(The file exists)的錯誤</title>
@@ -46,6 +46,8 @@
         <tag>檔案存在</tag>
          
         <tag>The file exists</tag>
+         
+        <tag>65535</tag>
          
          
            
@@ -1005,8 +1007,6 @@
         <title>Teams 在 Calendar 上建立 會議 ，並設定它是線上會議</title>
         <pubTime>2022-05-04T00:22:22.000Z</pubTime>
         
-        <tag>OnlineMeetings.ReadWrite.All</tag>
-         
         <tag>teams</tag>
          
         <tag>meeting</tag>
@@ -1016,6 +1016,8 @@
         <tag>calendar</tag>
          
         <tag>Calendars.ReadWrite</tag>
+         
+        <tag>OnlineMeetings.ReadWrite.All</tag>
          
          
            
@@ -1034,6 +1036,8 @@
         
         <tag>Teams</tag>
          
+        <tag>OnlineMeetings.ReadWrite.All</tag>
+         
         <tag>meetings</tag>
          
         <tag>behalf of a user</tag>
@@ -1043,8 +1047,6 @@
         <tag>Access Policy</tag>
          
         <tag>No Application Access Policy found for this app.</tag>
-         
-        <tag>OnlineMeetings.ReadWrite.All</tag>
          
          
            
@@ -1196,8 +1198,6 @@
          
         <tag>OAuth 2.0</tag>
          
-        <tag>public client</tag>
-         
         <tag>PKCE</tag>
          
         <tag>Proof Key for Code Exchange</tag>
@@ -1205,6 +1205,8 @@
         <tag>claiming URLs</tag>
          
         <tag>Custom URL Scheme</tag>
+         
+        <tag>public client</tag>
          
          
            
@@ -1342,13 +1344,13 @@
         
         <tag>OAuth 2.0</tag>
          
+        <tag>public client</tag>
+         
         <tag>Implicit Flow</tag>
          
         <tag>response_type=token</tag>
          
         <tag>response_mode=fragment</tag>
-         
-        <tag>public client</tag>
          
         <tag>token flow</tag>
          
@@ -1813,9 +1815,9 @@
         
         <tag>DataTable</tag>
          
-        <tag>JsonConvert.SerializeObject</tag>
-         
         <tag>Reflected_XSS_All_Clients</tag>
+         
+        <tag>JsonConvert.SerializeObject</tag>
          
         <tag>JsonSerializerSettings</tag>
          
@@ -2315,11 +2317,11 @@
          
         <tag>Heap Inspection</tag>
          
+        <tag>MVC5</tag>
+         
         <tag>Custom Model Binder</tag>
          
         <tag>SecureString</tag>
-         
-        <tag>MVC5</tag>
          
         <tag>netFramework</tag>
          
@@ -4806,13 +4808,13 @@
         <title>document.[formName] is undefined</title>
         <pubTime>2019-03-16T05:48:31.000Z</pubTime>
         
-        <tag>軟體求生</tag>
-         
         <tag>js</tag>
          
         <tag>document.formName</tag>
          
         <tag>undefined</tag>
+         
+        <tag>軟體求生</tag>
          
         <tag>asp.net 4</tag>
          
@@ -4872,11 +4874,11 @@
         <title>Inheritance security rules violated by type: 'System.Net.Http.WebRequestHandler'</title>
         <pubTime>2019-02-23T02:41:55.000Z</pubTime>
         
+        <tag>軟體求生</tag>
+         
         <tag>System.Net.Http</tag>
          
         <tag>4.1.0.0</tag>
-         
-        <tag>軟體求生</tag>
          
          
            
@@ -5886,9 +5888,9 @@
         <title>使用 Botframework 的 Bot 如何 Debug 到 BotBuilder Source ?</title>
         <pubTime>2018-02-01T01:47:18.000Z</pubTime>
         
-        <tag>botframework</tag>
-         
         <tag>C#</tag>
+         
+        <tag>botframework</tag>
          
         <tag>BotBuilder</tag>
          
