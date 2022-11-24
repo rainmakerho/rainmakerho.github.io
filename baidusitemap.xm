@@ -5,7 +5,7 @@
     
   <url>
     <loc>https://rainmakerho.github.io/2022/11/24/sql-2019-too-many-if-else-cause-hang/</loc>
-    <lastmod>2022-11-24T06:42:26.328Z</lastmod>
+    <lastmod>2022-11-24T09:58:15.405Z</lastmod>
     <data>
         <display>
         <title>在 Microsoft SQL Server 2019 如果有太多的 if-else 在 Scalar Function 中，執行該 Function 會跑很久?</title>
@@ -1035,8 +1035,6 @@
         <title>Teams 在 Calendar 上建立 會議 ，並設定它是線上會議</title>
         <pubTime>2022-05-04T00:22:22.000Z</pubTime>
         
-        <tag>OnlineMeetings.ReadWrite.All</tag>
-         
         <tag>teams</tag>
          
         <tag>meeting</tag>
@@ -1046,6 +1044,8 @@
         <tag>calendar</tag>
          
         <tag>Calendars.ReadWrite</tag>
+         
+        <tag>OnlineMeetings.ReadWrite.All</tag>
          
          
            
@@ -1064,6 +1064,8 @@
         
         <tag>Teams</tag>
          
+        <tag>OnlineMeetings.ReadWrite.All</tag>
+         
         <tag>meetings</tag>
          
         <tag>behalf of a user</tag>
@@ -1073,8 +1075,6 @@
         <tag>Access Policy</tag>
          
         <tag>No Application Access Policy found for this app.</tag>
-         
-        <tag>OnlineMeetings.ReadWrite.All</tag>
          
          
            
@@ -4836,13 +4836,13 @@
         <title>document.[formName] is undefined</title>
         <pubTime>2019-03-16T05:48:31.000Z</pubTime>
         
+        <tag>軟體求生</tag>
+         
         <tag>js</tag>
          
         <tag>document.formName</tag>
          
         <tag>undefined</tag>
-         
-        <tag>軟體求生</tag>
          
         <tag>asp.net 4</tag>
          
@@ -4902,11 +4902,11 @@
         <title>Inheritance security rules violated by type: 'System.Net.Http.WebRequestHandler'</title>
         <pubTime>2019-02-23T02:41:55.000Z</pubTime>
         
-        <tag>軟體求生</tag>
-         
         <tag>System.Net.Http</tag>
          
         <tag>4.1.0.0</tag>
+         
+        <tag>軟體求生</tag>
          
          
            
@@ -5845,11 +5845,11 @@
         <title>SmtpConnection.GetConnection NullReferenceException</title>
         <pubTime>2018-03-14T02:07:16.000Z</pubTime>
         
-        <tag>NullReferenceException</tag>
-         
         <tag>SmtpClient</tag>
          
         <tag>SmtpConnection.GetConnection</tag>
+         
+        <tag>NullReferenceException</tag>
          
         <tag>.net</tag>
          
@@ -5874,11 +5874,11 @@
         <title>System.NullReferenceException when Aspose.Pdf.License.SetLicense(String licenseName)</title>
         <pubTime>2018-03-13T06:54:05.000Z</pubTime>
         
+        <tag>NullReferenceException</tag>
+         
         <tag>Aspose</tag>
          
         <tag>SetLicense</tag>
-         
-        <tag>NullReferenceException</tag>
          
          
            
