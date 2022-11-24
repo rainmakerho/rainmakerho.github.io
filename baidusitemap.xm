@@ -3,6 +3,34 @@
 
 
     
+  <url>
+    <loc>https://rainmakerho.github.io/2022/11/24/sql-2019-too-many-if-else-cause-hang/</loc>
+    <lastmod>2022-11-24T06:42:26.328Z</lastmod>
+    <data>
+        <display>
+        <title>在 Microsoft SQL Server 2019 如果有太多的 if-else 在 Scalar Function 中，執行該 Function 會跑很久?</title>
+        <pubTime>2022-11-24T02:50:52.000Z</pubTime>
+        
+        <tag>hang</tag>
+         
+        <tag>windows</tag>
+         
+        <tag>mssql</tag>
+         
+        <tag>sql 2019</tag>
+         
+        <tag>15.0 RTM</tag>
+         
+        <tag>15.0.2000.5</tag>
+         
+        <tag>Timeout</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
     
   <url>
     <loc>https://rainmakerho.github.io/2022/11/17/abp-structuring-solution-ddd/</loc>
@@ -470,9 +498,9 @@
         <title>Timeout expired. all pooled connections were in use and max pool size was reached. 自動關閉 Connection ?</title>
         <pubTime>2022-08-29T03:27:36.000Z</pubTime>
         
-        <tag>Connection Pooling</tag>
-         
         <tag>Timeout</tag>
+         
+        <tag>Connection Pooling</tag>
          
         <tag>Auto Close</tag>
          
@@ -1007,6 +1035,8 @@
         <title>Teams 在 Calendar 上建立 會議 ，並設定它是線上會議</title>
         <pubTime>2022-05-04T00:22:22.000Z</pubTime>
         
+        <tag>OnlineMeetings.ReadWrite.All</tag>
+         
         <tag>teams</tag>
          
         <tag>meeting</tag>
@@ -1016,8 +1046,6 @@
         <tag>calendar</tag>
          
         <tag>Calendars.ReadWrite</tag>
-         
-        <tag>OnlineMeetings.ReadWrite.All</tag>
          
          
            
@@ -1036,8 +1064,6 @@
         
         <tag>Teams</tag>
          
-        <tag>OnlineMeetings.ReadWrite.All</tag>
-         
         <tag>meetings</tag>
          
         <tag>behalf of a user</tag>
@@ -1047,6 +1073,8 @@
         <tag>Access Policy</tag>
          
         <tag>No Application Access Policy found for this app.</tag>
+         
+        <tag>OnlineMeetings.ReadWrite.All</tag>
          
          
            
@@ -5888,9 +5916,9 @@
         <title>使用 Botframework 的 Bot 如何 Debug 到 BotBuilder Source ?</title>
         <pubTime>2018-02-01T01:47:18.000Z</pubTime>
         
-        <tag>C#</tag>
-         
         <tag>botframework</tag>
+         
+        <tag>C#</tag>
          
         <tag>BotBuilder</tag>
          
