@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2022-11-24T09:58:15.405Z</updated>
+  <updated>2022-11-25T02:15:42.612Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用 DefaultRequestHeaders.Authorization 卻被 Checkmarx 判斷有 Privacy Violation 的 Issue</title>
+    <link href="https://rainmakerho.github.io/2022/11/25/checkmarx-headers-authorization-privacy-violation/"/>
+    <id>https://rainmakerho.github.io/2022/11/25/checkmarx-headers-authorization-privacy-violation/</id>
+    <published>2022-11-25T01:19:42.000Z</published>
+    <updated>2022-11-25T02:15:42.612Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>透過 HttpClient 呼叫 api 時，透過 <code>DefaultRequestHeaders.Authorization</code> 設定 Token 的程式碼，<br>被 <strong>Checkmarx V9.4.5 HF16</strong> 掃出有 Privacy Violation 的 Issue。<br>為什麼這樣呢?</p><h3 id="研究與解法"><a href="#研究與解法" class="headerlink" title="研究與解法"></a>研究與解法</h3><p>測試的程式碼如下，</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ParameterModel</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">string</span> Token &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">string</span> Text &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">[<span class="meta">HttpPost(<span class="meta-string">"[action]"</span>)</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">async</span> Task&lt;<span class="keyword">string</span>&gt; <span class="title">CheckParameter</span>(<span class="params">ParameterModel data</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">var</span> httpClient = <span class="keyword">new</span> HttpClient();</span><br><span class="line">httpClient.DefaultRequestHeaders.Authorization = <span class="keyword">new</span> AuthenticationHeaderValue(<span class="string">"Bearer"</span>, data.Token);</span><br><span class="line"><span class="keyword">var</span> parameters = <span class="keyword">new</span> Dictionary&lt;<span class="keyword">string</span>, <span class="keyword">string</span>&gt;();</span><br><span class="line">parameters[<span class="string">"text"</span>] = data.Text;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> response = <span class="keyword">await</span> httpClient.PostAsync(<span class="string">$"api/Eye/CheckSPEEDEyeEditParameter"</span>, <span class="keyword">new</span> FormUrlEncodedContent(parameters));</span><br><span class="line"><span class="keyword">var</span> contents = <span class="keyword">await</span> response.Content.ReadAsStringAsync();</span><br><span class="line"><span class="keyword">return</span> HttpUtility.HtmlEncode(contents);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>Checkmarx 的說明:<br>方法 CheckParameter 在 WebApplication1/WebApplication1/Controllers/WeatherForecastController.cs 第 89 行將<br>使用者個人資訊送至應用程式外。這可能構成侵犯隱私權(Privacy Violation)<br>Source: Authorization<br>Target: contents</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">92.</span> httpClient.DefaultRequestHeaders.Authorization = <span class="keyword">new</span></span><br><span class="line">AuthenticationHeaderValue(<span class="string">"Bearer"</span>, data.Token);</span><br><span class="line">....</span><br><span class="line"><span class="number">98.</span> <span class="keyword">return</span> HttpUtility.HtmlEncode(contents);</span><br></pre></td></tr></table></figure><h4 id="Checkmarx-是怎麼找的呢"><a href="#Checkmarx-是怎麼找的呢" class="headerlink" title="Checkmarx 是怎麼找的呢?"></a>Checkmarx 是怎麼找的呢?</h4><p>在 checkmarx 中會找一些個人資訊相關的欄位資訊，如下，</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">CxList tempResult = All.FindByShortNames(<span class="keyword">new</span> List&lt;<span class="keyword">string</span>&gt; &#123;</span><br><span class="line"><span class="string">"*Credit*"</span>,</span><br><span class="line"><span class="string">"*credentials*"</span>,</span><br><span class="line"><span class="string">"*secret*"</span>,</span><br><span class="line"><span class="string">"*Account*"</span>,</span><br><span class="line"><span class="string">"*SSN"</span>,</span><br><span class="line"><span class="string">"DOB"</span>,</span><br><span class="line"><span class="string">"SSN*"</span>,</span><br><span class="line"><span class="string">"*SocialSecurity*"</span>,</span><br><span class="line"><span class="string">"DeviceUniqueId"</span>,</span><br><span class="line"><span class="string">"auth*"</span>,</span><br><span class="line"><span class="string">"*passport*"</span>&#125;, <span class="literal">false</span>);</span><br></pre></td></tr></table></figure><p>而 <code>httpClient.DefaultRequestHeaders.Authorization</code> 中的 <strong>Authorization</strong> 符合 <code>auth*</code> ，<br>找到後，最後又呼叫 httpClient.PostAsync 取回資料，傳出 contents。<br>所以 Checkmarx 覺得有問題，因為它並不知道它是 api 所需要的 HTTP Header。</p><h4 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h4><p>有以下 2 種解決方式</p><p>1.在 Checkmarx 上，將該問題設定為 <strong>不可利用</strong>。</p><p>2.改使用 字串的方式(<code>httpClient.DefaultRequestHeaders.Add(&quot;Authorization&quot;, $&quot;Bearer {data.Token}&quot;)</code>)，如下，</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">HttpPost(<span class="meta-string">"[action]"</span>)</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">async</span> Task&lt;<span class="keyword">string</span>&gt; <span class="title">CheckParameter2</span>(<span class="params">ParameterModel data</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">var</span> httpClient = <span class="keyword">new</span> HttpClient();</span><br><span class="line"><span class="comment">//httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", data.Token);</span></span><br><span class="line">httpClient.DefaultRequestHeaders.Add(<span class="string">"Authorization"</span>, <span class="string">$"Bearer <span class="subst">&#123;data.Token&#125;</span>"</span>);</span><br><span class="line"><span class="keyword">var</span> parameters = <span class="keyword">new</span> Dictionary&lt;<span class="keyword">string</span>, <span class="keyword">string</span>&gt;();</span><br><span class="line">parameters[<span class="string">"text"</span>] = data.Text;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> response = <span class="keyword">await</span> httpClient.PostAsync(<span class="string">$"api/Eye/CheckSPEEDEyeEditParameter"</span>, <span class="keyword">new</span> FormUrlEncodedContent(parameters));</span><br><span class="line"><span class="keyword">var</span> contents = <span class="keyword">await</span> response.Content.ReadAsStringAsync();</span><br><span class="line"><span class="keyword">return</span> HttpUtility.HtmlEncode(contents);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://github.com/rainmakerho/Vulnerability-Analysis/issues/5" target="_blank" rel="noopener">Privacy Violation - Checkmarx V9.4.5 HF16</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;透過 HttpClient 呼叫 api 時，透過 &lt;code&gt;DefaultRequestHeaders.Authorization&lt;/c
+      
+    
+    </summary>
+    
+    
+      <category term="Checkmarx" scheme="https://rainmakerho.github.io/tags/Checkmarx/"/>
+    
+      <category term="DefaultRequestHeaders.Authorization" scheme="https://rainmakerho.github.io/tags/DefaultRequestHeaders-Authorization/"/>
+    
+      <category term="Privacy Violation" scheme="https://rainmakerho.github.io/tags/Privacy-Violation/"/>
+    
+  </entry>
   
   <entry>
     <title>在 Microsoft SQL Server 2019 如果有太多的 if-else 在 Scalar Function 中，執行該 Function 會跑很久?</title>
@@ -616,35 +643,6 @@
       <category term="AuthenticationProperties" scheme="https://rainmakerho.github.io/tags/AuthenticationProperties/"/>
     
       <category term="AuthorizationCodeReceivedNotification" scheme="https://rainmakerho.github.io/tags/AuthorizationCodeReceivedNotification/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>用戶端和伺服器無法溝通，因為它們沒有公用的演算法</title>
-    <link href="https://rainmakerho.github.io/2022/07/12/tls-do-not-a-common-algorithm/"/>
-    <id>https://rainmakerho.github.io/2022/07/12/tls-do-not-a-common-algorithm/</id>
-    <published>2022-07-12T03:56:27.000Z</published>
-    <updated>2022-07-12T05:02:11.911Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近同事將一台 Server 設定停用 TLS 1.0, TLS 1.1 後，<br>ASP.NET 4.X 的程式呼叫 Https 的 Web Service 會噴出 <strong>用戶端和伺服器無法溝通，因為它們沒有公用的演算法。</strong> 的錯誤。</p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>後來在程式中設定強迫走 TLS 1.2 就可以正常運行。</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;</span><br></pre></td></tr></table></figure><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://stackoverflow.com/questions/26742054/the-client-and-server-cannot-communicate-because-they-do-not-possess-a-common-a" target="_blank" rel="noopener">The client and server cannot communicate, because they do not possess a common algorithm - ASP.NET C# IIS TLS 1.0 / 1.1 / 1.2 - Win32Exception</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;最近同事將一台 Server 設定停用 TLS 1.0, TLS 1.1 後，&lt;br&gt;ASP.NET 4.X 的程式呼叫 Https 的 W
-      
-    
-    </summary>
-    
-    
-      <category term="ASP.NET" scheme="https://rainmakerho.github.io/tags/ASP-NET/"/>
-    
-      <category term="TLS" scheme="https://rainmakerho.github.io/tags/TLS/"/>
-    
-      <category term="TLS 1.2" scheme="https://rainmakerho.github.io/tags/TLS-1-2/"/>
-    
-      <category term="Disable TLS 1.1" scheme="https://rainmakerho.github.io/tags/Disable-TLS-1-1/"/>
     
   </entry>
   
