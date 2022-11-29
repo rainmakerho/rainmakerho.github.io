@@ -4,18 +4,20 @@
 
     
   <url>
-    <loc>https://rainmakerho.github.io/2022/11/25/checkmarx-headers-authorization-privacy-violation/</loc>
-    <lastmod>2022-11-25T02:15:42.612Z</lastmod>
+    <loc>https://rainmakerho.github.io/2022/11/29/password-with-special-characters-in-connectionstring/</loc>
+    <lastmod>2022-11-29T07:08:47.704Z</lastmod>
     <data>
         <display>
-        <title>使用 DefaultRequestHeaders.Authorization 卻被 Checkmarx 判斷有 Privacy Violation 的 Issue</title>
-        <pubTime>2022-11-25T01:19:42.000Z</pubTime>
+        <title>資料庫連線字串(connectionString)中的密碼(password)有特殊字(例如;)要怎麼辦?</title>
+        <pubTime>2022-11-29T06:22:00.000Z</pubTime>
         
-        <tag>Checkmarx</tag>
+        <tag>password</tag>
          
-        <tag>DefaultRequestHeaders.Authorization</tag>
+        <tag>connectionString</tag>
          
-        <tag>Privacy Violation</tag>
+        <tag>semicolon</tag>
+         
+        <tag>single quote</tag>
          
          
            
@@ -26,7 +28,7 @@
     
   <url>
     <loc>https://rainmakerho.github.io/2022/11/24/sql-2019-too-many-if-else-cause-hang/</loc>
-    <lastmod>2022-11-24T09:58:15.405Z</lastmod>
+    <lastmod>2022-11-25T06:51:05.552Z</lastmod>
     <data>
         <display>
         <title>在 Microsoft SQL Server 2019 如果有太多的 if-else 在 Scalar Function 中，執行該 Function 會跑很久?</title>
@@ -45,6 +47,27 @@
         <tag>15.0.2000.5</tag>
          
         <tag>Timeout</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://rainmakerho.github.io/2022/11/25/checkmarx-headers-authorization-privacy-violation/</loc>
+    <lastmod>2022-11-25T06:50:26.440Z</lastmod>
+    <data>
+        <display>
+        <title>使用 DefaultRequestHeaders.Authorization 卻被 Checkmarx 判斷有 Privacy Violation 的 Issue</title>
+        <pubTime>2022-11-25T01:19:42.000Z</pubTime>
+        
+        <tag>Checkmarx</tag>
+         
+        <tag>DefaultRequestHeaders.Authorization</tag>
+         
+        <tag>Privacy Violation</tag>
          
          
            
@@ -208,9 +231,9 @@
         <title>C# 使用 non-null 的運算子</title>
         <pubTime>2022-11-10T09:16:39.000Z</pubTime>
         
-        <tag>C#</tag>
-         
         <tag>NullReferenceException</tag>
+         
+        <tag>C#</tag>
          
         <tag>non-null</tag>
          
@@ -256,9 +279,9 @@
         <title>ASP.NET Security Headers</title>
         <pubTime>2020-05-12T01:29:40.000Z</pubTime>
         
-        <tag>Content-Security-Policy</tag>
-         
         <tag>X-XSS-Protection</tag>
+         
+        <tag>Content-Security-Policy</tag>
          
         <tag>X-Frame-Options</tag>
          
@@ -694,11 +717,11 @@
         
         <tag>metasploit</tag>
          
-        <tag>mssql</tag>
-         
         <tag>mssql_payload</tag>
          
         <tag>xp_cmdshell</tag>
+         
+        <tag>mssql</tag>
          
          
            
@@ -1608,9 +1631,9 @@
         <title>Checkmarx V9.4 在 Heap_Inspection 的改變(ASPX)</title>
         <pubTime>2021-12-28T01:09:40.000Z</pubTime>
         
-        <tag>ASP.NET</tag>
-         
         <tag>ASPX</tag>
+         
+        <tag>ASP.NET</tag>
          
         <tag>Checkmarx</tag>
          
@@ -4046,11 +4069,11 @@
         <title>透過 Content-Security-Policy 修正 Mixed Content Link 問題</title>
         <pubTime>2020-05-19T08:44:09.000Z</pubTime>
         
+        <tag>Content-Security-Policy</tag>
+         
         <tag>Mixed Content</tag>
          
         <tag>CSP</tag>
-         
-        <tag>Content-Security-Policy</tag>
          
         <tag>upgrade-insecure-requests</tag>
          
@@ -4857,13 +4880,13 @@
         <title>document.[formName] is undefined</title>
         <pubTime>2019-03-16T05:48:31.000Z</pubTime>
         
+        <tag>軟體求生</tag>
+         
         <tag>js</tag>
          
         <tag>document.formName</tag>
          
         <tag>undefined</tag>
-         
-        <tag>軟體求生</tag>
          
         <tag>asp.net 4</tag>
          
@@ -4923,11 +4946,11 @@
         <title>Inheritance security rules violated by type: 'System.Net.Http.WebRequestHandler'</title>
         <pubTime>2019-02-23T02:41:55.000Z</pubTime>
         
-        <tag>軟體求生</tag>
-         
         <tag>System.Net.Http</tag>
          
         <tag>4.1.0.0</tag>
+         
+        <tag>軟體求生</tag>
          
          
            
@@ -5022,6 +5045,8 @@
         <title>使用 OpenTracing - Jaeger (AP整合)</title>
         <pubTime>2019-01-15T05:13:41.000Z</pubTime>
         
+        <tag>BFv4</tag>
+         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -5035,8 +5060,6 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
-         
-        <tag>BFv4</tag>
          
         <tag>NodeJS</tag>
          
@@ -5055,6 +5078,8 @@
         <title>使用 OpenTracing - Jaeger</title>
         <pubTime>2019-01-04T06:02:45.000Z</pubTime>
         
+        <tag>BFv4</tag>
+         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -5068,8 +5093,6 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
-         
-        <tag>BFv4</tag>
          
          
            
@@ -5937,9 +5960,9 @@
         <title>使用 Botframework 的 Bot 如何 Debug 到 BotBuilder Source ?</title>
         <pubTime>2018-02-01T01:47:18.000Z</pubTime>
         
-        <tag>C#</tag>
-         
         <tag>botframework</tag>
+         
+        <tag>C#</tag>
          
         <tag>BotBuilder</tag>
          
