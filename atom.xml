@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2022-11-29T07:08:47.704Z</updated>
+  <updated>2022-12-08T06:18:44.070Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,43 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>為什麼 iis log 中會從 AWS 發出的 Request ?</title>
+    <link href="https://rainmakerho.github.io/2022/12/08/why-iis-have-addition-request-from-aws/"/>
+    <id>https://rainmakerho.github.io/2022/12/08/why-iis-have-addition-request-from-aws/</id>
+    <published>2022-12-08T06:07:10.000Z</published>
+    <updated>2022-12-08T06:18:44.070Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近有朋友詢問為什麼 IIS Log 中會有從 AWS 連進去的 IP，<br>而且 url 跟台灣測試人員連進去的 url 一模一樣，<br>在 台灣測試人員的 log 相近 2 秒內，<br>就會有相同的 url 要求，IP 來自 AWS。</p><h3 id="釋疑"><a href="#釋疑" class="headerlink" title="釋疑"></a>釋疑</h3><p>原本以為是有人從 AWS 的 VM 連到該 Server ，<br>但跟台灣測試人員連進去的 url 一模一樣 …<br>判斷有可能是因為 Chrome 有裝了 Plugins ，<br>而該 Plugin 會將 Client 連到的網站也 Copy 一份去連接分析看看。</p><p>詢問之後發現，該測試人員 Chrome 有安裝 <strong>防詐達人</strong> ，<br>使用 Chrome <strong>無痕模式</strong> 去操作，就不會有來自 AWS 的 request 。</p><p>判斷 <strong>防詐達人</strong> Server 是放在 AWS 上面，<br>如果在進行一些測試，可以把 Chrome 的 Plugins 停用，<br>或是改用 <strong>無痕模式</strong> 以避免誤會。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;最近有朋友詢問為什麼 IIS Log 中會有從 AWS 連進去的 IP，&lt;br&gt;而且 url 跟台灣測試人員連進去的 url 一模一樣，&lt;b
+      
+    
+    </summary>
+    
+    
+      <category term="Chrome" scheme="https://rainmakerho.github.io/tags/Chrome/"/>
+    
+      <category term="iis" scheme="https://rainmakerho.github.io/tags/iis/"/>
+    
+      <category term="Plugins" scheme="https://rainmakerho.github.io/tags/Plugins/"/>
+    
+      <category term="防詐達人" scheme="https://rainmakerho.github.io/tags/%E9%98%B2%E8%A9%90%E9%81%94%E4%BA%BA/"/>
+    
+      <category term="AWS" scheme="https://rainmakerho.github.io/tags/AWS/"/>
+    
+      <category term="IP" scheme="https://rainmakerho.github.io/tags/IP/"/>
+    
+      <category term="log" scheme="https://rainmakerho.github.io/tags/log/"/>
+    
+      <category term="waf" scheme="https://rainmakerho.github.io/tags/waf/"/>
+    
+  </entry>
   
   <entry>
     <title>資料庫連線字串(connectionString)中的密碼(password)有特殊字(例如;)要怎麼辦?</title>
@@ -303,9 +340,9 @@
     </summary>
     
     
-      <category term="NullReferenceException" scheme="https://rainmakerho.github.io/tags/NullReferenceException/"/>
-    
       <category term="C#" scheme="https://rainmakerho.github.io/tags/C/"/>
+    
+      <category term="NullReferenceException" scheme="https://rainmakerho.github.io/tags/NullReferenceException/"/>
     
       <category term="non-null" scheme="https://rainmakerho.github.io/tags/non-null/"/>
     
@@ -610,35 +647,6 @@
       <category term="ExecuteReaderAsync" scheme="https://rainmakerho.github.io/tags/ExecuteReaderAsync/"/>
     
       <category term="CloseConnection" scheme="https://rainmakerho.github.io/tags/CloseConnection/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>使用 VS Code Debug 時，Console.ReadLine() 沒作用</title>
-    <link href="https://rainmakerho.github.io/2022/08/04/vscode-debug-console-readline-not-work/"/>
-    <id>https://rainmakerho.github.io/2022/08/04/vscode-debug-console-readline-not-work/</id>
-    <published>2022-08-04T01:10:31.000Z</published>
-    <updated>2022-08-04T01:26:35.301Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>透過 VS Code 偵錯時，程式到了 <code>var input=Console.ReadLine();</code>後，<br>會在 <strong>偵錯主控台</strong> 接受使用者的輸入，<br>但輸入值按下 Enter 鍵後，卻沒有作用 </p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>查到 <a href="https://stackoverflow.com/questions/41195432/debug-console-window-cannot-accept-console-readline-input-during-debugging" target="_blank" rel="noopener">Debug Console window cannot accept Console.ReadLine() input during debugging</a>，<br>因為 <strong>launch.json</strong> 中 <strong>configurations-&gt;console</strong> 的 <strong>internalConsole</strong> 不 Support Console.ReadLine() 。<br><img src="/2022/08/04/vscode-debug-console-readline-not-work/01.png" title="internalConsole"></p><p>所以要將它改成 <strong>externalTerminal</strong> 或是 <strong>integratedTerminal</strong> 才可以。</p><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://stackoverflow.com/questions/41195432/debug-console-window-cannot-accept-console-readline-input-during-debugging" target="_blank" rel="noopener">Debug Console window cannot accept Console.ReadLine() input during debugging</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;透過 VS Code 偵錯時，程式到了 &lt;code&gt;var input=Console.ReadLine();&lt;/code&gt;後，&lt;br&gt;會在
-      
-    
-    </summary>
-    
-    
-      <category term="VSCode" scheme="https://rainmakerho.github.io/tags/VSCode/"/>
-    
-      <category term="Console.ReadLine" scheme="https://rainmakerho.github.io/tags/Console-ReadLine/"/>
-    
-      <category term="internalConsole" scheme="https://rainmakerho.github.io/tags/internalConsole/"/>
-    
-      <category term="偵錯主控台" scheme="https://rainmakerho.github.io/tags/%E5%81%B5%E9%8C%AF%E4%B8%BB%E6%8E%A7%E5%8F%B0/"/>
     
   </entry>
   

@@ -4,6 +4,37 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2022/12/08/why-iis-have-addition-request-from-aws/</loc>
+    <lastmod>2022-12-08T06:18:44.070Z</lastmod>
+    <data>
+        <display>
+        <title>為什麼 iis log 中會從 AWS 發出的 Request ?</title>
+        <pubTime>2022-12-08T06:07:10.000Z</pubTime>
+        
+        <tag>Chrome</tag>
+         
+        <tag>iis</tag>
+         
+        <tag>Plugins</tag>
+         
+        <tag>防詐達人</tag>
+         
+        <tag>AWS</tag>
+         
+        <tag>IP</tag>
+         
+        <tag>log</tag>
+         
+        <tag>waf</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2022/11/29/password-with-special-characters-in-connectionstring/</loc>
     <lastmod>2022-11-29T07:08:47.704Z</lastmod>
     <data>
@@ -231,9 +262,9 @@
         <title>C# 使用 non-null 的運算子</title>
         <pubTime>2022-11-10T09:16:39.000Z</pubTime>
         
-        <tag>NullReferenceException</tag>
-         
         <tag>C#</tag>
+         
+        <tag>NullReferenceException</tag>
          
         <tag>non-null</tag>
          
@@ -1000,9 +1031,9 @@
         <title>AADSTS50011 The redirect URI 'https://.../licensemanagement/signin-azuread-oidc' specified in the request does not match the redirect URIs configured for the application 'appid'</title>
         <pubTime>2022-05-11T07:41:58.000Z</pubTime>
         
-        <tag>AADSTS50011</tag>
-         
         <tag>Azure</tag>
+         
+        <tag>AADSTS50011</tag>
          
         <tag>Azure AD</tag>
          
@@ -1270,6 +1301,8 @@
          
         <tag>OAuth 2.0</tag>
          
+        <tag>public client</tag>
+         
         <tag>PKCE</tag>
          
         <tag>Proof Key for Code Exchange</tag>
@@ -1277,8 +1310,6 @@
         <tag>claiming URLs</tag>
          
         <tag>Custom URL Scheme</tag>
-         
-        <tag>public client</tag>
          
          
            
@@ -1416,13 +1447,13 @@
         
         <tag>OAuth 2.0</tag>
          
-        <tag>public client</tag>
-         
         <tag>Implicit Flow</tag>
          
         <tag>response_type=token</tag>
          
         <tag>response_mode=fragment</tag>
+         
+        <tag>public client</tag>
          
         <tag>token flow</tag>
          
@@ -5889,11 +5920,11 @@
         <title>SmtpConnection.GetConnection NullReferenceException</title>
         <pubTime>2018-03-14T02:07:16.000Z</pubTime>
         
-        <tag>NullReferenceException</tag>
-         
         <tag>SmtpClient</tag>
          
         <tag>SmtpConnection.GetConnection</tag>
+         
+        <tag>NullReferenceException</tag>
          
         <tag>.net</tag>
          
@@ -5918,11 +5949,11 @@
         <title>System.NullReferenceException when Aspose.Pdf.License.SetLicense(String licenseName)</title>
         <pubTime>2018-03-13T06:54:05.000Z</pubTime>
         
+        <tag>NullReferenceException</tag>
+         
         <tag>Aspose</tag>
          
         <tag>SetLicense</tag>
-         
-        <tag>NullReferenceException</tag>
          
          
            
