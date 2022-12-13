@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2022-12-08T06:18:44.070Z</updated>
+  <updated>2022-12-13T06:21:02.338Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ASP.NET 4 在不分頁的 UltraWebGrid Scroll 時，會卡頓</title>
+    <link href="https://rainmakerho.github.io/2022/12/13/UltraWebGrid-slow-ie11-net4/"/>
+    <id>https://rainmakerho.github.io/2022/12/13/UltraWebGrid-slow-ie11-net4/</id>
+    <published>2022-12-13T05:33:55.000Z</published>
+    <updated>2022-12-13T06:21:02.338Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>同事將 ASP.NET 4 的系統從 Windows 2008 移到 Windows 2019 後，<br>使用者查看 不分頁的 UltraWebGrid ，<br>在 Scroll 時，會發生 頓頓的狀況。<br>但是在 Windows 2008 OS 中卻是 OK 的。<br>要怎麼解決呢?</p><h3 id="解決"><a href="#解決" class="headerlink" title="解決"></a>解決</h3><p>請同事用 fiddler 錄一下正常跟 IE 卡頓的網頁來比較一下內容，<br>結果發現，卡頓的網頁中少了 <code>&lt;!DOCTYPE html PUBLIC &#39;-//W3C//DTD XHTML 1.0 Transitional//EN&#39;&gt;</code><br>再往下追發現，<strong>Request.Browser.Browser</strong> 的內容為 <strong>InternetExplorer</strong>，<br>因為是 ASP.NET 4，所以 IE 的 Browser 名稱為 <strong>InternetExplorer</strong>，<br>要讓它 Browser 名稱為 <strong>IE</strong>，<br>所以在 <strong>App_Browsers</strong> 目錄中加入 <strong>瀏覽器資訊檔</strong>，<br>將 Browser 名稱改為 <strong>IE</strong>，如下，</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">browsers</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">browser</span> <span class="attr">id</span>=<span class="string">"IE11OV"</span> <span class="attr">parentID</span>=<span class="string">"InternetExplorer"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">identification</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">userAgent</span> <span class="attr">match</span>=<span class="string">"Trident"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">capability</span> <span class="attr">name</span>=<span class="string">"majorversion"</span> <span class="attr">match</span>=<span class="string">"11"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">identification</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">capabilities</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">capability</span> <span class="attr">name</span>=<span class="string">"browser"</span> <span class="attr">value</span>=<span class="string">"IE"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">capabilities</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">browser</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">browsers</span>&gt;</span></span><br></pre></td></tr></table></figure><ul><li>註: 如果已有其他的 Browser 設定，請加到 browsers 區塊中即可。</li></ul><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://dotblogs.com.tw/rainmaker/2014/01/09/139427" target="_blank" rel="noopener">Infragistics 的 UltraWebGrid 在 IE11 上無法正常顯示問題</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;同事將 ASP.NET 4 的系統從 Windows 2008 移到 Windows 2019 後，&lt;br&gt;使用者查看 不分頁的 Ultra
+      
+    
+    </summary>
+    
+    
+      <category term="ASP.NET" scheme="https://rainmakerho.github.io/tags/ASP-NET/"/>
+    
+      <category term="IE" scheme="https://rainmakerho.github.io/tags/IE/"/>
+    
+      <category term="UltraWebGrid" scheme="https://rainmakerho.github.io/tags/UltraWebGrid/"/>
+    
+      <category term="Infragistics" scheme="https://rainmakerho.github.io/tags/Infragistics/"/>
+    
+  </entry>
   
   <entry>
     <title>為什麼 iis log 中會從 AWS 發出的 Request ?</title>
@@ -134,13 +163,13 @@
     
       <category term="mssql" scheme="https://rainmakerho.github.io/tags/mssql/"/>
     
+      <category term="Timeout" scheme="https://rainmakerho.github.io/tags/Timeout/"/>
+    
       <category term="sql 2019" scheme="https://rainmakerho.github.io/tags/sql-2019/"/>
     
       <category term="15.0 RTM" scheme="https://rainmakerho.github.io/tags/15-0-RTM/"/>
     
       <category term="15.0.2000.5" scheme="https://rainmakerho.github.io/tags/15-0-2000-5/"/>
-    
-      <category term="Timeout" scheme="https://rainmakerho.github.io/tags/Timeout/"/>
     
   </entry>
   
@@ -610,43 +639,6 @@
       <category term="Easy File Sharing Web Server" scheme="https://rainmakerho.github.io/tags/Easy-File-Sharing-Web-Server/"/>
     
       <category term="nmap" scheme="https://rainmakerho.github.io/tags/nmap/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Timeout expired. all pooled connections were in use and max pool size was reached. 自動關閉 Connection ?</title>
-    <link href="https://rainmakerho.github.io/2022/08/29/timeout-expired-max-pool-size-reached/"/>
-    <id>https://rainmakerho.github.io/2022/08/29/timeout-expired-max-pool-size-reached/</id>
-    <published>2022-08-29T03:27:36.000Z</published>
-    <updated>2022-08-29T06:36:21.799Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>我們有一個 ASP.NET Core 的系統，跑一跑就會有 <strong>System.InvalidOperationException: Timeout expired.  The timeout period elapsed prior to obtaining a connection from the pool.  This may have occurred because all pooled connections were in use and max pool size was reached.</strong> 的錯誤。但是它的 Max Pool Size 已經設定到了 6,000 ，還是會噴錯。<br>那系統中一定有沒有關掉的 Connection 才會如此 …</p><h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>針對連線到 DB 存取的 Method 來查看，發現有一個 <a href="https://docs.microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlcommand.executereaderasync" target="_blank" rel="noopener">SqlCommand.ExecuteReaderAsync</a> ，它的寫法大致如下，<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">async</span> Task&lt;DataTable&gt; <span class="title">getDT</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    DataTable dt = <span class="keyword">new</span> DataTable();</span><br><span class="line">    <span class="keyword">var</span> reader = <span class="keyword">await</span> getReader();</span><br><span class="line">    dt.Load(reader);</span><br><span class="line">    reader.Close();</span><br><span class="line">    <span class="keyword">return</span> dt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">async</span> Task&lt;IDataReader&gt; <span class="title">getReader</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> connString = <span class="string">@"Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog=BookStore;Integrated Security=True;Max Pool Size=4;Application Name=&#123;0&#125;"</span>;</span><br><span class="line">    connString = String.Format(connString, <span class="string">"ap-Reader"</span>);</span><br><span class="line">    <span class="keyword">var</span> cn = <span class="keyword">new</span> SqlConnection(connString);</span><br><span class="line">    cn.Open();</span><br><span class="line">    <span class="keyword">var</span> cmd = <span class="keyword">new</span> SqlCommand(<span class="string">@"select * from [dbo].[AbpRoles]"</span>, cn);</span><br><span class="line">    <span class="keyword">var</span> reader = <span class="keyword">await</span> cmd.ExecuteReaderAsync();</span><br><span class="line">    <span class="keyword">return</span> reader;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> xi = <span class="number">0</span>; xi &lt; <span class="number">10</span>; xi++)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">var</span> dt1 = <span class="keyword">await</span> getDT();</span><br><span class="line">    <span class="keyword">var</span> v = <span class="keyword">await</span> getScalarValue();</span><br><span class="line">    Console.WriteLine(<span class="string">$"<span class="subst">&#123;xi&#125;</span>"</span>);</span><br><span class="line">&#125;</span><br><span class="line">Console.ReadKey();</span><br></pre></td></tr></table></figure></p><p>主要是透過 IDataReader 來將資料放入 DataTable 之中，但是因為這樣子的做法，<br>DB 的 Connection 就要等到取得 DataTable 後才可以 Close 。<br>可是，DB Connection 都離開了 Function 範圍還不會 Close 嗎?<br>是的，像上面的程式碼，設定 Max Pool Size 為<strong>4</strong>個，<br>所以迴圈跑到第5個時，就會發生錯誤了，因為 Pool 中的 Connection 被已被佔滿了。<br><img src="/2022/08/29/timeout-expired-max-pool-size-reached/01.png" title="max pool size was reached"></p><ul><li>註: 在 Connection String 中加入 <strong>Application Name={0}</strong>，然後再透過 <code>connString = String.Format(connString, &quot;ap-Reader&quot;)</code> 來置換 Application Name ，是為了在 DB 中更容易查詢到，那裡的程式有造成 Connection 沒有 Close 。</li><li>註: 不同的 Connection String 會有個別的 Connection Pool ，所以當 Application Name 不同時，就會有不同的 Pool 哦~</li></ul><p>可以透過以下的 SQL Script 來查看連線的狀況，<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ConnectionStatus = <span class="keyword">CASE</span> <span class="keyword">WHEN</span> dec.most_recent_sql_handle = <span class="number">0x0</span></span><br><span class="line">        <span class="keyword">THEN</span> <span class="string">'Unused'</span></span><br><span class="line">        <span class="keyword">ELSE</span> <span class="string">'Used'</span></span><br><span class="line">        <span class="keyword">END</span></span><br><span class="line">    , <span class="keyword">CASE</span> <span class="keyword">WHEN</span> des.status = <span class="string">'Sleeping'</span></span><br><span class="line">        <span class="keyword">THEN</span> <span class="string">'sleeping'</span></span><br><span class="line">        <span class="keyword">ELSE</span> <span class="string">'Not Sleeping'</span></span><br><span class="line">        <span class="keyword">END</span></span><br><span class="line">    , ConnectionCount = <span class="keyword">COUNT</span>(<span class="number">1</span>)</span><br><span class="line">, des.program_name</span><br><span class="line">    , des.login_name</span><br><span class="line"><span class="keyword">FROM</span> sys.dm_exec_connections <span class="built_in">dec</span></span><br><span class="line">    <span class="keyword">INNER</span> <span class="keyword">JOIN</span> sys.dm_exec_sessions des</span><br><span class="line">        <span class="keyword">ON</span> dec.session_id = des.session_id</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="keyword">CASE</span> <span class="keyword">WHEN</span> des.status = <span class="string">'Sleeping'</span></span><br><span class="line">        <span class="keyword">THEN</span> <span class="string">'sleeping'</span></span><br><span class="line">        <span class="keyword">ELSE</span> <span class="string">'Not Sleeping'</span></span><br><span class="line">        <span class="keyword">END</span></span><br><span class="line">    , <span class="keyword">CASE</span> <span class="keyword">WHEN</span> dec.most_recent_sql_handle = <span class="number">0x0</span></span><br><span class="line">        <span class="keyword">THEN</span> <span class="string">'Unused'</span></span><br><span class="line">        <span class="keyword">ELSE</span> <span class="string">'Used'</span></span><br><span class="line">        <span class="keyword">END</span></span><br><span class="line">    , des.login_name</span><br><span class="line">,des.program_name</span><br></pre></td></tr></table></figure></p><img src="/2022/08/29/timeout-expired-max-pool-size-reached/02.png" title="Connection Status"><p>知道是因為 ExecuteReader /ExecuteReaderAsync 造成 Connection 無法被回收到 Pool 中，<br>就要來想看看如何將 Connection 關掉。<br>有想到在傳回 DataReader 時，一併將 Connection 也傳回去，或是改用 DataAdapter ，<br>但是因為該 Method 已被一堆程式碼參考使用，如果動程式，相對要調整的地方也很多 …QQ<br>後來發現 ExecuteReader /ExecuteReaderAsync 可接受一個 <a href="https://docs.microsoft.com/en-us/dotnet/api/system.data.commandbehavior" target="_blank" rel="noopener">CommandBehavior</a> 的參數，其中有一個 CloseConnection 的選項可以使用。</p><blockquote><p>CloseConnection : When the command is executed, the associated Connection object is closed when the associated DataReader object is closed.</p></blockquote><p>當相關的 DataReader 關閉時，Connection 也會關閉。</p><p>所以原本的 cmd.ExecuteReaderAsync() 就多加入 <strong>CommandBehavior.CloseConnection</strong> 參數，當用完 DataReader 後，Connection 也會 Close 了。<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">async</span> Task&lt;IDataReader&gt; <span class="title">getReader</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> connString = <span class="string">@"Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog=BookStore;Integrated Security=True;Max Pool Size=4;Application Name=&#123;0&#125;"</span>;</span><br><span class="line">    connString = String.Format(connString, <span class="string">"ap-Reader"</span>);</span><br><span class="line">    <span class="keyword">var</span> cn = <span class="keyword">new</span> SqlConnection(connString);</span><br><span class="line">    cn.Open();</span><br><span class="line">    <span class="keyword">var</span> cmd = <span class="keyword">new</span> SqlCommand(<span class="string">@"select * from [dbo].[AbpRoles]"</span>, cn);</span><br><span class="line">    <span class="comment">//多加入 CommandBehavior.CloseConnection 參數，當 reader close 後，Connection 也會跟著被關閉</span></span><br><span class="line">    <span class="keyword">var</span> reader = <span class="keyword">await</span> cmd.ExecuteReaderAsync(CommandBehavior.CloseConnection);</span><br><span class="line">    <span class="keyword">return</span> reader;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://docs.microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlcommand.executereaderasync" target="_blank" rel="noopener">SqlCommand.ExecuteReaderAsync</a><br><a href="https://docs.microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlcommand.executereader" target="_blank" rel="noopener">SqlCommand.ExecuteReader</a><br><a href="https://dotblogs.azurewebsites.net/rainmaker/2017/04/26/143316" target="_blank" rel="noopener">已超過連接逾時的設定。在取得集區連接之前超過逾時等待的時間，可能的原因為所有的共用連接已在使用中，並已達共用集區大小的最大值。</a><br><a href="https://stackoverflow.com/questions/10519273/will-executereadercommandbehavior-closeconnection-always-close-connection" target="_blank" rel="noopener">Will ExecuteReader(CommandBehavior.CloseConnection) always close connection?</a><br><a href="https://docs.microsoft.com/en-us/dotnet/api/system.data.commandbehavior" target="_blank" rel="noopener">CommandBehavior</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;我們有一個 ASP.NET Core 的系統，跑一跑就會有 &lt;strong&gt;System.InvalidOperationException
-      
-    
-    </summary>
-    
-    
-      <category term="Timeout" scheme="https://rainmakerho.github.io/tags/Timeout/"/>
-    
-      <category term="Connection Pooling" scheme="https://rainmakerho.github.io/tags/Connection-Pooling/"/>
-    
-      <category term="Auto Close" scheme="https://rainmakerho.github.io/tags/Auto-Close/"/>
-    
-      <category term="Connection" scheme="https://rainmakerho.github.io/tags/Connection/"/>
-    
-      <category term="Pool" scheme="https://rainmakerho.github.io/tags/Pool/"/>
-    
-      <category term="ExecuteReader" scheme="https://rainmakerho.github.io/tags/ExecuteReader/"/>
-    
-      <category term="ExecuteReaderAsync" scheme="https://rainmakerho.github.io/tags/ExecuteReaderAsync/"/>
-    
-      <category term="CloseConnection" scheme="https://rainmakerho.github.io/tags/CloseConnection/"/>
     
   </entry>
   

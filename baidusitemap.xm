@@ -4,6 +4,56 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2020/05/12/2020005/</loc>
+    <lastmod>2022-12-13T06:23:11.025Z</lastmod>
+    <data>
+        <display>
+        <title>ASP.NET Security Headers</title>
+        <pubTime>2020-05-12T01:29:40.000Z</pubTime>
+        
+        <tag>X-XSS-Protection</tag>
+         
+        <tag>Content-Security-Policy</tag>
+         
+        <tag>X-Frame-Options</tag>
+         
+        <tag>X-Content-Type-Options</tag>
+         
+        <tag>Feature-Policy</tag>
+         
+        <tag>Referrer-Policy</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://rainmakerho.github.io/2022/12/13/UltraWebGrid-slow-ie11-net4/</loc>
+    <lastmod>2022-12-13T06:21:02.338Z</lastmod>
+    <data>
+        <display>
+        <title>ASP.NET 4 在不分頁的 UltraWebGrid Scroll 時，會卡頓</title>
+        <pubTime>2022-12-13T05:33:55.000Z</pubTime>
+        
+        <tag>ASP.NET</tag>
+         
+        <tag>IE</tag>
+         
+        <tag>UltraWebGrid</tag>
+         
+        <tag>Infragistics</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2022/12/08/why-iis-have-addition-request-from-aws/</loc>
     <lastmod>2022-12-08T06:18:44.070Z</lastmod>
     <data>
@@ -71,13 +121,13 @@
          
         <tag>mssql</tag>
          
+        <tag>Timeout</tag>
+         
         <tag>sql 2019</tag>
          
         <tag>15.0 RTM</tag>
          
         <tag>15.0.2000.5</tag>
-         
-        <tag>Timeout</tag>
          
          
            
@@ -294,33 +344,6 @@
         <tag>AZ-305</tag>
          
         <tag>Exam AZ-305</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://rainmakerho.github.io/2020/05/12/2020005/</loc>
-    <lastmod>2022-11-09T05:38:14.680Z</lastmod>
-    <data>
-        <display>
-        <title>ASP.NET Security Headers</title>
-        <pubTime>2020-05-12T01:29:40.000Z</pubTime>
-        
-        <tag>X-XSS-Protection</tag>
-         
-        <tag>Content-Security-Policy</tag>
-         
-        <tag>X-Frame-Options</tag>
-         
-        <tag>X-Content-Type-Options</tag>
-         
-        <tag>Feature-Policy</tag>
-         
-        <tag>Referrer-Policy</tag>
          
          
            
@@ -573,9 +596,9 @@
         <title>Timeout expired. all pooled connections were in use and max pool size was reached. 自動關閉 Connection ?</title>
         <pubTime>2022-08-29T03:27:36.000Z</pubTime>
         
-        <tag>Timeout</tag>
-         
         <tag>Connection Pooling</tag>
+         
+        <tag>Timeout</tag>
          
         <tag>Auto Close</tag>
          
@@ -1031,9 +1054,9 @@
         <title>AADSTS50011 The redirect URI 'https://.../licensemanagement/signin-azuread-oidc' specified in the request does not match the redirect URIs configured for the application 'appid'</title>
         <pubTime>2022-05-11T07:41:58.000Z</pubTime>
         
-        <tag>Azure</tag>
-         
         <tag>AADSTS50011</tag>
+         
+        <tag>Azure</tag>
          
         <tag>Azure AD</tag>
          
@@ -1301,8 +1324,6 @@
          
         <tag>OAuth 2.0</tag>
          
-        <tag>public client</tag>
-         
         <tag>PKCE</tag>
          
         <tag>Proof Key for Code Exchange</tag>
@@ -1310,6 +1331,8 @@
         <tag>claiming URLs</tag>
          
         <tag>Custom URL Scheme</tag>
+         
+        <tag>public client</tag>
          
          
            
@@ -1447,13 +1470,13 @@
         
         <tag>OAuth 2.0</tag>
          
+        <tag>public client</tag>
+         
         <tag>Implicit Flow</tag>
          
         <tag>response_type=token</tag>
          
         <tag>response_mode=fragment</tag>
-         
-        <tag>public client</tag>
          
         <tag>token flow</tag>
          
@@ -1918,9 +1941,9 @@
         
         <tag>DataTable</tag>
          
-        <tag>Reflected_XSS_All_Clients</tag>
-         
         <tag>JsonConvert.SerializeObject</tag>
+         
+        <tag>Reflected_XSS_All_Clients</tag>
          
         <tag>JsonSerializerSettings</tag>
          
@@ -2420,11 +2443,11 @@
          
         <tag>Heap Inspection</tag>
          
+        <tag>MVC5</tag>
+         
         <tag>Custom Model Binder</tag>
          
         <tag>SecureString</tag>
-         
-        <tag>MVC5</tag>
          
         <tag>netFramework</tag>
          
@@ -5920,11 +5943,11 @@
         <title>SmtpConnection.GetConnection NullReferenceException</title>
         <pubTime>2018-03-14T02:07:16.000Z</pubTime>
         
+        <tag>NullReferenceException</tag>
+         
         <tag>SmtpClient</tag>
          
         <tag>SmtpConnection.GetConnection</tag>
-         
-        <tag>NullReferenceException</tag>
          
         <tag>.net</tag>
          
@@ -5949,11 +5972,11 @@
         <title>System.NullReferenceException when Aspose.Pdf.License.SetLicense(String licenseName)</title>
         <pubTime>2018-03-13T06:54:05.000Z</pubTime>
         
-        <tag>NullReferenceException</tag>
-         
         <tag>Aspose</tag>
          
         <tag>SetLicense</tag>
+         
+        <tag>NullReferenceException</tag>
          
          
            
