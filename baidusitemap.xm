@@ -4,8 +4,33 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2022/12/15/mosquitto-allow-remote-access/</loc>
+    <lastmod>2022-12-15T09:46:30.920Z</lastmod>
+    <data>
+        <display>
+        <title>MQTTnet-ManagedMqttClient remote access mosquitto (遠端存取)</title>
+        <pubTime>2022-12-15T08:33:40.000Z</pubTime>
+        
+        <tag>MQTTnet</tag>
+         
+        <tag>mosquitto</tag>
+         
+        <tag>MQTT</tag>
+         
+        <tag>remote</tag>
+         
+        <tag>mosquitto.conf</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2022/12/15/mqtt-with-mqttnet/</loc>
-    <lastmod>2022-12-15T07:38:01.809Z</lastmod>
+    <lastmod>2022-12-15T09:17:15.797Z</lastmod>
     <data>
         <display>
         <title>C# MQTT using MQTTnet</title>
@@ -13,13 +38,13 @@
         
         <tag>C#</tag>
          
-        <tag>IOT</tag>
-         
-        <tag>MQTT</tag>
-         
         <tag>MQTTnet</tag>
          
         <tag>mosquitto</tag>
+         
+        <tag>MQTT</tag>
+         
+        <tag>IOT</tag>
          
          
            
@@ -1351,6 +1376,8 @@
          
         <tag>OAuth 2.0</tag>
          
+        <tag>public client</tag>
+         
         <tag>PKCE</tag>
          
         <tag>Proof Key for Code Exchange</tag>
@@ -1358,8 +1385,6 @@
         <tag>claiming URLs</tag>
          
         <tag>Custom URL Scheme</tag>
-         
-        <tag>public client</tag>
          
          
            
@@ -1497,13 +1522,13 @@
         
         <tag>OAuth 2.0</tag>
          
-        <tag>public client</tag>
-         
         <tag>Implicit Flow</tag>
          
         <tag>response_type=token</tag>
          
         <tag>response_mode=fragment</tag>
+         
+        <tag>public client</tag>
          
         <tag>token flow</tag>
          
@@ -1968,9 +1993,9 @@
         
         <tag>DataTable</tag>
          
-        <tag>Reflected_XSS_All_Clients</tag>
-         
         <tag>JsonConvert.SerializeObject</tag>
+         
+        <tag>Reflected_XSS_All_Clients</tag>
          
         <tag>JsonSerializerSettings</tag>
          
