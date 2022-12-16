@@ -4,20 +4,51 @@
 
     
   <url>
-    <loc>https://rainmakerho.github.io/2022/12/15/mosquitto-allow-remote-access/</loc>
-    <lastmod>2022-12-15T09:46:30.920Z</lastmod>
+    <loc>https://rainmakerho.github.io/2022/12/16/mqttnet-connect-mosquitto-usernam-password/</loc>
+    <lastmod>2022-12-16T03:09:23.186Z</lastmod>
     <data>
         <display>
-        <title>MQTTnet-ManagedMqttClient remote access mosquitto (遠端存取)</title>
-        <pubTime>2022-12-15T08:33:40.000Z</pubTime>
+        <title>使用 MQTTnet 存取遠端 mosquitto Broker with username</title>
+        <pubTime>2022-12-16T01:46:46.000Z</pubTime>
         
+        <tag>C#</tag>
+         
         <tag>MQTTnet</tag>
          
         <tag>mosquitto</tag>
          
         <tag>MQTT</tag>
          
-        <tag>remote</tag>
+        <tag>mosquitto.conf</tag>
+         
+        <tag>username</tag>
+         
+        <tag>password_file</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://rainmakerho.github.io/2022/12/15/mosquitto-allow-remote-access/</loc>
+    <lastmod>2022-12-16T01:53:01.424Z</lastmod>
+    <data>
+        <display>
+        <title>使用 MQTTnet 匿名存取遠端 mosquitto Broker</title>
+        <pubTime>2022-12-15T08:33:40.000Z</pubTime>
+        
+        <tag>C#</tag>
+         
+        <tag>MQTTnet</tag>
+         
+        <tag>mosquitto</tag>
+         
+        <tag>MQTT</tag>
+         
+        <tag>allow_anonymous</tag>
          
         <tag>mosquitto.conf</tag>
          
@@ -117,11 +148,11 @@
         <title>ASP.NET Security Headers</title>
         <pubTime>2020-05-12T01:29:40.000Z</pubTime>
         
-        <tag>X-XSS-Protection</tag>
-         
         <tag>Content-Security-Policy</tag>
          
         <tag>X-Frame-Options</tag>
+         
+        <tag>X-XSS-Protection</tag>
          
         <tag>X-Content-Type-Options</tag>
          
@@ -1376,8 +1407,6 @@
          
         <tag>OAuth 2.0</tag>
          
-        <tag>public client</tag>
-         
         <tag>PKCE</tag>
          
         <tag>Proof Key for Code Exchange</tag>
@@ -1385,6 +1414,8 @@
         <tag>claiming URLs</tag>
          
         <tag>Custom URL Scheme</tag>
+         
+        <tag>public client</tag>
          
          
            
@@ -1522,13 +1553,13 @@
         
         <tag>OAuth 2.0</tag>
          
+        <tag>public client</tag>
+         
         <tag>Implicit Flow</tag>
          
         <tag>response_type=token</tag>
          
         <tag>response_mode=fragment</tag>
-         
-        <tag>public client</tag>
          
         <tag>token flow</tag>
          
@@ -1993,9 +2024,9 @@
         
         <tag>DataTable</tag>
          
-        <tag>JsonConvert.SerializeObject</tag>
-         
         <tag>Reflected_XSS_All_Clients</tag>
+         
+        <tag>JsonConvert.SerializeObject</tag>
          
         <tag>JsonSerializerSettings</tag>
          
@@ -2495,11 +2526,11 @@
          
         <tag>Heap Inspection</tag>
          
+        <tag>MVC5</tag>
+         
         <tag>Custom Model Binder</tag>
          
         <tag>SecureString</tag>
-         
-        <tag>MVC5</tag>
          
         <tag>netFramework</tag>
          
@@ -3022,13 +3053,13 @@
         <title>Uncaught DOMException: Blocked a frame with origin</title>
         <pubTime>2020-07-01T09:49:43.000Z</pubTime>
         
-        <tag>X-Frame-Options</tag>
-         
         <tag>iframe</tag>
          
         <tag>Uncaught DOMException</tag>
          
         <tag>Blocked a frame with origin</tag>
+         
+        <tag>X-Frame-Options</tag>
          
          
            
@@ -4175,11 +4206,11 @@
         <title>透過 Content-Security-Policy 修正 Mixed Content Link 問題</title>
         <pubTime>2020-05-19T08:44:09.000Z</pubTime>
         
-        <tag>Content-Security-Policy</tag>
-         
         <tag>Mixed Content</tag>
          
         <tag>CSP</tag>
+         
+        <tag>Content-Security-Policy</tag>
          
         <tag>upgrade-insecure-requests</tag>
          
@@ -5995,11 +6026,11 @@
         <title>SmtpConnection.GetConnection NullReferenceException</title>
         <pubTime>2018-03-14T02:07:16.000Z</pubTime>
         
-        <tag>NullReferenceException</tag>
-         
         <tag>SmtpClient</tag>
          
         <tag>SmtpConnection.GetConnection</tag>
+         
+        <tag>NullReferenceException</tag>
          
         <tag>.net</tag>
          
@@ -6024,11 +6055,11 @@
         <title>System.NullReferenceException when Aspose.Pdf.License.SetLicense(String licenseName)</title>
         <pubTime>2018-03-13T06:54:05.000Z</pubTime>
         
+        <tag>NullReferenceException</tag>
+         
         <tag>Aspose</tag>
          
         <tag>SetLicense</tag>
-         
-        <tag>NullReferenceException</tag>
          
          
            
