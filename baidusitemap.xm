@@ -4,6 +4,31 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2022/12/20/multithreading-in-node-js/</loc>
+    <lastmod>2022-12-20T07:36:00.014Z</lastmod>
+    <data>
+        <display>
+        <title>多執行緒/多行程在 Node.js 的使用時機</title>
+        <pubTime>2022-12-20T03:12:38.000Z</pubTime>
+        
+        <tag>iisnode</tag>
+         
+        <tag>Node.js</tag>
+         
+        <tag>Worker</tag>
+         
+        <tag>worker_threads</tag>
+         
+        <tag>cluster</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2022/12/16/mqttnet-connect-mosquitto-usernam-password/</loc>
     <lastmod>2022-12-16T03:09:23.186Z</lastmod>
     <data>
@@ -19,9 +44,9 @@
          
         <tag>MQTT</tag>
          
-        <tag>mosquitto.conf</tag>
-         
         <tag>username</tag>
+         
+        <tag>mosquitto.conf</tag>
          
         <tag>password_file</tag>
          
@@ -48,9 +73,9 @@
          
         <tag>MQTT</tag>
          
-        <tag>allow_anonymous</tag>
-         
         <tag>mosquitto.conf</tag>
+         
+        <tag>allow_anonymous</tag>
          
          
            
@@ -148,11 +173,11 @@
         <title>ASP.NET Security Headers</title>
         <pubTime>2020-05-12T01:29:40.000Z</pubTime>
         
+        <tag>X-XSS-Protection</tag>
+         
         <tag>Content-Security-Policy</tag>
          
         <tag>X-Frame-Options</tag>
-         
-        <tag>X-XSS-Protection</tag>
          
         <tag>X-Content-Type-Options</tag>
          
@@ -1407,6 +1432,8 @@
          
         <tag>OAuth 2.0</tag>
          
+        <tag>public client</tag>
+         
         <tag>PKCE</tag>
          
         <tag>Proof Key for Code Exchange</tag>
@@ -1414,8 +1441,6 @@
         <tag>claiming URLs</tag>
          
         <tag>Custom URL Scheme</tag>
-         
-        <tag>public client</tag>
          
          
            
@@ -1553,13 +1578,13 @@
         
         <tag>OAuth 2.0</tag>
          
-        <tag>public client</tag>
-         
         <tag>Implicit Flow</tag>
          
         <tag>response_type=token</tag>
          
         <tag>response_mode=fragment</tag>
+         
+        <tag>public client</tag>
          
         <tag>token flow</tag>
          
@@ -1768,9 +1793,9 @@
         <title>Checkmarx V9.4 在 Heap_Inspection 的改變(ASPX)</title>
         <pubTime>2021-12-28T01:09:40.000Z</pubTime>
         
-        <tag>ASPX</tag>
-         
         <tag>ASP.NET</tag>
+         
+        <tag>ASPX</tag>
          
         <tag>Checkmarx</tag>
          
@@ -2526,11 +2551,11 @@
          
         <tag>Heap Inspection</tag>
          
-        <tag>MVC5</tag>
-         
         <tag>Custom Model Binder</tag>
          
         <tag>SecureString</tag>
+         
+        <tag>MVC5</tag>
          
         <tag>netFramework</tag>
          
@@ -3053,13 +3078,13 @@
         <title>Uncaught DOMException: Blocked a frame with origin</title>
         <pubTime>2020-07-01T09:49:43.000Z</pubTime>
         
+        <tag>X-Frame-Options</tag>
+         
         <tag>iframe</tag>
          
         <tag>Uncaught DOMException</tag>
          
         <tag>Blocked a frame with origin</tag>
-         
-        <tag>X-Frame-Options</tag>
          
          
            
@@ -4206,11 +4231,11 @@
         <title>透過 Content-Security-Policy 修正 Mixed Content Link 問題</title>
         <pubTime>2020-05-19T08:44:09.000Z</pubTime>
         
+        <tag>Content-Security-Policy</tag>
+         
         <tag>Mixed Content</tag>
          
         <tag>CSP</tag>
-         
-        <tag>Content-Security-Policy</tag>
          
         <tag>upgrade-insecure-requests</tag>
          
@@ -5182,8 +5207,6 @@
         <title>使用 OpenTracing - Jaeger (AP整合)</title>
         <pubTime>2019-01-15T05:13:41.000Z</pubTime>
         
-        <tag>BFv4</tag>
-         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -5197,6 +5220,8 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
+         
+        <tag>BFv4</tag>
          
         <tag>NodeJS</tag>
          
@@ -5215,8 +5240,6 @@
         <title>使用 OpenTracing - Jaeger</title>
         <pubTime>2019-01-04T06:02:45.000Z</pubTime>
         
-        <tag>BFv4</tag>
-         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -5230,6 +5253,8 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
+         
+        <tag>BFv4</tag>
          
          
            
@@ -6026,11 +6051,11 @@
         <title>SmtpConnection.GetConnection NullReferenceException</title>
         <pubTime>2018-03-14T02:07:16.000Z</pubTime>
         
+        <tag>NullReferenceException</tag>
+         
         <tag>SmtpClient</tag>
          
         <tag>SmtpConnection.GetConnection</tag>
-         
-        <tag>NullReferenceException</tag>
          
         <tag>.net</tag>
          
@@ -6055,11 +6080,11 @@
         <title>System.NullReferenceException when Aspose.Pdf.License.SetLicense(String licenseName)</title>
         <pubTime>2018-03-13T06:54:05.000Z</pubTime>
         
-        <tag>NullReferenceException</tag>
-         
         <tag>Aspose</tag>
          
         <tag>SetLicense</tag>
+         
+        <tag>NullReferenceException</tag>
          
          
            
@@ -6097,9 +6122,9 @@
         <title>使用 Botframework 的 Bot 如何 Debug 到 BotBuilder Source ?</title>
         <pubTime>2018-02-01T01:47:18.000Z</pubTime>
         
-        <tag>botframework</tag>
-         
         <tag>C#</tag>
+         
+        <tag>botframework</tag>
          
         <tag>BotBuilder</tag>
          
