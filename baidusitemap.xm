@@ -4,6 +4,79 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2022/12/29/azure-function-bindings-triggers/</loc>
+    <lastmod>2022-12-29T09:19:25.512Z</lastmod>
+    <data>
+        <display>
+        <title>將 Http Trigger Function 內容寫到 Queue 中，並透過 Queue trigger Function 取出來，存到 Blob</title>
+        <pubTime>2022-12-29T07:32:05.000Z</pubTime>
+        
+        <tag>Azure Function</tag>
+         
+        <tag>Function App</tag>
+         
+        <tag>Queue trigger</tag>
+         
+        <tag>Blob</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://rainmakerho.github.io/2022/12/29/azure-function-by-vs/</loc>
+    <lastmod>2022-12-29T05:20:17.362Z</lastmod>
+    <data>
+        <display>
+        <title>使用 Visual Studio 建立 Azure Function</title>
+        <pubTime>2022-12-29T01:51:28.000Z</pubTime>
+        
+        <tag>C#</tag>
+         
+        <tag>Visual Studio</tag>
+         
+        <tag>Azure Function</tag>
+         
+        <tag>Function App</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://rainmakerho.github.io/2022/10/28/ms-reporting-service-add-custom-font-woff-ttf/</loc>
+    <lastmod>2022-12-28T07:50:29.082Z</lastmod>
+    <data>
+        <display>
+        <title>為 SQL Server Reporting Services (SSRS) Preview 報表加上自造字(EUDC Font) Support</title>
+        <pubTime>2022-10-28T07:24:46.000Z</pubTime>
+        
+        <tag>自造字</tag>
+         
+        <tag>空白框</tag>
+         
+        <tag>EUDC</tag>
+         
+        <tag>SSRS</tag>
+         
+        <tag>woff</tag>
+         
+        <tag>ttf</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2022/12/27/mssql-graph-query-find-all-path-node/</loc>
     <lastmod>2022-12-27T08:00:08.586Z</lastmod>
     <data>
@@ -121,9 +194,9 @@
          
         <tag>MQTT</tag>
          
-        <tag>username</tag>
-         
         <tag>mosquitto.conf</tag>
+         
+        <tag>username</tag>
          
         <tag>password_file</tag>
          
@@ -150,9 +223,9 @@
          
         <tag>MQTT</tag>
          
-        <tag>mosquitto.conf</tag>
-         
         <tag>allow_anonymous</tag>
+         
+        <tag>mosquitto.conf</tag>
          
          
            
@@ -306,13 +379,13 @@
          
         <tag>mssql</tag>
          
+        <tag>Timeout</tag>
+         
         <tag>sql 2019</tag>
          
         <tag>15.0 RTM</tag>
          
         <tag>15.0.2000.5</tag>
-         
-        <tag>Timeout</tag>
          
          
            
@@ -607,33 +680,6 @@
 
     
   <url>
-    <loc>https://rainmakerho.github.io/2022/10/28/ms-reporting-service-add-custom-font-woff-ttf/</loc>
-    <lastmod>2022-10-28T08:23:20.990Z</lastmod>
-    <data>
-        <display>
-        <title>為 SQL Server Reporting Services (SSRS) Preview 報表加上自造字(EUDC Font) Support</title>
-        <pubTime>2022-10-28T07:24:46.000Z</pubTime>
-        
-        <tag>自造字</tag>
-         
-        <tag>空白框</tag>
-         
-        <tag>EUDC</tag>
-         
-        <tag>SSRS</tag>
-         
-        <tag>woff</tag>
-         
-        <tag>ttf</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://rainmakerho.github.io/2022/04/06/unicode-surrogate-pair/</loc>
     <lastmod>2022-10-28T07:21:58.741Z</lastmod>
     <data>
@@ -781,9 +827,9 @@
         <title>Timeout expired. all pooled connections were in use and max pool size was reached. 自動關閉 Connection ?</title>
         <pubTime>2022-08-29T03:27:36.000Z</pubTime>
         
-        <tag>Timeout</tag>
-         
         <tag>Connection Pooling</tag>
+         
+        <tag>Timeout</tag>
          
         <tag>Auto Close</tag>
          
@@ -2126,9 +2172,9 @@
         
         <tag>DataTable</tag>
          
-        <tag>JsonConvert.SerializeObject</tag>
-         
         <tag>Reflected_XSS_All_Clients</tag>
+         
+        <tag>JsonConvert.SerializeObject</tag>
          
         <tag>JsonSerializerSettings</tag>
          
@@ -5119,13 +5165,13 @@
         <title>document.[formName] is undefined</title>
         <pubTime>2019-03-16T05:48:31.000Z</pubTime>
         
+        <tag>軟體求生</tag>
+         
         <tag>js</tag>
          
         <tag>document.formName</tag>
          
         <tag>undefined</tag>
-         
-        <tag>軟體求生</tag>
          
         <tag>asp.net 4</tag>
          
@@ -5185,11 +5231,11 @@
         <title>Inheritance security rules violated by type: 'System.Net.Http.WebRequestHandler'</title>
         <pubTime>2019-02-23T02:41:55.000Z</pubTime>
         
-        <tag>軟體求生</tag>
-         
         <tag>System.Net.Http</tag>
          
         <tag>4.1.0.0</tag>
+         
+        <tag>軟體求生</tag>
          
          
            

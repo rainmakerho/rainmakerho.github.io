@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2022-12-27T08:00:08.586Z</updated>
+  <updated>2022-12-29T09:19:25.512Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,64 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>將 Http Trigger Function 內容寫到 Queue 中，並透過 Queue trigger Function 取出來，存到 Blob</title>
+    <link href="https://rainmakerho.github.io/2022/12/29/azure-function-bindings-triggers/"/>
+    <id>https://rainmakerho.github.io/2022/12/29/azure-function-bindings-triggers/</id>
+    <published>2022-12-29T07:32:05.000Z</published>
+    <updated>2022-12-29T09:19:25.512Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在前一篇<a href="https://rainmakerho.github.io/2022/12/29/azure-function-by-vs/">使用 Visual Studio 建立 Azure Function</a>，<br>建立了一個 Http Trigger Function ，是將 訊息 Response 出去，<br>接下來可以將<strong>訊息</strong>放到 Storage Queue 之中，<br>並新增一個 Queue trigger Function 來取得 Queue 中的資料，<br>並存到 Blob 之中</p><h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><p>1.加入 Microsoft.Azure.WebJobs.Extensions.Storage 及 Azure.Storage.Blobs 套件<br><img src="/2022/12/29/azure-function-bindings-triggers/01.png" title="nuget"><br>在 Nuget 中加入 Microsoft.Azure.WebJobs.Extensions.Storage 及 Azure.Storage.Blobs 套件</p><p>2.加入 Queue 的 Binding<br>原有的 Function1 加入 Queue 的 Binding (<code>[Queue(&quot;messages&quot;, Connection=&quot;AzureWebJobsStorage&quot;)] IAsyncCollector&lt;string&gt; messageQueue</code>)，</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System.IO;</span><br><span class="line"><span class="keyword">using</span> System.Threading.Tasks;</span><br><span class="line"><span class="keyword">using</span> Microsoft.AspNetCore.Mvc;</span><br><span class="line"><span class="keyword">using</span> Microsoft.Azure.WebJobs;</span><br><span class="line"><span class="keyword">using</span> Microsoft.Azure.WebJobs.Extensions.Http;</span><br><span class="line"><span class="keyword">using</span> Microsoft.AspNetCore.Http;</span><br><span class="line"><span class="keyword">using</span> Microsoft.Extensions.Logging;</span><br><span class="line"><span class="keyword">using</span> Newtonsoft.Json;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">Function1</span></span><br><span class="line">&#123;</span><br><span class="line">    [<span class="meta">FunctionName(<span class="meta-string">"Function1"</span>)</span>]</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">async</span> Task&lt;IActionResult&gt; <span class="title">Run</span>(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">        [HttpTrigger(AuthorizationLevel.Anonymous, <span class="string">"get"</span>, <span class="string">"post"</span>, Route = <span class="literal">null</span></span>)] HttpRequest req,</span></span><br><span class="line"><span class="function">        [<span class="title">Queue</span>(<span class="params"><span class="string">"messages"</span>, Connection=<span class="string">"AzureWebJobsStorage"</span></span>)] IAsyncCollector&lt;<span class="keyword">string</span>&gt; messageQueue,</span></span><br><span class="line"><span class="function">        ILogger log)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        log.LogInformation(<span class="string">"C# HTTP trigger function processed a request."</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">string</span> name = req.Query[<span class="string">"name"</span>];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">string</span> requestBody = <span class="keyword">await</span> <span class="keyword">new</span> StreamReader(req.Body).ReadToEndAsync();</span><br><span class="line">        <span class="keyword">dynamic</span> data = JsonConvert.DeserializeObject(requestBody);</span><br><span class="line">        name = name ?? data?.name;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">string</span> responseMessage = <span class="keyword">string</span>.IsNullOrEmpty(name)</span><br><span class="line">            ? <span class="string">"This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response."</span></span><br><span class="line">            : <span class="string">$"Hello, <span class="subst">&#123;name&#125;</span>. This HTTP triggered function executed successfully."</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">await</span> messageQueue.AddAsync(responseMessage);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> OkObjectResult(responseMessage);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>設定好 Queue 的 Binding 後，就可以將訊息放到 Queue 之中(<code>await messageQueue.AddAsync(responseMessage)</code>)<br>因為是使用 Local 測試，所以 Connection 設定為 AzureWebJobsStorage</p><p>這裡可以先執行程式，試一下訊息是否會新增到 Queue 之中，<br>可以透過 <a href="https://azure.microsoft.com/en-us/products/storage/storage-explorer/" target="_blank" rel="noopener">Azure Storage Explorer</a> 來查看<br><img src="/2022/12/29/azure-function-bindings-triggers/02.png" title="Queue"></p><p>3.新增 Queue trigger Function<br>新增名稱為 QueueListeners 的 Queue trigger Function，<br>並設定 Connection string setting name 及 Queue name<br><img src="/2022/12/29/azure-function-bindings-triggers/03.png" title="Queue trigger Function"></p><p>4.加入 Blob 的 Binding<br>因為要將 Queue 內的訊息寫到 Blog 之中，<br>所以在 QueueListeners 的 Run Method 要加入 Blob 的 Binding</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Threading.Tasks;</span><br><span class="line"><span class="keyword">using</span> Azure.Storage.Blobs;</span><br><span class="line"><span class="keyword">using</span> Microsoft.Azure.WebJobs;</span><br><span class="line"><span class="keyword">using</span> Microsoft.Extensions.Logging;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">QueueListeners</span></span><br><span class="line">&#123;</span><br><span class="line">    [<span class="meta">FunctionName(<span class="meta-string">"QueueListeners"</span>)</span>]</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">async</span> Task <span class="title">Run</span>(<span class="params">[QueueTrigger(<span class="string">"messages"</span>, Connection = <span class="string">"AzureWebJobsStorage"</span></span>)]<span class="keyword">string</span> message,</span></span><br><span class="line"><span class="function">        [<span class="title">Blob</span>(<span class="params"><span class="string">"messages"</span>, Connection = <span class="string">"AzureWebJobsStorage"</span></span>)] BlobContainerClient container,</span></span><br><span class="line"><span class="function">        ILogger log)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">await</span> container.CreateIfNotExistsAsync();</span><br><span class="line">        <span class="keyword">var</span> blob = container.GetBlobClient(<span class="string">$"<span class="subst">&#123;Guid.NewGuid().ToString(<span class="string">"N"</span>)&#125;</span>.txt"</span>);</span><br><span class="line">        <span class="keyword">await</span> blob.UploadAsync(BinaryData.FromString(<span class="string">$"Message:<span class="subst">&#123;message&#125;</span>"</span>), overwrite: <span class="literal">true</span>);</span><br><span class="line">        log.LogInformation(<span class="string">$"C# Queue trigger function processed: <span class="subst">&#123;message&#125;</span>"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>當 messages Queue 有訊息時，就會 Trigger QueueListeners Function，<br>並將訊息當成參數傳入，所以再將訊息透過 <code>UploadAsync</code> 寫到 Blob</p><p>執行後，可以發現 message Queue 中的訊息已被 QueueListeners Function 處理完畢，<br>messages Blob 將每個 message Queue 的訊息存成文字檔。<br><img src="/2022/12/29/azure-function-bindings-triggers/04.png" title="message Blob"></p><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/storage/Azure.Storage.Blobs/AzureStorageNetMigrationV12.md#migrating-from-cloudblockblob" target="_blank" rel="noopener">Migration Guide: From Microsoft.Azure.Storage.Blob to Azure.Storage.Blobs</a><br><a href="https://markheath.net/post/azure-functions-table-storage" target="_blank" rel="noopener">Update Your Azure Functions Table Storage Bindings</a><br><a href="https://azure.microsoft.com/en-us/products/storage/storage-explorer/" target="_blank" rel="noopener">Azure Storage Explorer</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;在前一篇&lt;a href=&quot;https://rainmakerho.github.io/2022/12/29/azure-function-b
+      
+    
+    </summary>
+    
+    
+      <category term="Azure Function" scheme="https://rainmakerho.github.io/tags/Azure-Function/"/>
+    
+      <category term="Function App" scheme="https://rainmakerho.github.io/tags/Function-App/"/>
+    
+      <category term="Queue trigger" scheme="https://rainmakerho.github.io/tags/Queue-trigger/"/>
+    
+      <category term="Blob" scheme="https://rainmakerho.github.io/tags/Blob/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用 Visual Studio 建立 Azure Function</title>
+    <link href="https://rainmakerho.github.io/2022/12/29/azure-function-by-vs/"/>
+    <id>https://rainmakerho.github.io/2022/12/29/azure-function-by-vs/</id>
+    <published>2022-12-29T01:51:28.000Z</published>
+    <updated>2022-12-29T05:20:17.362Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 <a href="https://portal.azure.com/" target="_blank" rel="noopener">Azure Portal</a> 可以容易的建立 Function App。<br>以下將一步步透過 Visual Studio 來建立 Azure Function App</p><h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><p>1.確認 <strong>Azure 開發</strong> 有安裝<br>在 Visual Studio Installer 中，請確認 <strong>Azure 開發</strong> 有安裝<br><img src="/2022/12/29/azure-function-by-vs/01.png" title="Azure開發"></p><p>2.建立 <strong>Azure Functions</strong> 專案<br><img src="/2022/12/29/azure-function-by-vs/02.png" title="Filter-Template"><br>輸入 function 來篩選 Visual Studio 的範本</p><img src="/2022/12/29/azure-function-by-vs/03.png" title="Project Name"><p>設定專案名稱為 FunctionApp1</p><img src="/2022/12/29/azure-function-by-vs/04.png" title="Others"><p>設定 .NET 6.0 ，先不建立 Function ，並勾選<strong>將 Azurite 用於執行階段 儲存帳戶(AzureWebJobsStorage)</strong>(在 local 模擬)</p><img src="/2022/12/29/azure-function-by-vs/05.png" title="azurite.exe"><p>因為勾選 <strong>azuite</strong> 所以專案建立好之後，會啟動它</p><p>3.Check local.settings.json</p><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"IsEncrypted"</span>: <span class="literal">false</span>,</span><br><span class="line">  <span class="attr">"Values"</span>: &#123;</span><br><span class="line">    <span class="attr">"AzureWebJobsStorage"</span>: <span class="string">"UseDevelopmentStorage=true"</span>,</span><br><span class="line">    <span class="attr">"FUNCTIONS_WORKER_RUNTIME"</span>: <span class="string">"dotnet"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>因為勾選<strong>將 Azurite 用於執行階段 儲存帳戶(AzureWebJobsStorage)</strong>，<br>所以 local.settings.json 中 AzureWebJobsStorage 值為 <strong>UseDevelopmentStorage=true</strong></p><p>4.新增 Http Trigger Function<br><img src="/2022/12/29/azure-function-by-vs/06.png" title="new function"><br>新增 Http Trigger 為範本的 Function，並將 Authorization level 設定為 Anonymous，<br>讓測試時，不需要驗證</p><p>5.Check 專案內容<br><img src="/2022/12/29/azure-function-by-vs/07.png" title="project"><br>Function1 附檔名是 cs (在 Portal 上的是 csx)，</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">Function1</span></span><br><span class="line">&#123;</span><br><span class="line">    [<span class="meta">FunctionName(<span class="meta-string">"Function1"</span>)</span>]</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">async</span> Task&lt;IActionResult&gt; <span class="title">Run</span>(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">        [HttpTrigger(AuthorizationLevel.Anonymous, <span class="string">"get"</span>, <span class="string">"post"</span>, Route = <span class="literal">null</span></span>)] HttpRequest req,</span></span><br><span class="line"><span class="function">        ILogger log)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        log.LogInformation(<span class="string">"C# HTTP trigger function processed a request."</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">string</span> name = req.Query[<span class="string">"name"</span>];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">string</span> requestBody = <span class="keyword">await</span> <span class="keyword">new</span> StreamReader(req.Body).ReadToEndAsync();</span><br><span class="line">        <span class="keyword">dynamic</span> data = JsonConvert.DeserializeObject(requestBody);</span><br><span class="line">        name = name ?? data?.name;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">string</span> responseMessage = <span class="keyword">string</span>.IsNullOrEmpty(name)</span><br><span class="line">            ? <span class="string">"This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response."</span></span><br><span class="line">            : <span class="string">$"Hello, <span class="subst">&#123;name&#125;</span>. This HTTP triggered function executed successfully."</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> OkObjectResult(responseMessage);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>FunctionName 設定為 Function1 ，<br>可以發現並沒有 <strong>Function.json</strong> ，<br>因為在 Build 專案後，自動產生出來。<br><img src="/2022/12/29/azure-function-by-vs/08.png" title="net6.0"></p><img src="/2022/12/29/azure-function-by-vs/09.png" title="function.json"><p>執行 Function1 會執行 FunctionApp1.dll 中的 Function1.Run Method</p><p>6.執行程式<br>按下執行會開啟命令視窗，並顯示 Function1 的 Url，<br>在 Browser 輸入該 Url 就可以進行測試，<br><img src="/2022/12/29/azure-function-by-vs/10.png" title="Run"></p><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://learn.microsoft.com/zh-tw/azure/azure-functions/functions-run-local" target="_blank" rel="noopener">使用 Azure Functions Core Tools</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;在 &lt;a href=&quot;https://portal.azure.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;A
+      
+    
+    </summary>
+    
+    
+      <category term="C#" scheme="https://rainmakerho.github.io/tags/C/"/>
+    
+      <category term="Visual Studio" scheme="https://rainmakerho.github.io/tags/Visual-Studio/"/>
+    
+      <category term="Azure Function" scheme="https://rainmakerho.github.io/tags/Azure-Function/"/>
+    
+      <category term="Function App" scheme="https://rainmakerho.github.io/tags/Function-App/"/>
+    
+  </entry>
   
   <entry>
     <title>在 SQL Graph 資料表中找某個 Node 的所有 Path</title>
@@ -169,9 +227,9 @@
     
       <category term="MQTT" scheme="https://rainmakerho.github.io/tags/MQTT/"/>
     
-      <category term="username" scheme="https://rainmakerho.github.io/tags/username/"/>
-    
       <category term="mosquitto.conf" scheme="https://rainmakerho.github.io/tags/mosquitto-conf/"/>
+    
+      <category term="username" scheme="https://rainmakerho.github.io/tags/username/"/>
     
       <category term="password_file" scheme="https://rainmakerho.github.io/tags/password-file/"/>
     
@@ -204,9 +262,9 @@
     
       <category term="MQTT" scheme="https://rainmakerho.github.io/tags/MQTT/"/>
     
-      <category term="mosquitto.conf" scheme="https://rainmakerho.github.io/tags/mosquitto-conf/"/>
-    
       <category term="allow_anonymous" scheme="https://rainmakerho.github.io/tags/allow-anonymous/"/>
+    
+      <category term="mosquitto.conf" scheme="https://rainmakerho.github.io/tags/mosquitto-conf/"/>
     
   </entry>
   
@@ -390,13 +448,13 @@
     
       <category term="mssql" scheme="https://rainmakerho.github.io/tags/mssql/"/>
     
+      <category term="Timeout" scheme="https://rainmakerho.github.io/tags/Timeout/"/>
+    
       <category term="sql 2019" scheme="https://rainmakerho.github.io/tags/sql-2019/"/>
     
       <category term="15.0 RTM" scheme="https://rainmakerho.github.io/tags/15-0-RTM/"/>
     
       <category term="15.0.2000.5" scheme="https://rainmakerho.github.io/tags/15-0-2000-5/"/>
-    
-      <category term="Timeout" scheme="https://rainmakerho.github.io/tags/Timeout/"/>
     
   </entry>
   
@@ -607,60 +665,6 @@
       <category term="CS8602" scheme="https://rainmakerho.github.io/tags/CS8602/"/>
     
       <category term="CS8600" scheme="https://rainmakerho.github.io/tags/CS8600/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>AZ-305 考試經驗分享</title>
-    <link href="https://rainmakerho.github.io/2022/11/09/az305/"/>
-    <id>https://rainmakerho.github.io/2022/11/09/az305/</id>
-    <published>2022-11-09T02:54:59.000Z</published>
-    <updated>2022-11-09T08:21:42.362Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>到 <a href="https://www.uuu.com.tw/default.aspx" target="_blank" rel="noopener">恆逸</a> 上完 <a href="https://learn.microsoft.com/zh-tw/certifications/exams/az-305" target="_blank" rel="noopener">設計 Microsoft Azure 基礎結構解決方案</a> 課程之後，自然就是要透過考試來加強學習的成效。<br>上課老師說過，考試的題目範圍並不限於教材內容。<br>那要如何準備考試呢?</p><h3 id="準備考試"><a href="#準備考試" class="headerlink" title="準備考試"></a>準備考試</h3><h4 id="刷題"><a href="#刷題" class="headerlink" title="刷題"></a>刷題</h4><p>大家可能都是到 <a href="https://www.examtopics.com/exams/microsoft/az-305/" target="_blank" rel="noopener">examtopics.com - AZ305</a> 來練習看看。<br>裡面有很多的題目可以練習，也可以看到針對同個題目，不同的見解，也會有許多的參考資料，<br>可以讓自已對 Azure 的運作又更熟悉了一些。<br>另外，因為大多數的練習網站免費的使用者，大多只會提供一些 Demo 題目，或是一半的題目。<br>所以這時的策略就是參考其他的網站，如下，<br>以下將這些題目的網站</p><ul><li><a href="https://www.examtopics.com/exams/microsoft/az-305/" target="_blank" rel="noopener">examtopics.com - AZ305</a></li><li><a href="https://www.certlibrary.com/exam/AZ-305" target="_blank" rel="noopener">certlibrary.com - AZ305</a></li><li><a href="https://www.itfreedumps.com/2022-new-updated-microsoft-az-305-exam-questions/" target="_blank" rel="noopener">itfreedumps.com - AZ305</a></li></ul><h4 id="看影片"><a href="#看影片" class="headerlink" title="看影片"></a>看影片</h4><p>另外在 youtube 上面也有人針對很多題目來講解，</p><ul><li><p><a href="https://www.youtube.com/watch?v=bf1w5UOdUI8" target="_blank" rel="noopener">AZ-305 Real Exam Questions Series</a>，由 <a href="https://www.youtube.com/c/DbSkyLimit" target="_blank" rel="noopener">DbSkyLimit</a> 所發佈，有 8 部影片，包含 120 個題目說明。</p></li><li><p><a href="https://www.youtube.com/watch?v=JbEnkyswof0" target="_blank" rel="noopener">AZ-305 Designing Microsoft Azure Infrastructure Solutions Real Exam Q&amp;A 2022</a> 裡面有 40 個題目說明。</p></li></ul><p>以上參考的資料，希望對大家有所幫助。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;到 &lt;a href=&quot;https://www.uuu.com.tw/default.aspx&quot; target=&quot;_blank&quot; rel=&quot;n
-      
-    
-    </summary>
-    
-    
-      <category term="AZ305" scheme="https://rainmakerho.github.io/tags/AZ305/"/>
-    
-      <category term="AZ-305" scheme="https://rainmakerho.github.io/tags/AZ-305/"/>
-    
-      <category term="Exam AZ-305" scheme="https://rainmakerho.github.io/tags/Exam-AZ-305/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>System.Security.Cryptography.CryptographicException - The system cannot find the file specified.</title>
-    <link href="https://rainmakerho.github.io/2022/11/04/CryptographicException-the-system-cannot-find-the-file-specified/"/>
-    <id>https://rainmakerho.github.io/2022/11/04/CryptographicException-the-system-cannot-find-the-file-specified/</id>
-    <published>2022-11-04T07:37:24.000Z</published>
-    <updated>2022-11-04T07:47:15.280Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近同事詢問在 開發環境跑沒問題，一放到 Server 上程式就 GG 了。<br>將程式加上 log 來顯示，結果出現 <strong>System.Security.Cryptography.CryptographicException: The system cannot find the file specified.</strong> 的錯誤</p><blockquote><p>System.Security.Cryptography.CryptographicException: The system cannot find the file specified.<br>at System.Security.Cryptography.CryptographicException.ThrowCryptographicException(Int32 hr)<br>at System.Security.Cryptography.Utils.<em>CreateCSP(CspParameters param, Boolean randomKeyContainer, SafeProvHandle&amp; hProv)<br>at System.Security.Cryptography.Utils.CreateProvHandle(CspParameters parameters, Boolean randomKeyContainer)<br>at System.Security.Cryptography.Utils.GetKeyPairHelper(CspAlgorithmType keyType, CspParameters parameters, Boolean randomKeyContainer, Int32 dwKeySize, SafeProvHandle&amp; safeProvHandle, SafeKeyHandle&amp; safeKeyHandle)<br>at System.Security.Cryptography.RSACryptoServiceProvider.GetKeyPair()<br>at System.Security.Cryptography.RSACryptoServiceProvider..ctor(Int32 dwKeySize, CspParameters parameters, Boolean useDefaultKeySize)<br>at Org.BouncyCastle.Security.DotNetUtilities.CreateRSAProvider(RSAParameters rp) in /</em>/crypto/src/security/DotNetUtilities.cs:line 247<br>at Org.BouncyCastle.Security.DotNetUtilities.ToRSA(RsaKeyParameters rsaKey) in /_/crypto/src/security/DotNetUtilities.cs:line 158</p></blockquote><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>參考 <a href="https://stackoverflow.com/questions/17840825/cryptographicexception-was-unhandled-system-cannot-find-the-specified-file" target="_blank" rel="noopener">CryptographicException was unhandled: System cannot find the specified file</a> ，<br>因為 IIS 中的 Application Pool 進階設定中的 <strong>載入使用者設定檔(Load User Profile)</strong> 屬性預設是 false 。<br>所以程式中無法判別，所以只要將 <strong>載入使用者設定檔(Load User Profile)</strong> 屬性設定成 <strong>true</strong> 就可以了哦!</p><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://stackoverflow.com/questions/17840825/cryptographicexception-was-unhandled-system-cannot-find-the-specified-file" target="_blank" rel="noopener">CryptographicException was unhandled: System cannot find the specified file</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;最近同事詢問在 開發環境跑沒問題，一放到 Server 上程式就 GG 了。&lt;br&gt;將程式加上 log 來顯示，結果出現 &lt;strong&gt;S
-      
-    
-    </summary>
-    
-    
-      <category term="CryptographicException" scheme="https://rainmakerho.github.io/tags/CryptographicException/"/>
-    
-      <category term="BouncyCastle.Security" scheme="https://rainmakerho.github.io/tags/BouncyCastle-Security/"/>
-    
-      <category term="The system cannot find the file specified" scheme="https://rainmakerho.github.io/tags/The-system-cannot-find-the-file-specified/"/>
     
   </entry>
   
