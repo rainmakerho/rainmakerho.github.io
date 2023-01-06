@@ -4,8 +4,54 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2023/01/06/input-string-was-not-in-a-correct-format/</loc>
+    <lastmod>2023-01-06T04:04:47.411Z</lastmod>
+    <data>
+        <display>
+        <title>C# Input string was not in a correct format.</title>
+        <pubTime>2023-01-06T03:58:29.000Z</pubTime>
+        
+        <tag>C#</tag>
+         
+        <tag>string.Format</tag>
+         
+        <tag>json</tag>
+         
+        <tag>System.FormatException</tag>
+         
+        <tag>Input string was not in a correct format</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://rainmakerho.github.io/2023/01/06/checkmarx-client-dom-open-redirect/</loc>
+    <lastmod>2023-01-06T03:48:52.792Z</lastmod>
+    <data>
+        <display>
+        <title>Checkmarx DOM_Open_Redirect</title>
+        <pubTime>2023-01-06T03:31:40.000Z</pubTime>
+        
+        <tag>Checkmarx</tag>
+         
+        <tag>Client_DOM_Open_Redirect</tag>
+         
+        <tag>Client_Potential_DOM_Open_Redirect</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2022/12/29/azure-function-bindings-triggers/</loc>
-    <lastmod>2022-12-29T09:19:25.512Z</lastmod>
+    <lastmod>2022-12-29T13:01:44.392Z</lastmod>
     <data>
         <display>
         <title>將 Http Trigger Function 內容寫到 Queue 中，並透過 Queue trigger Function 取出來，存到 Blob</title>
@@ -379,13 +425,13 @@
          
         <tag>mssql</tag>
          
-        <tag>Timeout</tag>
-         
         <tag>sql 2019</tag>
          
         <tag>15.0 RTM</tag>
          
         <tag>15.0.2000.5</tag>
+         
+        <tag>Timeout</tag>
          
          
            
@@ -827,9 +873,9 @@
         <title>Timeout expired. all pooled connections were in use and max pool size was reached. 自動關閉 Connection ?</title>
         <pubTime>2022-08-29T03:27:36.000Z</pubTime>
         
-        <tag>Connection Pooling</tag>
-         
         <tag>Timeout</tag>
+         
+        <tag>Connection Pooling</tag>
          
         <tag>Auto Close</tag>
          
@@ -1916,9 +1962,9 @@
         <title>Checkmarx V9.4 在 Heap_Inspection 的改變(ASPX)</title>
         <pubTime>2021-12-28T01:09:40.000Z</pubTime>
         
-        <tag>ASPX</tag>
-         
         <tag>ASP.NET</tag>
+         
+        <tag>ASPX</tag>
          
         <tag>Checkmarx</tag>
          
@@ -2676,9 +2722,9 @@
          
         <tag>Custom Model Binder</tag>
          
-        <tag>SecureString</tag>
-         
         <tag>MVC5</tag>
+         
+        <tag>SecureString</tag>
          
         <tag>netFramework</tag>
          
@@ -5473,9 +5519,9 @@
         <title>PDF 最後一頁才顯示頁尾</title>
         <pubTime>2018-11-29T06:46:17.000Z</pubTime>
         
-        <tag>aspose</tag>
-         
         <tag>pdf</tag>
+         
+        <tag>aspose</tag>
          
         <tag>cells</tag>
          
@@ -6245,9 +6291,9 @@
         <title>使用 Botframework 的 Bot 如何 Debug 到 BotBuilder Source ?</title>
         <pubTime>2018-02-01T01:47:18.000Z</pubTime>
         
-        <tag>botframework</tag>
-         
         <tag>C#</tag>
+         
+        <tag>botframework</tag>
          
         <tag>BotBuilder</tag>
          
