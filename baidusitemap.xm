@@ -4,6 +4,31 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2023/01/07/ml-net-p-value-outside-0-1-range/</loc>
+    <lastmod>2023-01-07T06:44:57.139Z</lastmod>
+    <data>
+        <display>
+        <title>ML.NET p-Value calculated outside expected [0,1] range</title>
+        <pubTime>2023-01-07T05:25:46.000Z</pubTime>
+        
+        <tag>ML.NET</tag>
+         
+        <tag>p-Value</tag>
+         
+        <tag>0x80131509</tag>
+         
+        <tag>outside expected</tag>
+         
+        <tag>Regression.Trainers.Ols</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2023/01/06/input-string-was-not-in-a-correct-format/</loc>
     <lastmod>2023-01-06T04:04:47.411Z</lastmod>
     <data>
@@ -2218,9 +2243,9 @@
         
         <tag>DataTable</tag>
          
-        <tag>Reflected_XSS_All_Clients</tag>
-         
         <tag>JsonConvert.SerializeObject</tag>
+         
+        <tag>Reflected_XSS_All_Clients</tag>
          
         <tag>JsonSerializerSettings</tag>
          
@@ -2722,9 +2747,9 @@
          
         <tag>Custom Model Binder</tag>
          
-        <tag>MVC5</tag>
-         
         <tag>SecureString</tag>
+         
+        <tag>MVC5</tag>
          
         <tag>netFramework</tag>
          
@@ -5376,8 +5401,6 @@
         <title>使用 OpenTracing - Jaeger (AP整合)</title>
         <pubTime>2019-01-15T05:13:41.000Z</pubTime>
         
-        <tag>BFv4</tag>
-         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -5391,6 +5414,8 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
+         
+        <tag>BFv4</tag>
          
         <tag>NodeJS</tag>
          
@@ -5409,8 +5434,6 @@
         <title>使用 OpenTracing - Jaeger</title>
         <pubTime>2019-01-04T06:02:45.000Z</pubTime>
         
-        <tag>BFv4</tag>
-         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -5424,6 +5447,8 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
+         
+        <tag>BFv4</tag>
          
          
            
@@ -5519,9 +5544,9 @@
         <title>PDF 最後一頁才顯示頁尾</title>
         <pubTime>2018-11-29T06:46:17.000Z</pubTime>
         
-        <tag>pdf</tag>
-         
         <tag>aspose</tag>
+         
+        <tag>pdf</tag>
          
         <tag>cells</tag>
          
@@ -6291,9 +6316,9 @@
         <title>使用 Botframework 的 Bot 如何 Debug 到 BotBuilder Source ?</title>
         <pubTime>2018-02-01T01:47:18.000Z</pubTime>
         
-        <tag>C#</tag>
-         
         <tag>botframework</tag>
+         
+        <tag>C#</tag>
          
         <tag>BotBuilder</tag>
          
