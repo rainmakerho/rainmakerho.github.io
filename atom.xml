@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2023-01-07T06:44:57.139Z</updated>
+  <updated>2023-01-11T07:49:20.771Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Oracle 在查詢時，有時會出現 遠端主機已強制關閉一個現存的連線</title>
+    <link href="https://rainmakerho.github.io/2023/01/11/oracle-17002-io-error-sometimes/"/>
+    <id>https://rainmakerho.github.io/2023/01/11/oracle-17002-io-error-sometimes/</id>
+    <published>2023-01-11T05:07:35.000Z</published>
+    <updated>2023-01-11T07:49:20.771Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近有遇到使用 <a href="https://dbeaver.io/" target="_blank" rel="noopener">DBeaver</a> 連線 Oracle 11.2 時，<br>在下 SQL 時，有時會出現 <strong>SQL Error[17002][08006]:IO Error:遠端主機已強制關閉一個現存的連線</strong>的錯誤，<br><img src="/2023/01/11/oracle-17002-io-error-sometimes/01.png" title="IO Error"></p><h3 id="解決"><a href="#解決" class="headerlink" title="解決"></a>解決</h3><p>但如果連 MS-SQL 卻是很順，<br>有討論到是否因為 firewall, IPS, 或是少裝 Oracle Client 的問題。<br>但另一個廠商也是去連 Oacle 卻不會有這樣子的狀況。<br>於是請同事詢問一下他們的連線方式，<br>後來 … 同事回報，他們 <strong>安裝 Oracle Client</strong> 之後，查詢就沒問題了。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;最近有遇到使用 &lt;a href=&quot;https://dbeaver.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;D
+      
+    
+    </summary>
+    
+    
+      <category term="oracle" scheme="https://rainmakerho.github.io/tags/oracle/"/>
+    
+      <category term="17002" scheme="https://rainmakerho.github.io/tags/17002/"/>
+    
+      <category term="08006" scheme="https://rainmakerho.github.io/tags/08006/"/>
+    
+      <category term="IO Error" scheme="https://rainmakerho.github.io/tags/IO-Error/"/>
+    
+  </entry>
   
   <entry>
     <title>ML.NET p-Value calculated outside expected [0,1] range</title>
@@ -608,49 +637,6 @@
       <category term="The file exists" scheme="https://rainmakerho.github.io/tags/The-file-exists/"/>
     
       <category term="65535" scheme="https://rainmakerho.github.io/tags/65535/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>標楷體(DFKai-SB)的Word檔中有些字透過 Aspose.Words 另存成 PDF 後，會變成&quot;空白&quot;字</title>
-    <link href="https://rainmakerho.github.io/2022/11/15/aspose-kangxi-radical-dfkai-sb-pdf-square-box/"/>
-    <id>https://rainmakerho.github.io/2022/11/15/aspose-kangxi-radical-dfkai-sb-pdf-square-box/</id>
-    <published>2022-11-15T03:43:15.000Z</published>
-    <updated>2022-11-15T06:23:37.551Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>標楷體的 Word 文件中有些 Unicode 透過 Aspose.Words 另存成 PDF 時，該字會變成”空白字”，<br>例如 <a href="https://unicode-table.com/en/2FA6/" target="_blank" rel="noopener">U+2FA6(⾦)</a> 這個字，可是在 Word 中明明可以正常顯示。<br>我們可以參考 <a href="https://rainmakerho.github.io/2022/11/15/aspose-kangxi-radical-word-2-pdf-square-box/">有些字透過 Aspose.Words 讀取 Word 檔，另存成 PDF 後，會變成空白框(square box)是變成 空白字</a> 將 Word 內容轉成 「<strong>Microsoft YaHei</strong>」字型後，<br>再另存成 PDF 就可以解決 <a href="https://unicode-table.com/en/2FA6/" target="_blank" rel="noopener">U+2FA6(⾦)</a> 無法在 PDF 中顯示的問題。<br>但是，如果我的字型一定要<strong>標楷體(DFKai-SB)</strong>，要怎麼辦呢?</p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>測試的 C# 程式如下(請先加入 Aspose.Words 套件)，</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> docxPath = <span class="string">@"c:\temp\h2docx.docx"</span>;</span><br><span class="line"><span class="keyword">var</span> pdfPath = <span class="string">@"c:\temp\h2pdf.pdf"</span>;</span><br><span class="line"><span class="keyword">var</span> doc = <span class="keyword">new</span> Aspose.Words.Document(docxPath);</span><br><span class="line"><span class="keyword">var</span> fontChanger = <span class="keyword">new</span> FontChanger(<span class="string">"DFKai-SB"</span>);</span><br><span class="line">doc.Accept(fontChanger);</span><br><span class="line">doc.Save(pdfPath);</span><br></pre></td></tr></table></figure><p>將字型全改成<strong>標楷體(DFKai-SB)</strong>，在 PDF 中還是變成一個空白，<br><img src="/2022/11/15/aspose-kangxi-radical-dfkai-sb-pdf-square-box/01.png" title="square box in pdf"></p><p>查看 <a href="https://www.fileformat.info/info/unicode/font/dfkai-sb/list.htm" target="_blank" rel="noopener">Unicode characters supported by the 標楷體 font</a> ，<br>裡面的確找不到 <a href="https://unicode-table.com/en/2FA6/" target="_blank" rel="noopener">⾦</a>，<br>所以要找到有包含 <a href="https://unicode-table.com/en/2FA6/" target="_blank" rel="noopener">⾦</a> 的字型檔案，<br>同時要像 <strong>標楷體(DFKai-SB)</strong> 的字型。</p><p>…</p><p>後來筆者找到了 <a href="https://data.gov.tw/dataset/5961" target="_blank" rel="noopener">CNS11643 中文標準交換碼全字庫</a>，<br><img src="/2022/11/15/aspose-kangxi-radical-dfkai-sb-pdf-square-box/03.png" title="全字庫"></p><p>裡面就包含了 <strong>全字庫正楷體</strong>(TW-Kai-98_1.ttf)，就跟 <strong>標楷體(DFKai-SB)</strong> 長的蠻像的。<br>下載 ZIP 檔案後，解壓縮後，開啟 Open_Data\Fonts 目錄，<br>DBClick TW-Kai-98_1.ttf ，按下 <strong>「安裝(I)」</strong> 將字型安裝到系統之中。<br><img src="/2022/11/15/aspose-kangxi-radical-dfkai-sb-pdf-square-box/04.png" title="安裝全字庫"></p><p>在 Word 中， Copy 一份內容，改用 <strong>全字庫正楷體</strong> 來比較一下，<br>可以發現跟<strong>標楷體(DFKai-SB)</strong>差不多，而且在 PDF 中也可以正常顯示 <a href="https://unicode-table.com/en/2FA6/" target="_blank" rel="noopener">⾦</a>，<br>測試程式如下，</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> docxPath = <span class="string">@"c:\temp\h2docx.docx"</span>;</span><br><span class="line"><span class="keyword">var</span> pdfPath = <span class="string">@"c:\temp\h2pdf.pdf"</span>;</span><br><span class="line"><span class="keyword">var</span> doc = <span class="keyword">new</span> Aspose.Words.Document(docxPath);</span><br><span class="line">doc.Save(pdfPath);</span><br></pre></td></tr></table></figure><img src="/2022/11/15/aspose-kangxi-radical-dfkai-sb-pdf-square-box/02.png" title="標楷體與全字庫正楷體"><p>即然使用<strong>全字庫正楷體</strong>字型另存成 PDF 沒問題，那就將 Word 所有文字的字體改成 <strong>全字庫正楷體</strong> ，再另存就可以了。</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> docxPath = <span class="string">@"c:\temp\h2docx.docx"</span>;</span><br><span class="line"><span class="keyword">var</span> pdfPath = <span class="string">@"c:\temp\h2pdf.pdf"</span>;</span><br><span class="line"><span class="keyword">var</span> doc = <span class="keyword">new</span> Aspose.Words.Document(docxPath);</span><br><span class="line"><span class="keyword">var</span> fontChanger = <span class="keyword">new</span> FontChanger(<span class="string">"全字庫正楷體"</span>);</span><br><span class="line">doc.Accept(fontChanger);</span><br><span class="line">doc.Save(pdfPath);</span><br></pre></td></tr></table></figure><img src="/2022/11/15/aspose-kangxi-radical-dfkai-sb-pdf-square-box/05.png" title="全字庫正楷體PDF"><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://rainmakerho.github.io/2022/11/15/aspose-kangxi-radical-word-2-pdf-square-box/">有些字透過 Aspose.Words 讀取 Word 檔，另存成 PDF 後，會變成空白框(square box)是變成 空白字</a><br><a href="https://data.gov.tw/dataset/5961" target="_blank" rel="noopener">CNS11643 中文標準交換碼全字庫</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;標楷體的 Word 文件中有些 Unicode 透過 Aspose.Words 另存成 PDF 時，該字會變成”空白字”，&lt;br&gt;例如 &lt;a
-      
-    
-    </summary>
-    
-    
-      <category term="PDF" scheme="https://rainmakerho.github.io/tags/PDF/"/>
-    
-      <category term="Aspose" scheme="https://rainmakerho.github.io/tags/Aspose/"/>
-    
-      <category term="DFKai-SB" scheme="https://rainmakerho.github.io/tags/DFKai-SB/"/>
-    
-      <category term="Word" scheme="https://rainmakerho.github.io/tags/Word/"/>
-    
-      <category term="空白框" scheme="https://rainmakerho.github.io/tags/%E7%A9%BA%E7%99%BD%E6%A1%86/"/>
-    
-      <category term="square box" scheme="https://rainmakerho.github.io/tags/square-box/"/>
-    
-      <category term="kangxi radical" scheme="https://rainmakerho.github.io/tags/kangxi-radical/"/>
-    
-      <category term="unicode" scheme="https://rainmakerho.github.io/tags/unicode/"/>
-    
-      <category term="空白字" scheme="https://rainmakerho.github.io/tags/%E7%A9%BA%E7%99%BD%E5%AD%97/"/>
-    
-      <category term="標楷體" scheme="https://rainmakerho.github.io/tags/%E6%A8%99%E6%A5%B7%E9%AB%94/"/>
-    
-      <category term="全字庫" scheme="https://rainmakerho.github.io/tags/%E5%85%A8%E5%AD%97%E5%BA%AB/"/>
     
   </entry>
   

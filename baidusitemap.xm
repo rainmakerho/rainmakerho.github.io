@@ -4,6 +4,29 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2023/01/11/oracle-17002-io-error-sometimes/</loc>
+    <lastmod>2023-01-11T07:49:20.771Z</lastmod>
+    <data>
+        <display>
+        <title>Oracle 在查詢時，有時會出現 遠端主機已強制關閉一個現存的連線</title>
+        <pubTime>2023-01-11T05:07:35.000Z</pubTime>
+        
+        <tag>oracle</tag>
+         
+        <tag>17002</tag>
+         
+        <tag>08006</tag>
+         
+        <tag>IO Error</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2023/01/07/ml-net-p-value-outside-0-1-range/</loc>
     <lastmod>2023-01-07T06:44:57.139Z</lastmod>
     <data>
@@ -1626,6 +1649,8 @@
          
         <tag>OAuth 2.0</tag>
          
+        <tag>public client</tag>
+         
         <tag>PKCE</tag>
          
         <tag>Proof Key for Code Exchange</tag>
@@ -1633,8 +1658,6 @@
         <tag>claiming URLs</tag>
          
         <tag>Custom URL Scheme</tag>
-         
-        <tag>public client</tag>
          
          
            
@@ -1772,13 +1795,13 @@
         
         <tag>OAuth 2.0</tag>
          
-        <tag>public client</tag>
-         
         <tag>Implicit Flow</tag>
          
         <tag>response_type=token</tag>
          
         <tag>response_mode=fragment</tag>
+         
+        <tag>public client</tag>
          
         <tag>token flow</tag>
          
@@ -2243,9 +2266,9 @@
         
         <tag>DataTable</tag>
          
-        <tag>JsonConvert.SerializeObject</tag>
-         
         <tag>Reflected_XSS_All_Clients</tag>
+         
+        <tag>JsonConvert.SerializeObject</tag>
          
         <tag>JsonSerializerSettings</tag>
          
@@ -5362,8 +5385,6 @@
         <title>使用 OpenTracing - Jaeger (BFv3 使用 Dynamic Proxy)</title>
         <pubTime>2019-01-20T10:31:40.000Z</pubTime>
         
-        <tag>Autofac</tag>
-         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -5377,6 +5398,8 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
+         
+        <tag>Autofac</tag>
          
         <tag>Dynamic Proxy</tag>
          
@@ -6245,11 +6268,11 @@
         <title>SmtpConnection.GetConnection NullReferenceException</title>
         <pubTime>2018-03-14T02:07:16.000Z</pubTime>
         
-        <tag>NullReferenceException</tag>
-         
         <tag>SmtpClient</tag>
          
         <tag>SmtpConnection.GetConnection</tag>
+         
+        <tag>NullReferenceException</tag>
          
         <tag>.net</tag>
          
@@ -6274,11 +6297,11 @@
         <title>System.NullReferenceException when Aspose.Pdf.License.SetLicense(String licenseName)</title>
         <pubTime>2018-03-13T06:54:05.000Z</pubTime>
         
+        <tag>NullReferenceException</tag>
+         
         <tag>Aspose</tag>
          
         <tag>SetLicense</tag>
-         
-        <tag>NullReferenceException</tag>
          
          
            
