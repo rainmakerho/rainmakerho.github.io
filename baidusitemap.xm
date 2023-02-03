@@ -4,6 +4,54 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2023/02/03/message-has-reached-MaxDequeueCount-of-5/</loc>
+    <lastmod>2023-02-03T01:21:44.217Z</lastmod>
+    <data>
+        <display>
+        <title>Azure Storage Queue - Message has reached MaxDequeueCount of 5. Moving message to queue poison</title>
+        <pubTime>2023-02-03T01:05:53.000Z</pubTime>
+        
+        <tag>Azure</tag>
+         
+        <tag>Storage</tag>
+         
+        <tag>Queue</tag>
+         
+        <tag>MaxDequeueCount</tag>
+         
+        <tag>Function</tag>
+         
+        <tag>poison</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://rainmakerho.github.io/2022/11/04/CryptographicException-the-system-cannot-find-the-file-specified/</loc>
+    <lastmod>2023-01-17T03:55:12.079Z</lastmod>
+    <data>
+        <display>
+        <title>System.Security.Cryptography.CryptographicException - The system cannot find the file specified.</title>
+        <pubTime>2022-11-04T07:37:24.000Z</pubTime>
+        
+        <tag>CryptographicException</tag>
+         
+        <tag>BouncyCastle.Security</tag>
+         
+        <tag>The system cannot find the file specified</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2023/01/11/oracle-17002-io-error-sometimes/</loc>
     <lastmod>2023-01-11T07:49:20.771Z</lastmod>
     <data>
@@ -417,11 +465,11 @@
         <title>ASP.NET Security Headers</title>
         <pubTime>2020-05-12T01:29:40.000Z</pubTime>
         
-        <tag>X-XSS-Protection</tag>
-         
         <tag>Content-Security-Policy</tag>
          
         <tag>X-Frame-Options</tag>
+         
+        <tag>X-XSS-Protection</tag>
          
         <tag>X-Content-Type-Options</tag>
          
@@ -696,27 +744,6 @@
         <tag>AZ-305</tag>
          
         <tag>Exam AZ-305</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://rainmakerho.github.io/2022/11/04/CryptographicException-the-system-cannot-find-the-file-specified/</loc>
-    <lastmod>2022-11-04T07:47:15.280Z</lastmod>
-    <data>
-        <display>
-        <title>System.Security.Cryptography.CryptographicException - The system cannot find the file specified.</title>
-        <pubTime>2022-11-04T07:37:24.000Z</pubTime>
-        
-        <tag>CryptographicException</tag>
-         
-        <tag>BouncyCastle.Security</tag>
-         
-        <tag>The system cannot find the file specified</tag>
          
          
            
@@ -1649,8 +1676,6 @@
          
         <tag>OAuth 2.0</tag>
          
-        <tag>public client</tag>
-         
         <tag>PKCE</tag>
          
         <tag>Proof Key for Code Exchange</tag>
@@ -1658,6 +1683,8 @@
         <tag>claiming URLs</tag>
          
         <tag>Custom URL Scheme</tag>
+         
+        <tag>public client</tag>
          
          
            
@@ -1795,13 +1822,13 @@
         
         <tag>OAuth 2.0</tag>
          
+        <tag>public client</tag>
+         
         <tag>Implicit Flow</tag>
          
         <tag>response_type=token</tag>
          
         <tag>response_mode=fragment</tag>
-         
-        <tag>public client</tag>
          
         <tag>token flow</tag>
          
@@ -2010,9 +2037,9 @@
         <title>Checkmarx V9.4 在 Heap_Inspection 的改變(ASPX)</title>
         <pubTime>2021-12-28T01:09:40.000Z</pubTime>
         
-        <tag>ASP.NET</tag>
-         
         <tag>ASPX</tag>
+         
+        <tag>ASP.NET</tag>
          
         <tag>Checkmarx</tag>
          
@@ -3295,13 +3322,13 @@
         <title>Uncaught DOMException: Blocked a frame with origin</title>
         <pubTime>2020-07-01T09:49:43.000Z</pubTime>
         
-        <tag>X-Frame-Options</tag>
-         
         <tag>iframe</tag>
          
         <tag>Uncaught DOMException</tag>
          
         <tag>Blocked a frame with origin</tag>
+         
+        <tag>X-Frame-Options</tag>
          
          
            
@@ -4448,11 +4475,11 @@
         <title>透過 Content-Security-Policy 修正 Mixed Content Link 問題</title>
         <pubTime>2020-05-19T08:44:09.000Z</pubTime>
         
-        <tag>Content-Security-Policy</tag>
-         
         <tag>Mixed Content</tag>
          
         <tag>CSP</tag>
+         
+        <tag>Content-Security-Policy</tag>
          
         <tag>upgrade-insecure-requests</tag>
          
@@ -5385,6 +5412,8 @@
         <title>使用 OpenTracing - Jaeger (BFv3 使用 Dynamic Proxy)</title>
         <pubTime>2019-01-20T10:31:40.000Z</pubTime>
         
+        <tag>Autofac</tag>
+         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -5398,8 +5427,6 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
-         
-        <tag>Autofac</tag>
          
         <tag>Dynamic Proxy</tag>
          
@@ -5424,6 +5451,8 @@
         <title>使用 OpenTracing - Jaeger (AP整合)</title>
         <pubTime>2019-01-15T05:13:41.000Z</pubTime>
         
+        <tag>BFv4</tag>
+         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -5437,8 +5466,6 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
-         
-        <tag>BFv4</tag>
          
         <tag>NodeJS</tag>
          
@@ -5457,6 +5484,8 @@
         <title>使用 OpenTracing - Jaeger</title>
         <pubTime>2019-01-04T06:02:45.000Z</pubTime>
         
+        <tag>BFv4</tag>
+         
         <tag>OpenTracing</tag>
          
         <tag>Distributed Tracing</tag>
@@ -5470,8 +5499,6 @@
         <tag>.NET</tag>
          
         <tag>BFv3</tag>
-         
-        <tag>BFv4</tag>
          
          
            
@@ -6268,11 +6295,11 @@
         <title>SmtpConnection.GetConnection NullReferenceException</title>
         <pubTime>2018-03-14T02:07:16.000Z</pubTime>
         
+        <tag>NullReferenceException</tag>
+         
         <tag>SmtpClient</tag>
          
         <tag>SmtpConnection.GetConnection</tag>
-         
-        <tag>NullReferenceException</tag>
          
         <tag>.net</tag>
          
@@ -6297,11 +6324,11 @@
         <title>System.NullReferenceException when Aspose.Pdf.License.SetLicense(String licenseName)</title>
         <pubTime>2018-03-13T06:54:05.000Z</pubTime>
         
-        <tag>NullReferenceException</tag>
-         
         <tag>Aspose</tag>
          
         <tag>SetLicense</tag>
+         
+        <tag>NullReferenceException</tag>
          
          
            
@@ -6412,13 +6439,13 @@
         <title>線上客服 + BOT 之路</title>
         <pubTime>2018-01-25T08:10:47.000Z</pubTime>
         
+        <tag>chatbot</tag>
+         
         <tag>QnA Maker</tag>
          
         <tag>LUIS</tag>
          
         <tag>Vital ESP</tag>
-         
-        <tag>chatbot</tag>
          
         <tag>FAQ</tag>
          
