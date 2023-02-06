@@ -4,6 +4,48 @@
 
     
   <url>
+    <loc>https://rainmakerho.github.io/2023/02/06/dynamic-set-property-with-ts/</loc>
+    <lastmod>2023-02-06T04:03:31.003Z</lastmod>
+    <data>
+        <display>
+        <title>如何在 TypeScript 中動態設定物件的屬性 (How to Set Dynamic Property Keys with TypeScript)</title>
+        <pubTime>2023-02-06T03:01:35.000Z</pubTime>
+        
+        <tag>TypeScript</tag>
+         
+        <tag>dynamic</tag>
+         
+        <tag>property</tag>
+         
+        <tag>bracket-notation</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://rainmakerho.github.io/2023/02/03/tcp-3-way-handshakes/</loc>
+    <lastmod>2023-02-03T05:52:19.823Z</lastmod>
+    <data>
+        <display>
+        <title>TCP 3-Way Handshake</title>
+        <pubTime>2023-02-03T03:53:45.000Z</pubTime>
+        
+        <tag>TCP</tag>
+         
+        <tag>Handshake</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://rainmakerho.github.io/2023/02/03/message-has-reached-MaxDequeueCount-of-5/</loc>
     <lastmod>2023-02-03T01:21:44.217Z</lastmod>
     <data>
@@ -330,11 +372,11 @@
         
         <tag>C#</tag>
          
+        <tag>MQTT</tag>
+         
         <tag>MQTTnet</tag>
          
         <tag>mosquitto</tag>
-         
-        <tag>MQTT</tag>
          
         <tag>mosquitto.conf</tag>
          
@@ -359,11 +401,11 @@
         
         <tag>C#</tag>
          
+        <tag>MQTT</tag>
+         
         <tag>MQTTnet</tag>
          
         <tag>mosquitto</tag>
-         
-        <tag>MQTT</tag>
          
         <tag>allow_anonymous</tag>
          
@@ -386,13 +428,13 @@
         
         <tag>C#</tag>
          
-        <tag>MQTTnet</tag>
-         
-        <tag>mosquitto</tag>
+        <tag>IOT</tag>
          
         <tag>MQTT</tag>
          
-        <tag>IOT</tag>
+        <tag>MQTTnet</tag>
+         
+        <tag>mosquitto</tag>
          
          
            
@@ -465,11 +507,11 @@
         <title>ASP.NET Security Headers</title>
         <pubTime>2020-05-12T01:29:40.000Z</pubTime>
         
+        <tag>X-XSS-Protection</tag>
+         
         <tag>Content-Security-Policy</tag>
          
         <tag>X-Frame-Options</tag>
-         
-        <tag>X-XSS-Protection</tag>
          
         <tag>X-Content-Type-Options</tag>
          
@@ -1676,6 +1718,8 @@
          
         <tag>OAuth 2.0</tag>
          
+        <tag>public client</tag>
+         
         <tag>PKCE</tag>
          
         <tag>Proof Key for Code Exchange</tag>
@@ -1683,8 +1727,6 @@
         <tag>claiming URLs</tag>
          
         <tag>Custom URL Scheme</tag>
-         
-        <tag>public client</tag>
          
          
            
@@ -1822,13 +1864,13 @@
         
         <tag>OAuth 2.0</tag>
          
-        <tag>public client</tag>
-         
         <tag>Implicit Flow</tag>
          
         <tag>response_type=token</tag>
          
         <tag>response_mode=fragment</tag>
+         
+        <tag>public client</tag>
          
         <tag>token flow</tag>
          
@@ -2037,17 +2079,17 @@
         <title>Checkmarx V9.4 在 Heap_Inspection 的改變(ASPX)</title>
         <pubTime>2021-12-28T01:09:40.000Z</pubTime>
         
-        <tag>ASPX</tag>
-         
         <tag>ASP.NET</tag>
          
-        <tag>Checkmarx</tag>
+        <tag>ASPX</tag>
          
-        <tag>Password</tag>
+        <tag>Checkmarx</tag>
          
         <tag>Heap Inspection</tag>
          
         <tag>Heap_Inspection</tag>
+         
+        <tag>Password</tag>
          
         <tag>WebForm</tag>
          
@@ -2099,11 +2141,11 @@
         
         <tag>Jenkins</tag>
          
+        <tag>Password</tag>
+         
         <tag>資安</tag>
          
         <tag>使用者密碼</tag>
-         
-        <tag>Password</tag>
          
          
            
@@ -2739,9 +2781,9 @@
          
         <tag>Checkmarx</tag>
          
-        <tag>Password</tag>
-         
         <tag>Heap Inspection</tag>
+         
+        <tag>Password</tag>
          
         <tag>Custom Model Binder</tag>
          
@@ -2766,9 +2808,9 @@
          
         <tag>Checkmarx</tag>
          
-        <tag>Password</tag>
-         
         <tag>Heap Inspection</tag>
+         
+        <tag>Password</tag>
          
         <tag>Custom Model Binder</tag>
          
@@ -2791,9 +2833,9 @@
         
         <tag>Checkmarx</tag>
          
-        <tag>Password</tag>
-         
         <tag>Heap Inspection</tag>
+         
+        <tag>Password</tag>
          
         <tag>Custom Model Binder</tag>
          
@@ -2820,9 +2862,9 @@
         
         <tag>Checkmarx</tag>
          
-        <tag>Password</tag>
-         
         <tag>Heap Inspection</tag>
+         
+        <tag>Password</tag>
          
         <tag>Custom Model Binder</tag>
          
@@ -3322,13 +3364,13 @@
         <title>Uncaught DOMException: Blocked a frame with origin</title>
         <pubTime>2020-07-01T09:49:43.000Z</pubTime>
         
+        <tag>X-Frame-Options</tag>
+         
         <tag>iframe</tag>
          
         <tag>Uncaught DOMException</tag>
          
         <tag>Blocked a frame with origin</tag>
-         
-        <tag>X-Frame-Options</tag>
          
          
            
@@ -4475,11 +4517,11 @@
         <title>透過 Content-Security-Policy 修正 Mixed Content Link 問題</title>
         <pubTime>2020-05-19T08:44:09.000Z</pubTime>
         
+        <tag>Content-Security-Policy</tag>
+         
         <tag>Mixed Content</tag>
          
         <tag>CSP</tag>
-         
-        <tag>Content-Security-Policy</tag>
          
         <tag>upgrade-insecure-requests</tag>
          
@@ -6366,9 +6408,9 @@
         <title>使用 Botframework 的 Bot 如何 Debug 到 BotBuilder Source ?</title>
         <pubTime>2018-02-01T01:47:18.000Z</pubTime>
         
-        <tag>botframework</tag>
-         
         <tag>C#</tag>
+         
+        <tag>botframework</tag>
          
         <tag>BotBuilder</tag>
          
@@ -6439,13 +6481,13 @@
         <title>線上客服 + BOT 之路</title>
         <pubTime>2018-01-25T08:10:47.000Z</pubTime>
         
-        <tag>chatbot</tag>
-         
         <tag>QnA Maker</tag>
          
         <tag>LUIS</tag>
          
         <tag>Vital ESP</tag>
+         
+        <tag>chatbot</tag>
          
         <tag>FAQ</tag>
          
