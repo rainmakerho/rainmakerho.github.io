@@ -1,1111 +1,1115 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://rainmakerho.github.io/2023/02/06/dynamic-set-property-with-ts/</loc>
+    <loc>https://rainmakerho.github.io//2023/02/17/checkmarx-unsafe-reflection/</loc>
+    <lastmod>2023-02-17</lastmod>
+  </url>
+  <url>
+    <loc>https://rainmakerho.github.io//2023/02/06/dynamic-set-property-with-ts/</loc>
     <lastmod>2023-02-06</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2023/02/03/tcp-3-way-handshakes/</loc>
+    <loc>https://rainmakerho.github.io//2023/02/03/tcp-3-way-handshakes/</loc>
     <lastmod>2023-02-03</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2023/02/03/message-has-reached-MaxDequeueCount-of-5/</loc>
+    <loc>https://rainmakerho.github.io//2023/02/03/message-has-reached-MaxDequeueCount-of-5/</loc>
     <lastmod>2023-02-03</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/11/04/CryptographicException-the-system-cannot-find-the-file-specified/</loc>
+    <loc>https://rainmakerho.github.io//2022/11/04/CryptographicException-the-system-cannot-find-the-file-specified/</loc>
     <lastmod>2023-01-17</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2023/01/11/oracle-17002-io-error-sometimes/</loc>
+    <loc>https://rainmakerho.github.io//2023/01/11/oracle-17002-io-error-sometimes/</loc>
     <lastmod>2023-01-11</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2023/01/07/ml-net-p-value-outside-0-1-range/</loc>
+    <loc>https://rainmakerho.github.io//2023/01/07/ml-net-p-value-outside-0-1-range/</loc>
     <lastmod>2023-01-07</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2023/01/06/input-string-was-not-in-a-correct-format/</loc>
+    <loc>https://rainmakerho.github.io//2023/01/06/input-string-was-not-in-a-correct-format/</loc>
     <lastmod>2023-01-06</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2023/01/06/checkmarx-client-dom-open-redirect/</loc>
+    <loc>https://rainmakerho.github.io//2023/01/06/checkmarx-client-dom-open-redirect/</loc>
     <lastmod>2023-01-06</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/12/29/azure-function-bindings-triggers/</loc>
+    <loc>https://rainmakerho.github.io//2022/12/29/azure-function-bindings-triggers/</loc>
     <lastmod>2022-12-29</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/12/29/azure-function-by-vs/</loc>
+    <loc>https://rainmakerho.github.io//2022/12/29/azure-function-by-vs/</loc>
     <lastmod>2022-12-29</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/10/28/ms-reporting-service-add-custom-font-woff-ttf/</loc>
+    <loc>https://rainmakerho.github.io//2022/10/28/ms-reporting-service-add-custom-font-woff-ttf/</loc>
     <lastmod>2022-12-28</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/12/27/mssql-graph-query-find-all-path-node/</loc>
+    <loc>https://rainmakerho.github.io//2022/12/27/mssql-graph-query-find-all-path-node/</loc>
     <lastmod>2022-12-27</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/12/27/ant-g6-update-graph/</loc>
+    <loc>https://rainmakerho.github.io//2022/12/27/ant-g6-update-graph/</loc>
     <lastmod>2022-12-27</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/12/20/AxiosError-127-0-0-1-ECONNREFUSED/</loc>
+    <loc>https://rainmakerho.github.io//2022/12/20/AxiosError-127-0-0-1-ECONNREFUSED/</loc>
     <lastmod>2022-12-20</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/12/20/multithreading-in-node-js/</loc>
+    <loc>https://rainmakerho.github.io//2022/12/20/multithreading-in-node-js/</loc>
     <lastmod>2022-12-20</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/12/16/mqttnet-connect-mosquitto-usernam-password/</loc>
+    <loc>https://rainmakerho.github.io//2022/12/16/mqttnet-connect-mosquitto-usernam-password/</loc>
     <lastmod>2022-12-16</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/12/15/mosquitto-allow-remote-access/</loc>
+    <loc>https://rainmakerho.github.io//2022/12/15/mosquitto-allow-remote-access/</loc>
     <lastmod>2022-12-16</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/12/15/mqtt-with-mqttnet/</loc>
+    <loc>https://rainmakerho.github.io//2022/12/15/mqtt-with-mqttnet/</loc>
     <lastmod>2022-12-15</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/12/08/why-iis-have-addition-request-from-aws/</loc>
+    <loc>https://rainmakerho.github.io//2022/12/08/why-iis-have-addition-request-from-aws/</loc>
     <lastmod>2022-12-14</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/12/13/UltraWebGrid-slow-ie11-net4/</loc>
+    <loc>https://rainmakerho.github.io//2022/12/13/UltraWebGrid-slow-ie11-net4/</loc>
     <lastmod>2022-12-13</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2020/05/12/2020005/</loc>
+    <loc>https://rainmakerho.github.io//2020/05/12/2020005/</loc>
     <lastmod>2022-12-13</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/11/29/password-with-special-characters-in-connectionstring/</loc>
+    <loc>https://rainmakerho.github.io//2022/11/29/password-with-special-characters-in-connectionstring/</loc>
     <lastmod>2022-11-29</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/11/24/sql-2019-too-many-if-else-cause-hang/</loc>
+    <loc>https://rainmakerho.github.io//2022/11/24/sql-2019-too-many-if-else-cause-hang/</loc>
     <lastmod>2022-11-25</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/11/25/checkmarx-headers-authorization-privacy-violation/</loc>
+    <loc>https://rainmakerho.github.io//2022/11/25/checkmarx-headers-authorization-privacy-violation/</loc>
     <lastmod>2022-11-25</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/11/17/abp-structuring-solution-ddd/</loc>
+    <loc>https://rainmakerho.github.io//2022/11/17/abp-structuring-solution-ddd/</loc>
     <lastmod>2022-11-18</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/11/15/Path-GetTempFileName-IOException-The-file-exists/</loc>
+    <loc>https://rainmakerho.github.io//2022/11/15/Path-GetTempFileName-IOException-The-file-exists/</loc>
     <lastmod>2022-11-18</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/11/15/aspose-kangxi-radical-dfkai-sb-pdf-square-box/</loc>
+    <loc>https://rainmakerho.github.io//2022/11/15/aspose-kangxi-radical-dfkai-sb-pdf-square-box/</loc>
     <lastmod>2022-11-15</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/11/15/aspose-kangxi-radical-word-2-pdf-square-box/</loc>
+    <loc>https://rainmakerho.github.io//2022/11/15/aspose-kangxi-radical-word-2-pdf-square-box/</loc>
     <lastmod>2022-11-15</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/11/15/aspose-kangxi-radical-html-pdf-square-box/</loc>
+    <loc>https://rainmakerho.github.io//2022/11/15/aspose-kangxi-radical-html-pdf-square-box/</loc>
     <lastmod>2022-11-15</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/11/10/non-null-assertion-operator-syntax/</loc>
+    <loc>https://rainmakerho.github.io//2022/11/10/non-null-assertion-operator-syntax/</loc>
     <lastmod>2022-11-10</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/11/09/az305/</loc>
+    <loc>https://rainmakerho.github.io//2022/11/09/az305/</loc>
     <lastmod>2022-11-09</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/06/25/Checkmarx-Client-Side-Only-Validation/</loc>
+    <loc>https://rainmakerho.github.io//2021/06/25/Checkmarx-Client-Side-Only-Validation/</loc>
     <lastmod>2022-11-03</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/11/02/co-e-server-exec-failure-80080005-office-word/</loc>
+    <loc>https://rainmakerho.github.io//2022/11/02/co-e-server-exec-failure-80080005-office-word/</loc>
     <lastmod>2022-11-02</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/04/06/unicode-surrogate-pair/</loc>
+    <loc>https://rainmakerho.github.io//2022/04/06/unicode-surrogate-pair/</loc>
     <lastmod>2022-10-28</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/10/20/ado-pre-login-handshake-tcp-provider-error-0/</loc>
+    <loc>https://rainmakerho.github.io//2022/10/20/ado-pre-login-handshake-tcp-provider-error-0/</loc>
     <lastmod>2022-10-21</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/09/21/UseHttpsRedirection-not-redirect-https/</loc>
+    <loc>https://rainmakerho.github.io//2022/09/21/UseHttpsRedirection-not-redirect-https/</loc>
     <lastmod>2022-09-21</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/09/12/abp-not-find-bundle-libs-abp-core-abp-css-Basic-Global/</loc>
+    <loc>https://rainmakerho.github.io//2022/09/12/abp-not-find-bundle-libs-abp-core-abp-css-Basic-Global/</loc>
     <lastmod>2022-09-12</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/08/31/metasploit-meterpreter-session/</loc>
+    <loc>https://rainmakerho.github.io//2022/08/31/metasploit-meterpreter-session/</loc>
     <lastmod>2022-09-01</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/08/31/metasploit-privilege-escalation/</loc>
+    <loc>https://rainmakerho.github.io//2022/08/31/metasploit-privilege-escalation/</loc>
     <lastmod>2022-09-01</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/08/29/timeout-expired-max-pool-size-reached/</loc>
+    <loc>https://rainmakerho.github.io//2022/08/29/timeout-expired-max-pool-size-reached/</loc>
     <lastmod>2022-08-29</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/08/04/vscode-debug-console-readline-not-work/</loc>
+    <loc>https://rainmakerho.github.io//2022/08/04/vscode-debug-console-readline-not-work/</loc>
     <lastmod>2022-08-04</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/07/29/mvc5-owin-azure-ad-openid/</loc>
+    <loc>https://rainmakerho.github.io//2022/07/29/mvc5-owin-azure-ad-openid/</loc>
     <lastmod>2022-07-29</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/07/12/tls-do-not-a-common-algorithm/</loc>
+    <loc>https://rainmakerho.github.io//2022/07/12/tls-do-not-a-common-algorithm/</loc>
     <lastmod>2022-07-12</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/07/12/cannot-find-command-dotnet-ef/</loc>
+    <loc>https://rainmakerho.github.io//2022/07/12/cannot-find-command-dotnet-ef/</loc>
     <lastmod>2022-07-12</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/07/09/aspnet6-custom-logger/</loc>
+    <loc>https://rainmakerho.github.io//2022/07/09/aspnet6-custom-logger/</loc>
     <lastmod>2022-07-09</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/07/05/ps-import-module-0x80131515/</loc>
+    <loc>https://rainmakerho.github.io//2022/07/05/ps-import-module-0x80131515/</loc>
     <lastmod>2022-07-05</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/07/05/metasploit-mssql-payload/</loc>
+    <loc>https://rainmakerho.github.io//2022/07/05/metasploit-mssql-payload/</loc>
     <lastmod>2022-07-05</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/07/05/metasploit-portscan-tcp/</loc>
+    <loc>https://rainmakerho.github.io//2022/07/05/metasploit-portscan-tcp/</loc>
     <lastmod>2022-07-05</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/06/30/dns-dumpster/</loc>
+    <loc>https://rainmakerho.github.io//2022/06/30/dns-dumpster/</loc>
     <lastmod>2022-06-30</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/06/23/metasploit-reverse-tcp/</loc>
+    <loc>https://rainmakerho.github.io//2022/06/23/metasploit-reverse-tcp/</loc>
     <lastmod>2022-06-23</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/06/21/wsl-could-not-resolve-host/</loc>
+    <loc>https://rainmakerho.github.io//2022/06/21/wsl-could-not-resolve-host/</loc>
     <lastmod>2022-06-21</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/06/21/save-key-options/</loc>
+    <loc>https://rainmakerho.github.io//2022/06/21/save-key-options/</loc>
     <lastmod>2022-06-21</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/06/15/kali-linux-win-wsl/</loc>
+    <loc>https://rainmakerho.github.io//2022/06/15/kali-linux-win-wsl/</loc>
     <lastmod>2022-06-15</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/06/08/why-ie-always-open-edge/</loc>
+    <loc>https://rainmakerho.github.io//2022/06/08/why-ie-always-open-edge/</loc>
     <lastmod>2022-06-08</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2018/08/01/2018028/</loc>
+    <loc>https://rainmakerho.github.io//2018/08/01/2018028/</loc>
     <lastmod>2022-05-23</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/05/22/sqlexception-80131904-error-40/</loc>
+    <loc>https://rainmakerho.github.io//2022/05/22/sqlexception-80131904-error-40/</loc>
     <lastmod>2022-05-22</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/05/19/CultureNotFoundException-zh-TW-pronun-not-supported/</loc>
+    <loc>https://rainmakerho.github.io//2022/05/19/CultureNotFoundException-zh-TW-pronun-not-supported/</loc>
     <lastmod>2022-05-19</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/05/11/AADSTS50011/</loc>
+    <loc>https://rainmakerho.github.io//2022/05/11/AADSTS50011/</loc>
     <lastmod>2022-05-11</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/05/10/gremlin-friends-examples/</loc>
+    <loc>https://rainmakerho.github.io//2022/05/10/gremlin-friends-examples/</loc>
     <lastmod>2022-05-10</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/05/04/openidconnecthandler-getuserinformationasync-tls-error/</loc>
+    <loc>https://rainmakerho.github.io//2022/05/04/openidconnecthandler-getuserinformationasync-tls-error/</loc>
     <lastmod>2022-05-04</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/05/04/teams-create-enable-online-meeting/</loc>
+    <loc>https://rainmakerho.github.io//2022/05/04/teams-create-enable-online-meeting/</loc>
     <lastmod>2022-05-04</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/04/29/teams-app-access-meetings-behalf-user/</loc>
+    <loc>https://rainmakerho.github.io//2022/04/29/teams-app-access-meetings-behalf-user/</loc>
     <lastmod>2022-05-04</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/04/25/requestsizelimit-attribute-not-working-abp/</loc>
+    <loc>https://rainmakerho.github.io//2022/04/25/requestsizelimit-attribute-not-working-abp/</loc>
     <lastmod>2022-05-04</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/04/28/teams-bot-disabled/</loc>
+    <loc>https://rainmakerho.github.io//2022/04/28/teams-bot-disabled/</loc>
     <lastmod>2022-04-28</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/04/22/aspnetcore-request-entity-too-large/</loc>
+    <loc>https://rainmakerho.github.io//2022/04/22/aspnetcore-request-entity-too-large/</loc>
     <lastmod>2022-04-22</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/03/29/azure-webapp-nodejs-internal-server-error/</loc>
+    <loc>https://rainmakerho.github.io//2022/03/29/azure-webapp-nodejs-internal-server-error/</loc>
     <lastmod>2022-03-29</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/03/22/visual-studio-adding-certificate-to-trusted-root-failed/</loc>
+    <loc>https://rainmakerho.github.io//2022/03/22/visual-studio-adding-certificate-to-trusted-root-failed/</loc>
     <lastmod>2022-03-22</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/02/18/oAuth2-PKCE/</loc>
+    <loc>https://rainmakerho.github.io//2022/02/18/oAuth2-PKCE/</loc>
     <lastmod>2022-03-22</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/03/15/datatable-distinct-dataview-slow/</loc>
+    <loc>https://rainmakerho.github.io//2022/03/15/datatable-distinct-dataview-slow/</loc>
     <lastmod>2022-03-22</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/02/23/OpenId-oAuth2/</loc>
+    <loc>https://rainmakerho.github.io//2022/02/23/OpenId-oAuth2/</loc>
     <lastmod>2022-03-19</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/03/11/get-contenttype-from-file-extensions/</loc>
+    <loc>https://rainmakerho.github.io//2022/03/11/get-contenttype-from-file-extensions/</loc>
     <lastmod>2022-03-11</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/03/03/oauth2-ropc/</loc>
+    <loc>https://rainmakerho.github.io//2022/03/03/oauth2-ropc/</loc>
     <lastmod>2022-03-03</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/01/24/Excessive-Data-Exposure/</loc>
+    <loc>https://rainmakerho.github.io//2022/01/24/Excessive-Data-Exposure/</loc>
     <lastmod>2022-03-01</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/02/17/oAuth2-implicit-flow/</loc>
+    <loc>https://rainmakerho.github.io//2022/02/17/oAuth2-implicit-flow/</loc>
     <lastmod>2022-02-23</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/02/21/Custom-URI-Scheme/</loc>
+    <loc>https://rainmakerho.github.io//2022/02/21/Custom-URI-Scheme/</loc>
     <lastmod>2022-02-23</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/02/15/oAuth2-Basic/</loc>
+    <loc>https://rainmakerho.github.io//2022/02/15/oAuth2-Basic/</loc>
     <lastmod>2022-02-23</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/02/11/fiddler-cannot-trace-httpclient/</loc>
+    <loc>https://rainmakerho.github.io//2022/02/11/fiddler-cannot-trace-httpclient/</loc>
     <lastmod>2022-02-11</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/01/23/Missing-Object-Level-Authorization/</loc>
+    <loc>https://rainmakerho.github.io//2022/01/23/Missing-Object-Level-Authorization/</loc>
     <lastmod>2022-01-24</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/01/13/npm-ERR-sqlite-install/</loc>
+    <loc>https://rainmakerho.github.io//2022/01/13/npm-ERR-sqlite-install/</loc>
     <lastmod>2022-01-13</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/01/10/webpack-error-03000086-digital-envelope-routines-ERR-OSSL-EVP-UNSUPPORTED/</loc>
+    <loc>https://rainmakerho.github.io//2022/01/10/webpack-error-03000086-digital-envelope-routines-ERR-OSSL-EVP-UNSUPPORTED/</loc>
     <lastmod>2022-01-10</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/01/10/npm-OpenSSL-configuration-error/</loc>
+    <loc>https://rainmakerho.github.io//2022/01/10/npm-OpenSSL-configuration-error/</loc>
     <lastmod>2022-01-10</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2022/01/10/error-TS2307-Cannot-find-module/</loc>
+    <loc>https://rainmakerho.github.io//2022/01/10/error-TS2307-Cannot-find-module/</loc>
     <lastmod>2022-01-10</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/12/28/Heap-Inspection-ASPX/</loc>
+    <loc>https://rainmakerho.github.io//2021/12/28/Heap-Inspection-ASPX/</loc>
     <lastmod>2021-12-28</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/12/01/pdf-convert-2-png-tiff/</loc>
+    <loc>https://rainmakerho.github.io//2021/12/01/pdf-convert-2-png-tiff/</loc>
     <lastmod>2021-12-01</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/11/28/Extract-Pass-From-Jenkins/</loc>
+    <loc>https://rainmakerho.github.io//2021/11/28/Extract-Pass-From-Jenkins/</loc>
     <lastmod>2021-11-28</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/11/28/Azure-WebApp-Access-KeyVault-RBAC/</loc>
+    <loc>https://rainmakerho.github.io//2021/11/28/Azure-WebApp-Access-KeyVault-RBAC/</loc>
     <lastmod>2021-11-28</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2018/05/16/2018017/</loc>
+    <loc>https://rainmakerho.github.io//2018/05/16/2018017/</loc>
     <lastmod>2021-11-22</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/11/18/Insufficient-Connection-String-Encryption/</loc>
+    <loc>https://rainmakerho.github.io//2021/11/18/Insufficient-Connection-String-Encryption/</loc>
     <lastmod>2021-11-18</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/11/18/Client-Heuristic-Poor-XSS-Validation/</loc>
+    <loc>https://rainmakerho.github.io//2021/11/18/Client-Heuristic-Poor-XSS-Validation/</loc>
     <lastmod>2021-11-18</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/11/12/from-nlog-to-serilog-then-Grafana-Loki/</loc>
+    <loc>https://rainmakerho.github.io//2021/11/12/from-nlog-to-serilog-then-Grafana-Loki/</loc>
     <lastmod>2021-11-15</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/10/31/SYMMETRIC-ALGORITHM-TRIPLE-DES-Incorrect-syntax/</loc>
+    <loc>https://rainmakerho.github.io//2021/10/31/SYMMETRIC-ALGORITHM-TRIPLE-DES-Incorrect-syntax/</loc>
     <lastmod>2021-11-12</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/10/22/Unencrypted-Web-Config-File-Checkmarx-920/</loc>
+    <loc>https://rainmakerho.github.io//2021/10/22/Unencrypted-Web-Config-File-Checkmarx-920/</loc>
     <lastmod>2021-10-22</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/10/14/Reflected-XSS-All-Clients-Return-String/</loc>
+    <loc>https://rainmakerho.github.io//2021/10/14/Reflected-XSS-All-Clients-Return-String/</loc>
     <lastmod>2021-10-14</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/10/08/Log-Forging/</loc>
+    <loc>https://rainmakerho.github.io//2021/10/08/Log-Forging/</loc>
     <lastmod>2021-10-08</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/10/07/HTTP-Response-Splitting/</loc>
+    <loc>https://rainmakerho.github.io//2021/10/07/HTTP-Response-Splitting/</loc>
     <lastmod>2021-10-07</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/09/28/owasp-top-10-2021/</loc>
+    <loc>https://rainmakerho.github.io//2021/09/28/owasp-top-10-2021/</loc>
     <lastmod>2021-10-02</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/09/30/one-date-to-range-sql/</loc>
+    <loc>https://rainmakerho.github.io//2021/09/30/one-date-to-range-sql/</loc>
     <lastmod>2021-09-30</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/09/30/Unrecognized-configuration-session-system-webServer/</loc>
+    <loc>https://rainmakerho.github.io//2021/09/30/Unrecognized-configuration-session-system-webServer/</loc>
     <lastmod>2021-09-30</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/09/30/2147943418/</loc>
+    <loc>https://rainmakerho.github.io//2021/09/30/2147943418/</loc>
     <lastmod>2021-09-30</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/09/23/protect-static-files-in-aspx/</loc>
+    <loc>https://rainmakerho.github.io//2021/09/23/protect-static-files-in-aspx/</loc>
     <lastmod>2021-09-28</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/09/26/kendo-jszip-CVE-2021-23413/</loc>
+    <loc>https://rainmakerho.github.io//2021/09/26/kendo-jszip-CVE-2021-23413/</loc>
     <lastmod>2021-09-26</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/09/02/secure-iis-with-ModSecurity-WAF-Config/</loc>
+    <loc>https://rainmakerho.github.io//2021/09/02/secure-iis-with-ModSecurity-WAF-Config/</loc>
     <lastmod>2021-09-02</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/09/01/secure-iis-with-ModSecurity-WAF/</loc>
+    <loc>https://rainmakerho.github.io//2021/09/01/secure-iis-with-ModSecurity-WAF/</loc>
     <lastmod>2021-09-02</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/08/31/Trust-Boundary-Violation/</loc>
+    <loc>https://rainmakerho.github.io//2021/08/31/Trust-Boundary-Violation/</loc>
     <lastmod>2021-08-31</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/08/30/Chrome-Auto-Http-to-Https/</loc>
+    <loc>https://rainmakerho.github.io//2021/08/30/Chrome-Auto-Http-to-Https/</loc>
     <lastmod>2021-08-31</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/08/27/AdobePDF-Writer-Alternative/</loc>
+    <loc>https://rainmakerho.github.io//2021/08/27/AdobePDF-Writer-Alternative/</loc>
     <lastmod>2021-08-27</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/08/27/XXE-Ado-DataSet-ReadXml/</loc>
+    <loc>https://rainmakerho.github.io//2021/08/27/XXE-Ado-DataSet-ReadXml/</loc>
     <lastmod>2021-08-27</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/08/13/aspnet-4-response-write-utf8-encoding/</loc>
+    <loc>https://rainmakerho.github.io//2021/08/13/aspnet-4-response-write-utf8-encoding/</loc>
     <lastmod>2021-08-13</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2019/09/17/2019024/</loc>
+    <loc>https://rainmakerho.github.io//2019/09/17/2019024/</loc>
     <lastmod>2021-07-19</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/07/18/Checkmarx-Custom-Preset-Do-Not-Work/</loc>
+    <loc>https://rainmakerho.github.io//2021/07/18/Checkmarx-Custom-Preset-Do-Not-Work/</loc>
     <lastmod>2021-07-18</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/07/14/Heap-Inspection-MVC-byteArray/</loc>
+    <loc>https://rainmakerho.github.io//2021/07/14/Heap-Inspection-MVC-byteArray/</loc>
     <lastmod>2021-07-14</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/07/14/Heap-Inspection-MVC-SecureString/</loc>
+    <loc>https://rainmakerho.github.io//2021/07/14/Heap-Inspection-MVC-SecureString/</loc>
     <lastmod>2021-07-14</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/07/14/Heap-Inspection-MVC5-SecureString/</loc>
+    <loc>https://rainmakerho.github.io//2021/07/14/Heap-Inspection-MVC5-SecureString/</loc>
     <lastmod>2021-07-14</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/07/14/Heap-Inspection-RazorPages/</loc>
+    <loc>https://rainmakerho.github.io//2021/07/14/Heap-Inspection-RazorPages/</loc>
     <lastmod>2021-07-14</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/07/11/ResultFilter-AutoMapper/</loc>
+    <loc>https://rainmakerho.github.io//2021/07/11/ResultFilter-AutoMapper/</loc>
     <lastmod>2021-07-11</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/07/03/jsonserializer-deserialize-fails/</loc>
+    <loc>https://rainmakerho.github.io//2021/07/03/jsonserializer-deserialize-fails/</loc>
     <lastmod>2021-07-03</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/06/30/Checkmarx-Dangerous-File-Upload/</loc>
+    <loc>https://rainmakerho.github.io//2021/06/30/Checkmarx-Dangerous-File-Upload/</loc>
     <lastmod>2021-07-01</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/06/29/BC30201-Expression-expected/</loc>
+    <loc>https://rainmakerho.github.io//2021/06/29/BC30201-Expression-expected/</loc>
     <lastmod>2021-06-29</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/06/16/CSP-script-src-unsafe-inline/</loc>
+    <loc>https://rainmakerho.github.io//2021/06/16/CSP-script-src-unsafe-inline/</loc>
     <lastmod>2021-06-26</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/06/23/Add-Migration-VS-EFCore/</loc>
+    <loc>https://rainmakerho.github.io//2021/06/23/Add-Migration-VS-EFCore/</loc>
     <lastmod>2021-06-23</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/06/18/web-config-allowDefinition-MachineToApplication-Error/</loc>
+    <loc>https://rainmakerho.github.io//2021/06/18/web-config-allowDefinition-MachineToApplication-Error/</loc>
     <lastmod>2021-06-18</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/06/07/type-javascript-mime-error/</loc>
+    <loc>https://rainmakerho.github.io//2021/06/07/type-javascript-mime-error/</loc>
     <lastmod>2021-06-07</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2019/10/24/2019032/</loc>
+    <loc>https://rainmakerho.github.io//2019/10/24/2019032/</loc>
     <lastmod>2021-06-03</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/05/31/IE-Slow-Https/</loc>
+    <loc>https://rainmakerho.github.io//2021/05/31/IE-Slow-Https/</loc>
     <lastmod>2021-05-31</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/05/06/vmdk-to-vhd-azure/</loc>
+    <loc>https://rainmakerho.github.io//2021/05/06/vmdk-to-vhd-azure/</loc>
     <lastmod>2021-05-21</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/05/21/Path-Traversal-Vulnerability-Checkmarx/</loc>
+    <loc>https://rainmakerho.github.io//2021/05/21/Path-Traversal-Vulnerability-Checkmarx/</loc>
     <lastmod>2021-05-21</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/05/06/mstsc-CredSSP-Error/</loc>
+    <loc>https://rainmakerho.github.io//2021/05/06/mstsc-CredSSP-Error/</loc>
     <lastmod>2021-05-06</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/04/27/using-source-link-visual-studio/</loc>
+    <loc>https://rainmakerho.github.io//2021/04/27/using-source-link-visual-studio/</loc>
     <lastmod>2021-04-27</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/04/24/sql-injection-get-info-sqlplan-problems/</loc>
+    <loc>https://rainmakerho.github.io//2021/04/24/sql-injection-get-info-sqlplan-problems/</loc>
     <lastmod>2021-04-24</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/04/20/Use-ReflectionMagic-To-Clean-Reflection-Codes/</loc>
+    <loc>https://rainmakerho.github.io//2021/04/20/Use-ReflectionMagic-To-Clean-Reflection-Codes/</loc>
     <lastmod>2021-04-20</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/03/30/Reflected-XSS-All-Clients-MVC-Return-JSON/</loc>
+    <loc>https://rainmakerho.github.io//2021/03/30/Reflected-XSS-All-Clients-MVC-Return-JSON/</loc>
     <lastmod>2021-03-30</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/03/29/postgresql-set-max-sequence-value-for-all-tables/</loc>
+    <loc>https://rainmakerho.github.io//2021/03/29/postgresql-set-max-sequence-value-for-all-tables/</loc>
     <lastmod>2021-03-30</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/03/15/owasp-sql-injection/</loc>
+    <loc>https://rainmakerho.github.io//2021/03/15/owasp-sql-injection/</loc>
     <lastmod>2021-03-16</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2020/07/01/2020010/</loc>
+    <loc>https://rainmakerho.github.io//2020/07/01/2020010/</loc>
     <lastmod>2021-03-03</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/02/22/failed-Error-during-WebScoket-handshake/</loc>
+    <loc>https://rainmakerho.github.io//2021/02/22/failed-Error-during-WebScoket-handshake/</loc>
     <lastmod>2021-02-26</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/02/09/migrate-MSSQL-to-PostgreSQL-MTK/</loc>
+    <loc>https://rainmakerho.github.io//2021/02/09/migrate-MSSQL-to-PostgreSQL-MTK/</loc>
     <lastmod>2021-02-17</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/02/05/Migrate-MS-SQL-to-PostgreSQL-bcp/</loc>
+    <loc>https://rainmakerho.github.io//2021/02/05/Migrate-MS-SQL-to-PostgreSQL-bcp/</loc>
     <lastmod>2021-02-09</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/02/06/mssql-multi-rows-variable-assignment-orderby/</loc>
+    <loc>https://rainmakerho.github.io//2021/02/06/mssql-multi-rows-variable-assignment-orderby/</loc>
     <lastmod>2021-02-08</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/02/04/Migrate-MS-SQL-to-PostgreSQL-1/</loc>
+    <loc>https://rainmakerho.github.io//2021/02/04/Migrate-MS-SQL-to-PostgreSQL-1/</loc>
     <lastmod>2021-02-05</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/01/27/Progressive-Web-Application-Cache-App-Shell/</loc>
+    <loc>https://rainmakerho.github.io//2021/01/27/Progressive-Web-Application-Cache-App-Shell/</loc>
     <lastmod>2021-01-26</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/01/26/Progressive-Web-Application-Notification-WebPush/</loc>
+    <loc>https://rainmakerho.github.io//2021/01/26/Progressive-Web-Application-Notification-WebPush/</loc>
     <lastmod>2021-01-26</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/01/25/Progressive-Web-Application-Install/</loc>
+    <loc>https://rainmakerho.github.io//2021/01/25/Progressive-Web-Application-Install/</loc>
     <lastmod>2021-01-26</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2021/01/22/Azure-WebApp-PUT-DELETE-400/</loc>
+    <loc>https://rainmakerho.github.io//2021/01/22/Azure-WebApp-PUT-DELETE-400/</loc>
     <lastmod>2021-01-25</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2020/12/31/NewIn-CSharp9-NET5/</loc>
+    <loc>https://rainmakerho.github.io//2020/12/31/NewIn-CSharp9-NET5/</loc>
     <lastmod>2020-12-31</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2020/12/23/pgAdmin-Chrome-MIME-type-not-executable/</loc>
+    <loc>https://rainmakerho.github.io//2020/12/23/pgAdmin-Chrome-MIME-type-not-executable/</loc>
     <lastmod>2020-12-23</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2020/12/21/RecoverDeletedDataSQL/</loc>
+    <loc>https://rainmakerho.github.io//2020/12/21/RecoverDeletedDataSQL/</loc>
     <lastmod>2020-12-21</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2020/12/17/sql-transation-different-data-export/</loc>
+    <loc>https://rainmakerho.github.io//2020/12/17/sql-transation-different-data-export/</loc>
     <lastmod>2020-12-18</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2020/12/11/vs-docker-build-copy-fail/</loc>
+    <loc>https://rainmakerho.github.io//2020/12/11/vs-docker-build-copy-fail/</loc>
     <lastmod>2020-12-14</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2020/12/10/opentelemetry-1/</loc>
+    <loc>https://rainmakerho.github.io//2020/12/10/opentelemetry-1/</loc>
     <lastmod>2020-12-11</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2020/12/09/webapi-http-method-put-400/</loc>
+    <loc>https://rainmakerho.github.io//2020/12/09/webapi-http-method-put-400/</loc>
     <lastmod>2020-12-09</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2020/12/08/corss-machines-forms-based-authentication-sso/</loc>
+    <loc>https://rainmakerho.github.io//2020/12/08/corss-machines-forms-based-authentication-sso/</loc>
     <lastmod>2020-12-08</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2020/11/18/NET-Conf-2020/</loc>
+    <loc>https://rainmakerho.github.io//2020/11/18/NET-Conf-2020/</loc>
     <lastmod>2020-11-20</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2020/11/20/MSB3644/</loc>
+    <loc>https://rainmakerho.github.io//2020/11/20/MSB3644/</loc>
     <lastmod>2020-11-20</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2020/11/11/aspnet-cookieless-url/</loc>
+    <loc>https://rainmakerho.github.io//2020/11/11/aspnet-cookieless-url/</loc>
     <lastmod>2020-11-13</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2020/11/13/checkmarx-csharp-code-injection/</loc>
+    <loc>https://rainmakerho.github.io//2020/11/13/checkmarx-csharp-code-injection/</loc>
     <lastmod>2020-11-13</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2020/11/10/Improper-Restriction-of-XXE-Ref/</loc>
+    <loc>https://rainmakerho.github.io//2020/11/10/Improper-Restriction-of-XXE-Ref/</loc>
     <lastmod>2020-11-11</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2020/11/06/create-custom-fonts-eudc/</loc>
+    <loc>https://rainmakerho.github.io//2020/11/06/create-custom-fonts-eudc/</loc>
     <lastmod>2020-11-06</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2020/11/05/net-ad-user-login/</loc>
+    <loc>https://rainmakerho.github.io//2020/11/05/net-ad-user-login/</loc>
     <lastmod>2020-11-04</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2020/10/29/cannot-find-method-propertyInfo-getValue/</loc>
+    <loc>https://rainmakerho.github.io//2020/10/29/cannot-find-method-propertyInfo-getValue/</loc>
     <lastmod>2020-10-29</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2020/10/26/make-JAR-from-java-file/</loc>
+    <loc>https://rainmakerho.github.io//2020/10/26/make-JAR-from-java-file/</loc>
     <lastmod>2020-10-26</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2020/10/19/net-xor/</loc>
+    <loc>https://rainmakerho.github.io//2020/10/19/net-xor/</loc>
     <lastmod>2020-10-19</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2020/10/19/hex-base64-encode-decode/</loc>
+    <loc>https://rainmakerho.github.io//2020/10/19/hex-base64-encode-decode/</loc>
     <lastmod>2020-10-19</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2020/10/19/Why-VS-Build-succeed-But-Have-Errors/</loc>
+    <loc>https://rainmakerho.github.io//2020/10/19/Why-VS-Build-succeed-But-Have-Errors/</loc>
     <lastmod>2020-10-19</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2020/09/24/2020021/</loc>
+    <loc>https://rainmakerho.github.io//2020/09/24/2020021/</loc>
     <lastmod>2020-09-24</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2020/09/13/2020020/</loc>
+    <loc>https://rainmakerho.github.io//2020/09/13/2020020/</loc>
     <lastmod>2020-09-14</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2020/09/09/2020019/</loc>
+    <loc>https://rainmakerho.github.io//2020/09/09/2020019/</loc>
     <lastmod>2020-09-11</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2020/05/15/2020007/</loc>
+    <loc>https://rainmakerho.github.io//2020/05/15/2020007/</loc>
     <lastmod>2020-09-10</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2020/08/29/2020018/</loc>
+    <loc>https://rainmakerho.github.io//2020/08/29/2020018/</loc>
     <lastmod>2020-08-31</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2020/08/05/2020014/</loc>
+    <loc>https://rainmakerho.github.io//2020/08/05/2020014/</loc>
     <lastmod>2020-08-28</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2020/08/26/2020017/</loc>
+    <loc>https://rainmakerho.github.io//2020/08/26/2020017/</loc>
     <lastmod>2020-08-28</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2020/08/13/2020016/</loc>
+    <loc>https://rainmakerho.github.io//2020/08/13/2020016/</loc>
     <lastmod>2020-08-13</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2020/08/13/2020015/</loc>
+    <loc>https://rainmakerho.github.io//2020/08/13/2020015/</loc>
     <lastmod>2020-08-13</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2020/07/30/2020013/</loc>
+    <loc>https://rainmakerho.github.io//2020/07/30/2020013/</loc>
     <lastmod>2020-08-13</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2020/07/21/2020012/</loc>
+    <loc>https://rainmakerho.github.io//2020/07/21/2020012/</loc>
     <lastmod>2020-07-22</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2020/07/07/2020011/</loc>
+    <loc>https://rainmakerho.github.io//2020/07/07/2020011/</loc>
     <lastmod>2020-07-15</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2020/06/12/2020009/</loc>
+    <loc>https://rainmakerho.github.io//2020/06/12/2020009/</loc>
     <lastmod>2020-06-12</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2020/05/19/2020008/</loc>
+    <loc>https://rainmakerho.github.io//2020/05/19/2020008/</loc>
     <lastmod>2020-05-20</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2020/05/13/2020006/</loc>
+    <loc>https://rainmakerho.github.io//2020/05/13/2020006/</loc>
     <lastmod>2020-05-13</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2020/05/07/2020004/</loc>
+    <loc>https://rainmakerho.github.io//2020/05/07/2020004/</loc>
     <lastmod>2020-05-07</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2020/04/06/2020003/</loc>
+    <loc>https://rainmakerho.github.io//2020/04/06/2020003/</loc>
     <lastmod>2020-04-07</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2020/02/03/2020001/</loc>
+    <loc>https://rainmakerho.github.io//2020/02/03/2020001/</loc>
     <lastmod>2020-04-05</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2020/03/18/2020002/</loc>
+    <loc>https://rainmakerho.github.io//2020/03/18/2020002/</loc>
     <lastmod>2020-03-18</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2019/09/23/2019027/</loc>
+    <loc>https://rainmakerho.github.io//2019/09/23/2019027/</loc>
     <lastmod>2020-01-19</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2019/12/30/2019038/</loc>
+    <loc>https://rainmakerho.github.io//2019/12/30/2019038/</loc>
     <lastmod>2019-12-30</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2019/11/11/2019033/</loc>
+    <loc>https://rainmakerho.github.io//2019/11/11/2019033/</loc>
     <lastmod>2019-12-30</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2019/12/15/2019037/</loc>
+    <loc>https://rainmakerho.github.io//2019/12/15/2019037/</loc>
     <lastmod>2019-12-16</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2019/12/11/2019036/</loc>
+    <loc>https://rainmakerho.github.io//2019/12/11/2019036/</loc>
     <lastmod>2019-12-11</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2019/11/27/2019035/</loc>
+    <loc>https://rainmakerho.github.io//2019/11/27/2019035/</loc>
     <lastmod>2019-11-27</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2019/11/20/2019034/</loc>
+    <loc>https://rainmakerho.github.io//2019/11/20/2019034/</loc>
     <lastmod>2019-11-20</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2018/07/02/2018021/</loc>
+    <loc>https://rainmakerho.github.io//2018/07/02/2018021/</loc>
     <lastmod>2019-11-12</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2019/10/07/2019031/</loc>
+    <loc>https://rainmakerho.github.io//2019/10/07/2019031/</loc>
     <lastmod>2019-10-07</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2019/10/04/2019030/</loc>
+    <loc>https://rainmakerho.github.io//2019/10/04/2019030/</loc>
     <lastmod>2019-10-05</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2019/09/25/2019029/</loc>
+    <loc>https://rainmakerho.github.io//2019/09/25/2019029/</loc>
     <lastmod>2019-09-26</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2019/01/02/2019001/</loc>
+    <loc>https://rainmakerho.github.io//2019/01/02/2019001/</loc>
     <lastmod>2019-09-24</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2019/09/24/2019028/</loc>
+    <loc>https://rainmakerho.github.io//2019/09/24/2019028/</loc>
     <lastmod>2019-09-24</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2019/09/17/2019026/</loc>
+    <loc>https://rainmakerho.github.io//2019/09/17/2019026/</loc>
     <lastmod>2019-09-17</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2019/09/17/2019025/</loc>
+    <loc>https://rainmakerho.github.io//2019/09/17/2019025/</loc>
     <lastmod>2019-09-17</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2019/09/05/2019023/</loc>
+    <loc>https://rainmakerho.github.io//2019/09/05/2019023/</loc>
     <lastmod>2019-09-05</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2019/07/04/2019017/</loc>
+    <loc>https://rainmakerho.github.io//2019/07/04/2019017/</loc>
     <lastmod>2019-09-05</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2019/08/24/2019022/</loc>
+    <loc>https://rainmakerho.github.io//2019/08/24/2019022/</loc>
     <lastmod>2019-08-24</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2019/08/24/2019021/</loc>
+    <loc>https://rainmakerho.github.io//2019/08/24/2019021/</loc>
     <lastmod>2019-08-24</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2019/07/31/2019020/</loc>
+    <loc>https://rainmakerho.github.io//2019/07/31/2019020/</loc>
     <lastmod>2019-07-31</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2019/07/19/2019019/</loc>
+    <loc>https://rainmakerho.github.io//2019/07/19/2019019/</loc>
     <lastmod>2019-07-19</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2019/07/17/2019018/</loc>
+    <loc>https://rainmakerho.github.io//2019/07/17/2019018/</loc>
     <lastmod>2019-07-17</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2019/07/03/2019016/</loc>
+    <loc>https://rainmakerho.github.io//2019/07/03/2019016/</loc>
     <lastmod>2019-07-03</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2019/06/04/2019014/</loc>
+    <loc>https://rainmakerho.github.io//2019/06/04/2019014/</loc>
     <lastmod>2019-06-20</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2019/06/12/2019015/</loc>
+    <loc>https://rainmakerho.github.io//2019/06/12/2019015/</loc>
     <lastmod>2019-06-12</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2019/05/28/2019013/</loc>
+    <loc>https://rainmakerho.github.io//2019/05/28/2019013/</loc>
     <lastmod>2019-05-30</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2019/05/24/2019012/</loc>
+    <loc>https://rainmakerho.github.io//2019/05/24/2019012/</loc>
     <lastmod>2019-05-24</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2019/05/14/2019011/</loc>
+    <loc>https://rainmakerho.github.io//2019/05/14/2019011/</loc>
     <lastmod>2019-05-14</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2019/04/02/2019010/</loc>
+    <loc>https://rainmakerho.github.io//2019/04/02/2019010/</loc>
     <lastmod>2019-04-02</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2019/03/16/2019009/</loc>
+    <loc>https://rainmakerho.github.io//2019/03/16/2019009/</loc>
     <lastmod>2019-03-16</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2019/03/11/2019008/</loc>
+    <loc>https://rainmakerho.github.io//2019/03/11/2019008/</loc>
     <lastmod>2019-03-11</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2019/02/23/2019007/</loc>
+    <loc>https://rainmakerho.github.io//2019/02/23/2019007/</loc>
     <lastmod>2019-02-23</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2019/02/19/2019006/</loc>
+    <loc>https://rainmakerho.github.io//2019/02/19/2019006/</loc>
     <lastmod>2019-02-23</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2019/01/20/2019005/</loc>
+    <loc>https://rainmakerho.github.io//2019/01/20/2019005/</loc>
     <lastmod>2019-01-24</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2019/01/15/2019004/</loc>
+    <loc>https://rainmakerho.github.io//2019/01/15/2019004/</loc>
     <lastmod>2019-01-16</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2019/01/04/2019002/</loc>
+    <loc>https://rainmakerho.github.io//2019/01/04/2019002/</loc>
     <lastmod>2019-01-16</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2019/01/15/2019003/</loc>
+    <loc>https://rainmakerho.github.io//2019/01/15/2019003/</loc>
     <lastmod>2019-01-15</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2018/12/27/2018044/</loc>
+    <loc>https://rainmakerho.github.io//2018/12/27/2018044/</loc>
     <lastmod>2018-12-28</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2018/12/05/2018043/</loc>
+    <loc>https://rainmakerho.github.io//2018/12/05/2018043/</loc>
     <lastmod>2018-12-05</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2018/11/29/2018042/</loc>
+    <loc>https://rainmakerho.github.io//2018/11/29/2018042/</loc>
     <lastmod>2018-12-03</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2018/11/27/2018041/</loc>
+    <loc>https://rainmakerho.github.io//2018/11/27/2018041/</loc>
     <lastmod>2018-11-28</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2018/11/23/2018040/</loc>
+    <loc>https://rainmakerho.github.io//2018/11/23/2018040/</loc>
     <lastmod>2018-11-23</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2018/11/19/2018039/</loc>
+    <loc>https://rainmakerho.github.io//2018/11/19/2018039/</loc>
     <lastmod>2018-11-19</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2018/10/31/2018038/</loc>
+    <loc>https://rainmakerho.github.io//2018/10/31/2018038/</loc>
     <lastmod>2018-10-31</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2018/10/19/2018037/</loc>
+    <loc>https://rainmakerho.github.io//2018/10/19/2018037/</loc>
     <lastmod>2018-10-22</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2018/10/09/2018036/</loc>
+    <loc>https://rainmakerho.github.io//2018/10/09/2018036/</loc>
     <lastmod>2018-10-10</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2018/09/19/2018035/</loc>
+    <loc>https://rainmakerho.github.io//2018/09/19/2018035/</loc>
     <lastmod>2018-09-19</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2018/09/17/2018034/</loc>
+    <loc>https://rainmakerho.github.io//2018/09/17/2018034/</loc>
     <lastmod>2018-09-17</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2018/08/21/2018032/</loc>
+    <loc>https://rainmakerho.github.io//2018/08/21/2018032/</loc>
     <lastmod>2018-08-22</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2018/08/21/2018033/</loc>
+    <loc>https://rainmakerho.github.io//2018/08/21/2018033/</loc>
     <lastmod>2018-08-21</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2018/08/02/2018030/</loc>
+    <loc>https://rainmakerho.github.io//2018/08/02/2018030/</loc>
     <lastmod>2018-08-21</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2018/08/19/2018031/</loc>
+    <loc>https://rainmakerho.github.io//2018/08/19/2018031/</loc>
     <lastmod>2018-08-19</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2018/08/02/2018029/</loc>
+    <loc>https://rainmakerho.github.io//2018/08/02/2018029/</loc>
     <lastmod>2018-08-02</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2018/07/26/2018027/</loc>
+    <loc>https://rainmakerho.github.io//2018/07/26/2018027/</loc>
     <lastmod>2018-07-26</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2018/07/20/2018025/</loc>
+    <loc>https://rainmakerho.github.io//2018/07/20/2018025/</loc>
     <lastmod>2018-07-25</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2018/07/20/2018026/</loc>
+    <loc>https://rainmakerho.github.io//2018/07/20/2018026/</loc>
     <lastmod>2018-07-22</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2018/07/13/2018024/</loc>
+    <loc>https://rainmakerho.github.io//2018/07/13/2018024/</loc>
     <lastmod>2018-07-17</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2018/07/03/2018022/</loc>
+    <loc>https://rainmakerho.github.io//2018/07/03/2018022/</loc>
     <lastmod>2018-07-09</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2018/07/05/2018023/</loc>
+    <loc>https://rainmakerho.github.io//2018/07/05/2018023/</loc>
     <lastmod>2018-07-05</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2018/07/01/2018020/</loc>
+    <loc>https://rainmakerho.github.io//2018/07/01/2018020/</loc>
     <lastmod>2018-07-01</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2018/06/05/2018019/</loc>
+    <loc>https://rainmakerho.github.io//2018/06/05/2018019/</loc>
     <lastmod>2018-06-05</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2018/06/04/2018018/</loc>
+    <loc>https://rainmakerho.github.io//2018/06/04/2018018/</loc>
     <lastmod>2018-06-04</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2018/05/10/2018016/</loc>
+    <loc>https://rainmakerho.github.io//2018/05/10/2018016/</loc>
     <lastmod>2018-05-10</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2018/04/17/2018015/</loc>
+    <loc>https://rainmakerho.github.io//2018/04/17/2018015/</loc>
     <lastmod>2018-04-17</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2018/04/10/2018014/</loc>
+    <loc>https://rainmakerho.github.io//2018/04/10/2018014/</loc>
     <lastmod>2018-04-10</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2018/04/03/2018013/</loc>
+    <loc>https://rainmakerho.github.io//2018/04/03/2018013/</loc>
     <lastmod>2018-04-03</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2018/03/05/2018010/</loc>
+    <loc>https://rainmakerho.github.io//2018/03/05/2018010/</loc>
     <lastmod>2018-03-31</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2018/02/14/2018009/</loc>
+    <loc>https://rainmakerho.github.io//2018/02/14/2018009/</loc>
     <lastmod>2018-03-14</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2018/03/14/2018012/</loc>
+    <loc>https://rainmakerho.github.io//2018/03/14/2018012/</loc>
     <lastmod>2018-03-14</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2018/03/13/2018011/</loc>
+    <loc>https://rainmakerho.github.io//2018/03/13/2018011/</loc>
     <lastmod>2018-03-14</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2018/01/29/2018005/</loc>
+    <loc>https://rainmakerho.github.io//2018/01/29/2018005/</loc>
     <lastmod>2018-02-15</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2018/02/01/2018006/</loc>
+    <loc>https://rainmakerho.github.io//2018/02/01/2018006/</loc>
     <lastmod>2018-02-13</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2018/02/13/2018008/</loc>
+    <loc>https://rainmakerho.github.io//2018/02/13/2018008/</loc>
     <lastmod>2018-02-13</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2018/02/01/2018007/</loc>
+    <loc>https://rainmakerho.github.io//2018/02/01/2018007/</loc>
     <lastmod>2018-02-01</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2018/01/25/2018003/</loc>
+    <loc>https://rainmakerho.github.io//2018/01/25/2018003/</loc>
     <lastmod>2018-01-26</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2018/01/26/2018004/</loc>
+    <loc>https://rainmakerho.github.io//2018/01/26/2018004/</loc>
     <lastmod>2018-01-26</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2018/01/11/2018002/</loc>
+    <loc>https://rainmakerho.github.io//2018/01/11/2018002/</loc>
     <lastmod>2018-01-11</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2018/01/09/2018001/</loc>
+    <loc>https://rainmakerho.github.io//2018/01/09/2018001/</loc>
     <lastmod>2018-01-11</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2017/12/18/2017017/</loc>
+    <loc>https://rainmakerho.github.io//2017/12/18/2017017/</loc>
     <lastmod>2017-12-18</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2017/09/29/20170929/</loc>
+    <loc>https://rainmakerho.github.io//2017/09/29/20170929/</loc>
     <lastmod>2017-12-11</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2017/10/03/20171003/</loc>
+    <loc>https://rainmakerho.github.io//2017/10/03/20171003/</loc>
     <lastmod>2017-12-11</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2017/10/05/20171005/</loc>
+    <loc>https://rainmakerho.github.io//2017/10/05/20171005/</loc>
     <lastmod>2017-12-11</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2017/10/13/20171013/</loc>
+    <loc>https://rainmakerho.github.io//2017/10/13/20171013/</loc>
     <lastmod>2017-12-11</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2017/10/17/20171017-2/</loc>
+    <loc>https://rainmakerho.github.io//2017/10/17/20171017-2/</loc>
     <lastmod>2017-12-11</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2017/10/17/20171017/</loc>
+    <loc>https://rainmakerho.github.io//2017/10/17/20171017/</loc>
     <lastmod>2017-12-11</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2017/10/27/20171027/</loc>
+    <loc>https://rainmakerho.github.io//2017/10/27/20171027/</loc>
     <lastmod>2017-12-11</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2017/10/27/2017010/</loc>
+    <loc>https://rainmakerho.github.io//2017/10/27/2017010/</loc>
     <lastmod>2017-12-11</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2017/11/09/2017011/</loc>
+    <loc>https://rainmakerho.github.io//2017/11/09/2017011/</loc>
     <lastmod>2017-12-11</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2017/11/16/2017012/</loc>
+    <loc>https://rainmakerho.github.io//2017/11/16/2017012/</loc>
     <lastmod>2017-12-11</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2017/11/30/2017014/</loc>
+    <loc>https://rainmakerho.github.io//2017/11/30/2017014/</loc>
     <lastmod>2017-12-11</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2017/12/07/2017015/</loc>
+    <loc>https://rainmakerho.github.io//2017/12/07/2017015/</loc>
     <lastmod>2017-12-11</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2017/12/11/2017016/</loc>
+    <loc>https://rainmakerho.github.io//2017/12/11/2017016/</loc>
     <lastmod>2017-12-11</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2017/11/29/2017013/</loc>
+    <loc>https://rainmakerho.github.io//2017/11/29/2017013/</loc>
     <lastmod>2017-11-29</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2017/10/03/20171003-2/</loc>
+    <loc>https://rainmakerho.github.io//2017/10/03/20171003-2/</loc>
     <lastmod>2017-10-06</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io/2017/09/27/sql2016license/</loc>
+    <loc>https://rainmakerho.github.io//2017/09/27/sql2016license/</loc>
     <lastmod>2017-09-30</lastmod>
   </url>
 </urlset> 

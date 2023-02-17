@@ -18,7 +18,7 @@
 <meta property="og:description" content="技術、架構只有最適合的方案">
 <meta property="og:locale" content="en_US">
 <meta property="article:author" content="亂馬客">
-<meta property="article:tag" content="前端,js,jquery,javascript,html5,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,chatbot,botframework,.net,netcore">
+<meta property="article:tag" content="前端,js,jquery,javascript,html5,C#,Developer,Programmer,Coder,chatbot,botframework,.net,netcore">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="亂馬客 - Re:從零開始的軟體開發生活" type="application/atom+xml">
@@ -147,6 +147,102 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-2018013" class="article article-type-post  article-index"
+  itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/03/2018013/">DataGrid 在 ASP.NET 4 的分頁導致第一個欄位會變很寬</a>
+    </h1>
+  
+
+          
+            <a href="/2018/04/03/2018013/" class="archive-article-date">
+  	<time datetime="2018-04-03T08:44:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-03</time>
+</a>
+              
+      </header>
+      
+        <div class="article-entry" itemprop="articleBody">
+          
+                    
+                      
+                            <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近同事將原本是 ASP.NET 1.1 的程式升級到 .NET 4，但是在 DataGrid 的分頁 postback 後，它的 colspan 就不見了。<br>會讓原本第一行的欄寬變的跟 footer 的分頁一樣寬，如下圖，</p>
+                              
+                                <p class="article-more-link">
+                                  <a target="_blank" rel="noopener" href="//2018/04/03/2018013/#more">
+                                    more &gt;&gt;
+                                  </a>
+                                </p>
+                                
+                                  
+                                    
+
+                                      
+        </div>
+        <div class="article-info article-info-index">
+          
+              
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">DataGrid</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">.net 4</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Paging</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">colspan</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">first column</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+                
+
+                  
+
+                      
+                            <div class="clearfix"></div>
+        </div>
+  </div>
+</article>
+
+      <aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+        
+
+  
     <article id="post-2018012" class="article article-type-post  article-index"
   itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -173,7 +269,7 @@
                             <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近同事問一個透過 SmtpClient 寄信的問題，因為客戶移機，所以將原本在 Windows 2008 x64 上的程式移到，Windows 2016 上去。<br>我們的程式是 .NET 3.5 ，所以在移機上並不會有什麼問題。<br>測試上都 OK，就只有一支執行檔在寄發 Mail 時，會發生 NullReferenceException: Object reference not set to an instance of an object. ，如下，</p>
                               
                                 <p class="article-more-link">
-                                  <a href="/2018/03/14/2018012/#more">
+                                  <a target="_blank" rel="noopener" href="//2018/03/14/2018012/#more">
                                     more &gt;&gt;
                                   </a>
                                 </p>
@@ -277,7 +373,7 @@
                             <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近在 Web 使用 Aspose.Pdf 來產生文件時，有時候會忽然出現 <em>System.NullReferenceException</em> 的錯誤。<br>而錯誤的地方居然是在 License.SetLicense 的 Method，如下，<br>System.NullReferenceException: 並未將物件參考設定為物件的執行個體。<br>    於 .(Stream )<br>    於 .(String , Assembly )<br>    於 Aspose.Pdf.License.SetLicense(String licenseName)</p>
                               
                                 <p class="article-more-link">
-                                  <a href="/2018/03/13/2018011/#more">
+                                  <a target="_blank" rel="noopener" href="//2018/03/13/2018011/#more">
                                     more &gt;&gt;
                                   </a>
                                 </p>
@@ -365,7 +461,7 @@
                             <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>我們有一個 ASP.NET 的系統部署到 IIS 上(Windows 2012, .NET 4.x)，有時候會導致 w3wp.exe 吃掉所有的 CPU 資源，一直要等到應用程式回收後，程式再重新啟動後就正常了。這種狀況不定期會發生。 </p>
                               
                                 <p class="article-more-link">
-                                  <a href="/2018/03/05/2018010/#more">
+                                  <a target="_blank" rel="noopener" href="//2018/03/05/2018010/#more">
                                     more &gt;&gt;
                                   </a>
                                 </p>
@@ -465,7 +561,7 @@
                             <p>最近同事詢問他們使用 Crytal Report Viewer 時，會發生 log4net 版本衝突的問題。如下圖所示， </p>
                               
                                 <p class="article-more-link">
-                                  <a href="/2018/02/14/2018009/#more">
+                                  <a target="_blank" rel="noopener" href="//2018/02/14/2018009/#more">
                                     more &gt;&gt;
                                   </a>
                                 </p>
@@ -557,7 +653,7 @@
                             <p>使用 Bot Framework 開發 Bot 時，當發生 Exception 時，會出現 <strong>“Sorry, my bot code is having an issue.”</strong> ，那如果我們要自行處理錯誤呢? 可以參考<a target="_blank" rel="noopener" href="https://desflanagan.wordpress.com/2017/09/01/bot-framework-custom-error-messages-and-exception-handling/">Bot Framework Custom Error Messages and Exception Handling, Autofac</a>，一個是建立一個 ExceptionHandleDialog 去包，另一個是俢改 PostUnhandledExceptionToUser 這個 Class ，然後再透過 Autofac 來置換成我們的 Class。 </p>
                               
                                 <p class="article-more-link">
-                                  <a href="/2018/02/13/2018008/#more">
+                                  <a target="_blank" rel="noopener" href="//2018/02/13/2018008/#more">
                                     more &gt;&gt;
                                   </a>
                                 </p>
@@ -657,7 +753,7 @@
                             <p>今天使用 botframework-emulator 在 local 測試 bot 時， botframework-emulator 居然出現 The bot’s MSA appId or password is incorrect. 的錯誤，如下圖， </p>
                               
                                 <p class="article-more-link">
-                                  <a href="/2018/02/01/2018007/#more">
+                                  <a target="_blank" rel="noopener" href="//2018/02/01/2018007/#more">
                                     more &gt;&gt;
                                   </a>
                                 </p>
@@ -749,7 +845,7 @@
                             <p>我們透過 VS.NET 建立出 Bot 後，預設 Nuget 中安裝 BotBuilder 相關的套件，如果我們從 GitHub 將 <a target="_blank" rel="noopener" href="https://github.com/Microsoft/BotBuilder">Microsoft&#x2F;BotBuilder</a> 到方案之中，我們要如何 Debug 進到 BotBuilder 的 Source Code 之中呢? </p>
                               
                                 <p class="article-more-link">
-                                  <a href="/2018/02/01/2018006/#more">
+                                  <a target="_blank" rel="noopener" href="//2018/02/01/2018006/#more">
                                     more &gt;&gt;
                                   </a>
                                 </p>
@@ -780,94 +876,6 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">debug</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
-  </div>
-</article>
-
-      <aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-        
-
-  
-    <article id="post-2018005" class="article article-type-post  article-index"
-  itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/29/2018005/">Call luis.ai predictions api 的 3 種方式</a>
-    </h1>
-  
-
-          
-            <a href="/2018/01/29/2018005/" class="archive-article-date">
-  	<time datetime="2018-01-29T06:19:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-29</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                            <h3 id="luis-ai-api-價格說明"><a href="#luis-ai-api-價格說明" class="headerlink" title="luis.ai api 價格說明"></a>luis.ai api 價格說明</h3><p>我們使用 luis.ai 的 api 後，很多人都於它的價格都不清楚，在這裡說明一下，</p>
-                              
-                                <p class="article-more-link">
-                                  <a href="/2018/01/29/2018005/#more">
-                                    more &gt;&gt;
-                                  </a>
-                                </p>
-                                
-                                  
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">luis.ai</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">predictions api</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">luis.ai 價格</a>
         		</li>
       		
 		</ul>
@@ -5289,6 +5297,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Blind SQL Injection</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Unsafe_Reflection</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">V9.4.5</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
               </li>
             
             <div class="clearfix"></div>

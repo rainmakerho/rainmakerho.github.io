@@ -18,7 +18,7 @@
 <meta property="og:description" content="技術、架構只有最適合的方案">
 <meta property="og:locale" content="en_US">
 <meta property="article:author" content="亂馬客">
-<meta property="article:tag" content="前端,js,jquery,javascript,html5,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,chatbot,botframework,.net,netcore">
+<meta property="article:tag" content="前端,js,jquery,javascript,html5,C#,Developer,Programmer,Coder,chatbot,botframework,.net,netcore">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="亂馬客 - Re:從零開始的軟體開發生活" type="application/atom+xml">
@@ -147,6 +147,98 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-checkmarx-unsafe-reflection" class="article article-type-post  article-index"
+  itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/02/17/checkmarx-unsafe-reflection/">Checkmarx Unsafe_Reflection</a>
+    </h1>
+  
+
+          
+            <a href="/2023/02/17/checkmarx-unsafe-reflection/" class="archive-article-date">
+  	<time datetime="2023-02-17T03:01:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-02-17</time>
+</a>
+              
+      </header>
+      
+        <div class="article-entry" itemprop="articleBody">
+          
+                    
+                      
+                            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近系統被 Checkmarx V9.4.5 掃出有 Unsafe_Reflection 的問題，<br>程式碼中有透過傳入的 Type Name 及 參數值來動態建立物件執行該 Method 。<br>問題的<strong>來源</strong>是 Controller Action Method 的<strong>參數</strong>，<br>問題的<strong>目的地</strong>則是 <strong>Invoke Method</strong> 。</p>
+                              
+                                <p class="article-more-link">
+                                  <a target="_blank" rel="noopener" href="//2023/02/17/checkmarx-unsafe-reflection/#more">
+                                    more &gt;&gt;
+                                  </a>
+                                </p>
+                                
+                                  
+                                    
+
+                                      
+        </div>
+        <div class="article-info article-info-index">
+          
+              
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Checkmarx</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Unsafe_Reflection</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">V9.4.5</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">CWE-470</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+                
+
+                  
+
+                      
+                            <div class="clearfix"></div>
+        </div>
+  </div>
+</article>
+
+      <aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+        
+
+  
     <article id="post-dynamic-set-property-with-ts" class="article article-type-post  article-index"
   itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -173,7 +265,7 @@
                             <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 JS ES6 中要動態設定物件的屬性，可以透過 Bracket notation 的方式來設定(<code>myobj[key] = &quot;google&quot;;</code>)，<br>但如果在 TypeScript 的物件這樣寫就會出現 <code>TS7053: Element implicitly has an &#39;any&#39; type because expression of type &#39;string&#39; can&#39;t be used to index type</code> 的編譯錯誤，如下，</p>
                               
                                 <p class="article-more-link">
-                                  <a href="/2023/02/06/dynamic-set-property-with-ts/#more">
+                                  <a target="_blank" rel="noopener" href="//2023/02/06/dynamic-set-property-with-ts/#more">
                                     more &gt;&gt;
                                   </a>
                                 </p>
@@ -265,7 +357,7 @@
                             <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>常常聽到 TCP Three-Way Handshake，它們是如何運作的呢?<br>開始之前，先看了解一下， TCP 使用到的 Header Flags</p>
                               
                                 <p class="article-more-link">
-                                  <a href="/2023/02/03/tcp-3-way-handshakes/#more">
+                                  <a target="_blank" rel="noopener" href="//2023/02/03/tcp-3-way-handshakes/#more">
                                     more &gt;&gt;
                                   </a>
                                 </p>
@@ -349,7 +441,7 @@
                             <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>透過 Azure Function 的 Queue trigger Function 來取得資料(JSON 字串)時，<br>在 Queue 中的資料都還沒有被 Function 處理，<br>Console 就 Log 出 <strong>Message has reached MaxDequeueCount of 5. Moving message to queue {myQueueName}-poison</strong> ，<br>然後 Queue 中的內容就搬到了 {myQueueName}-poison 去了。<br>如果在 Azure Function 的 Application Insights 看到的錯誤有可能是 <code>System.Text.DecoderFallbackException at System.Text.DecoderExceptionFallbackBuffer.Throw</code></p>
                               
                                 <p class="article-more-link">
-                                  <a href="/2023/02/03/message-has-reached-MaxDequeueCount-of-5/#more">
+                                  <a target="_blank" rel="noopener" href="//2023/02/03/message-has-reached-MaxDequeueCount-of-5/#more">
                                     more &gt;&gt;
                                   </a>
                                 </p>
@@ -449,7 +541,7 @@
                             <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近有遇到使用 <a target="_blank" rel="noopener" href="https://dbeaver.io/">DBeaver</a> 連線 Oracle 11.2 時，<br>在下 SQL 時，有時會出現 <strong>SQL Error[17002][08006]:IO Error:遠端主機已強制關閉一個現存的連線</strong>的錯誤，</p>
                               
                                 <p class="article-more-link">
-                                  <a href="/2023/01/11/oracle-17002-io-error-sometimes/#more">
+                                  <a target="_blank" rel="noopener" href="//2023/01/11/oracle-17002-io-error-sometimes/#more">
                                     more &gt;&gt;
                                   </a>
                                 </p>
@@ -541,7 +633,7 @@
                             <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>使用 ML.NET 中的 OlsTrainer 來預測資料，<br>當使用到某些資料進行模型定型時，<br>卻會發生 <code>System.InvalidOperationException: p-Value calculated outside expected [0,1] range</code> 的錯誤</p>
                               
                                 <p class="article-more-link">
-                                  <a href="/2023/01/07/ml-net-p-value-outside-0-1-range/#more">
+                                  <a target="_blank" rel="noopener" href="//2023/01/07/ml-net-p-value-outside-0-1-range/#more">
                                     more &gt;&gt;
                                   </a>
                                 </p>
@@ -637,7 +729,7 @@
                             <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>程式要要透過 string.Format 的方式來改變 json 字串的內容。<br>結果發生了 <strong>Input string was not in a correct format</strong> 的錯誤</p>
                               
                                 <p class="article-more-link">
-                                  <a href="/2023/01/06/input-string-was-not-in-a-correct-format/#more">
+                                  <a target="_blank" rel="noopener" href="//2023/01/06/input-string-was-not-in-a-correct-format/#more">
                                     more &gt;&gt;
                                   </a>
                                 </p>
@@ -733,7 +825,7 @@
                             <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>程式中的 js 檔中，在 click event 中，從 DOM 取得它的屬性做為 url 去改變 Anchor 的 href 屬性。<br>Checkmarx 就會出 <strong>Client_Potential_DOM_Open_Redirect</strong> 的問題，<br>從 <code>attr</code> 到 <code>href</code></p>
                               
                                 <p class="article-more-link">
-                                  <a href="/2023/01/06/checkmarx-client-dom-open-redirect/#more">
+                                  <a target="_blank" rel="noopener" href="//2023/01/06/checkmarx-client-dom-open-redirect/#more">
                                     more &gt;&gt;
                                   </a>
                                 </p>
@@ -760,98 +852,6 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Client_Potential_DOM_Open_Redirect</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
-  </div>
-</article>
-
-      <aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-        
-
-  
-    <article id="post-azure-function-bindings-triggers" class="article article-type-post  article-index"
-  itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/12/29/azure-function-bindings-triggers/">將 Http Trigger Function 內容寫到 Queue 中，並透過 Queue trigger Function 取出來，存到 Blob</a>
-    </h1>
-  
-
-          
-            <a href="/2022/12/29/azure-function-bindings-triggers/" class="archive-article-date">
-  	<time datetime="2022-12-29T07:32:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-12-29</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在前一篇<a href="https://rainmakerho.github.io/2022/12/29/azure-function-by-vs/">使用 Visual Studio 建立 Azure Function</a>，<br>建立了一個 Http Trigger Function ，是將 訊息 Response 出去，<br>接下來可以將<strong>訊息</strong>放到 Storage Queue 之中，<br>並新增一個 Queue trigger Function 來取得 Queue 中的資料，<br>並存到 Blob 之中</p>
-                              
-                                <p class="article-more-link">
-                                  <a href="/2022/12/29/azure-function-bindings-triggers/#more">
-                                    more &gt;&gt;
-                                  </a>
-                                </p>
-                                
-                                  
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Azure Function</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Function App</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Queue trigger</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Blob</a>
         		</li>
       		
 		</ul>
@@ -5273,6 +5273,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Blind SQL Injection</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Unsafe_Reflection</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">V9.4.5</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
               </li>
             
             <div class="clearfix"></div>

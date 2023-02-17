@@ -18,7 +18,7 @@
 <meta property="og:description" content="技術、架構只有最適合的方案">
 <meta property="og:locale" content="en_US">
 <meta property="article:author" content="亂馬客">
-<meta property="article:tag" content="前端,js,jquery,javascript,html5,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,chatbot,botframework,.net,netcore">
+<meta property="article:tag" content="前端,js,jquery,javascript,html5,C#,Developer,Programmer,Coder,chatbot,botframework,.net,netcore">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="亂馬客 - Re:從零開始的軟體開發生活" type="application/atom+xml">
@@ -147,6 +147,102 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-2019033" class="article article-type-post  article-index"
+  itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/11/2019033/">ASP.NET 使用了 Forms 驗證後，「請別忘了」設定 Authorization 哦!</a>
+    </h1>
+  
+
+          
+            <a href="/2019/11/11/2019033/" class="archive-article-date">
+  	<time datetime="2019-11-11T10:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-11</time>
+</a>
+              
+      </header>
+      
+        <div class="article-entry" itemprop="articleBody">
+          
+                    
+                      
+                            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近同事詢問將程式裝到 2 台機器上去，透過 Load Balancing 時，Session 取得到，但是 Forms 驗證卻會失敗， context.User.Identity 有值， context.User.Identity.IsAuthenticated 卻是 false。</p>
+                              
+                                <p class="article-more-link">
+                                  <a target="_blank" rel="noopener" href="//2019/11/11/2019033/#more">
+                                    more &gt;&gt;
+                                  </a>
+                                </p>
+                                
+                                  
+                                    
+
+                                      
+        </div>
+        <div class="article-info article-info-index">
+          
+              
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">machineKey</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Authorization</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">authentication</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">User.Identity</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">FormsAuthentication.Decrypt</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+                
+
+                  
+
+                      
+                            <div class="clearfix"></div>
+        </div>
+  </div>
+</article>
+
+      <aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+        
+
+  
     <article id="post-2019032" class="article article-type-post  article-index"
   itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -173,7 +269,7 @@
                             <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>我們使用 iisnode 時，會用到 IIS URLRewrite ，而且需要啟用一些 Server Variables，所以在 Web.Config 中設定 rewrite&#x2F;allowedServerVariables，如下，</p>
                               
                                 <p class="article-more-link">
-                                  <a href="/2019/10/24/2019032/#more">
+                                  <a target="_blank" rel="noopener" href="//2019/10/24/2019032/#more">
                                     more &gt;&gt;
                                   </a>
                                 </p>
@@ -269,7 +365,7 @@
                             <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近同事詢問，有一個系統，分別裝在不同的 VM 上面，程式碼完全一樣，然而狀況卻是一個系統可正常登入，另一個則登入不進去。<br>查看後發現，無法登入的那個系統，Session 值都是空的。</p>
                               
                                 <p class="article-more-link">
-                                  <a href="/2019/10/07/2019031/#more">
+                                  <a target="_blank" rel="noopener" href="//2019/10/07/2019031/#more">
                                     more &gt;&gt;
                                   </a>
                                 </p>
@@ -357,7 +453,7 @@
                             <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近同事發現，原本透過 Chrome V77 (Windows)將網頁直接列印成 PDF 的功能，當字型為 標楷體(DFKai-SB) 時，會有破字的狀況。<br>而將 Chrome 退版後，這個功能就沒問題了。<br>但是在 Mac 上卻是沒問題的。</p>
                               
                                 <p class="article-more-link">
-                                  <a href="/2019/10/04/2019030/#more">
+                                  <a target="_blank" rel="noopener" href="//2019/10/04/2019030/#more">
                                     more &gt;&gt;
                                   </a>
                                 </p>
@@ -457,7 +553,7 @@
                             <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近系統被 AppScan 掃出「偵測到隱藏目錄」的問題，在 IIS 上，如果目錄不存在，就會回 404 ，而如果目錄存在，又不允許瀏覽，就會回 403。 所以就可以透過回傳的狀態碼來判斷目錄的存在與否。 那要怎麼解決呢?</p>
                               
                                 <p class="article-more-link">
-                                  <a href="/2019/09/25/2019029/#more">
+                                  <a target="_blank" rel="noopener" href="//2019/09/25/2019029/#more">
                                     more &gt;&gt;
                                   </a>
                                 </p>
@@ -553,7 +649,7 @@
                             <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在年初時，因為 Bot 送給 IM Channel 時，需要在 HttpClient 的 Headers 中加入額外的資訊，那時筆者是透過 Middleware 的方式，取出 turnContext.TurnState 中的 ConnectorClient 。然後設定 ConnectorClient.HttpClient 的 DefaultRequestHeaders 。詳細可以參考 <a href="https://rainmakerho.github.io/2019/01/02/2019001/">Microsoft Botframework V4，從 Bot 送訊息到 IM Channel 時，加入額外的 Header 資訊</a></p>
                               
                                 <p class="article-more-link">
-                                  <a href="/2019/09/24/2019028/#more">
+                                  <a target="_blank" rel="noopener" href="//2019/09/24/2019028/#more">
                                     more &gt;&gt;
                                   </a>
                                 </p>
@@ -641,7 +737,7 @@
                             <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>我們手上有一個 big5 編碼的 Html 檔案，想透過 Aspose 來轉換成 Pdf 檔案，看似容易，但在轉出來的 Pdf 中，竟然有一些字會變成「空白的框框」。一件簡單的工作，怎麼會踩到了雷呢?</p>
                               
                                 <p class="article-more-link">
-                                  <a href="/2019/09/23/2019027/#more">
+                                  <a target="_blank" rel="noopener" href="//2019/09/23/2019027/#more">
                                     more &gt;&gt;
                                   </a>
                                 </p>
@@ -753,7 +849,7 @@
                             <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近同事詢問，系統 Link 到 aspnet_client 中的 js 檔案時，都無法下載，出現 401 Unauthorized 。<br>同事確認「匿名驗證」也有啟用，怎麼還會噴 401 呢?</p>
                               
                                 <p class="article-more-link">
-                                  <a href="/2019/09/17/2019026/#more">
+                                  <a target="_blank" rel="noopener" href="//2019/09/17/2019026/#more">
                                     more &gt;&gt;
                                   </a>
                                 </p>
@@ -780,102 +876,6 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Unauthorized</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
-  </div>
-</article>
-
-      <aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-        
-
-  
-    <article id="post-2019025" class="article article-type-post  article-index"
-  itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/17/2019025/">.NET Core AD 帳密驗證</a>
-    </h1>
-  
-
-          
-            <a href="/2019/09/17/2019025/" class="archive-article-date">
-  	<time datetime="2019-09-17T03:17:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-17</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>目前 .NET Core 的 System.DirectoryServices.Protocols 還不 Support 非 Windows 平台。<br>所以如果在 Mac 中使用的話，就會噴「System.PlatformNotSupportedException」這個錯誤，如下，</p>
-                              
-                                <p class="article-more-link">
-                                  <a href="/2019/09/17/2019025/#more">
-                                    more &gt;&gt;
-                                  </a>
-                                </p>
-                                
-                                  
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">.NET Core</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">AD</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Authentication</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">LDAP</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Novell.Directory.Ldap.NETStandard</a>
         		</li>
       		
 		</ul>
@@ -5297,6 +5297,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Blind SQL Injection</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Unsafe_Reflection</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">V9.4.5</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
               </li>
             
             <div class="clearfix"></div>

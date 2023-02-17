@@ -18,7 +18,7 @@
 <meta property="og:description" content="技術、架構只有最適合的方案">
 <meta property="og:locale" content="en_US">
 <meta property="article:author" content="亂馬客">
-<meta property="article:tag" content="前端,js,jquery,javascript,html5,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,chatbot,botframework,.net,netcore">
+<meta property="article:tag" content="前端,js,jquery,javascript,html5,C#,Developer,Programmer,Coder,chatbot,botframework,.net,netcore">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="亂馬客 - Re:從零開始的軟體開發生活" type="application/atom+xml">
@@ -147,6 +147,98 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-ado-pre-login-handshake-tcp-provider-error-0" class="article article-type-post  article-index"
+  itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/10/20/ado-pre-login-handshake-tcp-provider-error-0/">當 SQL Server 將 TLS 1.0/1.1 關掉之後的怪現象 - SSL 安全性錯誤 (pre-login handshake)</a>
+    </h1>
+  
+
+          
+            <a href="/2022/10/20/ado-pre-login-handshake-tcp-provider-error-0/" class="archive-article-date">
+  	<time datetime="2022-10-20T00:35:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-10-20</time>
+</a>
+              
+      </header>
+      
+        <div class="article-entry" itemprop="articleBody">
+          
+                    
+                      
+                            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>發生問題的環境是 DB Server 為 MS SQL 2014, Client 為 Windows 10, 應用程式為 .NET 1.1 Windows Form Application。當透過 IIS Crypto 關掉 TLS 1.0&#x2F;1.1 後，有些 Windows 10 Client 執行程式時，就會發生 <b>System.Data.SqlClient.ConnectionPool.GetConnection &lt;System.Data.SqlClient.SqlException&gt; SSL 安全性錯誤</b> 的錯誤。</p>
+                              
+                                <p class="article-more-link">
+                                  <a target="_blank" rel="noopener" href="//2022/10/20/ado-pre-login-handshake-tcp-provider-error-0/#more">
+                                    more &gt;&gt;
+                                  </a>
+                                </p>
+                                
+                                  
+                                    
+
+                                      
+        </div>
+        <div class="article-info article-info-index">
+          
+              
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">.NET 1.1</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ADO.NET</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">pre-login handshake</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">TCP Provider</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+                
+
+                  
+
+                      
+                            <div class="clearfix"></div>
+        </div>
+  </div>
+</article>
+
+      <aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+        
+
+  
     <article id="post-UseHttpsRedirection-not-redirect-https" class="article article-type-post  article-index"
   itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -173,7 +265,7 @@
                             <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>同事在測試 ASP.NET Core Web 系統時，原本可以在 http 正常運作。<br>今天輸入 http 後，居然自動導到了 https 。<br>因為程式中有寫 <code>app.UseHttpsRedirection()</code> ，所以會把 http 轉到 https。<br>可是同事說，之前走 http 都可以，為什麼今天卻不OK了呢?</p>
                               
                                 <p class="article-more-link">
-                                  <a href="/2022/09/21/UseHttpsRedirection-not-redirect-https/#more">
+                                  <a target="_blank" rel="noopener" href="//2022/09/21/UseHttpsRedirection-not-redirect-https/#more">
                                     more &gt;&gt;
                                   </a>
                                 </p>
@@ -261,7 +353,7 @@
                             <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>從 <a target="_blank" rel="noopener" href="https://abp.io/get-started">abp.io&#x2F;get-started</a> 設定 UI Framework 為 MVC (Razor Pages) or Blazor Server UI，下載 Source 後，<br>透過 Visual Studio 建置執行後，會出現 <strong>Volo.Abp.AbpException: Could not find the bundle file ‘&#x2F;libs&#x2F;abp&#x2F;core&#x2F;abp.css’ for the bundle ‘Basic.Global’!</strong> 的錯誤</p>
                               
                                 <p class="article-more-link">
-                                  <a href="/2022/09/12/abp-not-find-bundle-libs-abp-core-abp-css-Basic-Global/#more">
+                                  <a target="_blank" rel="noopener" href="//2022/09/12/abp-not-find-bundle-libs-abp-core-abp-css-Basic-Global/#more">
                                     more &gt;&gt;
                                   </a>
                                 </p>
@@ -353,7 +445,7 @@
                             <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>成功透過 Metasploit 建立 meterpreter session 時，可以透過 <code>hashdump</code> 將 Security Accounts Manager (SAM) 資料 dump 出來，但如果使用者的權限不足，這時就需要提升權限。<br>可以透過 metasploit Suggester 來掃看看受害電腦可能有那些被提權的攻擊模組，<br>或是查看有那些有漏洞的 Service 可以讓我們以它的身份建立 meterpreter session。</p>
                               
                                 <p class="article-more-link">
-                                  <a href="/2022/08/31/metasploit-privilege-escalation/#more">
+                                  <a target="_blank" rel="noopener" href="//2022/08/31/metasploit-privilege-escalation/#more">
                                     more &gt;&gt;
                                   </a>
                                 </p>
@@ -441,7 +533,7 @@
                             <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>以上介紹 2種建立 metasploit meterpreter session 的方式，<br>1.利用 Server 對外漏洞<br>2.建立惡意的檔案讓受害者去執行</p>
                               
                                 <p class="article-more-link">
-                                  <a href="/2022/08/31/metasploit-meterpreter-session/#more">
+                                  <a target="_blank" rel="noopener" href="//2022/08/31/metasploit-meterpreter-session/#more">
                                     more &gt;&gt;
                                   </a>
                                 </p>
@@ -533,7 +625,7 @@
                             <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>我們有一個 ASP.NET Core 的系統，跑一跑就會有 <strong>System.InvalidOperationException: Timeout expired.  The timeout period elapsed prior to obtaining a connection from the pool.  This may have occurred because all pooled connections were in use and max pool size was reached.</strong> 的錯誤。但是它的 Max Pool Size 已經設定到了 6,000 ，還是會噴錯。<br>那系統中一定有沒有關掉的 Connection 才會如此 …</p>
                               
                                 <p class="article-more-link">
-                                  <a href="/2022/08/29/timeout-expired-max-pool-size-reached/#more">
+                                  <a target="_blank" rel="noopener" href="//2022/08/29/timeout-expired-max-pool-size-reached/#more">
                                     more &gt;&gt;
                                   </a>
                                 </p>
@@ -641,7 +733,7 @@
                             <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>透過 VS Code 偵錯時，程式到了 <code>var input=Console.ReadLine();</code>後，<br>會在 <strong>偵錯主控台</strong> 接受使用者的輸入，<br>但輸入值按下 Enter 鍵後，卻沒有作用 </p>
                               
                                 <p class="article-more-link">
-                                  <a href="/2022/08/04/vscode-debug-console-readline-not-work/#more">
+                                  <a target="_blank" rel="noopener" href="//2022/08/04/vscode-debug-console-readline-not-work/#more">
                                     more &gt;&gt;
                                   </a>
                                 </p>
@@ -733,7 +825,7 @@
                             <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>同事在練習 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-tw/learn/modules/msgraph-build-aspnetmvc-apps/5-exercise-add-auth">將 Microsoft 驗證程式庫納入 ASP.NET MVC Web 應用程式</a> 時，想要在 <strong>AccountController</strong> 的 <strong>SignIn()</strong> 中，在轉址到 Azure AD 驗證登入前先存入某些參數，然後在 Azure AD 驗證登入成功後，取回該參數。</p>
                               
                                 <p class="article-more-link">
-                                  <a href="/2022/07/29/mvc5-owin-azure-ad-openid/#more">
+                                  <a target="_blank" rel="noopener" href="//2022/07/29/mvc5-owin-azure-ad-openid/#more">
                                     more &gt;&gt;
                                   </a>
                                 </p>
@@ -772,98 +864,6 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">AuthorizationCodeReceivedNotification</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
-  </div>
-</article>
-
-      <aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-        
-
-  
-    <article id="post-tls-do-not-a-common-algorithm" class="article article-type-post  article-index"
-  itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/07/12/tls-do-not-a-common-algorithm/">用戶端和伺服器無法溝通，因為它們沒有公用的演算法</a>
-    </h1>
-  
-
-          
-            <a href="/2022/07/12/tls-do-not-a-common-algorithm/" class="archive-article-date">
-  	<time datetime="2022-07-12T03:56:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-12</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                            <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近同事將一台 Server 設定停用 TLS 1.0, TLS 1.1 後，<br>ASP.NET 4.X 的程式呼叫 Https 的 Web Service 會噴出 <strong>用戶端和伺服器無法溝通，因為它們沒有公用的演算法。</strong> 的錯誤。</p>
-                              
-                                <p class="article-more-link">
-                                  <a href="/2022/07/12/tls-do-not-a-common-algorithm/#more">
-                                    more &gt;&gt;
-                                  </a>
-                                </p>
-                                
-                                  
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ASP.NET</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">TLS</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">TLS 1.2</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Disable TLS 1.1</a>
         		</li>
       		
 		</ul>
@@ -5285,6 +5285,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Blind SQL Injection</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Unsafe_Reflection</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">V9.4.5</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
               </li>
             
             <div class="clearfix"></div>

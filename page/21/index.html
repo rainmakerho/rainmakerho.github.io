@@ -18,7 +18,7 @@
 <meta property="og:description" content="技術、架構只有最適合的方案">
 <meta property="og:locale" content="en_US">
 <meta property="article:author" content="亂馬客">
-<meta property="article:tag" content="前端,js,jquery,javascript,html5,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,chatbot,botframework,.net,netcore">
+<meta property="article:tag" content="前端,js,jquery,javascript,html5,C#,Developer,Programmer,Coder,chatbot,botframework,.net,netcore">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="亂馬客 - Re:從零開始的軟體開發生活" type="application/atom+xml">
@@ -147,6 +147,106 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-2020019" class="article article-type-post  article-index"
+  itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/09/2020019/">ASP.NET Core Cross-Origin Resource Sharing(CORS)</a>
+    </h1>
+  
+
+          
+            <a href="/2020/09/09/2020019/" class="archive-article-date">
+  	<time datetime="2020-09-09T14:29:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-09</time>
+</a>
+              
+      </header>
+      
+        <div class="article-entry" itemprop="articleBody">
+          
+                    
+                      
+                            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>大家都知道，當某網頁透過 JS 要 Post 另一個網頁時，如果它們是不同 Domain 就會受到 Browser 的安全限制。<br>而在 ASP.NET 時，因為都 Host 在 IIS 上面，所以可以在 web.config 中去設定 CORS 的標頭。</p>
+                              
+                                <p class="article-more-link">
+                                  <a target="_blank" rel="noopener" href="//2020/09/09/2020019/#more">
+                                    more &gt;&gt;
+                                  </a>
+                                </p>
+                                
+                                  
+                                    
+
+                                      
+        </div>
+        <div class="article-info article-info-index">
+          
+              
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ASP.NET Core</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">CORS</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Corss-Origin Requests</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">405</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">preflight</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">blocked by CORS</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+                
+
+                  
+
+                      
+                            <div class="clearfix"></div>
+        </div>
+  </div>
+</article>
+
+      <aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+        
+
+  
     <article id="post-2020018" class="article article-type-post  article-index"
   itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -173,7 +273,7 @@
                             <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>前幾篇從 <a href="https://rainmakerho.github.io/2020/08/05/2020014/">有效地使用 ASP.NET Core Logging - 1</a> 介紹使用 Serilog 來記錄，並加入錯誤的處理。<br><a href="https://rainmakerho.github.io/2020/08/26/2020017/">有效地使用 ASP.NET Core Logging - 2</a> 透過 Filter 去記錄每個 Page, Action 的執行時間。<br>在 log 中有些內容是每個訊息最好要提供的，例如機器名稱、使用者資訊。這些共通的資料我們可以透過 BeginScope 來將這些資料記錄下來。</p>
                               
                                 <p class="article-more-link">
-                                  <a href="/2020/08/29/2020018/#more">
+                                  <a target="_blank" rel="noopener" href="//2020/08/29/2020018/#more">
                                     more &gt;&gt;
                                   </a>
                                 </p>
@@ -281,7 +381,7 @@
                             <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 <a href="https://rainmakerho.github.io/2020/08/05/2020014/">有效地使用 ASP.NET Core Logging - 1</a> 中，我們將 Log 寫到實體檔之中，並且加入錯誤的處理機制。<br>接下來我們要記錄每個 Page, Action 的執行時間。</p>
                               
                                 <p class="article-more-link">
-                                  <a href="/2020/08/26/2020017/#more">
+                                  <a target="_blank" rel="noopener" href="//2020/08/26/2020017/#more">
                                     more &gt;&gt;
                                   </a>
                                 </p>
@@ -385,7 +485,7 @@
                             <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近同事詢問有一個蠻奇怪的問題，他使用 IE，Edge 可以正常登入系統，但使用 Chrome(V.81)卻無法登入。<br>系統是使用 ASP.NET Forms-Based Authentication 的方式，走 Https 。<br>於是請他用 Fiddler 錄看看執行的過程來比較看看差在那裡。</p>
                               
                                 <p class="article-more-link">
-                                  <a href="/2020/08/13/2020016/#more">
+                                  <a target="_blank" rel="noopener" href="//2020/08/13/2020016/#more">
                                     more &gt;&gt;
                                   </a>
                                 </p>
@@ -485,7 +585,7 @@
                             <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>透過 SharpSvn 來 Export 時，在大多數的電腦上都沒問題的。<br>但在某台電腦中，在 Export 到某個檔案時，卻會將整個程式關畢，而那個檔名原本是 FRM10009.docx ，<br>卻會變成 svn-444AA7Ff 或是 svn-54A3A7Da 等 svn- 開頭的檔案。</p>
                               
                                 <p class="article-more-link">
-                                  <a href="/2020/08/13/2020015/#more">
+                                  <a target="_blank" rel="noopener" href="//2020/08/13/2020015/#more">
                                     more &gt;&gt;
                                   </a>
                                 </p>
@@ -577,7 +677,7 @@
                             <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>一個系統中，Log 對於開發人員來說是非常重要的，所以在系統建置之初，我一定是先把 Log 放進去。<br>在 ASP.NET Core 統一透過 ILogger 來記錄 Log，至於要使用那一個 Logging Provider 則可以讓我們自由選擇。<br><a target="_blank" rel="noopener" href="https://www.pluralsight.com/courses/asp-dotnet-core-effective-logging">Effective Logging in ASP.NET Core</a> 課程提到，系統中，Log 應該保有以下幾項特性，</p>
                               
                                 <p class="article-more-link">
-                                  <a href="/2020/08/05/2020014/#more">
+                                  <a target="_blank" rel="noopener" href="//2020/08/05/2020014/#more">
                                     more &gt;&gt;
                                   </a>
                                 </p>
@@ -681,7 +781,7 @@
                             <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>開發 ASP.NET Core Blazor 時，可以選擇使用 Blazor WebAssembly (client-side) 或是 Blazor Server (server-side)的方式。<br>但是當選擇好了後，可以改成別的嗎?<br>例如 Blazor WebAssembly 改成 Blazor Server 或是 Blazor Server 改成 Blazor WebAssembly 嗎?</p>
                               
                                 <p class="article-more-link">
-                                  <a href="/2020/07/30/2020013/#more">
+                                  <a target="_blank" rel="noopener" href="//2020/07/30/2020013/#more">
                                     more &gt;&gt;
                                   </a>
                                 </p>
@@ -773,7 +873,7 @@
                             <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近遇到一個 iframe 的問題，在一個頁面(index.htm)中加入 iframe 後，該 iframe 的 Page (parentFrame.htm)中又有 iframe (childFrameA.htm)。<br>而在 childFrameA.htm 中有一個 Link 要將 Parent 頁面取代掉，會出現以下的錯誤，</p>
                               
                                 <p class="article-more-link">
-                                  <a href="/2020/07/21/2020012/#more">
+                                  <a target="_blank" rel="noopener" href="//2020/07/21/2020012/#more">
                                     more &gt;&gt;
                                   </a>
                                 </p>
@@ -808,98 +908,6 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Unsafe JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
-  </div>
-</article>
-
-      <aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-        
-
-  
-    <article id="post-2020011" class="article article-type-post  article-index"
-  itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/07/2020011/">透過 Aspose.Words 讓設定 SectionBreakOddPage 的隱藏頁能顯示Header及Footer</a>
-    </h1>
-  
-
-          
-            <a href="/2020/07/07/2020011/" class="archive-article-date">
-  	<time datetime="2020-07-07T03:54:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-07</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                            <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近同事詢問使用 Aspose.Words 是否有 Support ，分隔符號 -&gt; 自下個奇數頁起。<br>Aspose.Words 可以使用 BreakType.SectionBreakOddPage 。<br>所以測試程式如下，</p>
-                              
-                                <p class="article-more-link">
-                                  <a href="/2020/07/07/2020011/#more">
-                                    more &gt;&gt;
-                                  </a>
-                                </p>
-                                
-                                  
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Aspose.Words</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">SectionStart</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">SectionBreakOddPage</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">PageNumber</a>
         		</li>
       		
 		</ul>
@@ -5321,6 +5329,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Blind SQL Injection</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Unsafe_Reflection</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">V9.4.5</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
               </li>
             
             <div class="clearfix"></div>

@@ -18,7 +18,7 @@
 <meta property="og:description" content="技術、架構只有最適合的方案">
 <meta property="og:locale" content="en_US">
 <meta property="article:author" content="亂馬客">
-<meta property="article:tag" content="前端,js,jquery,javascript,html5,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,chatbot,botframework,.net,netcore">
+<meta property="article:tag" content="前端,js,jquery,javascript,html5,C#,Developer,Programmer,Coder,chatbot,botframework,.net,netcore">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="亂馬客 - Re:從零開始的軟體開發生活" type="application/atom+xml">
@@ -147,6 +147,102 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-oAuth2-Basic" class="article article-type-post  article-index"
+  itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/02/15/oAuth2-Basic/">OAuth 2.0 - Authorization Code Flow</a>
+    </h1>
+  
+
+          
+            <a href="/2022/02/15/oAuth2-Basic/" class="archive-article-date">
+  	<time datetime="2022-02-15T05:18:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-15</time>
+</a>
+              
+      </header>
+      
+        <div class="article-entry" itemprop="articleBody">
+          
+                    
+                      
+                            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>OAuth是”Open Authorization”,它讓使用者在授權伺服器上，同意 Client App 代表使用者去存取資源。<br>使用者會在授權伺服器上驗證帳密，將 Access Token 交給 Client App，所以 Client App 並不會拿到 使用者的帳密。<br><img src="https://identityserver4.readthedocs.io/en/3.1.0/_images/protocols.png" alt="OAuth2"><br>以上圖來說，當使用者使用 Web App 需要輸入帳密時，應該是網頁轉到 Security Token Service(Authorization Server) 輸入使用者的帳密，而 Web App 從 Token Service 取得 Token 去存取 API。</p>
+                              
+                                <p class="article-more-link">
+                                  <a target="_blank" rel="noopener" href="//2022/02/15/oAuth2-Basic/#more">
+                                    more &gt;&gt;
+                                  </a>
+                                </p>
+                                
+                                  
+                                    
+
+                                      
+        </div>
+        <div class="article-info article-info-index">
+          
+              
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OAuth 2.0</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Authorization Code Flow</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">response_type=code</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">grant_type=authorization_code</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">private client</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+                
+
+                  
+
+                      
+                            <div class="clearfix"></div>
+        </div>
+  </div>
+</article>
+
+      <aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+        
+
+  
     <article id="post-fiddler-cannot-trace-httpclient" class="article article-type-post  article-index"
   itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -173,7 +269,7 @@
                             <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>如果透過 Fiddler 錄不到 HttpClient 發出的 Request 。</p>
                               
                                 <p class="article-more-link">
-                                  <a href="/2022/02/11/fiddler-cannot-trace-httpclient/#more">
+                                  <a target="_blank" rel="noopener" href="//2022/02/11/fiddler-cannot-trace-httpclient/#more">
                                     more &gt;&gt;
                                   </a>
                                 </p>
@@ -261,7 +357,7 @@
                             <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>當透過 Checkmarx 集合為 OWASP TOP 10 - 2021 掃 ASP.NET MVC 時，<br>如果回傳的物件中，如果 <strong>類別&#x2F;屬性名稱</strong> 中有一些 機敏性名稱時，<br>Checkmarx 就會出 <strong>Excessive_Data_Exposure</strong> 的中風險</p>
                               
                                 <p class="article-more-link">
-                                  <a href="/2022/01/24/Excessive-Data-Exposure/#more">
+                                  <a target="_blank" rel="noopener" href="//2022/01/24/Excessive-Data-Exposure/#more">
                                     more &gt;&gt;
                                   </a>
                                 </p>
@@ -345,7 +441,7 @@
                             <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>當透過 Checkmarx 集合為 OWASP TOP 10 - 2021 掃 ASP.NET MVC 時，<br>在一些有 Authorize 的 Action 上，如果接受一些 int, string 的參數直接當作DB的Filter，<br>Checkmarx 就會出 <strong>Missing Object Level Authorization</strong> 的中風險</p>
                               
                                 <p class="article-more-link">
-                                  <a href="/2022/01/23/Missing-Object-Level-Authorization/#more">
+                                  <a target="_blank" rel="noopener" href="//2022/01/23/Missing-Object-Level-Authorization/#more">
                                     more &gt;&gt;
                                   </a>
                                 </p>
@@ -433,7 +529,7 @@
                             <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近在 CentOS 8 上下載 NodeJS 的程式，然後下<code>npm install</code>，就發生 npm ERR! <a href="mailto:&#x73;&#x71;&#108;&#105;&#x74;&#101;&#51;&#64;&#52;&#x2e;&#50;&#46;&#x30;">&#x73;&#x71;&#108;&#105;&#x74;&#101;&#51;&#64;&#52;&#x2e;&#50;&#46;&#x30;</a> install: <code>node-pre-gyp install --fallback-to-build</code> 的錯誤。</p>
                               
                                 <p class="article-more-link">
-                                  <a href="/2022/01/13/npm-ERR-sqlite-install/#more">
+                                  <a target="_blank" rel="noopener" href="//2022/01/13/npm-ERR-sqlite-install/#more">
                                     more &gt;&gt;
                                   </a>
                                 </p>
@@ -525,7 +621,7 @@
                             <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>更新 NodeJS 到 V17 後，執行 <code>npx webpack</code> 時，會噴 <code>error:0308010C:digital envelope routines::unsupported</code> 的錯誤</p>
                               
                                 <p class="article-more-link">
-                                  <a href="/2022/01/10/webpack-error-03000086-digital-envelope-routines-ERR-OSSL-EVP-UNSUPPORTED/#more">
+                                  <a target="_blank" rel="noopener" href="//2022/01/10/webpack-error-03000086-digital-envelope-routines-ERR-OSSL-EVP-UNSUPPORTED/#more">
                                     more &gt;&gt;
                                   </a>
                                 </p>
@@ -621,7 +717,7 @@
                             <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>透過 CentOS 8 來 compile ts 檔時，居然噴<code>error TS2307 Cannot find module</code>的錯誤</p>
                               
                                 <p class="article-more-link">
-                                  <a href="/2022/01/10/error-TS2307-Cannot-find-module/#more">
+                                  <a target="_blank" rel="noopener" href="//2022/01/10/error-TS2307-Cannot-find-module/#more">
                                     more &gt;&gt;
                                   </a>
                                 </p>
@@ -725,7 +821,7 @@
                             <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>在 Windows 10 X64, 更新 NodeJS 到 V17 後，執行 <code>npm install</code> 時，噴以 <code>OpenSSL configuration error</code> 的錯誤</p>
                               
                                 <p class="article-more-link">
-                                  <a href="/2022/01/10/npm-OpenSSL-configuration-error/#more">
+                                  <a target="_blank" rel="noopener" href="//2022/01/10/npm-OpenSSL-configuration-error/#more">
                                     more &gt;&gt;
                                   </a>
                                 </p>
@@ -756,110 +852,6 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Windows 10 環境變數</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
-  </div>
-</article>
-
-      <aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-        
-
-  
-    <article id="post-Heap-Inspection-ASPX" class="article article-type-post  article-index"
-  itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/28/Heap-Inspection-ASPX/">Checkmarx V9.4 在 Heap_Inspection 的改變(ASPX)</a>
-    </h1>
-  
-
-          
-            <a href="/2021/12/28/Heap-Inspection-ASPX/" class="archive-article-date">
-  	<time datetime="2021-12-28T01:09:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-28</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>之前在 ASP.NET WebForm ASPX 中，只要有 Password 等機敏性名稱的元件、屬性及變數都會被 Checkmarx 找出 <strong>Heap Inspection</strong> ，例如登入頁面的 <code>&lt;asp:TextBox ID=&quot;txtPassword&quot; TextMode=&quot;Password&quot; runat=&quot;server&quot;&gt;&lt;/asp:TextBox&gt;</code> 欄位。而且該問題還是<strong>中風險</strong>(在 Checkmarx V8.9測試)。</p>
-                              
-                                <p class="article-more-link">
-                                  <a href="/2021/12/28/Heap-Inspection-ASPX/#more">
-                                    more &gt;&gt;
-                                  </a>
-                                </p>
-                                
-                                  
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">ASPX</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ASP.NET</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Checkmarx</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Password</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Heap Inspection</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Heap_Inspection</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">WebForm</a>
         		</li>
       		
 		</ul>
@@ -5281,6 +5273,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Blind SQL Injection</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Unsafe_Reflection</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">V9.4.5</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
               </li>
             
             <div class="clearfix"></div>
