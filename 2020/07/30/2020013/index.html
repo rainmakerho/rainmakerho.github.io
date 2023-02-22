@@ -159,30 +159,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2020013" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-2020013"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       Blazor WebAssembly 與 Server 相互轉換
     </h1>
   
-
-          
-            <a href="/2020/07/30/2020013/" class="archive-article-date">
+  <a href="/2020/07/30/2020013/" class="archive-article-date">
   	<time datetime="2020-07-30T14:29:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-30</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>開發 ASP.NET Core Blazor 時，可以選擇使用 Blazor WebAssembly (client-side) 或是 Blazor Server (server-side)的方式。<br>但是當選擇好了後，可以改成別的嗎?<br>例如 Blazor WebAssembly 改成 Blazor Server 或是 Blazor Server 改成 Blazor WebAssembly 嗎?</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>開發 ASP.NET Core Blazor 時，可以選擇使用 Blazor WebAssembly (client-side) 或是 Blazor Server (server-side)的方式。<br>但是當選擇好了後，可以改成別的嗎?<br>例如 Blazor WebAssembly 改成 Blazor Server 或是 Blazor Server 改成 Blazor WebAssembly 嗎?</p>
 <h3 id="研究"><a href="#研究" class="headerlink" title="研究"></a>研究</h3><p>在轉換前，先建立 Blazor WebAssembly 及 Blazor Server 來比較一下，如下，</p>
 <img src="/2020/07/30/2020013/01.png" class="" title="Blazor WebAssembly And Server">
 <p>我們可以發現，那些 Razor Page 大多可以在 WebAssembly or Server 上執行，<br>而 Server 專案中 Pages 目錄的 _Host.cshtml ，則可以對應到 WebAssembly 專案中 wwwroot 裡的 index.html，如下，</p>
@@ -228,15 +226,10 @@
 <p>所以如果原本是 Blazor Server 專案 要這樣轉成 Blazor WebAssembly 也是可以的哦!<br>只是需要注意的是，如果在 Blazor Server 中使用 EF Core ，則需要將它抽到 API 專案之中，<br>所以在方案的規劃中可以是 Blazor (Client or Server)專案 + Blazor App 專案 + Blazor Component 專案 + Shared Model 專案 + API 專案。</p>
 </blockquote>
 <h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a target="_blank" rel="noopener" href="https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor">Blazor</a><br><a target="_blank" rel="noopener" href="https://blazor-university.com/">Blazor University</a></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -259,18 +252,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2020/08/05/2020014/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -289,9 +277,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -305,38 +291,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4729,6 +4708,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

@@ -160,30 +160,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2018030" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-2018030"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       Microsoft Botframework + Adaptive Cards 快速打造 Chatbot
     </h1>
   
-
-          
-            <a href="/2018/08/02/2018030/" class="archive-article-date">
+  <a href="/2018/08/02/2018030/" class="archive-article-date">
   	<time datetime="2018-08-02T09:55:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-02</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>今年的 Chatbot 很火紅，不知大家都用什麼來開發 Chatbot 呢?<br>筆者使用的是 Microsoft Botframework 來開發，它提供了很多語言的 SDK，讓我們可以快速的開發出 Chatbot。<br>最近開發 Vitals ESP (KM) Chatbot，一開始規劃好畫面及流程後，很快就開發完成了。<br>接下來就跟大家分享開發的過程 :)</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>今年的 Chatbot 很火紅，不知大家都用什麼來開發 Chatbot 呢?<br>筆者使用的是 Microsoft Botframework 來開發，它提供了很多語言的 SDK，讓我們可以快速的開發出 Chatbot。<br>最近開發 Vitals ESP (KM) Chatbot，一開始規劃好畫面及流程後，很快就開發完成了。<br>接下來就跟大家分享開發的過程 :)</p>
 <h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><p>Vitals ESP 是 KM 系統，希望 KM Chatbot 可以方便讓人查詢，在手機上畫面不大，所以需要分頁。如果有人 Mention 到你的話，也可以發通知到 Chatbot 上，讓你可以快速地回覆。<br>所以需求主要有 2 個，</p>
 <h4 id="1-使用者在輸入框輸入文字，立即依關鍵字查詢，並顯示出查詢結果-分頁-，使用者可以按上一頁、下一頁去瀏覽，並可按文章串到系統去。"><a href="#1-使用者在輸入框輸入文字，立即依關鍵字查詢，並顯示出查詢結果-分頁-，使用者可以按上一頁、下一頁去瀏覽，並可按文章串到系統去。" class="headerlink" title="1.使用者在輸入框輸入文字，立即依關鍵字查詢，並顯示出查詢結果(分頁)，使用者可以按上一頁、下一頁去瀏覽，並可按文章串到系統去。"></a>1.使用者在輸入框輸入文字，立即依關鍵字查詢，並顯示出查詢結果(分頁)，使用者可以按上一頁、下一頁去瀏覽，並可按文章串到系統去。</h4><p>下圖為使用者在輸入框輸入「關鍵字」去查詢，並顯示出查詢結果</p>
 <img src="/2018/08/02/2018030/001.png" class="" title="[輸入關鍵字查詢]">
@@ -255,15 +253,10 @@
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//先發送 typing 的 message</span></span><br><span class="line"><span class="keyword">var</span> connector = <span class="keyword">new</span> GssConnectorClient(<span class="keyword">new</span> Uri(activity.ServiceUrl));</span><br><span class="line"><span class="keyword">var</span> isTypingReply = activity.CreateReply();</span><br><span class="line">isTypingReply.Type = ActivityTypes.Typing;</span><br><span class="line"><span class="keyword">await</span> connector.Conversations.ReplyToActivityAsync(isTypingReply);</span><br></pre></td></tr></table></figure>
 
 <h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a target="_blank" rel="noopener" href="http://adaptivecards.io/explorer/">Schema Explorer</a><br><a target="_blank" rel="noopener" href="https://acdesignerbeta.azurewebsites.net/">Adaptive Cards Designer</a><br><a target="_blank" rel="noopener" href="https://blog.mbwarez.dk/deserializing-different-types-based-on-properties-with-newtonsoft-json/">Deserializing different types based on properties, with Newtonsoft.Json</a><br><a href="https://rainmakerho.github.io/2018/02/13/2018008/">Bot Framework Custom Error Messages and Exception Handling</a><br><a target="_blank" rel="noopener" href="https://github.com/rainmakerho/WebChatCustomization">BotFramework-WebChat Customization</a><br><a target="_blank" rel="noopener" href="http://www.garypretty.co.uk/2016/07/18/bot-framework-typing-activity-let-users-know-your-bot-is-responding/">Bot Framework Typing Activity – Let users know your bot is responding (and know when they are too)</a><br><a target="_blank" rel="noopener" href="https://blog.gss.com.tw/index.php/2018/05/11/microsoftbotframeworkwebchat/">Customize Web Chat for your websites - 亂馬客</a></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -290,18 +283,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2018/08/19/2018031/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -320,9 +308,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -336,38 +322,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4760,6 +4739,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

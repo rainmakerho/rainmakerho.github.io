@@ -150,40 +150,33 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-checkmarx-csharp-code-injection" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-checkmarx-csharp-code-injection"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       Code_Injection
     </h1>
   
-
-          
-            <a href="/2020/11/13/checkmarx-csharp-code-injection/" class="archive-article-date">
+  <a href="/2020/11/13/checkmarx-csharp-code-injection/" class="archive-article-date">
   	<time datetime="2020-11-13T01:25:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-13</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近系統被 Checkmarx V8.9 版掃出說有 <strong>Code Injection</strong> 的問題，<br>看了報告發現因為程式中有使用 System.Reflection.MethodInfo 然後呼叫它的 Invoke 的 Method，<br>Invoke 的 參數值是來自 Client 的 Request 資料。</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近系統被 Checkmarx V8.9 版掃出說有 <strong>Code Injection</strong> 的問題，<br>看了報告發現因為程式中有使用 System.Reflection.MethodInfo 然後呼叫它的 Invoke 的 Method，<br>Invoke 的 參數值是來自 Client 的 Request 資料。</p>
 <h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>這顯然又是需要驗證的問題。<br>就是從 Client 送上來的資料，我們當然是需要檢查沒問題後才來執行的。<br>所以有以下幾透方式，<br>轉成 int, guid 或 hash 比較，再不行，就是透過 Replace 將一些特殊字處理掉。<br>例如 $”{request到的變數}”.Replace(“a”, “b”); 或是用 regex replce 也可以的哦!</p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -206,18 +199,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2020/11/18/NET-Conf-2020/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -236,9 +224,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -252,38 +238,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4676,6 +4655,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

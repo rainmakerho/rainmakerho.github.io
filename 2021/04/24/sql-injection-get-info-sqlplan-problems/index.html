@@ -154,30 +154,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-sql-injection-get-info-sqlplan-problems" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-sql-injection-get-info-sqlplan-problems"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       透過 SQL Injection 造成 SQL 錯誤取得 資料的問題
     </h1>
   
-
-          
-            <a href="/2021/04/24/sql-injection-get-info-sqlplan-problems/" class="archive-article-date">
+  <a href="/2021/04/24/sql-injection-get-info-sqlplan-problems/" class="archive-article-date">
   	<time datetime="2021-04-24T11:27:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-24</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 <a href="https://rainmakerho.github.io/2021/03/15/owasp-sql-injection/">OWASP Top 10 2017 - SQL Injection</a> 有介紹如何透過 SQL Injection 引發錯誤來將資料表的內容透過錯誤顯示出來。<br>因為是在登入頁面，所以 SQL 查詢條件會是 <strong>Where Email &#x3D; ‘使用者Email’ And Password &#x3D; ‘使用者密碼’</strong> ，而這範例的前題是，<strong>使用者Email</strong>必需要存在資料表之中，否則會取不到資料。<br>為什麼會這樣子呢?</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 <a href="https://rainmakerho.github.io/2021/03/15/owasp-sql-injection/">OWASP Top 10 2017 - SQL Injection</a> 有介紹如何透過 SQL Injection 引發錯誤來將資料表的內容透過錯誤顯示出來。<br>因為是在登入頁面，所以 SQL 查詢條件會是 <strong>Where Email &#x3D; ‘使用者Email’ And Password &#x3D; ‘使用者密碼’</strong> ，而這範例的前題是，<strong>使用者Email</strong>必需要存在資料表之中，否則會取不到資料。<br>為什麼會這樣子呢?</p>
 <h3 id="研究"><a href="#研究" class="headerlink" title="研究"></a>研究</h3><p>原本資料表中有 <a href="mailto:&#x72;&#109;&#64;&#x67;&#115;&#x73;&#x2e;&#x63;&#x6f;&#109;&#x2e;&#x74;&#119;">&#x72;&#109;&#64;&#x67;&#115;&#x73;&#x2e;&#x63;&#x6f;&#109;&#x2e;&#x74;&#119;</a> 這筆資料，系統執行結果如下，<br><img src="https://rainmakerho.github.io/2021/03/15/owasp-sql-injection/08.png"></p>
 <p>它的 sql 如下，</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> Users </span><br><span class="line"><span class="keyword">Where</span> Email <span class="operator">=</span> <span class="string">&#x27;rm@gss.com.tw&#x27;</span> </span><br><span class="line"><span class="keyword">and</span> Password <span class="operator">=</span> <span class="string">&#x27;&#x27;</span> <span class="operator">+</span> </span><br><span class="line"><span class="keyword">CONVERT</span>(<span class="type">INT</span>, <span class="string">&#x27;[&#x27;</span> <span class="operator">+</span> (<span class="keyword">SELECT</span> Top <span class="number">1</span> A2.Email</span><br><span class="line"><span class="keyword">From</span> (</span><br><span class="line">	<span class="keyword">SELECT</span> Top <span class="number">2</span> A1.Email</span><br><span class="line">	<span class="keyword">FROM</span> Users A1</span><br><span class="line">	<span class="keyword">Order</span> <span class="keyword">By</span> A1.Email ) A2</span><br><span class="line"><span class="keyword">Order</span> <span class="keyword">By</span> A2.Email <span class="keyword">Desc</span>) <span class="operator">+</span> <span class="string">&#x27;]&#x27;</span>) <span class="comment">--</span></span><br></pre></td></tr></table></figure>
@@ -196,15 +194,10 @@
 <img src="/2021/04/24/sql-injection-get-info-sqlplan-problems/04.png" class="" title="CONVERT_IMPLICIT(int)">
 <p>從上面的 SQL Plan 可以發現，因為我們要將 Email 轉成 INT ，所以它會將 Password 隱含轉換成 INT 再來做比較，<br>所以當使用者的 Password 無法轉成 INT 時，自然就會先發生轉換的錯誤。<br>所以，透過這個方式取得資料除了使用者的 Email 要存在之外， Password 也要可以轉成 INT 哦!</p>
 <h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://rainmakerho.github.io/2021/03/15/owasp-sql-injection/">OWASP Top 10 2017 - SQL Injection</a></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -219,18 +212,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2021/04/27/using-source-link-visual-studio/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -249,9 +237,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -265,38 +251,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4689,6 +4668,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

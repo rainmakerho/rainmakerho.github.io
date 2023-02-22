@@ -154,44 +154,37 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Checkmarx-Custom-Preset-Do-Not-Work" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-Checkmarx-Custom-Preset-Do-Not-Work"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       明明是 Client 端的 JavaScript，Checkmarx 卻出 JavaScript_Server_Side_Vulnerabilities 的相關 Issues
     </h1>
   
-
-          
-            <a href="/2021/07/18/Checkmarx-Custom-Preset-Do-Not-Work/" class="archive-article-date">
+  <a href="/2021/07/18/Checkmarx-Custom-Preset-Do-Not-Work/" class="archive-article-date">
   	<time datetime="2021-07-18T06:50:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-18</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>Checkmarx 的 Preset 在 JavaScript 是包含 Client 與 Server 端(NodeJS)，<br>當直接使用預設的 OWASP TOP 10 - 2017 去掃 ASP.NET MVC 專案時，<br>卻會被掃出 JavaScript\Cx\JavaScript_Server_Side_Vulnerabilities\Stored_XSS 等 NodeJS 的問題。<br>所以解法之法就是自定 Preset ， Clone 自 OWASP TOP 10 - 2017 ，<br>並取消勾選 JavaScript_Server_Side_Vulnerabilities 。</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>Checkmarx 的 Preset 在 JavaScript 是包含 Client 與 Server 端(NodeJS)，<br>當直接使用預設的 OWASP TOP 10 - 2017 去掃 ASP.NET MVC 專案時，<br>卻會被掃出 JavaScript\Cx\JavaScript_Server_Side_Vulnerabilities\Stored_XSS 等 NodeJS 的問題。<br>所以解法之法就是自定 Preset ， Clone 自 OWASP TOP 10 - 2017 ，<br>並取消勾選 JavaScript_Server_Side_Vulnerabilities 。</p>
 <img src="/2021/07/18/Checkmarx-Custom-Preset-Do-Not-Work/01.png" class="" title="自定Preset">
 
 <h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>於是在 Jenkins 那設定好自定的 Checkmarx Preset 後，讓 Checkmarx 重新掃一次。<br>QQ<br>結果原本的 JavaScript\Cx\JavaScript_Server_Side_Vulnerabilities\Stored_XSS 還是被掃出來。<br>在 Checkmarx 看專案的 Preset 的確是 自定的Preset 。</p>
 <p>後來同事 Fenny 說是因為 「異動掃描」，也就是因為為了掃描效率，<br>在 Jenkins 的 Checkmarx 設定，通常會將 Incremental 選項勾起來。</p>
 <p>所以取消勾選 Incremental 再讓 Checkmarx 掃一次後，<br>JavaScript\Cx\JavaScript_Server_Side_Vulnerabilities\ 的 Issue 就沒有出現了。</p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -222,18 +215,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2021/08/13/aspnet-4-response-write-utf8-encoding/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -252,9 +240,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -268,38 +254,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4692,6 +4671,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

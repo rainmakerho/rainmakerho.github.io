@@ -150,30 +150,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2019023" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-2019023"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       Node JS + IIS Node 效能問題
     </h1>
   
-
-          
-            <a href="/2019/09/05/2019023/" class="archive-article-date">
+  <a href="/2019/09/05/2019023/" class="archive-article-date">
   	<time datetime="2019-09-05T05:28:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-05</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>我們有一個系統是使用 NodeJS ，同事 Stan 使用 PuppeteerSharp 同時起多個 Chrome 來測試它。<br>結果一下子 IIS Node 就沒反應了，一整個 Hang 住。</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>我們有一個系統是使用 NodeJS ，同事 Stan 使用 PuppeteerSharp 同時起多個 Chrome 來測試它。<br>結果一下子 IIS Node 就沒反應了，一整個 Hang 住。</p>
 <h3 id="研究"><a href="#研究" class="headerlink" title="研究"></a>研究</h3><p>想說怎麼跑個沒幾次就掛了呢? 結果發現我們有一段程式，在呼叫 API 時，會等 API 回來，再回給 Client 。例如，</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> app = <span class="title function_">express</span>();</span><br><span class="line"><span class="keyword">const</span> &#123; promisify &#125; = <span class="built_in">require</span>(<span class="string">&#x27;util&#x27;</span>);</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;/&#x27;</span>, <span class="keyword">async</span> <span class="keyword">function</span>(<span class="params">req, res, next</span>) &#123;</span><br><span class="line">	<span class="keyword">await</span> <span class="title function_">init</span>();</span><br><span class="line">	res.<span class="title function_">send</span>(<span class="string">`1:<span class="subst">$&#123;<span class="keyword">new</span> <span class="built_in">Date</span>()&#125;</span>`</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">listen</span>(<span class="number">3000</span>, <span class="string">&#x27;127.0.0.1&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(</span><br><span class="line">		<span class="string">`Server running at http://<span class="subst">$&#123;<span class="variable language_">this</span>.address().address&#125;</span>:<span class="subst">$&#123;</span></span></span><br><span class="line"><span class="subst"><span class="string">			<span class="variable language_">this</span>.address().port</span></span></span><br><span class="line"><span class="subst"><span class="string">		&#125;</span>/`</span></span><br><span class="line">	);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">init</span>(<span class="params"></span>) &#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">new</span> <span class="title class_">Date</span>().<span class="title function_">toJSON</span>(), <span class="number">1</span>);</span><br><span class="line">	<span class="keyword">await</span> <span class="title function_">sleep</span>(<span class="number">30000</span>);</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">new</span> <span class="title class_">Date</span>().<span class="title function_">toJSON</span>(), <span class="number">2</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">sleep</span>(<span class="params">ms</span>) &#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">		<span class="built_in">setTimeout</span>(resolve, ms);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -181,15 +179,10 @@
 <p>調整後，再來測試， iisnode 就不會 hang 住了。<br>但啟用 webscoket 後，再壓個幾次，又發生 iisnode hang 住的問題。<br>試了後久，後來查到 <a target="_blank" rel="noopener" href="https://github.com/tjanczuk/iisnode/issues/268">IIS stops serving content with iisnode and socket.io #268</a> 有提到 Windows 8 有 Http Request 10 個的限制，當啟用了 WebScoket 之後是一直連接著，所以會導致後面的 Request 被 Block 住。 將環境改到 Windows Server 來測試， WebScoket 也沒問題了。<br>如果有 timeout 問題也可以試著調整 maxNamedPipeConnectionRetry 與 namedPipeConnectionRetryDelay 的設定值。<br>備用方案就是使用 Reverse Proxy 的方式，可以參考 <a target="_blank" rel="noopener" href="https://dev.to/petereysermans/hosting-a-node-js-application-on-windows-with-iis-as-reverse-proxy-397b">Hosting a Node.js application on Windows with IIS as reverse proxy</a>。</p>
 <p>使用 iisnode 下，可以儘快 Response 就儘快 Respose。測試 WebScoket 時，請記得使用 Windows Server 來壓測哦!</p>
 <h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a target="_blank" rel="noopener" href="https://github.com/tjanczuk/iisnode/issues/268">IIS stops serving content with iisnode and socket.io #268</a><br><a target="_blank" rel="noopener" href="https://github.com/tjanczuk/iisnode/issues/555">Does IISnode timeout the Http Request #555</a><br><a target="_blank" rel="noopener" href="https://dev.to/petereysermans/hosting-a-node-js-application-on-windows-with-iis-as-reverse-proxy-397b">Hosting a Node.js application on Windows with IIS as reverse proxy</a><br><a target="_blank" rel="noopener" href="https://github.com/tjanczuk/iisnode/issues/558">Unable to increase the node server timeout beyond 2 minute mark when using IISNode #558</a></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -212,18 +205,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2019/09/17/2019024/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -242,9 +230,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -258,38 +244,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4682,6 +4661,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

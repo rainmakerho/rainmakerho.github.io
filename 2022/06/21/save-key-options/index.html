@@ -153,30 +153,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-save-key-options" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-save-key-options"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       加密/解密的 Key 要放在那裡?
     </h1>
   
-
-          
-            <a href="/2022/06/21/save-key-options/" class="archive-article-date">
+  <a href="/2022/06/21/save-key-options/" class="archive-article-date">
   	<time datetime="2022-06-21T03:24:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-06-21</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>我們會使用 Key 來做 <strong>加密</strong>及<strong>解密</strong>，<br>那這個 Key 常常會被放在程式碼之中，<br>而在 Code Review 中，也常常被拿出來討論。<br>以下就整理放 Key 的一些選項，</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>我們會使用 Key 來做 <strong>加密</strong>及<strong>解密</strong>，<br>那這個 Key 常常會被放在程式碼之中，<br>而在 Code Review 中，也常常被拿出來討論。<br>以下就整理放 Key 的一些選項，</p>
 <h3 id="Key存放選項"><a href="#Key存放選項" class="headerlink" title="Key存放選項"></a>Key存放選項</h3><ol>
 <li>在 <strong>加密&#x2F;解密</strong> 程式碼中，但如果程式碼被別人看到，加密就會被破解</li>
 <li>透過 Windows 作業系統保護，.NET 可透過 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/dotnet/api/system.security.cryptography.protecteddata.protect?view=dotnet-plat-ext-6.0">ProtectedData.Protect &#x2F; ProtectedData.Unprotect</a> 來將 Key 再進行加密存到設定檔中，要使用時，再解密回來使用</li>
@@ -184,15 +182,10 @@
 <li>放在雲端的 Vault 之中，例如 Azure Key Vault or <a target="_blank" rel="noopener" href="https://www.vaultproject.io/">HashiCorp Vault</a></li>
 </ol>
 <h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/dotnet/api/system.security.cryptography.protecteddata.protect?view=dotnet-plat-ext-6.0">ProtectedData.Protect &#x2F; ProtectedData.Unprotect</a><br><a target="_blank" rel="noopener" href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/keyvault/Azure.Security.KeyVault.Secrets/samples/Sample3_GetSecrets.md">Azure Key Vault Sample</a></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -227,18 +220,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2022/06/21/wsl-could-not-resolve-host/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -257,9 +245,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -273,38 +259,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4697,6 +4676,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

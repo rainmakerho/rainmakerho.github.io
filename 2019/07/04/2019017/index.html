@@ -148,30 +148,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2019017" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-2019017"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       Bitmap.save(): A generic error occurred in GDI+
     </h1>
   
-
-          
-            <a href="/2019/07/04/2019017/" class="archive-article-date">
+  <a href="/2019/07/04/2019017/" class="archive-article-date">
   	<time datetime="2019-07-04T00:57:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-04</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>記得「 Image.Save(stream,format.png) GDI+ generic error」這個錯誤在好久之前有看到過，但一直沒有注意那時是如何解決的。<br>今天同事有再詢問，所以就將網路上的資料一併記錄一下。</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>記得「 Image.Save(stream,format.png) GDI+ generic error」這個錯誤在好久之前有看到過，但一直沒有注意那時是如何解決的。<br>今天同事有再詢問，所以就將網路上的資料一併記錄一下。</p>
 <h3 id="研究"><a href="#研究" class="headerlink" title="研究"></a>研究</h3><p>網路上有的人說因為原本的 Image 被 Lock 住了，或是要  避免使用原本的 Stream 去 Save。<br>例如 Rick 的範例， 建立 bm2 後，再把 bm2 Save 到 Stream 去，就有可能會 GG。</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Bitmap bm2 = <span class="keyword">this</span>.GetGlobalResourceObject(<span class="string">&quot;Resources&quot;</span>, <span class="string">&quot;_BitMap&quot;</span>) <span class="keyword">as</span> Bitmap;</span><br><span class="line"></span><br><span class="line">Response.ContentType = <span class="string">&quot;image/jpeg&quot;</span>;</span><br><span class="line"></span><br><span class="line">bm2.Save(Response.OutputStream, ImageFormat.Jpeg);</span><br><span class="line"></span><br><span class="line">Response.End();</span><br></pre></td></tr></table></figure>
 
@@ -205,15 +203,10 @@
 <li>在使用前，已被 Dispose 掉了。</li>
 </ol>
 <h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a target="_blank" rel="noopener" href="https://weblog.west-wind.com/posts/2006/Oct/19/Common-Problems-with-rendering-Bitmaps-into-ASPNET-OutputStream">Common Problems with rendering Bitmaps into ASP.NET OutputStream</a><br><a target="_blank" rel="noopener" href="https://www.vishalon.net/blog/bitmapsave-a-generic-error-occurred-in-gdi">Bitmap.save(): A generic error occurred in GDI+</a><br><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/7698737/asp-net-a-generic-error-occurred-in-gdi">asp.net : A generic error occurred in GDI+</a><br><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/7558172/image-selectactiveframe-memory-problem">Image.SelectActiveFrame memory problem</a><br><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/1053052/a-generic-error-occurred-in-gdi-jpeg-image-to-memorystream/33324011#33324011">A generic error occurred in GDI+, JPEG Image to MemoryStream</a></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -228,18 +221,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2019/07/17/2019018/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -258,9 +246,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -274,38 +260,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4698,6 +4677,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

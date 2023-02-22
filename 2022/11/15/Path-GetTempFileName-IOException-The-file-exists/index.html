@@ -156,30 +156,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Path-GetTempFileName-IOException-The-file-exists" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-Path-GetTempFileName-IOException-The-file-exists"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       C# System.IO.Path.GetTempFileName 會產生 IOException 檔案存在(The file exists)的錯誤
     </h1>
   
-
-          
-            <a href="/2022/11/15/Path-GetTempFileName-IOException-The-file-exists/" class="archive-article-date">
+  <a href="/2022/11/15/Path-GetTempFileName-IOException-The-file-exists/" class="archive-article-date">
   	<time datetime="2022-11-15T07:24:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-15</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近收到一個 Crystal Report 匯出 PDF 檔案，然後給 Client 下載。<br>平常運作都正常，最近才出現 <strong>System.IO.IOException: 檔案存在。</strong>的錯誤。</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近收到一個 Crystal Report 匯出 PDF 檔案，然後給 Client 下載。<br>平常運作都正常，最近才出現 <strong>System.IO.IOException: 檔案存在。</strong>的錯誤。</p>
 <p>詳細錯誤訊息如下，</p>
 <blockquote>
 <p>於 System.IO.**Error.WinIOError(Int32 errorCode, String maybeFullPath)<br>於 System.IO.**Error.WinIOError()<br>於 System.IO.Path.InternalGetTempFileName(Boolean checkHost)<br>於 System.IO.Path.GetTempFileName()<br>於 CrystalDecisions.ReportSource.EromReportSourceBase.ExportToStream(ExportRequestContext reqContext)<br>於 CrystalDecisions.CrystalReports.Engine.FormatEngine.ExportToStream(ExportRequestContext reqContext)<br>於 CrystalDecisions.CrystalReports.Engine.ReportDocument.ExportToStream(ExportOptions options)<br>於 CrystalDecisions.CrystalReports.Engine.ReportDocument.ExportToHttpResponse(ExportOptions options, HttpResponse response, Boolean asAttachment, String attachmentName)<br>於 CrystalDecisions.CrystalReports.Engine.ReportDocument.ExportToHttpResponse(ExportFormatType formatType, HttpResponse response, Boolean asAttachment, String attachmentName)<br>於 CRViewer.ExportPDF(String RptName)</p>
@@ -200,15 +198,10 @@
 <img src="/2022/11/15/Path-GetTempFileName-IOException-The-file-exists/01.png" class="" title="環境變數">
 
 <h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a target="_blank" rel="noopener" href="https://github.com/microsoft/azure-pipelines-agent/issues/2305">System.IO.IOException: The file exists</a><br><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/50906117/crystal-report-file-exists-error">Crystal Report - File Exists Error</a><br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-tw/dotnet/api/system.io.path.gettempfilename?view=netframework-4.8">Path.GetTempFileName 方法</a></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -247,18 +240,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2022/11/17/abp-structuring-solution-ddd/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -277,9 +265,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -293,38 +279,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4717,6 +4696,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

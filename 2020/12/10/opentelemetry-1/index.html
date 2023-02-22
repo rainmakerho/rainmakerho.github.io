@@ -156,30 +156,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-opentelemetry-1" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-opentelemetry-1"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       OpenTelemetry 初探
     </h1>
   
-
-          
-            <a href="/2020/12/10/opentelemetry-1/" class="archive-article-date">
+  <a href="/2020/12/10/opentelemetry-1/" class="archive-article-date">
   	<time datetime="2020-12-10T07:46:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-10</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>記得 2019 年時，還在使用 OpenTracing ，過一陣子，就有 <a target="_blank" rel="noopener" href="https://opentelemetry.io/">OpenTelemetry</a> 的消息。<br>因為 <a target="_blank" rel="noopener" href="https://opentracing.io/">OpenTracing</a> 與 <a target="_blank" rel="noopener" href="https://opencensus.io/">OpenCensus</a> 都是用來做分佈式追蹤及記錄一些 Metrics 。<br>於是 Cloud Native Computing Foundation (CNCF) 整合 <a target="_blank" rel="noopener" href="https://opentracing.io/">OpenTracing</a> 與 <a target="_blank" rel="noopener" href="https://opencensus.io/">OpenCensus</a> ，<br>所以有了 <a target="_blank" rel="noopener" href="https://opentelemetry.io/">OpenTelemetry</a> ，它結合了 Traces, Metrics And Logs 。<br>所以我們可以改用 <a target="_blank" rel="noopener" href="https://opentelemetry.io/">OpenTelemetry</a>  來練習看看。</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>記得 2019 年時，還在使用 OpenTracing ，過一陣子，就有 <a target="_blank" rel="noopener" href="https://opentelemetry.io/">OpenTelemetry</a> 的消息。<br>因為 <a target="_blank" rel="noopener" href="https://opentracing.io/">OpenTracing</a> 與 <a target="_blank" rel="noopener" href="https://opencensus.io/">OpenCensus</a> 都是用來做分佈式追蹤及記錄一些 Metrics 。<br>於是 Cloud Native Computing Foundation (CNCF) 整合 <a target="_blank" rel="noopener" href="https://opentracing.io/">OpenTracing</a> 與 <a target="_blank" rel="noopener" href="https://opencensus.io/">OpenCensus</a> ，<br>所以有了 <a target="_blank" rel="noopener" href="https://opentelemetry.io/">OpenTelemetry</a> ，它結合了 Traces, Metrics And Logs 。<br>所以我們可以改用 <a target="_blank" rel="noopener" href="https://opentelemetry.io/">OpenTelemetry</a>  來練習看看。</p>
 <h3 id="練習"><a href="#練習" class="headerlink" title="練習"></a>練習</h3><p>我們可以取 Github 上的方案 <a target="_blank" rel="noopener" href="https://github.com/rainmakerho/RMStore/tree/scope">RMStore</a> 來練習。</p>
 <h4 id="加入套件"><a href="#加入套件" class="headerlink" title="加入套件"></a>加入套件</h4><p>因為使用的專案為 Razor Page 及 Web Api ，所以要加入以下幾個套件<br>OpenTelemetry.Extensions.Hosting<br>OpenTelemetry.Instrumentation.AspNetCore<br>OpenTelemetry.Instrumentation.Http<br>OpenTelemetry.Exporter.Jaeger</p>
 <h4 id="修改專案"><a href="#修改專案" class="headerlink" title="修改專案"></a>修改專案</h4><p>在 WebUI 及 API 專案的 Startup.cs ，只要加入 AddOpenTelemetryTracing 的設定就可以了，<br>所以在 ConfigureServices Method 中加入以下的程式，</p>
@@ -200,15 +198,10 @@
 
 
 <h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a target="_blank" rel="noopener" href="https://opentelemetry.io/">OpenTelemetry</a><br><a target="_blank" rel="noopener" href="https://github.com/open-telemetry/opentelemetry-dotnet/blob/master/src/OpenTelemetry.Api/README.md#instrumenting-a-libraryapplication-with-net-activity-api">OpenTelemetry .NET API</a><br><a target="_blank" rel="noopener" href="https://opentracing.io/">OpenTracing</a><br><a target="_blank" rel="noopener" href="https://opencensus.io/">OpenCensus</a><br><a target="_blank" rel="noopener" href="https://jimmybogard.com/building-end-to-end-diagnostics-and-tracing-a-primer/">Building End-to-End Diagnostics and Tracing: An Intro</a></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -243,18 +236,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2020/12/11/vs-docker-build-copy-fail/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -273,9 +261,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -289,38 +275,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4713,6 +4692,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

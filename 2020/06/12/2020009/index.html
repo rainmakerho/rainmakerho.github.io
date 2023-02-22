@@ -153,30 +153,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2020009" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-2020009"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       &#39;DatabaseFacade&#39; 未包含 &#39;Migrate&#39; 的定義，也找不到可接受類型 &#39;DatabaseFacade&#39; 第一個引數的可存取擴充方法 &#39;Migrate&#39;
     </h1>
   
-
-          
-            <a href="/2020/06/12/2020009/" class="archive-article-date">
+  <a href="/2020/06/12/2020009/" class="archive-article-date">
   	<time datetime="2020-06-12T07:00:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-12</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="錯誤資訊"><a href="#錯誤資訊" class="headerlink" title="錯誤資訊"></a>錯誤資訊</h3><p>使用 EntityFrameworkCore DbContext 的 Database.Migrate() 時，如果出現 ‘DatabaseFacade’ 未包含 ‘Migrate’ 的定義，也找不到可接受類型 ‘DatabaseFacade’ 第一個引數的可存取擴充方法 ‘Migrate’ 。</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="錯誤資訊"><a href="#錯誤資訊" class="headerlink" title="錯誤資訊"></a>錯誤資訊</h3><p>使用 EntityFrameworkCore DbContext 的 Database.Migrate() 時，如果出現 ‘DatabaseFacade’ 未包含 ‘Migrate’ 的定義，也找不到可接受類型 ‘DatabaseFacade’ 第一個引數的可存取擴充方法 ‘Migrate’ 。</p>
 <img src="/2020/06/12/2020009/01.png" class="" title="DatabaseFacade">
 
 <p>那應該是少加入了 Microsoft.EntityFrameworkCore.SqlServer 套件。<br>因為 Database.Migrate Method 是定義在 Microsoft.EntityFrameworkCore.Relational 之中，安裝 Microsoft.EntityFrameworkCore.SqlServer 套件就會一併安裝 Microsoft.EntityFrameworkCore.Relational 套件。</p>
@@ -184,15 +182,10 @@
 
 
 <h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a target="_blank" rel="noopener" href="https://whatibroke.com/2020/03/25/databasefacade-does-not-contain-a-definition-for-migrate-and-no-accessible-extension-method-migrate-eshoponcontainers/">‘DatabaseFacade’ does not contain a definition for ‘Migrate’ and no accessible extension method ‘Migrate’… </a></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -215,18 +208,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2020/07/01/2020010/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -245,9 +233,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -261,38 +247,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4685,6 +4664,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

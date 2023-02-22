@@ -155,30 +155,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-failed-Error-during-WebScoket-handshake" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-failed-Error-during-WebScoket-handshake"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       failed: Error during WebSocket handshake: net::ERR_CONNECTION_RESET
     </h1>
   
-
-          
-            <a href="/2021/02/22/failed-Error-during-WebScoket-handshake/" class="archive-article-date">
+  <a href="/2021/02/22/failed-Error-during-WebScoket-handshake/" class="archive-article-date">
   	<time datetime="2021-02-22T03:03:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-22</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近同事9G 詢問他們的系統在內容同仁執行都沒問題，但是如果透過外網連接的話，就會發生以下的錯誤<br><strong>failed: Error during WebSocket handshake: net::ERR_CONNECTION_RESET</strong></p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近同事9G 詢問他們的系統在內容同仁執行都沒問題，但是如果透過外網連接的話，就會發生以下的錯誤<br><strong>failed: Error during WebSocket handshake: net::ERR_CONNECTION_RESET</strong></p>
 <h3 id="測試"><a href="#測試" class="headerlink" title="測試"></a>測試</h3><p>連到 <a target="_blank" rel="noopener" href="https://www.piesocket.com/websocket-tester">piesocket </a> 輸入 WSS 的 URL 來測試，如下，</p>
 <img src="/2021/02/22/failed-Error-during-WebScoket-handshake/01.png" class="" title="Test WebSocket Online">
 <p>可以發現它有錯誤，查看 Console 它的錯誤就是 <strong>failed: Error during WebSocket handshake: net::ERR_CONNECTION_RESET</strong></p>
@@ -191,15 +189,10 @@
 <p>如果有類似的問題，可以請大家 Check 一下是否是因為那2個 Header 沒有傳到 Web Server 哦!</p>
 <p>另外，許多 Scoket Client 都有 Support 走 webscoket or long polling ，當 webscoket 不通時，會自動改用 long polling ，<br>只是當它走 long polling 時，有的會透過 iframe ，所以如果設定 <strong>X-Frame-Options: DENY</strong> 時，請改成 SAMEORIGIN 哦!</p>
 <h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a target="_blank" rel="noopener" href="https://www.piesocket.com/websocket-tester">Test &amp; Debug WebSocket Server Connections Online.</a><br><a target="_blank" rel="noopener" href="https://msandbu.org/setting-up-websocket-access-on-citrix-netscaler/">Setting up WebSocket access on Citrix NetScaler</a><br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Protocol_upgrade_mechanism">Protocol upgrade mechanism</a><br><a target="_blank" rel="noopener" href="https://github.com/sockjs/sockjs-client">sockjs-client</a><br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options">X-Frame-Options</a></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -234,18 +227,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2021/03/15/owasp-sql-injection/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -264,9 +252,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -280,38 +266,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4704,6 +4683,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

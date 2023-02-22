@@ -152,30 +152,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2017016" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-2017016"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       Windows 10 IoT Core 如何透過 UWP 程式來 重開機 或是 關機 (C00CE014)
     </h1>
   
-
-          
-            <a href="/2017/12/11/2017016/" class="archive-article-date">
+  <a href="/2017/12/11/2017016/" class="archive-article-date">
   	<time datetime="2017-12-11T06:35:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-11</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <p>最近在 RPi2 上面的 Windows IoT Core UWP 程式，網路跑一跑就 GG 了，它就完全沒辦法對外連網，外面也連不到它。一定要重新開機後，網路才會好。<br>於是參考 <a target="_blank" rel="noopener" href="https://marcominerva.wordpress.com/2016/12/13/how-to-shutdown-a-windows-10-iot-core-device-from-a-uwp-app/">How to shutdown a Windows 10 IoT Core device from a UWP app</a>這篇文章的方式，使用 _ShutdownManager.BeginShutdown(ShutdownKind.Restart, TimeSpan.FromSeconds(5));_，並在 <em>Package.appxmanifest</em> 檔案中加入 xmlns:iot namespace, IgnorableNamespaces 以及在 Capabilities 節點中加入 <em>iot:Capability Name&#x3D;”systemManagement”</em> (請檢視原始碼編輯哦! UI 無法設定!)。<br>結果程式一建置下去就 GG 了，出現「驗證錯誤。error C00CE014: App manifest validation error: The app manifest must be valid as per schema:」的錯誤。</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <p>最近在 RPi2 上面的 Windows IoT Core UWP 程式，網路跑一跑就 GG 了，它就完全沒辦法對外連網，外面也連不到它。一定要重新開機後，網路才會好。<br>於是參考 <a target="_blank" rel="noopener" href="https://marcominerva.wordpress.com/2016/12/13/how-to-shutdown-a-windows-10-iot-core-device-from-a-uwp-app/">How to shutdown a Windows 10 IoT Core device from a UWP app</a>這篇文章的方式，使用 _ShutdownManager.BeginShutdown(ShutdownKind.Restart, TimeSpan.FromSeconds(5));_，並在 <em>Package.appxmanifest</em> 檔案中加入 xmlns:iot namespace, IgnorableNamespaces 以及在 Capabilities 節點中加入 <em>iot:Capability Name&#x3D;”systemManagement”</em> (請檢視原始碼編輯哦! UI 無法設定!)。<br>結果程式一建置下去就 GG 了，出現「驗證錯誤。error C00CE014: App manifest validation error: The app manifest must be valid as per schema:」的錯誤。</p>
 <p>我的 Package.appxmanifest 檔案如下，</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;utf-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Package</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://schemas.microsoft.com/appx/manifest/foundation/windows10&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xmlns:mp</span>=<span class="string">&quot;http://schemas.microsoft.com/appx/2014/phone/manifest&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xmlns:uap</span>=<span class="string">&quot;http://schemas.microsoft.com/appx/manifest/uap/windows10&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xmlns:iot</span>=<span class="string">&quot;http://schemas.microsoft.com/appx/manifest/iot/windows10&quot;</span> <span class="attr">IgnorableNamespaces</span>=<span class="string">&quot;uap mp iot&quot;</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line">  <span class="tag">&lt;<span class="name">Capabilities</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Capability</span> <span class="attr">Name</span>=<span class="string">&quot;internetClient&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">DeviceCapability</span> <span class="attr">Name</span>=<span class="string">&quot;bluetooth&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">iot:Capability</span> <span class="attr">Name</span>=<span class="string">&quot;systemManagement&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">Capabilities</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Package</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -183,15 +181,10 @@
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;utf-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Package</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://schemas.microsoft.com/appx/manifest/foundation/windows10&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xmlns:mp</span>=<span class="string">&quot;http://schemas.microsoft.com/appx/2014/phone/manifest&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xmlns:uap</span>=<span class="string">&quot;http://schemas.microsoft.com/appx/manifest/uap/windows10&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xmlns:iot</span>=<span class="string">&quot;http://schemas.microsoft.com/appx/manifest/iot/windows10&quot;</span> <span class="attr">IgnorableNamespaces</span>=<span class="string">&quot;uap mp iot&quot;</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line">  <span class="tag">&lt;<span class="name">Capabilities</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Capability</span> <span class="attr">Name</span>=<span class="string">&quot;internetClient&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">iot:Capability</span> <span class="attr">Name</span>=<span class="string">&quot;systemManagement&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">DeviceCapability</span> <span class="attr">Name</span>=<span class="string">&quot;bluetooth&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">Capabilities</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Package</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>Capability -&gt; iot:Capability -&gt; DeviceCapability …</p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -222,18 +215,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2017/12/18/2017017/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -252,9 +240,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -268,38 +254,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4692,6 +4671,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

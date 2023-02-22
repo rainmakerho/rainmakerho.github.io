@@ -152,30 +152,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2019028" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-2019028"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       Microsoft Botframework V4，從 Bot 送訊息到 IM Channel 時，加入額外的 Header 資訊 (V2)
     </h1>
   
-
-          
-            <a href="/2019/09/24/2019028/" class="archive-article-date">
+  <a href="/2019/09/24/2019028/" class="archive-article-date">
   	<time datetime="2019-09-24T07:29:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-24</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在年初時，因為 Bot 送給 IM Channel 時，需要在 HttpClient 的 Headers 中加入額外的資訊，那時筆者是透過 Middleware 的方式，取出 turnContext.TurnState 中的 ConnectorClient 。然後設定 ConnectorClient.HttpClient 的 DefaultRequestHeaders 。詳細可以參考 <a href="https://rainmakerho.github.io/2019/01/02/2019001/">Microsoft Botframework V4，從 Bot 送訊息到 IM Channel 時，加入額外的 Header 資訊</a></p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在年初時，因為 Bot 送給 IM Channel 時，需要在 HttpClient 的 Headers 中加入額外的資訊，那時筆者是透過 Middleware 的方式，取出 turnContext.TurnState 中的 ConnectorClient 。然後設定 ConnectorClient.HttpClient 的 DefaultRequestHeaders 。詳細可以參考 <a href="https://rainmakerho.github.io/2019/01/02/2019001/">Microsoft Botframework V4，從 Bot 送訊息到 IM Channel 時，加入額外的 Header 資訊</a></p>
 <p>最近 Bot 有時會噴以下的錯誤，<br>**<br>System.InvalidOperationException: Operations that change non-concurrent collections must have exclusive access. A concurrent update was performed on this collection and corrupted its state. The collection’s state is no longer correct.<br>at System.Collections.Generic.Dictionary<code>2.FindEntry(TKey key) at System.Collections.Generic.Dictionary2.TryGetValue(TKey key, TValue&amp; value) at System.Net.Http.Headers.HttpHeaders.ContainsParsedValue(HeaderDescriptor descriptor, Object value) at System.Net.Http.Headers.HttpHeaderValueCollection1.get_IsSpecialValueSet() at System.Net.Http.Headers.HttpRequestHeaders.get_ExpectContinue() at ** 或是 ** System.NullReferenceException: Object reference not set to an instance of an object. at System.Collections.Generic.Dictionary\</code>2.FindEntry(TKey key) at System.Collections.Generic.Dictionary`2.TryGetValue(TKey key, TValue&amp; value)<br>at System.Net.Http.Headers.HttpHeaders.GetOrCreateHeaderInfo(HeaderDescriptor descriptor, Boolean parseRawValues)<br>at System.Net.Http.headers.HttpHeaders.TryAddWithoutValidation(HeaderDescriptor descriptor, String value)<br>**</p>
 <h3 id="研究"><a href="#研究" class="headerlink" title="研究"></a>研究</h3><p>網路上討論，大約是因為 Multi Thread 去 Access Dictionary 物件所引發的錯誤。<br>因為 System.Collections.Generic.Dictionary 它並不是 Thread Safe 的物件，所以在 Multi Threads 下，有可能會造成錯誤。</p>
 <p>所以回過頭來看一下， 原本 Middleware 的部份，它是在系統一啟動時，就建立的，所以在多人使用時，的確會在 Multi Threads 的環境下，</p>
@@ -194,15 +192,10 @@
 
 <h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a target="_blank" rel="noopener" href="https://github.com/dotnet/corefx/issues/31186">[Info] InvalidOperationException: Operations that change non-concurrent collections must have exclusive access. A concurrent update was performed on this collection and corrupted its state. The collection’s state is no longer correct</a></p>
 <p><a href="https://rainmakerho.github.io/2019/01/02/2019001/">Microsoft Botframework V4，從 Bot 送訊息到 IM Channel 時，加入額外的 Header 資訊</a></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -221,18 +214,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2019/09/25/2019029/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -251,9 +239,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -267,38 +253,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4691,6 +4670,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

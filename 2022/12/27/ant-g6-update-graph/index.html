@@ -151,30 +151,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-ant-g6-update-graph" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-ant-g6-update-graph"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       AntV G6 資料更新顯示
     </h1>
   
-
-          
-            <a href="/2022/12/27/ant-g6-update-graph/" class="archive-article-date">
+  <a href="/2022/12/27/ant-g6-update-graph/" class="archive-article-date">
   	<time datetime="2022-12-27T05:20:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-12-27</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近將資料存到 MSSQL 的 Graph Table 之中，然後再取出資料透過 <a target="_blank" rel="noopener" href="https://g6.antv.antgroup.com/">G6 图可视化引擎</a>，只要給 起點、Label 及終點就可以把關係圖畫出來。<br>在 Button 的 Click 事件之中，取得資料，建立 graph ，給 graph 資料，呼叫 graph.render 來畫面關係圖。<br>但第 2 次資料有更新時，圖卻不會跟著更新，要怎麼解決呢?</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近將資料存到 MSSQL 的 Graph Table 之中，然後再取出資料透過 <a target="_blank" rel="noopener" href="https://g6.antv.antgroup.com/">G6 图可视化引擎</a>，只要給 起點、Label 及終點就可以把關係圖畫出來。<br>在 Button 的 Click 事件之中，取得資料，建立 graph ，給 graph 資料，呼叫 graph.render 來畫面關係圖。<br>但第 2 次資料有更新時，圖卻不會跟著更新，要怎麼解決呢?</p>
 <h3 id="解決"><a href="#解決" class="headerlink" title="解決"></a>解決</h3><p>在 Button 的 Click 事件之中，取得資料，建立 graph ，給 graph 資料，呼叫 graph.render 來畫面關係圖</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//const data = 依條件取得資料 ...</span></span><br><span class="line">$(<span class="string">&quot;#btnSearch&quot;</span>).<span class="title function_">click</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> graph = <span class="keyword">new</span> <span class="variable constant_">G6</span>.<span class="title class_">Graph</span>(&#123;</span><br><span class="line">    <span class="attr">container</span>: <span class="string">&quot;mountNode&quot;</span>,</span><br><span class="line">    <span class="attr">width</span>: <span class="number">800</span>,</span><br><span class="line">    <span class="attr">height</span>: <span class="number">500</span>,</span><br><span class="line">  &#125;);</span><br><span class="line">  graph.<span class="title function_">data</span>(data);</span><br><span class="line">  graph.<span class="title function_">render</span>();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
@@ -183,15 +181,10 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> graph = <span class="literal">null</span>;</span><br><span class="line"><span class="comment">//const data = 依條件取得資料 ...</span></span><br><span class="line">$(<span class="string">&quot;#btnSearch&quot;</span>).<span class="title function_">click</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (!graph) &#123;</span><br><span class="line">    <span class="keyword">const</span> graph = <span class="keyword">new</span> <span class="variable constant_">G6</span>.<span class="title class_">Graph</span>(&#123;</span><br><span class="line">      <span class="attr">container</span>: <span class="string">&quot;mountNode&quot;</span>,</span><br><span class="line">      <span class="attr">width</span>: <span class="number">800</span>,</span><br><span class="line">      <span class="attr">height</span>: <span class="number">500</span>,</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">  graph.<span class="title function_">data</span>(data);</span><br><span class="line">  graph.<span class="title function_">render</span>();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 <h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/67108651/antv-g6-and-react-how-to-update-graph">antv&#x2F;g6 and react. How to update graph?</a><br><a target="_blank" rel="noopener" href="https://g6.antv.antgroup.com/">G6 图可视化引擎</a></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -218,18 +211,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2022/12/27/mssql-graph-query-find-all-path-node/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -248,9 +236,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -264,38 +250,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4688,6 +4667,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

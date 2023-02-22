@@ -157,30 +157,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2017011" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-2017011"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       Aspose.Words DocumentBuilder 加入 htmlTable 轉成 PDF 檔問題
     </h1>
   
-
-          
-            <a href="/2017/11/09/2017011/" class="archive-article-date">
+  <a href="/2017/11/09/2017011/" class="archive-article-date">
   	<time datetime="2017-11-09T05:31:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-09</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="最近同事透過-Aspose-Words-DocumentBuilder-的-InsertHtml-Method-加入-Html-的-Table-含-css-，另存成-PDF-檔後，居然發現本來在-Word-檔中看起來好好的，PDF-檔中的-Table-卻會超過頁面，如下，"><a href="#最近同事透過-Aspose-Words-DocumentBuilder-的-InsertHtml-Method-加入-Html-的-Table-含-css-，另存成-PDF-檔後，居然發現本來在-Word-檔中看起來好好的，PDF-檔中的-Table-卻會超過頁面，如下，" class="headerlink" title="最近同事透過 Aspose.Words DocumentBuilder 的 InsertHtml Method 加入 Html 的 Table (含 css )，另存成 PDF 檔後，居然發現本來在 Word 檔中看起來好好的，PDF 檔中的 Table 卻會超過頁面，如下，"></a>最近同事透過 Aspose.Words DocumentBuilder 的 InsertHtml Method 加入 Html 的 Table (含 css )，另存成 PDF 檔後，居然發現本來在 Word 檔中看起來好好的，PDF 檔中的 Table 卻會超過頁面，如下，</h3><img src="/2017/11/09/2017011/exceedPage.png" class="" title="slug">
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="最近同事透過-Aspose-Words-DocumentBuilder-的-InsertHtml-Method-加入-Html-的-Table-含-css-，另存成-PDF-檔後，居然發現本來在-Word-檔中看起來好好的，PDF-檔中的-Table-卻會超過頁面，如下，"><a href="#最近同事透過-Aspose-Words-DocumentBuilder-的-InsertHtml-Method-加入-Html-的-Table-含-css-，另存成-PDF-檔後，居然發現本來在-Word-檔中看起來好好的，PDF-檔中的-Table-卻會超過頁面，如下，" class="headerlink" title="最近同事透過 Aspose.Words DocumentBuilder 的 InsertHtml Method 加入 Html 的 Table (含 css )，另存成 PDF 檔後，居然發現本來在 Word 檔中看起來好好的，PDF 檔中的 Table 卻會超過頁面，如下，"></a>最近同事透過 Aspose.Words DocumentBuilder 的 InsertHtml Method 加入 Html 的 Table (含 css )，另存成 PDF 檔後，居然發現本來在 Word 檔中看起來好好的，PDF 檔中的 Table 卻會超過頁面，如下，</h3><img src="/2017/11/09/2017011/exceedPage.png" class="" title="slug">
 
 <h3 id="測試程式如下，"><a href="#測試程式如下，" class="headerlink" title="測試程式如下，"></a>測試程式如下，</h3><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> htmlTable = <span class="string">@&quot;&lt;style&gt;</span></span><br><span class="line"><span class="string">.table &#123;</span></span><br><span class="line"><span class="string">	width: auto;</span></span><br><span class="line"><span class="string">	table-layout:fixed;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">.table, .table tr &#123;</span></span><br><span class="line"><span class="string">	height: 40px;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">.table, .table td &#123;</span></span><br><span class="line"><span class="string">	border-collapse: collapse;</span></span><br><span class="line"><span class="string">	border: 1px solid #000000;</span></span><br><span class="line"><span class="string">	padding:2px 5px 2px 5px;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">&lt;/style&gt;</span></span><br><span class="line"><span class="string">&lt;table class=&#x27;table&#x27; style=&#x27;width: 100%;&#x27;&gt;</span></span><br><span class="line"><span class="string">&lt;colgroup&gt;</span></span><br><span class="line"><span class="string">	&lt;col style=&#x27;width: 15%;&#x27;&gt;</span></span><br><span class="line"><span class="string">	&lt;col style=&#x27;width: 35%;&#x27;&gt;</span></span><br><span class="line"><span class="string">	&lt;col style=&#x27;width: 15%;&#x27;&gt;</span></span><br><span class="line"><span class="string">	&lt;col style=&#x27;width: 35%;&#x27;&gt;</span></span><br><span class="line"><span class="string">&lt;/colgroup&gt;</span></span><br><span class="line"><span class="string">&lt;tbody&gt;</span></span><br><span class="line"><span class="string">	&lt;tr&gt;</span></span><br><span class="line"><span class="string">		&lt;td&gt;TITLE1：&lt;/td&gt;</span></span><br><span class="line"><span class="string">		&lt;td&gt;&lt;/td&gt;</span></span><br><span class="line"><span class="string">		&lt;td&gt;TITLE2：&lt;/td&gt;</span></span><br><span class="line"><span class="string">		&lt;td&gt;106/10/14 22:26&lt;/td&gt;</span></span><br><span class="line"><span class="string">	&lt;/tr&gt;</span></span><br><span class="line"><span class="string">	&lt;tr&gt;</span></span><br><span class="line"><span class="string">		&lt;td&gt;TITLE3：&lt;/td&gt;</span></span><br><span class="line"><span class="string">		&lt;td colspan=&#x27;3&#x27;&gt;測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試&lt;/td&gt;</span></span><br><span class="line"><span class="string">	&lt;/tr&gt;</span></span><br><span class="line"><span class="string">&lt;/tbody&gt;</span></span><br><span class="line"><span class="string">&lt;/table&gt;&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> doc = <span class="keyword">new</span> Document();</span><br><span class="line">doc.Styles.DefaultParagraphFormat.Style.Font.NameFarEast = <span class="string">&quot;標楷體&quot;</span>;</span><br><span class="line">doc.Styles.DefaultParagraphFormat.Style.Font.NameAscii = <span class="string">&quot;Times New Roman&quot;</span>;</span><br><span class="line">doc.Styles.DefaultParagraphFormat.Style.Font.Size = <span class="number">16</span>D;</span><br><span class="line"><span class="keyword">var</span> builder = <span class="keyword">new</span> DocumentBuilder(doc);</span><br><span class="line">builder.InsertHtml(htmlTable, <span class="literal">true</span>);</span><br><span class="line">doc.Save(<span class="string">&quot;TEST.doc&quot;</span>, SaveFormat.Doc);</span><br><span class="line">doc.Save(<span class="string">&quot;TEST.pdf&quot;</span>, SaveFormat.Pdf);</span><br></pre></td></tr></table></figure>
 
@@ -197,15 +195,10 @@
 <h3 id="那只好在職章的那個-Table-中設定固定的寬度，最後-PDF-的結果如下，"><a href="#那只好在職章的那個-Table-中設定固定的寬度，最後-PDF-的結果如下，" class="headerlink" title="那只好在職章的那個 Table 中設定固定的寬度，最後 PDF 的結果如下，"></a>那只好在職章的那個 Table 中設定固定的寬度，最後 PDF 的結果如下，</h3><img src="/2017/11/09/2017011/004.png" class="" title="slug">
 
 <h3 id="最後的測試程式如下，"><a href="#最後的測試程式如下，" class="headerlink" title="最後的測試程式如下，"></a>最後的測試程式如下，</h3><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> htmlTable4 = <span class="string">@&quot;&lt;style&gt;</span></span><br><span class="line"><span class="string">div[data-speed-id=seal-box] &#123;</span></span><br><span class="line"><span class="string">	margin-top: 20px;</span></span><br><span class="line"><span class="string">	margin-left: 0px;</span></span><br><span class="line"><span class="string">	margin-right: 0px;</span></span><br><span class="line"><span class="string">	margin-bottom: 0px;</span></span><br><span class="line"><span class="string">	height: 20px;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">td[data-speed-sealouid] &#123;</span></span><br><span class="line"><span class="string">	width: 60px;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">table[data-speed-id=&#x27;seal-table&#x27;] &#123;</span></span><br><span class="line"><span class="string">	border: 1px solid red !important;</span></span><br><span class="line"><span class="string">	color: red !important;</span></span><br><span class="line"><span class="string">	border-collapse: initial;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">table[data-speed-id=seal-table] td &#123;</span></span><br><span class="line"><span class="string">	padding: 0px !important;</span></span><br><span class="line"><span class="string">	margin: 0px !important;</span></span><br><span class="line"><span class="string">	border: 0px;</span></span><br><span class="line"><span class="string">	border-collapse: collapse;</span></span><br><span class="line"><span class="string">	border-spacing: 0px !important;</span></span><br><span class="line"><span class="string">	vertical-align: middle !important;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">&lt;/style&gt;</span></span><br><span class="line"><span class="string">&lt;div style=&#x27;color: blue;&#x27;&gt;下面是原本職章結構直接輸出，&lt;/div&gt;</span></span><br><span class="line"><span class="string">&lt;table&gt;</span></span><br><span class="line"><span class="string">&lt;colgroup&gt;</span></span><br><span class="line"><span class="string">	&lt;col style=&#x27;width:35%;&#x27;&gt;</span></span><br><span class="line"><span class="string">	&lt;col style=&#x27;width:65%;&#x27;&gt;</span></span><br><span class="line"><span class="string">&lt;/colgroup&gt;</span></span><br><span class="line"><span class="string">&lt;tbody&gt;</span></span><br><span class="line"><span class="string">&lt;tr&gt;</span></span><br><span class="line"><span class="string">	&lt;td&gt;</span></span><br><span class="line"><span class="string">		&lt;div style=&#x27;margin-top: 10px;&#x27; data-speed-id=&#x27;seal-box&#x27;&gt;</span></span><br><span class="line"><span class="string">			&lt;table width=&#x27;120px&#x27;&gt;</span></span><br><span class="line"><span class="string">				&lt;tbody&gt;</span></span><br><span class="line"><span class="string">				&lt;tr&gt;</span></span><br><span class="line"><span class="string">					&lt;td&gt;</span></span><br><span class="line"><span class="string">						&lt;table data-speed-id=&#x27;seal-table&#x27; &gt;</span></span><br><span class="line"><span class="string">							&lt;tbody&gt;</span></span><br><span class="line"><span class="string">							&lt;tr&gt;</span></span><br><span class="line"><span class="string">								&lt;td style=&#x27;font-size: 10px;&#x27; data-speed-sealouid=&#x27;10110&#x27;&gt;文化資源司&lt;/td&gt;</span></span><br><span class="line"><span class="string">								&lt;td style=&#x27;font-size: 16px;&#x27; rowspan=&#x27;2&#x27;&gt;亂馬客&lt;/td&gt;</span></span><br><span class="line"><span class="string">							&lt;/tr&gt;</span></span><br><span class="line"><span class="string">							&lt;tr&gt;</span></span><br><span class="line"><span class="string">								&lt;td style=&#x27;font-size: 10px;&#x27;&gt;科員&lt;/td&gt;</span></span><br><span class="line"><span class="string">							&lt;/tr&gt;</span></span><br><span class="line"><span class="string">							&lt;/tbody&gt;</span></span><br><span class="line"><span class="string">						&lt;/table&gt;</span></span><br><span class="line"><span class="string">					&lt;/td&gt;</span></span><br><span class="line"><span class="string">				&lt;/tr&gt;</span></span><br><span class="line"><span class="string">				&lt;tr&gt;</span></span><br><span class="line"><span class="string">					&lt;td style=&#x27;text-align: center; font-size: 12px;&#x27;&gt;106/10/18 10:36&lt;/td&gt;</span></span><br><span class="line"><span class="string">				&lt;/tr&gt;</span></span><br><span class="line"><span class="string">				&lt;/tbody&gt;</span></span><br><span class="line"><span class="string">			&lt;/table&gt;</span></span><br><span class="line"><span class="string">		&lt;/div&gt;</span></span><br><span class="line"><span class="string">	&lt;/td&gt;</span></span><br><span class="line"><span class="string">	&lt;td style=&#x27;padding-left: 90px;&#x27;&gt;</span></span><br><span class="line"><span class="string">		案係亂馬客測試文化局將於本(105)年10月29日召開「106亂馬客測試社區營造平台工作小組第九十次會議」，本部為列席單位，擬視業務狀況再行派員，當否?請核示。文陳閱後存查。</span></span><br><span class="line"><span class="string">	&lt;/td&gt;</span></span><br><span class="line"><span class="string">&lt;/tr&gt;</span></span><br><span class="line"><span class="string">&lt;/tbody&gt;</span></span><br><span class="line"><span class="string">&lt;/table&gt;&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> doc = <span class="keyword">new</span> Document();</span><br><span class="line">doc.Styles.DefaultParagraphFormat.Style.Font.NameFarEast = <span class="string">&quot;標楷體&quot;</span>;</span><br><span class="line">doc.Styles.DefaultParagraphFormat.Style.Font.NameAscii = <span class="string">&quot;Times New Roman&quot;</span>;</span><br><span class="line">doc.Styles.DefaultParagraphFormat.Style.Font.Size = <span class="number">16</span>D;</span><br><span class="line"><span class="keyword">var</span> builder = <span class="keyword">new</span> DocumentBuilder(doc);</span><br><span class="line">builder.InsertHtml(htmlTable4, <span class="literal">true</span>);</span><br><span class="line">doc.CompatibilityOptions.GrowAutofit = <span class="literal">false</span>;</span><br><span class="line">doc.Save(<span class="string">&quot;TEST.pdf&quot;</span>, SaveFormat.Pdf);</span><br></pre></td></tr></table></figure>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -236,18 +229,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2017/11/16/2017012/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -266,9 +254,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -282,38 +268,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4706,6 +4685,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

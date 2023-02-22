@@ -161,30 +161,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2019006" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-2019006"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       使用 OpenTracing - Jaeger (BFv3 使用 Fody)
     </h1>
   
-
-          
-            <a href="/2019/02/19/2019006/" class="archive-article-date">
+  <a href="/2019/02/19/2019006/" class="archive-article-date">
   	<time datetime="2019-02-19T14:29:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-19</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在前一篇 <a href="https://rainmakerho.github.io/2019/01/20/2019005/">使用 OpenTracing - Jaeger (BFv3 使用 Dynamic Proxy)</a> 中，我們透過 Dynamic Proxy 的方式去封裝那些需要記錄的物件。<br>雖然使用 Dynamic Proxy 的方式，可以讓我們將那些 OpenTracing 的範本程式碼抽離出來，但是在專案還是需要做一些調整，例如使用 Autofac, 修改 Method 為 virtual methods 。 這對於沒有使用 Dependency Injection 的系統來說，是一個負擔。 那是否可以做到像 dynaTrace 這樣，直接寫到 bytecode 之中呢?</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在前一篇 <a href="https://rainmakerho.github.io/2019/01/20/2019005/">使用 OpenTracing - Jaeger (BFv3 使用 Dynamic Proxy)</a> 中，我們透過 Dynamic Proxy 的方式去封裝那些需要記錄的物件。<br>雖然使用 Dynamic Proxy 的方式，可以讓我們將那些 OpenTracing 的範本程式碼抽離出來，但是在專案還是需要做一些調整，例如使用 Autofac, 修改 Method 為 virtual methods 。 這對於沒有使用 Dependency Injection 的系統來說，是一個負擔。 那是否可以做到像 dynaTrace 這樣，直接寫到 bytecode 之中呢?</p>
 <h3 id="研究"><a href="#研究" class="headerlink" title="研究"></a>研究</h3><h4 id="Fody"><a href="#Fody" class="headerlink" title="Fody"></a><a target="_blank" rel="noopener" href="https://github.com/Fody/Home">Fody</a></h4><p>上網 Search 後，除了可以透過 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/dotnet/framework/unmanaged-api/profiling/profiling-overview">.NET Profiling API</a> 外，還可以透過 IL Rewriting 的方式，可以讓我們在 Compile 時，動態地把程式寫到我們註記的地方, 運作方式如下，</p>
 <p><strong>.NET Source Code &#x3D;&gt; Compiler &#x3D;&gt; Managed assembly(CIL) &#x3D;&gt; Fody &#x3D;&gt; CIL weaving &#x3D;&gt; modified CIL</strong><br>所以它會拿我們 Build 好的 DLL 去加程式碼後，再產出一個新的 DLL 蓋掉原本的。</p>
 <h4 id="Fody-Addins"><a href="#Fody-Addins" class="headerlink" title="Fody Addins"></a><a target="_blank" rel="noopener" href="https://github.com/Fody/Home/blob/master/pages/addins.md">Fody Addins</a></h4><p>Fody 目前有蠻多的 <a target="_blank" rel="noopener" href="https://github.com/Fody/Home/blob/master/pages/addins.md">Fody Addins</a>，大家只要從 Nuget 加入它們，然後在 FodyWeavers.xml 中設定要用的 Addin ，再依 Addin 需要的 程式碼及在程式中加入 Addins 的 Attribute ，重新建置就可以了。<br>常用的有 <a target="_blank" rel="noopener" href="https://github.com/Fody/ToString">ToString.Fody</a>, <a target="_blank" rel="noopener" href="https://github.com/Fody/NullGuard">NullGuard.Fody</a>, <a target="_blank" rel="noopener" href="https://github.com/Fody/PropertyChanged">PropertyChanged.Fody</a> 及 <a target="_blank" rel="noopener" href="https://github.com/Fody/Janitor">Janitor.Fody</a>。<br>大家可以看看 <a target="_blank" rel="noopener" href="https://github.com/Fody/Home/blob/master/pages/addins.md">Fody Addins</a> 中，有沒有想要用在專案之中的哦!<br>而針對 Opentracing 這樣子的行為，有看到 <a target="_blank" rel="noopener" href="https://github.com/vescon/MethodBoundaryAspect.Fody">MethodBoundaryAspect.Fody</a> 蠻適合拿來用的，所以我們就用它來實作。</p>
@@ -230,15 +228,10 @@
 </ul>
 <p>雖然還是要寫一點點程式碼及設定，但是往自動化又進步了一些哦:)</p>
 <h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a target="_blank" rel="noopener" href="https://github.com/Fody">Fody</a><br><a target="_blank" rel="noopener" href="https://github.com/vescon/MethodBoundaryAspect.Fody">MethodBoundaryAspect.Fody</a><br><a target="_blank" rel="noopener" href="http://www.castleproject.org/projects/dynamicproxy/">DynamicProxy</a><br><a target="_blank" rel="noopener" href="https://stackify.com/three-types-of-net-profilers/">List of .Net Profilers: 3 Different Types and Why You Need All of Them</a><br><a target="_blank" rel="noopener" href="https://www.slideshare.net/shaun_wilde/net-profilers-and-il-rewriting-ddd-melbourne-2">.NET Profilers and IL Rewriting - DDD Melbourne 2</a><br><a target="_blank" rel="noopener" href="https://mattwarren.org/2018/08/21/Monitoring-and-Observability-in-the-.NET-Runtime/">Monitoring and Observability in the .NET Runtime</a><br><a target="_blank" rel="noopener" href="https://mattwarren.org/2014/08/14/how-to-mock-sealed-classes-and-static-methods/">How to mock sealed classes and static methods</a><br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/dotnet/framework/unmanaged-api/profiling/profiling-overview">.NET Profiling API</a><br><a target="_blank" rel="noopener" href="https://doc.postsharp.net/t_postsharp_aspects_onmethodboundaryaspect">PostSharp</a></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -293,18 +286,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2019/02/23/2019007/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -323,9 +311,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -339,38 +325,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4763,6 +4742,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

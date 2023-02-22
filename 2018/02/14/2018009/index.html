@@ -153,30 +153,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2018009" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-2018009"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       無法載入檔案或組件 &#39;log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=692fbea5521e1304&#39; 或其相依性的其中之一。
     </h1>
   
-
-          
-            <a href="/2018/02/14/2018009/" class="archive-article-date">
+  <a href="/2018/02/14/2018009/" class="archive-article-date">
   	<time datetime="2018-02-14T14:12:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-14</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <p>最近同事詢問他們使用 Crytal Report Viewer 時，會發生 log4net 版本衝突的問題。如下圖所示， </p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <p>最近同事詢問他們使用 Crytal Report Viewer 時，會發生 log4net 版本衝突的問題。如下圖所示， </p>
 <img src="/2018/02/14/2018009/2018009001.png" class="" title="CrystalReportViewer Runtime Error"> 
 <p>如果是不同版本衝突的話，可以參考 <a target="_blank" rel="noopener" href="https://dotblogs.com.tw/rainmaker/2015/11/25/153805">如何讓不同 PublicKeyToken 的 DLL assemblyBinding 到可以用版本?</a> 透過 assemblyBinding 的方式就可以解決。 但剛好我們的 AP 自已用的 log4net 版本也是 1.2.10.0，所以是 <strong>相同版本，不同的 PublickToken</strong> 的衝突。 詳細訊息如下， </p>
 <p><em>沒有辦法解決 “log4net, Version&#x3D;1.2.10.0, Culture&#x3D;neutral, PublicKeyToken&#x3D;1b44e1d426115821” 和 “log4net, Version&#x3D;1.2.10.0, Culture&#x3D;neutral, PublicKeyToken&#x3D;692fbea5521e1304” 之間的衝突。<br>任意選擇 “log4net, Version&#x3D;1.2.10.0, Culture&#x3D;neutral, PublicKeyToken&#x3D;1b44e1d426115821”。</em>  </p>
@@ -186,15 +184,10 @@
 <img src="/2018/02/14/2018009/2018009002.png" class="" title="將 64 位元版本的 IIS Express 用於網站和專案(U)"> 
 
 <p>如果您是系統出了錯，請 Check 應用程式集區是否設定成了 「啟用32位元應用程式」哦!</p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -217,18 +210,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2018/03/05/2018010/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -247,9 +235,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -263,38 +249,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4687,6 +4666,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

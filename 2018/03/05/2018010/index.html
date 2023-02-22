@@ -159,30 +159,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2018010" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-2018010"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       透過 WinDbg 來找出 ASP.NET CPU 100% ASP.NET 程式的問題
     </h1>
   
-
-          
-            <a href="/2018/03/05/2018010/" class="archive-article-date">
+  <a href="/2018/03/05/2018010/" class="archive-article-date">
   	<time datetime="2018-03-05T06:19:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-05</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>我們有一個 ASP.NET 的系統部署到 IIS 上(Windows 2012, .NET 4.x)，有時候會導致 w3wp.exe 吃掉所有的 CPU 資源，一直要等到應用程式回收後，程式再重新啟動後就正常了。這種狀況不定期會發生。 </p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>我們有一個 ASP.NET 的系統部署到 IIS 上(Windows 2012, .NET 4.x)，有時候會導致 w3wp.exe 吃掉所有的 CPU 資源，一直要等到應用程式回收後，程式再重新啟動後就正常了。這種狀況不定期會發生。 </p>
 <h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>我們可以使用 WinDbg 來找出導致 IIS CPU 100% 的原因，方法如下， </p>
 <ul>
 <li><p>透過「工作管理員」來「建立傾印檔案」<br>當發生 IIS 導致 CPU 100% 時，開啟「工作管理員」，按右鍵選取「建立傾印檔案」。要依 Web 應用程式的平台(x86&#x2F;x64)來開啟「工作管理員」(x86的工作管理員在 C:\Windows\SysWOW64\taskmgr.exe )。</p>
@@ -225,15 +223,10 @@
 </li>
 </ul>
 <h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a target="_blank" rel="noopener" href="http://improve.dk/debugging-in-production-part-1-analyzing-100-cpu-usage-using-windbg/">Debugging in Production Part 1 - Analyzing 100% CPU Usage Using Windbg</a><br><a target="_blank" rel="noopener" href="http://blog.darkthread.net/post-2017-02-20-windbg-to-find-aspnet-cpu-high.aspx">WinDBG 應用實例：找出 ASP.NET CPU 100% 原因</a><br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/">Debugging Tools for Windows (WinDbg, KD, CDB, NTSD)</a><br><a target="_blank" rel="noopener" href="https://www.hanselman.com/blog/SetUpYourSystemToUseMicrosoftsPublicSymbolServer.aspx">Set up your system to use Microsoft’s public Symbol Server</a><br><a target="_blank" rel="noopener" href="https://channel9.msdn.com/Series/-NET-Debugging-Stater-Kit-for-the-Production-Environment/High-CPU-Hangs-05">High CPU Hangs - 05</a><br><a target="_blank" rel="noopener" href="http://www.infoq.com/cn/articles/architecture-practice-13-windbg">中小型研发团队架构实践：生产环境诊断利器WinDbg帮你快速分析异常情况Dump文件</a><br><a target="_blank" rel="noopener" href="https://blogs.msdn.microsoft.com/kaevans/2011/04/11/intro-to-windbg-for-net-developers/">Intro to WinDBG for .NET Developers</a><br><a target="_blank" rel="noopener" href="https://blogs.msdn.microsoft.com/tess/2008/02/27/net-debugging-demos-lab-4-high-cpu-hang-review/">.NET Debugging Demos Lab 4: High CPU Hang – Review</a></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -264,18 +257,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2018/03/13/2018011/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -294,9 +282,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -310,38 +296,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4734,6 +4713,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

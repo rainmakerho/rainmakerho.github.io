@@ -147,45 +147,109 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-2017014" class="article article-type-post  article-index"
-  itemscope itemprop="blogPost">
+    <article
+  id="post-2017015"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/07/2017015/">為什麼 OPTIONS 時會給 404 呢?</a>
+    </h1>
+  
+  <a href="/2017/12/07/2017015/" class="archive-article-date">
+  	<time datetime="2017-12-07T09:30:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-07</time>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h4 id="同事在-CALL-IIS-上的網頁時，因為-CORS-所以會先做-Preflight-request，跑-OPTIONS-時，居然回-404-。"><a href="#同事在-CALL-IIS-上的網頁時，因為-CORS-所以會先做-Preflight-request，跑-OPTIONS-時，居然回-404-。" class="headerlink" title="同事在 CALL IIS 上的網頁時，因為 CORS 所以會先做 Preflight request，跑 OPTIONS 時，居然回 404 。"></a>同事在 CALL IIS 上的網頁時，因為 CORS 所以會先做 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Glossary/Preflight_request">Preflight request</a>，跑 OPTIONS 時，居然回 404 。</h4><h4 id="在-web-config-中有允許-OPTIONS-呀-而且在-web-config-中設定的-header-也有-response-出來。-但-status-code-卻是-404-。"><a href="#在-web-config-中有允許-OPTIONS-呀-而且在-web-config-中設定的-header-也有-response-出來。-但-status-code-卻是-404-。" class="headerlink" title="在 web.config 中有允許 OPTIONS 呀 ~ 而且在 web.config 中設定的 header 也有 response 出來。 但 status code 卻是 404 。"></a>在 web.config 中有允許 OPTIONS 呀 ~ 而且在 web.config 中設定的 header 也有 response 出來。 但 status code 卻是 404 。</h4><h4 id="後來到-IIS-一看才知道，在-IIS-的「要求篩選」那裡，-OPTIONS-被設定成了-不允許，如下圖，"><a href="#後來到-IIS-一看才知道，在-IIS-的「要求篩選」那裡，-OPTIONS-被設定成了-不允許，如下圖，" class="headerlink" title="後來到 IIS 一看才知道，在 IIS 的「要求篩選」那裡， OPTIONS 被設定成了 不允許，如下圖，"></a>後來到 IIS 一看才知道，在 IIS 的「要求篩選」那裡， OPTIONS 被設定成了 不允許，如下圖，</h4><br>   
+      <p class="article-more-link">
+        <a href="/2017/12/07/2017015/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">OPTIONS</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">IIS</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">404</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">要求篩選</a>
+        		</li>
+      		
+		</ul>
+	</div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+ <aside class="wrap-side-operation">
+    <div class="mod-side-operation">
         
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside> 
+
+  
+    <article
+  id="post-2017014"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
   
     <h1 itemprop="name">
       <a class="article-title" href="/2017/11/30/2017014/">Writeable Session 造成網頁被卡住的問題</a>
     </h1>
   
-
-          
-            <a href="/2017/11/30/2017014/" class="archive-article-date">
+  <a href="/2017/11/30/2017014/" class="archive-article-date">
   	<time datetime="2017-11-30T09:49:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-30</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                            <h4 id="在之前有討論到不同網頁使用到-Writeable-Session-時會卡來卡去的狀況-Lock-or-Blocking-使用-Session-要小心網頁會被-卡住哦-，或是-Web-Service-如果開啟-Session-存取的話，預設是-Writeable-Session-模式-設定-WebService-使用-ReadOnly-Session-。"><a href="#在之前有討論到不同網頁使用到-Writeable-Session-時會卡來卡去的狀況-Lock-or-Blocking-使用-Session-要小心網頁會被-卡住哦-，或是-Web-Service-如果開啟-Session-存取的話，預設是-Writeable-Session-模式-設定-WebService-使用-ReadOnly-Session-。" class="headerlink" title="在之前有討論到不同網頁使用到 Writeable Session 時會卡來卡去的狀況 Lock or Blocking( 使用 Session 要小心網頁會被 卡住哦! )，或是 Web Service 如果開啟 Session 存取的話，預設是 Writeable Session 模式(設定 WebService 使用 ReadOnly Session)。"></a>在之前有討論到不同網頁使用到 Writeable Session 時會卡來卡去的狀況 Lock or Blocking( <a target="_blank" rel="noopener" href="https://dotblogs.com.tw/rainmaker/2016/06/30/103719">使用 Session 要小心網頁會被 卡住哦!</a> )，或是 Web Service 如果開啟 Session 存取的話，預設是 Writeable Session 模式(<a target="_blank" rel="noopener" href="https://dotblogs.com.tw/rainmaker/2015/02/10/149456">設定 WebService 使用 ReadOnly Session</a>)。</h4><h4 id="解法除了設定-SessionStateBehavior-ReadOnly-外，如果一定要用-Writeable-Session-時-怕改成-ReadOnly-會影響現有系統的話-，可以參考When-a-Single-ASP-NET-Client-makes-Concurrent-Requests-for-Writeable-Session-Variables提供的方式，因為在寫入-Session-時會造成-500ms-的-Delay-時間-請參考-Storing-Anything-in-ASP-NET-Session-Causes-500ms-Delays-，"><a href="#解法除了設定-SessionStateBehavior-ReadOnly-外，如果一定要用-Writeable-Session-時-怕改成-ReadOnly-會影響現有系統的話-，可以參考When-a-Single-ASP-NET-Client-makes-Concurrent-Requests-for-Writeable-Session-Variables提供的方式，因為在寫入-Session-時會造成-500ms-的-Delay-時間-請參考-Storing-Anything-in-ASP-NET-Session-Causes-500ms-Delays-，" class="headerlink" title="解法除了設定 SessionStateBehavior.ReadOnly 外，如果一定要用 Writeable Session 時(怕改成 ReadOnly 會影響現有系統的話)，可以參考When a Single ASP.NET Client makes Concurrent Requests for Writeable Session Variables提供的方式，因為在寫入 Session 時會造成 500ms 的 Delay 時間(請參考:Storing Anything in ASP.NET Session Causes 500ms Delays)，"></a>解法除了設定 SessionStateBehavior.ReadOnly 外，如果一定要用 Writeable Session 時(怕改成 ReadOnly 會影響現有系統的話)，可以參考<a target="_blank" rel="noopener" href="https://www.red-gate.com/simple-talk/dotnet/asp-net/single-asp-net-client-makes-concurrent-requests-writeable-session-variables/">When a Single ASP.NET Client makes Concurrent Requests for Writeable Session Variables</a>提供的方式，因為在寫入 Session 時會造成 500ms 的 Delay 時間(請參考:<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/8349033/storing-anything-in-asp-net-session-causes-500ms-delays">Storing Anything in ASP.NET Session Causes 500ms Delays</a>)，</h4><ul>
-                              
-                                <p class="article-more-link">
-                                  <a target="_blank" rel="noopener" href="//2017/11/30/2017014/#more">
-                                    more &gt;&gt;
-                                  </a>
-                                </p>
-                                
-                                  
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h4 id="在之前有討論到不同網頁使用到-Writeable-Session-時會卡來卡去的狀況-Lock-or-Blocking-使用-Session-要小心網頁會被-卡住哦-，或是-Web-Service-如果開啟-Session-存取的話，預設是-Writeable-Session-模式-設定-WebService-使用-ReadOnly-Session-。"><a href="#在之前有討論到不同網頁使用到-Writeable-Session-時會卡來卡去的狀況-Lock-or-Blocking-使用-Session-要小心網頁會被-卡住哦-，或是-Web-Service-如果開啟-Session-存取的話，預設是-Writeable-Session-模式-設定-WebService-使用-ReadOnly-Session-。" class="headerlink" title="在之前有討論到不同網頁使用到 Writeable Session 時會卡來卡去的狀況 Lock or Blocking( 使用 Session 要小心網頁會被 卡住哦! )，或是 Web Service 如果開啟 Session 存取的話，預設是 Writeable Session 模式(設定 WebService 使用 ReadOnly Session)。"></a>在之前有討論到不同網頁使用到 Writeable Session 時會卡來卡去的狀況 Lock or Blocking( <a target="_blank" rel="noopener" href="https://dotblogs.com.tw/rainmaker/2016/06/30/103719">使用 Session 要小心網頁會被 卡住哦!</a> )，或是 Web Service 如果開啟 Session 存取的話，預設是 Writeable Session 模式(<a target="_blank" rel="noopener" href="https://dotblogs.com.tw/rainmaker/2015/02/10/149456">設定 WebService 使用 ReadOnly Session</a>)。</h4><h4 id="解法除了設定-SessionStateBehavior-ReadOnly-外，如果一定要用-Writeable-Session-時-怕改成-ReadOnly-會影響現有系統的話-，可以參考When-a-Single-ASP-NET-Client-makes-Concurrent-Requests-for-Writeable-Session-Variables提供的方式，因為在寫入-Session-時會造成-500ms-的-Delay-時間-請參考-Storing-Anything-in-ASP-NET-Session-Causes-500ms-Delays-，"><a href="#解法除了設定-SessionStateBehavior-ReadOnly-外，如果一定要用-Writeable-Session-時-怕改成-ReadOnly-會影響現有系統的話-，可以參考When-a-Single-ASP-NET-Client-makes-Concurrent-Requests-for-Writeable-Session-Variables提供的方式，因為在寫入-Session-時會造成-500ms-的-Delay-時間-請參考-Storing-Anything-in-ASP-NET-Session-Causes-500ms-Delays-，" class="headerlink" title="解法除了設定 SessionStateBehavior.ReadOnly 外，如果一定要用 Writeable Session 時(怕改成 ReadOnly 會影響現有系統的話)，可以參考When a Single ASP.NET Client makes Concurrent Requests for Writeable Session Variables提供的方式，因為在寫入 Session 時會造成 500ms 的 Delay 時間(請參考:Storing Anything in ASP.NET Session Causes 500ms Delays)，"></a>解法除了設定 SessionStateBehavior.ReadOnly 外，如果一定要用 Writeable Session 時(怕改成 ReadOnly 會影響現有系統的話)，可以參考<a target="_blank" rel="noopener" href="https://www.red-gate.com/simple-talk/dotnet/asp-net/single-asp-net-client-makes-concurrent-requests-writeable-session-variables/">When a Single ASP.NET Client makes Concurrent Requests for Writeable Session Variables</a>提供的方式，因為在寫入 Session 時會造成 500ms 的 Delay 時間(請參考:<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/8349033/storing-anything-in-asp-net-session-causes-500ms-delays">Storing Anything in ASP.NET Session Causes 500ms Delays</a>)，</h4><ul> 
+      <p class="article-more-link">
+        <a href="/2017/11/30/2017014/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -208,18 +272,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-      <aside class="wrap-side-operation">
+ <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -233,51 +292,38 @@
         
         
     </div>
-</aside>
-
-
-        
+</aside> 
 
   
-    <article id="post-2017013" class="article article-type-post  article-index"
-  itemscope itemprop="blogPost">
+    <article
+  id="post-2017013"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 itemprop="name">
       <a class="article-title" href="/2017/11/29/2017013/">為什麼 scrollbar 在 mac os 的 browser 無法顯示出來呢?</a>
     </h1>
   
-
-          
-            <a href="/2017/11/29/2017013/" class="archive-article-date">
+  <a href="/2017/11/29/2017013/" class="archive-article-date">
   	<time datetime="2017-11-29T01:33:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-29</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                            <h4 id="最近在-div-上加入-overflow-y-scroll-height-250px-讓-div-高度超過-250px-時就呈現-scrollbar-。-在-Windows-的機器上測試顯示都正常。"><a href="#最近在-div-上加入-overflow-y-scroll-height-250px-讓-div-高度超過-250px-時就呈現-scrollbar-。-在-Windows-的機器上測試顯示都正常。" class="headerlink" title="最近在 div 上加入 overflow-y: scroll; height:250px; 讓 div 高度超過 250px 時就呈現 scrollbar 。 在 Windows 的機器上測試顯示都正常。"></a>最近在 div 上加入 <em>overflow-y: scroll; height:250px;</em> 讓 div 高度超過 250px 時就呈現 scrollbar 。 在 Windows 的機器上測試顯示都正常。</h4><h4 id="但是在-mac-上測試，-scrollbar-卻沒有呈現出來。"><a href="#但是在-mac-上測試，-scrollbar-卻沒有呈現出來。" class="headerlink" title="但是在 mac 上測試， scrollbar 卻沒有呈現出來。"></a>但是在 mac 上測試， scrollbar 卻沒有呈現出來。</h4><h4 id="後來有查到-Force-the-scrollbar-back-這些的說明，我們需要針對-webkit-scrollbar-來設定它，所以在-css-中需要再加入以下的設定，來讓-scrollbar-在-mac-的瀏覽器可以正常呈現-scrollbar-哦"><a href="#後來有查到-Force-the-scrollbar-back-這些的說明，我們需要針對-webkit-scrollbar-來設定它，所以在-css-中需要再加入以下的設定，來讓-scrollbar-在-mac-的瀏覽器可以正常呈現-scrollbar-哦" class="headerlink" title="後來有查到 Force the scrollbar back 這些的說明，我們需要針對 -webkit-scrollbar 來設定它，所以在 css 中需要再加入以下的設定，來讓 scrollbar 在 mac 的瀏覽器可以正常呈現 scrollbar 哦!"></a>後來有查到 <a target="_blank" rel="noopener" href="http://simurai.com/blog/2011/07/26/webkit-scrollbar">Force the scrollbar back</a> 這些的說明，我們需要針對 -webkit-scrollbar 來設定它，所以在 css 中需要再加入以下的設定，來讓 scrollbar 在 mac 的瀏覽器可以正常呈現 scrollbar 哦!</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">::-webkit-scrollbar &#123;</span><br><span class="line">    -webkit-appearance: none;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">7px</span>;</span><br><span class="line">&#125;</span><br><span class="line">::-webkit-scrollbar-thumb &#123;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">4px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="built_in">rgba</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,.<span class="number">5</span>);</span><br><span class="line">    <span class="attribute">box-shadow</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">1px</span> <span class="built_in">rgba</span>(<span class="number">255</span>,<span class="number">255</span>,<span class="number">255</span>,.<span class="number">5</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-                              
-                                <p class="article-more-link">
-                                  <a target="_blank" rel="noopener" href="//2017/11/29/2017013/#more">
-                                    more &gt;&gt;
-                                  </a>
-                                </p>
-                                
-                                  
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h4 id="最近在-div-上加入-overflow-y-scroll-height-250px-讓-div-高度超過-250px-時就呈現-scrollbar-。-在-Windows-的機器上測試顯示都正常。"><a href="#最近在-div-上加入-overflow-y-scroll-height-250px-讓-div-高度超過-250px-時就呈現-scrollbar-。-在-Windows-的機器上測試顯示都正常。" class="headerlink" title="最近在 div 上加入 overflow-y: scroll; height:250px; 讓 div 高度超過 250px 時就呈現 scrollbar 。 在 Windows 的機器上測試顯示都正常。"></a>最近在 div 上加入 <em>overflow-y: scroll; height:250px;</em> 讓 div 高度超過 250px 時就呈現 scrollbar 。 在 Windows 的機器上測試顯示都正常。</h4><h4 id="但是在-mac-上測試，-scrollbar-卻沒有呈現出來。"><a href="#但是在-mac-上測試，-scrollbar-卻沒有呈現出來。" class="headerlink" title="但是在 mac 上測試， scrollbar 卻沒有呈現出來。"></a>但是在 mac 上測試， scrollbar 卻沒有呈現出來。</h4><h4 id="後來有查到-Force-the-scrollbar-back-這些的說明，我們需要針對-webkit-scrollbar-來設定它，所以在-css-中需要再加入以下的設定，來讓-scrollbar-在-mac-的瀏覽器可以正常呈現-scrollbar-哦"><a href="#後來有查到-Force-the-scrollbar-back-這些的說明，我們需要針對-webkit-scrollbar-來設定它，所以在-css-中需要再加入以下的設定，來讓-scrollbar-在-mac-的瀏覽器可以正常呈現-scrollbar-哦" class="headerlink" title="後來有查到 Force the scrollbar back 這些的說明，我們需要針對 -webkit-scrollbar 來設定它，所以在 css 中需要再加入以下的設定，來讓 scrollbar 在 mac 的瀏覽器可以正常呈現 scrollbar 哦!"></a>後來有查到 <a target="_blank" rel="noopener" href="http://simurai.com/blog/2011/07/26/webkit-scrollbar">Force the scrollbar back</a> 這些的說明，我們需要針對 -webkit-scrollbar 來設定它，所以在 css 中需要再加入以下的設定，來讓 scrollbar 在 mac 的瀏覽器可以正常呈現 scrollbar 哦!</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">::-webkit-scrollbar &#123;</span><br><span class="line">    -webkit-appearance: none;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">7px</span>;</span><br><span class="line">&#125;</span><br><span class="line">::-webkit-scrollbar-thumb &#123;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">4px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="built_in">rgba</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,.<span class="number">5</span>);</span><br><span class="line">    <span class="attribute">box-shadow</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">1px</span> <span class="built_in">rgba</span>(<span class="number">255</span>,<span class="number">255</span>,<span class="number">255</span>,.<span class="number">5</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure> 
+      <p class="article-more-link">
+        <a href="/2017/11/29/2017013/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -292,18 +338,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-      <aside class="wrap-side-operation">
+ <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -317,51 +358,38 @@
         
         
     </div>
-</aside>
-
-
-        
+</aside> 
 
   
-    <article id="post-2017012" class="article article-type-post  article-index"
-  itemscope itemprop="blogPost">
+    <article
+  id="post-2017012"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 itemprop="name">
       <a class="article-title" href="/2017/11/16/2017012/">解析 SQL Server Deadlocks</a>
     </h1>
   
-
-          
-            <a href="/2017/11/16/2017012/" class="archive-article-date">
+  <a href="/2017/11/16/2017012/" class="archive-article-date">
   	<time datetime="2017-11-16T01:57:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-16</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                            <h4 id="最近收到了-Deadlock-的-trace-file，如下圖，"><a href="#最近收到了-Deadlock-的-trace-file，如下圖，" class="headerlink" title="最近收到了 Deadlock 的 trace file，如下圖，"></a>最近收到了 Deadlock 的 trace file，如下圖，</h4><img src="/2017/11/16/2017012/001.png" class="" title="slug Deadlock graph">
-                              
-                                <p class="article-more-link">
-                                  <a target="_blank" rel="noopener" href="//2017/11/16/2017012/#more">
-                                    more &gt;&gt;
-                                  </a>
-                                </p>
-                                
-                                  
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h4 id="最近收到了-Deadlock-的-trace-file，如下圖，"><a href="#最近收到了-Deadlock-的-trace-file，如下圖，" class="headerlink" title="最近收到了 Deadlock 的 trace file，如下圖，"></a>最近收到了 Deadlock 的 trace file，如下圖，</h4><img src="/2017/11/16/2017012/001.png" class="" title="slug Deadlock graph"> 
+      <p class="article-more-link">
+        <a href="/2017/11/16/2017012/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -384,18 +412,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-      <aside class="wrap-side-operation">
+ <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -409,51 +432,38 @@
         
         
     </div>
-</aside>
-
-
-        
+</aside> 
 
   
-    <article id="post-2017011" class="article article-type-post  article-index"
-  itemscope itemprop="blogPost">
+    <article
+  id="post-2017011"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 itemprop="name">
       <a class="article-title" href="/2017/11/09/2017011/">Aspose.Words DocumentBuilder 加入 htmlTable 轉成 PDF 檔問題</a>
     </h1>
   
-
-          
-            <a href="/2017/11/09/2017011/" class="archive-article-date">
+  <a href="/2017/11/09/2017011/" class="archive-article-date">
   	<time datetime="2017-11-09T05:31:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-09</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                            <h3 id="最近同事透過-Aspose-Words-DocumentBuilder-的-InsertHtml-Method-加入-Html-的-Table-含-css-，另存成-PDF-檔後，居然發現本來在-Word-檔中看起來好好的，PDF-檔中的-Table-卻會超過頁面，如下，"><a href="#最近同事透過-Aspose-Words-DocumentBuilder-的-InsertHtml-Method-加入-Html-的-Table-含-css-，另存成-PDF-檔後，居然發現本來在-Word-檔中看起來好好的，PDF-檔中的-Table-卻會超過頁面，如下，" class="headerlink" title="最近同事透過 Aspose.Words DocumentBuilder 的 InsertHtml Method 加入 Html 的 Table (含 css )，另存成 PDF 檔後，居然發現本來在 Word 檔中看起來好好的，PDF 檔中的 Table 卻會超過頁面，如下，"></a>最近同事透過 Aspose.Words DocumentBuilder 的 InsertHtml Method 加入 Html 的 Table (含 css )，另存成 PDF 檔後，居然發現本來在 Word 檔中看起來好好的，PDF 檔中的 Table 卻會超過頁面，如下，</h3><img src="/2017/11/09/2017011/exceedPage.png" class="" title="slug">
-                              
-                                <p class="article-more-link">
-                                  <a target="_blank" rel="noopener" href="//2017/11/09/2017011/#more">
-                                    more &gt;&gt;
-                                  </a>
-                                </p>
-                                
-                                  
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="最近同事透過-Aspose-Words-DocumentBuilder-的-InsertHtml-Method-加入-Html-的-Table-含-css-，另存成-PDF-檔後，居然發現本來在-Word-檔中看起來好好的，PDF-檔中的-Table-卻會超過頁面，如下，"><a href="#最近同事透過-Aspose-Words-DocumentBuilder-的-InsertHtml-Method-加入-Html-的-Table-含-css-，另存成-PDF-檔後，居然發現本來在-Word-檔中看起來好好的，PDF-檔中的-Table-卻會超過頁面，如下，" class="headerlink" title="最近同事透過 Aspose.Words DocumentBuilder 的 InsertHtml Method 加入 Html 的 Table (含 css )，另存成 PDF 檔後，居然發現本來在 Word 檔中看起來好好的，PDF 檔中的 Table 卻會超過頁面，如下，"></a>最近同事透過 Aspose.Words DocumentBuilder 的 InsertHtml Method 加入 Html 的 Table (含 css )，另存成 PDF 檔後，居然發現本來在 Word 檔中看起來好好的，PDF 檔中的 Table 卻會超過頁面，如下，</h3><img src="/2017/11/09/2017011/exceedPage.png" class="" title="slug"> 
+      <p class="article-more-link">
+        <a href="/2017/11/09/2017011/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -484,18 +494,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-      <aside class="wrap-side-operation">
+ <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -509,51 +514,38 @@
         
         
     </div>
-</aside>
-
-
-        
+</aside> 
 
   
-    <article id="post-2017010" class="article article-type-post  article-index"
-  itemscope itemprop="blogPost">
+    <article
+  id="post-2017010"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 itemprop="name">
       <a class="article-title" href="/2017/10/27/2017010/">log4net 檔名使用「大寫」字母造成檔案被覆寫問題</a>
     </h1>
   
-
-          
-            <a href="/2017/10/27/2017010/" class="archive-article-date">
+  <a href="/2017/10/27/2017010/" class="archive-article-date">
   	<time datetime="2017-10-27T05:28:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-27</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                            <h3 id="事情是這樣子的…我們有個專案裡面有使用-log4net-v-1-2-11-0-，在案子裡面是使用-RollingFileAppender-，-rollingStyle-是-Composite-，依日期時間及檔案大小來切檔，設定檔如下，"><a href="#事情是這樣子的…我們有個專案裡面有使用-log4net-v-1-2-11-0-，在案子裡面是使用-RollingFileAppender-，-rollingStyle-是-Composite-，依日期時間及檔案大小來切檔，設定檔如下，" class="headerlink" title="事情是這樣子的…我們有個專案裡面有使用 log4net v 1.2.11.0 ，在案子裡面是使用 RollingFileAppender ， rollingStyle 是 Composite ，依日期時間及檔案大小來切檔，設定檔如下，"></a>事情是這樣子的…我們有個專案裡面有使用 log4net v 1.2.11.0 ，在案子裡面是使用 RollingFileAppender ， rollingStyle 是 Composite ，依日期時間及檔案大小來切檔，設定檔如下，</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">&lt;log4net debug=&quot;true&quot;&gt;</span><br><span class="line">	&lt;appender name=&quot;DBRollingFileAppender&quot; type=&quot;log4net.Appender.RollingFileAppender&quot;&gt;</span><br><span class="line">	  &lt;file type=&quot;log4net.Util.PatternString&quot; value=&quot;[你的路徑]\temp\%date&#123;yyyy&#125;\%date&#123;MM&#125;\%date&#123;dd&#125;\&quot; /&gt;</span><br><span class="line">	  &lt;staticLogFileName value=&quot;false&quot;/&gt;</span><br><span class="line">	  &lt;appendToFile value=&quot;true&quot;/&gt;</span><br><span class="line">	  &lt;!--設定檔案分割依據Date和Size--&gt;</span><br><span class="line">	  &lt;rollingStyle value=&quot;Composite&quot;/&gt;</span><br><span class="line">	  &lt;!--設定每個檔案的大小--&gt;</span><br><span class="line">	  &lt;MaximumFileSize value=&quot;250KB&quot; /&gt;</span><br><span class="line">	  &lt;!--設定分割檔案的最大數量--&gt;</span><br><span class="line">	  &lt;maxSizeRollBackups value=&quot;2000&quot; /&gt;</span><br><span class="line">	  &lt;CountDirection value=&quot;1&quot; /&gt;</span><br><span class="line">	  &lt;!--log檔案的命名--&gt;</span><br><span class="line">	  &lt;datePattern value=&quot;yyyy-MM-dd-HH-DB2.lo\g&quot;/&gt;</span><br><span class="line">	  &lt;layout type=&quot;log4net.Layout.PatternLayout&quot;&gt;</span><br><span class="line">		&lt;conversionPattern value=&quot;[%date] [%-5level] From %logger%newline  %file:%line [%property&#123;NDC&#125;]%newline  %message%newline%newline&quot; /&gt;</span><br><span class="line">	  &lt;/layout&gt;</span><br><span class="line">	  &lt;filter type=&quot;log4net.Filter.LevelRangeFilter&quot;&gt;</span><br><span class="line">		&lt;param name=&quot;LevelMin&quot; value=&quot;INFO&quot;/&gt;</span><br><span class="line">		&lt;param name=&quot;LevelMax&quot; value=&quot;INFO&quot;/&gt;</span><br><span class="line">	  &lt;/filter&gt;</span><br><span class="line">	&lt;/appender&gt;</span><br><span class="line">	&lt;appender name=&quot;SystemRollingFileAppender&quot; type=&quot;log4net.Appender.RollingFileAppender&quot;&gt;</span><br><span class="line">	  &lt;!--存放log檔案的路徑(%property&#123;LogPath&#125;屬性請勿任意修改)--&gt;</span><br><span class="line">	  &lt;file type=&quot;log4net.Util.PatternString&quot; value=&quot;[你的路徑]\temp\%date&#123;yyyy&#125;\%date&#123;MM&#125;\%date&#123;dd&#125;\&quot; /&gt;</span><br><span class="line">	  &lt;staticLogFileName value=&quot;false&quot;/&gt;</span><br><span class="line">	  &lt;appendToFile value=&quot;true&quot;/&gt;</span><br><span class="line">	  &lt;!--設定檔案分割依據Date和Size--&gt;</span><br><span class="line">	  &lt;rollingStyle value=&quot;Composite&quot;/&gt;</span><br><span class="line">	  &lt;!--設定每個檔案的大小--&gt;</span><br><span class="line">	  &lt;MaximumFileSize value=&quot;20KB&quot; /&gt;</span><br><span class="line">	  &lt;!--設定分割檔案的最大數量--&gt;</span><br><span class="line">	  &lt;maxSizeRollBackups value=&quot;2000&quot; /&gt;</span><br><span class="line">	  &lt;lockingModel type=&quot;log4net.Appender.FileAppender+MinimalLock&quot; /&gt;</span><br><span class="line">	  &lt;CountDirection value=&quot;1&quot; /&gt;</span><br><span class="line">	  &lt;!--log檔案的命名--&gt;</span><br><span class="line">	  &lt;datePattern value=&quot;yyyy-MM-dd-HH-DB.lo\g&quot;/&gt;</span><br><span class="line">	  &lt;layout type=&quot;log4net.Layout.PatternLayout&quot;&gt;</span><br><span class="line">		&lt;conversionPattern value=&quot;%d&#123;yyyy-MM-dd HH:mm&#125; %level %logger %ndc - %message%newline&quot; /&gt;</span><br><span class="line">	  &lt;/layout&gt;</span><br><span class="line">	  &lt;filter type=&quot;log4net.Filter.LevelRangeFilter&quot;&gt;</span><br><span class="line">		&lt;param name=&quot;LevelMin&quot; value=&quot;DEBUG&quot;/&gt;</span><br><span class="line">		&lt;param name=&quot;LevelMax&quot; value=&quot;DEBUG&quot;/&gt;</span><br><span class="line">	  &lt;/filter&gt;</span><br><span class="line">	&lt;/appender&gt;</span><br><span class="line">	&lt;!--紀錄錯誤訊息--&gt;</span><br><span class="line">	&lt;appender name=&quot;ErrorRollingFileAppender&quot; type=&quot;log4net.Appender.RollingFileAppender&quot;&gt;</span><br><span class="line">	  &lt;!--存放log檔案的路徑--&gt;</span><br><span class="line">	  &lt;file type=&quot;log4net.Util.PatternString&quot; value=&quot;[你的路徑]\temp\%date&#123;yyyy&#125;\%date&#123;MM&#125;\%date&#123;dd&#125;\&quot; /&gt;</span><br><span class="line">	  &lt;staticLogFileName value=&quot;false&quot;/&gt;</span><br><span class="line">	  &lt;appendToFile value=&quot;true&quot;/&gt;</span><br><span class="line">	  &lt;!--設定檔案分割依據Date和Size--&gt;</span><br><span class="line">	  &lt;rollingStyle value=&quot;Composite&quot;/&gt;</span><br><span class="line">	  &lt;!--設定每個檔案的大小--&gt;</span><br><span class="line">	  &lt;MaximumFileSize value=&quot;250KB&quot; /&gt;</span><br><span class="line">	  &lt;!--設定分割檔案的最大數量--&gt;</span><br><span class="line">	  &lt;maxSizeRollBackups value=&quot;2000&quot; /&gt;</span><br><span class="line">	  &lt;!--log檔案的命名--&gt;</span><br><span class="line">	  &lt;datePattern value=&quot;yyyy-MM-dd-HH-DB3.lo\g&quot;/&gt;</span><br><span class="line">	  &lt;layout type=&quot;log4net.Layout.PatternLayout&quot;&gt;</span><br><span class="line">		&lt;conversionPattern value=&quot;[%date] [%-5level] From %logger%newline  %file:%line [%property&#123;NDC&#125;]%newline  %message%newline%newline&quot; /&gt;</span><br><span class="line">	  &lt;/layout&gt;</span><br><span class="line">	  &lt;filter type=&quot;log4net.Filter.LevelRangeFilter&quot;&gt;</span><br><span class="line">		&lt;param name=&quot;LevelMin&quot; value=&quot;WARN&quot;/&gt;</span><br><span class="line">	  &lt;/filter&gt;</span><br><span class="line">	&lt;/appender&gt;</span><br><span class="line">	&lt;root&gt;</span><br><span class="line">	  &lt;level value=&quot;ALL&quot;/&gt;</span><br><span class="line">	  &lt;appender-ref ref=&quot;DBRollingFileAppender&quot;/&gt;</span><br><span class="line">	  &lt;appender-ref ref=&quot;SystemRollingFileAppender&quot;/&gt;</span><br><span class="line">	  &lt;appender-ref ref=&quot;ErrorRollingFileAppender&quot;/&gt;</span><br><span class="line">	&lt;/root&gt;</span><br><span class="line">&lt;/log4net&gt;</span><br></pre></td></tr></table></figure>
-                              
-                                <p class="article-more-link">
-                                  <a target="_blank" rel="noopener" href="//2017/10/27/2017010/#more">
-                                    more &gt;&gt;
-                                  </a>
-                                </p>
-                                
-                                  
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="事情是這樣子的…我們有個專案裡面有使用-log4net-v-1-2-11-0-，在案子裡面是使用-RollingFileAppender-，-rollingStyle-是-Composite-，依日期時間及檔案大小來切檔，設定檔如下，"><a href="#事情是這樣子的…我們有個專案裡面有使用-log4net-v-1-2-11-0-，在案子裡面是使用-RollingFileAppender-，-rollingStyle-是-Composite-，依日期時間及檔案大小來切檔，設定檔如下，" class="headerlink" title="事情是這樣子的…我們有個專案裡面有使用 log4net v 1.2.11.0 ，在案子裡面是使用 RollingFileAppender ， rollingStyle 是 Composite ，依日期時間及檔案大小來切檔，設定檔如下，"></a>事情是這樣子的…我們有個專案裡面有使用 log4net v 1.2.11.0 ，在案子裡面是使用 RollingFileAppender ， rollingStyle 是 Composite ，依日期時間及檔案大小來切檔，設定檔如下，</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">&lt;log4net debug=&quot;true&quot;&gt;</span><br><span class="line">	&lt;appender name=&quot;DBRollingFileAppender&quot; type=&quot;log4net.Appender.RollingFileAppender&quot;&gt;</span><br><span class="line">	  &lt;file type=&quot;log4net.Util.PatternString&quot; value=&quot;[你的路徑]\temp\%date&#123;yyyy&#125;\%date&#123;MM&#125;\%date&#123;dd&#125;\&quot; /&gt;</span><br><span class="line">	  &lt;staticLogFileName value=&quot;false&quot;/&gt;</span><br><span class="line">	  &lt;appendToFile value=&quot;true&quot;/&gt;</span><br><span class="line">	  &lt;!--設定檔案分割依據Date和Size--&gt;</span><br><span class="line">	  &lt;rollingStyle value=&quot;Composite&quot;/&gt;</span><br><span class="line">	  &lt;!--設定每個檔案的大小--&gt;</span><br><span class="line">	  &lt;MaximumFileSize value=&quot;250KB&quot; /&gt;</span><br><span class="line">	  &lt;!--設定分割檔案的最大數量--&gt;</span><br><span class="line">	  &lt;maxSizeRollBackups value=&quot;2000&quot; /&gt;</span><br><span class="line">	  &lt;CountDirection value=&quot;1&quot; /&gt;</span><br><span class="line">	  &lt;!--log檔案的命名--&gt;</span><br><span class="line">	  &lt;datePattern value=&quot;yyyy-MM-dd-HH-DB2.lo\g&quot;/&gt;</span><br><span class="line">	  &lt;layout type=&quot;log4net.Layout.PatternLayout&quot;&gt;</span><br><span class="line">		&lt;conversionPattern value=&quot;[%date] [%-5level] From %logger%newline  %file:%line [%property&#123;NDC&#125;]%newline  %message%newline%newline&quot; /&gt;</span><br><span class="line">	  &lt;/layout&gt;</span><br><span class="line">	  &lt;filter type=&quot;log4net.Filter.LevelRangeFilter&quot;&gt;</span><br><span class="line">		&lt;param name=&quot;LevelMin&quot; value=&quot;INFO&quot;/&gt;</span><br><span class="line">		&lt;param name=&quot;LevelMax&quot; value=&quot;INFO&quot;/&gt;</span><br><span class="line">	  &lt;/filter&gt;</span><br><span class="line">	&lt;/appender&gt;</span><br><span class="line">	&lt;appender name=&quot;SystemRollingFileAppender&quot; type=&quot;log4net.Appender.RollingFileAppender&quot;&gt;</span><br><span class="line">	  &lt;!--存放log檔案的路徑(%property&#123;LogPath&#125;屬性請勿任意修改)--&gt;</span><br><span class="line">	  &lt;file type=&quot;log4net.Util.PatternString&quot; value=&quot;[你的路徑]\temp\%date&#123;yyyy&#125;\%date&#123;MM&#125;\%date&#123;dd&#125;\&quot; /&gt;</span><br><span class="line">	  &lt;staticLogFileName value=&quot;false&quot;/&gt;</span><br><span class="line">	  &lt;appendToFile value=&quot;true&quot;/&gt;</span><br><span class="line">	  &lt;!--設定檔案分割依據Date和Size--&gt;</span><br><span class="line">	  &lt;rollingStyle value=&quot;Composite&quot;/&gt;</span><br><span class="line">	  &lt;!--設定每個檔案的大小--&gt;</span><br><span class="line">	  &lt;MaximumFileSize value=&quot;20KB&quot; /&gt;</span><br><span class="line">	  &lt;!--設定分割檔案的最大數量--&gt;</span><br><span class="line">	  &lt;maxSizeRollBackups value=&quot;2000&quot; /&gt;</span><br><span class="line">	  &lt;lockingModel type=&quot;log4net.Appender.FileAppender+MinimalLock&quot; /&gt;</span><br><span class="line">	  &lt;CountDirection value=&quot;1&quot; /&gt;</span><br><span class="line">	  &lt;!--log檔案的命名--&gt;</span><br><span class="line">	  &lt;datePattern value=&quot;yyyy-MM-dd-HH-DB.lo\g&quot;/&gt;</span><br><span class="line">	  &lt;layout type=&quot;log4net.Layout.PatternLayout&quot;&gt;</span><br><span class="line">		&lt;conversionPattern value=&quot;%d&#123;yyyy-MM-dd HH:mm&#125; %level %logger %ndc - %message%newline&quot; /&gt;</span><br><span class="line">	  &lt;/layout&gt;</span><br><span class="line">	  &lt;filter type=&quot;log4net.Filter.LevelRangeFilter&quot;&gt;</span><br><span class="line">		&lt;param name=&quot;LevelMin&quot; value=&quot;DEBUG&quot;/&gt;</span><br><span class="line">		&lt;param name=&quot;LevelMax&quot; value=&quot;DEBUG&quot;/&gt;</span><br><span class="line">	  &lt;/filter&gt;</span><br><span class="line">	&lt;/appender&gt;</span><br><span class="line">	&lt;!--紀錄錯誤訊息--&gt;</span><br><span class="line">	&lt;appender name=&quot;ErrorRollingFileAppender&quot; type=&quot;log4net.Appender.RollingFileAppender&quot;&gt;</span><br><span class="line">	  &lt;!--存放log檔案的路徑--&gt;</span><br><span class="line">	  &lt;file type=&quot;log4net.Util.PatternString&quot; value=&quot;[你的路徑]\temp\%date&#123;yyyy&#125;\%date&#123;MM&#125;\%date&#123;dd&#125;\&quot; /&gt;</span><br><span class="line">	  &lt;staticLogFileName value=&quot;false&quot;/&gt;</span><br><span class="line">	  &lt;appendToFile value=&quot;true&quot;/&gt;</span><br><span class="line">	  &lt;!--設定檔案分割依據Date和Size--&gt;</span><br><span class="line">	  &lt;rollingStyle value=&quot;Composite&quot;/&gt;</span><br><span class="line">	  &lt;!--設定每個檔案的大小--&gt;</span><br><span class="line">	  &lt;MaximumFileSize value=&quot;250KB&quot; /&gt;</span><br><span class="line">	  &lt;!--設定分割檔案的最大數量--&gt;</span><br><span class="line">	  &lt;maxSizeRollBackups value=&quot;2000&quot; /&gt;</span><br><span class="line">	  &lt;!--log檔案的命名--&gt;</span><br><span class="line">	  &lt;datePattern value=&quot;yyyy-MM-dd-HH-DB3.lo\g&quot;/&gt;</span><br><span class="line">	  &lt;layout type=&quot;log4net.Layout.PatternLayout&quot;&gt;</span><br><span class="line">		&lt;conversionPattern value=&quot;[%date] [%-5level] From %logger%newline  %file:%line [%property&#123;NDC&#125;]%newline  %message%newline%newline&quot; /&gt;</span><br><span class="line">	  &lt;/layout&gt;</span><br><span class="line">	  &lt;filter type=&quot;log4net.Filter.LevelRangeFilter&quot;&gt;</span><br><span class="line">		&lt;param name=&quot;LevelMin&quot; value=&quot;WARN&quot;/&gt;</span><br><span class="line">	  &lt;/filter&gt;</span><br><span class="line">	&lt;/appender&gt;</span><br><span class="line">	&lt;root&gt;</span><br><span class="line">	  &lt;level value=&quot;ALL&quot;/&gt;</span><br><span class="line">	  &lt;appender-ref ref=&quot;DBRollingFileAppender&quot;/&gt;</span><br><span class="line">	  &lt;appender-ref ref=&quot;SystemRollingFileAppender&quot;/&gt;</span><br><span class="line">	  &lt;appender-ref ref=&quot;ErrorRollingFileAppender&quot;/&gt;</span><br><span class="line">	&lt;/root&gt;</span><br><span class="line">&lt;/log4net&gt;</span><br></pre></td></tr></table></figure> 
+      <p class="article-more-link">
+        <a href="/2017/10/27/2017010/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -584,18 +576,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-      <aside class="wrap-side-operation">
+ <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -609,51 +596,38 @@
         
         
     </div>
-</aside>
-
-
-        
+</aside> 
 
   
-    <article id="post-20171027" class="article article-type-post  article-index"
-  itemscope itemprop="blogPost">
+    <article
+  id="post-20171027"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 itemprop="name">
       <a class="article-title" href="/2017/10/27/20171027/">透過 SmtpClient 寄送 Mail 時，主旨在 Zimbra 會有 ? 的狀況</a>
     </h1>
   
-
-          
-            <a href="/2017/10/27/20171027/" class="archive-article-date">
+  <a href="/2017/10/27/20171027/" class="archive-article-date">
   	<time datetime="2017-10-27T03:21:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-27</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                            <h3 id="最近同事詢問透過-SmtpClient-去寄送-Mail-時，在-Zimbra-的-Web-界面看會有-的狀況，如下圖，"><a href="#最近同事詢問透過-SmtpClient-去寄送-Mail-時，在-Zimbra-的-Web-界面看會有-的狀況，如下圖，" class="headerlink" title="最近同事詢問透過 SmtpClient 去寄送 Mail 時，在 Zimbra 的 Web 界面看會有 ? 的狀況，如下圖，"></a>最近同事詢問透過 <a target="_blank" rel="noopener" href="https://msdn.microsoft.com/zh-tw/library/system.net.mail.smtpclient">SmtpClient</a> 去寄送 Mail 時，在 Zimbra 的 Web 界面看會有 ? 的狀況，如下圖，</h3><img src="/2017/10/27/20171027/001.png" class="" title="slug">
-                              
-                                <p class="article-more-link">
-                                  <a target="_blank" rel="noopener" href="//2017/10/27/20171027/#more">
-                                    more &gt;&gt;
-                                  </a>
-                                </p>
-                                
-                                  
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="最近同事詢問透過-SmtpClient-去寄送-Mail-時，在-Zimbra-的-Web-界面看會有-的狀況，如下圖，"><a href="#最近同事詢問透過-SmtpClient-去寄送-Mail-時，在-Zimbra-的-Web-界面看會有-的狀況，如下圖，" class="headerlink" title="最近同事詢問透過 SmtpClient 去寄送 Mail 時，在 Zimbra 的 Web 界面看會有 ? 的狀況，如下圖，"></a>最近同事詢問透過 <a target="_blank" rel="noopener" href="https://msdn.microsoft.com/zh-tw/library/system.net.mail.smtpclient">SmtpClient</a> 去寄送 Mail 時，在 Zimbra 的 Web 界面看會有 ? 的狀況，如下圖，</h3><img src="/2017/10/27/20171027/001.png" class="" title="slug"> 
+      <p class="article-more-link">
+        <a href="/2017/10/27/20171027/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -688,18 +662,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-      <aside class="wrap-side-operation">
+ <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -713,51 +682,38 @@
         
         
     </div>
-</aside>
-
-
-        
+</aside> 
 
   
-    <article id="post-20171017-2" class="article article-type-post  article-index"
-  itemscope itemprop="blogPost">
+    <article
+  id="post-20171017-2"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 itemprop="name">
       <a class="article-title" href="/2017/10/17/20171017-2/">Compiling IB documents for earlier than iOS 7 is no longer supported.</a>
     </h1>
   
-
-          
-            <a href="/2017/10/17/20171017-2/" class="archive-article-date">
+  <a href="/2017/10/17/20171017-2/" class="archive-article-date">
   	<time datetime="2017-10-17T05:34:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-17</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                            <h3 id="最近透過-Xcode-9-建置舊的-Cordova-專案，在建置時就發生-Compiling-IB-documents-for-earlier-than-iOS-7-is-no-longer-supported-的錯誤，依Illegal-Configuration-Compiling-IB-documents-for-earlier-than-iOS-7-is-no-longer-supported的說明，只要將-Interface-Builder-Document-的-Builds-for-改成-iOS-7-0-後版本就可以了，如下圖所示，"><a href="#最近透過-Xcode-9-建置舊的-Cordova-專案，在建置時就發生-Compiling-IB-documents-for-earlier-than-iOS-7-is-no-longer-supported-的錯誤，依Illegal-Configuration-Compiling-IB-documents-for-earlier-than-iOS-7-is-no-longer-supported的說明，只要將-Interface-Builder-Document-的-Builds-for-改成-iOS-7-0-後版本就可以了，如下圖所示，" class="headerlink" title="最近透過 Xcode 9 建置舊的 Cordova 專案，在建置時就發生 Compiling IB documents for earlier than iOS 7 is no longer supported. 的錯誤，依Illegal Configuration: Compiling IB documents for earlier than iOS 7 is no longer supported的說明，只要將 Interface Builder Document 的 Builds for 改成 iOS 7.0 後版本就可以了，如下圖所示，"></a>最近透過 Xcode 9 建置舊的 Cordova 專案，在建置時就發生 <em>Compiling IB documents for earlier than iOS 7 is no longer supported.</em> 的錯誤，依<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/44429415/illegal-configuration-compiling-ib-documents-for-earlier-than-ios-7-is-no-longe">Illegal Configuration: Compiling IB documents for earlier than iOS 7 is no longer supported</a>的說明，只要將 Interface Builder Document 的 <em>Builds for</em> 改成 iOS 7.0 後版本就可以了，如下圖所示，</h3><img src="/2017/10/17/20171017-2/IBVersion.png" class="" title="slug">
-                              
-                                <p class="article-more-link">
-                                  <a target="_blank" rel="noopener" href="//2017/10/17/20171017-2/#more">
-                                    more &gt;&gt;
-                                  </a>
-                                </p>
-                                
-                                  
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="最近透過-Xcode-9-建置舊的-Cordova-專案，在建置時就發生-Compiling-IB-documents-for-earlier-than-iOS-7-is-no-longer-supported-的錯誤，依Illegal-Configuration-Compiling-IB-documents-for-earlier-than-iOS-7-is-no-longer-supported的說明，只要將-Interface-Builder-Document-的-Builds-for-改成-iOS-7-0-後版本就可以了，如下圖所示，"><a href="#最近透過-Xcode-9-建置舊的-Cordova-專案，在建置時就發生-Compiling-IB-documents-for-earlier-than-iOS-7-is-no-longer-supported-的錯誤，依Illegal-Configuration-Compiling-IB-documents-for-earlier-than-iOS-7-is-no-longer-supported的說明，只要將-Interface-Builder-Document-的-Builds-for-改成-iOS-7-0-後版本就可以了，如下圖所示，" class="headerlink" title="最近透過 Xcode 9 建置舊的 Cordova 專案，在建置時就發生 Compiling IB documents for earlier than iOS 7 is no longer supported. 的錯誤，依Illegal Configuration: Compiling IB documents for earlier than iOS 7 is no longer supported的說明，只要將 Interface Builder Document 的 Builds for 改成 iOS 7.0 後版本就可以了，如下圖所示，"></a>最近透過 Xcode 9 建置舊的 Cordova 專案，在建置時就發生 <em>Compiling IB documents for earlier than iOS 7 is no longer supported.</em> 的錯誤，依<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/44429415/illegal-configuration-compiling-ib-documents-for-earlier-than-ios-7-is-no-longe">Illegal Configuration: Compiling IB documents for earlier than iOS 7 is no longer supported</a>的說明，只要將 Interface Builder Document 的 <em>Builds for</em> 改成 iOS 7.0 後版本就可以了，如下圖所示，</h3><img src="/2017/10/17/20171017-2/IBVersion.png" class="" title="slug"> 
+      <p class="article-more-link">
+        <a href="/2017/10/17/20171017-2/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -772,18 +728,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-      <aside class="wrap-side-operation">
+ <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -797,114 +748,7 @@
         
         
     </div>
-</aside>
-
-
-        
-
-  
-    <article id="post-20171017" class="article article-type-post  article-index"
-  itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/17/20171017/">Add a profile to the provisioningProfiles dictionary in your Export Options property list.</a>
-    </h1>
-  
-
-          
-            <a href="/2017/10/17/20171017/" class="archive-article-date">
-  	<time datetime="2017-10-17T05:10:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-17</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                            <h3 id="最近透過-xcodebuild-來產生-ipa-檔時，以下的錯誤，"><a href="#最近透過-xcodebuild-來產生-ipa-檔時，以下的錯誤，" class="headerlink" title="最近透過 xcodebuild 來產生 ipa 檔時，以下的錯誤，"></a>最近透過 xcodebuild 來產生 ipa 檔時，以下的錯誤，</h3><p><em>error: exportArchive: …app requires a provisioning profile.</em><br><em>Error Domain&#x3D;IDEProvisioningErrorDomain Code&#x3D;9 …requires a provisioning profile. …NSLocalizedRecoverySuggestion&#x3D;Add a profile to the “provisioningProfiles” dictionary in your Export Options property list.}</em></p>
-                              
-                                <p class="article-more-link">
-                                  <a target="_blank" rel="noopener" href="//2017/10/17/20171017/#more">
-                                    more &gt;&gt;
-                                  </a>
-                                </p>
-                                
-                                  
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ios</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">xcodebuild</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">exportArchive</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">exportOptionsPlist</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Export Options property list</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">provisioningProfiles</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Xcode 9</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
-  </div>
-</article>
-
-      <aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-        
+</aside> 
 
   
   
@@ -5305,6 +5149,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

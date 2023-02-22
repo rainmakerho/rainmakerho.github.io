@@ -163,30 +163,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-from-nlog-to-serilog-then-Grafana-Loki" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-from-nlog-to-serilog-then-Grafana-Loki"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       ASP.NET 從 NLog 到 Grafana Loki
     </h1>
   
-
-          
-            <a href="/2021/11/12/from-nlog-to-serilog-then-Grafana-Loki/" class="archive-article-date">
+  <a href="/2021/11/12/from-nlog-to-serilog-then-Grafana-Loki/" class="archive-article-date">
   	<time datetime="2021-11-12T03:39:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-12</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近一個系統中，拆成許多小小的 Service 專案，從前端UI操作如果發生問題時，<br>要查問題時，往往要去每個 Service 的 Log 檔案查看。<br>因為是實體檔案，所以要到主機上去看才行。<br>實在是蠻不方便的，不知有沒有更好的工具來幫忙呢?</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近一個系統中，拆成許多小小的 Service 專案，從前端UI操作如果發生問題時，<br>要查問題時，往往要去每個 Service 的 Log 檔案查看。<br>因為是實體檔案，所以要到主機上去看才行。<br>實在是蠻不方便的，不知有沒有更好的工具來幫忙呢?</p>
 <h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><p>要解決以上的問題，可以把 Log 送到 <a target="_blank" rel="noopener" href="https://www.elastic.co/what-is/elk-stack">ELK Stack(Elasticsearch, Logstash, Kibana)</a>，<br>或是使用 <a target="_blank" rel="noopener" href="https://grafana.com/oss/loki/">Grafana Loki</a>。<br>接下來以 <a target="_blank" rel="noopener" href="https://github.com/rainmakerho/ps-microservices-getting-started">rainmakerho&#x2F;ps-microservices-getting-started</a> 來練習從加入 Log 到最後使用 <a target="_blank" rel="noopener" href="https://grafana.com/oss/loki/">Grafana Loki</a>。</p>
 <h4 id="環境準備"><a href="#環境準備" class="headerlink" title="環境準備"></a>環境準備</h4><ul>
 <li><a target="_blank" rel="noopener" href="https://dotnet.microsoft.com/download">.NET Core 3.1 SDK</a></li>
@@ -258,15 +256,10 @@
 <li>請切換到 <strong>Grafana-loki</strong> Branch 練習</li>
 </ul>
 <h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a target="_blank" rel="noopener" href="https://grafana.com/docs/grafana/v7.5/datasources/loki/">Using Loki in Grafana</a><br><a target="_blank" rel="noopener" href="https://github.com/grafana/loki/issues/609">Grafana always report “Error connecting to datasource: Loki: Bad Gateway. 502”</a><br><a target="_blank" rel="noopener" href="https://grafana.com/docs/loki/latest/getting-started/grafana/">Loki in Grafana</a></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -289,18 +282,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2021/11/18/Client-Heuristic-Poor-XSS-Validation/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -319,9 +307,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -335,38 +321,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4759,6 +4738,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

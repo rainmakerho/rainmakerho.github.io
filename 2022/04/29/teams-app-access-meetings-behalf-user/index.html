@@ -159,30 +159,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-teams-app-access-meetings-behalf-user" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-teams-app-access-meetings-behalf-user"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       Teams App 代替使用者建立線上會議，讓該使用者為會議主持人
     </h1>
   
-
-          
-            <a href="/2022/04/29/teams-app-access-meetings-behalf-user/" class="archive-article-date">
+  <a href="/2022/04/29/teams-app-access-meetings-behalf-user/" class="archive-article-date">
   	<time datetime="2022-04-29T02:53:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-04-29</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>Application 可以設定所需要的 Permissions，<br>再透過 Microsoft Graph API 去存取。<br>而所需的 Permissions ，可以區分成 <strong>Delegated</strong> 及 <strong>Application</strong>，<br>詳細可以參考 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/graph/permissions-reference">Microsoft Graph permissions reference</a>。<br>大部份是設定 <strong>Delegated</strong> 的 Permissions 讓 End User 去做自已的事，<br>我們有個情境需要替使用者建立一個線上會議，所以需要的就是 <strong>Application</strong> 的 <strong>OnlineMeetings.ReadWrite.All</strong> Permission。</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>Application 可以設定所需要的 Permissions，<br>再透過 Microsoft Graph API 去存取。<br>而所需的 Permissions ，可以區分成 <strong>Delegated</strong> 及 <strong>Application</strong>，<br>詳細可以參考 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/graph/permissions-reference">Microsoft Graph permissions reference</a>。<br>大部份是設定 <strong>Delegated</strong> 的 Permissions 讓 End User 去做自已的事，<br>我們有個情境需要替使用者建立一個線上會議，所以需要的就是 <strong>Application</strong> 的 <strong>OnlineMeetings.ReadWrite.All</strong> Permission。</p>
 <h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><h4 id="1-在-Azure-AD-註冊-App"><a href="#1-在-Azure-AD-註冊-App" class="headerlink" title="1.在 Azure AD 註冊 App"></a>1.在 Azure AD 註冊 App</h4><p>所以可以依 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/graph/auth-v2-service">Get access without a user</a> 來註冊 App 並設定 <strong>User.Read.All</strong>(測試用) 及 <strong>OnlineMeetings.ReadWrite.All</strong> Permissions，並建立 App 的 Client secrets。</p>
 <h4 id="2-Grant-admin-consent"><a href="#2-Grant-admin-consent" class="headerlink" title="2.Grant admin consent"></a>2.Grant admin consent</h4><p>註冊好之後，請 Azure AD 管理人員到 Azure Active Directory -&gt; App registrations 找到 註冊的 App ，<br>點選該 App ，再點選 API permissions 去 <strong>Grant admin consent</strong></p>
 <img src="/2022/04/29/teams-app-access-meetings-behalf-user/01.png" class="" title="Grant admin consent">
@@ -229,15 +227,10 @@
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Grant-CsApplicationAccessPolicy</span> <span class="literal">-Identity</span> <span class="string">&quot;使用者的ObjectId&quot;</span> <span class="literal">-PolicyName</span> <span class="variable">$Null</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/graph/cloud-communication-online-meeting-application-access-policy">Allow applications to access online meetings on behalf of a user</a><br><a target="_blank" rel="noopener" href="https://blog.thoughtstuff.co.uk/2020/09/you-can-now-create-microsoft-teams-meetings-as-an-application-without-a-users-needing-to-be-present-heres-how-to-use-application-access-policy/">You can now create Microsoft Teams meetings as an application without a users needing to be present: here’s how to use Application Access Policy</a><br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/microsoftteams/teams-powershell-install">Install Microsoft Teams PowerShell Module</a><br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/graph/auth-v2-service">Get access without a user</a><br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/graph/api/application-post-onlinemeetings?view=graph-rest-1.0&amp;tabs=http&tabs=http">Create onlineMeeting</a><br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/microsoft-365/enterprise/manage-skype-for-business-online-with-microsoft-365-powershell?view=o365-worldwide">Manage Skype for Business Online with PowerShell</a></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -272,18 +265,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2022/05/04/teams-create-enable-online-meeting/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -302,9 +290,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -318,38 +304,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4742,6 +4721,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

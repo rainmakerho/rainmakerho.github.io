@@ -151,41 +151,34 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Azure-WebApp-Access-KeyVault-RBAC" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-Azure-WebApp-Access-KeyVault-RBAC"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       Azure AD 地端的 Web App 透過 RBAC 存取 Azure Key Vault
     </h1>
   
-
-          
-            <a href="/2021/11/28/Azure-WebApp-Access-KeyVault-RBAC/" class="archive-article-date">
+  <a href="/2021/11/28/Azure-WebApp-Access-KeyVault-RBAC/" class="archive-article-date">
   	<time datetime="2021-11-28T08:14:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-28</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>我們在 Azure AD 中註冊一個地端 Web App (myapp)，而它註冊後，同時也會有一個 azure service principal 叫 myapp。<br>如果要在 myapp 中取得放在 Azure Key Vault 中的 Secret 要怎麼設定呢?</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>我們在 Azure AD 中註冊一個地端 Web App (myapp)，而它註冊後，同時也會有一個 azure service principal 叫 myapp。<br>如果要在 myapp 中取得放在 Azure Key Vault 中的 Secret 要怎麼設定呢?</p>
 <h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><p>設定方式及程式寫作方式可依<a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/azure/key-vault/general/tutorial-net-create-vault-azure-web-app">Tutorial: Use a managed identity to connect Key Vault to an Azure web app in .NET</a>。<br>但因為系統是放在地端，所以要將 DefaultAzureCredential 改用 <a target="_blank" rel="noopener" href="https://azuresdkdocs.blob.core.windows.net/$web/dotnet/Azure.Identity/1.0.0/api/Azure.Identity/Azure.Identity.ClientSecretCredential.html">ClientSecretCredential</a> 。<br>因為 <a target="_blank" rel="noopener" href="https://azuresdkdocs.blob.core.windows.net/$web/dotnet/Azure.Identity/1.0.0/api/Azure.Identity/Azure.Identity.ClientSecretCredential.html">ClientSecretCredential</a> 需要 tenantId, clientId 及 clientSecret ，<br>所以需要在 myapp 的 Manage -&gt; Certificates &amp; secrets 功能中，新增一個 Client Secret 並取得它的值即可。</p>
 <h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/azure/key-vault/general/tutorial-net-create-vault-azure-web-app">Tutorial: Use a managed identity to connect Key Vault to an Azure web app in .NET</a></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -212,18 +205,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2021/12/01/pdf-convert-2-png-tiff/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -242,9 +230,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -258,38 +244,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4682,6 +4661,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

@@ -159,30 +159,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2020005" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-2020005"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       ASP.NET Security Headers
     </h1>
   
-
-          
-            <a href="/2020/05/12/2020005/" class="archive-article-date">
+  <a href="/2020/05/12/2020005/" class="archive-article-date">
   	<time datetime="2020-05-12T01:29:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-12</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>Browser 可以透過 Http Header 來啟用一些保護機制，所以可以透過設定這些 Header 來讓我們的 Web Application 更安全。<br>要測試網頁的安全性 Header 是否有設定可以到 <a target="_blank" rel="noopener" href="https://securityheaders.com/">https://securityheaders.com/</a> 這個網站來掃看看。</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>Browser 可以透過 Http Header 來啟用一些保護機制，所以可以透過設定這些 Header 來讓我們的 Web Application 更安全。<br>要測試網頁的安全性 Header 是否有設定可以到 <a target="_blank" rel="noopener" href="https://securityheaders.com/">https://securityheaders.com/</a> 這個網站來掃看看。</p>
 <h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><p>如果在 Local 開發沒有對外的話，可以透過 <a target="_blank" rel="noopener" href="https://ngrok.com/">ngrok</a> 來建立對外的 url。<br>例如我的網站是 localhost:44375 ，那在 Command 視窗中輸入 ngrok http -host-header&#x3D;”localhost:44375” 44375 ，它就會幫我建立對外的網站</p>
 <img src="/2020/05/12/2020005/001.png" class="" title="ngrok">
 
@@ -206,15 +204,10 @@
 <img src="/2020/05/12/2020005/006.png" class="" title="加了Headers後">
 
 <h3 id="參考網站"><a href="#參考網站" class="headerlink" title="參考網站"></a>參考網站</h3><p><a target="_blank" rel="noopener" href="https://securityheaders.com/">Security Headers</a><br><a target="_blank" rel="noopener" href="https://report-uri.com/home/generate">Content-Security-Policy Generate</a><br><a target="_blank" rel="noopener" href="https://www.techwyse.com/blog/search-engine-optimization/what-you-need-to-know-about-rel-noreferrer-attribute/">What You Need to Know about rel&#x3D;”noreferrer” Attribute</a><br><a target="_blank" rel="noopener" href="https://caniuse.com/">Can I use</a></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -245,18 +238,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2020/05/13/2020006/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -275,9 +263,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -291,38 +277,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4715,6 +4694,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

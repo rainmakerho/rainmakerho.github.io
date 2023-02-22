@@ -159,30 +159,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-protect-static-files-in-aspx" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-protect-static-files-in-aspx"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       ASP.NET 中如何保護靜態檔案，例如 XLS, DOC or TXT 等檔案?
     </h1>
   
-
-          
-            <a href="/2021/09/23/protect-static-files-in-aspx/" class="archive-article-date">
+  <a href="/2021/09/23/protect-static-files-in-aspx/" class="archive-article-date">
   	<time datetime="2021-09-23T05:37:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-23</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 ASP.NET 中，透過 URL 取得靜態檔案(例如: <a target="_blank" rel="noopener" href="http://rm.com/download/d1.txt">http://rm.com/download/d1.txt</a>) 並不會透過 ASP.NET Handler 去處理，<br>所以當透過 Browser 直接輸入 URL 時，會直接依 IIS 中針對附檔名的設定，選取對應的處理常式(可查看 IIS 中的 <strong>處理常式對應</strong>)來處理，<br>預設是 StaticFile ，所以這些靜態檔案會依 IIS 中 MIME 的設定來決定在 Browser 直接顯示內容，還是下載檔案。<br>那要讓 TXT, XLS 等檔案在透過 URL 下載時，先驗證是否有登入系統才可下載要如何做呢?<br>當然是寫個客製化的 HttpHandler 來處理。<br>但是應用程式在 <strong>傳統模式</strong> or <strong>整合模式</strong> 的設定是不同的。</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 ASP.NET 中，透過 URL 取得靜態檔案(例如: <a target="_blank" rel="noopener" href="http://rm.com/download/d1.txt">http://rm.com/download/d1.txt</a>) 並不會透過 ASP.NET Handler 去處理，<br>所以當透過 Browser 直接輸入 URL 時，會直接依 IIS 中針對附檔名的設定，選取對應的處理常式(可查看 IIS 中的 <strong>處理常式對應</strong>)來處理，<br>預設是 StaticFile ，所以這些靜態檔案會依 IIS 中 MIME 的設定來決定在 Browser 直接顯示內容，還是下載檔案。<br>那要讓 TXT, XLS 等檔案在透過 URL 下載時，先驗證是否有登入系統才可下載要如何做呢?<br>當然是寫個客製化的 HttpHandler 來處理。<br>但是應用程式在 <strong>傳統模式</strong> or <strong>整合模式</strong> 的設定是不同的。</p>
 <h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>1.建立客製化的 HttpHandler (FileProtectionHandler)<br>FileProtectionHandler 主要判斷使用者是否已登入(User.Identity.IsAuthenticated)，如下，</p>
 <figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Public</span> <span class="keyword">Class</span> FileProtectionHandler</span><br><span class="line">    <span class="keyword">Implements</span> IHttpHandler</span><br><span class="line"></span><br><span class="line">    <span class="keyword">Public</span> <span class="keyword">ReadOnly</span> <span class="keyword">Property</span> IsReusable <span class="keyword">As</span> <span class="type">Boolean</span> <span class="keyword">Implements</span> IHttpHandler.IsReusable</span><br><span class="line">        <span class="keyword">Get</span></span><br><span class="line">            <span class="keyword">Return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">End</span> <span class="keyword">Get</span></span><br><span class="line">    <span class="keyword">End</span> <span class="keyword">Property</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">Public</span> <span class="keyword">Sub</span> ProcessRequest(context <span class="keyword">As</span> HttpContext) <span class="keyword">Implements</span> IHttpHandler.ProcessRequest</span><br><span class="line">        <span class="comment">&#x27;驗證必需要登入後，才可以下載</span></span><br><span class="line">        <span class="keyword">If</span> context.User.Identity.IsAuthenticated = <span class="literal">False</span> <span class="keyword">Then</span></span><br><span class="line">            <span class="keyword">Throw</span> <span class="built_in">New</span> HttpException(<span class="number">401</span>, <span class="string">&quot;Auth Failed&quot;</span>)</span><br><span class="line">        <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">        <span class="comment">&#x27;註: 可再加入要檢查的 Logic</span></span><br><span class="line">        <span class="comment">&#x27;要求的檔案</span></span><br><span class="line">        <span class="keyword">Dim</span> downloadFile = context.Server.MapPath(context.Request.FilePath)</span><br><span class="line">        <span class="comment">&#x27;使用下載檔案的方式</span></span><br><span class="line">        context.Response.ContentType = <span class="string">&quot;application/octet-stream&quot;</span></span><br><span class="line">        context.Response.TransmitFile(downloadFile)</span><br><span class="line">        context.Response.<span class="keyword">End</span>()</span><br><span class="line">    <span class="keyword">End</span> <span class="keyword">Sub</span></span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Class</span></span><br></pre></td></tr></table></figure>
 
@@ -218,15 +216,10 @@
 <h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/previous-versions/aspnet/46c5ddfy(v=vs.100)">How to: Register HTTP Handlers</a></p>
 <p><a target="_blank" rel="noopener" href="https://medium.com/karthickcse05/http-handler-in-asp-net-7c39e40c64b9">Protect Static Files in ASP.NET Web Forms With the Help of HTTP Handler</a></p>
 <p><a target="_blank" rel="noopener" href="https://demo.tc/Post/93">透過IHttpHandler讓檔案必須登入才可下載</a></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -273,18 +266,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2021/09/26/kendo-jszip-CVE-2021-23413/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -303,9 +291,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -319,38 +305,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4743,6 +4722,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

@@ -151,30 +151,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2019019" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-2019019"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       double.parse cause Input string was not in a correct format Error
     </h1>
   
-
-          
-            <a href="/2019/07/19/2019019/" class="archive-article-date">
+  <a href="/2019/07/19/2019019/" class="archive-article-date">
   	<time datetime="2019-07-19T08:09:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-19</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近同事遇到在 XML 解析上發生問題，但資料肉眼卻看不出來異狀。<br>今天又在 stackoverflow 上看到<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/57107030/c-sharp-double-parsing-giving-an-error-when-it-shouldnt#57107469">C# Double Parsing Giving an error when it shouldn’t</a>利用 double.parse 遇到 “240000” 時，卻會發生 Input string was not in a correct format 的錯誤。</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近同事遇到在 XML 解析上發生問題，但資料肉眼卻看不出來異狀。<br>今天又在 stackoverflow 上看到<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/57107030/c-sharp-double-parsing-giving-an-error-when-it-shouldnt#57107469">C# Double Parsing Giving an error when it shouldn’t</a>利用 double.parse 遇到 “240000” 時，卻會發生 Input string was not in a correct format 的錯誤。</p>
 <h3 id="研究"><a href="#研究" class="headerlink" title="研究"></a>研究</h3><p><a target="_blank" rel="noopener" href="https://stackoverflow.com/users/1612975/thegeneral">TheGeneral</a>很快地發現，並不是 240000 有問題，而是他的資料”240000”中，有不可視字元。<br>所以如果用題問者的字串(t1)，跟自已 key 一個字串(t2)來看，當 parse 到 t1 時，的確會發生錯誤，如下，</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> t1 = <span class="string">&quot;240000‬&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> t2 = <span class="string">&quot;240000&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> do2 = <span class="built_in">double</span>.Parse(t2);</span><br><span class="line"><span class="keyword">var</span> do1 = <span class="built_in">double</span>.Parse(t1); <span class="comment">//這裡會噴錯</span></span><br></pre></td></tr></table></figure>
 
@@ -186,15 +184,10 @@
 <img src="/2019/07/19/2019019/002.png" class="" title="unprintable char">
 <p>所以當有類似的問題，而眼睛又看不出來時，可以將該內容的字元列印出來比對看看哦!</p>
 <h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/57107030/c-sharp-double-parsing-giving-an-error-when-it-shouldnt#57107469">C# Double Parsing Giving an error when it shouldn’t</a></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -209,18 +202,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2019/07/31/2019020/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -239,9 +227,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -255,38 +241,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4679,6 +4658,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

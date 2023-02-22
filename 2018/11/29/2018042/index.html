@@ -157,30 +157,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2018042" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-2018042"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       PDF 最後一頁才顯示頁尾
     </h1>
   
-
-          
-            <a href="/2018/11/29/2018042/" class="archive-article-date">
+  <a href="/2018/11/29/2018042/" class="archive-article-date">
   	<time datetime="2018-11-29T06:46:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-29</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 <a href="https://rainmakerho.github.io/2018/07/13/2018024/">將 datatable 的資料轉出成有浮水印的 PDF 檔 (2)</a> 中，我們已可以將 datatable 的資料轉出有浮水印的 pdf 檔。 但客戶有個需求是， footer 可以在最後一頁才顯示嗎?</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 <a href="https://rainmakerho.github.io/2018/07/13/2018024/">將 datatable 的資料轉出成有浮水印的 PDF 檔 (2)</a> 中，我們已可以將 datatable 的資料轉出有浮水印的 pdf 檔。 但客戶有個需求是， footer 可以在最後一頁才顯示嗎?</p>
 <p>因為我們是透過 Excel 去轉成 PDF ，於是就研究看看 Excel 是否可在最後一頁才顯示，參考 <a target="_blank" rel="noopener" href="https://answers.microsoft.com/zh-hant/msoffice/forum/all/excel/96f86bb2-3187-4e54-acb6-6d1d9be81468">Excel 有多頁列時，只希望列印最後一頁的頁尾，其他分頁都不會印出</a> 似乎不容易 (啓動巨集呢!)</p>
 <h3 id="研究"><a href="#研究" class="headerlink" title="研究"></a>研究</h3><p>Excel 無法操作，那就看看 PDF 是否可以加工，研究了一下，可以在不同的 Page 中加入 Header 及 Footer 。<br>所以在產生 PDF 後，在最後一頁加入我們要的 Footer 就可以了。<br>程式如下，</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> MemoryStream <span class="title">AddFooterAndWatermark</span>(<span class="params">MemoryStream pdfStream, WatermarkArg arg</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">var</span> pdfDocument = <span class="keyword">new</span> Aspose.Pdf.Document(pdfStream);</span><br><span class="line">	<span class="keyword">var</span> pdfLastPage = pdfDocument.Pages[pdfDocument.Pages.Count];</span><br><span class="line">	<span class="keyword">var</span> footer = <span class="keyword">new</span> Aspose.Pdf.HeaderFooter();</span><br><span class="line">	<span class="comment">//Instantiate a table object</span></span><br><span class="line">	Aspose.Pdf.Table tab1 = <span class="keyword">new</span> Aspose.Pdf.Table();</span><br><span class="line">	tab1.HorizontalAlignment = HorizontalAlignment.Center;</span><br><span class="line">	<span class="comment">//設定預設的文字格式</span></span><br><span class="line">	<span class="keyword">var</span> defaultTextState = <span class="keyword">new</span> TextState(<span class="string">&quot;MingLiU&quot;</span>, <span class="number">8</span>);</span><br><span class="line">	footer.Paragraphs.Add(tab1);</span><br><span class="line">	tab1.DefaultColumnWidth = <span class="string">&quot;180&quot;</span>;</span><br><span class="line">	tab1.DefaultCellTextState = defaultTextState;</span><br><span class="line">	<span class="comment">//Create rows in the table and then cells in the rows</span></span><br><span class="line">	<span class="keyword">var</span> row1 = tab1.Rows.Add();</span><br><span class="line">	<span class="keyword">var</span> cellL = row1.Cells.Add(<span class="string">&quot;信用資訊查詢主管&quot;</span>);</span><br><span class="line">	<span class="comment">//cellL.DefaultCellTextState = defaultTextState;</span></span><br><span class="line">	cellL.Alignment = HorizontalAlignment.Left;</span><br><span class="line">	<span class="keyword">var</span> cellR = row1.Cells.Add(<span class="string">&quot;經辦&quot;</span>);</span><br><span class="line">	cellR.Alignment = HorizontalAlignment.Right;</span><br><span class="line">	pdfLastPage.Footer = footer;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (!<span class="built_in">string</span>.IsNullOrWhiteSpace(arg.Watermark))</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">var</span> text = <span class="keyword">new</span> FormattedText(arg.Watermark);</span><br><span class="line">		<span class="keyword">foreach</span> (<span class="keyword">var</span> page <span class="keyword">in</span> pdfDocument.Pages)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">switch</span> (arg.WMStyle)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">case</span> WatermarkStyle.FitPage:</span><br><span class="line">					AddWatermarkFitPage(page, arg);</span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line">				<span class="keyword">case</span> WatermarkStyle.RepeatHorizontal:</span><br><span class="line">					AddWatermarkRepeatHorizontal(page, arg);</span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">				<span class="literal">default</span>:</span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">var</span> newPdfStream = <span class="keyword">new</span> MemoryStream();</span><br><span class="line">	pdfDocument.Save(newPdfStream);</span><br><span class="line">	<span class="keyword">return</span> newPdfStream;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
@@ -198,15 +196,10 @@
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 中文字型名稱 ，或是機碼中的名稱大小寫不對，都會錯誤</span></span><br><span class="line"><span class="keyword">var</span> textStateFromFontCName = <span class="keyword">new</span> TextState(<span class="string">&quot;標楷體&quot;</span>, <span class="number">8</span>);</span><br><span class="line"><span class="keyword">var</span> textStateFromFontEName= <span class="keyword">new</span> TextState(<span class="string">&quot;DFKai-sb&quot;</span>, <span class="number">8</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 機碼中是 DFKai-SB</span></span><br><span class="line"><span class="keyword">var</span> textStateFromFontEName= <span class="keyword">new</span> TextState(<span class="string">&quot;DFKai-SB&quot;</span>, <span class="number">8</span>);</span><br></pre></td></tr></table></figure>
 
 <img src="/2018/11/29/2018042/002.png" class="" title="[標楷體DFKai-SB]">
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -245,18 +238,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2018/12/05/2018043/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -275,9 +263,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -291,38 +277,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4715,6 +4694,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

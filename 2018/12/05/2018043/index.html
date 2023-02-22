@@ -153,30 +153,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2018043" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-2018043"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       .NET SmtpClient Send Port 465 會發生 The operations timed out.
     </h1>
   
-
-          
-            <a href="/2018/12/05/2018043/" class="archive-article-date">
+  <a href="/2018/12/05/2018043/" class="archive-article-date">
   	<time datetime="2018-12-05T08:51:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-05</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近公司的 Mail Server 要全面走 SSL，所以 Port 改使用 465 。<br>所以程式中寄 Mail 的部份也要調整成啟用 SSL ， Port 改成 465 。<br>但程式一執行下去，就 Hang 一段時間，然後噴「The operations timed out」的錯誤。</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近公司的 Mail Server 要全面走 SSL，所以 Port 改使用 465 。<br>所以程式中寄 Mail 的部份也要調整成啟用 SSL ， Port 改成 465 。<br>但程式一執行下去，就 Hang 一段時間，然後噴「The operations timed out」的錯誤。</p>
 <h3 id="研究"><a href="#研究" class="headerlink" title="研究"></a>研究</h3><p>上網查了一下，蠻多人遇到這問題的，如果使用 SmtpClient 去送的話，就會 timeout 。<br>建議改成 587 ，我將它改成了 587 之後，果然就順利送出了。</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> server = <span class="string">&quot;yourmailserver&quot;</span>;</span><br><span class="line"><span class="built_in">string</span> to = <span class="string">&quot;s.fer@rm.com.tw&quot;</span>;</span><br><span class="line"><span class="built_in">string</span> <span class="keyword">from</span> = <span class="string">&quot;rm@rm.com.tw&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> message = <span class="keyword">new</span> MailMessage(<span class="keyword">from</span>, to);</span><br><span class="line">message.Subject = <span class="string">&quot;Using the new SMTP client.&quot;</span>;</span><br><span class="line">message.Body = <span class="string">@&quot;Using this new feature, you can send an email message from an application very easily.&quot;</span>;</span><br><span class="line">SmtpClient client = <span class="keyword">new</span> SmtpClient(server);</span><br><span class="line"><span class="comment">// Credentials are necessary if the server requires the client</span></span><br><span class="line"><span class="comment">// to authenticate before it will send email on the client&#x27;s behalf.</span></span><br><span class="line">client.Credentials = <span class="keyword">new</span> System.Net.NetworkCredential(<span class="string">&quot;youraccount&quot;</span>, <span class="string">&quot;yourpwd&quot;</span>);</span><br><span class="line"><span class="comment">// client.Port = 465;</span></span><br><span class="line"><span class="comment">// 改成 587, 465 會噴 The operations timed out</span></span><br><span class="line">client.Port = <span class="number">587</span>;</span><br><span class="line">client.EnableSsl = <span class="literal">true</span>;</span><br><span class="line">client.Send(message);</span><br></pre></td></tr></table></figure>
 
@@ -184,15 +182,10 @@
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">System.Web.Mail.MailMessage myMail = <span class="keyword">new</span> System.Web.Mail.MailMessage();</span><br><span class="line">myMail.Fields.Add</span><br><span class="line">    (<span class="string">&quot;http://schemas.microsoft.com/cdo/configuration/smtpserver&quot;</span>,</span><br><span class="line">                  <span class="string">&quot;yourmailserver&quot;</span>);</span><br><span class="line">myMail.Fields.Add</span><br><span class="line">    (<span class="string">&quot;http://schemas.microsoft.com/cdo/configuration/smtpserverport&quot;</span>,</span><br><span class="line">                  <span class="string">&quot;465&quot;</span>);</span><br><span class="line">myMail.Fields.Add</span><br><span class="line">    (<span class="string">&quot;http://schemas.microsoft.com/cdo/configuration/sendusing&quot;</span>,</span><br><span class="line">                  <span class="string">&quot;2&quot;</span>);</span><br><span class="line"><span class="comment">//sendusing: cdoSendUsingPort, value 2, for sending the message using</span></span><br><span class="line"><span class="comment">//the network.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//smtpauthenticate: Specifies the mechanism used when authenticating</span></span><br><span class="line"><span class="comment">//to an SMTP</span></span><br><span class="line"><span class="comment">//service over the network. Possible values are:</span></span><br><span class="line"><span class="comment">//- cdoAnonymous, value 0. Do not authenticate.</span></span><br><span class="line"><span class="comment">//- cdoBasic, value 1. Use basic clear-text authentication.</span></span><br><span class="line"><span class="comment">//When using this option you have to provide the user name and password</span></span><br><span class="line"><span class="comment">//through the sendusername and sendpassword fields.</span></span><br><span class="line"><span class="comment">//- cdoNTLM, value 2. The current process security context is used to</span></span><br><span class="line"><span class="comment">// authenticate with the service.</span></span><br><span class="line">myMail.Fields.Add</span><br><span class="line">(<span class="string">&quot;http://schemas.microsoft.com/cdo/configuration/smtpauthenticate&quot;</span>, <span class="string">&quot;1&quot;</span>);</span><br><span class="line"><span class="comment">//Use 0 for anonymous</span></span><br><span class="line">myMail.Fields.Add</span><br><span class="line">(<span class="string">&quot;http://schemas.microsoft.com/cdo/configuration/sendusername&quot;</span>,</span><br><span class="line">    <span class="string">&quot;username&quot;</span>);</span><br><span class="line">myMail.Fields.Add</span><br><span class="line">(<span class="string">&quot;http://schemas.microsoft.com/cdo/configuration/sendpassword&quot;</span>,</span><br><span class="line">      <span class="string">&quot;userpwd&quot;</span>);</span><br><span class="line">myMail.Fields.Add</span><br><span class="line">(<span class="string">&quot;http://schemas.microsoft.com/cdo/configuration/smtpusessl&quot;</span>,</span><br><span class="line">      <span class="string">&quot;true&quot;</span>);</span><br><span class="line">myMail.From = <span class="string">&quot;rm@rm.com.tw&quot;</span></span><br><span class="line">myMail.To = <span class="string">&quot;s.fer@rm.com.tw&quot;</span>;</span><br><span class="line">myMail.Subject = <span class="string">&quot;test sub&quot;</span>;</span><br><span class="line">myMail.BodyFormat = MailFormat.Html;</span><br><span class="line">myMail.Body = <span class="string">&quot;body&quot;</span>;</span><br><span class="line">System.Web.Mail.SmtpMail.SmtpServer = <span class="string">&quot;yourmailserver:465&quot;</span>;</span><br><span class="line">System.Web.Mail.SmtpMail.Send(myMail);</span><br></pre></td></tr></table></figure>
 
 <h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a target="_blank" rel="noopener" href="https://support.microsoft.com/en-ca/help/950260/you-cannot-use-system-net-mail-smtpclient-to-send-an-e-mail-message-wi">You cannot use System.Net.Mail.SmtpClient to send an e-mail message with Implicit SSL</a><br><a target="_blank" rel="noopener" href="https://support.microsoft.com/en-us/help/310273/how-to-send-e-mail-programmatically-by-using-system-web-mail-in-visual">How to send e-mail programmatically by using System.Web.Mail in Visual C# 2005 or in Visual C# .NET</a><br><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/1011245/how-can-i-send-emails-through-ssl-smtp-with-the-net-framework">How can I send emails through SSL SMTP with the .NET Framework?</a><br><a target="_blank" rel="noopener" href="https://www.mailgun.com/blog/which-smtp-port-understanding-ports-25-465-587">Which SMTP Port Should I Use? Understanding Ports 25, 465, &amp; 587</a><br><a target="_blank" rel="noopener" href="http://www.onbirkod.com/2017/10/20/solving-timeout-problem-when-sending-email-via-yandex-c/">Solving Timeout Problem When Sending Email via Yandex (C#)</a></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -227,18 +220,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2018/12/27/2018044/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -257,9 +245,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -273,38 +259,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4697,6 +4676,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

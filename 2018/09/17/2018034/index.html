@@ -153,30 +153,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2018034" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-2018034"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       Microsoft Botframework + Adaptive Cards 快速打造 Chatbot 之 2
     </h1>
   
-
-          
-            <a href="/2018/09/17/2018034/" class="archive-article-date">
+  <a href="/2018/09/17/2018034/" class="archive-article-date">
   	<time datetime="2018-09-17T01:29:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-17</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 <a href="https://rainmakerho.github.io/2018/08/02/2018030/">Microsoft Botframework + Adaptive Cards 快速打造 Chatbot</a> 一篇中，<br>我們說明如何透過 Adaptive Cards 將所有的動作透過 Action 再依它的 Action Type 來轉換成對應的 Action 物件及處理該 Action 物件的 Strategy 物件。</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 <a href="https://rainmakerho.github.io/2018/08/02/2018030/">Microsoft Botframework + Adaptive Cards 快速打造 Chatbot</a> 一篇中，<br>我們說明如何透過 Adaptive Cards 將所有的動作透過 Action 再依它的 Action Type 來轉換成對應的 Action 物件及處理該 Action 物件的 Strategy 物件。</p>
 <p>但是當我們的 Action 逾來逾多時，原本使用 switch 勢必會造成相對應的複雜度，依 Strategy 的方式是建立對應表，以下將介紹使用 Dictionary&lt;string, Func&lt;T&gt;&gt; 及 Autofac 這2種方式。</p>
 <p>另外，如果 Strategy 物件 中有使用到 Prompt dialogs 時，原本在執行完 Strategy 物件的 Method 後，如果直接呼叫 context.Done(“”); 將會造成 botframework Dialog Stack 運行上的錯誤，我們也將修正 Strategy 物件的 interface 。</p>
 <h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><h4 id="調整-Strategy-物件的建立方式"><a href="#調整-Strategy-物件的建立方式" class="headerlink" title="調整 Strategy 物件的建立方式"></a>調整 Strategy 物件的建立方式</h4><p>因為對應的 Strategy 物件變成了4個，如果用 switch 判斷的話，程式如下，</p>
@@ -202,15 +200,10 @@
 <p>所以在上面的 DoActionAsync 有依 IsContextDone 屬性來判斷是否執行 contex.Done(“”) 。</p>
 <p>經過將 switch 改以 Dictionary or  Autofac DI 方式來建立物件，改善了複雜度，也提升了可讀性。<br>另外在使用 contex.Done 的時機點，大家也要注意一下哦 :)<br>希望對大家以 Microsoft Botframework 來開發 Chatbot 有所幫助。</p>
 <h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://rainmakerho.github.io/2018/08/02/2018030/">Microsoft Botframework + Adaptive Cards 快速打造 Chatbot</a><br><a target="_blank" rel="noopener" href="https://www.dofactory.com/net/strategy-design-pattern">Strategy</a><br><a target="_blank" rel="noopener" href="https://autofaccn.readthedocs.io/en/latest/advanced/keyed-services.html">Autofac Named Services</a><br></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -237,18 +230,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2018/09/19/2018035/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -267,9 +255,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -283,38 +269,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4707,6 +4686,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

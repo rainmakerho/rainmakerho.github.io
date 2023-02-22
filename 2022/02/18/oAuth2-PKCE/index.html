@@ -157,30 +157,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-oAuth2-PKCE" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-oAuth2-PKCE"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       OAuth 2.0 - Proof Key for Code Exchange (PKCE)
     </h1>
   
-
-          
-            <a href="/2022/02/18/oAuth2-PKCE/" class="archive-article-date">
+  <a href="/2022/02/18/oAuth2-PKCE/" class="archive-article-date">
   	<time datetime="2022-02-18T00:42:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-18</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 Native applications 因為是安裝在個人的設備上面，例如 手機，個人電腦。<br>這些 Native applications 通常會跟作業系統註冊 App-Claimed https URL (<a target="_blank" rel="noopener" href="https://app.exp.com/">https://app.exp.com</a> 會開啟該 application) 或是使用 Custom URL Scheme(myapp:&#x2F;&#x2F;callback#token&#x3D;…)。<br>因為<a href="https://rainmakerho.github.io/2022/02/17/oAuth2-implicit-flow/">OAuth 2.0 - Implicit Flow</a>可以用在 public client，<br>因為 Implicit Flow 比較不安全，所以現在大多改使用 PKCE，它是擴充自 Authorization Code Flow 。<br>在 <a href="https://rainmakerho.github.io/2022/02/15/oAuth2-Basic/">OAuth 2.0 - Authorization Code Flow</a> 在取得 Token 時，需要將 client_secret 一併傳出來取得 access token ，如果是 public client 就有可能會被知道 client_secret 的值，所以 PKCE 就是動態建立 Code Verifier 來取代 client_secret。<br>以下使用<a target="_blank" rel="noopener" href="https://www.oauth.com/playground/authorization-code-with-pkce.html">OAuth 2.0 Playground - pkce</a>來演示。</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 Native applications 因為是安裝在個人的設備上面，例如 手機，個人電腦。<br>這些 Native applications 通常會跟作業系統註冊 App-Claimed https URL (<a target="_blank" rel="noopener" href="https://app.exp.com/">https://app.exp.com</a> 會開啟該 application) 或是使用 Custom URL Scheme(myapp:&#x2F;&#x2F;callback#token&#x3D;…)。<br>因為<a href="https://rainmakerho.github.io/2022/02/17/oAuth2-implicit-flow/">OAuth 2.0 - Implicit Flow</a>可以用在 public client，<br>因為 Implicit Flow 比較不安全，所以現在大多改使用 PKCE，它是擴充自 Authorization Code Flow 。<br>在 <a href="https://rainmakerho.github.io/2022/02/15/oAuth2-Basic/">OAuth 2.0 - Authorization Code Flow</a> 在取得 Token 時，需要將 client_secret 一併傳出來取得 access token ，如果是 public client 就有可能會被知道 client_secret 的值，所以 PKCE 就是動態建立 Code Verifier 來取代 client_secret。<br>以下使用<a target="_blank" rel="noopener" href="https://www.oauth.com/playground/authorization-code-with-pkce.html">OAuth 2.0 Playground - pkce</a>來演示。</p>
 <h3 id="OAuth-2-0-Authorization-Code-Flow-With-PKCE"><a href="#OAuth-2-0-Authorization-Code-Flow-With-PKCE" class="headerlink" title="OAuth 2.0 - Authorization Code Flow With PKCE"></a>OAuth 2.0 - Authorization Code Flow With PKCE</h3><p>1.建立 Code Verifier ( A-Z, a-z, 0-9, and the punctuation characters -._~ (hyphen, period, underscore, and tilde), between 43 and 128 characters long)<br>可透過 <strong>IdentityModel</strong> Nuget 套件的 CryptoRandom.CreateUniqueId 來建立</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> codeVerifier = CryptoRandom.CreateUniqueId(<span class="number">50</span>);</span><br></pre></td></tr></table></figure>
 
@@ -216,15 +214,10 @@
 </ul>
 <h3 id="適用情境"><a href="#適用情境" class="headerlink" title="適用情境"></a>適用情境</h3><p>因為在取得 AccessToken 時，不會傳遞 client_secret 改以 code_verifier 傳遞，所以適用於 public client，例如 SPA, Native applications<br>而 Private Application 則可以加上 PKCE 讓它更安全，原本使用 Implicit Flow 的 Public Application 請改使用 Authorization Code Flow + PKCE ，<br>並設定 client_secret 不是必要值。</p>
 <h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a target="_blank" rel="noopener" href="https://www.oauth.com/oauth2-servers/pkce/">Protecting Apps with PKCE</a><br><a target="_blank" rel="noopener" href="https://www.oauth.com/oauth2-servers/redirect-uris/redirect-uris-native-apps/">Redirect URLs for Native Apps</a><br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/platform-apis/aa767914(v=vs.85)?redirectedfrom=MSDN">Registering an Application to a URI Scheme</a><br><a target="_blank" rel="noopener" href="https://css-tricks.com/hyperlinking-beyond-the-web/">Hyperlinking Beyond the Web</a><br><a target="_blank" rel="noopener" href="https://dropbox.tech/developers/pkce--what-and-why-#:~:text=PKCE%20provides%20dynamic%20client%20secrets,you%20should%20switch%20to%20PKCE.">PKCE: What and Why?</a><br><a target="_blank" rel="noopener" href="https://www.praetorian.com/blog/attacking-and-defending-oauth-2-0-part-1/">Attacking and Defending OAuth 2.0 (Part 1 of 2: Introduction, Threats, and Best Practices)</a></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -259,18 +252,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2022/02/21/Custom-URI-Scheme/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -289,9 +277,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -305,38 +291,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4729,6 +4708,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

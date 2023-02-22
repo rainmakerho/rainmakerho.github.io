@@ -153,30 +153,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-ado-pre-login-handshake-tcp-provider-error-0" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-ado-pre-login-handshake-tcp-provider-error-0"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       當 SQL Server 將 TLS 1.0/1.1 關掉之後的怪現象 - SSL 安全性錯誤 (pre-login handshake)
     </h1>
   
-
-          
-            <a href="/2022/10/20/ado-pre-login-handshake-tcp-provider-error-0/" class="archive-article-date">
+  <a href="/2022/10/20/ado-pre-login-handshake-tcp-provider-error-0/" class="archive-article-date">
   	<time datetime="2022-10-20T00:35:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-10-20</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>發生問題的環境是 DB Server 為 MS SQL 2014, Client 為 Windows 10, 應用程式為 .NET 1.1 Windows Form Application。當透過 IIS Crypto 關掉 TLS 1.0&#x2F;1.1 後，有些 Windows 10 Client 執行程式時，就會發生 <b>System.Data.SqlClient.ConnectionPool.GetConnection &lt;System.Data.SqlClient.SqlException&gt; SSL 安全性錯誤</b> 的錯誤。</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>發生問題的環境是 DB Server 為 MS SQL 2014, Client 為 Windows 10, 應用程式為 .NET 1.1 Windows Form Application。當透過 IIS Crypto 關掉 TLS 1.0&#x2F;1.1 後，有些 Windows 10 Client 執行程式時，就會發生 <b>System.Data.SqlClient.ConnectionPool.GetConnection &lt;System.Data.SqlClient.SqlException&gt; SSL 安全性錯誤</b> 的錯誤。</p>
 <h3 id="研究"><a href="#研究" class="headerlink" title="研究"></a>研究</h3><p>程式是沒有走 TLS 去連接 MS SQL，但卻發生 SSL 的錯誤，而且在 Server 上的 SQL Server Configuration Manager 工具中 SQL Server 網路組態中的 MSSQLSERVER 的通訊協定 TCP&#x2F;IP 中，<br>「強制加密」屬性是設定成 <strong>否</strong>，如下圖。為什麼應用程式會變成要走 TLS 呢?</p>
 <img src="/2022/10/20/ado-pre-login-handshake-tcp-provider-error-0/01.png" class="" title="強制加密">
 
@@ -190,15 +188,10 @@
 <p>這個錯誤在網路上似乎是因為 .NET 2.X 對 TLS 1.2 Support 的問題，所以要更新 .NET 3.5 。<br>後來同事從 Windows 10 image 中安裝 .NET 3.5 後，重開機，再執行程式就正常了。<br>以下記錄 System.Data.dll 的版本來比較一下，<br>有問題的版本號是 <strong>2.0.50727.8662</strong> ，<br>安裝 Windows 10 CD 中 .NET 3.5 後的版本號為 <strong>2.0.50727.9149</strong></p>
 <p>所以我們後來的解法就是不安裝我們系統提供的 .NET 1.1 (這樣程式就會使用 .NET 2.X 的 Lib (Maybe))，<br>再安裝 Windows 10 CD 中的 .NET 3.5 ，就沒問題了。</p>
 <h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a target="_blank" rel="noopener" href="https://blog.darkthread.net/blog/disable-tls-1-0-issues/">Windows 停用 TLS 1.0 之配套作業整理</a><br><a target="_blank" rel="noopener" href="http://w-type.blogspot.com/2019/04/net-framework-35-0x800f081f.html">安裝 Net Framework 3.5 卻出現錯誤代碼 0x800F081F</a></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -221,18 +214,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2022/10/28/ms-reporting-service-add-custom-font-woff-ttf/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -251,9 +239,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -267,38 +253,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4691,6 +4670,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

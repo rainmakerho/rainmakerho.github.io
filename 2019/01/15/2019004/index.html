@@ -163,30 +163,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2019004" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-2019004"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       使用 OpenTracing - Jaeger (AP整合)
     </h1>
   
-
-          
-            <a href="/2019/01/15/2019004/" class="archive-article-date">
+  <a href="/2019/01/15/2019004/" class="archive-article-date">
   	<time datetime="2019-01-15T05:13:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-15</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在前一篇<a href="https://rainmakerho.github.io/2019/01/04/2019002/">使用 OpenTracing - Jaeger</a>之中，我們介紹如何快速安裝及透過程式將相關的資訊記錄到 Jaeger 系統之中。<br>一個使用者的操作，後端可能會串連很多個服務，如下圖，<br><img src="https://opentracing.io/img/OTHT_2.png" alt="User Request/Response"></p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在前一篇<a href="https://rainmakerho.github.io/2019/01/04/2019002/">使用 OpenTracing - Jaeger</a>之中，我們介紹如何快速安裝及透過程式將相關的資訊記錄到 Jaeger 系統之中。<br>一個使用者的操作，後端可能會串連很多個服務，如下圖，<br><img src="https://opentracing.io/img/OTHT_2.png" alt="User Request/Response"></p>
 <p>透過 OpenTracing 可以用時間軸的方式來看整個過程每個部份所花費的時間，如下圖，<br><img src="https://opentracing.io/img/OTHT_3.png" alt="User Request/Response Time"></p>
 <p>而從 Bot 的使用來看也是相同的，<br>使用者 -&gt; Bot Connector(Local) -&gt; Bot App(BFv3) -&gt; Bot Connector(Local) -&gt; 使用者<br>所以，接下來，我們要將 Bot Connector(NodeJS) &lt;-&gt; Bot App(BFv3) 串接起來。</p>
 <h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><h4 id="NodeJS-使用"><a href="#NodeJS-使用" class="headerlink" title="NodeJS 使用"></a>NodeJS 使用</h4><p>因為我們的 Bot Connector 是使用 NodeJS，所以先看一下如何在 NodeJS 中使用 Jaeger 。</p>
@@ -256,15 +254,10 @@
 </ul>
 <h3 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h3><p>從上面的 Demo 之中，在不同語言實作的系統中，可以將程式呼叫的過程透過 OpenTracing 一致的 API ，將它送到 Jaeger 之中。<br>所以我們可以從 Jaeger UI 來查詢到系統效能的瓶頸在那裡。<br>一開始建議先將在 api 入口，去記錄較大的 span 。當發現某個 span 不夠詳細時，再到該 span 去加入 child 的 span 。<br>列如在上面的 ActionStrategyResolver-DoActionAsync Span 需要再有詳細的資料，我們可以在那個 span 中再加入 child span。</p>
 <h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a target="_blank" rel="noopener" href="https://yq.aliyun.com/articles/514488">开放分布式追踪（OpenTracing）入门与 Jaeger 实现</a></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -307,18 +300,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2019/01/20/2019005/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -337,9 +325,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -353,38 +339,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4777,6 +4756,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

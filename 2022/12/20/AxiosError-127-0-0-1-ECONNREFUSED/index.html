@@ -154,30 +154,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-AxiosError-127-0-0-1-ECONNREFUSED" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-AxiosError-127-0-0-1-ECONNREFUSED"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       AxiosError &#39;127.0.0.1&#39; &#39;ECONNREFUSED&#39;
     </h1>
   
-
-          
-            <a href="/2022/12/20/AxiosError-127-0-0-1-ECONNREFUSED/" class="archive-article-date">
+  <a href="/2022/12/20/AxiosError-127-0-0-1-ECONNREFUSED/" class="archive-article-date">
   	<time datetime="2022-12-20T10:09:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-12-20</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>同事詢問，程式透過 axios 來發出 post ，<br>URL 給的是 <code>http://localhost:3978</code> ，<br>但卻會發生 AxiosError ECONNREFUSED 的錯誤，</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>同事詢問，程式透過 axios 來發出 post ，<br>URL 給的是 <code>http://localhost:3978</code> ，<br>但卻會發生 AxiosError ECONNREFUSED 的錯誤，</p>
 <img src="/2022/12/20/AxiosError-127-0-0-1-ECONNREFUSED/01.jpg" class="" title="AxiosError">
 
 <h3 id="解決"><a href="#解決" class="headerlink" title="解決"></a>解決</h3><p>同事開啟 Browser 連到 <code>http://localhost:3978</code> 卻是可以正常顯示網頁，<br>看 axios 噴出的錯誤 Address 是 127.0.0.1 ，<br>於是請同事在 Browser 上改輸入 <code>http://127.0.0.1:3978</code> 結果會出現 <strong>ERR_CONNECTION_REFUSED</strong> 的錯誤，<br>改用自已的 IP ，也是會出現 <strong>ERR_CONNECTION_REFUSED</strong> 的錯誤。</p>
@@ -187,15 +185,10 @@
 <p>雖然這問題不難，但容易讓除錯的人進入到誤區之中<br>筆者有時也會進入到這種偵錯的誤區之中，還好有同事、朋友的一起幫忙來找到正確的方向<br>在此也希望大家在除錯時，可以多跟同事、朋友討論，或許他們的一句話，就會讓你有突錯點<br>大家一起加油 ^_^</p>
 </blockquote>
 <h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/25652409/localhost-is-working-but-not-127-0-0-1-in-windows-7">localhost is working but not 127.0.0.1 in windows 7</a></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -226,18 +219,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2022/12/27/ant-g6-update-graph/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -256,9 +244,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -272,38 +258,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4696,6 +4675,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

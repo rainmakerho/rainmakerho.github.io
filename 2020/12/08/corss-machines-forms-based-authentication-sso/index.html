@@ -163,30 +163,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-corss-machines-forms-based-authentication-sso" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-corss-machines-forms-based-authentication-sso"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       跨機器間的 Web Application 使用 forms-base authentication 來達到 Single sign-on(SSO)
     </h1>
   
-
-          
-            <a href="/2020/12/08/corss-machines-forms-based-authentication-sso/" class="archive-article-date">
+  <a href="/2020/12/08/corss-machines-forms-based-authentication-sso/" class="archive-article-date">
   	<time datetime="2020-12-08T01:24:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-08</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 <a target="_blank" rel="noopener" href="https://dotblogs.com.tw/rainmaker/2015/06/11/151544">多個 Web Application 使用同一個 Forms Authentication</a> 之中，<br>我們透過設定相同的 machineKey 來達到讓不同的 Web Application 所產生的 forms-base authentication cookie 是可以相通的。<br>而測試是在這些 Web Application 在同一台機器之中，如果是不同的機器時，例如(<a target="_blank" rel="noopener" href="http://ap1.rmtech.com/">http://ap1.rmtech.com/</a> 與 <a target="_blank" rel="noopener" href="http://ap2.rmtech.com/)%EF%BC%8C%E5%8F%88%E8%A9%B2%E5%A6%82%E4%BD%95%E8%99%95%E7%90%86%E5%91%A2">http://ap2.rmtech.com/)，又該如何處理呢</a>?</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 <a target="_blank" rel="noopener" href="https://dotblogs.com.tw/rainmaker/2015/06/11/151544">多個 Web Application 使用同一個 Forms Authentication</a> 之中，<br>我們透過設定相同的 machineKey 來達到讓不同的 Web Application 所產生的 forms-base authentication cookie 是可以相通的。<br>而測試是在這些 Web Application 在同一台機器之中，如果是不同的機器時，例如(<a target="_blank" rel="noopener" href="http://ap1.rmtech.com/">http://ap1.rmtech.com/</a> 與 <a target="_blank" rel="noopener" href="http://ap2.rmtech.com/)%EF%BC%8C%E5%8F%88%E8%A9%B2%E5%A6%82%E4%BD%95%E8%99%95%E7%90%86%E5%91%A2">http://ap2.rmtech.com/)，又該如何處理呢</a>?</p>
 <h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><h4 id="1-建立2個-WebForm-範例程式-Web1-amp-Web2"><a href="#1-建立2個-WebForm-範例程式-Web1-amp-Web2" class="headerlink" title="1.建立2個 WebForm 範例程式 Web1 &amp; Web2"></a>1.建立2個 WebForm 範例程式 Web1 &amp; Web2</h4><p>2個 Web Application 中各有 login.aspx 及 default.aspx ，分別做登入及顯示登入者的訊息，<br>login.aspx</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line"></span><br><span class="line">&lt;html xmlns=<span class="string">&quot;http://www.w3.org/1999/xhtml&quot;</span>&gt;</span><br><span class="line">&lt;head runat=<span class="string">&quot;server&quot;</span>&gt;</span><br><span class="line">&lt;meta http-equiv=<span class="string">&quot;Content-Type&quot;</span> content=<span class="string">&quot;text/html; charset=utf-8&quot;</span>/&gt;</span><br><span class="line">    &lt;title&gt;&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">     &lt;h2&gt;AP1&lt;/h2&gt;</span><br><span class="line">    &lt;form id=<span class="string">&quot;form1&quot;</span> runat=<span class="string">&quot;server&quot;</span>&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            User:&lt;asp:TextBox ID=<span class="string">&quot;txtUserId&quot;</span> runat=<span class="string">&quot;server&quot;</span>&gt;&lt;/asp:TextBox&gt;</span><br><span class="line">            &lt;br /&gt;</span><br><span class="line">            &lt;asp:Button ID=<span class="string">&quot;btnLogin&quot;</span> runat=<span class="string">&quot;server&quot;</span> Text=<span class="string">&quot;Login&quot;</span> OnClick=<span class="string">&quot;btnLogin_Click&quot;</span> /&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/form&gt;</span><br><span class="line">    &lt;script runat=<span class="string">&quot;server&quot;</span>&gt;</span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">btnLogin_Click</span>(<span class="params"><span class="built_in">object</span> sender, EventArgs e</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            FormsAuthentication.SetAuthCookie(txtUserId.Text, <span class="literal">false</span>);</span><br><span class="line">            <span class="keyword">var</span> rmCookie = <span class="keyword">new</span> HttpCookie(<span class="string">&quot;rm&quot;</span>);</span><br><span class="line">            rmCookie.Value = <span class="string">&quot;Hello!&quot;</span>;</span><br><span class="line">            Response.SetCookie(rmCookie);</span><br><span class="line">            Response.Redirect(<span class="string">&quot;Default.aspx&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
 
@@ -230,15 +228,10 @@
 
 <p>範例請參考<a target="_blank" rel="noopener" href="https://github.com/rainmakerho/cross-machines-formsbase-auth-sso">cross-machines-formsbase-auth-sso</a></p>
 <h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/troubleshoot/aspnet/forms-based-authentication">Implement forms-based authentication in an ASP.NET application by using C#.NET</a><br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/dotnet/api/system.web.configuration.machinekeysection.compatibilitymode?view=netframework-4.8">MachineKeySection.CompatibilityMode</a><br><a target="_blank" rel="noopener" href="https://dotblogs.com.tw/rainmaker/2015/06/11/151544">多個 Web Application 使用同一個 Forms Authentication</a><br><a target="_blank" rel="noopener" href="https://support.microsoft.com/zh-tw/help/2425938/how-to-configure-legacy-encryption-mode-in-asp-net">如何在 ASP.NET 中設定舊版加密模式</a></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -277,18 +270,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2020/12/09/webapi-http-method-put-400/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -307,9 +295,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -323,38 +309,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4747,6 +4726,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

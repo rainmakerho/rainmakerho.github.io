@@ -153,30 +153,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-azure-webapp-nodejs-internal-server-error" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-azure-webapp-nodejs-internal-server-error"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       azure nodejs webapp The page cannot be displayed because an internal server error has occurred.
     </h1>
   
-
-          
-            <a href="/2022/03/29/azure-webapp-nodejs-internal-server-error/" class="archive-article-date">
+  <a href="/2022/03/29/azure-webapp-nodejs-internal-server-error/" class="archive-article-date">
   	<time datetime="2022-03-29T01:40:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-29</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近將 NodeJS 的程式部署到 Azrue WebApp (windows) 之後，<br>去瀏覽網頁一看，居然顯示以下的錯誤，</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近將 NodeJS 的程式部署到 Azrue WebApp (windows) 之後，<br>去瀏覽網頁一看，居然顯示以下的錯誤，</p>
 <blockquote>
 <p>The page cannot be displayed because an internal server error has occurred.</p>
 </blockquote>
@@ -190,15 +188,10 @@
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">system.web</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">httpCookies</span> <span class="attr">httpOnlyCookies</span>=<span class="string">&quot;true&quot;</span> <span class="attr">requireSSL</span>=<span class="string">&quot;true&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">system.web</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">system.webServer</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">webSocket</span> <span class="attr">enabled</span>=<span class="string">&quot;false&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">httpProtocol</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">customHeaders</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">add</span> <span class="attr">name</span>=<span class="string">&quot;Strict-Transport-Security&quot;</span> <span class="attr">value</span>=<span class="string">&quot;max-age=31536000; includeSubDomains&quot;</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">customHeaders</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">httpProtocol</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">handlers</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">add</span> <span class="attr">name</span>=<span class="string">&quot;nodejs&quot;</span> <span class="attr">path</span>=<span class="string">&quot;*.js&quot;</span> <span class="attr">verb</span>=<span class="string">&quot;*&quot;</span> <span class="attr">modules</span>=<span class="string">&quot;iisnode&quot;</span> <span class="attr">resourceType</span>=<span class="string">&quot;File&quot;</span> <span class="attr">requireAccess</span>=<span class="string">&quot;Script&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">handlers</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">rewrite</span>&gt;</span>    </span><br><span class="line">            <span class="tag">&lt;<span class="name">allowedServerVariables</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">                    ● 此設定是用來解決在iisnode上URL Encode的問題</span></span><br><span class="line"><span class="comment">                    ● 另外，需要ApplicationHost.config的將allowedServerVariables的overrideModeDefault改成Allow</span></span><br><span class="line"><span class="comment">                    ● 詳細設定請參考下面連結</span></span><br><span class="line"><span class="comment">                    [github issue: https://github.com/tjanczuk/iisnode/issues/217]</span></span><br><span class="line"><span class="comment">                --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">add</span> <span class="attr">name</span>=<span class="string">&quot;HTTP_X_ORIGINAL_URL&quot;</span> /&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">add</span> <span class="attr">name</span>=<span class="string">&quot;UNENCODED_URL&quot;</span> /&gt;</span></span><br><span class="line">                <span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">                    ● 此設定是用來解決在 iisnode 上 Firefox Websocket 問題</span></span><br><span class="line"><span class="comment">                    ● 詳細設定請參考下面連結</span></span><br><span class="line"><span class="comment">                    [github issue: https://github.com/tjanczuk/iisnode/issues/497]</span></span><br><span class="line"><span class="comment">                --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">add</span> <span class="attr">name</span>=<span class="string">&quot;HTTP_CONNECTION&quot;</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">allowedServerVariables</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">rules</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">rule</span> <span class="attr">name</span>=<span class="string">&quot;all&quot;</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">match</span> <span class="attr">url</span>=<span class="string">&quot;/*&quot;</span> /&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">action</span> <span class="attr">type</span>=<span class="string">&quot;Rewrite&quot;</span> <span class="attr">url</span>=<span class="string">&quot;index.js&quot;</span> /&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">rule</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">rule</span> <span class="attr">name</span>=<span class="string">&quot;Firefox_Websocket&quot;</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">match</span> <span class="attr">url</span>=<span class="string">&quot;stream&quot;</span> /&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">action</span> <span class="attr">type</span>=<span class="string">&quot;Rewrite&quot;</span> <span class="attr">url</span>=<span class="string">&quot;index.js&quot;</span> /&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">conditions</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">add</span> <span class="attr">input</span>=<span class="string">&quot;&#123;HTTP_CONNECTION&#125;&quot;</span> <span class="attr">pattern</span>=<span class="string">&quot;keep-alive, Upgrade&quot;</span> /&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">add</span> <span class="attr">input</span>=<span class="string">&quot;&#123;HTTP_UPGRADE&#125;&quot;</span> <span class="attr">pattern</span>=<span class="string">&quot;websocket&quot;</span> /&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">conditions</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">serverVariables</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">set</span> <span class="attr">name</span>=<span class="string">&quot;HTTP_CONNECTION&quot;</span> <span class="attr">value</span>=<span class="string">&quot;Upgrade&quot;</span> /&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">serverVariables</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">rule</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">rules</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">rewrite</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- (node_env: &quot;development&quot; (開發), &quot;production&quot; (產品)) --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">iisnode</span> <span class="attr">node_env</span>=<span class="string">&quot;PRODUCTION&quot;</span> <span class="attr">nodeProcessCountPerApplication</span>=<span class="string">&quot;1&quot;</span> <span class="attr">maxConcurrentRequestsPerProcess</span>=<span class="string">&quot;1024&quot;</span> <span class="attr">maxNamedPipeConnectionRetry</span>=<span class="string">&quot;100&quot;</span> <span class="attr">namedPipeConnectionRetryDelay</span>=<span class="string">&quot;250&quot;</span> <span class="attr">maxNamedPipeConnectionPoolSize</span>=<span class="string">&quot;512&quot;</span> <span class="attr">maxNamedPipePooledConnectionAge</span>=<span class="string">&quot;30000&quot;</span> <span class="attr">asyncCompletionThreadCount</span>=<span class="string">&quot;0&quot;</span> <span class="attr">initialRequestBufferSize</span>=<span class="string">&quot;4096&quot;</span> <span class="attr">maxRequestBufferSize</span>=<span class="string">&quot;65536&quot;</span> <span class="attr">uncFileChangesPollingInterval</span>=<span class="string">&quot;5000&quot;</span> <span class="attr">gracefulShutdownTimeout</span>=<span class="string">&quot;60000&quot;</span> <span class="attr">loggingEnabled</span>=<span class="string">&quot;true&quot;</span> <span class="attr">logDirectory</span>=<span class="string">&quot;iisnode&quot;</span> <span class="attr">debuggingEnabled</span>=<span class="string">&quot;true&quot;</span> <span class="attr">debugHeaderEnabled</span>=<span class="string">&quot;false&quot;</span> <span class="attr">debuggerPortRange</span>=<span class="string">&quot;5058-6058&quot;</span> <span class="attr">debuggerPathSegment</span>=<span class="string">&quot;debug&quot;</span> <span class="attr">maxLogFileSizeInKB</span>=<span class="string">&quot;128&quot;</span> <span class="attr">maxTotalLogFileSizeInKB</span>=<span class="string">&quot;1024&quot;</span> <span class="attr">maxLogFiles</span>=<span class="string">&quot;20&quot;</span> <span class="attr">devErrorsEnabled</span>=<span class="string">&quot;true&quot;</span> <span class="attr">flushResponse</span>=<span class="string">&quot;false&quot;</span> <span class="attr">enableXFF</span>=<span class="string">&quot;false&quot;</span> <span class="attr">promoteServerVars</span>=<span class="string">&quot;&quot;</span> <span class="attr">configOverrides</span>=<span class="string">&quot;iisnode.yml&quot;</span> <span class="attr">watchedFiles</span>=<span class="string">&quot;web.config;*.js&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">system.webServer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>目前就先將該區段移除 。</p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -233,18 +226,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2022/04/06/unicode-surrogate-pair/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -263,9 +251,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -279,38 +265,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4703,6 +4682,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

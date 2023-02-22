@@ -155,30 +155,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-type-javascript-mime-error" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-type-javascript-mime-error"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       透過 ashx render javascript 內容居然無效?
     </h1>
   
-
-          
-            <a href="/2021/06/07/type-javascript-mime-error/" class="archive-article-date">
+  <a href="/2021/06/07/type-javascript-mime-error/" class="archive-article-date">
   	<time datetime="2021-06-07T08:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-07</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近同事把系統安裝到新的環境上，卻發現原本可以執行的功能卻不能執行了。<br>但舊的機器卻是沒問題的。<br>這種狀況其實常常發生，還好舊的環境還在，所以可以做的對照組來比較一下。</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近同事把系統安裝到新的環境上，卻發現原本可以執行的功能卻不能執行了。<br>但舊的機器卻是沒問題的。<br>這種狀況其實常常發生，還好舊的環境還在，所以可以做的對照組來比較一下。</p>
 <h3 id="尋找問題"><a href="#尋找問題" class="headerlink" title="尋找問題"></a>尋找問題</h3><p>一開始透過 F12 來比較一下發現，舊的走的協定都是 Https ，而新的走的協定卻是 Http&#x2F;2 。<br>所以在機碼 HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\HTTP\Parameters 中加入2個 DWORD (32-bit) 機碼，並設定值為 0<br><strong>EnableHttp2Tls</strong> 及 <strong>EnableHttp2Cleartext</strong><br>並重新開機再試一次。<br>雖然這次新安裝的系統都已走 Https 了，但還是有錯誤。</p>
 <p>於是看一下 Console ，裡面有 SEC7112 的警告，</p>
 <blockquote>
@@ -191,15 +189,10 @@
 <p>謎題解開了，原來是因為 ashx 在 render javascript 內容時，使用錯的 Content-Type ，導致 Javascript 無法執行。<br>執行時自然就會發生 Javascript 的錯誤。</p>
 <p>因為新安裝的系統中，同事在 web.config 多加入 <strong>X-Content-Type-Options</strong> 設定為 <strong>nosniff</strong> 的自定標頭，<br>所以它會檢查javascript的 MIME 格式，而之前的程式設定的 MIME Type 為 type&#x2F;javascript 。<br>所以就被擋住了。<br>後來請同事將 Content-Type 改成 text&#x2F;javascript 就解決了。<br>Support 的 Javascript MIME Type 可以參考 <a target="_blank" rel="noopener" href="https://mimesniff.spec.whatwg.org/#javascript-mime-type">javascript MIME type</a></p>
 <h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/samples/dn423949(v=vs.85)">IE-Console error messages in F12 developer tools</a><br><a target="_blank" rel="noopener" href="https://mimesniff.spec.whatwg.org/#javascript-mime-type">javascript MIME type</a></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -230,18 +223,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2021/06/16/CSP-script-src-unsafe-inline/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -260,9 +248,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -276,38 +262,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4700,6 +4679,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

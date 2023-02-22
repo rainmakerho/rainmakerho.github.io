@@ -156,30 +156,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-sql-transation-different-data-export" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-sql-transation-different-data-export"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       SQL Server 找出某時間的異動資料(資料交換)
     </h1>
   
-
-          
-            <a href="/2020/12/17/sql-transation-different-data-export/" class="archive-article-date">
+  <a href="/2020/12/17/sql-transation-different-data-export/" class="archive-article-date">
   	<time datetime="2020-12-17T03:45:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-17</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近同事詢問要把有異動的資料轉到另一個資料庫(Sybase)去，是否有什麼好的方式呢?<br>想了一下，最簡單的方式就是找那某個異動時間之後的資料就可以了。<br>但是，那 … 被刪除的資料要如何找出來呢?</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近同事詢問要把有異動的資料轉到另一個資料庫(Sybase)去，是否有什麼好的方式呢?<br>想了一下，最簡單的方式就是找那某個異動時間之後的資料就可以了。<br>但是，那 … 被刪除的資料要如何找出來呢?</p>
 <h3 id="研究與練習"><a href="#研究與練習" class="headerlink" title="研究與練習"></a>研究與練習</h3><p>想了一下，似乎可以透過 Database Snapshot 來達成。<br>測試的資料庫可以從 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/sql/samples/adventureworks-install-configure?view=sql-server-ver15&tabs=ssms">AdventureWorks sample databases Download</a> 下載。</p>
 <h4 id="建立-Database-Snapshot"><a href="#建立-Database-Snapshot" class="headerlink" title="建立 Database Snapshot"></a>建立 Database Snapshot</h4><p>之所以要建立 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-tw/sql/relational-databases/databases/database-snapshots-sql-server?view=sql-server-ver15">資料庫快照集</a> 是因為，如果到了要轉出異動資料時，將 快照裡的資料表 與 原有資料庫中的資料表 Join 就可以知道那些是被刪除的資料。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> DATABASE AdventureWorks_dbss1100 <span class="keyword">ON</span>  </span><br><span class="line">( NAME <span class="operator">=</span> AdventureWorks2017, FILENAME <span class="operator">=</span>   </span><br><span class="line"><span class="string">&#x27;C:\temp\AdventureWorks_dbss1100.ss&#x27;</span> )  </span><br><span class="line"><span class="keyword">AS</span> SNAPSHOT <span class="keyword">OF</span> AdventureWorks2017;  </span><br><span class="line">GO  </span><br></pre></td></tr></table></figure>
@@ -203,15 +201,10 @@
 
 <p>所以在每次匯出異動資料後，就可以再建立那時間點的 資料庫快照 ，之後再跟原有資料表 Join 就可以了哦!</p>
 <h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/sql/samples/adventureworks-install-configure?view=sql-server-ver15&tabs=ssms">AdventureWorks sample databases Download</a><br><a target="_blank" rel="noopener" href="https://www.mssqltips.com/sqlservertip/3603/sql-server-database-snapshots-for-data-comparison/">SQL Server Database Snapshots for Data Comparison</a><br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-tw/sql/relational-databases/databases/database-snapshots-sql-server?view=sql-server-ver15">資料庫快照集</a></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -238,18 +231,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2020/12/21/RecoverDeletedDataSQL/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -268,9 +256,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -284,38 +270,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4708,6 +4687,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

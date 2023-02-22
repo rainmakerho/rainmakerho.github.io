@@ -151,30 +151,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2018002" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-2018002"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       Excel.WorkbookClass.SaveAs 發生例外狀況於 HRESULT: 0x800A03EC [ COMException.ErrorCode : -2146827284 ]
     </h1>
   
-
-          
-            <a href="/2018/01/11/2018002/" class="archive-article-date">
+  <a href="/2018/01/11/2018002/" class="archive-article-date">
   	<time datetime="2018-01-11T07:30:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-11</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <p>今天同事詢問一個錯誤訊息如下，<br>Excel.WorkbookClass.SaveAs  &lt;System.Runtime.InteropServices.COMException&gt; 發生例外狀況於 HRESULT: 0x800A03EC [ COMException.ErrorCode : -2146827284 ]<br>於 Excel.WorkbookClass.SaveAs(Object Filename, Object FileFormat, Object Password, Object WriteResPassword, Object ReadOnlyRecommended, Object CreateBackup, XlSaveAsAccessMode AccessMode, Object ConflictResolution, Object AddToMru, Object TextCodepage, Object TextVisualLayout)</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <p>今天同事詢問一個錯誤訊息如下，<br>Excel.WorkbookClass.SaveAs  &lt;System.Runtime.InteropServices.COMException&gt; 發生例外狀況於 HRESULT: 0x800A03EC [ COMException.ErrorCode : -2146827284 ]<br>於 Excel.WorkbookClass.SaveAs(Object Filename, Object FileFormat, Object Password, Object WriteResPassword, Object ReadOnlyRecommended, Object CreateBackup, XlSaveAsAccessMode AccessMode, Object ConflictResolution, Object AddToMru, Object TextCodepage, Object TextVisualLayout)</p>
 <p>程式中的寫法類似如下，</p>
 <figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">dim</span> xlsApp <span class="keyword">As</span> <span class="built_in">New</span> Excel.Application</span><br><span class="line"><span class="keyword">Dim</span> wb <span class="keyword">As</span> Excel.Workbook</span><br><span class="line">xlsApp.Visible = <span class="literal">False</span></span><br><span class="line">xlsApp.DisplayAlerts = <span class="literal">False</span></span><br><span class="line">xlsApp.Workbooks.OpenText(<span class="keyword">Me</span>.UpFile_Path)</span><br><span class="line">wb = xlsApp.Workbooks(<span class="number">1</span>)</span><br><span class="line"><span class="keyword">Const</span> xlNormal = -<span class="number">4143</span></span><br><span class="line">wb.SaveAs(Filename:=sfileName, FileFormat:=xlNormal, Password:=<span class="string">&quot;&quot;</span>, WriteResPassword:=<span class="string">&quot;&quot;</span>, ReadOnlyRecommended:=<span class="literal">False</span>, CreateBackup:=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
 <p>程式是掛在 wb.SaveAs 那行，而且客戶端是裝 Excel 2016 才噴錯，同事是 Excel 2010 則沒問題。<br>程式中，有加入 interop.excel.dll 參考，使用 earlay binding 的方式，所以似乎是因為版本不同，SaveAs Method 的參數不同所造成的錯誤。</p>
@@ -183,15 +181,10 @@
 
 <p>跟錯誤訊息比較一下，可以發現 Excel 2016 從參數 TextVisualLayout 後面，又多了 2 個參考 (Local 及 WorkIdentity)。所以程式自然就 GG 了。</p>
 <p>那怎麼辦呢? 改用 Later Binding 的方式，將 interOP.Excel 移除參考，並將原本 Excel.Application 、Excel.Workbook 改成 Object ，重新建置專案，就可以了哦!</p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -218,18 +211,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2018/01/25/2018003/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -248,9 +236,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -264,38 +250,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4688,6 +4667,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

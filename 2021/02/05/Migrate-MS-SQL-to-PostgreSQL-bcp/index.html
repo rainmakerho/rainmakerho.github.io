@@ -166,30 +166,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Migrate-MS-SQL-to-PostgreSQL-bcp" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-Migrate-MS-SQL-to-PostgreSQL-bcp"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       將 Microsoft SQL Server Database 資料轉到 PostgreSQL - BCP/Import
     </h1>
   
-
-          
-            <a href="/2021/02/05/Migrate-MS-SQL-to-PostgreSQL-bcp/" class="archive-article-date">
+  <a href="/2021/02/05/Migrate-MS-SQL-to-PostgreSQL-bcp/" class="archive-article-date">
   	<time datetime="2021-02-05T08:13:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-05</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>以下筆者將介紹如何將 Microsoft SQL Server Database 資料轉到 PostgreSQL Database。<br>環境 : Windows Server 2019, Microsoft SQL Server 2019, PostgreSQL V.13<br>使用的方式是先將 MSSQL資料表 建立到 PostgreSQL ，<br>再透過 BCP 將資料轉成 csv 後，再 Import 到 PostgreSQL</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>以下筆者將介紹如何將 Microsoft SQL Server Database 資料轉到 PostgreSQL Database。<br>環境 : Windows Server 2019, Microsoft SQL Server 2019, PostgreSQL V.13<br>使用的方式是先將 MSSQL資料表 建立到 PostgreSQL ，<br>再透過 BCP 將資料轉成 csv 後，再 Import 到 PostgreSQL</p>
 <h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><p>準備資料請參考 <a href="https://rainmakerho.github.io/2021/02/04/Migrate-MS-SQL-to-PostgreSQL-1/">將 Microsoft SQL Server Database 資料轉到 PostgreSQL - SSMS Export</a> </p>
 <h4 id="轉出-Table-Schema"><a href="#轉出-Table-Schema" class="headerlink" title="轉出 Table Schema"></a>轉出 Table Schema</h4><p>透過 SSMS 將資料表 Schema 轉成 Script， 在 ms2postgre1 DB 上按右鍵選擇 <strong>工作-&gt;產生指令碼(E)</strong></p>
 <img src="/2021/02/05/Migrate-MS-SQL-to-PostgreSQL-bcp/01.png" class="" title="產生指令碼(E)">
@@ -238,15 +236,10 @@
 <img src="/2021/02/05/Migrate-MS-SQL-to-PostgreSQL-bcp/12.png" class="" title="Verify Data">
 
 <h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a target="_blank" rel="noopener" href="https://github.com/dalibo/sqlserver2pgsql">sqlserver2pgsql</a><br><a target="_blank" rel="noopener" href="https://www.perl.org/get.html">Perl Download</a><br><a href="https://rainmakerho.github.io/2021/02/04/Migrate-MS-SQL-to-PostgreSQL-1/">將 Microsoft SQL Server Database 資料轉到 PostgreSQL - SSMS Export</a></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -281,18 +274,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2021/02/06/mssql-multi-rows-variable-assignment-orderby/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -311,9 +299,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -327,38 +313,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4751,6 +4730,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

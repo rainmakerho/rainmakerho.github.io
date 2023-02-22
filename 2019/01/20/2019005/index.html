@@ -163,30 +163,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2019005" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-2019005"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       使用 OpenTracing - Jaeger (BFv3 使用 Dynamic Proxy)
     </h1>
   
-
-          
-            <a href="/2019/01/20/2019005/" class="archive-article-date">
+  <a href="/2019/01/20/2019005/" class="archive-article-date">
   	<time datetime="2019-01-20T10:31:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-20</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 <a href="https://rainmakerho.github.io/2019/01/15/2019004/">使用 OpenTracing - Jaeger (AP 整合)</a> 之中，我們定義 OpenTracing 的區塊，然後將需要的資訊寫進去，如下，</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 <a href="https://rainmakerho.github.io/2019/01/15/2019004/">使用 OpenTracing - Jaeger (AP 整合)</a> 之中，我們定義 OpenTracing 的區塊，然後將需要的資訊寫進去，如下，</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> tracer = GlobalTracer.Instance;</span><br><span class="line"><span class="keyword">const</span> <span class="built_in">string</span> operationName = <span class="string">&quot;RootDialog-MessageReceivedAsync&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> spanBuilder = tracer.BuildSpan(operationName);</span><br><span class="line"><span class="keyword">if</span> (tracer.ActiveSpan != <span class="literal">null</span>)</span><br><span class="line">    spanBuilder.AsChildOf(tracer.ActiveSpan);</span><br><span class="line"><span class="keyword">using</span> (<span class="keyword">var</span> scope = spanBuilder.StartActive(<span class="literal">true</span>))</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 其他的程式碼 ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>這些程式碼跟 Exception Handle 類似，所以我們可以透過 <a target="_blank" rel="noopener" href="https://autofaccn.readthedocs.io/en/latest/advanced/interceptors.html">Dynamic Proxy</a> 的方式來包裝起來，讓程式開發人員專注在程式的邏輯之中，不用去理會這煩雜的程式碼。</p>
@@ -216,15 +214,10 @@
 <h3 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h3><p>透過 Interceptor 的方式，可以讓大部份的 Class 都可以加入 OpenTracing 記錄之中，如果在過程中，發現某個 Span 需要多 Log 資料的話，就可以到該 Span 的 Method 去加入更詳細的資訊。<br>另外，在接收時的 MessagesController 的入口點，我們還是需要手動去加入 Extract 的 Http Header 資料，來讓整個 Path 可以串起來。</p>
 <h3 id="補充說明"><a href="#補充說明" class="headerlink" title="補充說明"></a>補充說明</h3><h4 id="OpenTracing-basics"><a href="#OpenTracing-basics" class="headerlink" title="OpenTracing basics"></a>OpenTracing basics</h4><p>一個 Trace 通常是一個 Request -&gt; Response 的過程(例如，使用者登入-&gt;驗證服務-&gt;取得帳號資訊-&gt;可使用功能 …-&gt;畫面呈現)，所以它會包含一個或多個 Span ，這些 Span 會有著一致的 Tracer Id。<br>一個 Span 代表一個單元的工作，例如 Client call Server，發送一個 Query 到 DB。<br>每個 Span，會有著唯一的 Id，它們之間可能會有著上、下關係(ChildOf)或是 FollowsFrom。<br>如果一個 Span 的 Parent Span 是空的，我們會稱它為 Root Span。<br>Span 通常還會包含 operation name, start 及 end 的時間，也可 Tag 一些資訊及記錄錯誤 、 Log。<br>所以我們可以透過這些資訊來發現效能或是錯誤的地方。</p>
 <h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a target="_blank" rel="noopener" href="https://github.com/opentracing/specification/blob/master/semantic_conventions.md">Tag 命名 Semantic Conventions</a><br><a target="_blank" rel="noopener" href="https://autofaccn.readthedocs.io/en/latest/advanced/interceptors.html">Autofac Type Interceptors</a><br><a target="_blank" rel="noopener" href="https://github.com/JSkimming/Castle.Core.AsyncInterceptor">github Castle.Core.AsyncInterceptor</a></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -279,18 +272,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2019/02/19/2019006/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -309,9 +297,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -325,38 +311,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4749,6 +4728,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

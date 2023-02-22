@@ -152,44 +152,37 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-ps-import-module-0x80131515" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-ps-import-module-0x80131515"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       Import-Module 出現 Could not load file or assembly or one of its dependencies. Operation is not supported. 0x80131515 錯誤
     </h1>
   
-
-          
-            <a href="/2022/07/05/ps-import-module-0x80131515/" class="archive-article-date">
+  <a href="/2022/07/05/ps-import-module-0x80131515/" class="archive-article-date">
   	<time datetime="2022-07-05T09:18:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-05</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>今天要將 VMDK 轉到 VHD 時，從網路下載 <a target="_blank" rel="noopener" href="https://1drv.ms/u/s!Amctqf6I8YYKj_0kR_iru8F0-9CBGg?e=FJzCxA">Microsoft Virtual Machine Converter 3.0</a> Zip 檔案。<br>下載解壓縮後，開啟 PowerShell 執行 <code>Import-Module</code> ，卻出現 <strong>Import-Module : Could not load file or assembly ‘file:&#x2F;&#x2F;&#x2F;C:\Program Files\Microsoft Virtual Machine Converter\MvmcCmdlet.dll’ or one of its dependencies. Operation is not supported. (Exception from HRESULT: 0x80131515)</strong> 的錯誤。</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>今天要將 VMDK 轉到 VHD 時，從網路下載 <a target="_blank" rel="noopener" href="https://1drv.ms/u/s!Amctqf6I8YYKj_0kR_iru8F0-9CBGg?e=FJzCxA">Microsoft Virtual Machine Converter 3.0</a> Zip 檔案。<br>下載解壓縮後，開啟 PowerShell 執行 <code>Import-Module</code> ，卻出現 <strong>Import-Module : Could not load file or assembly ‘file:&#x2F;&#x2F;&#x2F;C:\Program Files\Microsoft Virtual Machine Converter\MvmcCmdlet.dll’ or one of its dependencies. Operation is not supported. (Exception from HRESULT: 0x80131515)</strong> 的錯誤。</p>
 <h3 id="解決方式"><a href="#解決方式" class="headerlink" title="解決方式"></a>解決方式</h3><p>查看 C:\Program Files\Microsoft Virtual Machine Converter\MvmcCmdlet.dll 內容-&gt;一般，<br>最下面的屬性中，多了一個 <strong>安全性</strong> 的提示，選取 <strong>解除封鎖</strong> 並按下套用的 Button 後，<br>再下 Import-Module 就可以成功匯入了。</p>
 <p>不過，看該目錄的其他 DLL 還是有被封鎖的問題，<br>所以最快的方式就是在 <strong>zip</strong> 檔案內容-&gt;一般，<br>最下面  <strong>安全性</strong> 的提示，選取 <strong>解除封鎖</strong> 並按下套用的 Button 後，<br>再解壓縮就可以了哦。</p>
 <img src="/2022/07/05/ps-import-module-0x80131515/01.png" class="" title="解除封鎖">
 
 <h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/34400546/could-not-load-file-or-assembly-operation-is-not-supported-exception-from-hres">Could not load file or assembly Operation is not supported. (Exception from HRESULT: 0x80131515)</a><br><a target="_blank" rel="noopener" href="https://dotblogs.com.tw/rainmaker/2013/08/29/115826">Exception from HRESULT: 0x80131515</a><br><a href="https://rainmakerho.github.io/2021/05/06/vmdk-to-vhd-azure/">將 VMDK (VHD) 移轉到 Azure</a></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -212,18 +205,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2022/07/09/aspnet6-custom-logger/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -242,9 +230,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -258,38 +244,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4682,6 +4661,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

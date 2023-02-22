@@ -163,30 +163,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-aspose-kangxi-radical-dfkai-sb-pdf-square-box" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-aspose-kangxi-radical-dfkai-sb-pdf-square-box"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       標楷體(DFKai-SB)的Word檔中有些字透過 Aspose.Words 另存成 PDF 後，會變成&#34;空白&#34;字
     </h1>
   
-
-          
-            <a href="/2022/11/15/aspose-kangxi-radical-dfkai-sb-pdf-square-box/" class="archive-article-date">
+  <a href="/2022/11/15/aspose-kangxi-radical-dfkai-sb-pdf-square-box/" class="archive-article-date">
   	<time datetime="2022-11-15T03:43:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-15</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>標楷體的 Word 文件中有些 Unicode 透過 Aspose.Words 另存成 PDF 時，該字會變成”空白字”，<br>例如 <a target="_blank" rel="noopener" href="https://unicode-table.com/en/2FA6/">U+2FA6(⾦)</a> 這個字，可是在 Word 中明明可以正常顯示。<br>我們可以參考 <a href="https://rainmakerho.github.io/2022/11/15/aspose-kangxi-radical-word-2-pdf-square-box/">有些字透過 Aspose.Words 讀取 Word 檔，另存成 PDF 後，會變成空白框(square box)是變成 空白字</a> 將 Word 內容轉成 「<strong>Microsoft YaHei</strong>」字型後，<br>再另存成 PDF 就可以解決 <a target="_blank" rel="noopener" href="https://unicode-table.com/en/2FA6/">U+2FA6(⾦)</a> 無法在 PDF 中顯示的問題。<br>但是，如果我的字型一定要**標楷體(DFKai-SB)**，要怎麼辦呢?</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>標楷體的 Word 文件中有些 Unicode 透過 Aspose.Words 另存成 PDF 時，該字會變成”空白字”，<br>例如 <a target="_blank" rel="noopener" href="https://unicode-table.com/en/2FA6/">U+2FA6(⾦)</a> 這個字，可是在 Word 中明明可以正常顯示。<br>我們可以參考 <a href="https://rainmakerho.github.io/2022/11/15/aspose-kangxi-radical-word-2-pdf-square-box/">有些字透過 Aspose.Words 讀取 Word 檔，另存成 PDF 後，會變成空白框(square box)是變成 空白字</a> 將 Word 內容轉成 「<strong>Microsoft YaHei</strong>」字型後，<br>再另存成 PDF 就可以解決 <a target="_blank" rel="noopener" href="https://unicode-table.com/en/2FA6/">U+2FA6(⾦)</a> 無法在 PDF 中顯示的問題。<br>但是，如果我的字型一定要**標楷體(DFKai-SB)**，要怎麼辦呢?</p>
 <h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>測試的 C# 程式如下(請先加入 Aspose.Words 套件)，</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> docxPath = <span class="string">@&quot;c:\temp\h2docx.docx&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> pdfPath = <span class="string">@&quot;c:\temp\h2pdf.pdf&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> doc = <span class="keyword">new</span> Aspose.Words.Document(docxPath);</span><br><span class="line"><span class="keyword">var</span> fontChanger = <span class="keyword">new</span> FontChanger(<span class="string">&quot;DFKai-SB&quot;</span>);</span><br><span class="line">doc.Accept(fontChanger);</span><br><span class="line">doc.Save(pdfPath);</span><br></pre></td></tr></table></figure>
 
@@ -212,15 +210,10 @@
 <img src="/2022/11/15/aspose-kangxi-radical-dfkai-sb-pdf-square-box/05.png" class="" title="全字庫正楷體PDF">
 
 <h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://rainmakerho.github.io/2022/11/15/aspose-kangxi-radical-word-2-pdf-square-box/">有些字透過 Aspose.Words 讀取 Word 檔，另存成 PDF 後，會變成空白框(square box)是變成 空白字</a><br><a target="_blank" rel="noopener" href="https://data.gov.tw/dataset/5961">CNS11643 中文標準交換碼全字庫</a></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -271,18 +264,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2022/11/15/Path-GetTempFileName-IOException-The-file-exists/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -301,9 +289,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -317,38 +303,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4741,6 +4720,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

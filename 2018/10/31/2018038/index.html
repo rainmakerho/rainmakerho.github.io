@@ -156,30 +156,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2018038" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-2018038"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       SQL 某個欄位包含 文字、符號及數值，是否可依 數值、文字來排序?
     </h1>
   
-
-          
-            <a href="/2018/10/31/2018038/" class="archive-article-date">
+  <a href="/2018/10/31/2018038/" class="archive-article-date">
   	<time datetime="2018-10-31T03:45:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-31</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>有同事詢問，SQL DB 中某個欄位，資料型態為 nvarchar，裡面存放著數值、文字、符號等內容。<br>依照預設的排序，結果會是 1, 11, 2, 文字 … </p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>有同事詢問，SQL DB 中某個欄位，資料型態為 nvarchar，裡面存放著數值、文字、符號等內容。<br>依照預設的排序，結果會是 1, 11, 2, 文字 … </p>
 <p>那有辦法，數值時就依數值排序後，再用文字排嗎?<br>例如 1, 2, 11, 文字 …</p>
 <h3 id="研究"><a href="#研究" class="headerlink" title="研究"></a>研究</h3><h4 id="建立測試資料"><a href="#建立測試資料" class="headerlink" title="建立測試資料"></a>建立測試資料</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> t1(</span><br><span class="line">    c1 nvarchar(<span class="number">32</span>)</span><br><span class="line">)</span><br><span class="line">GO</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t1(c1) <span class="keyword">values</span>(<span class="string">&#x27;1&#x27;</span>), (<span class="string">&#x27;11&#x27;</span>), (<span class="string">&#x27;2&#x27;</span>), (<span class="string">&#x27;3&#x27;</span>),(<span class="string">&#x27;A&#x27;</span>), (<span class="string">&#x27;AA&#x27;</span>), (<span class="string">&#x27;ABC&#x27;</span>), (N<span class="string">&#x27;一&#x27;</span>), (N<span class="string">&#x27;二&#x27;</span>), (<span class="string">&#x27;;&#x27;</span>), (<span class="string">&#x27;&#x27;&#x27;&#x27;</span>), (<span class="string">&#x27;B&#x27;</span>);</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> t1 <span class="keyword">order</span> <span class="keyword">by</span> c1;</span><br></pre></td></tr></table></figure>
 <p>結果如下，</p>
@@ -212,15 +210,10 @@
 <li>註 1: 如果 <strong>效能</strong> 有問題的話，請先將資料縮小，或是使用 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/sql/relational-databases/tables/specify-computed-columns-in-a-table?view=sql-server-2017">Computed Column</a>  <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/sql/relational-databases/indexes/indexes-on-computed-columns?view=sql-server-2017">Indexes on Computed Columns</a></li>
 <li>註 2: SQL Server 2008&#x2F;2008 R2 的支援將於 2019 年 7 月 9 日結束</li>
 </ul>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -243,18 +236,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2018/11/19/2018039/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -273,9 +261,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -289,38 +275,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4713,6 +4692,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

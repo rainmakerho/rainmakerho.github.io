@@ -147,45 +147,113 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-checkmarx-unsafe-reflection" class="article article-type-post  article-index"
-  itemscope itemprop="blogPost">
+    <article
+  id="post-fp-retry"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/02/22/fp-retry/">C# 簡單的 Retry Method - Partial, Curry</a>
+    </h1>
+  
+  <a href="/2023/02/22/fp-retry/" class="archive-article-date">
+  	<time datetime="2023-02-22T07:30:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-02-22</time>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>當我們要為某段程式碼設定執行錯誤時，讓它 Retry 可以很簡單的建立一個 Retry 的擴充方法來達到，如下，</p> 
+      <p class="article-more-link">
+        <a href="/2023/02/22/fp-retry/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">c#</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">functional programming</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">retry</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Partial</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Curry</a>
+        		</li>
+      		
+		</ul>
+	</div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+ <aside class="wrap-side-operation">
+    <div class="mod-side-operation">
         
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside> 
+
+  
+    <article
+  id="post-checkmarx-unsafe-reflection"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
   
     <h1 itemprop="name">
       <a class="article-title" href="/2023/02/17/checkmarx-unsafe-reflection/">Checkmarx Unsafe_Reflection</a>
     </h1>
   
-
-          
-            <a href="/2023/02/17/checkmarx-unsafe-reflection/" class="archive-article-date">
+  <a href="/2023/02/17/checkmarx-unsafe-reflection/" class="archive-article-date">
   	<time datetime="2023-02-17T03:01:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-02-17</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近系統被 Checkmarx V9.4.5 掃出有 Unsafe_Reflection 的問題，<br>程式碼中有透過傳入的 Type Name 及 參數值來動態建立物件執行該 Method 。<br>問題的<strong>來源</strong>是 Controller Action Method 的<strong>參數</strong>，<br>問題的<strong>目的地</strong>則是 <strong>Invoke Method</strong> 。</p>
-                              
-                                <p class="article-more-link">
-                                  <a target="_blank" rel="noopener" href="//2023/02/17/checkmarx-unsafe-reflection/#more">
-                                    more &gt;&gt;
-                                  </a>
-                                </p>
-                                
-                                  
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近系統被 Checkmarx V9.4.5 掃出有 Unsafe_Reflection 的問題，<br>程式碼中有透過傳入的 Type Name 及 參數值來動態建立物件執行該 Method 。<br>問題的<strong>來源</strong>是 Controller Action Method 的<strong>參數</strong>，<br>問題的<strong>目的地</strong>則是 <strong>Invoke Method</strong> 。</p> 
+      <p class="article-more-link">
+        <a href="/2023/02/17/checkmarx-unsafe-reflection/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -208,18 +276,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-      <aside class="wrap-side-operation">
+ <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -233,51 +296,38 @@
         
         
     </div>
-</aside>
-
-
-        
+</aside> 
 
   
-    <article id="post-dynamic-set-property-with-ts" class="article article-type-post  article-index"
-  itemscope itemprop="blogPost">
+    <article
+  id="post-dynamic-set-property-with-ts"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 itemprop="name">
       <a class="article-title" href="/2023/02/06/dynamic-set-property-with-ts/">如何在 TypeScript 中動態設定物件的屬性 (How to Set Dynamic Property Keys with TypeScript)</a>
     </h1>
   
-
-          
-            <a href="/2023/02/06/dynamic-set-property-with-ts/" class="archive-article-date">
+  <a href="/2023/02/06/dynamic-set-property-with-ts/" class="archive-article-date">
   	<time datetime="2023-02-06T03:01:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-02-06</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 JS ES6 中要動態設定物件的屬性，可以透過 Bracket notation 的方式來設定(<code>myobj[key] = &quot;google&quot;;</code>)，<br>但如果在 TypeScript 的物件這樣寫就會出現 <code>TS7053: Element implicitly has an &#39;any&#39; type because expression of type &#39;string&#39; can&#39;t be used to index type</code> 的編譯錯誤，如下，</p>
-                              
-                                <p class="article-more-link">
-                                  <a target="_blank" rel="noopener" href="//2023/02/06/dynamic-set-property-with-ts/#more">
-                                    more &gt;&gt;
-                                  </a>
-                                </p>
-                                
-                                  
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 JS ES6 中要動態設定物件的屬性，可以透過 Bracket notation 的方式來設定(<code>myobj[key] = &quot;google&quot;;</code>)，<br>但如果在 TypeScript 的物件這樣寫就會出現 <code>TS7053: Element implicitly has an &#39;any&#39; type because expression of type &#39;string&#39; can&#39;t be used to index type</code> 的編譯錯誤，如下，</p> 
+      <p class="article-more-link">
+        <a href="/2023/02/06/dynamic-set-property-with-ts/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -300,18 +350,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-      <aside class="wrap-side-operation">
+ <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -325,51 +370,38 @@
         
         
     </div>
-</aside>
-
-
-        
+</aside> 
 
   
-    <article id="post-tcp-3-way-handshakes" class="article article-type-post  article-index"
-  itemscope itemprop="blogPost">
+    <article
+  id="post-tcp-3-way-handshakes"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 itemprop="name">
       <a class="article-title" href="/2023/02/03/tcp-3-way-handshakes/">TCP 3-Way Handshake</a>
     </h1>
   
-
-          
-            <a href="/2023/02/03/tcp-3-way-handshakes/" class="archive-article-date">
+  <a href="/2023/02/03/tcp-3-way-handshakes/" class="archive-article-date">
   	<time datetime="2023-02-03T03:53:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-02-03</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>常常聽到 TCP Three-Way Handshake，它們是如何運作的呢?<br>開始之前，先看了解一下， TCP 使用到的 Header Flags</p>
-                              
-                                <p class="article-more-link">
-                                  <a target="_blank" rel="noopener" href="//2023/02/03/tcp-3-way-handshakes/#more">
-                                    more &gt;&gt;
-                                  </a>
-                                </p>
-                                
-                                  
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>常常聽到 TCP Three-Way Handshake，它們是如何運作的呢?<br>開始之前，先看了解一下， TCP 使用到的 Header Flags</p> 
+      <p class="article-more-link">
+        <a href="/2023/02/03/tcp-3-way-handshakes/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -384,18 +416,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-      <aside class="wrap-side-operation">
+ <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -409,51 +436,38 @@
         
         
     </div>
-</aside>
-
-
-        
+</aside> 
 
   
-    <article id="post-message-has-reached-MaxDequeueCount-of-5" class="article article-type-post  article-index"
-  itemscope itemprop="blogPost">
+    <article
+  id="post-message-has-reached-MaxDequeueCount-of-5"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 itemprop="name">
       <a class="article-title" href="/2023/02/03/message-has-reached-MaxDequeueCount-of-5/">Azure Storage Queue - Message has reached MaxDequeueCount of 5. Moving message to queue poison</a>
     </h1>
   
-
-          
-            <a href="/2023/02/03/message-has-reached-MaxDequeueCount-of-5/" class="archive-article-date">
+  <a href="/2023/02/03/message-has-reached-MaxDequeueCount-of-5/" class="archive-article-date">
   	<time datetime="2023-02-03T01:05:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-02-03</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>透過 Azure Function 的 Queue trigger Function 來取得資料(JSON 字串)時，<br>在 Queue 中的資料都還沒有被 Function 處理，<br>Console 就 Log 出 <strong>Message has reached MaxDequeueCount of 5. Moving message to queue {myQueueName}-poison</strong> ，<br>然後 Queue 中的內容就搬到了 {myQueueName}-poison 去了。<br>如果在 Azure Function 的 Application Insights 看到的錯誤有可能是 <code>System.Text.DecoderFallbackException at System.Text.DecoderExceptionFallbackBuffer.Throw</code></p>
-                              
-                                <p class="article-more-link">
-                                  <a target="_blank" rel="noopener" href="//2023/02/03/message-has-reached-MaxDequeueCount-of-5/#more">
-                                    more &gt;&gt;
-                                  </a>
-                                </p>
-                                
-                                  
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>透過 Azure Function 的 Queue trigger Function 來取得資料(JSON 字串)時，<br>在 Queue 中的資料都還沒有被 Function 處理，<br>Console 就 Log 出 <strong>Message has reached MaxDequeueCount of 5. Moving message to queue {myQueueName}-poison</strong> ，<br>然後 Queue 中的內容就搬到了 {myQueueName}-poison 去了。<br>如果在 Azure Function 的 Application Insights 看到的錯誤有可能是 <code>System.Text.DecoderFallbackException at System.Text.DecoderExceptionFallbackBuffer.Throw</code></p> 
+      <p class="article-more-link">
+        <a href="/2023/02/03/message-has-reached-MaxDequeueCount-of-5/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -484,18 +498,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-      <aside class="wrap-side-operation">
+ <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -509,51 +518,38 @@
         
         
     </div>
-</aside>
-
-
-        
+</aside> 
 
   
-    <article id="post-oracle-17002-io-error-sometimes" class="article article-type-post  article-index"
-  itemscope itemprop="blogPost">
+    <article
+  id="post-oracle-17002-io-error-sometimes"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 itemprop="name">
       <a class="article-title" href="/2023/01/11/oracle-17002-io-error-sometimes/">Oracle 在查詢時，有時會出現 遠端主機已強制關閉一個現存的連線</a>
     </h1>
   
-
-          
-            <a href="/2023/01/11/oracle-17002-io-error-sometimes/" class="archive-article-date">
+  <a href="/2023/01/11/oracle-17002-io-error-sometimes/" class="archive-article-date">
   	<time datetime="2023-01-11T05:07:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-01-11</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                            <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近有遇到使用 <a target="_blank" rel="noopener" href="https://dbeaver.io/">DBeaver</a> 連線 Oracle 11.2 時，<br>在下 SQL 時，有時會出現 <strong>SQL Error[17002][08006]:IO Error:遠端主機已強制關閉一個現存的連線</strong>的錯誤，</p>
-                              
-                                <p class="article-more-link">
-                                  <a target="_blank" rel="noopener" href="//2023/01/11/oracle-17002-io-error-sometimes/#more">
-                                    more &gt;&gt;
-                                  </a>
-                                </p>
-                                
-                                  
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近有遇到使用 <a target="_blank" rel="noopener" href="https://dbeaver.io/">DBeaver</a> 連線 Oracle 11.2 時，<br>在下 SQL 時，有時會出現 <strong>SQL Error[17002][08006]:IO Error:遠端主機已強制關閉一個現存的連線</strong>的錯誤，</p> 
+      <p class="article-more-link">
+        <a href="/2023/01/11/oracle-17002-io-error-sometimes/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -576,18 +572,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-      <aside class="wrap-side-operation">
+ <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -601,51 +592,38 @@
         
         
     </div>
-</aside>
-
-
-        
+</aside> 
 
   
-    <article id="post-ml-net-p-value-outside-0-1-range" class="article article-type-post  article-index"
-  itemscope itemprop="blogPost">
+    <article
+  id="post-ml-net-p-value-outside-0-1-range"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 itemprop="name">
       <a class="article-title" href="/2023/01/07/ml-net-p-value-outside-0-1-range/">ML.NET p-Value calculated outside expected [0,1] range</a>
     </h1>
   
-
-          
-            <a href="/2023/01/07/ml-net-p-value-outside-0-1-range/" class="archive-article-date">
+  <a href="/2023/01/07/ml-net-p-value-outside-0-1-range/" class="archive-article-date">
   	<time datetime="2023-01-07T05:25:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-01-07</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                            <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>使用 ML.NET 中的 OlsTrainer 來預測資料，<br>當使用到某些資料進行模型定型時，<br>卻會發生 <code>System.InvalidOperationException: p-Value calculated outside expected [0,1] range</code> 的錯誤</p>
-                              
-                                <p class="article-more-link">
-                                  <a target="_blank" rel="noopener" href="//2023/01/07/ml-net-p-value-outside-0-1-range/#more">
-                                    more &gt;&gt;
-                                  </a>
-                                </p>
-                                
-                                  
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>使用 ML.NET 中的 OlsTrainer 來預測資料，<br>當使用到某些資料進行模型定型時，<br>卻會發生 <code>System.InvalidOperationException: p-Value calculated outside expected [0,1] range</code> 的錯誤</p> 
+      <p class="article-more-link">
+        <a href="/2023/01/07/ml-net-p-value-outside-0-1-range/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -672,18 +650,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-      <aside class="wrap-side-operation">
+ <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -697,51 +670,38 @@
         
         
     </div>
-</aside>
-
-
-        
+</aside> 
 
   
-    <article id="post-input-string-was-not-in-a-correct-format" class="article article-type-post  article-index"
-  itemscope itemprop="blogPost">
+    <article
+  id="post-input-string-was-not-in-a-correct-format"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 itemprop="name">
       <a class="article-title" href="/2023/01/06/input-string-was-not-in-a-correct-format/">C# Input string was not in a correct format.</a>
     </h1>
   
-
-          
-            <a href="/2023/01/06/input-string-was-not-in-a-correct-format/" class="archive-article-date">
+  <a href="/2023/01/06/input-string-was-not-in-a-correct-format/" class="archive-article-date">
   	<time datetime="2023-01-06T03:58:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-01-06</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                            <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>程式要要透過 string.Format 的方式來改變 json 字串的內容。<br>結果發生了 <strong>Input string was not in a correct format</strong> 的錯誤</p>
-                              
-                                <p class="article-more-link">
-                                  <a target="_blank" rel="noopener" href="//2023/01/06/input-string-was-not-in-a-correct-format/#more">
-                                    more &gt;&gt;
-                                  </a>
-                                </p>
-                                
-                                  
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>程式要要透過 string.Format 的方式來改變 json 字串的內容。<br>結果發生了 <strong>Input string was not in a correct format</strong> 的錯誤</p> 
+      <p class="article-more-link">
+        <a href="/2023/01/06/input-string-was-not-in-a-correct-format/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -768,18 +728,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-      <aside class="wrap-side-operation">
+ <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -793,98 +748,7 @@
         
         
     </div>
-</aside>
-
-
-        
-
-  
-    <article id="post-checkmarx-client-dom-open-redirect" class="article article-type-post  article-index"
-  itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/01/06/checkmarx-client-dom-open-redirect/">Checkmarx DOM_Open_Redirect</a>
-    </h1>
-  
-
-          
-            <a href="/2023/01/06/checkmarx-client-dom-open-redirect/" class="archive-article-date">
-  	<time datetime="2023-01-06T03:31:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-01-06</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                            <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>程式中的 js 檔中，在 click event 中，從 DOM 取得它的屬性做為 url 去改變 Anchor 的 href 屬性。<br>Checkmarx 就會出 <strong>Client_Potential_DOM_Open_Redirect</strong> 的問題，<br>從 <code>attr</code> 到 <code>href</code></p>
-                              
-                                <p class="article-more-link">
-                                  <a target="_blank" rel="noopener" href="//2023/01/06/checkmarx-client-dom-open-redirect/#more">
-                                    more &gt;&gt;
-                                  </a>
-                                </p>
-                                
-                                  
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Checkmarx</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Client_DOM_Open_Redirect</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Client_Potential_DOM_Open_Redirect</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
-  </div>
-</article>
-
-      <aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-        
+</aside> 
 
   
   
@@ -5285,6 +5149,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

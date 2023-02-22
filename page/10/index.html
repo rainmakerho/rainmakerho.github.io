@@ -147,45 +147,117 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-oAuth2-Basic" class="article article-type-post  article-index"
-  itemscope itemprop="blogPost">
+    <article
+  id="post-oAuth2-implicit-flow"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/02/17/oAuth2-implicit-flow/">OAuth 2.0 - Implicit Flow</a>
+    </h1>
+  
+  <a href="/2022/02/17/oAuth2-implicit-flow/" class="archive-article-date">
+  	<time datetime="2022-02-17T01:24:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-17</time>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 <a href="https://rainmakerho.github.io/2022/02/15/oAuth2-Basic/">OAuth 2.0 - Authorization Code Flow</a> 了解它是先取回<strong>授權碼</strong>後再透過該<strong>授權碼</strong>，<strong>Client Id</strong>及<strong>Client Secret</strong>，再取回<strong>Access Token</strong>，透過它去存取 API。<br><strong>Client Secret</strong>相當於是 Password，如果是 Public Client(SPA, Native applications)，那就會讓別人知道<strong>Client Secret</strong>，<br>所以可以使用<strong>OAuth 2.0 - Implicit Flow</strong></p> 
+      <p class="article-more-link">
+        <a href="/2022/02/17/oAuth2-implicit-flow/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OAuth 2.0</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">public client</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Implicit Flow</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">response_type=token</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">response_mode=fragment</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">token flow</a>
+        		</li>
+      		
+		</ul>
+	</div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+ <aside class="wrap-side-operation">
+    <div class="mod-side-operation">
         
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside> 
+
+  
+    <article
+  id="post-oAuth2-Basic"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
   
     <h1 itemprop="name">
       <a class="article-title" href="/2022/02/15/oAuth2-Basic/">OAuth 2.0 - Authorization Code Flow</a>
     </h1>
   
-
-          
-            <a href="/2022/02/15/oAuth2-Basic/" class="archive-article-date">
+  <a href="/2022/02/15/oAuth2-Basic/" class="archive-article-date">
   	<time datetime="2022-02-15T05:18:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-15</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>OAuth是”Open Authorization”,它讓使用者在授權伺服器上，同意 Client App 代表使用者去存取資源。<br>使用者會在授權伺服器上驗證帳密，將 Access Token 交給 Client App，所以 Client App 並不會拿到 使用者的帳密。<br><img src="https://identityserver4.readthedocs.io/en/3.1.0/_images/protocols.png" alt="OAuth2"><br>以上圖來說，當使用者使用 Web App 需要輸入帳密時，應該是網頁轉到 Security Token Service(Authorization Server) 輸入使用者的帳密，而 Web App 從 Token Service 取得 Token 去存取 API。</p>
-                              
-                                <p class="article-more-link">
-                                  <a target="_blank" rel="noopener" href="//2022/02/15/oAuth2-Basic/#more">
-                                    more &gt;&gt;
-                                  </a>
-                                </p>
-                                
-                                  
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>OAuth是”Open Authorization”,它讓使用者在授權伺服器上，同意 Client App 代表使用者去存取資源。<br>使用者會在授權伺服器上驗證帳密，將 Access Token 交給 Client App，所以 Client App 並不會拿到 使用者的帳密。<br><img src="https://identityserver4.readthedocs.io/en/3.1.0/_images/protocols.png" alt="OAuth2"><br>以上圖來說，當使用者使用 Web App 需要輸入帳密時，應該是網頁轉到 Security Token Service(Authorization Server) 輸入使用者的帳密，而 Web App 從 Token Service 取得 Token 去存取 API。</p> 
+      <p class="article-more-link">
+        <a href="/2022/02/15/oAuth2-Basic/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -212,18 +284,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-      <aside class="wrap-side-operation">
+ <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -237,51 +304,38 @@
         
         
     </div>
-</aside>
-
-
-        
+</aside> 
 
   
-    <article id="post-fiddler-cannot-trace-httpclient" class="article article-type-post  article-index"
-  itemscope itemprop="blogPost">
+    <article
+  id="post-fiddler-cannot-trace-httpclient"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 itemprop="name">
       <a class="article-title" href="/2022/02/11/fiddler-cannot-trace-httpclient/">Fiddler 無法錄到 HttpClient 發出的 Request</a>
     </h1>
   
-
-          
-            <a href="/2022/02/11/fiddler-cannot-trace-httpclient/" class="archive-article-date">
+  <a href="/2022/02/11/fiddler-cannot-trace-httpclient/" class="archive-article-date">
   	<time datetime="2022-02-11T05:02:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-11</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                            <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>如果透過 Fiddler 錄不到 HttpClient 發出的 Request 。</p>
-                              
-                                <p class="article-more-link">
-                                  <a target="_blank" rel="noopener" href="//2022/02/11/fiddler-cannot-trace-httpclient/#more">
-                                    more &gt;&gt;
-                                  </a>
-                                </p>
-                                
-                                  
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>如果透過 Fiddler 錄不到 HttpClient 發出的 Request 。</p> 
+      <p class="article-more-link">
+        <a href="/2022/02/11/fiddler-cannot-trace-httpclient/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -300,18 +354,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-      <aside class="wrap-side-operation">
+ <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -325,51 +374,38 @@
         
         
     </div>
-</aside>
-
-
-        
+</aside> 
 
   
-    <article id="post-Excessive-Data-Exposure" class="article article-type-post  article-index"
-  itemscope itemprop="blogPost">
+    <article
+  id="post-Excessive-Data-Exposure"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 itemprop="name">
       <a class="article-title" href="/2022/01/24/Excessive-Data-Exposure/">Excessive Data Exposure</a>
     </h1>
   
-
-          
-            <a href="/2022/01/24/Excessive-Data-Exposure/" class="archive-article-date">
+  <a href="/2022/01/24/Excessive-Data-Exposure/" class="archive-article-date">
   	<time datetime="2022-01-24T03:30:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-24</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>當透過 Checkmarx 集合為 OWASP TOP 10 - 2021 掃 ASP.NET MVC 時，<br>如果回傳的物件中，如果 <strong>類別&#x2F;屬性名稱</strong> 中有一些 機敏性名稱時，<br>Checkmarx 就會出 <strong>Excessive_Data_Exposure</strong> 的中風險</p>
-                              
-                                <p class="article-more-link">
-                                  <a target="_blank" rel="noopener" href="//2022/01/24/Excessive-Data-Exposure/#more">
-                                    more &gt;&gt;
-                                  </a>
-                                </p>
-                                
-                                  
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>當透過 Checkmarx 集合為 OWASP TOP 10 - 2021 掃 ASP.NET MVC 時，<br>如果回傳的物件中，如果 <strong>類別&#x2F;屬性名稱</strong> 中有一些 機敏性名稱時，<br>Checkmarx 就會出 <strong>Excessive_Data_Exposure</strong> 的中風險</p> 
+      <p class="article-more-link">
+        <a href="/2022/01/24/Excessive-Data-Exposure/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -384,18 +420,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-      <aside class="wrap-side-operation">
+ <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -409,51 +440,38 @@
         
         
     </div>
-</aside>
-
-
-        
+</aside> 
 
   
-    <article id="post-Missing-Object-Level-Authorization" class="article article-type-post  article-index"
-  itemscope itemprop="blogPost">
+    <article
+  id="post-Missing-Object-Level-Authorization"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 itemprop="name">
       <a class="article-title" href="/2022/01/23/Missing-Object-Level-Authorization/">Missing Object Level Authorization</a>
     </h1>
   
-
-          
-            <a href="/2022/01/23/Missing-Object-Level-Authorization/" class="archive-article-date">
+  <a href="/2022/01/23/Missing-Object-Level-Authorization/" class="archive-article-date">
   	<time datetime="2022-01-23T07:48:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-23</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>當透過 Checkmarx 集合為 OWASP TOP 10 - 2021 掃 ASP.NET MVC 時，<br>在一些有 Authorize 的 Action 上，如果接受一些 int, string 的參數直接當作DB的Filter，<br>Checkmarx 就會出 <strong>Missing Object Level Authorization</strong> 的中風險</p>
-                              
-                                <p class="article-more-link">
-                                  <a target="_blank" rel="noopener" href="//2022/01/23/Missing-Object-Level-Authorization/#more">
-                                    more &gt;&gt;
-                                  </a>
-                                </p>
-                                
-                                  
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>當透過 Checkmarx 集合為 OWASP TOP 10 - 2021 掃 ASP.NET MVC 時，<br>在一些有 Authorize 的 Action 上，如果接受一些 int, string 的參數直接當作DB的Filter，<br>Checkmarx 就會出 <strong>Missing Object Level Authorization</strong> 的中風險</p> 
+      <p class="article-more-link">
+        <a href="/2022/01/23/Missing-Object-Level-Authorization/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -472,18 +490,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-      <aside class="wrap-side-operation">
+ <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -497,51 +510,38 @@
         
         
     </div>
-</aside>
-
-
-        
+</aside> 
 
   
-    <article id="post-npm-ERR-sqlite-install" class="article article-type-post  article-index"
-  itemscope itemprop="blogPost">
+    <article
+  id="post-npm-ERR-sqlite-install"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 itemprop="name">
       <a class="article-title" href="/2022/01/13/npm-ERR-sqlite-install/">npm ERR! sqlite3@4.2.0 install</a>
     </h1>
   
-
-          
-            <a href="/2022/01/13/npm-ERR-sqlite-install/" class="archive-article-date">
+  <a href="/2022/01/13/npm-ERR-sqlite-install/" class="archive-article-date">
   	<time datetime="2022-01-13T01:06:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-13</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                            <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近在 CentOS 8 上下載 NodeJS 的程式，然後下<code>npm install</code>，就發生 npm ERR! <a href="mailto:&#x73;&#x71;&#108;&#105;&#x74;&#101;&#51;&#64;&#52;&#x2e;&#50;&#46;&#x30;">&#x73;&#x71;&#108;&#105;&#x74;&#101;&#51;&#64;&#52;&#x2e;&#50;&#46;&#x30;</a> install: <code>node-pre-gyp install --fallback-to-build</code> 的錯誤。</p>
-                              
-                                <p class="article-more-link">
-                                  <a target="_blank" rel="noopener" href="//2022/01/13/npm-ERR-sqlite-install/#more">
-                                    more &gt;&gt;
-                                  </a>
-                                </p>
-                                
-                                  
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近在 CentOS 8 上下載 NodeJS 的程式，然後下<code>npm install</code>，就發生 npm ERR! <a href="mailto:&#x73;&#x71;&#108;&#105;&#x74;&#101;&#51;&#64;&#52;&#x2e;&#50;&#46;&#x30;">&#x73;&#x71;&#108;&#105;&#x74;&#101;&#51;&#64;&#52;&#x2e;&#50;&#46;&#x30;</a> install: <code>node-pre-gyp install --fallback-to-build</code> 的錯誤。</p> 
+      <p class="article-more-link">
+        <a href="/2022/01/13/npm-ERR-sqlite-install/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -564,18 +564,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-      <aside class="wrap-side-operation">
+ <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -589,51 +584,38 @@
         
         
     </div>
-</aside>
-
-
-        
+</aside> 
 
   
-    <article id="post-webpack-error-03000086-digital-envelope-routines-ERR-OSSL-EVP-UNSUPPORTED" class="article article-type-post  article-index"
-  itemscope itemprop="blogPost">
+    <article
+  id="post-webpack-error-03000086-digital-envelope-routines-ERR-OSSL-EVP-UNSUPPORTED"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 itemprop="name">
       <a class="article-title" href="/2022/01/10/webpack-error-03000086-digital-envelope-routines-ERR-OSSL-EVP-UNSUPPORTED/">webpack opensslErrorStack error 03000086:digital envelope routines initialization error</a>
     </h1>
   
-
-          
-            <a href="/2022/01/10/webpack-error-03000086-digital-envelope-routines-ERR-OSSL-EVP-UNSUPPORTED/" class="archive-article-date">
+  <a href="/2022/01/10/webpack-error-03000086-digital-envelope-routines-ERR-OSSL-EVP-UNSUPPORTED/" class="archive-article-date">
   	<time datetime="2022-01-10T03:52:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-10</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>更新 NodeJS 到 V17 後，執行 <code>npx webpack</code> 時，會噴 <code>error:0308010C:digital envelope routines::unsupported</code> 的錯誤</p>
-                              
-                                <p class="article-more-link">
-                                  <a target="_blank" rel="noopener" href="//2022/01/10/webpack-error-03000086-digital-envelope-routines-ERR-OSSL-EVP-UNSUPPORTED/#more">
-                                    more &gt;&gt;
-                                  </a>
-                                </p>
-                                
-                                  
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>更新 NodeJS 到 V17 後，執行 <code>npx webpack</code> 時，會噴 <code>error:0308010C:digital envelope routines::unsupported</code> 的錯誤</p> 
+      <p class="article-more-link">
+        <a href="/2022/01/10/webpack-error-03000086-digital-envelope-routines-ERR-OSSL-EVP-UNSUPPORTED/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -660,18 +642,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-      <aside class="wrap-side-operation">
+ <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -685,51 +662,38 @@
         
         
     </div>
-</aside>
-
-
-        
+</aside> 
 
   
-    <article id="post-error-TS2307-Cannot-find-module" class="article article-type-post  article-index"
-  itemscope itemprop="blogPost">
+    <article
+  id="post-error-TS2307-Cannot-find-module"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 itemprop="name">
       <a class="article-title" href="/2022/01/10/error-TS2307-Cannot-find-module/">error TS2307 Cannot find module</a>
     </h1>
   
-
-          
-            <a href="/2022/01/10/error-TS2307-Cannot-find-module/" class="archive-article-date">
+  <a href="/2022/01/10/error-TS2307-Cannot-find-module/" class="archive-article-date">
   	<time datetime="2022-01-10T03:10:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-10</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                            <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>透過 CentOS 8 來 compile ts 檔時，居然噴<code>error TS2307 Cannot find module</code>的錯誤</p>
-                              
-                                <p class="article-more-link">
-                                  <a target="_blank" rel="noopener" href="//2022/01/10/error-TS2307-Cannot-find-module/#more">
-                                    more &gt;&gt;
-                                  </a>
-                                </p>
-                                
-                                  
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>透過 CentOS 8 來 compile ts 檔時，居然噴<code>error TS2307 Cannot find module</code>的錯誤</p> 
+      <p class="article-more-link">
+        <a href="/2022/01/10/error-TS2307-Cannot-find-module/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -764,18 +728,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-      <aside class="wrap-side-operation">
+ <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -789,102 +748,7 @@
         
         
     </div>
-</aside>
-
-
-        
-
-  
-    <article id="post-npm-OpenSSL-configuration-error" class="article article-type-post  article-index"
-  itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/01/10/npm-OpenSSL-configuration-error/">npm install - OpenSSL configuration error</a>
-    </h1>
-  
-
-          
-            <a href="/2022/01/10/npm-OpenSSL-configuration-error/" class="archive-article-date">
-  	<time datetime="2022-01-10T02:42:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-10</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                            <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>在 Windows 10 X64, 更新 NodeJS 到 V17 後，執行 <code>npm install</code> 時，噴以 <code>OpenSSL configuration error</code> 的錯誤</p>
-                              
-                                <p class="article-more-link">
-                                  <a target="_blank" rel="noopener" href="//2022/01/10/npm-OpenSSL-configuration-error/#more">
-                                    more &gt;&gt;
-                                  </a>
-                                </p>
-                                
-                                  
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">node</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">npm</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">OpenSSL configuration error</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Windows 10 環境變數</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
-  </div>
-</article>
-
-      <aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-        
+</aside> 
 
   
   
@@ -5285,6 +5149,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

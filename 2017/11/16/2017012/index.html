@@ -159,30 +159,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2017012" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-2017012"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       解析 SQL Server Deadlocks
     </h1>
   
-
-          
-            <a href="/2017/11/16/2017012/" class="archive-article-date">
+  <a href="/2017/11/16/2017012/" class="archive-article-date">
   	<time datetime="2017-11-16T01:57:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-16</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h4 id="最近收到了-Deadlock-的-trace-file，如下圖，"><a href="#最近收到了-Deadlock-的-trace-file，如下圖，" class="headerlink" title="最近收到了 Deadlock 的 trace file，如下圖，"></a>最近收到了 Deadlock 的 trace file，如下圖，</h4><img src="/2017/11/16/2017012/001.png" class="" title="slug Deadlock graph">
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h4 id="最近收到了-Deadlock-的-trace-file，如下圖，"><a href="#最近收到了-Deadlock-的-trace-file，如下圖，" class="headerlink" title="最近收到了 Deadlock 的 trace file，如下圖，"></a>最近收到了 Deadlock 的 trace file，如下圖，</h4><img src="/2017/11/16/2017012/001.png" class="" title="slug Deadlock graph">
 
 <h4 id="如果直接看圖示資訊不夠清楚的話，可以將那個-trc-檔用-Notepad-來開，用-xml-方式檢視，就可以看到更多詳細的資料，如下圖，"><a href="#如果直接看圖示資訊不夠清楚的話，可以將那個-trc-檔用-Notepad-來開，用-xml-方式檢視，就可以看到更多詳細的資料，如下圖，" class="headerlink" title="如果直接看圖示資訊不夠清楚的話，可以將那個 trc 檔用 Notepad++ 來開，用 xml 方式檢視，就可以看到更多詳細的資料，如下圖，"></a>如果直接看圖示資訊不夠清楚的話，可以將那個 trc 檔用 Notepad++ 來開，用 xml 方式檢視，就可以看到更多詳細的資料，如下圖，</h4><img src="/2017/11/16/2017012/002.png" class="" title="slug View in Notepad++">
 
@@ -218,15 +216,10 @@
 <li>Create Indexes with Included Columns<br>有一些 Key Lookup deadlock 就是因為在 Update 某 Table 時，除了更新了 Clustered Index 後，還需要再更新 Non Clustered Index，而另一個 Select 除了透過 Non Clustered Index 找到資料後，還需要到 Lookup 到 Clustered Index 取得資料。這樣子就有可能會互相 Lock 到而造成 Deadlock，這種狀況可以加入 Included Columns 來解決。</li>
 <li>MAXDOP<br>有些光 SELECT 時，就會發生 Deadlock ，是因為平行處理造成的，解法就是調整 SQL 。如果還會有 Deadlock 的話，就設定 MAXDOP 看看能不能解決。</li>
 </ul>
-<h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><h4 id="SQL-Server-Deadlocks-by-Example"><a href="#SQL-Server-Deadlocks-by-Example" class="headerlink" title="SQL Server Deadlocks by Example"></a><a target="_blank" rel="noopener" href="https://www.red-gate.com/simple-talk/sql/performance/sql-server-deadlocks-by-example/">SQL Server Deadlocks by Example</a></h4>
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+<h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><h4 id="SQL-Server-Deadlocks-by-Example"><a href="#SQL-Server-Deadlocks-by-Example" class="headerlink" title="SQL Server Deadlocks by Example"></a><a target="_blank" rel="noopener" href="https://www.red-gate.com/simple-talk/sql/performance/sql-server-deadlocks-by-example/">SQL Server Deadlocks by Example</a></h4>   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -249,18 +242,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2017/11/29/2017013/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -279,9 +267,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -295,38 +281,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4719,6 +4698,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

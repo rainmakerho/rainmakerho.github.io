@@ -151,43 +151,36 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-co-e-server-exec-failure-80080005-office-word" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-co-e-server-exec-failure-80080005-office-word"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       ASP.NET 使用 Interop.Word 會發生 0x80080005 (CO_E_SERVER_EXEC_FAILURE) 錯誤
     </h1>
   
-
-          
-            <a href="/2022/11/02/co-e-server-exec-failure-80080005-office-word/" class="archive-article-date">
+  <a href="/2022/11/02/co-e-server-exec-failure-80080005-office-word/" class="archive-article-date">
   	<time datetime="2022-11-02T02:54:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-02</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近同事詢問使用 Microsoft.Office.Interop.Word 元件處理檔案的問題。<br>一開始可以正常開啟檔案，操作做幾次後，就會卡卡的，最後就會噴 <strong>HRESULT:0x80080005 (CO_E_SERVER_EXEC_FAILURE)</strong> 的錯誤。</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近同事詢問使用 Microsoft.Office.Interop.Word 元件處理檔案的問題。<br>一開始可以正常開啟檔案，操作做幾次後，就會卡卡的，最後就會噴 <strong>HRESULT:0x80080005 (CO_E_SERVER_EXEC_FAILURE)</strong> 的錯誤。</p>
 <h3 id="研究"><a href="#研究" class="headerlink" title="研究"></a>研究</h3><p>一開始可以開啟檔案，操作做幾次後就有問題，感覺最後有可能 Word.Exe 沒有正常被關掉。<br>詢問同事後，證實在工作管理員中，有一堆的 Word.Exe 並未被正常關閉。<br>這通常是因為 Word 檔有些動作需要與人互動，<br>而我們使用程式去操作 Word.Application 時，通常會將 Visible 設定成 false ，<br>所以導致 Word.Exe 卡住而無法關閉。</p>
 <p>於是查看同事的程式碼，發現程式中，並未設定 <strong>DisplayAlerts</strong> 屬性為 <strong>false</strong> ，<br>這更加讓我確定應該是有些 Alert 訊息卡在執行緒之中。</p>
 <p>於是請同事在建立 Word.Application 後，<br>設定 DisplayAlerts 屬性設定為 fasle，Visible 屬性設定為 true，<br>再請同事在 Microsoft Office Word 的 DCOM 設定，在「識別身分」Tab 中，<br>先設定為 <strong>互動式使用者</strong> ，<br>執行程式看看 Word 是否有正常的顯示出來，並在最後順利關閉 Word.Exe。<br>如果沒問題的話，再將 Visible 設定成 false，<br>在 Microsoft Office Word 的 DCOM 設定，在「識別身分」Tab 中，設定為某個帳號，<br>再測試看看。</p>
 <h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a target="_blank" rel="noopener" href="https://dotblogs.com.tw/rainmaker/2012/02/29/70401">Microsoft Office Excel 無法決定用資料範圍中那一列作為欄名稱</a><br><a target="_blank" rel="noopener" href="https://dotblogs.com.tw/rainmaker/2009/10/14/11054">解決 Win2008 Asp.NET 使用 Word.Selection 會有 System.NullReferenceException 的問題</a></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -214,18 +207,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2022/11/04/CryptographicException-the-system-cannot-find-the-file-specified/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -244,9 +232,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -260,38 +246,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4684,6 +4663,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

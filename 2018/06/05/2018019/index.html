@@ -149,30 +149,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2018019" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-2018019"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       Implement global message handlers and resets the dialog stack
     </h1>
   
-
-          
-            <a href="/2018/06/05/2018019/" class="archive-article-date">
+  <a href="/2018/06/05/2018019/" class="archive-article-date">
   	<time datetime="2018-06-05T01:45:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-05</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <p>在 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/azure/bot-service/dotnet/bot-builder-dotnet-global-handlers?view=azure-bot-service-3.0">Implement global message handlers</a> 有說明如何透過 global message handlers 來處理一些 help, cancel 等等的全域處理。例如在一個對話當中，使用者輸入了取得待批示的指令，這時需要將處理待批示清單的 Dialog 叫出來，並且將目前處理中的對話堆疉清除(this.task.Reset())。</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <p>在 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/azure/bot-service/dotnet/bot-builder-dotnet-global-handlers?view=azure-bot-service-3.0">Implement global message handlers</a> 有說明如何透過 global message handlers 來處理一些 help, cancel 等等的全域處理。例如在一個對話當中，使用者輸入了取得待批示的指令，這時需要將處理待批示清單的 Dialog 叫出來，並且將目前處理中的對話堆疉清除(this.task.Reset())。</p>
 <p>這裡要注意的是 this.task.Reset() 一定要放在最後面，不然會噴錯哦! 例如，</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">override</span> <span class="keyword">async</span> Task <span class="title">PostAsync</span>(<span class="params">IActivity item, <span class="built_in">string</span> state, CancellationToken token</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">var</span> message = item <span class="keyword">as</span> IMessageActivity;</span><br><span class="line">    <span class="keyword">if</span> (message != <span class="literal">null</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> settingsDialog = <span class="keyword">new</span> SettingsDialog();</span><br><span class="line">        <span class="keyword">var</span> interruption = settingsDialog.Void&lt;<span class="built_in">object</span>, IMessageActivity&gt;();</span><br><span class="line">        <span class="keyword">this</span>.task.Call(interruption, <span class="literal">null</span>);</span><br><span class="line">        <span class="keyword">await</span> <span class="keyword">this</span>.task.PollAsync(token);</span><br><span class="line">        <span class="comment">// 要清除 DialogStack 的話，請加上 this.task.Reset()</span></span><br><span class="line">        <span class="keyword">this</span>.task.Reset();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -183,15 +181,10 @@
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> (<span class="keyword">var</span> scope = DialogModule.BeginLifetimeScope(Conversation.Container, (IMessageActivity)context.Activity))</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">var</span> botData = scope.Resolve&lt;IBotData&gt;();</span><br><span class="line">	<span class="keyword">await</span> botData.LoadAsync(<span class="literal">default</span>(CancellationToken));</span><br><span class="line">	<span class="keyword">var</span> stack = scope.Resolve&lt;IDialogStack&gt;();</span><br><span class="line">	stack.Reset();</span><br><span class="line">	<span class="keyword">await</span> botData.FlushAsync(<span class="literal">default</span>(CancellationToken));</span><br><span class="line">&#125;</span><br><span class="line">context.Done&lt;<span class="built_in">string</span>&gt;(<span class="literal">null</span>);</span><br></pre></td></tr></table></figure>
 
 <p>如果在 Dialog 中直接 call context.Reset(); 可是會噴錯的哦!</p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -210,18 +203,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2018/07/01/2018020/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -240,9 +228,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -256,38 +242,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4680,6 +4659,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

@@ -151,44 +151,37 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2018001" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-2018001"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       Windows 10 IoT Core UWP Beacon 程式 Crash 事件
     </h1>
   
-
-          
-            <a href="/2018/01/09/2018001/" class="archive-article-date">
+  <a href="/2018/01/09/2018001/" class="archive-article-date">
   	<time datetime="2018-01-09T07:03:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-09</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <p>我們在2016年有透過 Windows 10 IoT Core 來開發 UWP beacon 的程式，並透過 Azure IoT Hub 來處理訊息。<br>但是這支 UWP 程式執行一段時間後，那台 Raspberry 就無法由外部到它。<br>後來更新到 Build 15063 後，過一段時間後，整個作業系統直接就 Crash 掉了。<br>同事 Kent 查看 event 發現，因為 IoT Core 如果自動更新後，自動重新開機後， OS 就 Crash 掉了。<br>所以將自動更新透過 Power Shell 將它關掉(要更新的話，就手動更新測試沒問題再上)，可參考<a target="_blank" rel="noopener" href="https://brosteins.com/2016/09/06/disable-windows-update-windows-10-iot-core-powershell/">Disable Windows Update in Windows 10 IoT Core with PowerShell</a>。</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <p>我們在2016年有透過 Windows 10 IoT Core 來開發 UWP beacon 的程式，並透過 Azure IoT Hub 來處理訊息。<br>但是這支 UWP 程式執行一段時間後，那台 Raspberry 就無法由外部到它。<br>後來更新到 Build 15063 後，過一段時間後，整個作業系統直接就 Crash 掉了。<br>同事 Kent 查看 event 發現，因為 IoT Core 如果自動更新後，自動重新開機後， OS 就 Crash 掉了。<br>所以將自動更新透過 Power Shell 將它關掉(要更新的話，就手動更新測試沒問題再上)，可參考<a target="_blank" rel="noopener" href="https://brosteins.com/2016/09/06/disable-windows-update-windows-10-iot-core-powershell/">Disable Windows Update in Windows 10 IoT Core with PowerShell</a>。</p>
 <p>過了一陣子後，無法連網的狀況又發生了，但系統是有取到 ip 的，但就是無法連網。<br>再將系統重新啟動後，就又可以正常連網。<br>所以就在程式中檢查，如果無法連到 Azure IoT Hub N 次之後，就讓系統重新啟動，可參考<a href="https://rainmakerho.github.io/2017/12/11/2017016/">Windows 10 IoT Core 如何透過 UWP 程式來 重開機 或是 關機 (C00CE014)</a>。</p>
 <ul>
 <li>而觀察到目前為止，採取這樣子的方式(停止自動更新、無法連網 N 次就重開機)，程式目前運作的都還蠻順利的哦! </li>
 <li>另外比較麻煩的就是 Android 的手機如果有連到 藍牙裝置(耳機、手環 …)，就無法掃到 Beacon ，手機重開機後才掃得到。</li>
 </ul>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -215,18 +208,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2018/01/11/2018002/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -245,9 +233,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -261,38 +247,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4685,6 +4664,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

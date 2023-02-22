@@ -152,45 +152,38 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Use-ReflectionMagic-To-Clean-Reflection-Codes" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-Use-ReflectionMagic-To-Clean-Reflection-Codes"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       使用 ReflectionMagic 讓 Reflection 程式碼更簡潔
     </h1>
   
-
-          
-            <a href="/2021/04/20/Use-ReflectionMagic-To-Clean-Reflection-Codes/" class="archive-article-date">
+  <a href="/2021/04/20/Use-ReflectionMagic-To-Clean-Reflection-Codes/" class="archive-article-date">
   	<time datetime="2021-04-20T09:04:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-20</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>使用 .NET Reflection 時，在呼叫 Method 或是設定 Property 之前，需要搭配 BindingFlags 來取得 Type 的 MethodInfo or PropertyInfo 等相關的 Info 物件，然後再去 Invoke 它。<br>這些程式碼也不少，如果使用 <a target="_blank" rel="noopener" href="https://www.nuget.org/packages/ReflectionMagic">ReflectionMagic</a> 可達到一樣目的，程式碼卻簡潔許多。</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>使用 .NET Reflection 時，在呼叫 Method 或是設定 Property 之前，需要搭配 BindingFlags 來取得 Type 的 MethodInfo or PropertyInfo 等相關的 Info 物件，然後再去 Invoke 它。<br>這些程式碼也不少，如果使用 <a target="_blank" rel="noopener" href="https://www.nuget.org/packages/ReflectionMagic">ReflectionMagic</a> 可達到一樣目的，程式碼卻簡潔許多。</p>
 <h3 id="Demo-Console-程式"><a href="#Demo-Console-程式" class="headerlink" title="Demo Console 程式"></a>Demo Console 程式</h3><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Reflection;</span><br><span class="line"><span class="keyword">using</span> ReflectionMagic;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">con1</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">var</span> emp1 = <span class="keyword">new</span> Employee();</span><br><span class="line">            Console.WriteLine(<span class="string">$&quot;<span class="subst">&#123;emp1&#125;</span>&quot;</span>);</span><br><span class="line">            <span class="comment">//Reflection 要寫的程式碼</span></span><br><span class="line">            <span class="keyword">var</span> privateField = emp1.GetType().GetField(<span class="string">&quot;_Name&quot;</span>,</span><br><span class="line">             BindingFlags.Instance | BindingFlags.NonPublic);</span><br><span class="line">            privateField.SetValue(emp1, <span class="string">&quot;new value from reflection&quot;</span>);</span><br><span class="line">            Console.WriteLine(<span class="string">$&quot;reflection:<span class="subst">&#123;emp1&#125;</span>&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">//使用 ReflectionMagic 一行就搞定了</span></span><br><span class="line">            emp1.AsDynamic()._Name = <span class="string">&quot;new Value from ReflectionMagic&quot;</span>;</span><br><span class="line">            Console.WriteLine(<span class="string">$&quot;ReflectionMagic:<span class="subst">&#123;emp1&#125;</span>&quot;</span>);</span><br><span class="line">            Console.WriteLine(<span class="string">$&quot;ReflectionMagic Call PrivateMethod1:<span class="subst">&#123;emp1.AsDynamic().privateMethod1()&#125;</span>&quot;</span>);</span><br><span class="line">            <span class="comment">//emp1.AsDynamic().MyProperty = ...</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">class</span> <span class="title">Employee</span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="built_in">string</span> _Name = <span class="string">&quot;this is private field&quot;</span>;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="built_in">string</span> <span class="title">privateMethod1</span>()</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> _Name;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="built_in">string</span> <span class="title">ToString</span>()</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">$&quot;_Name:<span class="subst">&#123;_Name&#125;</span>&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>安裝 ReflectionMagic Nuget 套件</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dotnet add package ReflectionMagic</span><br></pre></td></tr></table></figure>
 
 <p>使用 ReflectionMagic 程式碼看起來簡潔多了。</p>
 <h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a target="_blank" rel="noopener" href="https://github.com/ReflectionMagic/ReflectionMagic">ReflectionMagic</a><br><a target="_blank" rel="noopener" href="https://khalidabuhakmeh.com/common-usecases-for-dotnet-reflection">Common Use Cases For .NET Reflection</a></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -221,18 +214,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2021/04/24/sql-injection-get-info-sqlplan-problems/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -251,9 +239,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -267,38 +253,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4691,6 +4670,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

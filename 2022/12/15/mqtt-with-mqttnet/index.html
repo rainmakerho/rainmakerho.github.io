@@ -157,30 +157,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-mqtt-with-mqttnet" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-mqtt-with-mqttnet"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       C# MQTT using MQTTnet
     </h1>
   
-
-          
-            <a href="/2022/12/15/mqtt-with-mqttnet/" class="archive-article-date">
+  <a href="/2022/12/15/mqtt-with-mqttnet/" class="archive-article-date">
   	<time datetime="2022-12-15T02:37:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-12-15</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近需要透過 MQTT 來收取 IOT Sensor 的資料，<br>所以到 <a target="_blank" rel="noopener" href="https://mqtt.org/">MQTT.org</a> 看一下有那些軟體可以當 MQTT Broker 及 MQTT Client。<br>有人使用 <a target="_blank" rel="noopener" href="https://mosquitto.org/">mosquitto</a>，也有人使用 <a target="_blank" rel="noopener" href="https://www.rabbitmq.com/mqtt.html">RabbitMQ with MQTT Plugin</a>。<br>而 .NET 則可以使用 <a target="_blank" rel="noopener" href="https://github.com/dotnet/MQTTnet">MQTTnet</a>。<br>以下本文將使用 <a target="_blank" rel="noopener" href="https://github.com/dotnet/MQTTnet">MQTTnet</a> 來測試 Sensor 送資料到 Broker ，<br>再由 Backend ControlCenter 將訂閱的 Topic 訊息讀取出來，<br>最後再讀取來自 <a target="_blank" rel="noopener" href="https://mosquitto.org/">mosquitto</a> 的訊息。</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近需要透過 MQTT 來收取 IOT Sensor 的資料，<br>所以到 <a target="_blank" rel="noopener" href="https://mqtt.org/">MQTT.org</a> 看一下有那些軟體可以當 MQTT Broker 及 MQTT Client。<br>有人使用 <a target="_blank" rel="noopener" href="https://mosquitto.org/">mosquitto</a>，也有人使用 <a target="_blank" rel="noopener" href="https://www.rabbitmq.com/mqtt.html">RabbitMQ with MQTT Plugin</a>。<br>而 .NET 則可以使用 <a target="_blank" rel="noopener" href="https://github.com/dotnet/MQTTnet">MQTTnet</a>。<br>以下本文將使用 <a target="_blank" rel="noopener" href="https://github.com/dotnet/MQTTnet">MQTTnet</a> 來測試 Sensor 送資料到 Broker ，<br>再由 Backend ControlCenter 將訂閱的 Topic 訊息讀取出來，<br>最後再讀取來自 <a target="_blank" rel="noopener" href="https://mosquitto.org/">mosquitto</a> 的訊息。</p>
 <h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><p>建立 MQBroker, MQControlCenter 及 MQSensor 3 個 Console 專案，</p>
 <img src="/2022/12/15/mqtt-with-mqttnet/01.png" class="" title="MQTT方案">
 
@@ -214,15 +212,10 @@
 <li>註: 第三個發佈訊息因為 Topic 不符合訂閱的 Topic Filter (<strong>home&#x2F;temperature&#x2F;#</strong>)，所以不會被收到</li>
 </ul>
 <h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a target="_blank" rel="noopener" href="https://mqtt.org/">MQTT</a><br><a target="_blank" rel="noopener" href="https://github.com/dotnet/MQTTnet">MQTTnet</a><br><a target="_blank" rel="noopener" href="https://blog.behroozbc.ir/c-mqtt-broker-using-mqttnet-version-4">C# MQTT broker using MQTTnet version 4</a><br><a target="_blank" rel="noopener" href="https://blog.behroozbc.ir/mqtt-client-with-mqttnet-4-and-c">MQTT Client with MQTTnet 4 and C#</a><br><a target="_blank" rel="noopener" href="https://mosquitto.org/">mosquitto</a><br><a target="_blank" rel="noopener" href="https://www.rabbitmq.com/mqtt.html">RabbitMQ with MQTT Plugin</a></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -249,18 +242,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2022/12/15/mosquitto-allow-remote-access/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -279,9 +267,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -295,38 +281,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4719,6 +4698,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

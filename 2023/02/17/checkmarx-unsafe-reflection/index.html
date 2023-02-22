@@ -150,30 +150,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-checkmarx-unsafe-reflection" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-checkmarx-unsafe-reflection"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       Checkmarx Unsafe_Reflection
     </h1>
   
-
-          
-            <a href="/2023/02/17/checkmarx-unsafe-reflection/" class="archive-article-date">
+  <a href="/2023/02/17/checkmarx-unsafe-reflection/" class="archive-article-date">
   	<time datetime="2023-02-17T03:01:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-02-17</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近系統被 Checkmarx V9.4.5 掃出有 Unsafe_Reflection 的問題，<br>程式碼中有透過傳入的 Type Name 及 參數值來動態建立物件執行該 Method 。<br>問題的<strong>來源</strong>是 Controller Action Method 的<strong>參數</strong>，<br>問題的<strong>目的地</strong>則是 <strong>Invoke Method</strong> 。</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近系統被 Checkmarx V9.4.5 掃出有 Unsafe_Reflection 的問題，<br>程式碼中有透過傳入的 Type Name 及 參數值來動態建立物件執行該 Method 。<br>問題的<strong>來源</strong>是 Controller Action Method 的<strong>參數</strong>，<br>問題的<strong>目的地</strong>則是 <strong>Invoke Method</strong> 。</p>
 <h3 id="解決"><a href="#解決" class="headerlink" title="解決"></a>解決</h3><p>查看 Checkmarx 中的 Search Rule 如下，</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">CxList inputs = Find_Inputs();</span><br><span class="line">CxList objectCreates = Find_ObjectCreations();</span><br><span class="line">CxList comCreations = objectCreates.FindByTypes(<span class="keyword">new</span> String[]</span><br><span class="line"></span><br><span class="line">&#123; <span class="string">&quot;CodeSnippetExpression&quot;</span>, <span class="string">&quot;CodeEntryPointMethod&quot;</span>, <span class="string">&quot;CodeTypeReference&quot;</span>, <span class="string">&quot;CodeTypeReference&quot;</span>, <span class="string">&quot;CodeObjectCreateExpression&quot;</span>, <span class="string">&quot;CodeMethodInvokeExpression&quot;</span>, <span class="string">&quot;CodeTypeReferenceExpression&quot;</span>, <span class="string">&quot;CodeMethodReturnStatement&quot;</span>, <span class="string">&quot;CodeMemberMethod&quot;</span>&#125;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">CxList unknownList = Find_UnknownReference();</span><br><span class="line">unknownList.Add(Find_Param());</span><br><span class="line">unknownList.Add(Find_TypeRef());</span><br><span class="line"></span><br><span class="line">CxList methodExpr = Find_Methods();</span><br><span class="line">CxList ifs = Find_Ifs();</span><br><span class="line"></span><br><span class="line">CxList auxInput = inputs.Clone();</span><br><span class="line">auxInput.Add(unknownList.FindAllReferences(auxInput.GetAssignee()));</span><br><span class="line">CxList typeofExpress = Find_TypeOfExpr();</span><br><span class="line">typeofExpress.Add(methodExpr.FindByMemberAccesses(<span class="keyword">new</span> <span class="built_in">string</span>[]</span><br><span class="line"></span><br><span class="line">&#123;<span class="string">&quot;Type.Get*&quot;</span>, <span class="string">&quot;Assembly.GetType&quot;</span>, <span class="string">&quot;*Info.Get*&quot;</span>, <span class="string">&quot;Assembly.Load*&quot;</span>, <span class="string">&quot;Assembly.ReflectionOnly*&quot;</span>&#125;</span><br><span class="line">));</span><br><span class="line"></span><br><span class="line">CxList containsMethods = methodExpr.FindByMemberAccess(<span class="string">&quot;*.Contains&quot;</span>).GetByAncs(ifs);</span><br><span class="line">CxList influenceIfparams = auxInput.GetParameters(containsMethods.FindByParameters(auxInput), <span class="number">0</span>);</span><br><span class="line">CxList allReferencesOfifParams = auxInput.FindAllReferences(influenceIfparams);</span><br><span class="line"></span><br><span class="line">CxList notInfluencedChecks = typeofExpress - typeofExpress.FindByParameters(allReferencesOfifParams);</span><br><span class="line">notInfluencedChecks.Add(All.FindAllReferences(notInfluencedChecks.GetAssignee()));</span><br><span class="line"></span><br><span class="line">CxList notInfluencedComCreations = comCreations - comCreations.FindByParameters(allReferencesOfifParams);</span><br><span class="line">CxList objsC = notInfluencedComCreations.FindByParameters(All.GetParameters(notInfluencedComCreations) * auxInput);</span><br><span class="line"></span><br><span class="line">result = inputs.DataInfluencingOn(notInfluencedChecks.GetMembersOfTarget().FindByShortName(<span class="string">&quot;Invoke*&quot;</span>));</span><br><span class="line">result.Add(inputs.DataInfluencingOn(objsC));</span><br></pre></td></tr></table></figure>
 
@@ -186,15 +184,10 @@
 
 <p>雖然上述程式碼中有透過 LINQ 的 Where 判斷，但沒有 <strong>if + 白名單 + Contains</strong> 所以還是被 Checkmarx 認為有問題。<br>所以調整程式碼，讓它符合 <strong>if + 白名單 + Contains</strong> 就可以通過了，如下，</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="built_in">dynamic</span> <span class="title">CreateReport</span>(<span class="params"><span class="built_in">string</span> ReportName, <span class="built_in">string</span> ReportPrintDate, <span class="built_in">string</span> condition</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// ... codes ...</span></span><br><span class="line">	<span class="built_in">string</span> reportDll = WebConfigurationManager.AppSettings[<span class="string">&quot;ReportDll&quot;</span>];</span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> types = Assembly.Load(reportDll).GetTypes().Where(t =&gt; t.Name == ReportName);</span><br><span class="line">	<span class="keyword">if</span> (types.Count() == <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">&quot;無此報表程式&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="keyword">var</span> typeNames = Assembly.Load(reportDll).GetTypes().Select(t=&gt;t.Name);</span><br><span class="line">    <span class="comment">//要 invoke 的 method 要被包在 if + 白名單 + Contains 之中</span></span><br><span class="line">    <span class="keyword">if</span>(typeNames.Contains(ReportName))</span><br><span class="line">    &#123;</span><br><span class="line">        Type type = Assembly.Load(reportDll).GetTypes().Where(t =&gt; t.Name == ReportName).FirstOrDefault();</span><br><span class="line">        <span class="built_in">dynamic</span> report = Activator.CreateInstance(type);</span><br><span class="line">        <span class="keyword">var</span> queryMethod = type.GetMethod(<span class="string">&quot;Query&quot;</span>);</span><br><span class="line">        List&lt;<span class="built_in">object</span>&gt; para = <span class="keyword">new</span> List&lt;<span class="built_in">object</span>&gt;();</span><br><span class="line">        para.Add(condition);</span><br><span class="line">        <span class="comment">//  Unsafe_Reflection</span></span><br><span class="line">        queryMethod.Invoke(report, para.ToArray());</span><br><span class="line">        <span class="keyword">return</span> report;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;<span class="keyword">return</span> <span class="literal">null</span>;&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -217,19 +210,23 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
+  
+    <a href="/2023/02/22/fp-retry/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          C# 簡單的 Retry Method - Partial, Curry
+        
+      </div>
+    </a>
   
   
     <a href="/2023/02/06/dynamic-set-property-with-ts/" id="article-nav-older" class="article-nav-link-wrap">
@@ -238,9 +235,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -254,38 +249,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4678,6 +4666,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

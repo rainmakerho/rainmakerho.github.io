@@ -152,42 +152,35 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2017015" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-2017015"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       為什麼 OPTIONS 時會給 404 呢?
     </h1>
   
-
-          
-            <a href="/2017/12/07/2017015/" class="archive-article-date">
+  <a href="/2017/12/07/2017015/" class="archive-article-date">
   	<time datetime="2017-12-07T09:30:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-07</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h4 id="同事在-CALL-IIS-上的網頁時，因為-CORS-所以會先做-Preflight-request，跑-OPTIONS-時，居然回-404-。"><a href="#同事在-CALL-IIS-上的網頁時，因為-CORS-所以會先做-Preflight-request，跑-OPTIONS-時，居然回-404-。" class="headerlink" title="同事在 CALL IIS 上的網頁時，因為 CORS 所以會先做 Preflight request，跑 OPTIONS 時，居然回 404 。"></a>同事在 CALL IIS 上的網頁時，因為 CORS 所以會先做 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Glossary/Preflight_request">Preflight request</a>，跑 OPTIONS 時，居然回 404 。</h4><h4 id="在-web-config-中有允許-OPTIONS-呀-而且在-web-config-中設定的-header-也有-response-出來。-但-status-code-卻是-404-。"><a href="#在-web-config-中有允許-OPTIONS-呀-而且在-web-config-中設定的-header-也有-response-出來。-但-status-code-卻是-404-。" class="headerlink" title="在 web.config 中有允許 OPTIONS 呀 ~ 而且在 web.config 中設定的 header 也有 response 出來。 但 status code 卻是 404 。"></a>在 web.config 中有允許 OPTIONS 呀 ~ 而且在 web.config 中設定的 header 也有 response 出來。 但 status code 卻是 404 。</h4><h4 id="後來到-IIS-一看才知道，在-IIS-的「要求篩選」那裡，-OPTIONS-被設定成了-不允許，如下圖，"><a href="#後來到-IIS-一看才知道，在-IIS-的「要求篩選」那裡，-OPTIONS-被設定成了-不允許，如下圖，" class="headerlink" title="後來到 IIS 一看才知道，在 IIS 的「要求篩選」那裡， OPTIONS 被設定成了 不允許，如下圖，"></a>後來到 IIS 一看才知道，在 IIS 的「要求篩選」那裡， OPTIONS 被設定成了 不允許，如下圖，</h4><br>  
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h4 id="同事在-CALL-IIS-上的網頁時，因為-CORS-所以會先做-Preflight-request，跑-OPTIONS-時，居然回-404-。"><a href="#同事在-CALL-IIS-上的網頁時，因為-CORS-所以會先做-Preflight-request，跑-OPTIONS-時，居然回-404-。" class="headerlink" title="同事在 CALL IIS 上的網頁時，因為 CORS 所以會先做 Preflight request，跑 OPTIONS 時，居然回 404 。"></a>同事在 CALL IIS 上的網頁時，因為 CORS 所以會先做 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Glossary/Preflight_request">Preflight request</a>，跑 OPTIONS 時，居然回 404 。</h4><h4 id="在-web-config-中有允許-OPTIONS-呀-而且在-web-config-中設定的-header-也有-response-出來。-但-status-code-卻是-404-。"><a href="#在-web-config-中有允許-OPTIONS-呀-而且在-web-config-中設定的-header-也有-response-出來。-但-status-code-卻是-404-。" class="headerlink" title="在 web.config 中有允許 OPTIONS 呀 ~ 而且在 web.config 中設定的 header 也有 response 出來。 但 status code 卻是 404 。"></a>在 web.config 中有允許 OPTIONS 呀 ~ 而且在 web.config 中設定的 header 也有 response 出來。 但 status code 卻是 404 。</h4><h4 id="後來到-IIS-一看才知道，在-IIS-的「要求篩選」那裡，-OPTIONS-被設定成了-不允許，如下圖，"><a href="#後來到-IIS-一看才知道，在-IIS-的「要求篩選」那裡，-OPTIONS-被設定成了-不允許，如下圖，" class="headerlink" title="後來到 IIS 一看才知道，在 IIS 的「要求篩選」那裡， OPTIONS 被設定成了 不允許，如下圖，"></a>後來到 IIS 一看才知道，在 IIS 的「要求篩選」那裡， OPTIONS 被設定成了 不允許，如下圖，</h4><br>  
 <img src="/2017/12/07/2017015/REQFILTER.png" class="" title="slug 要求篩選">  
 <br>
 
-<h4 id="後來將它移除後，就可以了哦"><a href="#後來將它移除後，就可以了哦" class="headerlink" title="後來將它移除後，就可以了哦 ~"></a>後來將它移除後，就可以了哦 ~</h4><h4 id="大家如果有類似的問題，可以檢查一下-IIS-的「要求篩選」設定哦"><a href="#大家如果有類似的問題，可以檢查一下-IIS-的「要求篩選」設定哦" class="headerlink" title="大家如果有類似的問題，可以檢查一下 IIS 的「要求篩選」設定哦 !"></a>大家如果有類似的問題，可以檢查一下 IIS 的「要求篩選」設定哦 !</h4>
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+<h4 id="後來將它移除後，就可以了哦"><a href="#後來將它移除後，就可以了哦" class="headerlink" title="後來將它移除後，就可以了哦 ~"></a>後來將它移除後，就可以了哦 ~</h4><h4 id="大家如果有類似的問題，可以檢查一下-IIS-的「要求篩選」設定哦"><a href="#大家如果有類似的問題，可以檢查一下-IIS-的「要求篩選」設定哦" class="headerlink" title="大家如果有類似的問題，可以檢查一下 IIS 的「要求篩選」設定哦 !"></a>大家如果有類似的問題，可以檢查一下 IIS 的「要求篩選」設定哦 !</h4>   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -210,18 +203,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2017/12/11/2017016/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -240,9 +228,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -256,38 +242,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4680,6 +4659,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

@@ -151,30 +151,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-20171003-2" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-20171003-2"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       取得 Execute SQL 裡面資料的值
     </h1>
   
-
-          
-            <a href="/2017/10/03/20171003-2/" class="archive-article-date">
+  <a href="/2017/10/03/20171003-2/" class="archive-article-date">
   	<time datetime="2017-10-03T09:32:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-03</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="有同事詢問他要如何取得-Exec-t-sql-裡面的值，因為-Exec-與外面是不同的-Scope-所以要取得裡面值有以下幾種情況。"><a href="#有同事詢問他要如何取得-Exec-t-sql-裡面的值，因為-Exec-與外面是不同的-Scope-所以要取得裡面值有以下幾種情況。" class="headerlink" title="有同事詢問他要如何取得 Exec(t-sql) 裡面的值，因為 Exec 與外面是不同的 Scope 所以要取得裡面值有以下幾種情況。"></a>有同事詢問他要如何取得 Exec(t-sql) 裡面的值，因為 Exec 與外面是不同的 Scope 所以要取得裡面值有以下幾種情況。</h3><ul>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="有同事詢問他要如何取得-Exec-t-sql-裡面的值，因為-Exec-與外面是不同的-Scope-所以要取得裡面值有以下幾種情況。"><a href="#有同事詢問他要如何取得-Exec-t-sql-裡面的值，因為-Exec-與外面是不同的-Scope-所以要取得裡面值有以下幾種情況。" class="headerlink" title="有同事詢問他要如何取得 Exec(t-sql) 裡面的值，因為 Exec 與外面是不同的 Scope 所以要取得裡面值有以下幾種情況。"></a>有同事詢問他要如何取得 Exec(t-sql) 裡面的值，因為 Exec 與外面是不同的 Scope 所以要取得裡面值有以下幾種情況。</h3><ul>
 <li><p>Store Procedue ，透過 sp_executesql + 它的 output 參數來取得資料，例如，</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DECLARE</span> <span class="variable">@sql</span> NVARCHAR(max), <span class="variable">@outputcode</span> NVARCHAR(<span class="number">4000</span>);</span><br><span class="line"><span class="keyword">SET</span> <span class="variable">@sql</span> <span class="operator">=</span> </span><br><span class="line"><span class="string">&#x27;</span></span><br><span class="line"><span class="string">EXEC SP_GETSERNO @RETURNS=@outputcode output</span></span><br><span class="line"><span class="string">&#x27;</span>;</span><br><span class="line"><span class="keyword">exec</span> sp_executesql <span class="variable">@sql</span>, N<span class="string">&#x27;@outputcode NVARCHAR(4000) out&#x27;</span>, <span class="variable">@outputcode</span> <span class="keyword">out</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="variable">@outputcode</span>;</span><br></pre></td></tr></table></figure>
 </li>
@@ -187,15 +185,10 @@
 <li><p>透過 OPENQUERY 的方式，詳細可以參考「<a target="_blank" rel="noopener" href="https://dotblogs.com.tw/rainmaker/2015/02/02/148355">讓 Execute 可以搭配 Select Into，而不再只有 Insert into</a>」</p>
 </li>
 </ul>
-<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><h3 id="How-to-set-value-to-variable-using-‘execute’-in-t-sql"><a href="#How-to-set-value-to-variable-using-‘execute’-in-t-sql" class="headerlink" title="How to set value to variable using ‘execute’ in t-sql?"></a><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/7229070/how-to-set-value-to-variable-using-execute-in-t-sql">How to set value to variable using ‘execute’ in t-sql?</a></h3><h3 id="讓-Execute-可以搭配-Select-Into，而不再只有-Insert-into"><a href="#讓-Execute-可以搭配-Select-Into，而不再只有-Insert-into" class="headerlink" title="讓 Execute 可以搭配 Select Into，而不再只有 Insert into"></a><a target="_blank" rel="noopener" href="https://dotblogs.com.tw/rainmaker/2015/02/02/148355">讓 Execute 可以搭配 Select Into，而不再只有 Insert into</a></h3>
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><h3 id="How-to-set-value-to-variable-using-‘execute’-in-t-sql"><a href="#How-to-set-value-to-variable-using-‘execute’-in-t-sql" class="headerlink" title="How to set value to variable using ‘execute’ in t-sql?"></a><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/7229070/how-to-set-value-to-variable-using-execute-in-t-sql">How to set value to variable using ‘execute’ in t-sql?</a></h3><h3 id="讓-Execute-可以搭配-Select-Into，而不再只有-Insert-into"><a href="#讓-Execute-可以搭配-Select-Into，而不再只有-Insert-into" class="headerlink" title="讓 Execute 可以搭配 Select Into，而不再只有 Insert into"></a><a target="_blank" rel="noopener" href="https://dotblogs.com.tw/rainmaker/2015/02/02/148355">讓 Execute 可以搭配 Select Into，而不再只有 Insert into</a></h3>   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -222,18 +215,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2017/10/05/20171005/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -252,9 +240,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -268,38 +254,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4692,6 +4671,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

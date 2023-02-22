@@ -159,30 +159,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2019016" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-2019016"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       Microsoft Threat Modeling Tool
     </h1>
   
-
-          
-            <a href="/2019/07/03/2019016/" class="archive-article-date">
+  <a href="/2019/07/03/2019016/" class="archive-article-date">
   	<time datetime="2019-07-03T02:01:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-03</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>大家在開發系統時除了畫系統架構圖之外，不知有沒畫 Threat Modeling 呢?<br>有了 Threat Modeling 可以看到整個系統大約有那些的 威脅，然後在開發系統時，一併考量進去。<br>跟 bug 一樣，逾早發現安全性威脅，解決成本逾低。<br>我們可以從 <a target="_blank" rel="noopener" href="https://aka.ms/threatmodelingtool">Microsoft Threat Modeling Tool</a> 來安裝 (windows only)。</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>大家在開發系統時除了畫系統架構圖之外，不知有沒畫 Threat Modeling 呢?<br>有了 Threat Modeling 可以看到整個系統大約有那些的 威脅，然後在開發系統時，一併考量進去。<br>跟 bug 一樣，逾早發現安全性威脅，解決成本逾低。<br>我們可以從 <a target="_blank" rel="noopener" href="https://aka.ms/threatmodelingtool">Microsoft Threat Modeling Tool</a> 來安裝 (windows only)。</p>
 <h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><h4 id="Application-Review"><a href="#Application-Review" class="headerlink" title="Application Review"></a>Application Review</h4><p><strong>Microsoft Threat Modeling Tool</strong> 讓我們透過畫 Data Flow Diagrams(DFDs) 後，自動產生相關的安全性威脅。<br>安裝完成後，開啟程式可以選擇 Azure or SDL 的範本，請依您系統的類別選取範本，這裡筆者是使用 SDL 範本。</p>
 <img src="/2019/07/03/2019016/001.png" class="" title="選取範本">
 
@@ -253,15 +251,10 @@
 <li>註: 自動列出 Threats ?<br>不知大家是否對於該 Tool 為什麼可以自動列出 Threats 而感到好奇呢?<br>只要大家開啟 Template 就可以知道，它其實是有寫 Rule 在裡面，當 Elements 有相關，並且屬性值為某個值時，就會出現那個 Threat ，例如下圖，當 Source 為 Generic External Interactor ， Target 為 Generic Process 就會出現那個 Threat ，但如果 Flow 的屬性有設設定 Source Authenticated 是 Yes ，或是 Generic External Interactor 屬性有設定 Authenticates Itself 為 Yes ，就不會出現那個 Threat<img src="/2019/07/03/2019016/007.png" class="" title="Threat Rule"></li>
 </ul>
 <h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a target="_blank" rel="noopener" href="https://resources.infosecinstitute.com/applications-threat-modeling/#gref">Applications Threat Modeling</a><br><a target="_blank" rel="noopener" href="https://www.geeksforgeeks.org/microsoft-threat-modelling-tool-2016-set-1/">Microsoft Threat modelling tool 2016 | Set 1</a><br><a target="_blank" rel="noopener" href="https://aka.ms/threatmodelingtool">下載 Microsoft Threat Modeling Tool</a><br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/azure/security/azure-security-threat-modeling-tool-feature-overview">Threat Modeling Tool feature overview</a></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -280,18 +273,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2019/07/04/2019017/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -310,9 +298,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -326,38 +312,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4750,6 +4729,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

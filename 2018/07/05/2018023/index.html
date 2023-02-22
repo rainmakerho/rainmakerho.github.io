@@ -153,30 +153,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2018023" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-2018023"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       從 Bot 送訊息到 IM Channel 時，加入額外的 Header 資訊
     </h1>
   
-
-          
-            <a href="/2018/07/05/2018023/" class="archive-article-date">
+  <a href="/2018/07/05/2018023/" class="archive-article-date">
   	<time datetime="2018-07-05T02:45:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-05</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>我們使用 <a target="_blank" rel="noopener" href="https://github.com/rainmakerho/offline_dl">offline_dl</a> 來達到使用 botframework 開發全地端的 Chatbot (<a target="_blank" rel="noopener" href="https://rainmakerhoblog.wordpress.com/2017/08/30/20170830/">使用 Microsoft Bot Framework 地端的 WebChat 機器人(企業內)</a>).<br>我們想要在 <a target="_blank" rel="noopener" href="https://github.com/rainmakerho/offline_dl">offline_dl</a> 中去驗證由 Bot 送過來的訊息是否可靠，所以想在 Bot 發送訊息時 (Conversations.ReplyToActivityAsync or DialogContext.PostAsync)，多加入一個 Header 的資料，來讓 <a target="_blank" rel="noopener" href="https://github.com/rainmakerho/offline_dl">offline_dl</a> 中可以去驗證。</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>我們使用 <a target="_blank" rel="noopener" href="https://github.com/rainmakerho/offline_dl">offline_dl</a> 來達到使用 botframework 開發全地端的 Chatbot (<a target="_blank" rel="noopener" href="https://rainmakerhoblog.wordpress.com/2017/08/30/20170830/">使用 Microsoft Bot Framework 地端的 WebChat 機器人(企業內)</a>).<br>我們想要在 <a target="_blank" rel="noopener" href="https://github.com/rainmakerho/offline_dl">offline_dl</a> 中去驗證由 Bot 送過來的訊息是否可靠，所以想在 Bot 發送訊息時 (Conversations.ReplyToActivityAsync or DialogContext.PostAsync)，多加入一個 Header 的資料，來讓 <a target="_blank" rel="noopener" href="https://github.com/rainmakerho/offline_dl">offline_dl</a> 中可以去驗證。</p>
 <h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><p>一開始有看到 Conversations 有一個 <a target="_blank" rel="noopener" href="https://github.com/Microsoft/botbuilder-dotnet/blob/master/libraries/Microsoft.Bot.Connector/Conversations.cs#L903">ReplyToActivityWithHttpMessagesAsync</a> Method ，可以讓我們放要額外加的 Header ，但那就要從 <a target="_blank" rel="noopener" href="https://github.com/Microsoft/BotBuilder/blob/master/CSharp/Library/Microsoft.Bot.Connector.Shared/ConnectorAPI/ConversationsExtensions.cs#L333">ReplyToActivityAsync</a> 改成 <a target="_blank" rel="noopener" href="https://github.com/Microsoft/botbuilder-dotnet/blob/master/libraries/Microsoft.Bot.Connector/Conversations.cs#L903">ReplyToActivityWithHttpMessagesAsync</a>. 那用 <a target="_blank" rel="noopener" href="https://github.com/Microsoft/BotBuilder/blob/master/CSharp/Library/Microsoft.Bot.Builder/Dialogs/DialogContext.cs#L85">DialogContext.PostAsync</a> Method 要怎麼辦呢?</p>
 <p>參考 github 上的一些討論後發現，其實可以透過抽換 ConnectorClient 來達到我們的需求。從 Bot Call Connector 是透過 ConnectorClient 的 HttpClient 來處理的。所以只要 2 步驟就可以了哦!</p>
 <h4 id="1-繼承自-ConnectorClient-，然後在建構子中，將我們想要加的-Header-加到-HttpClient-DefaultRequestHeaders-之中，如下。"><a href="#1-繼承自-ConnectorClient-，然後在建構子中，將我們想要加的-Header-加到-HttpClient-DefaultRequestHeaders-之中，如下。" class="headerlink" title="1.繼承自 ConnectorClient ，然後在建構子中，將我們想要加的 Header 加到 HttpClient.DefaultRequestHeaders 之中，如下。"></a>1.繼承自 ConnectorClient ，然後在建構子中，將我們想要加的 Header 加到 HttpClient.DefaultRequestHeaders 之中，如下。</h4><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MyConnectorClient</span> : <span class="title">ConnectorClient</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="function"><span class="keyword">protected</span> <span class="title">MyConnectorClient</span>(<span class="params"><span class="keyword">params</span> DelegatingHandler[] handlers</span>)</span></span><br><span class="line"><span class="function">		: <span class="title">base</span>(<span class="params">handlers</span>)</span></span><br><span class="line">	&#123;</span><br><span class="line">		AddCustomHeaders();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">MyConnectorClient</span>(<span class="params">ServiceClientCredentials credentials, <span class="keyword">params</span> DelegatingHandler[] handlers</span>)</span></span><br><span class="line"><span class="function">		:<span class="title">base</span>(<span class="params">credentials, handlers</span>)</span></span><br><span class="line">	&#123;</span><br><span class="line">		AddCustomHeaders();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">MyConnectorClient</span>(<span class="params">HttpClientHandler rootHandler, <span class="keyword">params</span> DelegatingHandler[] handlers</span>) : <span class="title">base</span>(<span class="params">rootHandler, handlers</span>)</span></span><br><span class="line">	&#123;</span><br><span class="line">		AddCustomHeaders();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">MyConnectorClient</span>(<span class="params">Uri baseUri, <span class="built_in">string</span> microsoftAppId = <span class="literal">null</span>, <span class="built_in">string</span> microsoftAppPassword = <span class="literal">null</span>, <span class="keyword">params</span> DelegatingHandler[] handlers</span>)</span></span><br><span class="line"><span class="function">		: <span class="title">base</span>(<span class="params">baseUri, microsoftAppId, microsoftAppPassword, handlers</span>)</span></span><br><span class="line">	&#123;</span><br><span class="line">		AddCustomHeaders();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">MyConnectorClient</span>(<span class="params">Uri baseUri, MicrosoftAppCredentials credentials, <span class="built_in">bool</span> addJwtTokenRefresher = <span class="literal">true</span>, <span class="keyword">params</span> DelegatingHandler[] handlers</span>)</span></span><br><span class="line"><span class="function">		: <span class="title">base</span>(<span class="params">baseUri, credentials, addJwtTokenRefresher, handlers</span>)</span></span><br><span class="line">	&#123;</span><br><span class="line">		AddCustomHeaders();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">MyConnectorClient</span>(<span class="params">Uri baseUri, MicrosoftAppCredentials credentials, HttpClientHandler httpClientHandler, <span class="built_in">bool</span> addJwtTokenRefresher = <span class="literal">true</span>, <span class="keyword">params</span> DelegatingHandler[] handlers</span>)</span></span><br><span class="line"><span class="function">		:<span class="title">base</span>(<span class="params">baseUri, credentials, httpClientHandler, addJwtTokenRefresher, handlers</span>)</span></span><br><span class="line">	&#123;</span><br><span class="line">		AddCustomHeaders();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">MyConnectorClient</span>(<span class="params">Uri uri, MicrosoftAppCredentials microsoftAppCredentials</span>)</span></span><br><span class="line"><span class="function">	: <span class="title">base</span>(<span class="params">uri, microsoftAppCredentials</span>)</span></span><br><span class="line">	&#123;</span><br><span class="line">		AddCustomHeaders();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">MyConnectorClient</span>(<span class="params">Uri uri</span>)</span></span><br><span class="line"><span class="function">		: <span class="title">base</span>(<span class="params">uri</span>)</span></span><br><span class="line">	&#123;</span><br><span class="line">		AddCustomHeaders();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">MyConnectorClient</span>() : <span class="title">base</span>()</span></span><br><span class="line">	&#123;</span><br><span class="line">		AddCustomHeaders();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">AddCustomHeaders</span>()</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//在這裡操作 HttpClient</span></span><br><span class="line">		<span class="keyword">base</span>.HttpClient.DefaultRequestHeaders.TryAddWithoutValidation(<span class="string">&quot;x-rm&quot;</span>, <span class="string">&quot;rmvalue&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -192,15 +190,10 @@
 <img src="/2018/07/05/2018023/CustomHeader.png" class="" title="[offline_dl log Request.Headers]">
 
 <h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a target="_blank" rel="noopener" href="https://github.com/Microsoft/BotBuilder/issues/4075">[Question] How can I override Autofac configuration to provide my own custom ConnectorClient?</a><br><a target="_blank" rel="noopener" href="https://github.com/Microsoft/BotBuilder/issues/954">Intercepting every message between bot and user</a><br><a target="_blank" rel="noopener" href="https://rainmakerhoblog.wordpress.com/2017/08/30/20170830/">使用 Microsoft Bot Framework 地端的 WebChat 機器人(企業內)</a><br><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/51128475/add-custom-header-when-call-conversations-replytoactivityasync-and-dialogcontext">Add custom header when call Conversations.ReplyToActivityAsync and DialogContext.PostAsync</a><br><a target="_blank" rel="noopener" href="https://github.com/rainmakerho/offline_dl">offline_dl</a><br><a target="_blank" rel="noopener" href="https://github.com/Microsoft/BotBuilder/issues/2258">Conversation.SendAsync Authentication using custom multi-tenant authentication (Bot Builder 3.5.2)</a></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -227,18 +220,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2018/07/13/2018024/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -257,9 +245,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -273,38 +259,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4697,6 +4676,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

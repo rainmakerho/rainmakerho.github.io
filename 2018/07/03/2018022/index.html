@@ -157,30 +157,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2018022" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-2018022"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       透過 Aspose 將 datatable 的資料轉出成有浮水印的 PDF 檔
     </h1>
   
-
-          
-            <a href="/2018/07/03/2018022/" class="archive-article-date">
+  <a href="/2018/07/03/2018022/" class="archive-article-date">
   	<time datetime="2018-07-03T07:55:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-03</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近同事想要將 datatable 轉出 excel, 但又需要不能讓使用者修改，上面還要有浮水印.<br>本來想要直接 Render 出 Html 的 Table 並加入 page-break-after 去讓 Browser 分頁, 但 CSS 控制上不是很順利.</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近同事想要將 datatable 轉出 excel, 但又需要不能讓使用者修改，上面還要有浮水印.<br>本來想要直接 Render 出 Html 的 Table 並加入 page-break-after 去讓 Browser 分頁, 但 CSS 控制上不是很順利.</p>
 <h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><p>Aspose.Cells 可以將各種資料源轉成 Excel (可參考<a target="_blank" rel="noopener" href="https://apireference.aspose.com/net/cells/aspose.cells/cells/methods/index">cells methods</a>的 Import 相關 Methods).<br>所以我們想要的做法如下，</p>
 <p><strong>DataTable &#x3D;&gt; 換 ColumnName &#x3D;&gt; Excel &#x3D;&gt; Pdf &#x3D;&gt; Pdf+浮水印</strong></p>
 <p>所以就可以抽一個共用的 Method 出來如下，</p>
@@ -197,15 +195,10 @@
 <li>有時資料欄位太多時，可以設定列印的縮放比例 pageSetup.Zoom 的值，詳細請參考<a target="_blank" rel="noopener" href="https://docs.aspose.com/display/cellsnet/Setting+Page+Options#SettingPageOptions-ScalingFactor">Scaling Factor</a></li>
 </ol>
 <p>Demo 專案:<a target="_blank" rel="noopener" href="https://github.com/rainmakerho/asposeExcel2PDF">rainmakerho&#x2F;asposeExcel2PDF</a></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -248,18 +241,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2018/07/05/2018023/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -278,9 +266,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -294,38 +280,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4718,6 +4697,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

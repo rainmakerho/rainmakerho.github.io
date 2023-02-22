@@ -159,30 +159,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2020018" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-2020018"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       有效地使用 ASP.NET Core Logging - 3
     </h1>
   
-
-          
-            <a href="/2020/08/29/2020018/" class="archive-article-date">
+  <a href="/2020/08/29/2020018/" class="archive-article-date">
   	<time datetime="2020-08-29T06:23:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-29</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>前幾篇從 <a href="https://rainmakerho.github.io/2020/08/05/2020014/">有效地使用 ASP.NET Core Logging - 1</a> 介紹使用 Serilog 來記錄，並加入錯誤的處理。<br><a href="https://rainmakerho.github.io/2020/08/26/2020017/">有效地使用 ASP.NET Core Logging - 2</a> 透過 Filter 去記錄每個 Page, Action 的執行時間。<br>在 log 中有些內容是每個訊息最好要提供的，例如機器名稱、使用者資訊。這些共通的資料我們可以透過 BeginScope 來將這些資料記錄下來。</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>前幾篇從 <a href="https://rainmakerho.github.io/2020/08/05/2020014/">有效地使用 ASP.NET Core Logging - 1</a> 介紹使用 Serilog 來記錄，並加入錯誤的處理。<br><a href="https://rainmakerho.github.io/2020/08/26/2020017/">有效地使用 ASP.NET Core Logging - 2</a> 透過 Filter 去記錄每個 Page, Action 的執行時間。<br>在 log 中有些內容是每個訊息最好要提供的，例如機器名稱、使用者資訊。這些共通的資料我們可以透過 BeginScope 來將這些資料記錄下來。</p>
 <h3 id="練習實作"><a href="#練習實作" class="headerlink" title="練習實作"></a>練習實作</h3><h4 id="記錄共通要-Log-的資料"><a href="#記錄共通要-Log-的資料" class="headerlink" title="記錄共通要 Log 的資料"></a>記錄共通要 Log 的資料</h4><h5 id="使用-ScopeInformation-來記錄共通要-Log-的資料"><a href="#使用-ScopeInformation-來記錄共通要-Log-的資料" class="headerlink" title="使用 ScopeInformation 來記錄共通要 Log 的資料"></a>使用 ScopeInformation 來記錄共通要 Log 的資料</h5><p>因為要記錄共通的資料，所以在 RMStore.Infrastructure 專案，新增 IScopeInformation interface 及實作它的 ScopeInformation Class。<br>HostScopeInfo 屬性提供 MachineName 及 EntryPoint ， GetUserScopeInfo Method 則透過 ClaimsPrincipal 來取得使用者的資訊。</p>
 <p>ScopeInformation.cs </p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">IScopeInformation</span></span><br><span class="line">&#123;</span><br><span class="line">    Dictionary&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt; HostScopeInfo &#123; <span class="keyword">get</span>; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">Dictionary&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt; <span class="title">GetUserScopeInfo</span>(<span class="params">ClaimsPrincipal user</span>)</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ScopeInformation</span> : <span class="title">IScopeInformation</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> Dictionary&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt; HostScopeInfo &#123; <span class="keyword">get</span>; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ScopeInformation</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        HostScopeInfo = <span class="keyword">new</span> Dictionary&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt;()</span><br><span class="line">        &#123;</span><br><span class="line">            &#123;<span class="string">&quot;MachineName&quot;</span>, Environment.MachineName &#125;,</span><br><span class="line">            &#123;<span class="string">&quot;EntryPoint&quot;</span>, Assembly.GetEntryAssembly().GetName().Name &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Dictionary&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt; <span class="title">GetUserScopeInfo</span>(<span class="params">ClaimsPrincipal user</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> userDict = <span class="keyword">new</span> Dictionary&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt;</span><br><span class="line">        &#123;</span><br><span class="line">            &#123;<span class="string">&quot;UserId&quot;</span>, user.Claims.FirstOrDefault(c =&gt; c.Type == <span class="string">&quot;UserId&quot;</span>)?.Value &#125;,</span><br><span class="line">            &#123;<span class="string">&quot;UserName&quot;</span>, user.Claims.FirstOrDefault(c =&gt; c.Type == ClaimTypes.Name)?.Value &#125;,</span><br><span class="line">            &#123;<span class="string">&quot;Email&quot;</span>, user.Claims.FirstOrDefault(c =&gt; c.Type == ClaimTypes.Email)?.Value &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">return</span> userDict;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -221,15 +219,10 @@
 <p>目前 Log 是寫到 File 之中，如果在不同的機器或是系統，這些檔案是不容易整合，也不容易去查詢，而且對使用者來說，也缺少 UI。 所以接下來就是將 Log 寫 Seq、ELK 等系統之中，以方便使用者查詢及 Alert。</p>
 </blockquote>
 <h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a target="_blank" rel="noopener" href="https://andrewlock.net/how-to-include-scopes-when-logging-exceptions-in-asp-net-core/">How to include scopes when logging exceptions in ASP.NET Core</a></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -268,18 +261,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2020/09/09/2020019/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -298,9 +286,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -314,38 +300,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4738,6 +4717,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

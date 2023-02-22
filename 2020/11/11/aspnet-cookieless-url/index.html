@@ -161,30 +161,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-aspnet-cookieless-url" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-aspnet-cookieless-url"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       為什麼 Url 中有 (A(XXXX)) 在 ASP.NET 中，卻不會噴 404 或是錯誤，反而回正常的頁面(200)呢?
     </h1>
   
-
-          
-            <a href="/2020/11/11/aspnet-cookieless-url/" class="archive-article-date">
+  <a href="/2020/11/11/aspnet-cookieless-url/" class="archive-article-date">
   	<time datetime="2020-11-11T03:36:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-11</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近同事詢問，為什麼 <a target="_blank" rel="noopener" href="http://rm-nb/ap1/(A(abc))/Login">http://rm-nb/ap1/(A(abc))/Login</a> 跟 <a target="_blank" rel="noopener" href="http://rm-nb/ap1/Login">http://rm-nb/ap1/Login</a> 一樣，都會被 Login Controller 處理到呢?<br>在 RouteConfig 明明沒有設定那樣子的 Route Path Pattern 呀!</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近同事詢問，為什麼 <a target="_blank" rel="noopener" href="http://rm-nb/ap1/(A(abc))/Login">http://rm-nb/ap1/(A(abc))/Login</a> 跟 <a target="_blank" rel="noopener" href="http://rm-nb/ap1/Login">http://rm-nb/ap1/Login</a> 一樣，都會被 Login Controller 處理到呢?<br>在 RouteConfig 明明沒有設定那樣子的 Route Path Pattern 呀!</p>
 <h3 id="研究"><a href="#研究" class="headerlink" title="研究"></a>研究</h3><p>看到那個 Url 就像是 Cookieless 設定成 true ，所以把 SessionId 的值，放在 Url 上面。<br>但 web.config 的 cookieless 是設定 “UseCookies” (預設也是)，又不是設定 “UseUri” 這是怎麼一回事呢?</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">sessionState</span> <span class="attr">cookieless</span>=<span class="string">&quot;UseCookies&quot;</span> <span class="attr">mode</span>=<span class="string">&quot;InProc&quot;</span> <span class="attr">timeout</span>=<span class="string">&quot;30&quot;</span>  /&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -211,15 +209,10 @@
 <li>補充: 加入 Deny HTTP GET with request body<br>有時，黑箱也會測試在 Get 時，給你 Body 的資料，看你的程式會不會擋，也可以在 BeginRequest 多加入檢查如果 Get 又有 Body 的話，就回 403，如下，<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">Application_BeginRequest</span>(<span class="params"><span class="built_in">object</span> sender, EventArgs e</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//到這時，Url已被改成沒包含SessionId</span></span><br><span class="line">	<span class="comment">//但它的值會放在 Response._appPathModifier 變數之中</span></span><br><span class="line">	<span class="keyword">var</span> appPathModifierFieldInfo = Context.Response.GetType().GetField(<span class="string">&quot;_appPathModifier&quot;</span>,</span><br><span class="line">				 BindingFlags.NonPublic | BindingFlags.Instance);</span><br><span class="line">	<span class="keyword">var</span> appPathModifier = appPathModifierFieldInfo.GetValue(Context.Response);</span><br><span class="line">	<span class="keyword">if</span> (appPathModifier != <span class="literal">null</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//url 中有 SessionId</span></span><br><span class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> HttpException(<span class="number">404</span>, <span class="string">&quot;Not found&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//deny HTTP GET with request body</span></span><br><span class="line">	<span class="keyword">if</span>(Request.HttpMethod == <span class="string">&quot;GET&quot;</span> &amp;&amp; Request.ContentLength &gt; <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> HttpException(<span class="number">403</span>, <span class="string">&quot;Forbidden&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
 </ul>
 <h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/previous-versions/dotnet/articles/aa479315%28v=msdn.10%29">Understand How the ASP.NET Cookieless Feature Works(.NET 2.X)</a><br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/previous-versions/dotnet/articles/ms972429%28v=msdn.10%29">ASP.NET Session State .NET 1.X</a><br><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/43593952/why-do-all-asp-net-mvc-websites-allow-and-ignore-the-string-f-in-front-o">Why do all ASP.NET MVC websites allow and ignore the string “&#x2F;(F())&#x2F;” in front of ANY URL?</a><br><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/9089745/possible-bug-with-asp-net-mvc-3-routing">Possible Bug With ASP.NET MVC 3 Routing?</a><br><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/47370804/cannot-disable-asp-net-cookieless-mode">Cannot disable ASP.NET cookieless mode</a></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -266,18 +259,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2020/11/13/checkmarx-csharp-code-injection/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -296,9 +284,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -312,38 +298,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4736,6 +4715,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

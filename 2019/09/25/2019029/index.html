@@ -157,30 +157,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2019029" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-2019029"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       偵測到隱藏目錄 - AppScan
     </h1>
   
-
-          
-            <a href="/2019/09/25/2019029/" class="archive-article-date">
+  <a href="/2019/09/25/2019029/" class="archive-article-date">
   	<time datetime="2019-09-25T02:48:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-25</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近系統被 AppScan 掃出「偵測到隱藏目錄」的問題，在 IIS 上，如果目錄不存在，就會回 404 ，而如果目錄存在，又不允許瀏覽，就會回 403。 所以就可以透過回傳的狀態碼來判斷目錄的存在與否。 那要怎麼解決呢?</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近系統被 AppScan 掃出「偵測到隱藏目錄」的問題，在 IIS 上，如果目錄不存在，就會回 404 ，而如果目錄存在，又不允許瀏覽，就會回 403。 所以就可以透過回傳的狀態碼來判斷目錄的存在與否。 那要怎麼解決呢?</p>
 <h3 id="研究與解法"><a href="#研究與解法" class="headerlink" title="研究與解法"></a>研究與解法</h3><p>先建立一個 IIS 的應用程式，裡面建立一個 admin 的目錄，並在 admin 目錄中，新增一個 hi.htm 的檔案，然後來測試。</p>
 <p>如果目錄不存在，IIS 會回 404 ，例如在 Browser 上輸入 <a target="_blank" rel="noopener" href="http://localhost/t/doc">http://localhost/t/doc</a> 就會出 404 的錯誤，如下，</p>
 <img src="/2019/09/25/2019029/001.png" class="" title="folder_404">
@@ -207,15 +205,10 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;configuration&gt;</span><br><span class="line">  &lt;system.webServer&gt;</span><br><span class="line">    &lt;httpErrors errorMode=&quot;Custom&quot;&gt;</span><br><span class="line">      &lt;remove statusCode=&quot;404&quot; subStatusCode=&quot;-1&quot; /&gt;</span><br><span class="line">      &lt;error statusCode=&quot;403&quot; subStatusCode=&quot;14&quot; path=&quot;/t/pagenotfound.htm&quot; responseMode=&quot;Redirect&quot; /&gt;</span><br><span class="line">      &lt;error statusCode=&quot;404&quot; subStatusCode=&quot;-1&quot; path=&quot;/t/pagenotfound.htm&quot; responseMode=&quot;Redirect&quot; /&gt;</span><br><span class="line">    &lt;/httpErrors&gt;</span><br><span class="line">    &lt;defaultDocument enabled=&quot;false&quot; /&gt;</span><br><span class="line">  &lt;/system.webServer&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
 
 <h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/18831024/configure-iis-to-return-404-for-directory-browse-attempts">Configure IIS to return 404 for directory browse attempts</a><br><a target="_blank" rel="noopener" href="https://www.troyhunt.com/solving-tyranny-of-http-403-responses/">Solving the tyranny of HTTP 403 responses to directory browsing in ASP.NET</a><br><a target="_blank" rel="noopener" href="https://shunnien.github.io/2017/06/01/webconfig-httpErros-and-customErrors/">HttpErros 與 CustomErrors 的自訂導向</a><br><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/25579048/cant-change-iis-response-code-with-url-rewrite-outbound-rule">Can’t change IIS response code with URL Rewrite outbound rule</a></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -242,18 +235,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2019/10/04/2019030/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -272,9 +260,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -288,38 +274,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4712,6 +4691,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

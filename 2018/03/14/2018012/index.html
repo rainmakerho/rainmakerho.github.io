@@ -156,30 +156,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2018012" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-2018012"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       SmtpConnection.GetConnection NullReferenceException
     </h1>
   
-
-          
-            <a href="/2018/03/14/2018012/" class="archive-article-date">
+  <a href="/2018/03/14/2018012/" class="archive-article-date">
   	<time datetime="2018-03-14T02:07:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-14</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近同事問一個透過 SmtpClient 寄信的問題，因為客戶移機，所以將原本在 Windows 2008 x64 上的程式移到，Windows 2016 上去。<br>我們的程式是 .NET 3.5 ，所以在移機上並不會有什麼問題。<br>測試上都 OK，就只有一支執行檔在寄發 Mail 時，會發生 NullReferenceException: Object reference not set to an instance of an object. ，如下，</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近同事問一個透過 SmtpClient 寄信的問題，因為客戶移機，所以將原本在 Windows 2008 x64 上的程式移到，Windows 2016 上去。<br>我們的程式是 .NET 3.5 ，所以在移機上並不會有什麼問題。<br>測試上都 OK，就只有一支執行檔在寄發 Mail 時，會發生 NullReferenceException: Object reference not set to an instance of an object. ，如下，</p>
 <blockquote>
 <p>System.Net.Mail.SmtpConnection.GetConnection  &lt;System.NullReferenceException&gt; 並未將物件參考設定為物件的執行個體<br>  at System.Net.Mail.SmtpClient.Send  &lt;System.Net.Mail.SmtpException&gt; 傳送郵件失敗。<br>  於 System.Net.Mail.SmtpClient.Send(MailMessage message) </p>
 </blockquote>
@@ -197,15 +195,10 @@
 </ol>
 <p>嗯… 不過，為什麼舊的 Windows 2008 Server 卻不會有這種問題呢? 筆者在另一台 Windows 2008 R2 Server 上試也是 GG 。<br>以下是 Windows 2008 Server 上關於 .net 3.5 的更新，</p>
 <img src="/2018/03/14/2018012/2018012002.png" class="" title="Windows 2008 Server .net 3.5 的更新"> 
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -240,18 +233,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2018/04/03/2018013/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -270,9 +258,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -286,38 +272,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4710,6 +4689,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

@@ -158,30 +158,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-oAuth2-implicit-flow" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-oAuth2-implicit-flow"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       OAuth 2.0 - Implicit Flow
     </h1>
   
-
-          
-            <a href="/2022/02/17/oAuth2-implicit-flow/" class="archive-article-date">
+  <a href="/2022/02/17/oAuth2-implicit-flow/" class="archive-article-date">
   	<time datetime="2022-02-17T01:24:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-17</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 <a href="https://rainmakerho.github.io/2022/02/15/oAuth2-Basic/">OAuth 2.0 - Authorization Code Flow</a> 了解它是先取回<strong>授權碼</strong>後再透過該<strong>授權碼</strong>，<strong>Client Id</strong>及<strong>Client Secret</strong>，再取回<strong>Access Token</strong>，透過它去存取 API。<br><strong>Client Secret</strong>相當於是 Password，如果是 Public Client(SPA, Native applications)，那就會讓別人知道<strong>Client Secret</strong>，<br>所以可以使用<strong>OAuth 2.0 - Implicit Flow</strong></p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 <a href="https://rainmakerho.github.io/2022/02/15/oAuth2-Basic/">OAuth 2.0 - Authorization Code Flow</a> 了解它是先取回<strong>授權碼</strong>後再透過該<strong>授權碼</strong>，<strong>Client Id</strong>及<strong>Client Secret</strong>，再取回<strong>Access Token</strong>，透過它去存取 API。<br><strong>Client Secret</strong>相當於是 Password，如果是 Public Client(SPA, Native applications)，那就會讓別人知道<strong>Client Secret</strong>，<br>所以可以使用<strong>OAuth 2.0 - Implicit Flow</strong></p>
 <p>以下使用<a target="_blank" rel="noopener" href="https://www.oauth.com/playground/index.html">OAuth 2.0 Playground</a>來演示。</p>
 <h3 id="OAuth-2-0-Implicit-Flow"><a href="#OAuth-2-0-Implicit-Flow" class="headerlink" title="OAuth 2.0 - Implicit Flow"></a>OAuth 2.0 - Implicit Flow</h3><p>開始之前需要註冊 Client </p>
 <img src="/2022/02/17/oAuth2-implicit-flow/01.png" class="" title="Client Registration">
@@ -210,15 +208,10 @@
 <li>註: OAuth 2.1 就沒有 Implicit Flow</li>
 </ul>
 <h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a target="_blank" rel="noopener" href="https://www.oauth.com/playground/index.html">OAuth 2.0 Playground</a><br><a href="https://rainmakerho.github.io/2022/02/15/oAuth2-Basic/">OAuth 2.0 - Authorization Code Flow</a></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -249,18 +242,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2022/02/18/oAuth2-PKCE/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -279,9 +267,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -295,38 +281,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4719,6 +4698,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

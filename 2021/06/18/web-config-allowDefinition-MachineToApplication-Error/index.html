@@ -152,30 +152,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-web-config-allowDefinition-MachineToApplication-Error" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-web-config-allowDefinition-MachineToApplication-Error"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       在應用程式層級之外使用註冊為 allowDefinition=MachineToApplication 的區段發生錯誤，錯誤的原因可能是虛擬目錄尚未在 IIS 中設定為應用程式。
     </h1>
   
-
-          
-            <a href="/2021/06/18/web-config-allowDefinition-MachineToApplication-Error/" class="archive-article-date">
+  <a href="/2021/06/18/web-config-allowDefinition-MachineToApplication-Error/" class="archive-article-date">
   	<time datetime="2021-06-18T05:23:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-18</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>同事詢問透過 Visual Studio 建置網站時，出現了 <strong>allowDefinition&#x3D;MachineToApplication</strong> 的錯誤</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>同事詢問透過 Visual Studio 建置網站時，出現了 <strong>allowDefinition&#x3D;MachineToApplication</strong> 的錯誤</p>
 <blockquote>
 <p>在應用程式層級之外使用註冊為 allowDefinition&#x3D;MachineToApplication 的區段發生錯誤，錯誤的原因可能是虛擬目錄尚未在 IIS 中設定為應用程式。<br>It is an error to use a section registered as allowDefinition&#x3D;’MachineToApplication’ beyond application level.</p>
 </blockquote>
@@ -183,15 +181,10 @@
 
 <h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>因為 system.web 下的 sessionState 區段的確是需要在 應用程式的目錄之下，或許那個 web.config 並不在專案的目錄之下，而是在專案的子目錄之中。<br>結果再看一下上面的圖，上面居然有2個 web.config 檔案。<br>請同事將 mouse 移到錯誤的那個 web.config tab 上，果然那個 web.config 不在專案的 根目錄之下。<br>應該是不小心 Copy 進去的，請同事刪掉重建問題就解決了哦! </p>
 <h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/16307112/web-config-allowdefinition-machinetoapplication-error/16307412">web.config allowDefinition&#x3D;MachineToApplication error</a></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -214,18 +207,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2021/06/23/Add-Migration-VS-EFCore/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -244,9 +232,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -260,38 +246,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4684,6 +4663,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

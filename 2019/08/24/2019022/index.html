@@ -150,30 +150,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2019022" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-2019022"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       ASP.NET WebControl.Attributes 無法 Remove 問題
     </h1>
   
-
-          
-            <a href="/2019/08/24/2019022/" class="archive-article-date">
+  <a href="/2019/08/24/2019022/" class="archive-article-date">
   	<time datetime="2019-08-24T09:50:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-24</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近同事詢問一個 Web 控制項 在 Form 上面的 Client Click 是沒問題的，但是把它放到了 DataGrid 之中，它就沒有作用。</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近同事詢問一個 Web 控制項 在 Form 上面的 Client Click 是沒問題的，但是把它放到了 DataGrid 之中，它就沒有作用。</p>
 <h3 id="研究"><a href="#研究" class="headerlink" title="研究"></a>研究</h3><p>使用 Browser 開發者工具(F12)，去查看，並在 JS 的 event 中寫入 alert 程式碼，當按下那個 Web 控制項 時，程式並沒有順利跑進那個 click 的 event handler 之中。<br>於是往上查看發現，因為在 TR 有一個 onmousedown 事件處理，裡面寫著 onmousedown &#x3D; “javascript:this.click()”，就把 Click 事件給吃掉了，難怪沒有進去那個 click event handler 之中。 透過 F12 把那個 onmousedown 屬性設定移除， Web 控制項 就可以順利運作了。</p>
 <p>即然找到了問題，再來當然是將那個 onmousedown 屬性從 DataGrid 中的設定移除它，本來想再詢問為何當初會有這樣子的程式碼呢? 它的用意是什麼呢? 當初寫的人已不知去向了。<br>建議從元件或是那支程式去調整，因為有將那個 Web 控制項放進去的只有 2 支程式，而開發團隊也不敢去調整元件，所以就往改那 2 支程式去做。</p>
 <p>所以就建議同事在 PreRender 時，將那個 DataGridItem.Attributes 裡面的 onmousedown 移除。<br>但同事反應不管寫在那裡都移不掉，我連進去看，程式有順利呼叫 Attributes.Remove(“onmousedown”)，但那個 onmousedown 卻還 Render 出去。</p>
@@ -183,15 +181,10 @@
 <figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&#x27;v10_tbA10_dgMaster 是 datagrid</span></span><br><span class="line"><span class="keyword">Protected</span> <span class="keyword">Sub</span> Page_PreRender(<span class="keyword">ByVal</span> sender <span class="keyword">As</span> <span class="type">Object</span>, <span class="keyword">ByVal</span> e <span class="keyword">As</span> System.EventArgs) <span class="keyword">Handles</span> <span class="keyword">Me</span>.PreRender</span><br><span class="line">  <span class="keyword">Dim</span> item <span class="keyword">As</span> DataGridItem</span><br><span class="line">  <span class="keyword">For</span> <span class="keyword">Each</span> item <span class="keyword">In</span> <span class="keyword">Me</span>.v10_tbA10_dgMaster.Items</span><br><span class="line">      item.Attributes.Remove(<span class="string">&quot;onmousedown &quot;</span>)</span><br><span class="line">  <span class="keyword">Next</span></span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Sub</span></span><br></pre></td></tr></table></figure>
 
 <p>程式呀~~ 真的是什麼都有可能發生 Q_Q<br>希望大家在解問題時，多些細心、耐心，一起努力 :)</p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -214,18 +207,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2019/09/05/2019023/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -244,9 +232,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -260,38 +246,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4684,6 +4663,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

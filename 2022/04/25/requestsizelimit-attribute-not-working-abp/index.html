@@ -151,30 +151,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-requestsizelimit-attribute-not-working-abp" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-requestsizelimit-attribute-not-working-abp"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       RequestSizeLimit 屬性在 Abp Framework 中，沒有作用
     </h1>
   
-
-          
-            <a href="/2022/04/25/requestsizelimit-attribute-not-working-abp/" class="archive-article-date">
+  <a href="/2022/04/25/requestsizelimit-attribute-not-working-abp/" class="archive-article-date">
   	<time datetime="2022-04-25T08:13:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-04-25</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 <a href="https://rainmakerho.github.io/2022/04/22/aspnetcore-request-entity-too-large/">ASP.NET Core File Upload Size Limit</a> 說明，當設定整個系統的上傳檔案大小後，<br>如果要針對某個 Method 調整成別 Size ，<br>可以透過設定 <strong>RequestSizeLimit</strong> 屬性來達成。<br>最近使用 Abp Framework 來測試時，使用 <a target="_blank" rel="noopener" href="https://community.abp.io/posts/file-uploaddownload-with-blob-storage-system-in-asp.net-core-abp-framework-d01cbe12">File Upload&#x2F;Download with BLOB Storage System in ASP.NET Core &amp; ABP Framework</a> 範例來測試上傳檔案，設定 <strong>RequestSizeLimit</strong> 屬性卻沒有效果。</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 <a href="https://rainmakerho.github.io/2022/04/22/aspnetcore-request-entity-too-large/">ASP.NET Core File Upload Size Limit</a> 說明，當設定整個系統的上傳檔案大小後，<br>如果要針對某個 Method 調整成別 Size ，<br>可以透過設定 <strong>RequestSizeLimit</strong> 屬性來達成。<br>最近使用 Abp Framework 來測試時，使用 <a target="_blank" rel="noopener" href="https://community.abp.io/posts/file-uploaddownload-with-blob-storage-system-in-asp.net-core-abp-framework-d01cbe12">File Upload&#x2F;Download with BLOB Storage System in ASP.NET Core &amp; ABP Framework</a> 範例來測試上傳檔案，設定 <strong>RequestSizeLimit</strong> 屬性卻沒有效果。</p>
 <h3 id="研究-x2F-求助"><a href="#研究-x2F-求助" class="headerlink" title="研究&#x2F;求助"></a>研究&#x2F;求助</h3><p>所以一樣在 Action Method 那設定 <strong>RequestSizeLimit</strong> 屬性，限制為 2011 Bytes，<br>並設定中斷點來查看 <strong>HttpContext.Features.MaxRequestBodySize</strong>，<br>發現它的值並沒有變成 2011，而是預設值 <strong>30,000,000</strong></p>
 <img src="/2022/04/25/requestsizelimit-attribute-not-working-abp/01.png" class="" title="HttpContext.Features.MaxRequestBodySize">
 
@@ -186,15 +184,10 @@
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (MultiTenancyConsts.IsEnabled)</span><br><span class="line">&#123;</span><br><span class="line">    app.Use(<span class="keyword">async</span> (httpContext, next) =&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> endpoint = httpContext.GetEndpoint();</span><br><span class="line">        <span class="keyword">var</span> requestSizeLimitAttribute = endpoint?.Metadata.GetMetadata&lt;MyRequestSizeLimitAttribute&gt;();</span><br><span class="line">        <span class="keyword">if</span> (requestSizeLimitAttribute != <span class="literal">null</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">var</span> maxRequestBodySizeFeature = httpContext.Features.Get&lt;IHttpMaxRequestBodySizeFeature&gt;();</span><br><span class="line">            <span class="keyword">if</span> (maxRequestBodySizeFeature != <span class="literal">null</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                maxRequestBodySizeFeature.MaxRequestBodySize = requestSizeLimitAttribute.Bytes;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">await</span> next();</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    app.UseMultiTenancy();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">[<span class="meta">AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = true)</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MyRequestSizeLimitAttribute</span> : <span class="title">Attribute</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">long</span> Bytes &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyRequestSizeLimitAttribute</span>(<span class="params"><span class="built_in">long</span> bytes</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        Bytes = bytes;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">[<span class="meta">HttpPost</span>]</span><br><span class="line">[<span class="meta">Route(<span class="string">&quot;upload&quot;</span>)</span>]</span><br><span class="line">[<span class="meta">MyRequestSizeLimit(20)</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">async</span> Task&lt;IActionResult&gt; <span class="title">UploadAsync</span>(<span class="params">IFormFile formFile</span>)</span></span><br></pre></td></tr></table></figure>
 <p>使用 MyRequestSizeLimit 後，HttpContext.Features.MaxRequestBodySize 的值，就是 MyRequestSizeLimit 設定值。</p>
 <h3 id="參考資訊"><a href="#參考資訊" class="headerlink" title="參考資訊"></a>參考資訊</h3><p><a target="_blank" rel="noopener" href="https://github.com/abpframework/abp/issues/12336">RequestSizeLimit attribute not working</a><br><a href="https://rainmakerho.github.io/2022/04/22/aspnetcore-request-entity-too-large/">ASP.NET Core File Upload Size Limit</a></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -213,18 +206,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2022/04/28/teams-bot-disabled/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -243,9 +231,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -259,38 +245,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4683,6 +4662,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

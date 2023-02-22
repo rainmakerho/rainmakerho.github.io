@@ -148,30 +148,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Excessive-Data-Exposure" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-Excessive-Data-Exposure"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       Excessive Data Exposure
     </h1>
   
-
-          
-            <a href="/2022/01/24/Excessive-Data-Exposure/" class="archive-article-date">
+  <a href="/2022/01/24/Excessive-Data-Exposure/" class="archive-article-date">
   	<time datetime="2022-01-24T03:30:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-24</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>當透過 Checkmarx 集合為 OWASP TOP 10 - 2021 掃 ASP.NET MVC 時，<br>如果回傳的物件中，如果 <strong>類別&#x2F;屬性名稱</strong> 中有一些 機敏性名稱時，<br>Checkmarx 就會出 <strong>Excessive_Data_Exposure</strong> 的中風險</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>當透過 Checkmarx 集合為 OWASP TOP 10 - 2021 掃 ASP.NET MVC 時，<br>如果回傳的物件中，如果 <strong>類別&#x2F;屬性名稱</strong> 中有一些 機敏性名稱時，<br>Checkmarx 就會出 <strong>Excessive_Data_Exposure</strong> 的中風險</p>
 <h3 id="研究"><a href="#研究" class="headerlink" title="研究"></a>研究</h3><p>機敏性名稱類例如以下字串，</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">*Credit*&quot;,</span><br><span class="line">&quot;*credentials*&quot;,</span><br><span class="line">&quot;*secret*&quot;,</span><br><span class="line">&quot;*Account*&quot;,</span><br><span class="line">&quot;*SSN&quot;,</span><br><span class="line">&quot;DOB&quot;,</span><br><span class="line">&quot;SSN*&quot;,</span><br><span class="line">&quot;*SocialSecurity*&quot;,</span><br><span class="line">&quot;DeviceUniqueId&quot;,</span><br><span class="line">&quot;auth*&quot;,</span><br><span class="line">&quot;*passport*&quot; </span><br></pre></td></tr></table></figure>
 
@@ -182,15 +180,10 @@
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">AllowAnonymous</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> PartialViewResult <span class="title">UserProfiler</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    User user = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">if</span>(User.Identity.IsAuthenticated)</span><br><span class="line">    &#123;</span><br><span class="line">        user = userRepository.Users.FirstOrDefault(u =&gt; <span class="built_in">string</span>.Compare(u.Email, User.Identity.Name, StringComparison.InvariantCultureIgnoreCase) == <span class="number">0</span>);  </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (user == <span class="literal">null</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        user = <span class="keyword">new</span> User();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> PartialView(user);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>所以 user 在回傳前，要先將那些機敏性屬性值清掉，或是建立一個沒有那些機敏性屬性的類別回傳出去。<br>以下是透過 Method ，將機敏性屬性值清掉 (<code>user.WithoutSensitiveData()</code>)，如下，</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">AllowAnonymous</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> PartialViewResult <span class="title">UserProfiler</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    User user = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">if</span>(User.Identity.IsAuthenticated)</span><br><span class="line">    &#123;</span><br><span class="line">        user = userRepository.Users.FirstOrDefault(u =&gt; <span class="built_in">string</span>.Compare(u.Email, User.Identity.Name, StringComparison.InvariantCultureIgnoreCase) == <span class="number">0</span>);  </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (user == <span class="literal">null</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        user = <span class="keyword">new</span> User();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> PartialView(user.WithoutSensitiveData());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> User <span class="title">WithoutSensitiveData</span>(<span class="params"><span class="keyword">this</span> User user</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    user.Password = <span class="built_in">string</span>.Empty;</span><br><span class="line">    user.PasswordHash = <span class="built_in">string</span>.Empty;</span><br><span class="line">    user.PasswordSalt = <span class="built_in">string</span>.Empty;</span><br><span class="line">    user.CreditCard = <span class="built_in">string</span>.Empty;</span><br><span class="line">    <span class="keyword">return</span> user;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">AllowAnonymous</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> PartialViewResult <span class="title">UserProfiler</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    User user = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">if</span>(User.Identity.IsAuthenticated)</span><br><span class="line">    &#123;</span><br><span class="line">        user = userRepository.Users.FirstOrDefault(u =&gt; <span class="built_in">string</span>.Compare(u.Email, User.Identity.Name, StringComparison.InvariantCultureIgnoreCase) == <span class="number">0</span>);  </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (user == <span class="literal">null</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        user = <span class="keyword">new</span> User();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> PartialView(user.WithoutSensitiveData());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> User <span class="title">WithoutSensitiveData</span>(<span class="params"><span class="keyword">this</span> User user</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    user.Password = <span class="built_in">string</span>.Empty;</span><br><span class="line">    user.PasswordHash = <span class="built_in">string</span>.Empty;</span><br><span class="line">    user.PasswordSalt = <span class="built_in">string</span>.Empty;</span><br><span class="line">    user.CreditCard = <span class="built_in">string</span>.Empty;</span><br><span class="line">    <span class="keyword">return</span> user;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -205,18 +198,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2022/02/11/fiddler-cannot-trace-httpclient/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -235,9 +223,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -251,38 +237,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4675,6 +4654,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

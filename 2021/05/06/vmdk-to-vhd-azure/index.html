@@ -159,30 +159,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-vmdk-to-vhd-azure" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-vmdk-to-vhd-azure"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       將 VMDK (VHD) 移轉到 Azure
     </h1>
   
-
-          
-            <a href="/2021/05/06/vmdk-to-vhd-azure/" class="archive-article-date">
+  <a href="/2021/05/06/vmdk-to-vhd-azure/" class="archive-article-date">
   	<time datetime="2021-05-06T08:38:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-06</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>以下介紹如何將一個 VMWare VM(vmdk) 移轉到 Azure 上。<br>開始之前請先下載並安裝以下軟體，<br><a target="_blank" rel="noopener" href="https://1drv.ms/u/s!Amctqf6I8YYKj_0kR_iru8F0-9CBGg?e=FJzCxA">Microsoft Virtual Machine Converter 3.0</a> : 透過它的 PowerShell Cmdlet 來將 VMDK 轉成 VHD，請將它解壓縮後，放到 C:\Program Files 目錄之中。<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-tw/azure/storage/common/storage-use-azcopy-v10#download-and-install-azcopy">AzCopy</a> : 透過它將 VHD 上傳到 Azure Disk (可與vmdk 放在相同目錄)<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-tw/cli/azure/install-azure-cli">Azure CLI</a> : 透過它來建立 Azure Disk 並建立 Azure VM </p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>以下介紹如何將一個 VMWare VM(vmdk) 移轉到 Azure 上。<br>開始之前請先下載並安裝以下軟體，<br><a target="_blank" rel="noopener" href="https://1drv.ms/u/s!Amctqf6I8YYKj_0kR_iru8F0-9CBGg?e=FJzCxA">Microsoft Virtual Machine Converter 3.0</a> : 透過它的 PowerShell Cmdlet 來將 VMDK 轉成 VHD，請將它解壓縮後，放到 C:\Program Files 目錄之中。<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-tw/azure/storage/common/storage-use-azcopy-v10#download-and-install-azcopy">AzCopy</a> : 透過它將 VHD 上傳到 Azure Disk (可與vmdk 放在相同目錄)<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-tw/cli/azure/install-azure-cli">Azure CLI</a> : 透過它來建立 Azure Disk 並建立 Azure VM </p>
 <h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><h4 id="一、將-vmdk-轉成-vhd"><a href="#一、將-vmdk-轉成-vhd" class="headerlink" title="一、將 vmdk 轉成 vhd"></a>一、將 vmdk 轉成 vhd</h4><p>需要透過 <a target="_blank" rel="noopener" href="https://1drv.ms/u/s!Amctqf6I8YYKj_0kR_iru8F0-9CBGg?e=FJzCxA">Microsoft Virtual Machine Converter 3.0</a>  來將 VMDK 轉成 VHD<br>1.下載 <a target="_blank" rel="noopener" href="https://1drv.ms/u/s!Amctqf6I8YYKj_0kR_iru8F0-9CBGg?e=FJzCxA">Microsoft Virtual Machine Converter 3.0</a> ，將它解壓縮後，放到 C:\Program Files 目錄之中，它的目錄為 Microsoft Virtual Machine Converter<br>2.以系統管理員身份開啟 Powershell ，執行以下指令(SourceLiteralPath 及 DestinationLiteralPath 請依vmdk 存放路徑來調整)，來將 vmdk 轉成 vhd </p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Import-Module</span> <span class="string">&#x27;C:\Program Files\Microsoft Virtual Machine Converter\MvmcCmdlet.psd1&#x27;</span></span><br><span class="line"><span class="built_in">ConvertTo-MvmcVirtualHardDisk</span> <span class="literal">-SourceLiteralPath</span> <span class="string">&quot;C:\vm\win2012.vmdk&quot;</span> <span class="literal">-DestinationLiteralPath</span> <span class="string">&quot;C:\vm\win2012.vhd&quot;</span> <span class="literal">-VhdType</span> FixedHardDisk <span class="literal">-VhdFormat</span> Vhd</span><br></pre></td></tr></table></figure>
 <img src="/2021/05/06/vmdk-to-vhd-azure/05.png" class="" title="ConvertTo-MvmcVirtualHardDisk">
@@ -235,15 +233,10 @@
 
 <p>註:如果上述不成功的話，當轉成 VHD 後，用地端的 Hyper-V 開起來，測試看看運作是否正常，從新增移除程式那，將 VMware Tools 移除，然後依 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-tw/azure/virtual-machines/windows/prepare-for-upload-vhd-image">準備 Windows VHD 或 VHDX 以上傳至 Azure</a> 的內容來設定 VM。</p>
 <h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-tw/azure/virtual-machines/windows/prepare-for-upload-vhd-image">準備 Windows VHD 或 VHDX 以上傳至 Azure</a><br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-tw/azure/virtual-machines/linux/disks-upload-vhd-to-managed-disk-cli">將 VHD 上傳至 Azure，或將受控磁碟複製到另一個區域-Azure CLI</a><br><a target="_blank" rel="noopener" href="https://www.sourceonetechnology.com/convert-vmware-vmdk-files-into-hyper-v-vhd/">How to Convert VMware VMDK Files Into Hyper-V VHD Files</a><br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/powershell/module/hyper-v/resize-vhd?view=windowsserver2019-ps">Resize-VHD</a><br><a target="_blank" rel="noopener" href="https://1drv.ms/u/s!Amctqf6I8YYKj_0kR_iru8F0-9CBGg?e=FJzCxA">Microsoft Virtual Machine Converter 3.0</a><br><a target="_blank" rel="noopener" href="https://gist.github.com/ayusmadi/156eb7c71e010ab740632f97946f341d">The upload size in bytes # - 512 bytes for the VHD footer (# in this case) must be a multiple of MiB.</a><br><a target="_blank" rel="noopener" href="https://azure.microsoft.com/zh-tw/pricing/details/managed-disks/">受控磁碟-定價</a></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -270,18 +263,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2021/05/21/Path-Traversal-Vulnerability-Checkmarx/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -300,9 +288,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -316,38 +302,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4740,6 +4719,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

@@ -156,30 +156,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-teams-create-enable-online-meeting" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-teams-create-enable-online-meeting"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       Teams 在 Calendar 上建立 會議 ，並設定它是線上會議
     </h1>
   
-
-          
-            <a href="/2022/05/04/teams-create-enable-online-meeting/" class="archive-article-date">
+  <a href="/2022/05/04/teams-create-enable-online-meeting/" class="archive-article-date">
   	<time datetime="2022-05-04T00:22:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-04</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 <a href="https://rainmakerho.github.io/2022/04/29/teams-app-access-meetings-behalf-user/">Teams App 代替使用者建立線上會議，讓該使用者為會議主持人</a> 可以透過 App 快速建立 <strong>線上會議</strong> 。<br>但這樣只是建立線上會議，跟 Calendar 無關，而且還要透過 Access Policy 去設定。<br>所以更方便的做法就是在 Calendar 上建立 會議 ，並設定它是線上會議，這樣就不用特別去設定 Access Policy。</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 <a href="https://rainmakerho.github.io/2022/04/29/teams-app-access-meetings-behalf-user/">Teams App 代替使用者建立線上會議，讓該使用者為會議主持人</a> 可以透過 App 快速建立 <strong>線上會議</strong> 。<br>但這樣只是建立線上會議，跟 Calendar 無關，而且還要透過 Access Policy 去設定。<br>所以更方便的做法就是在 Calendar 上建立 會議 ，並設定它是線上會議，這樣就不用特別去設定 Access Policy。</p>
 <h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><p>因為要建立 Calendar ，所以 App 需要的 Application permissions 為 <strong>Calendars.ReadWrite</strong>，而原本需要的 <strong>OnlineMeetings.ReadWrite.All</strong><br>權限則可以 <strong>Revoke admin consent</strong> 後，再 <strong>Remove premission</strong>。<br>將 App 從 Access Policy 中移除，移除套用 Access Policy 的使用者， 並將 Access Policy 移除。</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 移除套用 Access Policy 的使用者</span></span><br><span class="line"><span class="built_in">Get-CsOnlineUser</span> | <span class="built_in">Grant-CsApplicationAccessPolicy</span> <span class="literal">-PolicyName</span> <span class="variable">$Null</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 將 App 從 Access Policy 中移除</span></span><br><span class="line"><span class="built_in">Set-CsApplicationAccessPolicy</span> <span class="literal">-Identity</span> <span class="string">&quot;teams-meetings-policy&quot;</span> <span class="literal">-AppIds</span> <span class="selector-tag">@</span>&#123;Remove=<span class="string">&quot;要移的Application (client) ID&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#將 Access Policy 移除</span></span><br><span class="line"><span class="built_in">Remove-CsApplicationAccessPolicy</span> <span class="literal">-Identity</span> <span class="string">&quot;teams-meetings-policy&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>加入 <strong>Calendars.ReadWrite</strong> 權限後，一樣需要 <strong>Grant admin consent</strong>。</p>
@@ -194,15 +192,10 @@
 
 
 <h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/graph/outlook-calendar-online-meetings?tabs=http">Enable an event as an online meeting in an Outlook calendar</a><br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/powershell/module/skype/grant-csapplicationaccesspolicy?view=skype-ps">Grant-CsApplicationAccessPolicy</a></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -233,18 +226,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2022/05/04/openidconnecthandler-getuserinformationasync-tls-error/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -263,9 +251,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -279,38 +265,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4703,6 +4682,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

@@ -154,30 +154,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Chrome-Auto-Http-to-Https" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-Chrome-Auto-Http-to-Https"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       如何取消 Chrome 自動將 HTTP 轉成 HTTPS
     </h1>
   
-
-          
-            <a href="/2021/08/30/Chrome-Auto-Http-to-Https/" class="archive-article-date">
+  <a href="/2021/08/30/Chrome-Auto-Http-to-Https/" class="archive-article-date">
   	<time datetime="2021-08-30T07:55:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-30</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近在本機 ASP.NET 專案的 web.config 中加入 HSTS 的設定，<br>在 Chrome 上測試起來會自動將原本的 http 轉到 https。<br>結果開啟其他的 Local 專案全都會自動轉導到 https 。<br>要怎麼取消 Chrome 自動將 localhost 的 http 轉 https 呢?</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近在本機 ASP.NET 專案的 web.config 中加入 HSTS 的設定，<br>在 Chrome 上測試起來會自動將原本的 http 轉到 https。<br>結果開啟其他的 Local 專案全都會自動轉導到 https 。<br>要怎麼取消 Chrome 自動將 localhost 的 http 轉 https 呢?</p>
 <h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><p>ASP.NET 在 web.config 設定 HSTS 的方式，要設定 Http 的 Strict-Transport-Security Header 外，<br>還要設定 rewrite ，詳細可以參考 <a target="_blank" rel="noopener" href="https://www.hanselman.com/blog/how-to-enable-http-strict-transport-security-hsts-in-iis7">How to enable HTTP Strict Transport Security (HSTS) in IIS7+</a>。<br>只是裡面的設定值要從 <strong>max-age&#x3D;31536000</strong> 改成 <strong>max-age&#x3D;31536000; includeSubDomains</strong> ， Checkmarx 才會掃過。</p>
 <p>那要如何才能<strong>取消 Chrome 自動將 http 轉 https</strong> 呢?</p>
 <p>1.在 URL 上輸入 <strong>chrome:&#x2F;&#x2F;net-internals&#x2F;#hsts</strong></p>
@@ -191,15 +189,10 @@
 <p>註: 會測試 HSTS 是因為，在 Checkmarx V.8.9 版本中，如果 Web.Config 有這樣設定，就不會出的 <strong>Missing_HSTS_Header</strong> 的問題。<br>但在 Checkmarx V.9.2 版時，如果專案中有 Startup Class 時，不會去檢查 Web.Config 的設定，而直接去看 Startup 中有無在程式碼中設定 HSTS</p>
 </blockquote>
 <h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a target="_blank" rel="noopener" href="https://www.hanselman.com/blog/how-to-enable-http-strict-transport-security-hsts-in-iis7">How to enable HTTP Strict Transport Security (HSTS) in IIS7+</a></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -226,18 +219,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2021/08/31/Trust-Boundary-Violation/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -256,9 +244,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -272,38 +258,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4696,6 +4675,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

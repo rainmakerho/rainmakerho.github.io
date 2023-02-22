@@ -164,30 +164,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2018014" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-2018014"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       OWASP ZAP 憑證安裝的方式(OWASP ZAP Certificate)
     </h1>
   
-
-          
-            <a href="/2018/04/10/2018014/" class="archive-article-date">
+  <a href="/2018/04/10/2018014/" class="archive-article-date">
   	<time datetime="2018-04-10T01:36:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-10</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>  透過 ZAP 去錄 https 時，如果沒有安裝憑證時，在 Browser 就會出現「 “Your connection is not private”, “你的連線並不安全”」的警告訊息，如下圖所示。<br>  <img src="/2018/04/10/2018014/2018014001.png" class="" title="Chrome的警告"> </p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>  透過 ZAP 去錄 https 時，如果沒有安裝憑證時，在 Browser 就會出現「 “Your connection is not private”, “你的連線並不安全”」的警告訊息，如下圖所示。<br>  <img src="/2018/04/10/2018014/2018014001.png" class="" title="Chrome的警告"> </p>
   <img src="/2018/04/10/2018014/2018014002.png" class="" title="Firefox的警告"> 
 
 <h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>  為什麼會出現那個警告訊息呢? 因為 Browser 用的那個憑證已經不是原本連接的那個 host 的憑證，而變成了 OWASP Zed Attack Proxy Root CA 了哦! 而這個憑證並沒有被電腦 Trust 所以就會有那個警告訊息哦!<br>  那要怎麼辦呢? 就是把憑證裝進去電腦的信任區。<br>  以下我們就一步步來說明，</p>
@@ -199,15 +197,10 @@
 <p>  匯入 ZAP 憑證<br>  <img src="/2018/04/10/2018014/2018014008.png" class="" title="匯入 ZAP 憑證"> </p>
 <p>  勾選「信任此憑證機構以識別網站」<br>  <img src="/2018/04/10/2018014/2018014009.png" class="" title="勾選「信任此憑證機構以識別網站」"> </p>
 <p>  註:透過上述的方式，我們就可以錄 https 的網站，而不會一直出現警告訊息。 如果不會再錄的話，就請記得將 ZAP 的憑證移除哦!</p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -246,18 +239,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2018/04/17/2018015/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -276,9 +264,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -292,38 +278,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4716,6 +4695,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

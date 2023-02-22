@@ -150,43 +150,36 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2020015" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-2020015"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       透過 SharpSvn 取出某路徑的所有檔案(SVN Export)
     </h1>
   
-
-          
-            <a href="/2020/08/13/2020015/" class="archive-article-date">
+  <a href="/2020/08/13/2020015/" class="archive-article-date">
   	<time datetime="2020-08-13T10:10:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-13</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>透過 SharpSvn 來 Export 時，在大多數的電腦上都沒問題的。<br>但在某台電腦中，在 Export 到某個檔案時，卻會將整個程式關畢，而那個檔名原本是 FRM10009.docx ，<br>卻會變成 svn-444AA7Ff 或是 svn-54A3A7Da 等 svn- 開頭的檔案。</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>透過 SharpSvn 來 Export 時，在大多數的電腦上都沒問題的。<br>但在某台電腦中，在 Export 到某個檔案時，卻會將整個程式關畢，而那個檔名原本是 FRM10009.docx ，<br>卻會變成 svn-444AA7Ff 或是 svn-54A3A7Da 等 svn- 開頭的檔案。</p>
 <h3 id="研究"><a href="#研究" class="headerlink" title="研究"></a>研究</h3><p>然而透過程式直接使用 SvnClient.Write 卻是可以的，所以只好改用一個一個檔案來取的方式。<br>以下為 Console App 程式。</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">region</span> 變數宣告</span></span><br><span class="line"><span class="built_in">string</span> svnId = <span class="string">&quot;svn userid&quot;</span>,</span><br><span class="line">	   svnPwd = <span class="string">&quot;svn userpwd&quot;</span>,</span><br><span class="line">	   svnPath = <span class="string">&quot;SVNPath&quot;</span>,</span><br><span class="line">	   tempPath = <span class="string">&quot;ExportPath&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endregion</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//Delete Local all files and folders</span></span><br><span class="line"><span class="keyword">var</span> di = <span class="keyword">new</span> DirectoryInfo(tempPath);</span><br><span class="line"><span class="keyword">foreach</span> (FileInfo file <span class="keyword">in</span> di.EnumerateFiles())</span><br><span class="line">&#123;</span><br><span class="line">	file.Delete();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">foreach</span> (DirectoryInfo dir <span class="keyword">in</span> di.EnumerateDirectories())</span><br><span class="line">&#123;</span><br><span class="line">	dir.Delete(<span class="literal">true</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> client = <span class="keyword">new</span> SvnClient();</span><br><span class="line">client.Authentication.DefaultCredentials = <span class="keyword">new</span> NetworkCredential(svnId, svnPwd);</span><br><span class="line">SvnUriTarget folderTarget = <span class="keyword">new</span> SvnUriTarget(svnPath);</span><br><span class="line">Export(client, folderTarget, tempPath);</span><br><span class="line">Console.WriteLine(<span class="string">$&quot;<span class="subst">&#123;<span class="keyword">new</span> <span class="built_in">string</span>(<span class="string">&#x27;=&#x27;</span>, <span class="number">30</span>)&#125;</span>&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 改用遞迴方式來一個一個取出檔案</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;client&quot;&gt;</span><span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;svnTarget&quot;&gt;</span><span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;folderPath&quot;&gt;</span><span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Export</span>(<span class="params">SvnClient client, SvnTarget svnTarget, <span class="built_in">string</span> folderPath</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	Console.WriteLine(<span class="string">$&quot;<span class="subst">&#123;<span class="keyword">new</span> <span class="built_in">string</span>(<span class="string">&#x27;=&#x27;</span>, <span class="number">6</span>)&#125;</span><span class="subst">&#123;folderPath&#125;</span><span class="subst">&#123;<span class="keyword">new</span> <span class="built_in">string</span>(<span class="string">&#x27;=&#x27;</span>, <span class="number">6</span>)&#125;</span>&quot;</span>);</span><br><span class="line">	<span class="keyword">var</span> phyFolderPath = Path.Combine(folderPath, svnTarget.FileName);</span><br><span class="line">	<span class="keyword">if</span> (!Directory.Exists(phyFolderPath))</span><br><span class="line">	&#123;</span><br><span class="line">		Directory.CreateDirectory(phyFolderPath);</span><br><span class="line">	&#125;</span><br><span class="line">	Collection&lt;SvnListEventArgs&gt; listResults;</span><br><span class="line">	<span class="keyword">if</span> (client.GetList(svnTarget, <span class="keyword">out</span> listResults))</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">foreach</span> (SvnListEventArgs item <span class="keyword">in</span> listResults)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">switch</span> (item.Entry.NodeKind)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">case</span> SvnNodeKind.File:</span><br><span class="line">					<span class="keyword">var</span> phyFilePath = Path.Combine(phyFolderPath, item.Path);</span><br><span class="line">					<span class="keyword">using</span> (FileStream fileStream = File.Open(phyFilePath, FileMode.OpenOrCreate))</span><br><span class="line">					&#123;</span><br><span class="line">						<span class="keyword">var</span> fileTarget = <span class="keyword">new</span> SvnUriTarget(item.Uri);</span><br><span class="line">						client.Write(fileTarget, fileStream);</span><br><span class="line">					&#125;</span><br><span class="line">					Console.WriteLine(<span class="string">$&quot;<span class="subst">&#123;item.Path&#125;</span>&quot;</span>);</span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">				<span class="keyword">case</span> SvnNodeKind.Directory:</span><br><span class="line">					<span class="keyword">if</span>(Uri.Compare(item.BaseUri, item.Uri,</span><br><span class="line">							UriComponents.Host | UriComponents.PathAndQuery,</span><br><span class="line">							UriFormat.SafeUnescaped, StringComparison.OrdinalIgnoreCase)!=<span class="number">0</span>)</span><br><span class="line">					&#123;</span><br><span class="line">						Console.WriteLine(<span class="string">$&quot;<span class="subst">&#123;<span class="keyword">new</span> <span class="built_in">string</span>(<span class="string">&#x27;*&#x27;</span>, <span class="number">8</span>)&#125;</span>SubFolder:Start:<span class="subst">&#123;item.Name&#125;</span><span class="subst">&#123;<span class="keyword">new</span> <span class="built_in">string</span>(<span class="string">&#x27;*&#x27;</span>, <span class="number">8</span>)&#125;</span>&quot;</span>);</span><br><span class="line">						<span class="comment">//child folder</span></span><br><span class="line">						<span class="keyword">var</span> childTarget = <span class="keyword">new</span> SvnUriTarget(item.Uri);</span><br><span class="line">						Export(client, childTarget, phyFolderPath);</span><br><span class="line">						Console.WriteLine(<span class="string">$&quot;<span class="subst">&#123;<span class="keyword">new</span> <span class="built_in">string</span>(<span class="string">&#x27;*&#x27;</span>, <span class="number">8</span>)&#125;</span>SubFolder:End:<span class="subst">&#123;item.Name&#125;</span><span class="subst">&#123;<span class="keyword">new</span> <span class="built_in">string</span>(<span class="string">&#x27;*&#x27;</span>, <span class="number">8</span>)&#125;</span>&quot;</span>);</span><br><span class="line">					&#125;</span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line">				<span class="literal">default</span>:</span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">&quot;Failed to retrieve files via SharpSvn&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a target="_blank" rel="noopener" href="https://www.nuget.org/profiles/sharpsvn">sharpsvn - NuGet Gallery</a></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -209,18 +202,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2020/08/13/2020016/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -239,9 +227,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -255,38 +241,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4679,6 +4658,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

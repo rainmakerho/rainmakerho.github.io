@@ -159,30 +159,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-metasploit-reverse-tcp" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-metasploit-reverse-tcp"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       Metasploit Framework - 遠端控制 Windows 電腦
     </h1>
   
-
-          
-            <a href="/2022/06/23/metasploit-reverse-tcp/" class="archive-article-date">
+  <a href="/2022/06/23/metasploit-reverse-tcp/" class="archive-article-date">
   	<time datetime="2022-06-23T03:21:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-06-23</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>Metasploit Framework 是一個功能強大的資安工具組，<br>它將許多工具以Module的方式整合在一起，<br>而不用到到處去找、去下載不同的工具來做滲透測試。<br>正式開始學習之前先來淺嘗一下 Metasploit Framework 的強大之處。<br>練習情境為受害者收到釣魚信去下載惡意檔案並執行，<br>導致受害者的電腦(Windows 7)受到控制。</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>Metasploit Framework 是一個功能強大的資安工具組，<br>它將許多工具以Module的方式整合在一起，<br>而不用到到處去找、去下載不同的工具來做滲透測試。<br>正式開始學習之前先來淺嘗一下 Metasploit Framework 的強大之處。<br>練習情境為受害者收到釣魚信去下載惡意檔案並執行，<br>導致受害者的電腦(Windows 7)受到控制。</p>
 <h3 id="練習"><a href="#練習" class="headerlink" title="練習"></a>練習</h3><p>開始之前，先準備一台 Windows 7(ip為10.5.0.5) 為受害VM，Ubuntu(版本為 20.04.4, ip為10.5.0.7) 安裝 Metasploit Framework。</p>
 <p>1.安裝 <strong>Metasploit Framework</strong><br>依 <a target="_blank" rel="noopener" href="https://linuxways.net/ubuntu/how-to-install-metasploit-framework-on-ubuntu-20-04/">How to Install Metasploit Framework on Ubuntu 20.04</a> 說明來安裝。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line"><span class="built_in">cd</span> /tmp/</span><br><span class="line">curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb &gt; msfinstall</span><br><span class="line">sudo <span class="built_in">chmod</span> 755 msfinstall</span><br><span class="line">sudo ./msfinstall</span><br><span class="line">sudo msfconsole</span><br><span class="line">db_status</span><br></pre></td></tr></table></figure>
@@ -232,15 +230,10 @@
 <img src="/2022/06/23/metasploit-reverse-tcp/06.png" class="" title="ps command">
 
 <h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a target="_blank" rel="noopener" href="https://linuxways.net/ubuntu/how-to-install-metasploit-framework-on-ubuntu-20-04/">How to Install Metasploit Framework on Ubuntu 20.04</a><br><a target="_blank" rel="noopener" href="https://github.com/rapid7/metasploit-framework/blob/master/documentation/modules/payload/windows/meterpreter/reverse_tcp.md">windows&#x2F;meterpreter&#x2F;reverse_tcp</a><br><a target="_blank" rel="noopener" href="https://docs.rapid7.com/metasploit/meterpreter-getsystem/">Meterpreter getsystem</a></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -271,18 +264,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2022/06/30/dns-dumpster/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -301,9 +289,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -317,38 +303,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4741,6 +4720,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

@@ -152,44 +152,37 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Extract-Pass-From-Jenkins" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-Extract-Pass-From-Jenkins"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       在 Jenkins 中取回使用者密碼
     </h1>
   
-
-          
-            <a href="/2021/11/28/Extract-Pass-From-Jenkins/" class="archive-article-date">
+  <a href="/2021/11/28/Extract-Pass-From-Jenkins/" class="archive-article-date">
   	<time datetime="2021-11-28T07:23:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-28</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>很多公司都會透過 Jenkins 去執行許多 CI 的 Job，<br>而那些 Job 大多需要權限去執行，<br>所以你是設定使用者帳號&#x2F;密碼，還是使用 Token 呢?<br>當使用帳&#x2F;密時， Jenkins 會將存起來的<strong>密碼</strong>解回來送給需要的 Task ，<br>所以如果忘了某個帳號的密碼，就可以透過以下的方式取回它!</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>很多公司都會透過 Jenkins 去執行許多 CI 的 Job，<br>而那些 Job 大多需要權限去執行，<br>所以你是設定使用者帳號&#x2F;密碼，還是使用 Token 呢?<br>當使用帳&#x2F;密時， Jenkins 會將存起來的<strong>密碼</strong>解回來送給需要的 Task ，<br>所以如果忘了某個帳號的密碼，就可以透過以下的方式取回它!</p>
 <h3 id="如何取得"><a href="#如何取得" class="headerlink" title="如何取得?"></a>如何取得?</h3><p>Jenkins 取得的密碼在 Console output 中是使用 *** 輸出，那要如何取得使用者的密碼呢?</p>
 <p>在 <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/37683143/extract-passphrase-from-jenkins-credentials-xml">Extract passphrase from Jenkins’ credentials.xml</a> 中，<a target="_blank" rel="noopener" href="https://stackoverflow.com/users/2182665/raterus">raterus</a> 介紹透過 <a target="_blank" rel="noopener" href="https://wiki.jenkins.io/display/JENKINS/Credentials+Binding+Plugin?focusedCommentId=80184884">Jenkins Credential Binding Plugin</a> ，將使用者的密碼 Bind 到 USERPASSWORD 變數之中，在 Buid 階段使用 <strong>Execute Windows batch command</strong> or <strong>Execute shell</strong> ，透過 echo 將密碼存到實體檔案中，即可以得到<strong>使用者:使用者的密碼</strong>。<br><img src="https://i.stack.imgur.com/jYYRY.png" /></p>
 <p><code>echo %USERPASSWORD% &gt; password.txt</code></p>
 <p>Bash 請使用 <code>$USERPASSWORD &gt; password.txt</code></p>
 <h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/37683143/extract-passphrase-from-jenkins-credentials-xml">Extract passphrase from Jenkins’ credentials.xml</a></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -212,18 +205,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2021/11/28/Azure-WebApp-Access-KeyVault-RBAC/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -242,9 +230,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -258,38 +244,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4682,6 +4661,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

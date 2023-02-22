@@ -171,30 +171,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2019002" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-2019002"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       使用 OpenTracing - Jaeger
     </h1>
   
-
-          
-            <a href="/2019/01/04/2019002/" class="archive-article-date">
+  <a href="/2019/01/04/2019002/" class="archive-article-date">
   	<time datetime="2019-01-04T06:02:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-04</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>隨著系統逾來逾大、逾複雜，為了維運方便，可能會將這些拆分成不同的 Service 。<br>但從使用者一個 Request 進來後，從前端、後端各 Service 再到 Database，如果有效能問題時，大家要如何查找問題呢? SQL Profiler, Fiddler, 寫 Log ? 或是使用一些工具來查看效能問題，例如 Dynatrace ?<br>現在大家有另外一個好選擇，就是使用 <a target="_blank" rel="noopener" href="https://opentracing.io/">OpenTracing</a> , 在程式中加入一些 Tracing 的資料(使用 OpenTracing 訂的 api，再看您要使用那一個 Support <a target="_blank" rel="noopener" href="https://opentracing.io/">OpenTracing</a> 的 Tracer 去註冊它。<br>到時候就可以透過時間軸的角度來看到底那裡有效能問題，那裡有錯誤。</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>隨著系統逾來逾大、逾複雜，為了維運方便，可能會將這些拆分成不同的 Service 。<br>但從使用者一個 Request 進來後，從前端、後端各 Service 再到 Database，如果有效能問題時，大家要如何查找問題呢? SQL Profiler, Fiddler, 寫 Log ? 或是使用一些工具來查看效能問題，例如 Dynatrace ?<br>現在大家有另外一個好選擇，就是使用 <a target="_blank" rel="noopener" href="https://opentracing.io/">OpenTracing</a> , 在程式中加入一些 Tracing 的資料(使用 OpenTracing 訂的 api，再看您要使用那一個 Support <a target="_blank" rel="noopener" href="https://opentracing.io/">OpenTracing</a> 的 Tracer 去註冊它。<br>到時候就可以透過時間軸的角度來看到底那裡有效能問題，那裡有錯誤。</p>
 <p>以下筆者將使用 <a target="_blank" rel="noopener" href="https://www.jaegertracing.io/">JAEGER</a> 來 Demo。</p>
 <h3 id="Why-OpenTracing"><a href="#Why-OpenTracing" class="headerlink" title="Why OpenTracing?"></a>Why OpenTracing?</h3><p>因為 <a target="_blank" rel="noopener" href="https://opentracing.io/">OpenTracing</a> 提供一個與平台無關，與廠商無關的 API，所以開發人員只要使用標準的 API，可以很輕易地更換不同的 追踪系統 ，只要它們都有 Support <a target="_blank" rel="noopener" href="https://opentracing.io/">OpenTracing</a> API。</p>
 <h3 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h3><p>因為<a target="_blank" rel="noopener" href="https://www.jaegertracing.io/">JAEGER</a>是 <a target="_blank" rel="noopener" href="https://www.cncf.io/">Cloud Native Computing Foundation(CNCF)</a>，所以您可以透過 Docker 或是直接執行它的執行檔。</p>
@@ -284,15 +282,10 @@
 <ul>
 <li>研究過程中，非常感謝同事 Marty 的討論與幫助。</li>
 </ul>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -331,18 +324,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2019/01/15/2019003/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -361,9 +349,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -377,38 +363,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4801,6 +4780,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

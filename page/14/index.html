@@ -147,45 +147,113 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-aspnet-4-response-write-utf8-encoding" class="article article-type-post  article-index"
-  itemscope itemprop="blogPost">
+    <article
+  id="post-XXE-Ado-DataSet-ReadXml"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/08/27/XXE-Ado-DataSet-ReadXml/">ADO.NET 中的 DataSet.ReadXml 會有 XML External Entity (XXE) 的問題嗎?</a>
+    </h1>
+  
+  <a href="/2021/08/27/XXE-Ado-DataSet-ReadXml/" class="archive-article-date">
+  	<time datetime="2021-08-27T00:48:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-27</time>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 .NET Framework 4.5.1 (含)以前的版本，<br>如果使用到 XmlDocument , XmlTextReader or XPathNavigator 則會有 XML External Entity (XXE) 的風險存在。<br>例如使用 XmlDocument 的 Load 檔案，而檔案的內容為，</p> 
+      <p class="article-more-link">
+        <a href="/2021/08/27/XXE-Ado-DataSet-ReadXml/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">DataSet</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">XML External Entity (XXE)</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ReadXml</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">XmlReaderSettings</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">DtdProcessing</a>
+        		</li>
+      		
+		</ul>
+	</div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+ <aside class="wrap-side-operation">
+    <div class="mod-side-operation">
         
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside> 
+
+  
+    <article
+  id="post-aspnet-4-response-write-utf8-encoding"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
   
     <h1 itemprop="name">
       <a class="article-title" href="/2021/08/13/aspnet-4-response-write-utf8-encoding/">ASP.NET 4.X WebForm 在 Global.asax Response.Write 中文字編碼問題</a>
     </h1>
   
-
-          
-            <a href="/2021/08/13/aspnet-4-response-write-utf8-encoding/" class="archive-article-date">
+  <a href="/2021/08/13/aspnet-4-response-write-utf8-encoding/" class="archive-article-date">
   	<time datetime="2021-08-13T02:50:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-13</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                            <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近同事反應從 Global.asax Response.Write 出來的內容，顯示到網頁上會有亂碼的狀況。<br>那個系統是從 .NET 2.X 升級到 .NET 4.X 的系統。<br>網頁的編碼卻是 Big5。 將網頁的編碼改回成 utf-8 就可以正常顯示中文。</p>
-                              
-                                <p class="article-more-link">
-                                  <a target="_blank" rel="noopener" href="//2021/08/13/aspnet-4-response-write-utf8-encoding/#more">
-                                    more &gt;&gt;
-                                  </a>
-                                </p>
-                                
-                                  
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近同事反應從 Global.asax Response.Write 出來的內容，顯示到網頁上會有亂碼的狀況。<br>那個系統是從 .NET 2.X 升級到 .NET 4.X 的系統。<br>網頁的編碼卻是 Big5。 將網頁的編碼改回成 utf-8 就可以正常顯示中文。</p> 
+      <p class="article-more-link">
+        <a href="/2021/08/13/aspnet-4-response-write-utf8-encoding/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -224,18 +292,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-      <aside class="wrap-side-operation">
+ <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -249,51 +312,38 @@
         
         
     </div>
-</aside>
-
-
-        
+</aside> 
 
   
-    <article id="post-Checkmarx-Custom-Preset-Do-Not-Work" class="article article-type-post  article-index"
-  itemscope itemprop="blogPost">
+    <article
+  id="post-Checkmarx-Custom-Preset-Do-Not-Work"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 itemprop="name">
       <a class="article-title" href="/2021/07/18/Checkmarx-Custom-Preset-Do-Not-Work/">明明是 Client 端的 JavaScript，Checkmarx 卻出 JavaScript_Server_Side_Vulnerabilities 的相關 Issues</a>
     </h1>
   
-
-          
-            <a href="/2021/07/18/Checkmarx-Custom-Preset-Do-Not-Work/" class="archive-article-date">
+  <a href="/2021/07/18/Checkmarx-Custom-Preset-Do-Not-Work/" class="archive-article-date">
   	<time datetime="2021-07-18T06:50:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-18</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>Checkmarx 的 Preset 在 JavaScript 是包含 Client 與 Server 端(NodeJS)，<br>當直接使用預設的 OWASP TOP 10 - 2017 去掃 ASP.NET MVC 專案時，<br>卻會被掃出 JavaScript\Cx\JavaScript_Server_Side_Vulnerabilities\Stored_XSS 等 NodeJS 的問題。<br>所以解法之法就是自定 Preset ， Clone 自 OWASP TOP 10 - 2017 ，<br>並取消勾選 JavaScript_Server_Side_Vulnerabilities 。</p>
-                              
-                                <p class="article-more-link">
-                                  <a target="_blank" rel="noopener" href="//2021/07/18/Checkmarx-Custom-Preset-Do-Not-Work/#more">
-                                    more &gt;&gt;
-                                  </a>
-                                </p>
-                                
-                                  
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>Checkmarx 的 Preset 在 JavaScript 是包含 Client 與 Server 端(NodeJS)，<br>當直接使用預設的 OWASP TOP 10 - 2017 去掃 ASP.NET MVC 專案時，<br>卻會被掃出 JavaScript\Cx\JavaScript_Server_Side_Vulnerabilities\Stored_XSS 等 NodeJS 的問題。<br>所以解法之法就是自定 Preset ， Clone 自 OWASP TOP 10 - 2017 ，<br>並取消勾選 JavaScript_Server_Side_Vulnerabilities 。</p> 
+      <p class="article-more-link">
+        <a href="/2021/07/18/Checkmarx-Custom-Preset-Do-Not-Work/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -324,18 +374,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-      <aside class="wrap-side-operation">
+ <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -349,51 +394,38 @@
         
         
     </div>
-</aside>
-
-
-        
+</aside> 
 
   
-    <article id="post-Heap-Inspection-MVC-byteArray" class="article article-type-post  article-index"
-  itemscope itemprop="blogPost">
+    <article
+  id="post-Heap-Inspection-MVC-byteArray"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 itemprop="name">
       <a class="article-title" href="/2021/07/14/Heap-Inspection-MVC-byteArray/">Heap Inspection in ASP.NET Core MVC - byte Array</a>
     </h1>
   
-
-          
-            <a href="/2021/07/14/Heap-Inspection-MVC-byteArray/" class="archive-article-date">
+  <a href="/2021/07/14/Heap-Inspection-MVC-byteArray/" class="archive-article-date">
   	<time datetime="2021-07-14T08:32:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-14</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在前一篇 <a href="https://rainmakerho.github.io/2021/07/14/Heap-Inspection-MVC-SecureString/">Heap Inspection in ASP.NET Core MVC - SecureString</a> 中介紹如何將 string Password 改使用 SecureString 型態。<br>但是在 .NET Core 並不建議再使用 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/dotnet/api/system.security.securestring?view=netcore-3.0">SecureString</a> 。<br>所以我們可以改使用 byte[] 來取代。</p>
-                              
-                                <p class="article-more-link">
-                                  <a target="_blank" rel="noopener" href="//2021/07/14/Heap-Inspection-MVC-byteArray/#more">
-                                    more &gt;&gt;
-                                  </a>
-                                </p>
-                                
-                                  
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在前一篇 <a href="https://rainmakerho.github.io/2021/07/14/Heap-Inspection-MVC-SecureString/">Heap Inspection in ASP.NET Core MVC - SecureString</a> 中介紹如何將 string Password 改使用 SecureString 型態。<br>但是在 .NET Core 並不建議再使用 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/dotnet/api/system.security.securestring?view=netcore-3.0">SecureString</a> 。<br>所以我們可以改使用 byte[] 來取代。</p> 
+      <p class="article-more-link">
+        <a href="/2021/07/14/Heap-Inspection-MVC-byteArray/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -424,18 +456,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-      <aside class="wrap-side-operation">
+ <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -449,51 +476,38 @@
         
         
     </div>
-</aside>
-
-
-        
+</aside> 
 
   
-    <article id="post-Heap-Inspection-MVC5-SecureString" class="article article-type-post  article-index"
-  itemscope itemprop="blogPost">
+    <article
+  id="post-Heap-Inspection-MVC5-SecureString"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 itemprop="name">
       <a class="article-title" href="/2021/07/14/Heap-Inspection-MVC5-SecureString/">Heap Inspection in ASP.NET MVC 5 - SecureString</a>
     </h1>
   
-
-          
-            <a href="/2021/07/14/Heap-Inspection-MVC5-SecureString/" class="archive-article-date">
+  <a href="/2021/07/14/Heap-Inspection-MVC5-SecureString/" class="archive-article-date">
   	<time datetime="2021-07-14T06:17:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-14</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>ASP.NET MVC 5 的 Login ，通常會接一個 LoginViewModel ，而該 Class 中大多會有 Password 的屬性，如下，</p>
-                              
-                                <p class="article-more-link">
-                                  <a target="_blank" rel="noopener" href="//2021/07/14/Heap-Inspection-MVC5-SecureString/#more">
-                                    more &gt;&gt;
-                                  </a>
-                                </p>
-                                
-                                  
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>ASP.NET MVC 5 的 Login ，通常會接一個 LoginViewModel ，而該 Class 中大多會有 Password 的屬性，如下，</p> 
+      <p class="article-more-link">
+        <a href="/2021/07/14/Heap-Inspection-MVC5-SecureString/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -528,18 +542,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-      <aside class="wrap-side-operation">
+ <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -553,51 +562,38 @@
         
         
     </div>
-</aside>
-
-
-        
+</aside> 
 
   
-    <article id="post-Heap-Inspection-MVC-SecureString" class="article article-type-post  article-index"
-  itemscope itemprop="blogPost">
+    <article
+  id="post-Heap-Inspection-MVC-SecureString"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 itemprop="name">
       <a class="article-title" href="/2021/07/14/Heap-Inspection-MVC-SecureString/">Heap Inspection in ASP.NET Core MVC - SecureString</a>
     </h1>
   
-
-          
-            <a href="/2021/07/14/Heap-Inspection-MVC-SecureString/" class="archive-article-date">
+  <a href="/2021/07/14/Heap-Inspection-MVC-SecureString/" class="archive-article-date">
   	<time datetime="2021-07-14T02:34:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-14</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>ASP.NET Core MVC 的 Login ，通常會接一個 LoginViewModel ，而該 Class 中大多會有 Password 的屬性，如下，</p>
-                              
-                                <p class="article-more-link">
-                                  <a target="_blank" rel="noopener" href="//2021/07/14/Heap-Inspection-MVC-SecureString/#more">
-                                    more &gt;&gt;
-                                  </a>
-                                </p>
-                                
-                                  
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>ASP.NET Core MVC 的 Login ，通常會接一個 LoginViewModel ，而該 Class 中大多會有 Password 的屬性，如下，</p> 
+      <p class="article-more-link">
+        <a href="/2021/07/14/Heap-Inspection-MVC-SecureString/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -628,18 +624,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-      <aside class="wrap-side-operation">
+ <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -653,51 +644,38 @@
         
         
     </div>
-</aside>
-
-
-        
+</aside> 
 
   
-    <article id="post-Heap-Inspection-RazorPages" class="article article-type-post  article-index"
-  itemscope itemprop="blogPost">
+    <article
+  id="post-Heap-Inspection-RazorPages"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 itemprop="name">
       <a class="article-title" href="/2021/07/14/Heap-Inspection-RazorPages/">Heap Inspection in  ASP.NET Core Razor Pages - SecureString</a>
     </h1>
   
-
-          
-            <a href="/2021/07/14/Heap-Inspection-RazorPages/" class="archive-article-date">
+  <a href="/2021/07/14/Heap-Inspection-RazorPages/" class="archive-article-date">
   	<time datetime="2021-07-14T01:54:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-14</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>ASP.NET Core Razor Page 建立 Login 頁面時，PageModel 上大多會有 Password 的屬性，如下，</p>
-                              
-                                <p class="article-more-link">
-                                  <a target="_blank" rel="noopener" href="//2021/07/14/Heap-Inspection-RazorPages/#more">
-                                    more &gt;&gt;
-                                  </a>
-                                </p>
-                                
-                                  
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>ASP.NET Core Razor Page 建立 Login 頁面時，PageModel 上大多會有 Password 的屬性，如下，</p> 
+      <p class="article-more-link">
+        <a href="/2021/07/14/Heap-Inspection-RazorPages/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -728,18 +706,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-      <aside class="wrap-side-operation">
+ <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -753,51 +726,38 @@
         
         
     </div>
-</aside>
-
-
-        
+</aside> 
 
   
-    <article id="post-ResultFilter-AutoMapper" class="article article-type-post  article-index"
-  itemscope itemprop="blogPost">
+    <article
+  id="post-ResultFilter-AutoMapper"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 itemprop="name">
       <a class="article-title" href="/2021/07/11/ResultFilter-AutoMapper/">透過 AsyncResultFilter 來處理 Entity Mapper 成 DTO</a>
     </h1>
   
-
-          
-            <a href="/2021/07/11/ResultFilter-AutoMapper/" class="archive-article-date">
+  <a href="/2021/07/11/ResultFilter-AutoMapper/" class="archive-article-date">
   	<time datetime="2021-07-11T05:19:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-11</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>一般來說，在 Controller 中透過 Repository 取回 Entity 的資料後，會再透過 Mapper 來將它轉成 DTO 傳給 Client 。例如，</p>
-                              
-                                <p class="article-more-link">
-                                  <a target="_blank" rel="noopener" href="//2021/07/11/ResultFilter-AutoMapper/#more">
-                                    more &gt;&gt;
-                                  </a>
-                                </p>
-                                
-                                  
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>一般來說，在 Controller 中透過 Repository 取回 Entity 的資料後，會再透過 Mapper 來將它轉成 DTO 傳給 Client 。例如，</p> 
+      <p class="article-more-link">
+        <a href="/2021/07/11/ResultFilter-AutoMapper/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -832,18 +792,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-      <aside class="wrap-side-operation">
+ <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -857,106 +812,7 @@
         
         
     </div>
-</aside>
-
-
-        
-
-  
-    <article id="post-jsonserializer-deserialize-fails" class="article article-type-post  article-index"
-  itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/07/03/jsonserializer-deserialize-fails/">System.Text.Json.Deserialize&lt;TValue&gt; 轉回的物件值都是 null</a>
-    </h1>
-  
-
-          
-            <a href="/2021/07/03/jsonserializer-deserialize-fails/" class="archive-article-date">
-  	<time datetime="2021-07-03T11:14:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-03</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>透過 HttpClient 取得別的 API 結果 Json 字串後，要透過 JsonSerializer.Deserialize<TValue> 轉回時，<br>發生該物件的屬性值都為 null 。這是為什麼呢?</p>
-                              
-                                <p class="article-more-link">
-                                  <a target="_blank" rel="noopener" href="//2021/07/03/jsonserializer-deserialize-fails/#more">
-                                    more &gt;&gt;
-                                  </a>
-                                </p>
-                                
-                                  
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Json.Deserialize</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">JsonSerializerOptions</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PropertyNameCaseInsensitive</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">PropertyNamingPolicy</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">JsonNamingPolicy.CamelCase</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
-  </div>
-</article>
-
-      <aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-        
+</aside> 
 
   
   
@@ -5357,6 +5213,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

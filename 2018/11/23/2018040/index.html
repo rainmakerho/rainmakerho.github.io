@@ -151,30 +151,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2018040" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-2018040"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       Could not find a part of the path &#39;C:\Users\...\bin\roslyn\csc.exe&#39;.
     </h1>
   
-
-          
-            <a href="/2018/11/23/2018040/" class="archive-article-date">
+  <a href="/2018/11/23/2018040/" class="archive-article-date">
   	<time datetime="2018-11-23T05:05:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-23</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近直接透過 Visual Studio 2017 新增專案後，建置都成功。<br>但直接執行時，卻出現以下的錯誤訊息，</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近直接透過 Visual Studio 2017 新增專案後，建置都成功。<br>但直接執行時，卻出現以下的錯誤訊息，</p>
 <p>Server Error in ‘&#x2F;‘ Application.<br>Could not find a part of the path ‘C:\Users...\bin\roslyn\csc.exe’.<br>Description: An unhandled exception occurred during the execution of the current web request. Please review the stack trace for more information about the error and where it originated in the code.</p>
 <p>Exception Details: System.IO.DirectoryNotFoundException: Could not find a part of the path ‘C:\Users...\bin\roslyn\csc.exe’.</p>
 <img src="/2018/11/23/2018040/001.png" class="" title="[Server Error]">
@@ -182,15 +180,10 @@
 <h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><h4 id="1-更新-Microsoft-CodeDom-Providers-DotNetCompilerPlatform-package"><a href="#1-更新-Microsoft-CodeDom-Providers-DotNetCompilerPlatform-package" class="headerlink" title="1.更新 Microsoft.CodeDom.Providers.DotNetCompilerPlatform package"></a>1.更新 Microsoft.CodeDom.Providers.DotNetCompilerPlatform package</h4><p>依<a target="_blank" rel="noopener" href="https://blogs.msdn.microsoft.com/jpsanders/2018/02/22/error-could-not-find-a-part-of-the-path-esitesroot0binroslyncsc-exe/">Error: Could not find a part of the path ‘E:\sitesroot\0\bin\roslyn\csc.exe’.</a>是 Microsoft.CodeDom.Providers.DotNetCompilerPlatform package 的 Bug，所以更新到最新版本就可以了，如下，</p>
 <img src="/2018/11/23/2018040/002.png" class="" title="[Microsoft.CodeDom.Providers.DotNetCompilerPlatform]">
 
-<h4 id="2-以系統管理者身份啟動-Visual-Studio"><a href="#2-以系統管理者身份啟動-Visual-Studio" class="headerlink" title="2.以系統管理者身份啟動 Visual Studio"></a>2.以系統管理者身份啟動 Visual Studio</h4>
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+<h4 id="2-以系統管理者身份啟動-Visual-Studio"><a href="#2-以系統管理者身份啟動-Visual-Studio" class="headerlink" title="2.以系統管理者身份啟動 Visual Studio"></a>2.以系統管理者身份啟動 Visual Studio</h4>   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -205,18 +198,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2018/11/27/2018041/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -235,9 +223,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -251,38 +237,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4675,6 +4654,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

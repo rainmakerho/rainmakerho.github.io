@@ -157,30 +157,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-timeout-expired-max-pool-size-reached" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-timeout-expired-max-pool-size-reached"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       Timeout expired. all pooled connections were in use and max pool size was reached. 自動關閉 Connection ?
     </h1>
   
-
-          
-            <a href="/2022/08/29/timeout-expired-max-pool-size-reached/" class="archive-article-date">
+  <a href="/2022/08/29/timeout-expired-max-pool-size-reached/" class="archive-article-date">
   	<time datetime="2022-08-29T03:27:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-29</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>我們有一個 ASP.NET Core 的系統，跑一跑就會有 <strong>System.InvalidOperationException: Timeout expired.  The timeout period elapsed prior to obtaining a connection from the pool.  This may have occurred because all pooled connections were in use and max pool size was reached.</strong> 的錯誤。但是它的 Max Pool Size 已經設定到了 6,000 ，還是會噴錯。<br>那系統中一定有沒有關掉的 Connection 才會如此 …</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>我們有一個 ASP.NET Core 的系統，跑一跑就會有 <strong>System.InvalidOperationException: Timeout expired.  The timeout period elapsed prior to obtaining a connection from the pool.  This may have occurred because all pooled connections were in use and max pool size was reached.</strong> 的錯誤。但是它的 Max Pool Size 已經設定到了 6,000 ，還是會噴錯。<br>那系統中一定有沒有關掉的 Connection 才會如此 …</p>
 <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>針對連線到 DB 存取的 Method 來查看，發現有一個 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlcommand.executereaderasync">SqlCommand.ExecuteReaderAsync</a> ，它的寫法大致如下，</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">async</span> Task&lt;DataTable&gt; <span class="title">getDT</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    DataTable dt = <span class="keyword">new</span> DataTable();</span><br><span class="line">    <span class="keyword">var</span> reader = <span class="keyword">await</span> getReader();</span><br><span class="line">    dt.Load(reader);</span><br><span class="line">    reader.Close();</span><br><span class="line">    <span class="keyword">return</span> dt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">async</span> Task&lt;IDataReader&gt; <span class="title">getReader</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">var</span> connString = <span class="string">@&quot;Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog=BookStore;Integrated Security=True;Max Pool Size=4;Application Name=&#123;0&#125;&quot;</span>;</span><br><span class="line">    connString = String.Format(connString, <span class="string">&quot;ap-Reader&quot;</span>);</span><br><span class="line">    <span class="keyword">var</span> cn = <span class="keyword">new</span> SqlConnection(connString);</span><br><span class="line">    cn.Open();</span><br><span class="line">    <span class="keyword">var</span> cmd = <span class="keyword">new</span> SqlCommand(<span class="string">@&quot;select * from [dbo].[AbpRoles]&quot;</span>, cn);</span><br><span class="line">    <span class="keyword">var</span> reader = <span class="keyword">await</span> cmd.ExecuteReaderAsync();</span><br><span class="line">    <span class="keyword">return</span> reader;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> xi = <span class="number">0</span>; xi &lt; <span class="number">10</span>; xi++)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">var</span> dt1 = <span class="keyword">await</span> getDT();</span><br><span class="line">    <span class="keyword">var</span> v = <span class="keyword">await</span> getScalarValue();</span><br><span class="line">    Console.WriteLine(<span class="string">$&quot;<span class="subst">&#123;xi&#125;</span>&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line">Console.ReadKey();</span><br></pre></td></tr></table></figure>
 <p>主要是透過 IDataReader 來將資料放入 DataTable 之中，但是因為這樣子的做法，<br>DB 的 Connection 就要等到取得 DataTable 後才可以 Close 。<br>可是，DB Connection 都離開了 Function 範圍還不會 Close 嗎?<br>是的，像上面的程式碼，設定 Max Pool Size 為<strong>4</strong>個，<br>所以迴圈跑到第5個時，就會發生錯誤了，因為 Pool 中的 Connection 被已被佔滿了。</p>
@@ -204,15 +202,10 @@
 
 
 <h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlcommand.executereaderasync">SqlCommand.ExecuteReaderAsync</a><br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlcommand.executereader">SqlCommand.ExecuteReader</a><br><a target="_blank" rel="noopener" href="https://dotblogs.azurewebsites.net/rainmaker/2017/04/26/143316">已超過連接逾時的設定。在取得集區連接之前超過逾時等待的時間，可能的原因為所有的共用連接已在使用中，並已達共用集區大小的最大值。</a><br><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/10519273/will-executereadercommandbehavior-closeconnection-always-close-connection">Will ExecuteReader(CommandBehavior.CloseConnection) always close connection?</a><br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/dotnet/api/system.data.commandbehavior">CommandBehavior</a></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -251,18 +244,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2022/08/31/metasploit-meterpreter-session/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -281,9 +269,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -297,38 +283,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4721,6 +4700,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

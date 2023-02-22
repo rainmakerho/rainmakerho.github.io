@@ -156,30 +156,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-abp-structuring-solution-ddd" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-abp-structuring-solution-ddd"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       探索 ABP Framework Web 方案
     </h1>
   
-
-          
-            <a href="/2022/11/17/abp-structuring-solution-ddd/" class="archive-article-date">
+  <a href="/2022/11/17/abp-structuring-solution-ddd/" class="archive-article-date">
   	<time datetime="2022-11-17T03:09:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-17</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>ABP Framework 的 Template 方案，是依 Domain-Driven Design (DDD) 原則去實現分層應用，<br>但是為什麼它所建立出來的方案中會多出許多的專案呢?<br>以下就讓我們來了解一番 ^_^</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>ABP Framework 的 Template 方案，是依 Domain-Driven Design (DDD) 原則去實現分層應用，<br>但是為什麼它所建立出來的方案中會多出許多的專案呢?<br>以下就讓我們來了解一番 ^_^</p>
 <h3 id="研究"><a href="#研究" class="headerlink" title="研究"></a>研究</h3><p>Domain-Driven Design (DDD) 常見到的就是以下的圖，</p>
 <img src="/2022/11/17/abp-structuring-solution-ddd/01.png" class="" title="DDD">
 
@@ -220,15 +218,10 @@
 <p>雖然在整個 Web 專案的 Page 程式中並沒有使用到，<br>但因為 Web 專案在執行時，需要 Application 專案 及 EntityFrameworkCore 專案，<br>所以才將它們加入參考。</p>
 <p>當然，如果覺得這樣子不 OK， Web 專案應該只需要參考 Application.Contracts 專案。<br>則可以參考 <a target="_blank" rel="noopener" href="https://github.com/PacktPublishing/Mastering-ABP-Framework/tree/main/Samples/Chapter-09/SeparateHosting">SeparateHosting example</a> ，新增一個 Web.Host 的專案，加入執行時需要的 Application 專案、 EntityFrameworkCore 專案、 HttpApi 專案及 Web 專案參考，而 Web 專案則改只參考 Application.Contracts 專案。</p>
 <h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a target="_blank" rel="noopener" href="https://github.com/ABPframework/ABP/blob/dev/docs/en/Startup-Templates/Application.md">Application Startup Template</a><br><a target="_blank" rel="noopener" href="https://dzone.com/articles/onion-architecture-is-interesting">Onion Architecture Is Interesting</a><br><a target="_blank" rel="noopener" href="https://github.com/PacktPublishing/Mastering-ABP-Framework/tree/main/Samples/Chapter-09/SeparateHosting">ABP SeparateHosting example</a></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -247,18 +240,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2022/11/24/sql-2019-too-many-if-else-cause-hang/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -277,9 +265,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -293,38 +279,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4717,6 +4696,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

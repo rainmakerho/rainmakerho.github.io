@@ -161,30 +161,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-owasp-sql-injection" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-owasp-sql-injection"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       OWASP Top 10 2017 - SQL Injection
     </h1>
   
-
-          
-            <a href="/2021/03/15/owasp-sql-injection/" class="archive-article-date">
+  <a href="/2021/03/15/owasp-sql-injection/" class="archive-article-date">
   	<time datetime="2021-03-15T05:52:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-15</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在　OWASP Top 10 - 2017 之中，Injection 還是在排在第一位，可見 Injection 所帶來的影響很大。<br>本文將跟大家介紹 Explicit &#x2F; Blind SQL Injection 以及一些 SQL 常見的手法。<br>首先，先來了解一下 SQL Injection<br>當 URL 為 <strong><a target="_blank" rel="noopener" href="http://www.mysite.com/product?id=1">http://www.mysite.com/product?id=1</a></strong> 時，<br>會對應到 SQL 為  <strong>SELECT * FROM Product WHERE Id &#x3D; 1</strong>,<br>當中不信任的資料為 id 的參數值 1。<br>所以當我們把 URL 改成 <strong><a target="_blank" rel="noopener" href="http://www.mysite.com/product?id=1">http://www.mysite.com/product?id=1</a> or 1&#x3D;1</strong><br>程式如果沒驗證的話，SQL 就會變成 <strong>SELECT * FROM Product WHERE Id &#x3D; 1 or 1&#x3D;1</strong>, </p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在　OWASP Top 10 - 2017 之中，Injection 還是在排在第一位，可見 Injection 所帶來的影響很大。<br>本文將跟大家介紹 Explicit &#x2F; Blind SQL Injection 以及一些 SQL 常見的手法。<br>首先，先來了解一下 SQL Injection<br>當 URL 為 <strong><a target="_blank" rel="noopener" href="http://www.mysite.com/product?id=1">http://www.mysite.com/product?id=1</a></strong> 時，<br>會對應到 SQL 為  <strong>SELECT * FROM Product WHERE Id &#x3D; 1</strong>,<br>當中不信任的資料為 id 的參數值 1。<br>所以當我們把 URL 改成 <strong><a target="_blank" rel="noopener" href="http://www.mysite.com/product?id=1">http://www.mysite.com/product?id=1</a> or 1&#x3D;1</strong><br>程式如果沒驗證的話，SQL 就會變成 <strong>SELECT * FROM Product WHERE Id &#x3D; 1 or 1&#x3D;1</strong>, </p>
 <img src="/2021/03/15/owasp-sql-injection/01.png" class="" title="Basic SQL Injection">
 
 
@@ -252,15 +250,10 @@
 <p>而URL則為<strong>Product&#x2F;Detail?ProductID&#x3D;13&amp;orderBy&#x3D;UserID, case when (SELECT Top 1 substring(A2.name, 1, 1) From ( SELECT Top 1 A1.name FROM sys.tables A1 Order By A1.name ) A2 Order By A2.name Desc) &#x3D; ‘p’ then 1 else convert(int, ‘x’) end;</strong><br>如果第一個資料表名字的第一個字母為 p 就不會錯誤，不對的話，就會發生錯誤。<br>它的比對邏輯蠻簡單的，所以通常可以透過程式來測試，如果猜對了，程式就不會出錯，猜錯了，程式就會發生錯誤，最後就可以將所需要的資料全都猜出來。</p>
 <h3 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h3><p>以上透過簡單的範例說明，介紹了如何透過 Error 來顯示錯誤的資訊，及 Blind SQL Injection 透過用猜的方式來取得我們要的資訊。<br>如果再加以組合之後，更可以猜出資料庫的 Database Name, Table Name, Column Name ，然後透過 Error 的方式來將 Table 的資料顯示出來。<br>系統的需求很多種，所以在存取資料庫時，請注意 SQL Script 請勿使用串接字串及串接參數值的方式。</p>
 <h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a target="_blank" rel="noopener" href="https://owasp.org/www-project-top-ten/2017/A1_2017-Injection">A1:2017-Injection</a></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -279,18 +272,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2021/03/29/postgresql-set-max-sequence-value-for-all-tables/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -309,9 +297,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -325,38 +311,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4749,6 +4728,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>

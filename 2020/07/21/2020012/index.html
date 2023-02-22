@@ -160,30 +160,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2020012" class="article article-type-post "
-  itemscope itemprop="blogPost">
+            <article
+  id="post-2020012"
+  class="article article-type-post "
+  itemscope
+  itemprop="blogPost"
+>
   <div class="article-inner">
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       The frame attempting navigation is sandboxed, and is therefore disallowed from navigating its ancestors.
     </h1>
   
-
-          
-            <a href="/2020/07/21/2020012/" class="archive-article-date">
+  <a href="/2020/07/21/2020012/" class="archive-article-date">
   	<time datetime="2020-07-21T05:50:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-21</time>
-</a>
-              
-      </header>
-      
-        <div class="article-entry" itemprop="articleBody">
-          
-                    
-                      
-                        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近遇到一個 iframe 的問題，在一個頁面(index.htm)中加入 iframe 後，該 iframe 的 Page (parentFrame.htm)中又有 iframe (childFrameA.htm)。<br>而在 childFrameA.htm 中有一個 Link 要將 Parent 頁面取代掉，會出現以下的錯誤，</p>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近遇到一個 iframe 的問題，在一個頁面(index.htm)中加入 iframe 後，該 iframe 的 Page (parentFrame.htm)中又有 iframe (childFrameA.htm)。<br>而在 childFrameA.htm 中有一個 Link 要將 Parent 頁面取代掉，會出現以下的錯誤，</p>
 <blockquote>
 <p>Unsafe JavaScript attempt to initiate navigation for frame with URL ‘<a target="_blank" rel="noopener" href="http://10.211.55.3/iframesandbox/parentFrame.htm">http://10.211.55.3/iframesandbox/parentFrame.htm</a>‘ from frame with URL ‘<a target="_blank" rel="noopener" href="http://10.211.55.3/iframesandbox/childFrameA.htm">http://10.211.55.3/iframesandbox/childFrameA.htm</a>‘. The frame attempting navigation is sandboxed, and is therefore disallowed from navigating its ancestors.</p>
 </blockquote>
@@ -293,15 +291,10 @@
 <p>當然，如果無法去改用 postMessage 的方式(可能是代理的產品)。請評估不使用 sandbox 屬性來達到想要的行為哦!</p>
 </blockquote>
 <h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a target="_blank" rel="noopener" href="https://www.html5rocks.com/en/tutorials/security/sandboxed-iframes/">Play safely in sandboxed IFrames</a><br><a target="_blank" rel="noopener" href="https://www.w3schools.com/tags/att_iframe_sandbox.asp">HTML &lt;iframe&gt; sandbox Attribute</a><br><a target="_blank" rel="noopener" href="https://looker.com/blog/iframe-sandbox-tutorial">Understanding iFrame sandboxes and iFrame security</a><br><a target="_blank" rel="noopener" href="https://javascript.info/cross-window-communication">Cross-window communication</a></p>
-
-                          
-                                    
-
-                                      
-        </div>
-        <div class="article-info article-info-index">
-          
-              
+   
+    </div>
+    <div class="article-info article-info-index">
+       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -328,18 +321,13 @@
       		
 		</ul>
 	</div>
-
-                
-
-                  
-
-                      
-                            <div class="clearfix"></div>
-        </div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-
-  
+ 
 <nav id="article-nav">
   
     <a href="/2020/07/30/2020013/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -358,9 +346,7 @@
     </a>
   
 </nav>
-
-    
-      <aside class="wrap-side-operation">
+  <aside class="wrap-side-operation">
     <div class="mod-side-operation">
         
         <div class="jump-container" id="js-jump-container" style="display:none;">
@@ -374,38 +360,31 @@
         
         
     </div>
-</aside>
+</aside>     
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-
-        
-          
-
-                
-
-                      
-
-                            
-                              <section id="comments">
-                                <div id="disqus_thread"></div>
-                                <script type="text/javascript">
-                                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                                  var disqus_shortname = 'rainmakergit'; // required: replace example with your forum shortname
-
-                                  /* * * DON'T EDIT BELOW THIS LINE * * */
-                                  (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                  })();
-                                </script>
-                                <noscript>Please enable JavaScript to view the
-                                  <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-                                </noscript>
-                              </section>
-                              
-
-                                
-                                      
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement("script");
+      dsq.type = "text/javascript";
+      dsq.async = true;
+      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(dsq);
+    })();
+  </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</section>
+  
 
           </div>
         </div>
@@ -4798,6 +4777,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CWE-470</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">functional programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">retry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Partial</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Curry</a>
               </li>
             
             <div class="clearfix"></div>
