@@ -10,12 +10,12 @@
   <link rel="dns-prefetch" href="https://rainmakerho.github.io">
   <title>亂馬客 - Re:從零開始的軟體開發生活</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="技術、架構只有最適合的方案">
+  <meta name="description" content="devil is in the details">
 <meta property="og:type" content="website">
 <meta property="og:title" content="亂馬客 - Re:從零開始的軟體開發生活">
 <meta property="og:url" content="https://rainmakerho.github.io/page/4/index.html">
 <meta property="og:site_name" content="亂馬客 - Re:從零開始的軟體開發生活">
-<meta property="og:description" content="技術、架構只有最適合的方案">
+<meta property="og:description" content="devil is in the details">
 <meta property="og:locale" content="en_US">
 <meta property="article:author" content="亂馬客">
 <meta property="article:tag" content="前端,js,jquery,javascript,html5,C#,Developer,Programmer,Coder,chatbot,botframework,.net,netcore">
@@ -146,6 +146,162 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article
+  id="post-checkmarx-headers-authorization-privacy-violation"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/11/25/checkmarx-headers-authorization-privacy-violation/">使用 DefaultRequestHeaders.Authorization 卻被 Checkmarx 判斷有 Privacy Violation 的 Issue</a>
+    </h1>
+  
+  <a href="/2022/11/25/checkmarx-headers-authorization-privacy-violation/" class="archive-article-date">
+  	<time datetime="2022-11-25T01:19:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-25</time>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>透過 HttpClient 呼叫 api 時，透過 <code>DefaultRequestHeaders.Authorization</code> 設定 Token 的程式碼，<br>被 <strong>Checkmarx V9.4.5 HF16</strong> 掃出有 Privacy Violation 的 Issue。<br>為什麼這樣呢?</p> 
+      <p class="article-more-link">
+        <a href="/2022/11/25/checkmarx-headers-authorization-privacy-violation/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Checkmarx</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">DefaultRequestHeaders.Authorization</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Privacy Violation</a>
+        		</li>
+      		
+		</ul>
+	</div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+ <aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside> 
+
+  
+    <article
+  id="post-sql-2019-too-many-if-else-cause-hang"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/11/24/sql-2019-too-many-if-else-cause-hang/">在 Microsoft SQL Server 2019 如果有太多的 if-else 在 Scalar Function 中，執行該 Function 會跑很久?</a>
+    </h1>
+  
+  <a href="/2022/11/24/sql-2019-too-many-if-else-cause-hang/" class="archive-article-date">
+  	<time datetime="2022-11-24T02:50:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-24</time>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近同事詢問一個很奇怪的問題，他們有一個 Scalar Function 在 MSSQL 2019 (15.0.2000.5)上面執行，<br>透過 SSMS 直接執行該 Function ，結果一直跑不出來。<br>直接跑 Function 裡面的 Script，卻一下子就跑出來。<br>一樣的程式，在另一台 Server (15.0.4153.1)上也一下子就跑出來了。<br>到底是怎麼一回事呢?</p> 
+      <p class="article-more-link">
+        <a href="/2022/11/24/sql-2019-too-many-if-else-cause-hang/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hang</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">windows</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mssql</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">sql 2019</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">15.0 RTM</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">15.0.2000.5</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Timeout</a>
+        		</li>
+      		
+		</ul>
+	</div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+ <aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside> 
+
   
     <article
   id="post-abp-structuring-solution-ddd"
@@ -663,149 +819,9 @@
 </aside> 
 
   
-    <article
-  id="post-az305"
-  class="article article-type-post  article-index"
-  itemscope
-  itemprop="blogPost"
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/11/09/az305/">AZ-305 考試經驗分享</a>
-    </h1>
-  
-  <a href="/2022/11/09/az305/" class="archive-article-date">
-  	<time datetime="2022-11-09T02:54:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-09</time>
-</a> 
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>到 <a target="_blank" rel="noopener" href="https://www.uuu.com.tw/default.aspx">恆逸</a> 上完 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-tw/certifications/exams/az-305">設計 Microsoft Azure 基礎結構解決方案</a> 課程之後，自然就是要透過考試來加強學習的成效。<br>上課老師說過，考試的題目範圍並不限於教材內容。<br>那要如何準備考試呢?</p> 
-      <p class="article-more-link">
-        <a href="/2022/11/09/az305/#more"> more &gt;&gt; </a>
-      </p>
-         
-    </div>
-    <div class="article-info article-info-index">
-       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">AZ305</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">AZ-305</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Exam AZ-305</a>
-        		</li>
-      		
-		</ul>
-	</div>
- 
-  
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
- <aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside> 
-
-  
-    <article
-  id="post-CryptographicException-the-system-cannot-find-the-file-specified"
-  class="article article-type-post  article-index"
-  itemscope
-  itemprop="blogPost"
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/11/04/CryptographicException-the-system-cannot-find-the-file-specified/">System.Security.Cryptography.CryptographicException - The system cannot find the file specified.</a>
-    </h1>
-  
-  <a href="/2022/11/04/CryptographicException-the-system-cannot-find-the-file-specified/" class="archive-article-date">
-  	<time datetime="2022-11-04T07:37:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-04</time>
-</a> 
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近同事詢問在 開發環境跑沒問題，一放到 Server 上程式就 GG 了。<br>將程式加上 log 來顯示，結果出現 <strong>System.Security.Cryptography.CryptographicException: The system cannot find the file specified.</strong> 的錯誤</p> 
-      <p class="article-more-link">
-        <a href="/2022/11/04/CryptographicException-the-system-cannot-find-the-file-specified/#more"> more &gt;&gt; </a>
-      </p>
-         
-    </div>
-    <div class="article-info article-info-index">
-       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">CryptographicException</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">BouncyCastle.Security</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">The system cannot find the file specified</a>
-        		</li>
-      		
-		</ul>
-	</div>
- 
-  
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
- <aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside> 
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/3/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><a class="extend next" rel="next" href="/page/5/">Next &amp;raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/3/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><a class="extend next" rel="next" href="/page/5/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -3556,10 +3572,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Abp</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">/libs/abp/core/abp.css</a>
               </li>
              
@@ -5242,6 +5254,30 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">internal</a>
               </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Upgrade</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">v4</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">v5</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Domain service</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Repository</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Specification</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
@@ -5323,7 +5359,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">大家好，我是亂馬客，目前任職於叡揚資訊。  問題的解決並非只有一條路，  Blog中的內容也是個人的看法，  如果有需要討論的地方，  可以留言，或是 mail 給我 :)  rainmaker_ho@gss.com.tw
+  	  		<div class="aboutme-wrap" id="js-aboutme">大家好，我是亂馬客 Rainmaker，目前任職於叡揚資訊，大家也都叫我 RM 。 平常負責開發公司各產品線的加值、共用的軟體，例如 Chatbot, Graph Database ... 同時 Support 公司各種技術及資安修改問題。 Blog中的內容也是個人的看法，  如果有需要討論的地方，   可以留言，或是 mail 給我 :)  rainmaker_ho@gss.com.tw
 </div>
   	  	
     	</section>
