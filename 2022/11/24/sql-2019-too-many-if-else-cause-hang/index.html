@@ -8,13 +8,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests;">
   <link rel="dns-prefetch" href="https://rainmakerho.github.io">
-  <title>在 Microsoft SQL Server 2019 如果有太多的 if-else 在 Scalar Function 中，執行該 Function 會跑很久? | 亂馬客 - Re:從零開始的軟體開發生活</title>
+  <title>在 Microsoft SQL Server 2019 如果有太多的 if-else 在 Scalar Function 中，執行該 Function 會跑很久? | 亂馬客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="前言最近同事詢問一個很奇怪的問題，他們有一個 Scalar Function 在 MSSQL 2019 (15.0.2000.5)上面執行，透過 SSMS 直接執行該 Function ，結果一直跑不出來。直接跑 Function 裡面的 Script，卻一下子就跑出來。一樣的程式，在另一台 Server (15.0.4153.1)上也一下子就跑出來了。到底是怎麼一回事呢? 研究SQL 的 Sca">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在 Microsoft SQL Server 2019 如果有太多的 if-else 在 Scalar Function 中，執行該 Function 會跑很久?">
 <meta property="og:url" content="https://rainmakerho.github.io/2022/11/24/sql-2019-too-many-if-else-cause-hang/index.html">
-<meta property="og:site_name" content="亂馬客 - Re:從零開始的軟體開發生活">
+<meta property="og:site_name" content="亂馬客">
 <meta property="og:description" content="前言最近同事詢問一個很奇怪的問題，他們有一個 Scalar Function 在 MSSQL 2019 (15.0.2000.5)上面執行，透過 SSMS 直接執行該 Function ，結果一直跑不出來。直接跑 Function 裡面的 Script，卻一下子就跑出來。一樣的程式，在另一台 Server (15.0.4153.1)上也一下子就跑出來了。到底是怎麼一回事呢? 研究SQL 的 Sca">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://rainmakerho.github.io/2022/11/24/sql-2019-too-many-if-else-cause-hang/01.png">
@@ -32,7 +32,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://rainmakerho.github.io/2022/11/24/sql-2019-too-many-if-else-cause-hang/01.png">
   
-    <link rel="alternative" href="/atom.xml" title="亂馬客 - Re:從零開始的軟體開發生活" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="亂馬客" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -62,8 +62,10 @@
 			<img src="https://avatars2.githubusercontent.com/u/11240907?s=400&amp;u=597a9c2ae536885dae848ed245dc2dfb591a8c28&amp;v=4" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/"></a></h1>
+		  <h1 class="header-author"><a href="/">亂馬客</a></h1>
 		</hgroup>
+		
+		<p class="header-subtitle">Re:從零開始的軟體開發生活</p>
 		
 
 		<nav class="header-menu">
@@ -116,8 +118,10 @@
 				<img src="https://avatars2.githubusercontent.com/u/11240907?s=400&amp;u=597a9c2ae536885dae848ed245dc2dfb591a8c28&amp;v=4" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author"></h1>
+			  <h1 class="header-author js-header-author">亂馬客</h1>
 			</hgroup>
+			
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>Re:從零開始的軟體開發生活<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -4789,6 +4793,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">SeedAsync</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Domain Events</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">AddLocalEvent</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ILocalEventHandler</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">AddDistributedEvent</a>
               </li>
             
             <div class="clearfix"></div>

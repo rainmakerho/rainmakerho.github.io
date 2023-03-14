@@ -8,13 +8,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests;">
   <link rel="dns-prefetch" href="https://rainmakerho.github.io">
-  <title>MSSQL 透過 Select 指定變數串接欄位值遇到 Order By 的問題 (Multi-Row Variable Assignment and ORDER BY) | 亂馬客 - Re:從零開始的軟體開發生活</title>
+  <title>MSSQL 透過 Select 指定變數串接欄位值遇到 Order By 的問題 (Multi-Row Variable Assignment and ORDER BY) | 亂馬客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="前言有同事詢問 使用 Select 變數將某個欄位值以逗號串起來時，如果最後加上 Order By 時，變數值卻只會有一筆，而不會將所有資料欄位值串起來? 練習資料準備1234567891011-- drop table #t1create table #t1(d1 date)goinsert into #t1(d1) values(&amp;#x27;2017&#x2F;1&#x2F;1&amp;#x27;), (&amp;#x27;20">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MSSQL 透過 Select 指定變數串接欄位值遇到 Order By 的問題 (Multi-Row Variable Assignment and ORDER BY)">
 <meta property="og:url" content="https://rainmakerho.github.io/2021/02/06/mssql-multi-rows-variable-assignment-orderby/index.html">
-<meta property="og:site_name" content="亂馬客 - Re:從零開始的軟體開發生活">
+<meta property="og:site_name" content="亂馬客">
 <meta property="og:description" content="前言有同事詢問 使用 Select 變數將某個欄位值以逗號串起來時，如果最後加上 Order By 時，變數值卻只會有一筆，而不會將所有資料欄位值串起來? 練習資料準備1234567891011-- drop table #t1create table #t1(d1 date)goinsert into #t1(d1) values(&amp;#x27;2017&#x2F;1&#x2F;1&amp;#x27;), (&amp;#x27;20">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://rainmakerho.github.io/2021/02/06/mssql-multi-rows-variable-assignment-orderby/01.png">
@@ -32,7 +32,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://rainmakerho.github.io/2021/02/06/mssql-multi-rows-variable-assignment-orderby/01.png">
   
-    <link rel="alternative" href="/atom.xml" title="亂馬客 - Re:從零開始的軟體開發生活" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="亂馬客" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -62,8 +62,10 @@
 			<img src="https://avatars2.githubusercontent.com/u/11240907?s=400&amp;u=597a9c2ae536885dae848ed245dc2dfb591a8c28&amp;v=4" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/"></a></h1>
+		  <h1 class="header-author"><a href="/">亂馬客</a></h1>
 		</hgroup>
+		
+		<p class="header-subtitle">Re:從零開始的軟體開發生活</p>
 		
 
 		<nav class="header-menu">
@@ -116,8 +118,10 @@
 				<img src="https://avatars2.githubusercontent.com/u/11240907?s=400&amp;u=597a9c2ae536885dae848ed245dc2dfb591a8c28&amp;v=4" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author"></h1>
+			  <h1 class="header-author js-header-author">亂馬客</h1>
 			</hgroup>
+			
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>Re:從零開始的軟體開發生活<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -4789,6 +4793,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">SeedAsync</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Domain Events</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">AddLocalEvent</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ILocalEventHandler</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">AddDistributedEvent</a>
               </li>
             
             <div class="clearfix"></div>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>亂馬客 - Re:從零開始的軟體開發生活</title>
+  <title>亂馬客</title>
   <icon>https://www.gravatar.com/avatar/cd3aed042ccd7a5a5d9956b0bc07dc81</icon>
   <subtitle>Re:從零開始的軟體開發生活</subtitle>
   <link href="https://rainmakerho.github.io/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2023-03-09T06:59:54.299Z</updated>
+  <updated>2023-03-14T04:03:33.959Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ABP Domain Events</title>
+    <link href="https://rainmakerho.github.io/2023/03/14/abp-domain-events/"/>
+    <id>https://rainmakerho.github.io/2023/03/14/abp-domain-events/</id>
+    <published>2023-03-14T03:47:00.000Z</published>
+    <updated>2023-03-14T04:03:33.959Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>以下介紹一下 ABP 提供的 Publish Event 的方式(local event 及 distributed event)，</p><h4 id="local-event-bus"><a href="#local-event-bus" class="headerlink" title="local event bus"></a>local event bus</h4><p>在 Aggreate Root Entity 使用 <code>AddLocalEvent(event物件);</code>來加入要被 Publish 的 Event ，<br>透過 <code>ILocalEventHandler&lt;event物件&gt;</code> 來訂閱要 Handle 的 Event，例如，</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">SetTime</span>(<span class="params">DateTime startTime, DateTime endTime</span>)</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">if</span> (startTime &gt; endTime)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> BusinessException(EventHubErrorCodes</span><br><span class="line">.EndTimeCantBeEarlierThanStartTime);</span><br><span class="line">&#125;</span><br><span class="line">StartTime = startTime;</span><br><span class="line">EndTime = endTime;</span><br><span class="line"><span class="keyword">if</span> (!IsDraft)</span><br><span class="line">&#123;</span><br><span class="line">AddLocalEvent(<span class="keyword">new</span> EventTimeChangedEventData(<span class="keyword">this</span>));</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">EventTimeChangedEventData</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span> Event Event &#123;<span class="keyword">get</span>;&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">EventTimeChangedEventData</span>(<span class="params">Event @<span class="keyword">event</span></span>)</span></span><br><span class="line">&#123;</span><br><span class="line">Event = @event;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">UserEmailingHandler</span> :</span><br><span class="line"><span class="title">ILocalEventHandler</span>&lt;<span class="title">EventTimeChangedEventData</span>&gt;,</span><br><span class="line"><span class="title">ITransientDependency</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">async</span> Task <span class="title">HandleEventAsync</span>(<span class="params"></span></span></span><br><span class="line"><span class="params"><span class="function">EventTimeChangedEventData eventData</span>)</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">var</span> @event = eventData.Event;</span><br><span class="line"><span class="comment">// <span class="doctag">TODO:</span> Send email to the registered users!</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><ul><li>Handler 如果發生錯誤沒有 Handle 的話，會讓 DB 交易 Rollback</li></ul><p>在 AppService 也可以使用 eventbus，注入 <code>ILocalEventBus</code>，再透過 <code>PublishAsync</code></p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">EventAppService</span> : <span class="title">EventHubAppService</span>,</span><br><span class="line"><span class="title">IEventAppService</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">readonly</span> IRepository&lt;Event, Guid&gt;</span><br><span class="line">_eventRepository;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">readonly</span> ILocalEventBus _localEventBus;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">EventAppService</span>(<span class="params"></span></span></span><br><span class="line"><span class="params"><span class="function">IRepository&lt;Event, Guid&gt; eventRepository,</span></span></span><br><span class="line"><span class="params"><span class="function">ILocalEventBus localEventBus</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">_eventRepository = eventRepository;</span><br><span class="line">_localEventBus = localEventBus;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">async</span> Task <span class="title">SetTimeAsync</span>(<span class="params"></span></span></span><br><span class="line"><span class="params"><span class="function">Guid eventId, DateTime startTime, DateTime endTime</span>)</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">var</span> @event = <span class="keyword">await</span> _eventRepository.GetAsync(eventId);</span><br><span class="line">@event.SetTime(startTime, endTime);</span><br><span class="line"><span class="keyword">await</span> _eventRepository.UpdateAsync(@event);</span><br><span class="line"><span class="keyword">await</span> _localEventBus.PublishAsync(</span><br><span class="line"><span class="keyword">new</span> EventTimeChangedEventData(@event));</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>最好是在 Domain Services or Entity 中 Publish 會來的比較合適<br>因為在 AppService 可能會忘了 Publish</p><p>Local events 很適合用來實作一些 side-effects，<br>例如，某些狀態改變時，要做某些 Action<br>像上述範例是使用 Email 通知</p><ul><li>不應該將 商業邏輯流程 交給 事件處理，以防整個過程難以掌控</li><li>Domain Event(包含簡單資訊，Id, CustomId, ClientId)</li><li>Intergation Event (包含詳細資訊，Id, CustomId, CustomName, ClientId, ClientName…)</li></ul><h4 id="distributed-event-bus"><a href="#distributed-event-bus" class="headerlink" title="distributed event bus"></a>distributed event bus</h4><p>透過 message broker service, 像是 RabbitMQ or Kafka<br>在 Aggreate Root Entity 使用 <code>AddDistributedEvent(ETO物件);</code>來加入要被 Publish 的 Event ，</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">SetTime</span>(<span class="params">DateTime startTime, DateTime endTime</span>)</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">if</span> (startTime &gt; endTime)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> BusinessException(EventHubErrorCodes</span><br><span class="line">.EndTimeCantBeEarlierThanStartTime);</span><br><span class="line">&#125;</span><br><span class="line">StartTime = startTime;</span><br><span class="line">EndTime = endTime;</span><br><span class="line"><span class="keyword">if</span> (!IsDraft)</span><br><span class="line">&#123;</span><br><span class="line">AddDistributedEvent(<span class="keyword">new</span> EventTimeChangedEto&#123;</span><br><span class="line">EventId = Id, Title = Title,</span><br><span class="line">StartTime = StartTime, EndTime = EndTime</span><br><span class="line">&#125;);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><ul><li>跟 local event bus 不同的是，這裡傳遞的是類似 DTO 的 ETO(Event Transfer Object)</li></ul><p>其他地方使用則注入 <code>IDistributeEventBus</code> ，然後使用 <code>PublishAsync</code></p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">await</span> _distributedEventBus.PublishAsync(ew EventTimeChangedEto&#123;</span><br><span class="line">EventId = Id, Title = Title,</span><br><span class="line">StartTime = StartTime, EndTime = EndTime</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">UserEmailingHandler</span> :</span><br><span class="line"><span class="title">IDistributedEventHandler</span>&lt;<span class="title">EventTimeChangedEventEto</span>&gt;,</span><br><span class="line"><span class="title">ITransientDependency</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">async</span> Task <span class="title">HandleEventAsync</span>(<span class="params"></span></span></span><br><span class="line"><span class="params"><span class="function">EventTimeChangedEventData eventData</span>)</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">var</span> @event = eventData.Event;</span><br><span class="line"><span class="comment">// <span class="doctag">TODO:</span> Send email to the registered users!</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><blockquote><p>An aggregate should preserve its validity and consistency by implementing business rules.<br>The domain layer is used to implement the core, application-independent domain logic of the solution.</p></blockquote><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://docs.abp.io/en/abp/latest/Event-Bus">ABP Event Bus</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;以下介紹一下 ABP 提供的 Publish Event 的方式(local event 及 distributed event)，&lt;/p&gt;</summary>
+      
+    
+    
+    
+    
+    <category term="ABP" scheme="https://rainmakerho.github.io/tags/ABP/"/>
+    
+    <category term="Domain Events" scheme="https://rainmakerho.github.io/tags/Domain-Events/"/>
+    
+    <category term="AddLocalEvent" scheme="https://rainmakerho.github.io/tags/AddLocalEvent/"/>
+    
+    <category term="ILocalEventHandler" scheme="https://rainmakerho.github.io/tags/ILocalEventHandler/"/>
+    
+    <category term="AddDistributedEvent" scheme="https://rainmakerho.github.io/tags/AddDistributedEvent/"/>
+    
+  </entry>
   
   <entry>
     <title>Entity Framework Core 產生 Migration DB Script</title>
@@ -568,38 +598,6 @@
     <category term="Graph" scheme="https://rainmakerho.github.io/tags/Graph/"/>
     
     <category term="G6.Graph" scheme="https://rainmakerho.github.io/tags/G6-Graph/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>AxiosError &#39;127.0.0.1&#39; &#39;ECONNREFUSED&#39;</title>
-    <link href="https://rainmakerho.github.io/2022/12/20/AxiosError-127-0-0-1-ECONNREFUSED/"/>
-    <id>https://rainmakerho.github.io/2022/12/20/AxiosError-127-0-0-1-ECONNREFUSED/</id>
-    <published>2022-12-20T10:09:25.000Z</published>
-    <updated>2022-12-20T09:50:45.608Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>同事詢問，程式透過 axios 來發出 post ，<br>URL 給的是 <code>http://localhost:3978</code> ，<br>但卻會發生 AxiosError ECONNREFUSED 的錯誤，</p><img src="/2022/12/20/AxiosError-127-0-0-1-ECONNREFUSED/01.jpg" class="" title="AxiosError"><h3 id="解決"><a href="#解決" class="headerlink" title="解決"></a>解決</h3><p>同事開啟 Browser 連到 <code>http://localhost:3978</code> 卻是可以正常顯示網頁，<br>看 axios 噴出的錯誤 Address 是 127.0.0.1 ，<br>於是請同事在 Browser 上改輸入 <code>http://127.0.0.1:3978</code> 結果會出現 <strong>ERR_CONNECTION_REFUSED</strong> 的錯誤，<br>改用自已的 IP ，也是會出現 <strong>ERR_CONNECTION_REFUSED</strong> 的錯誤。</p><p>Bingo….<br>從這個問題想帶給大家的是 Debug 的觀念，<br>有時在 Debug 時，會因為習慣，而導致忽略掉細微的資訊，<br>大家都會認為 localhost 就是 127.0.0.1 ，<br>所以在 Browser 上 <code>http://localhost</code> 可以正常呈現，<code>http://127.0.0.1</code> 也一定可以。<br>就會導致將問題導向程式本身，懷疑程式是不是寫的有問題，而浪費的許多時間。</p><p>殊不知，<code>localhost</code> 是對應到 ipv6 的 <code>::1:</code> ，而同事的本機 ipv4 是被連到的。<br>後來請同事參考 <a href="https://stackoverflow.com/questions/25652409/localhost-is-working-but-not-127-0-0-1-in-windows-7">localhost is working but not 127.0.0.1 in windows 7</a> ，讓它的 ipv4 可以被連到。</p><blockquote><p>雖然這問題不難，但容易讓除錯的人進入到誤區之中<br>筆者有時也會進入到這種偵錯的誤區之中，還好有同事、朋友的一起幫忙來找到正確的方向<br>在此也希望大家在除錯時，可以多跟同事、朋友討論，或許他們的一句話，就會讓你有突錯點<br>大家一起加油 ^_^</p></blockquote><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://stackoverflow.com/questions/25652409/localhost-is-working-but-not-127-0-0-1-in-windows-7">localhost is working but not 127.0.0.1 in windows 7</a></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;同事詢問，程式透過 axios 來發出 post ，&lt;br&gt;URL 給的是 &lt;code&gt;http://localhost:3978&lt;/cod</summary>
-      
-    
-    
-    
-    
-    <category term="Node.js" scheme="https://rainmakerho.github.io/tags/Node-js/"/>
-    
-    <category term="axios" scheme="https://rainmakerho.github.io/tags/axios/"/>
-    
-    <category term="AxiosError" scheme="https://rainmakerho.github.io/tags/AxiosError/"/>
-    
-    <category term="ECONNREFUSED" scheme="https://rainmakerho.github.io/tags/ECONNREFUSED/"/>
-    
-    <category term="127.0.0.1" scheme="https://rainmakerho.github.io/tags/127-0-0-1/"/>
-    
-    <category term="ipv4" scheme="https://rainmakerho.github.io/tags/ipv4/"/>
     
   </entry>
   

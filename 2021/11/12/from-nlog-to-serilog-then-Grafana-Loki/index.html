@@ -8,13 +8,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests;">
   <link rel="dns-prefetch" href="https://rainmakerho.github.io">
-  <title>ASP.NET 從 NLog 到 Grafana Loki | 亂馬客 - Re:從零開始的軟體開發生活</title>
+  <title>ASP.NET 從 NLog 到 Grafana Loki | 亂馬客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="前言最近一個系統中，拆成許多小小的 Service 專案，從前端UI操作如果發生問題時，要查問題時，往往要去每個 Service 的 Log 檔案查看。因為是實體檔案，所以要到主機上去看才行。實在是蠻不方便的，不知有沒有更好的工具來幫忙呢? 實作要解決以上的問題，可以把 Log 送到 ELK Stack(Elasticsearch, Logstash, Kibana)，或是使用 Grafana L">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ASP.NET 從 NLog 到 Grafana Loki">
 <meta property="og:url" content="https://rainmakerho.github.io/2021/11/12/from-nlog-to-serilog-then-Grafana-Loki/index.html">
-<meta property="og:site_name" content="亂馬客 - Re:從零開始的軟體開發生活">
+<meta property="og:site_name" content="亂馬客">
 <meta property="og:description" content="前言最近一個系統中，拆成許多小小的 Service 專案，從前端UI操作如果發生問題時，要查問題時，往往要去每個 Service 的 Log 檔案查看。因為是實體檔案，所以要到主機上去看才行。實在是蠻不方便的，不知有沒有更好的工具來幫忙呢? 實作要解決以上的問題，可以把 Log 送到 ELK Stack(Elasticsearch, Logstash, Kibana)，或是使用 Grafana L">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://rainmakerho.github.io/2021/11/12/from-nlog-to-serilog-then-Grafana-Loki/01.png">
@@ -39,7 +39,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://rainmakerho.github.io/2021/11/12/from-nlog-to-serilog-then-Grafana-Loki/01.png">
   
-    <link rel="alternative" href="/atom.xml" title="亂馬客 - Re:從零開始的軟體開發生活" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="亂馬客" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -69,8 +69,10 @@
 			<img src="https://avatars2.githubusercontent.com/u/11240907?s=400&amp;u=597a9c2ae536885dae848ed245dc2dfb591a8c28&amp;v=4" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/"></a></h1>
+		  <h1 class="header-author"><a href="/">亂馬客</a></h1>
 		</hgroup>
+		
+		<p class="header-subtitle">Re:從零開始的軟體開發生活</p>
 		
 
 		<nav class="header-menu">
@@ -123,8 +125,10 @@
 				<img src="https://avatars2.githubusercontent.com/u/11240907?s=400&amp;u=597a9c2ae536885dae848ed245dc2dfb591a8c28&amp;v=4" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author"></h1>
+			  <h1 class="header-author js-header-author">亂馬客</h1>
 			</hgroup>
+			
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>Re:從零開始的軟體開發生活<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -4838,6 +4842,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">SeedAsync</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Domain Events</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">AddLocalEvent</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ILocalEventHandler</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">AddDistributedEvent</a>
               </li>
             
             <div class="clearfix"></div>

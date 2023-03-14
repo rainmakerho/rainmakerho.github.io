@@ -8,13 +8,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests;">
   <link rel="dns-prefetch" href="https://rainmakerho.github.io">
-  <title>將只有一個日期的資料，依前後日期組成區間資料 - 以匯率表為例子 | 亂馬客 - Re:從零開始的軟體開發生活</title>
+  <title>將只有一個日期的資料，依前後日期組成區間資料 - 以匯率表為例子 | 亂馬客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="前言有一個匯率資料表，只有記錄匯率改變的日期，如果想要很到該匯率的區間，如下，  那 SQL 要如何下呢? 實作很簡單，可以使用 LEAD 及 CTE 來達成。 利用 LEAD 來將幣別切分，並依開始日期排序，就可以將下個日期取出來。再將那個日期減去一日就可以了。測試SQL如下， 1234567891011121314151617181920212223242526272829;With Curr">
 <meta property="og:type" content="article">
 <meta property="og:title" content="將只有一個日期的資料，依前後日期組成區間資料 - 以匯率表為例子">
 <meta property="og:url" content="https://rainmakerho.github.io/2021/09/30/one-date-to-range-sql/index.html">
-<meta property="og:site_name" content="亂馬客 - Re:從零開始的軟體開發生活">
+<meta property="og:site_name" content="亂馬客">
 <meta property="og:description" content="前言有一個匯率資料表，只有記錄匯率改變的日期，如果想要很到該匯率的區間，如下，  那 SQL 要如何下呢? 實作很簡單，可以使用 LEAD 及 CTE 來達成。 利用 LEAD 來將幣別切分，並依開始日期排序，就可以將下個日期取出來。再將那個日期減去一日就可以了。測試SQL如下， 1234567891011121314151617181920212223242526272829;With Curr">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://rainmakerho.github.io/2021/09/30/one-date-to-range-sql/01.png">
@@ -29,7 +29,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://rainmakerho.github.io/2021/09/30/one-date-to-range-sql/01.png">
   
-    <link rel="alternative" href="/atom.xml" title="亂馬客 - Re:從零開始的軟體開發生活" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="亂馬客" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -59,8 +59,10 @@
 			<img src="https://avatars2.githubusercontent.com/u/11240907?s=400&amp;u=597a9c2ae536885dae848ed245dc2dfb591a8c28&amp;v=4" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/"></a></h1>
+		  <h1 class="header-author"><a href="/">亂馬客</a></h1>
 		</hgroup>
+		
+		<p class="header-subtitle">Re:從零開始的軟體開發生活</p>
 		
 
 		<nav class="header-menu">
@@ -113,8 +115,10 @@
 				<img src="https://avatars2.githubusercontent.com/u/11240907?s=400&amp;u=597a9c2ae536885dae848ed245dc2dfb591a8c28&amp;v=4" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author"></h1>
+			  <h1 class="header-author js-header-author">亂馬客</h1>
 			</hgroup>
+			
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>Re:從零開始的軟體開發生活<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -4765,6 +4769,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">SeedAsync</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Domain Events</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">AddLocalEvent</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ILocalEventHandler</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">AddDistributedEvent</a>
               </li>
             
             <div class="clearfix"></div>

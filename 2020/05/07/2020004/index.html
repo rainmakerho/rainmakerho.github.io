@@ -8,13 +8,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests;">
   <link rel="dns-prefetch" href="https://rainmakerho.github.io">
-  <title>IE 列印時，沒有傳送 Session Cookies 資料，導致下個操作會把使用者登出 | 亂馬客 - Re:從零開始的軟體開發生活</title>
+  <title>IE 列印時，沒有傳送 Session Cookies 資料，導致下個操作會把使用者登出 | 亂馬客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="前言同事詢問，系統升級到 .NET 4.x 後，使用 IE 原本列印畫面時，系統好好的。但升級後，按下列印或是預覽列印後，卻會造成使用者被登出。 研究透過 Fiddler 錄相關的 Request 發現，在出現 Print 視窗時，系統還會發一個 Request 給 Server，但這個 Request 卻沒有帶任何的 Cookies，所以導致 Server 端認為不是已登入使用者，所以就被導到登">
 <meta property="og:type" content="article">
 <meta property="og:title" content="IE 列印時，沒有傳送 Session Cookies 資料，導致下個操作會把使用者登出">
 <meta property="og:url" content="https://rainmakerho.github.io/2020/05/07/2020004/index.html">
-<meta property="og:site_name" content="亂馬客 - Re:從零開始的軟體開發生活">
+<meta property="og:site_name" content="亂馬客">
 <meta property="og:description" content="前言同事詢問，系統升級到 .NET 4.x 後，使用 IE 原本列印畫面時，系統好好的。但升級後，按下列印或是預覽列印後，卻會造成使用者被登出。 研究透過 Fiddler 錄相關的 Request 發現，在出現 Print 視窗時，系統還會發一個 Request 給 Server，但這個 Request 卻沒有帶任何的 Cookies，所以導致 Server 端認為不是已登入使用者，所以就被導到登">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://rainmakerho.github.io/2020/05/07/2020004/001.png">
@@ -31,7 +31,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://rainmakerho.github.io/2020/05/07/2020004/001.png">
   
-    <link rel="alternative" href="/atom.xml" title="亂馬客 - Re:從零開始的軟體開發生活" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="亂馬客" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -61,8 +61,10 @@
 			<img src="https://avatars2.githubusercontent.com/u/11240907?s=400&amp;u=597a9c2ae536885dae848ed245dc2dfb591a8c28&amp;v=4" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/"></a></h1>
+		  <h1 class="header-author"><a href="/">亂馬客</a></h1>
 		</hgroup>
+		
+		<p class="header-subtitle">Re:從零開始的軟體開發生活</p>
 		
 
 		<nav class="header-menu">
@@ -115,8 +117,10 @@
 				<img src="https://avatars2.githubusercontent.com/u/11240907?s=400&amp;u=597a9c2ae536885dae848ed245dc2dfb591a8c28&amp;v=4" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author"></h1>
+			  <h1 class="header-author js-header-author">亂馬客</h1>
 			</hgroup>
+			
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>Re:從零開始的軟體開發生活<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -4782,6 +4786,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">SeedAsync</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Domain Events</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">AddLocalEvent</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ILocalEventHandler</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">AddDistributedEvent</a>
               </li>
             
             <div class="clearfix"></div>
