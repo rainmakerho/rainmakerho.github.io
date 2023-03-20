@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://rainmakerho.github.io//2023/03/20/ef-indexer-properties/</loc>
+    <lastmod>2023-03-20</lastmod>
+  </url>
+  <url>
+    <loc>https://rainmakerho.github.io//2023/03/20/ef-shadow-properties/</loc>
+    <lastmod>2023-03-20</lastmod>
+  </url>
+  <url>
     <loc>https://rainmakerho.github.io//2023/03/17/aspose-word-pdf-miss-system-fonts/</loc>
     <lastmod>2023-03-17</lastmod>
   </url>
