@@ -17,8 +17,11 @@
 <meta property="og:site_name" content="亂馬客">
 <meta property="og:description" content="前言假設 Entity Class 要提供 Dictionary 的屬性，可以使用 Indexer Properties，例如，customer[&quot;CustomerType&quot;]。如果不想在原有的 Table 中新增欄位，則可以使用 property bag entity types，例如，customerExt[&quot;CustomerType&quot;]以下我們來看一下">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://rainmakerho.github.io/2023/03/20/ef-indexer-properties/01.png">
+<meta property="og:image" content="https://rainmakerho.github.io/2023/03/20/ef-indexer-properties/02.png">
+<meta property="og:image" content="https://rainmakerho.github.io/2023/03/20/ef-indexer-properties/03.png">
 <meta property="article:published_time" content="2023-03-20T08:34:17.000Z">
-<meta property="article:modified_time" content="2023-03-20T09:28:47.350Z">
+<meta property="article:modified_time" content="2023-03-23T03:13:29.792Z">
 <meta property="article:author" content="亂馬客">
 <meta property="article:tag" content="EF">
 <meta property="article:tag" content="Indexer">
@@ -26,6 +29,7 @@
 <meta property="article:tag" content="Dictionary">
 <meta property="article:tag" content="SharedTypeEntity">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://rainmakerho.github.io/2023/03/20/ef-indexer-properties/01.png">
   
     <link rel="alternative" href="/atom.xml" title="亂馬客" type="application/atom+xml">
   
@@ -177,13 +181,16 @@
     
     <div class="article-entry" itemprop="articleBody">
          <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>假設 Entity Class 要提供 Dictionary 的屬性，<br>可以使用 <strong>Indexer Properties</strong>，例如，<br><code>customer[&quot;CustomerType&quot;]</code>。<br>如果不想在原有的 Table 中新增欄位，<br>則可以使用 <strong>property bag entity types</strong>，例如，<br><code>customerExt[&quot;CustomerType&quot;]</code><br>以下我們來看一下做法。</p>
-<h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><h4 id="Indexer-Properties"><a href="#Indexer-Properties" class="headerlink" title="Indexer Properties"></a>Indexer Properties</h4><p><code>customer[&quot;CustomerType&quot;]</code> 1.在 Customer Class 中加入 <code>Dictionary</code></p>
+<h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><h4 id="Indexer-Properties"><a href="#Indexer-Properties" class="headerlink" title="Indexer Properties"></a>Indexer Properties</h4><p><code>customer[&quot;CustomerType&quot;]</code></p>
+<p>1.在 Customer Class 中加入 <code>Dictionary</code></p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Customer</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> Id &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> FirstName &#123; <span class="keyword">get</span>;<span class="keyword">set</span>; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> LastName &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> FullName =&gt; FirstName+ <span class="string">&quot; &quot;</span> + LastName;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//Indexer Properties</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> Dictionary&lt;<span class="built_in">string</span>, <span class="built_in">object</span>&gt; _data = <span class="keyword">new</span> Dictionary&lt;<span class="built_in">string</span>, <span class="built_in">object</span>&gt;();</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">object</span> <span class="keyword">this</span>[<span class="built_in">string</span> key]</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">get</span> =&gt; _data[key];</span><br><span class="line">        <span class="keyword">set</span> =&gt; _data[key]= <span class="keyword">value</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>2.在 DbContext 類別中 OnModelCreating Method 設定 IndexerProperty，</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">partial</span> <span class="keyword">class</span> 你的<span class="title">Context</span>: <span class="title">DbContext</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// ... other codes ...</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">virtual</span> DbSet&lt;Customer&gt; Customers &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125; = <span class="literal">null</span>!;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">OnModelCreating</span>(<span class="params">ModelBuilder modelBuilder</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        modelBuilder.Entity&lt;Customer&gt;(entity =&gt;</span><br><span class="line">        &#123;</span><br><span class="line">            entity.HasKey(e=&gt;e.Id);</span><br><span class="line">            <span class="comment">//entity.Property&lt;DateTime&gt;(&quot;LastUpdated&quot;).HasDefaultValue(new DateTime(2020, 4, 9));</span></span><br><span class="line">            entity.IndexerProperty&lt;DateTime&gt;(<span class="string">&quot;LastUpdated&quot;</span>)</span><br><span class="line">                .HasDefaultValue(DateTime.UtcNow);</span><br><span class="line">            entity.IndexerProperty&lt;<span class="built_in">string</span>&gt;(<span class="string">&quot;CustomerType&quot;</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>所以當 <code>update-database</code> 後，Customers 會增加 2 個欄位(LastUpdated 及 CustomerType)</p>
+<img src="/2023/03/20/ef-indexer-properties/01.png" class="" title="Indexer">
+
 <p>3.存&#x2F;取值的方式如下，</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> _dbContext = <span class="keyword">new</span> 你的Context();</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> customer = _dbContext</span><br><span class="line">    .Customers</span><br><span class="line">    .AsNoTracking()</span><br><span class="line">    .First();</span><br><span class="line"></span><br><span class="line"><span class="comment">//取值</span></span><br><span class="line"><span class="keyword">var</span> customerType = customer[<span class="string">&quot;CustomerType&quot;</span>];</span><br><span class="line"><span class="keyword">var</span> lastUpdated = customer[<span class="string">&quot;LastUpdated&quot;</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">//要改值</span></span><br><span class="line">_dbContext.Attach(customer);</span><br><span class="line">customer[<span class="string">&quot;CustomerType&quot;</span>] = <span class="string">&quot;VIP&quot;</span>;</span><br><span class="line">customer[<span class="string">&quot;LastUpdated&quot;</span>] = <span class="keyword">new</span> DateTime(<span class="number">2020</span>, <span class="number">4</span>, <span class="number">9</span>);</span><br><span class="line"><span class="comment">//屬性不在會被忽略掉，不會有錯誤</span></span><br><span class="line">customer[<span class="string">&quot;沒欄位&quot;</span>] = <span class="string">&quot;ABC&quot;</span>;</span><br><span class="line">_dbContext.SaveChanges();</span><br></pre></td></tr></table></figure>
 
@@ -193,6 +200,11 @@
 
 <p>2.存取方式如下，</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> _dbContext = <span class="keyword">new</span> 你的Context();</span><br><span class="line"><span class="comment">//新增</span></span><br><span class="line"><span class="keyword">var</span> newCustomerExt = <span class="keyword">new</span> Dictionary&lt;<span class="built_in">string</span>, <span class="built_in">object</span>&gt;</span><br><span class="line">&#123;</span><br><span class="line">    &#123;<span class="string">&quot;CustomerId&quot;</span>, <span class="number">3</span> &#125;,</span><br><span class="line">    &#123;<span class="string">&quot;CustomerType&quot;</span>, <span class="string">&quot;Invalid&quot;</span> &#125;,</span><br><span class="line">    &#123;<span class="string">&quot;LastUpdated&quot;</span>, <span class="keyword">new</span> DateTime(<span class="number">2020</span>, <span class="number">9</span>, <span class="number">25</span>) &#125;</span><br><span class="line">&#125;;</span><br><span class="line">_dbContext.CustomerExts.Add(newCustomerExt);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> newOrderExt = <span class="keyword">new</span> Dictionary&lt;<span class="built_in">string</span>, <span class="built_in">object</span>&gt;</span><br><span class="line">&#123;</span><br><span class="line">    &#123;<span class="string">&quot;OrderId&quot;</span>, <span class="number">1</span> &#125;,</span><br><span class="line">    &#123;<span class="string">&quot;OrderType&quot;</span>, <span class="string">&quot;NeedConfirm&quot;</span> &#125;,</span><br><span class="line">    &#123;<span class="string">&quot;LastUpdated&quot;</span>, <span class="keyword">new</span> DateTime(<span class="number">2020</span>, <span class="number">9</span>, <span class="number">25</span>) &#125;</span><br><span class="line">&#125;;</span><br><span class="line">_dbContext.OrderExts.Add(newOrderExt);</span><br><span class="line">_dbContext.SaveChanges();</span><br><span class="line"></span><br><span class="line"><span class="comment">//更新</span></span><br><span class="line"><span class="keyword">var</span> customerExt = _dbContext.CustomerExts.First();</span><br><span class="line">customerExt[<span class="string">&quot;CustomerType&quot;</span>] = <span class="string">&quot;VIP&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> orderExt = _dbContext.OrderExts.First();</span><br><span class="line">orderExt[<span class="string">&quot;OrderType&quot;</span>] = <span class="string">&quot;Confirmed&quot;</span>;</span><br><span class="line"></span><br><span class="line">_dbContext.SaveChanges();</span><br></pre></td></tr></table></figure>
+
+<p>DB 就會建立 CustomerExts 及 OrderExts 資料表，</p>
+<img src="/2023/03/20/ef-indexer-properties/02.png" class="" title="CustomerExts">
+
+<img src="/2023/03/20/ef-indexer-properties/03.png" class="" title="OrderExts">
 
 <h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-tw/ef/core/modeling/shadow-properties">陰影和索引子屬性</a></p>
    
@@ -233,6 +245,15 @@
 </article>
  
 <nav id="article-nav">
+  
+    <a href="/2023/03/23/ef-owned-entity-types/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          EF Core Owned Entity Types
+        
+      </div>
+    </a>
   
   
     <a href="/2023/03/20/ef-shadow-properties/" id="article-nav-older" class="article-nav-link-wrap">
@@ -4840,6 +4861,42 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">SharedTypeEntity</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Owned Entity Types</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">OwnsOne</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">ValueObject</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">FILE</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">BIG5</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">UTF8</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">UTF8 BOM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Encoding</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">GetEncoding(950)</a>
               </li>
             
             <div class="clearfix"></div>
