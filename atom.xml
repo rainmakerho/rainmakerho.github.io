@@ -6,7 +6,7 @@
   <link href="https://rainmakerho.github.io/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2023-03-31T05:53:46.244Z</updated>
+  <updated>2023-04-10T01:22:00.803Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,40 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ABP 測試遇到 SeedTestData 及 讀取 appsettings 問題</title>
+    <link href="https://rainmakerho.github.io/2023/04/10/abp-testing-seed-data-config/"/>
+    <id>https://rainmakerho.github.io/2023/04/10/abp-testing-seed-data-config/</id>
+    <published>2023-04-10T00:41:42.000Z</published>
+    <updated>2023-04-10T01:22:00.803Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在跑 ABP 的測試專案時，卻發現居然會跑到 Domain 專案的那些 <code>DataSeedContributor</code> 類別的 <code>SeedAsync</code> Method?<br>另外，有些 AppService 需要 <code>appsettings</code> 設定值，在 ABP 測試專案中要如何處理呢?</p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><h4 id="跑測試專案時，會跑到-Domain-專案的那些-DataSeedContributor-類別的-SeedAsync-Method"><a href="#跑測試專案時，會跑到-Domain-專案的那些-DataSeedContributor-類別的-SeedAsync-Method" class="headerlink" title="跑測試專案時，會跑到 Domain 專案的那些 DataSeedContributor 類別的 SeedAsync Method"></a>跑測試專案時，會跑到 Domain 專案的那些 <code>DataSeedContributor</code> 類別的 <code>SeedAsync</code> Method</h4><p>ABP 的 <code>TestBase</code> 專案中 <code>TestBaseModule</code> 類別中的 <code>OnApplicationInitialization</code> Method ，會執行 <code>SeedTestData(context);</code>。<br>而 <code>SeedTestData(context);</code> 會呼叫 <code>DataSeeder</code> 的 <code>SeedAsync</code> Method。<br>在 <a href="https://rainmakerho.github.io/2023/03/08/abp-dataseedcontributor-duplicate/">ABP 系統建立的 DataSeedContributor 會跑 2 次 SeedAsync，導致發生 DB duplicate key 的錯誤?</a> 可以知道，<br><code>DataSeeder</code> 的 <code>SeedAsync</code> Method 會取得 組件中所有的 <code>DataSeedContributor</code> 類別，<br>並呼叫它們的 <code>SeedAsync</code> Method。<br>所以這也就導致在執行測試專案時，會一起跑 Domain 專案的那些 <code>DataSeedContributor</code> 類別的 <code>SeedAsync</code> Method。<br>那怎麼辦呢?<br>跟 <a href="https://rainmakerho.github.io/2023/03/08/abp-dataseedcontributor-duplicate/">ABP 系統建立的 DataSeedContributor 會跑 2 次 SeedAsync，導致發生 DB duplicate key 的錯誤?</a> 類似，<br>將 <code>AbpDataSeedOptions</code> 的 <code>Contributors</code> 移除 Domain 專案的那些 <code>DataSeedContributor</code> 類別就可以了。</p><p>所以修改 <code>TestBaseModule</code> 類別中 <code>SeedTestData</code> Method，如下，</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">SeedTestData</span>(<span class="params">ApplicationInitializationContext context</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    AsyncHelper.RunSync(<span class="keyword">async</span> () =&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">using</span> (<span class="keyword">var</span> scope = context.ServiceProvider.CreateScope())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//原本的程式碼</span></span><br><span class="line">            <span class="comment">//await scope.ServiceProvider</span></span><br><span class="line">            <span class="comment">//    .GetRequiredService&lt;IDataSeeder&gt;()</span></span><br><span class="line">            <span class="comment">//    .SeedAsync();</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">// 修改後的程式碼</span></span><br><span class="line">            <span class="comment">// 取得 AbpDataSeedOptions</span></span><br><span class="line">            <span class="keyword">var</span> dataSeeder = scope.ServiceProvider</span><br><span class="line">                .GetRequiredService&lt;IDataSeeder&gt;();</span><br><span class="line">            <span class="keyword">var</span> options = scope.ServiceProvider</span><br><span class="line">                .GetRequiredService&lt;IOptions&lt;AbpDataSeedOptions&gt;&gt;()</span><br><span class="line">                .Value;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 先將Domain 專案的那些 `DataSeedContributor` 類別移除</span></span><br><span class="line">            <span class="comment">// 因為 測試的 DataSeedContributor 類別名稱都會包含 Test ，所以用 Test 判斷</span></span><br><span class="line">            options.Contributors.RemoveAll(c =&gt; !c.Name.Contains(<span class="string">&quot;Test&quot;</span>));</span><br><span class="line">            <span class="comment">// 這裡只剩下 測試的 DataSeedContributor 類別</span></span><br><span class="line">            <span class="keyword">await</span> dataSeeder.SeedAsync();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="需要-appsettings-設定值"><a href="#需要-appsettings-設定值" class="headerlink" title="需要 appsettings 設定值"></a>需要 <code>appsettings</code> 設定值</h4><p>測試中，有些類別需要 <code>appsettings</code> 設定值怎麼辦呢?<br>可以參考 <a href="https://dotblogs.com.tw/jakeuj/2022/09/22/abp-test-appsettings">ABP.IO WEB 應用程式框架 UnitTest 讀取 appsettings.json</a> ，<br>在 <code>TestBase</code> 專案中加入 <code>appsettings.test.json</code> 並設定 <strong>複製到輸出目錄</strong> 為 <code>有更新時才複製</code>。<br><code>appsettings.test.json</code> 的內容則是那些類別所需要的一些設定值。</p><p>然後在 <code>TestBaseModule</code> 類別的 <code>ConfigureServices</code> Method 中，<br>讀取 <code>appsettings.test.json</code> ，並設定為 Singleton Service，如下，</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">ConfigureServices</span>(<span class="params">ServiceConfigurationContext context</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//讀取 appsettings.test.json 設定為 Singleton Service</span></span><br><span class="line">    IConfiguration configuration = <span class="keyword">new</span> ConfigurationBuilder()</span><br><span class="line">        .SetBasePath(Directory.GetCurrentDirectory())</span><br><span class="line">        .AddJsonFile(<span class="string">&quot;appsettings.test.json&quot;</span>, optional: <span class="literal">false</span>)</span><br><span class="line">        .Build();</span><br><span class="line">    context.Services.AddSingleton(configuration);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 其他的程式碼 ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="參考資訊"><a href="#參考資訊" class="headerlink" title="參考資訊"></a>參考資訊</h3><p><a href="https://weblog.west-wind.com/posts/2018/Feb/18/Accessing-Configuration-in-NET-Core-Test-Projects">Accessing Configuration in .NET Core Test Projects</a><br><a href="https://dotblogs.com.tw/jakeuj/2022/09/22/abp-test-appsettings">ABP.IO WEB 應用程式框架 UnitTest 讀取 appsettings.json</a><br><a href="https://rainmakerho.github.io/2023/03/08/abp-dataseedcontributor-duplicate/">ABP 系統建立的 DataSeedContributor 會跑 2 次 SeedAsync，導致發生 DB duplicate key 的錯誤?</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;在跑 ABP 的測試專案時，卻發現居然會跑到 Domain 專案的那些 &lt;code&gt;DataSeedContributor&lt;/code&gt; 類</summary>
+      
+    
+    
+    
+    
+    <category term="ABP" scheme="https://rainmakerho.github.io/tags/ABP/"/>
+    
+    <category term="TestBase" scheme="https://rainmakerho.github.io/tags/TestBase/"/>
+    
+    <category term="TestBaseModule" scheme="https://rainmakerho.github.io/tags/TestBaseModule/"/>
+    
+    <category term="SeedTestData" scheme="https://rainmakerho.github.io/tags/SeedTestData/"/>
+    
+    <category term="appsettings" scheme="https://rainmakerho.github.io/tags/appsettings/"/>
+    
+    <category term="IConfiguration" scheme="https://rainmakerho.github.io/tags/IConfiguration/"/>
+    
+    <category term="AbpDataSeedOptions" scheme="https://rainmakerho.github.io/tags/AbpDataSeedOptions/"/>
+    
+  </entry>
   
   <entry>
     <title>為什麼我的 PDF 檔案取出 Byte Array 另存後，再開出來卻變成白白的?</title>
@@ -574,34 +608,6 @@
     <category term="Function" scheme="https://rainmakerho.github.io/tags/Function/"/>
     
     <category term="poison" scheme="https://rainmakerho.github.io/tags/poison/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Oracle 在查詢時，有時會出現 遠端主機已強制關閉一個現存的連線</title>
-    <link href="https://rainmakerho.github.io/2023/01/11/oracle-17002-io-error-sometimes/"/>
-    <id>https://rainmakerho.github.io/2023/01/11/oracle-17002-io-error-sometimes/</id>
-    <published>2023-01-11T05:07:35.000Z</published>
-    <updated>2023-01-11T07:49:20.771Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近有遇到使用 <a href="https://dbeaver.io/">DBeaver</a> 連線 Oracle 11.2 時，<br>在下 SQL 時，有時會出現 <strong>SQL Error[17002][08006]:IO Error:遠端主機已強制關閉一個現存的連線</strong>的錯誤，</p><img src="/2023/01/11/oracle-17002-io-error-sometimes/01.png" class="" title="IO Error"><h3 id="解決"><a href="#解決" class="headerlink" title="解決"></a>解決</h3><p>但如果連 MS-SQL 卻是很順，<br>有討論到是否因為 firewall, IPS, 或是少裝 Oracle Client 的問題。<br>但另一個廠商也是去連 Oacle 卻不會有這樣子的狀況。<br>於是請同事詢問一下他們的連線方式，<br>後來 … 同事回報，他們 <strong>安裝 Oracle Client</strong> 之後，查詢就沒問題了。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;最近有遇到使用 &lt;a href=&quot;https://dbeaver.io/&quot;&gt;DBeaver&lt;/a&gt; 連線 Oracle 11.2 時，&lt;br</summary>
-      
-    
-    
-    
-    
-    <category term="oracle" scheme="https://rainmakerho.github.io/tags/oracle/"/>
-    
-    <category term="17002" scheme="https://rainmakerho.github.io/tags/17002/"/>
-    
-    <category term="08006" scheme="https://rainmakerho.github.io/tags/08006/"/>
-    
-    <category term="IO Error" scheme="https://rainmakerho.github.io/tags/IO-Error/"/>
     
   </entry>
   
