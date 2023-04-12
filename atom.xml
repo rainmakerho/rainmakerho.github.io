@@ -6,7 +6,7 @@
   <link href="https://rainmakerho.github.io/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2023-04-10T01:22:00.803Z</updated>
+  <updated>2023-04-12T05:04:02.626Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ABP Web 整合測試結果回傳 302 or 404 錯誤</title>
+    <link href="https://rainmakerho.github.io/2023/04/12/abp-web-testing-error/"/>
+    <id>https://rainmakerho.github.io/2023/04/12/abp-web-testing-error/</id>
+    <published>2023-04-12T02:56:39.000Z</published>
+    <updated>2023-04-12T05:04:02.626Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近將 ABP Framework 方案修改好程式後，執行 Web 整合測試時，<br>只是簡單的測試 Web Root 頁面是否運作正常，<br>居然測試不過，而且會回 302 or 404 的錯誤。<br><code>HTTP/1.1 GET http://localhost/ - - - 404</code></p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>猜想有可能是 Config 的問題，但是不知到底是那一個，<br>結果看到 <a href="https://learn.microsoft.com/en-us/aspnet/core/test/integration-tests">Integration tests in ASP.NET Core</a> 這篇在建立 HostBuilder 時，有多設定 <code>Environment</code> 為 <strong>Development</strong>。<br>所以多加上設定為 <strong>Development</strong> 居然就沒問題了。<br>花了好多時間，但還是找不到為什麼原本的 Abp 專案不用特別設定 <strong>Development</strong> 也沒有問題，<br>之後有找到問題點再來補充說明。<br>所以目前的 Workaround 做法就是 設定 <code>Environment</code> 為 <strong>Development</strong>。</p><p>WebTestBase.cs 中的 <code>CreateHostBuilder</code> Method 原本如下，</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">override</span> IHostBuilder <span class="title">CreateHostBuilder</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">base</span></span><br><span class="line">        .CreateHostBuilder()</span><br><span class="line">        .UseContentRoot(WebContentDirectoryFinder.CalculateContentRootFolder());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>加上設定 <code>Environment</code> 為 <strong>Development</strong> (<code>.UseEnvironment(&quot;Development&quot;)</code>)。</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">override</span> IHostBuilder <span class="title">CreateHostBuilder</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">base</span></span><br><span class="line">        .CreateHostBuilder()</span><br><span class="line">        .UseContentRoot(WebContentDirectoryFinder.CalculateContentRootFolder())</span><br><span class="line">        .UseEnvironment(<span class="string">&quot;Development&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>這樣子就沒問題了。</p><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://learn.microsoft.com/en-us/aspnet/core/test/integration-tests">Integration tests in ASP.NET Core</a><br><a href="https://holsson.wordpress.com/2018/06/25/integration-testing-asp-net-core-2-1/">Integration Testing ASP.NET Core 2.x</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;最近將 ABP Framework 方案修改好程式後，執行 Web 整合測試時，&lt;br&gt;只是簡單的測試 Web Root 頁面是否運作正常，</summary>
+      
+    
+    
+    
+    
+    <category term="ABP" scheme="https://rainmakerho.github.io/tags/ABP/"/>
+    
+    <category term="Web.Tests" scheme="https://rainmakerho.github.io/tags/Web-Tests/"/>
+    
+    <category term="WebTestBase" scheme="https://rainmakerho.github.io/tags/WebTestBase/"/>
+    
+    <category term="CreateHostBuilder" scheme="https://rainmakerho.github.io/tags/CreateHostBuilder/"/>
+    
+    <category term="Development" scheme="https://rainmakerho.github.io/tags/Development/"/>
+    
+  </entry>
   
   <entry>
     <title>ABP 測試遇到 SeedTestData 及 讀取 appsettings 問題</title>
@@ -576,38 +606,6 @@
     <category term="TCP" scheme="https://rainmakerho.github.io/tags/TCP/"/>
     
     <category term="Handshake" scheme="https://rainmakerho.github.io/tags/Handshake/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Azure Storage Queue - Message has reached MaxDequeueCount of 5. Moving message to queue poison</title>
-    <link href="https://rainmakerho.github.io/2023/02/03/message-has-reached-MaxDequeueCount-of-5/"/>
-    <id>https://rainmakerho.github.io/2023/02/03/message-has-reached-MaxDequeueCount-of-5/</id>
-    <published>2023-02-03T01:05:53.000Z</published>
-    <updated>2023-02-03T01:21:44.217Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>透過 Azure Function 的 Queue trigger Function 來取得資料(JSON 字串)時，<br>在 Queue 中的資料都還沒有被 Function 處理，<br>Console 就 Log 出 <strong>Message has reached MaxDequeueCount of 5. Moving message to queue {myQueueName}-poison</strong> ，<br>然後 Queue 中的內容就搬到了 {myQueueName}-poison 去了。<br>如果在 Azure Function 的 Application Insights 看到的錯誤有可能是 <code>System.Text.DecoderFallbackException at System.Text.DecoderExceptionFallbackBuffer.Throw</code></p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>Search 一下網路發現是因為要將 Json 字串送給 Azure Storage Queue 時，<br>需要將 Json 字串轉成 Base64 字串再傳送，如下</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> connectionString = <span class="string">&quot;AZURE_STORAGE_CONNECTION_STRING&quot;</span>;</span><br><span class="line">QueueClient queue = <span class="keyword">new</span> QueueClient(connectionString, <span class="string">&quot;myQueueName&quot;</span>);</span><br><span class="line"><span class="built_in">string</span> jsonData = <span class="string">@&quot;&#123;json 字串&#125;&quot;</span>;</span><br><span class="line"><span class="comment">//要轉成 base64 字串再傳送</span></span><br><span class="line"><span class="comment">//await queue.SendMessageAsync(jsonData);</span></span><br><span class="line"><span class="built_in">string</span> jsonBase64 = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(jsonData));</span><br><span class="line"><span class="keyword">await</span> queue.SendMessageAsync(jsonBase64);</span><br></pre></td></tr></table></figure><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://briancaos.wordpress.com/2020/10/16/sending-json-with-net-core-queueclient-sendmessageasync/">Sending JSON with .NET Core QueueClient.SendMessageAsync</a></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;透過 Azure Function 的 Queue trigger Function 來取得資料(JSON 字串)時，&lt;br&gt;在 Queue</summary>
-      
-    
-    
-    
-    
-    <category term="Azure" scheme="https://rainmakerho.github.io/tags/Azure/"/>
-    
-    <category term="Storage" scheme="https://rainmakerho.github.io/tags/Storage/"/>
-    
-    <category term="Queue" scheme="https://rainmakerho.github.io/tags/Queue/"/>
-    
-    <category term="MaxDequeueCount" scheme="https://rainmakerho.github.io/tags/MaxDequeueCount/"/>
-    
-    <category term="Function" scheme="https://rainmakerho.github.io/tags/Function/"/>
-    
-    <category term="poison" scheme="https://rainmakerho.github.io/tags/poison/"/>
     
   </entry>
   
