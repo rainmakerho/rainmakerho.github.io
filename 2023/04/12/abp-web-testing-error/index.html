@@ -18,7 +18,7 @@
 <meta property="og:description" content="前言最近將 ABP Framework 方案修改好程式後，執行 Web 整合測試時，只是簡單的測試 Web Root 頁面是否運作正常，居然測試不過，而且會回 302 or 404 的錯誤。HTTP&#x2F;1.1 GET http:&#x2F;&#x2F;localhost&#x2F; - - - 404 解法猜想有可能是 Config 的問題，但是不知到底是那一個，結果看到 Integration tests in ASP.NET">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-04-12T02:56:39.000Z">
-<meta property="article:modified_time" content="2023-04-12T05:04:02.626Z">
+<meta property="article:modified_time" content="2023-04-12T06:02:59.541Z">
 <meta property="article:author" content="亂馬客">
 <meta property="article:tag" content="ABP">
 <meta property="article:tag" content="Web.Tests">
@@ -185,7 +185,7 @@
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">override</span> IHostBuilder <span class="title">CreateHostBuilder</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">base</span></span><br><span class="line">        .CreateHostBuilder()</span><br><span class="line">        .UseContentRoot(WebContentDirectoryFinder.CalculateContentRootFolder())</span><br><span class="line">        .UseEnvironment(<span class="string">&quot;Development&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>這樣子就沒問題了。</p>
-<h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/aspnet/core/test/integration-tests">Integration tests in ASP.NET Core</a><br><a target="_blank" rel="noopener" href="https://holsson.wordpress.com/2018/06/25/integration-testing-asp-net-core-2-1/">Integration Testing ASP.NET Core 2.x</a></p>
+<h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/aspnet/core/test/integration-tests">Integration tests in ASP.NET Core</a><br><a target="_blank" rel="noopener" href="https://holsson.wordpress.com/2018/06/25/integration-testing-asp-net-core-2-1/">Integration Testing ASP.NET Core 2.x</a><br><a target="_blank" rel="noopener" href="https://docs.abp.io/en/abp/latest/UI/AspNetCore/Testing">ASP.NET Core MVC &#x2F; Razor Pages: Testing</a></p>
    
     </div>
     <div class="article-info article-info-index">
@@ -224,6 +224,15 @@
 </article>
  
 <nav id="article-nav">
+  
+    <a href="/2023/04/12/violates-the-following-content-security-policy-directive-default-src/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          JS Call API 出現 Refused to connect ... violates the following Content Security Policy directive default-src self 的錯誤
+        
+      </div>
+    </a>
   
   
     <a href="/2023/04/10/abp-testing-seed-data-config/" id="article-nav-older" class="article-nav-link-wrap">
@@ -4919,6 +4928,38 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Development</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">connect-src</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">violates</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Access-Control-Allow-Origin</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Power BI embedded</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">.NET Framework</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">AppOwnsData</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ReportEmbedConfig</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">EmbedToken</a>
               </li>
             
             <div class="clearfix"></div>

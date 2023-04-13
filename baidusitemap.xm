@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://rainmakerho.github.io//2023/04/13/power-bi-embed-speed-up/</loc>
+    <lastmod>2023-04-13</lastmod>
+  </url>
+  <url>
+    <loc>https://rainmakerho.github.io//2023/04/12/violates-the-following-content-security-policy-directive-default-src/</loc>
+    <lastmod>2023-04-13</lastmod>
+  </url>
+  <url>
     <loc>https://rainmakerho.github.io//2023/04/12/abp-web-testing-error/</loc>
     <lastmod>2023-04-12</lastmod>
   </url>
