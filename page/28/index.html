@@ -152,6 +152,76 @@
             
   
     <article
+  id="post-2019028"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/24/2019028/">Microsoft Botframework V4，從 Bot 送訊息到 IM Channel 時，加入額外的 Header 資訊 (V2)</a>
+    </h1>
+  
+  <a href="/2019/09/24/2019028/" class="archive-article-date">
+  	<time datetime="2019-09-24T07:29:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-24</time>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在年初時，因為 Bot 送給 IM Channel 時，需要在 HttpClient 的 Headers 中加入額外的資訊，那時筆者是透過 Middleware 的方式，取出 turnContext.TurnState 中的 ConnectorClient 。然後設定 ConnectorClient.HttpClient 的 DefaultRequestHeaders 。詳細可以參考 <a href="https://rainmakerho.github.io/2019/01/02/2019001/">Microsoft Botframework V4，從 Bot 送訊息到 IM Channel 時，加入額外的 Header 資訊</a></p> 
+      <p class="article-more-link">
+        <a href="/2019/09/24/2019028/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">bfv4</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">HttpClient</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">customHttpClient</a>
+        		</li>
+      		
+		</ul>
+	</div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+ <aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside> 
+
+  
+    <article
   id="post-2019027"
   class="article article-type-post  article-index"
   itemscope
@@ -697,83 +767,9 @@
 </aside> 
 
   
-    <article
-  id="post-2019020"
-  class="article article-type-post  article-index"
-  itemscope
-  itemprop="blogPost"
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/31/2019020/">ODataController Cross site scripting (content-sniffing)</a>
-    </h1>
-  
-  <a href="/2019/07/31/2019020/" class="archive-article-date">
-  	<time datetime="2019-07-31T09:03:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-31</time>
-</a> 
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近同事詢問一個 ODataController 被黑箱打到的一個 XSS 問題。<br>ODataController 允許我們使用 $count, $select 等操作。<br>我們用一個簡單的 webapi 專案來測試，新增 WebApi 專案後，加入「Microsoft.AspNet.OData」。<br>詳細可以參考 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/aspnet/web-api/overview/odata-support-in-aspnet-web-api/odata-v4/create-an-odata-v4-endpoint">Create an OData v4 Endpoint Using ASP.NET Web API</a>。</p> 
-      <p class="article-more-link">
-        <a href="/2019/07/31/2019020/#more"> more &gt;&gt; </a>
-      </p>
-         
-    </div>
-    <div class="article-info article-info-index">
-       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Odata</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Cross site scripting</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">content-sniffing</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">ODataController</a>
-        		</li>
-      		
-		</ul>
-	</div>
- 
-  
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
- <aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside> 
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/27/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><a class="page-number" href="/page/27/">27</a><span class="page-number current">28</span><a class="page-number" href="/page/29/">29</a><a class="page-number" href="/page/30/">30</a><span class="space">&hellip;</span><a class="page-number" href="/page/38/">38</a><a class="extend next" rel="next" href="/page/29/">Next &amp;raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/27/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><a class="page-number" href="/page/27/">27</a><span class="page-number current">28</span><a class="page-number" href="/page/29/">29</a><a class="page-number" href="/page/30/">30</a><span class="space">&hellip;</span><a class="page-number" href="/page/39/">39</a><a class="extend next" rel="next" href="/page/29/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -5541,6 +5537,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Disable<IMultiTenant></a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">__doPostBack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Immediately-invoked Function Expressions</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">IIFE</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">semicolons</a>
               </li>
             
             <div class="clearfix"></div>

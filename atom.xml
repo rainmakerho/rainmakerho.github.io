@@ -6,7 +6,7 @@
   <link href="https://rainmakerho.github.io/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2023-05-03T08:37:07.289Z</updated>
+  <updated>2023-05-10T07:14:03.030Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>__doPostBack(...) is not a function IIFE</title>
+    <link href="https://rainmakerho.github.io/2023/05/10/uncaught-typeerror-dopostback-is-not-a-function/"/>
+    <id>https://rainmakerho.github.io/2023/05/10/uncaught-typeerror-dopostback-is-not-a-function/</id>
+    <published>2023-05-10T06:41:01.000Z</published>
+    <updated>2023-05-10T07:14:03.030Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近同事詢問一個 <code>Uncaught TypeError: __doPostBack(...) is not a function</code> 的 javascript 錯誤，如下，</p><img src="/2023/05/10/uncaught-typeerror-dopostback-is-not-a-function/01.png" class="" title="typeerror"><h3 id="除錯"><a href="#除錯" class="headerlink" title="除錯"></a>除錯</h3><p>測試的網頁如下，</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">      //&lt;![CDATA[</span><br><span class="line">      function __doPostBack(eventTarget, eventArgument) &#123;</span><br><span class="line">        alert(&quot;doPostback&quot;);</span><br><span class="line">      &#125;</span><br><span class="line">      //]]&gt;</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">    &lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">      //&lt;![CDATA[</span><br><span class="line">         __doPostBack(&#x27;ctl00$scMainStateCtrl$Query&#x27;,&#x27;&#x27;)</span><br><span class="line"></span><br><span class="line">        (function(id) &#123;</span><br><span class="line">            alert(id);</span><br><span class="line">        &#125;)(&#x27;ctl00_vsMaster&#x27;);</span><br><span class="line">      //]]&gt;</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure><p>錯誤訊息指的是 <code>__doPostBack(...)</code> ，<br>但錯誤點是在 <strong>IIFE</strong> 的程式碼。</p><p>看起來似乎是 <code>__doPostBack</code> 沾黏到後面的 <code>(function(id))&#123; ...&#125;</code>，<br>所以這中間要加入 <strong>分號</strong> 來分隔。<br>所以將 <code>__doPostBack(...)</code> 改成 <code>__doPostBack(...);</code></p><p>所以在使用 <strong>IIFE</strong> 時，<br>也有人在最前面加上分號以避免類似的問題。</p><blockquote><p>This prevents issues when blindly concatenating two JavaScript files. Since JavaScript does not require semicolons, you might concatenate with a file with some statements in its last line that causes a syntax error.</p></blockquote><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://flaviocopes.com/javascript-iife/">JavaScript Immediately-invoked Function Expressions (IIFE)</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;最近同事詢問一個 &lt;code&gt;Uncaught TypeError: __doPostBack(...) is not a function</summary>
+      
+    
+    
+    
+    
+    <category term="javascript" scheme="https://rainmakerho.github.io/tags/javascript/"/>
+    
+    <category term="__doPostBack" scheme="https://rainmakerho.github.io/tags/doPostBack/"/>
+    
+    <category term="Immediately-invoked Function Expressions" scheme="https://rainmakerho.github.io/tags/Immediately-invoked-Function-Expressions/"/>
+    
+    <category term="IIFE" scheme="https://rainmakerho.github.io/tags/IIFE/"/>
+    
+    <category term="semicolons" scheme="https://rainmakerho.github.io/tags/semicolons/"/>
+    
+  </entry>
   
   <entry>
     <title>ABP 使用者登入系統時，不需要使用者先選取所屬租戶(Tenant)，自動切換到所屬租戶(Tenant)</title>
@@ -590,30 +620,6 @@
     <category term="ILocalEventHandler" scheme="https://rainmakerho.github.io/tags/ILocalEventHandler/"/>
     
     <category term="AddDistributedEvent" scheme="https://rainmakerho.github.io/tags/AddDistributedEvent/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Entity Framework Core 產生 Migration DB Script</title>
-    <link href="https://rainmakerho.github.io/2023/03/09/ef-generate-migration-scripts/"/>
-    <id>https://rainmakerho.github.io/2023/03/09/ef-generate-migration-scripts/</id>
-    <published>2023-03-09T06:20:45.000Z</published>
-    <updated>2023-03-09T06:59:54.299Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 Visual Studio 透過 <code>Add-Migration</code> 後，<br>可以透過 <code>Update-Database</code> 將這些 更新到 DB 之中。<br>那如果想要產生 SQL Script ，再拿 SQL Script 手動更新到 DB 之中呢?</p><h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><p>這時可以參考 <a href="https://learn.microsoft.com/zh-tw/ef/core/managing-schemas/migrations/applying?tabs=vs">EF Applying Migrations</a>，<br>在 Visual Studio 透過 <code>Script-Migration</code> 來產生 SQL Script，<br>例如要產生最近一次的 SQL Script ，<br>在 Visual Studio 的 <strong>套件管理器主控台</strong> ，預設專案選擇 <strong>EntityFrameworkCore</strong> 那個專案，<br>輸入 <code>Script-Migration 前次Migration 這次Migration</code>，</p><img src="/2023/03/09/ef-generate-migration-scripts/01.png" class="" title="Script-Migration"><p>如果要在 .NET CLI 中執行，則開啟命令視窗，並在 <strong>EntityFrameworkCore</strong> 那個專案的目錄下，<br>執行 <code>dotnet ef migrations script</code> <strong>-o</strong> 是指定輸出的檔名，如下，</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dotnet ef migrations script 20220425092213_add_LicenseAssembly_Deletion_Columns 20230303063806_Upgraded_To_Abp_5 -o abp5.sql</span><br></pre></td></tr></table></figure><img src="/2023/03/09/ef-generate-migration-scripts/02.png" class="" title="dotnet ef"><p>這樣就可以將這些 SQL Script 手動更新到不同的 DB 之中。</p><ul><li>註: 如果在 Visual Studio 的 <strong>套件管理器主控台</strong> 執行時，出現 <strong>Build failed.</strong> ，那應該是因為整個方案無法建置成功，請將方案建置成功後，再執行命令。</li></ul><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://learn.microsoft.com/zh-tw/ef/core/managing-schemas/migrations/applying?tabs=vs">EF Applying Migrations</a><br><a href="https://www.koskila.net/how-to-resolve-persistent-build-started-build-failed-when-trying-to-run-entity-framework-core-commands/">How to resolve persistent “Build started… Build failed.” when trying to run Entity Framework Core commands?</a></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;在 Visual Studio 透過 &lt;code&gt;Add-Migration&lt;/code&gt; 後，&lt;br&gt;可以透過 &lt;code&gt;Update-</summary>
-      
-    
-    
-    
-    
-    <category term="SQL" scheme="https://rainmakerho.github.io/tags/SQL/"/>
-    
-    <category term="EF Core" scheme="https://rainmakerho.github.io/tags/EF-Core/"/>
     
   </entry>
   
