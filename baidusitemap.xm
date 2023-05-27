@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://rainmakerho.github.io//2023/05/27/abp-swagger-400-error/</loc>
+    <lastmod>2023-05-27</lastmod>
+  </url>
+  <url>
     <loc>https://rainmakerho.github.io//2023/05/20/visual-studio-iisexpress-ssl-cert-authority/</loc>
     <lastmod>2023-05-20</lastmod>
   </url>
