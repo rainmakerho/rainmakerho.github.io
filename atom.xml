@@ -6,7 +6,7 @@
   <link href="https://rainmakerho.github.io/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2023-05-27T08:49:57.784Z</updated>
+  <updated>2023-05-29T09:55:02.847Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Tomcat Https Protocol handler initialization failed</title>
+    <link href="https://rainmakerho.github.io/2023/05/29/tomcat-no-sslhostconfig-element-was-found-with-the-hostname/"/>
+    <id>https://rainmakerho.github.io/2023/05/29/tomcat-no-sslhostconfig-element-was-found-with-the-hostname/</id>
+    <published>2023-05-29T05:14:13.000Z</published>
+    <updated>2023-05-29T09:55:02.847Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>在調整 Tomcat 10 要啟用 TLS 時，有參考網路上的設定，<br>在建立好 keystore 後，就將設定直貼到 server.xml 之中，如下，</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Connector</span> <span class="attr">port</span>=<span class="string">&quot;8443&quot;</span> <span class="attr">protocol</span>=<span class="string">&quot;org.apache.coyote.http11.Http11NioProtocol&quot;</span></span></span><br><span class="line"><span class="tag"> <span class="attr">maxThreads</span>=<span class="string">&quot;150&quot;</span> <span class="attr">SSLEnabled</span>=<span class="string">&quot;true&quot;</span> <span class="attr">keystoreFile</span>=<span class="string">&quot;conf/server.keystore&quot;</span> <span class="attr">keystorePass</span>=<span class="string">&quot;changeit&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure><p>結果在啟動 tomcat 時，就噴 <strong>Protocol handler initialization failed</strong> 及 **Caused by: java.lang.IllegalArgumentException: No SSLHostConfig element was found with the hostName [<em>default</em>] to match the defaultSSLHostConfigName for the connector [https-openssl-nio-8443]**的錯誤，如下，</p><blockquote><p>org.apache.catalina.LifecycleException: Protocol handler initialization failed<br>at org.apache.catalina.connector.Connector.initInternal(Connector.java:1018)<br>at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:136)<br>at org.apache.catalina.core.StandardService.initInternal(StandardService.java:549)<br>at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:136)<br>at org.apache.catalina.core.StandardServer.initInternal(StandardServer.java:999)<br>at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:136)<br>at org.apache.catalina.startup.Catalina.load(Catalina.java:747)<br>at org.apache.catalina.startup.Catalina.load(Catalina.java:769)<br>at java.base&#x2F;jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)<br>at java.base&#x2F;jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)<br>at java.base&#x2F;jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)<br>at java.base&#x2F;java.lang.reflect.Method.invoke(Method.java:566)<br>at org.apache.catalina.startup.Bootstrap.load(Bootstrap.java:307)<br>at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:477)<br>Caused by: java.lang.IllegalArgumentException: No SSLHostConfig element was found with the hostName [<em>default</em>] to match the &gt;defaultSSLHostConfigName for the connector [https-openssl-nio-8443]<br>at org.apache.tomcat.util.net.AbstractJsseEndpoint.initialiseSsl(AbstractJsseEndpoint.java:75)<br>at org.apache.tomcat.util.net.NioEndpoint.bind(NioEndpoint.java:207)<br>at org.apache.tomcat.util.net.AbstractEndpoint.bindWithCleanup(AbstractEndpoint.java:1256)<br>at org.apache.tomcat.util.net.AbstractEndpoint.init(AbstractEndpoint.java:1269)<br>at org.apache.coyote.AbstractProtocol.init(AbstractProtocol.java:622)<br>at org.apache.coyote.http11.AbstractHttp11Protocol.init(AbstractHttp11Protocol.java:77)<br>at org.apache.catalina.connector.Connector.initInternal(Connector.java:1016)</p></blockquote><h3 id="解決"><a href="#解決" class="headerlink" title="解決"></a>解決</h3><p>查看 tomcat 預設的 設定值似乎跟貼上去的內容不同，<br>於是改用 tomcat 的內容來調整，</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Connector</span> <span class="attr">port</span>=<span class="string">&quot;8443&quot;</span> <span class="attr">protocol</span>=<span class="string">&quot;org.apache.coyote.http11.Http11NioProtocol&quot;</span></span></span><br><span class="line"><span class="tag">               <span class="attr">maxThreads</span>=<span class="string">&quot;150&quot;</span> <span class="attr">SSLEnabled</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">               <span class="attr">maxParameterCount</span>=<span class="string">&quot;1000&quot;</span></span></span><br><span class="line"><span class="tag">               &gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">UpgradeProtocol</span> <span class="attr">className</span>=<span class="string">&quot;org.apache.coyote.http2.Http2Protocol&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">SSLHostConfig</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Certificate</span> <span class="attr">certificateKeystoreFile</span>=<span class="string">&quot;conf/server.keystore&quot;</span></span></span><br><span class="line"><span class="tag">                    <span class="attr">type</span>=<span class="string">&quot;RSA&quot;</span> <span class="attr">certificateKeystorePassword</span>=<span class="string">&quot;changeit&quot;</span></span></span><br><span class="line"><span class="tag">    /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">SSLHostConfig</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Connector</span>&gt;</span></span><br></pre></td></tr></table></figure><p>重新啟動 tomcat 就正常運作了，<br>開啟 Browser ，連到 <code>https://localhost:8443</code> 也可以正常看到 tomcat 首頁</p><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://tomcat.apache.org/tomcat-10.0-doc/ssl-howto.html#Configuration">Apache Tomcat 10 SSL&#x2F;TLS Configuration How-To</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;在調整 Tomcat 10 要啟用 TLS 時，有參考網路上的設定，&lt;br&gt;在建立好 keystore 後，就將設定直貼到 server.x</summary>
+      
+    
+    
+    
+    
+    <category term="TLS" scheme="https://rainmakerho.github.io/tags/TLS/"/>
+    
+    <category term="Tomcat" scheme="https://rainmakerho.github.io/tags/Tomcat/"/>
+    
+    <category term="SSLHostConfig" scheme="https://rainmakerho.github.io/tags/SSLHostConfig/"/>
+    
+    <category term="8443" scheme="https://rainmakerho.github.io/tags/8443/"/>
+    
+  </entry>
   
   <entry>
     <title>ABP 透過 Swagger UI 測試 API 時，會噴 400 的錯誤?</title>
@@ -602,38 +630,6 @@
     <category term="檔案已損壞且無法修復" scheme="https://rainmakerho.github.io/tags/%E6%AA%94%E6%A1%88%E5%B7%B2%E6%90%8D%E5%A3%9E%E4%B8%94%E7%84%A1%E6%B3%95%E4%BF%AE%E5%BE%A9/"/>
     
     <category term="Encoding.Default" scheme="https://rainmakerho.github.io/tags/Encoding-Default/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>透過比較編碼的 Byte 數，取得 BIG5/UTF8/UTF8 BOM 檔案正確的內容</title>
-    <link href="https://rainmakerho.github.io/2023/03/23/file-big5-utf8-get-correct/"/>
-    <id>https://rainmakerho.github.io/2023/03/23/file-big5-utf8-get-correct/</id>
-    <published>2023-03-23T05:37:56.000Z</published>
-    <updated>2023-03-23T06:01:26.265Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 <a href="https://dotblogs.com.tw/rainmaker/2013/05/20/104547">透過 StreamReader.CurrentEncoding 判斷檔案的編碼</a>這篇是透過 <code>StreamReader.CurrentEncoding</code> 來取得檔案的編碼。<br>另外 同事 提供也可透過透過各編碼來取得 Byte 數，來比較出是否為該編碼，<br>以下來看看範例，</p><h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><p>在 c:\temp 目錄下分別建立 BIG5, UTF8 及 UTF8 BOM 的檔案，</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//var filePath = @&quot;c:\temp\utf8.txt&quot;;</span></span><br><span class="line"><span class="keyword">var</span> filePath = <span class="string">@&quot;c:\temp\utf8BOM.txt&quot;</span>;</span><br><span class="line"><span class="comment">//var filePath = @&quot;c:\temp\big5.txt&quot;;</span></span><br><span class="line"><span class="keyword">var</span> fileBytes = System.IO.File.ReadAllBytes(filePath);</span><br><span class="line"><span class="comment">//判斷是否為 Big5 編碼</span></span><br><span class="line"><span class="keyword">var</span> big5 = Encoding.GetEncoding(<span class="number">950</span>);</span><br><span class="line"><span class="keyword">var</span> utf8 = Encoding.UTF8;</span><br><span class="line"><span class="keyword">var</span> big5String = big5.GetString(fileBytes);</span><br><span class="line"><span class="keyword">var</span> isBig5 = fileBytes.Length == big5.GetByteCount(big5String);</span><br><span class="line"><span class="comment">//取出正確的內容</span></span><br><span class="line"><span class="keyword">var</span> fileContent = isBig5 ?</span><br><span class="line">big5String :</span><br><span class="line">utf8.GetString(fileBytes);</span><br><span class="line">Console.WriteLine(fileContent);</span><br></pre></td></tr></table></figure><ul><li>註: 同事的系統主要處理的 File 只有 BIG5, UTF8 及 UTF8 BOM</li><li>註: 如果檔案不大，就可以使用上述的方式來取得正確的檔案編碼或是內容</li></ul><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://dotblogs.com.tw/rainmaker/2013/05/20/104547">透過 StreamReader.CurrentEncoding 判斷檔案的編碼</a><br><a href="https://blog.darkthread.net/blog/detect-big5-encoding/">CODE-偵測檔案是否為 BIG5 編碼</a><br><a href="https://github.com/rainmakerho/Vulnerability-Analysis/issues/7">Stored_Path_Traversal - Checkmarx V 9.4.5.1009</a></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;在 &lt;a href=&quot;https://dotblogs.com.tw/rainmaker/2013/05/20/104547&quot;&gt;透過 Str</summary>
-      
-    
-    
-    
-    
-    <category term="FILE" scheme="https://rainmakerho.github.io/tags/FILE/"/>
-    
-    <category term="BIG5" scheme="https://rainmakerho.github.io/tags/BIG5/"/>
-    
-    <category term="UTF8" scheme="https://rainmakerho.github.io/tags/UTF8/"/>
-    
-    <category term="UTF8 BOM" scheme="https://rainmakerho.github.io/tags/UTF8-BOM/"/>
-    
-    <category term="Encoding" scheme="https://rainmakerho.github.io/tags/Encoding/"/>
-    
-    <category term="GetEncoding(950)" scheme="https://rainmakerho.github.io/tags/GetEncoding-950/"/>
     
   </entry>
   
