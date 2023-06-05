@@ -10,12 +10,12 @@
   <link rel="dns-prefetch" href="https://rainmakerho.github.io">
   <title>在 Windows 中安裝 Apereo CAS 6.X | 亂馬客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="問題環境: cas-overlay-template 6.6 在網路上尋找將 Apereo CAS 安裝在 Windows 上的文章， 1.安裝 OpenJDK 2.安裝 Tomcat 3.透過 keytool 來建立自簽憑證，來設定 Tomcat 啟用 TLS 走 8443 Port 4.建置 cas-overlay-template 5.將 建置好的 war 檔(build\lib\cas.w">
+  <meta name="description" content="問題環境: cas-overlay-template 6.6 在網路上尋找將 Apereo CAS 安裝在 Windows 上的文章， 1.安裝 OpenJDK 2.安裝 Tomcat 10 3.透過 keytool 來建立自簽憑證，來設定 Tomcat 啟用 TLS 走 8443 Port 4.建置 cas-overlay-template 5.將 建置好的 war 檔(build\lib\ca">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在 Windows 中安裝 Apereo CAS 6.X">
 <meta property="og:url" content="https://rainmakerho.github.io/2023/05/30/apereo-cas-install-windows/index.html">
 <meta property="og:site_name" content="亂馬客">
-<meta property="og:description" content="問題環境: cas-overlay-template 6.6 在網路上尋找將 Apereo CAS 安裝在 Windows 上的文章， 1.安裝 OpenJDK 2.安裝 Tomcat 3.透過 keytool 來建立自簽憑證，來設定 Tomcat 啟用 TLS 走 8443 Port 4.建置 cas-overlay-template 5.將 建置好的 war 檔(build\lib\cas.w">
+<meta property="og:description" content="問題環境: cas-overlay-template 6.6 在網路上尋找將 Apereo CAS 安裝在 Windows 上的文章， 1.安裝 OpenJDK 2.安裝 Tomcat 10 3.透過 keytool 來建立自簽憑證，來設定 Tomcat 啟用 TLS 走 8443 Port 4.建置 cas-overlay-template 5.將 建置好的 war 檔(build\lib\ca">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://rainmakerho.github.io/2023/05/30/apereo-cas-install-windows/01.png">
 <meta property="og:image" content="https://rainmakerho.github.io/2023/05/30/apereo-cas-install-windows/02.png">
@@ -25,14 +25,14 @@
 <meta property="og:image" content="https://rainmakerho.github.io/2023/05/30/apereo-cas-install-windows/06.png">
 <meta property="og:image" content="https://rainmakerho.github.io/2023/05/30/apereo-cas-install-windows/07.png">
 <meta property="article:published_time" content="2023-05-30T06:13:49.000Z">
-<meta property="article:modified_time" content="2023-06-05T07:24:39.276Z">
+<meta property="article:modified_time" content="2023-06-05T07:36:04.251Z">
 <meta property="article:author" content="亂馬客">
 <meta property="article:tag" content="404">
 <meta property="article:tag" content="Windows">
 <meta property="article:tag" content="SSO">
-<meta property="article:tag" content="Tomcat">
 <meta property="article:tag" content="CAS">
 <meta property="article:tag" content="cas-overlay-template">
+<meta property="article:tag" content="Tomcat 10">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://rainmakerho.github.io/2023/05/30/apereo-cas-install-windows/01.png">
   
@@ -188,7 +188,7 @@
          <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>環境: cas-overlay-template 6.6</p>
 <p>在網路上尋找將 Apereo CAS 安裝在 Windows 上的文章，</p>
 <p>1.安裝 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-tw/java/openjdk/download">OpenJDK</a></p>
-<p>2.安裝 <a target="_blank" rel="noopener" href="https://tomcat.apache.org/download-10.cgi">Tomcat</a></p>
+<p>2.安裝 <a target="_blank" rel="noopener" href="https://tomcat.apache.org/download-10.cgi">Tomcat 10</a></p>
 <p>3.透過 <code>keytool</code> 來建立自簽憑證，來設定 Tomcat 啟用 TLS 走 8443 Port</p>
 <p>4.建置 <a target="_blank" rel="noopener" href="https://github.com/apereo/cas-overlay-template">cas-overlay-template</a></p>
 <p>5.將 建置好的 war 檔(build\lib\cas.war)放到 Tomcat webapps 目錄中，Browser 到 <code>https://localhost:8443/cas</code> 就搞定了。</p>
@@ -216,7 +216,7 @@
 
 <p>以上是 單獨跑，那如果要放到 tomcat 中呢??</p>
 <blockquote>
-<p>目前 cas-overlay-template 6.6 ，要使用 Tomcat 9 哦~<br>改用 Tomcat 9 ，把前面 Build 好的 war 放到 webapps 目錄就可以了 , QQ</p>
+<p>目前 cas-overlay-template 6.6 ，要使用 <a target="_blank" rel="noopener" href="https://tomcat.apache.org/download-90.cgi">Tomcat 9</a> 哦~<br>改用 <a target="_blank" rel="noopener" href="https://tomcat.apache.org/download-90.cgi">Tomcat 9</a> ，把前面 Build 好的 war 放到 webapps 目錄就可以了 , QQ</p>
 </blockquote>
 <h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2154554">Apereo CAS（一）在本地运行</a><br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-tw/java/openjdk/download">下載 OpenJDK 的 Microsoft 組建</a></p>
    
@@ -240,15 +240,15 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Tomcat</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CAS</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">cas-overlay-template</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Tomcat 10</a>
         		</li>
       		
 		</ul>
@@ -5192,6 +5192,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">cas-overlay-template</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Tomcat 10</a>
               </li>
             
             <div class="clearfix"></div>
