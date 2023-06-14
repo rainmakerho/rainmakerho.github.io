@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://rainmakerho.github.io//2023/06/14/cas-jdbc-sqlserverexception-ssl-pkix/</loc>
+    <lastmod>2023-06-14</lastmod>
+  </url>
+  <url>
     <loc>https://rainmakerho.github.io//2023/05/30/apereo-cas-install-windows/</loc>
     <lastmod>2023-06-05</lastmod>
   </url>
