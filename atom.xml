@@ -6,7 +6,7 @@
   <link href="https://rainmakerho.github.io/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2023-06-14T07:13:10.302Z</updated>
+  <updated>2023-06-16T02:35:04.469Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>如何永久停用 Teams 的 照相機</title>
+    <link href="https://rainmakerho.github.io/2023/06/16/teams-permanent-disable-camera/"/>
+    <id>https://rainmakerho.github.io/2023/06/16/teams-permanent-disable-camera/</id>
+    <published>2023-06-16T02:19:32.000Z</published>
+    <updated>2023-06-16T02:35:04.469Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>大家在使用 Teams 時，有時要開啟 麥克風 時，<strong>照相機</strong> 也會自動被開啟一下下，然後再自動停用掉。<br>有時一場會議中，<strong>照相機</strong> 會來來回回的開開關關的 …<br>如果說，大多不會開啟 <strong>照相機</strong> 的話，是否有什麼方式可以<strong>永久停用</strong> <strong>照相機</strong> 的方式嗎?</p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>要 <strong>永久停用</strong> Teams 的 <strong>照相機</strong> 可以直接把 系統的 <strong>照相機</strong> 停用就可以了。<br>在檔案總管中的「本機」按右鍵，選「管理」，開啟「電腦管理」，<br>點選「裝置管理員」，在「相機」上按右鍵，選取「停用裝置」就可以了哦。</p><img src="/2023/06/16/teams-permanent-disable-camera/01.png" class="" title="disable-camera">]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;大家在使用 Teams 時，有時要開啟 麥克風 時，&lt;strong&gt;照相機&lt;/strong&gt; 也會自動被開啟一下下，然後再自動停用掉。&lt;br</summary>
+      
+    
+    
+    
+    
+    <category term="teams" scheme="https://rainmakerho.github.io/tags/teams/"/>
+    
+    <category term="disable" scheme="https://rainmakerho.github.io/tags/disable/"/>
+    
+    <category term="camera" scheme="https://rainmakerho.github.io/tags/camera/"/>
+    
+    <category term="permanent" scheme="https://rainmakerho.github.io/tags/permanent/"/>
+    
+  </entry>
   
   <entry>
     <title>JDBC 連 SQL Server 噴 &quot;驅動程式無法使用安全通訊端層 (SSL) 加密建立與 SQL Server 的安全連接&quot; 的錯誤</title>
@@ -603,36 +631,6 @@
     <category term="violates" scheme="https://rainmakerho.github.io/tags/violates/"/>
     
     <category term="Access-Control-Allow-Origin" scheme="https://rainmakerho.github.io/tags/Access-Control-Allow-Origin/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ABP Web 整合測試結果回傳 302 or 404 錯誤</title>
-    <link href="https://rainmakerho.github.io/2023/04/12/abp-web-testing-error/"/>
-    <id>https://rainmakerho.github.io/2023/04/12/abp-web-testing-error/</id>
-    <published>2023-04-12T02:56:39.000Z</published>
-    <updated>2023-04-12T06:02:59.541Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近將 ABP Framework 方案修改好程式後，執行 Web 整合測試時，<br>只是簡單的測試 Web Root 頁面是否運作正常，<br>居然測試不過，而且會回 302 or 404 的錯誤。<br><code>HTTP/1.1 GET http://localhost/ - - - 404</code></p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>猜想有可能是 Config 的問題，但是不知到底是那一個，<br>結果看到 <a href="https://learn.microsoft.com/en-us/aspnet/core/test/integration-tests">Integration tests in ASP.NET Core</a> 這篇在建立 HostBuilder 時，有多設定 <code>Environment</code> 為 <strong>Development</strong>。<br>所以多加上設定為 <strong>Development</strong> 居然就沒問題了。<br>花了好多時間，但還是找不到為什麼原本的 Abp 專案不用特別設定 <strong>Development</strong> 也沒有問題，<br>之後有找到問題點再來補充說明。<br>所以目前的 Workaround 做法就是 設定 <code>Environment</code> 為 <strong>Development</strong>。</p><p>WebTestBase.cs 中的 <code>CreateHostBuilder</code> Method 原本如下，</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">override</span> IHostBuilder <span class="title">CreateHostBuilder</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">base</span></span><br><span class="line">        .CreateHostBuilder()</span><br><span class="line">        .UseContentRoot(WebContentDirectoryFinder.CalculateContentRootFolder());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>加上設定 <code>Environment</code> 為 <strong>Development</strong> (<code>.UseEnvironment(&quot;Development&quot;)</code>)。</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">override</span> IHostBuilder <span class="title">CreateHostBuilder</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">base</span></span><br><span class="line">        .CreateHostBuilder()</span><br><span class="line">        .UseContentRoot(WebContentDirectoryFinder.CalculateContentRootFolder())</span><br><span class="line">        .UseEnvironment(<span class="string">&quot;Development&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>這樣子就沒問題了。</p><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://learn.microsoft.com/en-us/aspnet/core/test/integration-tests">Integration tests in ASP.NET Core</a><br><a href="https://holsson.wordpress.com/2018/06/25/integration-testing-asp-net-core-2-1/">Integration Testing ASP.NET Core 2.x</a><br><a href="https://docs.abp.io/en/abp/latest/UI/AspNetCore/Testing">ASP.NET Core MVC &#x2F; Razor Pages: Testing</a></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;最近將 ABP Framework 方案修改好程式後，執行 Web 整合測試時，&lt;br&gt;只是簡單的測試 Web Root 頁面是否運作正常，</summary>
-      
-    
-    
-    
-    
-    <category term="ABP" scheme="https://rainmakerho.github.io/tags/ABP/"/>
-    
-    <category term="Web.Tests" scheme="https://rainmakerho.github.io/tags/Web-Tests/"/>
-    
-    <category term="WebTestBase" scheme="https://rainmakerho.github.io/tags/WebTestBase/"/>
-    
-    <category term="CreateHostBuilder" scheme="https://rainmakerho.github.io/tags/CreateHostBuilder/"/>
-    
-    <category term="Development" scheme="https://rainmakerho.github.io/tags/Development/"/>
     
   </entry>
   
