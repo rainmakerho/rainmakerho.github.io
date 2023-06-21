@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://rainmakerho.github.io//2023/06/21/teams-bot-get-groupid/</loc>
+    <lastmod>2023-06-21</lastmod>
+  </url>
+  <url>
+    <loc>https://rainmakerho.github.io//2023/06/20/tsql-low-performing/</loc>
+    <lastmod>2023-06-20</lastmod>
+  </url>
+  <url>
     <loc>https://rainmakerho.github.io//2023/06/16/teams-permanent-disable-camera/</loc>
     <lastmod>2023-06-16</lastmod>
   </url>
