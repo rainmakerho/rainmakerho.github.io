@@ -27,7 +27,7 @@
 <meta property="og:image" content="https://rainmakerho.github.io/2020/05/15/2020007/08.png">
 <meta property="og:image" content="https://rainmakerho.github.io/2020/05/15/2020007/09.png">
 <meta property="article:published_time" content="2020-05-15T05:14:34.000Z">
-<meta property="article:modified_time" content="2020-09-10T05:58:08.000Z">
+<meta property="article:modified_time" content="2023-06-30T02:01:53.812Z">
 <meta property="article:author" content="亂馬客">
 <meta property="article:tag" content="2148734209">
 <meta property="article:tag" content="TLS">
@@ -194,44 +194,45 @@
     <div class="article-entry" itemprop="articleBody">
          <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>今天同事詢問透過 .NET Core HttpClient 去 Call Https 網頁時，會噴 <strong>The SSL connection could not be established Win32Exception (0x80090326): 接收到的訊息超出預期或格式不正確</strong> 的錯誤，詳細如下，</p>
 <blockquote>
-<p>System.Net.Http.HttpRequestException: The SSL connection could not be established, see inner exception.<br>   —&gt; System.Security.Authentication.AuthenticationException: Authentication failed, see inner exception.<br>   —&gt; System.ComponentModel.Win32Exception (0x80090326): 接收到的訊息超出預期或格式不正確。<br>       — End of inner exception stack trace —<br>       at System.Net.Security.SslStream.StartSendAuthResetSignal(ProtocolToken message, AsyncProtocolRequest asyncRequest, ExceptionDispatchInfo exception)<br>       at System.Net.Security.SslStream.CheckCompletionBeforeNextReceive(ProtocolToken message, AsyncProtocolRequest asyncRequest)<br>       at System.Net.Security.SslStream.StartSendBlob(Byte[] incoming, Int32 count, AsyncProtocolRequest asyncRequest)<br>       at System.Net.Security.SslStream.ProcessReceivedBlob(Byte[] buffer, Int32 count, AsyncProtocolRequest asyncRequest)<br>       at System.Net.Security.SslStream.StartReadFrame(Byte[] buffer, Int32 readBytes, AsyncProtocolRequest asyncRequest)<br>       at System.Net.Security.SslStream.PartialFrameCallback(AsyncProtocolRequest asyncRequest)</p>
+<p>System.Net.Http.HttpRequestException: The SSL connection could not be established, see inner exception.<br>—&gt; System.Security.Authentication.AuthenticationException: Authentication failed, see inner exception.<br>—&gt; System.ComponentModel.Win32Exception (0x80090326): 接收到的訊息超出預期或格式不正確。<br>— End of inner exception stack trace —<br>at System.Net.Security.SslStream.StartSendAuthResetSignal(ProtocolToken message, AsyncProtocolRequest asyncRequest, ExceptionDispatchInfo exception)<br>at System.Net.Security.SslStream.CheckCompletionBeforeNextReceive(ProtocolToken message, AsyncProtocolRequest asyncRequest)<br>at System.Net.Security.SslStream.StartSendBlob(Byte[] incoming, Int32 count, AsyncProtocolRequest asyncRequest)<br>at System.Net.Security.SslStream.ProcessReceivedBlob(Byte[] buffer, Int32 count, AsyncProtocolRequest asyncRequest)<br>at System.Net.Security.SslStream.StartReadFrame(Byte[] buffer, Int32 readBytes, AsyncProtocolRequest asyncRequest)<br>at System.Net.Security.SslStream.PartialFrameCallback(AsyncProtocolRequest asyncRequest)</p>
 </blockquote>
 <h3 id="研究"><a href="#研究" class="headerlink" title="研究"></a>研究</h3><p>在網路上有找到<a target="_blank" rel="noopener" href="https://github.com/dotnet/runtime/issues/33186">TLS handshake failures are not clear with SChannel</a>這篇有提到似乎是因為 Cipher 的問題。<br>於是使用以下的 Console 程式在本機上測試卻沒有任何問題，</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">async</span> Task <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">var</span> client = <span class="keyword">new</span> HttpClient();</span><br><span class="line">    <span class="keyword">var</span> response =</span><br><span class="line">        <span class="keyword">await</span> client.GetAsync(<span class="string">&quot;https://store.gsscloud.com/&quot;</span>);</span><br><span class="line">    response.EnsureSuccessStatusCode();</span><br><span class="line">    <span class="built_in">string</span> responseBody = <span class="keyword">await</span> response.Content.ReadAsStringAsync();</span><br><span class="line">    Console.WriteLine(responseBody);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>拿到正式機去執行就真的發生一樣錯誤。<br>於是到<a target="_blank" rel="noopener" href="https://www.ssllabs.com/ssltest/analyze.html">SSL Server Test</a>測試一下該網站 Support 幾種 Cipher ，結果只 Support 3 種 384 的。<br>於是透過<a target="_blank" rel="noopener" href="https://www.nartac.com/Products/IISCrypto/">IIS Crypto Tool</a> 將本機 384 Bits 的 Cipher 都取消，重開機再執行測試程式真的發生一樣的錯誤。</p>
-<h4 id="NET-Core-的程式會噴以下的錯誤，"><a href="#NET-Core-的程式會噴以下的錯誤，" class="headerlink" title=".NET Core 的程式會噴以下的錯誤，"></a>.NET Core 的程式會噴以下的錯誤，</h4><img src="01.png" width="600" alt="NET Core Call Https Error" title="NET Core Error" />
-System.Net.Http.HttpRequestException
-  HResult=0x80131501
-  Message=The SSL connection could not be established, see inner exception.
-  Source=System.Net.Http
-  StackTrace: 
-   at System.Net.Http.ConnectHelper.<EstablishSslConnectionAsyncCore>d__4.MoveNext()
 
+<p>拿到正式機去執行就真的發生一樣錯誤。<br>於是到<a target="_blank" rel="noopener" href="https://www.ssllabs.com/ssltest/analyze.html">SSL Server Test</a>測試一下該網站 Support 幾種 Cipher ，結果只 Support 3 種 384 的。<br>於是透過<a target="_blank" rel="noopener" href="https://www.nartac.com/Products/IISCrypto/">IIS Crypto Tool</a> 將本機 384 Bits 的 Cipher 都取消，重開機再執行測試程式真的發生一樣的錯誤。</p>
+<h4 id="NET-Core-的程式會噴以下的錯誤，"><a href="#NET-Core-的程式會噴以下的錯誤，" class="headerlink" title=".NET Core 的程式會噴以下的錯誤，"></a>.NET Core 的程式會噴以下的錯誤，</h4><img src="/2020/05/15/2020007/01.png" class="" title="NET Core Call Https Error">
+
+<p>System.Net.Http.HttpRequestException<br>HResult&#x3D;0x80131501<br>Message&#x3D;The SSL connection could not be established, see inner exception.<br>Source&#x3D;System.Net.Http<br>StackTrace:<br>at System.Net.Http.ConnectHelper.<EstablishSslConnectionAsyncCore>d__4.MoveNext()</p>
 <p>內部例外狀況 1:<br>AuthenticationException: Authentication failed, see inner exception.</p>
 <p>內部例外狀況 2:<br>Win32Exception: 接收到的訊息超出預期或格式不正確。</p>
-<h4 id="NET-Framework-的程式，錯誤訊息如下，"><a href="#NET-Framework-的程式，錯誤訊息如下，" class="headerlink" title=".NET Framework 的程式，錯誤訊息如下，"></a>.NET Framework 的程式，錯誤訊息如下，</h4><img src="02.png" width="600" alt="NET Framework Call Https Error" title="NET Framework Error" />
-System.Net.Http.HttpRequestException
-  HResult=0x80131500
-  Message=傳送要求時發生錯誤。
-  Source=mscorlib
-  StackTrace: 
-   於 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
-內部例外狀況 1:
-WebException: 要求已經中止: 無法建立 SSL/TLS 的安全通道。
+<h4 id="NET-Framework-的程式，錯誤訊息如下，"><a href="#NET-Framework-的程式，錯誤訊息如下，" class="headerlink" title=".NET Framework 的程式，錯誤訊息如下，"></a>.NET Framework 的程式，錯誤訊息如下，</h4><img src="/2020/05/15/2020007/02.png" class="" title="NET Framework Call Https Error">
 
-<p>而透過 Wireshark 來看，錯誤是<strong>Handshake Failure</strong><br><img src="03.png" width="600" alt="Wireshark Https Handshake Failure" title="Handshake Failure" /></p>
-<p>即然猜到了真正原因，於是就將 Server 需要的 Cipher 再加進去。<br><img src="04.png" width="600" alt="Add Cipher " title="Add Cipher" /></p>
-<p>重開機後，再執行程式就沒有問題了，透過 Wireshark 來看，在 Client Hello 送上去的 Cipher 就有包含 Server 允許的 Cipher ，也正常出現 Server Hello<br><img src="05.png" width="600" alt="Https Client Hello And Server Hello" title="Client Hello" /></p>
+<p>System.Net.Http.HttpRequestException<br>HResult&#x3D;0x80131500<br>Message&#x3D;傳送要求時發生錯誤。<br>Source&#x3D;mscorlib<br>StackTrace:<br>於 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)<br>內部例外狀況 1:<br>WebException: 要求已經中止: 無法建立 SSL&#x2F;TLS 的安全通道。</p>
+<p>而透過 Wireshark 來看，錯誤是<strong>Handshake Failure</strong></p>
+<img src="/2020/05/15/2020007/03.png" class="" title="Wireshark Https Handshake Failure">
+
+<p>即然猜到了真正原因，於是就將 Server 需要的 Cipher 再加進去。</p>
+<img src="/2020/05/15/2020007/04.png" class="" title="Add Cipher">
+
+<p>重開機後，再執行程式就沒有問題了，透過 Wireshark 來看，在 Client Hello 送上去的 Cipher 就有包含 Server 允許的 Cipher ，也正常出現 Server Hello</p>
+<img src="/2020/05/15/2020007/05.png" class="" title="Https Client Hello And Server Hello">
+
 <p>後來同事使用<a target="_blank" rel="noopener" href="https://www.nartac.com/Products/IISCrypto/">IIS Crypto Tool</a>在正式機上檢視，果然沒有那些 384 的 Cipher。</p>
-<h4 id="WebException-基礎連接已關閉-傳送時發生未預期的錯誤。-遠端主機已強制關閉一個現存的連線"><a href="#WebException-基礎連接已關閉-傳送時發生未預期的錯誤。-遠端主機已強制關閉一個現存的連線" class="headerlink" title="WebException: 基礎連接已關閉: 傳送時發生未預期的錯誤。 遠端主機已強制關閉一個現存的連線"></a>WebException: 基礎連接已關閉: 傳送時發生未預期的錯誤。 遠端主機已強制關閉一個現存的連線</h4><p>有時如果使用不允許的通訊協定，例如 Server 只允許 TLSv1.2 ，Client 給 TLSv1 就會產生以下的錯誤，<br>System.Net.Http.HttpRequestException<br>  HResult&#x3D;0x80131500<br>  Message&#x3D;傳送要求時發生錯誤。</p>
+<h4 id="WebException-基礎連接已關閉-傳送時發生未預期的錯誤。-遠端主機已強制關閉一個現存的連線"><a href="#WebException-基礎連接已關閉-傳送時發生未預期的錯誤。-遠端主機已強制關閉一個現存的連線" class="headerlink" title="WebException: 基礎連接已關閉: 傳送時發生未預期的錯誤。 遠端主機已強制關閉一個現存的連線"></a>WebException: 基礎連接已關閉: 傳送時發生未預期的錯誤。 遠端主機已強制關閉一個現存的連線</h4><p>有時如果使用不允許的通訊協定，例如 Server 只允許 TLSv1.2 ，Client 給 TLSv1 就會產生以下的錯誤，<br>System.Net.Http.HttpRequestException<br>HResult&#x3D;0x80131500<br>Message&#x3D;傳送要求時發生錯誤。</p>
 <p>內部例外狀況 1:<br>WebException: 基礎連接已關閉: 傳送時發生未預期的錯誤。</p>
 <p>內部例外狀況 2:<br>IOException: 無法從傳輸連接讀取資料: 遠端主機已強制關閉一個現存的連線。。</p>
-<p>內部例外狀況 3:<br>SocketException: 遠端主機已強制關閉一個現存的連線。<br><img src="07.png" width="600" alt="遠端主機已強制關閉一個現存的連線" title="遠端主機已強制關閉一個現存的連線" /></p>
-<p>而透過Wireshark 來看，就可以看到 GG 在 Reset，因為它的 Client Hello 走的是 TLSV1<br><img src="06.png" width="600" alt="https Server Reset" title="https Server Reset" /></p>
-<p>這錯大部份出現在 .NET Framework 身上，因為 .NET Framework 預設是 TLSV1.0 。<br>所以程式要加上 </p>
+<p>內部例外狀況 3:<br>SocketException: 遠端主機已強制關閉一個現存的連線。</p>
+<img src="/2020/05/15/2020007/07.png" class="" title="遠端主機已強制關閉一個現存的連線">
+
+<p>而透過 Wireshark 來看，就可以看到 GG 在 Reset，因為它的 Client Hello 走的是 TLSV1</p>
+<img src="/2020/05/15/2020007/06.png" class="" title="https Server Reset">
+
+<p>這錯大部份出現在 .NET Framework 身上，因為 .NET Framework 預設是 TLSV1.0 。<br>所以程式要加上</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">System.Net.ServicePointManager.SecurityProtocol =</span><br><span class="line">    SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;</span><br></pre></td></tr></table></figure>
 
-<h4 id="Wireshark-使用-Filter"><a href="#Wireshark-使用-Filter" class="headerlink" title="Wireshark 使用 Filter"></a>Wireshark 使用 Filter</h4><p>透過 Wireshark 來錄封包時，有時資料太多不好找，這時可以使用 Filter 的功能，例如我本機是 10.211.55.3 ，而 Server 是 54.238.55.188<br>就可以下以下的 Filter來看這2邊的資訊，<br>(ip.src &#x3D;&#x3D; 54.238.55.188 or ip.src &#x3D;&#x3D; 10.211.55.3 ) and (ip.dst &#x3D;&#x3D; 54.238.55.188 or ip.dst &#x3D;&#x3D; 10.211.55.3)<br><img src="08.png" width="600" alt="Wireshark Filter" title="Wireshark Filter" /></p>
+<h4 id="Wireshark-使用-Filter"><a href="#Wireshark-使用-Filter" class="headerlink" title="Wireshark 使用 Filter"></a>Wireshark 使用 Filter</h4><p>透過 Wireshark 來錄封包時，有時資料太多不好找，這時可以使用 Filter 的功能，例如我本機是 10.211.55.3 ，而 Server 是 54.238.55.188<br>就可以下以下的 Filter 來看這 2 邊的資訊，<br>(ip.src &#x3D;&#x3D; 54.238.55.188 or ip.src &#x3D;&#x3D; 10.211.55.3 ) and (ip.dst &#x3D;&#x3D; 54.238.55.188 or ip.dst &#x3D;&#x3D; 10.211.55.3)</p>
+<img src="/2020/05/15/2020007/08.png" class="" title="Wireshark Filter">
+
 <p>以上是最近遇到程式呼叫 https 遇到問題的整理，希望對大家有幫助。<br>如果是在開發機上使用自簽憑證則可以參考<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/12553277/allowing-untrusted-ssl-certificates-with-httpclient">Allowing Untrusted SSL Certificates with HttpClient</a></p>
 <ul>
 <li>註: 最近客戶端的程式(Java)在呼叫 IIS Https 網站時，會發生 RESET 的狀況，後來客戶發現是因為 IIS 在 https 繫結設定時，主機名稱欄位的下方有一個「需要伺服器名稱指示(N)」有勾起來，導致客戶的 Java 程式呼叫會失敗。 如果以上的方式測過還是會發生 RESET 的問題，可以試著將不要勾選 「需要伺服器名稱指示(N)」 試試看哦 ! 感謝同事 Geo, Tina 的分享。<img src="/2020/05/15/2020007/09.png" class="" title="SNI"></li>
