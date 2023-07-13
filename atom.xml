@@ -6,7 +6,7 @@
   <link href="https://rainmakerho.github.io/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2023-06-21T03:58:03.467Z</updated>
+  <updated>2023-07-13T08:41:26.430Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>執行 node 時，發生 listen EACCES permission denied 0.0.0.0:3000 錯誤</title>
+    <link href="https://rainmakerho.github.io/2023/07/13/node-js-listen-eacces-permission-denied-3000/"/>
+    <id>https://rainmakerho.github.io/2023/07/13/node-js-listen-eacces-permission-denied-3000/</id>
+    <published>2023-07-13T08:13:16.000Z</published>
+    <updated>2023-07-13T08:41:26.430Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>有時在開啟 Node 執行起來時，會噴 <code>Error: listen EACCES: permission denied 0.0.0.0:3000</code> (3000 為專案使用的 Port) 的錯誤，如下，</p><blockquote><p>error Failed to start server<br>Error: listen EACCES: permission denied 0.0.0.0:3000<br>at Server.setupListenHandle [as _listen2] (node:net:1723:21)<br>at listenInCluster (node:net:1788:12)<br>at Server.listen (node:net:1876:7)<br>code: ‘EACCES’,<br>errno: -4092,</p></blockquote><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>有時可以換別的 Port Number ，但是有時一大堆的 Port 都不能使用，<br>要一個個換也蠻麻煩的。<br>要看 port 有沒有被佔住，可以執行 <code>netsh interface ipv4 show excludedportrange protocol=tcp</code> 來看一下，<br>看看要用的 port 有在那些 Range 之中。</p><img src="/2023/07/13/node-js-listen-eacces-permission-denied-3000/01.png" class="" title="excludedportrange"><p>解法可以將 <strong>winnat</strong> 服務重新啟動，<br>以<strong>系統管理者身份</strong>執行 命令視窗，執行 <code>net stop/start winnat</code> ，<br>應該就可以了，如下，</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">net stop winnat</span><br><span class="line">net start winnat</span><br></pre></td></tr></table></figure><img src="/2023/07/13/node-js-listen-eacces-permission-denied-3000/02.png" class="" title="net stop"><ul><li>註: 除了 node js 專案外，只要是 port 沒發現被別的 process 佔住，就可以用這個方式來解看看哦~</li></ul><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://stackoverflow.com/questions/9164915/node-js-eacces-error-when-listening-on-most-ports">Node.js EACCES error when listening on most ports</a><br><a href="https://medium.com/@Bartleby/ports-are-not-available-listen-tcp-0-0-0-0-3000-165892441b9d">Ports are not available: listen tcp 0.0.0.0:3000: bind: An attempt was made to access a socket in a way forbidden by its access permissions.</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;有時在開啟 Node 執行起來時，會噴 &lt;code&gt;Error: listen EACCES: permission denied 0.0.</summary>
+      
+    
+    
+    
+    
+    <category term="node" scheme="https://rainmakerho.github.io/tags/node/"/>
+    
+    <category term="listen" scheme="https://rainmakerho.github.io/tags/listen/"/>
+    
+    <category term="EACCES" scheme="https://rainmakerho.github.io/tags/EACCES/"/>
+    
+    <category term="port" scheme="https://rainmakerho.github.io/tags/port/"/>
+    
+    <category term="permission denied" scheme="https://rainmakerho.github.io/tags/permission-denied/"/>
+    
+  </entry>
   
   <entry>
     <title>如何在 Teams Bot 中取得正確的 Group Id 及 Group Name</title>
@@ -603,30 +633,6 @@
     <category term="bundled" scheme="https://rainmakerho.github.io/tags/bundled/"/>
     
     <category term="minified" scheme="https://rainmakerho.github.io/tags/minified/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ABP DTOs (Data Transfer Objects)</title>
-    <link href="https://rainmakerho.github.io/2023/04/15/abp-dto/"/>
-    <id>https://rainmakerho.github.io/2023/04/15/abp-dto/</id>
-    <published>2023-04-15T03:37:06.000Z</published>
-    <updated>2023-04-15T04:02:39.650Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="DTO"><a href="#DTO" class="headerlink" title="DTO"></a>DTO</h3><p>在 Domain 及 Application 層是使用 Entity,<br>而 Application 層 Presentation 層溝通則會使用 DTO ，<br>跟 presentation 層溝通則會使用 DTO ，<br>所以 DTO 通常有以下幾項特性，</p><ol><li>不應該包含 商業邏輯的驗證</li><li>要可以被序列化</li><li>通常是沒有參數的建構子</li><li>所有的屬性都是 Public 可存取的</li><li>不應該繼承自 Entity 或是有 Entity 類型的屬性</li></ol><h4 id="驗證"><a href="#驗證" class="headerlink" title="驗證"></a>驗證</h4><p>DTO 的驗證可以透過 data annotation attributes ，<br>或是 實作 IValidatableObject 來做進階的驗證</p><p>與 Entity 的轉換則會透過 <a href="https://automapper.org/">AutoMapper</a> 來幫忙。<br>當將 input DTO 透過 Mapper 轉成 Entity 時要注意以下幾點，</p><ol><li>Entity 是否有需要參數的 Constructor ，導致 Mapper 失敗</li><li>Entity 是否有私有的屬性需要透過公用的 Method 呼叫，才能適用 Entity 的商業羅輯，直接設定屬性可能會違反商業羅輯</li><li>要小心的驗證跟處理使用者輸入的物件</li></ol><h4 id="input-DTO"><a href="#input-DTO" class="headerlink" title="input DTO"></a>input DTO</h4><p>使用 input DTO 時，請注意以下幾點</p><ol><li>不要新增沒有使用到的屬性</li><li>不要重用 DTO 物件(繼承也是一樣)</li></ol><p>在許多的情境中，程式碼的<strong>重覆</strong> 會比 程式碼<strong>耦合</strong>更好</p><p>例如，都用 EventDto 是不好的</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">IEventAppService</span> : <span class="title">IApplicationService</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="function">Task&lt;EventDto&gt; <span class="title">GetAsync</span>(<span class="params">Guid id</span>)</span>;</span><br><span class="line"><span class="function">Task <span class="title">CreateAsync</span>(<span class="params">EventDto input</span>)</span>;</span><br><span class="line"><span class="function">Task <span class="title">UpdateEventTimeAsync</span>(<span class="params">EventDto input</span>)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>以下每個 Method 的參數都使用不同的 Dto</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">IEventAppService</span> : <span class="title">IApplicationService</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="function">Task&lt;EventDto&gt; <span class="title">GetAsync</span>(<span class="params">Guid id</span>)</span>;</span><br><span class="line"><span class="function">Task <span class="title">CreateAsync</span>(<span class="params">EventCreationDto input</span>)</span>;</span><br><span class="line"><span class="function">Task <span class="title">UpdateEventTimeAsync</span>(<span class="params">EventTimeUpdateDto input</span>)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="output-DTO"><a href="#output-DTO" class="headerlink" title="output DTO"></a>output DTO</h4><p>output DTO 跟 input DTO 不同，<strong>重用</strong>的問題不適用在 output DTO<br>通常 output DTO 會傳出比 client 端需要的更多屬性，<br>這個的好處是當 client 需要額外屬性時，不需要改 output DTO</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">IEventAppService</span> : <span class="title">IApplicationService</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="function">Task&lt;EventDto&gt; <span class="title">CreateAsync</span>(<span class="params">CreateEventDto input</span>)</span>;</span><br><span class="line"><span class="function">Task&lt;EventDto&gt; <span class="title">GetAsync</span>(<span class="params">Guid id</span>)</span>;</span><br><span class="line">Task&lt;List&lt;EventDto&gt;&gt; GetListAsync(PagedResultRequestDto</span><br><span class="line">input);</span><br><span class="line"><span class="function">Task&lt;EventDto&gt; <span class="title">AddSessionAsync</span>(<span class="params">Guid id,</span></span></span><br><span class="line"><span class="params"><span class="function">AddSessionDto input</span>)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><ul><li>註: 當有效能考量時，可依不同的情境用不同的 output DTO</li></ul><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://docs.abp.io/en/abp/latest/Data-Transfer-Objects">ABP Data Transfer Objects</a></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;DTO&quot;&gt;&lt;a href=&quot;#DTO&quot; class=&quot;headerlink&quot; title=&quot;DTO&quot;&gt;&lt;/a&gt;DTO&lt;/h3&gt;&lt;p&gt;在 Domain 及 Application 層是使用 Entity,&lt;br&gt;而 Application 層 Presentatio</summary>
-      
-    
-    
-    
-    
-    <category term="DTO" scheme="https://rainmakerho.github.io/tags/DTO/"/>
-    
-    <category term="ABP" scheme="https://rainmakerho.github.io/tags/ABP/"/>
     
   </entry>
   
