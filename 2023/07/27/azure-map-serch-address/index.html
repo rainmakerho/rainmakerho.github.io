@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://rainmakerho.github.io/2023/07/27/azure-map-serch-address/07.png">
 <meta property="og:image" content="https://rainmakerho.github.io/2023/07/27/azure-map-serch-address/08.png">
 <meta property="article:published_time" content="2023-07-27T02:01:33.000Z">
-<meta property="article:modified_time" content="2023-07-27T05:44:12.098Z">
+<meta property="article:modified_time" content="2023-08-01T00:47:17.814Z">
 <meta property="article:author" content="亂馬客">
 <meta property="article:tag" content="Search">
 <meta property="article:tag" content="Address">
@@ -202,7 +202,7 @@
 <img src="/2023/07/27/azure-map-serch-address/04.png" class="" title="Search Compare api and google">
 
 <blockquote>
-<p>Bing Map 的圖資似乎沒有更新到新建設的地方</p>
+<p>Bing Map 的圖資似乎沒有更新那麼及時，像有些新開發的地區，就沒更新到</p>
 </blockquote>
 <p>透過 C# 程式碼如下，</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">async</span> Task&lt;Point&gt; <span class="title">ParseAddressToPointAsync</span>(<span class="params"><span class="built_in">string</span> address</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">var</span> queryStr = address.RemoveSpecialChars();</span><br><span class="line">    <span class="keyword">var</span> _subscriptionKey = <span class="string">&quot;_subscriptionKey&quot;</span>;</span><br><span class="line">    <span class="keyword">using</span> <span class="keyword">var</span> httpClient = <span class="keyword">new</span> HttpClient();</span><br><span class="line">    <span class="keyword">var</span> requestUri =  <span class="string">$&quot;https://atlas.microsoft.com/search/address/json?api-version=1.0&amp;subscription-key=<span class="subst">&#123;_subscriptionKey&#125;</span>&amp;limit=1&quot;</span></span><br><span class="line">        + <span class="string">$&quot;&amp;countrySet=TW&amp;query=<span class="subst">&#123;HttpUtility.UrlEncode(queryStr)&#125;</span>&quot;</span>;</span><br><span class="line">    <span class="keyword">using</span> <span class="keyword">var</span> response = <span class="keyword">await</span> httpClient.GetAsync(requestUri );</span><br><span class="line">    response.EnsureSuccessStatusCode();</span><br><span class="line">    <span class="keyword">var</span> postResult = <span class="keyword">await</span> response.Content.ReadFromJsonAsync&lt;JsonObject&gt;();</span><br><span class="line">    <span class="keyword">var</span> result = <span class="keyword">new</span> Point</span><br><span class="line">    &#123;</span><br><span class="line">        Latitude = postResult[<span class="string">&quot;results&quot;</span>][<span class="number">0</span>][<span class="string">&quot;position&quot;</span>][<span class="string">&quot;lat&quot;</span>].GetValue&lt;<span class="built_in">double</span>&gt;(),</span><br><span class="line">        Longitude = postResult[<span class="string">&quot;results&quot;</span>][<span class="number">0</span>][<span class="string">&quot;position&quot;</span>][<span class="string">&quot;lon&quot;</span>].GetValue&lt;<span class="built_in">double</span>&gt;()</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Point</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="built_in">string</span> SplitChar = <span class="string">&quot; &quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">double</span> Latitude &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125; = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">double</span> Longitude &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125; = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="built_in">string</span> <span class="title">ToString</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">$&quot;<span class="subst">&#123;Longitude&#125;</span><span class="subst">&#123;SplitChar&#125;</span><span class="subst">&#123;Latitude&#125;</span>&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Point <span class="title">Parse</span>(<span class="params"><span class="built_in">string</span> <span class="keyword">value</span></span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> result = <span class="keyword">new</span> Point();</span><br><span class="line">        <span class="keyword">var</span> pointData = <span class="keyword">value</span>.Split(SplitChar);</span><br><span class="line">        <span class="keyword">if</span> (pointData.Length &gt; <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            result.Longitude = <span class="built_in">double</span>.Parse(pointData[<span class="number">0</span>]);</span><br><span class="line">            result.Latitude = <span class="built_in">double</span>.Parse(pointData[<span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -229,6 +229,10 @@
 <img src="/2023/07/27/azure-map-serch-address/08.png" class="" title="Search Batch Address">
 
 <p>如果想要透過 <strong>經緯度</strong> 查出 <strong>地址</strong> ，則可以透過 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-tw/rest/api/maps/search/get-search-address-reverse?tabs=HTTP">Get Search Address Reverse</a> 來找出 地址哦~</p>
+<ul>
+<li>註 1: 除了門牌號碼外，有些有名的地方，例如 台中港 也是可以 Search 得到</li>
+<li>註 2: 地址中，請勿包含其他不相關的資訊，以免 Search 不到</li>
+</ul>
 <h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-tw/rest/api/maps/search/get-search-address?tabs=HTTP">Get Search Address</a><br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-tw/rest/api/maps/search/get-search-address-batch?tabs=HTTP">Get Search Address Batch</a><br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-tw/rest/api/maps/search/get-search-address-reverse?tabs=HTTP">Get Search Address Reverse</a></p>
    
     </div>
@@ -268,6 +272,15 @@
 </article>
  
 <nav id="article-nav">
+  
+    <a href="/2023/08/04/eudc-html-empty-char/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          地政系統罕用字套用自造字(EUDC, 難字)時，會看不見(空字串)問題
+        
+      </div>
+    </a>
   
   
     <a href="/2023/07/26/novacode-xceed-word-new-row-font/" id="article-nav-older" class="article-nav-link-wrap">
@@ -5299,6 +5312,26 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Azure Map</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">罕用字</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">fontforge</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">WOFF</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">White Box</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">GlyphInfo</a>
               </li>
             
             <div class="clearfix"></div>
