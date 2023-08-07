@@ -6,7 +6,7 @@
   <link href="https://rainmakerho.github.io/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2023-08-04T07:54:51.774Z</updated>
+  <updated>2023-08-07T03:07:58.659Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SQL Server Reporting Services(SSRS) ReportViewer 開啟報表 Hang 住問題</title>
+    <link href="https://rainmakerho.github.io/2023/08/07/ssrs-ie-hang/"/>
+    <id>https://rainmakerho.github.io/2023/08/07/ssrs-ie-hang/</id>
+    <published>2023-08-07T02:02:54.000Z</published>
+    <updated>2023-08-07T03:07:58.659Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近將 SQL Server 從 2008 升級到 2016 ，<br>透過 IE 開啟 Reporting Services(SSRS) 的報表時，<br>有時候會有卡住(Hang)的狀況。<br>正常的狀況下， 開啟(GET) <code>ReportViewer.aspx</code> 後，<br>會再透過 <code>ScriptManager</code>(POST) 將報表給 Load 出來，如下，</p><img src="/2023/08/07/ssrs-ie-hang/01.png" class="" title="normal"><p>有卡住(Hang)的狀況，就是沒有第二次的 <code>POST</code>，所以畫面上就只有 Report 工具列顯示出來。</p><h3 id="解決"><a href="#解決" class="headerlink" title="解決"></a>解決</h3><p>以下為 SSRS 報表在 IE 上 Hang 住的狀況，</p><img src="/2023/08/07/ssrs-ie-hang/02.png" class="" title="normal"><p>看起來網頁似乎沒有 Load 完，<br>但是按下停止 Load (X) 後，<br>報表卻顯示出來了。</p><p>在 <code>ReportViewer.aspx</code> 中覆寫 <code>__doPostBack(eventTarget, eventArgument)</code> 加入 <code>alert</code>，<br>Hang 住的狀況，<code>__doPostBack</code> 並不會被執行到。<br>一直在 IE 上測試，將 URL Copy 到 Chrome 測試看看，<br>結果測試了 30 幾遍，在 Chrome 上並不會有 Hang 住的狀況。</p><p>回到 IE 來看，<code>ReportViewer.aspx</code> 似乎有套用 <strong>相容性</strong>，<br>於是在 <code>ReportViewer.aspx</code> 原始碼中加入<strong>使用最新版本</strong> 的 Header，如下，</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;IE=edge&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure><p>再執行多次，就不會有 Hang 住的狀況了~</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;最近將 SQL Server 從 2008 升級到 2016 ，&lt;br&gt;透過 IE 開啟 Reporting Services(SSRS) </summary>
+      
+    
+    
+    
+    
+    <category term="IE" scheme="https://rainmakerho.github.io/tags/IE/"/>
+    
+    <category term="SSRS" scheme="https://rainmakerho.github.io/tags/SSRS/"/>
+    
+    <category term="ReportViewer" scheme="https://rainmakerho.github.io/tags/ReportViewer/"/>
+    
+    <category term="Hang" scheme="https://rainmakerho.github.io/tags/Hang/"/>
+    
+    <category term="SQL Server Reporting Services" scheme="https://rainmakerho.github.io/tags/SQL-Server-Reporting-Services/"/>
+    
+  </entry>
   
   <entry>
     <title>地政系統罕用字套用自造字(EUDC, 難字)時，會看不見(空字串)問題</title>
@@ -607,40 +637,6 @@
     <category term="ConnectionStringName" scheme="https://rainmakerho.github.io/tags/ConnectionStringName/"/>
     
     <category term="ReplaceDbContext" scheme="https://rainmakerho.github.io/tags/ReplaceDbContext/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ABP 為什麼 ApplicationService 自動產生的 API Route Path 不如預期?</title>
-    <link href="https://rainmakerho.github.io/2023/04/28/abp-route-path/"/>
-    <id>https://rainmakerho.github.io/2023/04/28/abp-route-path/</id>
-    <published>2023-04-28T01:00:15.000Z</published>
-    <updated>2023-04-28T03:18:04.735Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近同事在使用 ABP 時，查看 ABP 自動產生的 Web API Route 覺得怪怪的!<br>他的 ApplicationService 名稱為 <code>OrganizationalUnitAppService</code>，<br>其中有一個 Method 為 <code>IEnumerable&lt;OrganizationalUnitDto&gt; GetAllOrganizationalUnits(string companyId)</code>，<br>結果出來的 Web API Route Path 為，<br><code>/api/app/organizational-unit/organizational-units/&#123;companyId&#125;</code>，<br>名稱中間怎麼用 <strong>-</strong> 串起來，而且 <strong>GetAll</strong> 怎麼不見了?</p><h3 id="研究"><a href="#研究" class="headerlink" title="研究"></a>研究</h3><p>依<a href="https://github.com/abpframework/abp/blob/dev/docs/en/Migration-Guides/Abp-4_0.md#auto-api-controller-route-changes">ABP Framework 3.3 to 4.0 Migration Guide</a>，<br>ABP 4 以後的 auto API controller routes 改使用 <code>kebab-case</code>，<br>如果要用 ABP 4 之前的方式 <code>CamelCase</code> ，則要設定 <code>AbpConventionalControllerOptions</code>，如下，</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Configure&lt;AbpConventionalControllerOptions&gt;(options =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    options.UseV3UrlStyle = <span class="literal">true</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>那 API controller routes 就會變成，<br><code>/api/app/organizationalUnit/organizationalUnits/&#123;companyId&#125;</code></p><p>預設的 RootPath 是 <code>app</code>，如果有多個組件要改名稱的話，則可以設定 <code>ConventionalControllerSetting</code> 的 <code>RootPath</code>，如下，</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Configure&lt;AbpAspNetCoreMvcOptions&gt;(options =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    options.ConventionalControllers</span><br><span class="line">        .Create(<span class="keyword">typeof</span>(我的ApplicationServiceModule).Assembly</span><br><span class="line">            , setting =&gt;</span><br><span class="line">            &#123;</span><br><span class="line">                setting.RootPath = <span class="string">&quot;NornsOGService&quot;</span>;</span><br><span class="line">            &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>那 API controller routes 就會變成，<br><code>/api/NornsOGService/organizationalUnit/organizationalUnits/&#123;companyId&#125;</code></p><p>那 <code>GetAll</code> 怎麼會不見呢?<br>在 <a href="https://docs.abp.io/en/abp/latest/API/Auto-API-Controllers#auto-api-controllers">Auto API Controllers</a> 中有說明，</p><blockquote><p>Removing HTTP method prefix. ‘GetList’, ‘GetAll’, ‘Get’, ‘Put’, ‘Update’, ‘Delete’, ‘Remove’, ‘Create’, ‘Add’, ‘Insert’, ‘Post’ and ‘Patch’ prefixes are removed based on the selected HTTP method. So, ‘GetPhones’ becomes ‘Phones’ since ‘Get’ prefix is a duplicate for a GET request.</p></blockquote><p>所以 <code>GetAll</code> 被自動移除掉了，<br>查看 <a href="https://github.com/abpframework/abp/blob/dev/framework/src/Volo.Abp.AspNetCore.Mvc/Volo/Abp/AspNetCore/Mvc/Conventions/ConventionalRouteBuilder.cs">Abp ConventionalRouteBuilder.cs</a> 裡面的 <code>NormalizeUrlActionName</code>，</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">virtual</span> <span class="built_in">string</span> <span class="title">NormalizeUrlActionName</span>(<span class="params"><span class="built_in">string</span> rootPath, <span class="built_in">string</span> controllerName, ActionModel action,</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="built_in">string</span> httpMethod, [CanBeNull] ConventionalControllerSetting configuration</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//這裡會依 ActionName 來判斷 HttpVerb 並將 Prefix 及 Async 移除</span></span><br><span class="line">    <span class="keyword">var</span> actionNameInUrl = HttpMethodHelper</span><br><span class="line">        .RemoveHttpMethodPrefix(action.ActionName, httpMethod)</span><br><span class="line">        .RemovePostFix(<span class="string">&quot;Async&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (configuration?.UrlActionNameNormalizer == <span class="literal">null</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> actionNameInUrl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> configuration.UrlActionNameNormalizer(</span><br><span class="line">        <span class="keyword">new</span> UrlActionNameNormalizerContext(</span><br><span class="line">            rootPath,</span><br><span class="line">            controllerName,</span><br><span class="line">            action,</span><br><span class="line">            actionNameInUrl,</span><br><span class="line">            httpMethod</span><br><span class="line">        )</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>那如果想要讓它長回來呢(不建議)? 則可以設定 <code>UrlActionNameNormalizer</code> 的內容，如下，</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Configure&lt;AbpAspNetCoreMvcOptions&gt;(options =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    options.ConventionalControllers</span><br><span class="line">        .Create(<span class="keyword">typeof</span>(我的ApplicationServiceModule).Assembly</span><br><span class="line">            , setting =&gt;</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">//設定 RootPath</span></span><br><span class="line">                setting.RootPath = <span class="string">&quot;NornsOGService&quot;</span>;</span><br><span class="line">                <span class="comment">//不將 預設的 Prefix 移除</span></span><br><span class="line">                setting.UrlActionNameNormalizer = context =&gt;</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">return</span> context.Action.ActionName?.RemovePostFix(<span class="string">&quot;Async&quot;</span>);</span><br><span class="line">                &#125;;</span><br><span class="line">            &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>那 API controller routes 就會變成，<br><code>api/NornsOGService/organizationalUnit/getAllOrganizationalUnits/&#123;companyId&#125;</code></p><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://docs.abp.io/en/abp/latest/API/Auto-API-Controllers#auto-api-controllers">Auto API Controllers</a><br><a href="https://github.com/abpframework/abp/blob/dev/framework/src/Volo.Abp.Http/Volo/Abp/Http/HttpMethodHelper.cs">Abp HttpMethodHelper.cs</a><br><a href="https://github.com/abpframework/abp/blob/dev/modules/blogging/src/Volo.Blogging.HttpApi/Volo/Blogging/BlogsController.cs#L14">Abp BlogsController.cs</a><br><a href="https://github.com/abpframework/abp/issues/5325">Create auto controller routes in kebap-case</a><br><a href="https://github.com/abpframework/abp/blob/dev/docs/en/Migration-Guides/Abp-4_0.md#auto-api-controller-route-changes">ABP Framework 3.3 to 4.0 Migration Guide</a><br><a href="https://www.cnblogs.com/zhiyong-ITNote/p/11991995.html">abp 集成 asp.net core</a><br><a href="https://github.com/abpframework/abp/blob/dev/framework/src/Volo.Abp.AspNetCore.Mvc/Volo/Abp/AspNetCore/Mvc/Conventions/ConventionalRouteBuilder.cs">Abp ConventionalRouteBuilder.cs</a></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;最近同事在使用 ABP 時，查看 ABP 自動產生的 Web API Route 覺得怪怪的!&lt;br&gt;他的 ApplicationServi</summary>
-      
-    
-    
-    
-    
-    <category term="ABP" scheme="https://rainmakerho.github.io/tags/ABP/"/>
-    
-    <category term="API" scheme="https://rainmakerho.github.io/tags/API/"/>
-    
-    <category term="Route" scheme="https://rainmakerho.github.io/tags/Route/"/>
-    
-    <category term="normalized" scheme="https://rainmakerho.github.io/tags/normalized/"/>
-    
-    <category term="ConventionalControllerSetting" scheme="https://rainmakerho.github.io/tags/ConventionalControllerSetting/"/>
-    
-    <category term="AbpConventionalControllerOptions" scheme="https://rainmakerho.github.io/tags/AbpConventionalControllerOptions/"/>
-    
-    <category term="ConventionalPrefixes" scheme="https://rainmakerho.github.io/tags/ConventionalPrefixes/"/>
     
   </entry>
   
