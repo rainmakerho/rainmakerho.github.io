@@ -6,7 +6,7 @@
   <link href="https://rainmakerho.github.io/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2023-08-21T09:19:45.419Z</updated>
+  <updated>2023-08-23T08:04:28.733Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>自造字(EUDC)無法在 Crystal Report Viewer 中呈現</title>
+    <link href="https://rainmakerho.github.io/2023/08/23/crystal-viewer-eudc-font-missing/"/>
+    <id>https://rainmakerho.github.io/2023/08/23/crystal-viewer-eudc-font-missing/</id>
+    <published>2023-08-23T07:53:25.000Z</published>
+    <updated>2023-08-23T08:04:28.733Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近系統透過 Chrome 開 Crystal Report 報表時，自造字會無法呈現，只會顯示一個空白框。</p><img src="/2023/08/23/crystal-viewer-eudc-font-missing/01.png" class="" title="空白框"><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>參考 <a href="https://rainmakerho.github.io/2022/10/28/ms-reporting-service-add-custom-font-woff-ttf/">為 SQL Server Reporting Services (SSRS) Preview 報表加上自造字(EUDC Font) Support</a> 為 Body 設定 <code>font-family: &quot;EUDC&quot;</code>，但自造字還是沒有顯示出來，如下，</p><img src="/2023/08/23/crystal-viewer-eudc-font-missing/02.png" class="" title="EUDC"><p>可以從上圖中發現，設定的 EUDC 字型沒有套用到，因為自造字有使用 class 套用，<br>所以優先使用那個 class 。<br>那怎麼辦呢? 加上 <code>!important</code> 來強制使用，如下，</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* &#123;</span><br><span class="line">  <span class="attribute">font-family</span>: <span class="string">&quot;EUDC&quot;</span> <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>所以，這樣自造字就顯示出來了。</p><img src="/2023/08/23/crystal-viewer-eudc-font-missing/03.png" class="" title="!important"><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://rainmakerho.github.io/2022/10/28/ms-reporting-service-add-custom-font-woff-ttf/">為 SQL Server Reporting Services (SSRS) Preview 報表加上自造字(EUDC Font) Support</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;最近系統透過 Chrome 開 Crystal Report 報表時，自造字會無法呈現，只會顯示一個空白框。&lt;/p&gt;
+&lt;img src=&quot;/</summary>
+      
+    
+    
+    
+    
+    <category term="空白框" scheme="https://rainmakerho.github.io/tags/%E7%A9%BA%E7%99%BD%E6%A1%86/"/>
+    
+    <category term="EUDC" scheme="https://rainmakerho.github.io/tags/EUDC/"/>
+    
+    <category term="Crystal Report" scheme="https://rainmakerho.github.io/tags/Crystal-Report/"/>
+    
+    <category term="CrystalDecisions.Web" scheme="https://rainmakerho.github.io/tags/CrystalDecisions-Web/"/>
+    
+  </entry>
   
   <entry>
     <title>用了 DOMPurify.sanitize Checkmarx 還是噴 Client DOM XSS/Client DOM Stored XSS?</title>
@@ -607,36 +636,6 @@
     <category term="Unknown error (0x80005000)" scheme="https://rainmakerho.github.io/tags/Unknown-error-0x80005000/"/>
     
     <category term="無法指出的錯誤" scheme="https://rainmakerho.github.io/tags/%E7%84%A1%E6%B3%95%E6%8C%87%E5%87%BA%E7%9A%84%E9%8C%AF%E8%AA%A4/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>__doPostBack(...) is not a function IIFE</title>
-    <link href="https://rainmakerho.github.io/2023/05/10/uncaught-typeerror-dopostback-is-not-a-function/"/>
-    <id>https://rainmakerho.github.io/2023/05/10/uncaught-typeerror-dopostback-is-not-a-function/</id>
-    <published>2023-05-10T06:41:01.000Z</published>
-    <updated>2023-05-10T07:14:03.030Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近同事詢問一個 <code>Uncaught TypeError: __doPostBack(...) is not a function</code> 的 javascript 錯誤，如下，</p><img src="/2023/05/10/uncaught-typeerror-dopostback-is-not-a-function/01.png" class="" title="typeerror"><h3 id="除錯"><a href="#除錯" class="headerlink" title="除錯"></a>除錯</h3><p>測試的網頁如下，</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">      //&lt;![CDATA[</span><br><span class="line">      function __doPostBack(eventTarget, eventArgument) &#123;</span><br><span class="line">        alert(&quot;doPostback&quot;);</span><br><span class="line">      &#125;</span><br><span class="line">      //]]&gt;</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">    &lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">      //&lt;![CDATA[</span><br><span class="line">         __doPostBack(&#x27;ctl00$scMainStateCtrl$Query&#x27;,&#x27;&#x27;)</span><br><span class="line"></span><br><span class="line">        (function(id) &#123;</span><br><span class="line">            alert(id);</span><br><span class="line">        &#125;)(&#x27;ctl00_vsMaster&#x27;);</span><br><span class="line">      //]]&gt;</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure><p>錯誤訊息指的是 <code>__doPostBack(...)</code> ，<br>但錯誤點是在 <strong>IIFE</strong> 的程式碼。</p><p>看起來似乎是 <code>__doPostBack</code> 沾黏到後面的 <code>(function(id))&#123; ...&#125;</code>，<br>所以這中間要加入 <strong>分號</strong> 來分隔。<br>所以將 <code>__doPostBack(...)</code> 改成 <code>__doPostBack(...);</code></p><p>所以在使用 <strong>IIFE</strong> 時，<br>也有人在最前面加上分號以避免類似的問題。</p><blockquote><p>This prevents issues when blindly concatenating two JavaScript files. Since JavaScript does not require semicolons, you might concatenate with a file with some statements in its last line that causes a syntax error.</p></blockquote><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://flaviocopes.com/javascript-iife/">JavaScript Immediately-invoked Function Expressions (IIFE)</a></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;最近同事詢問一個 &lt;code&gt;Uncaught TypeError: __doPostBack(...) is not a function</summary>
-      
-    
-    
-    
-    
-    <category term="javascript" scheme="https://rainmakerho.github.io/tags/javascript/"/>
-    
-    <category term="__doPostBack" scheme="https://rainmakerho.github.io/tags/doPostBack/"/>
-    
-    <category term="Immediately-invoked Function Expressions" scheme="https://rainmakerho.github.io/tags/Immediately-invoked-Function-Expressions/"/>
-    
-    <category term="IIFE" scheme="https://rainmakerho.github.io/tags/IIFE/"/>
-    
-    <category term="semicolons" scheme="https://rainmakerho.github.io/tags/semicolons/"/>
     
   </entry>
   
