@@ -19,7 +19,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://rainmakerho.github.io/2023/09/19/ipynb-package-cannot-be-added-version-was-added-previously/01.png">
 <meta property="article:published_time" content="2023-09-19T03:47:38.000Z">
-<meta property="article:modified_time" content="2023-09-19T03:57:04.648Z">
+<meta property="article:modified_time" content="2023-09-19T06:14:47.104Z">
 <meta property="article:author" content="亂馬客">
 <meta property="article:tag" content="ipynb">
 <meta property="article:tag" content="nuget">
@@ -178,7 +178,7 @@
     
     <div class="article-entry" itemprop="articleBody">
          <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>在 VSCode 的 ipynb 中，如果已執行過加入套件參考後，修改套件的版本號，再執行，就會發生 <strong>Error: &lt;你的套件&gt; version &lt;新版本號&gt; cannot be added because version &lt;已加入的版本號&gt; was added previously.</strong><br>這時要怎麼解決呢?</p>
-<h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>因為先前版本已被加入參考，所以要參考<strong>不同版本</strong>套件時，<br>請按下工具列中的<strong>Restart</strong>來將已參考的套件清除掉。</p>
+<h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>因為先前版本已被加入參考，所以要參考<strong>不同版本</strong>套件時，<br>請按下工具列中的<strong>Clear All Outputs</strong> 再按下，<strong>Restart</strong>來將已參考的套件清除掉。</p>
 <img src="/2023/09/19/ipynb-package-cannot-be-added-version-was-added-previously/01.png" class="" title="Restart">
 
 <p>再重新執行一次就可以順利使用新版本的套件了。</p>
@@ -216,6 +216,15 @@
 </article>
  
 <nav id="article-nav">
+  
+    <a href="/2023/09/19/node-bot-framework-typeerror-cannot-set-property-closed-restify/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Node 升到 v18 後，執行 Bot Framework Node 版 Bot 時，會出現 TypeError ... Readable
+        
+      </div>
+    </a>
   
   
     <a href="/2023/08/30/jenkins-powershell-marked-build-as-failure/" id="article-nav-older" class="article-nav-link-wrap">
@@ -5359,6 +5368,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">vscode</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">restify</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">TypeError</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Readable</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">V18</a>
               </li>
             
             <div class="clearfix"></div>
