@@ -6,7 +6,7 @@
   <link href="https://rainmakerho.github.io/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2023-08-30T09:46:56.956Z</updated>
+  <updated>2023-09-19T03:57:04.648Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>VSCode ipynb 檔中執行套件參加時，發生 cannot be added because version ... was added previously 錯誤</title>
+    <link href="https://rainmakerho.github.io/2023/09/19/ipynb-package-cannot-be-added-version-was-added-previously/"/>
+    <id>https://rainmakerho.github.io/2023/09/19/ipynb-package-cannot-be-added-version-was-added-previously/</id>
+    <published>2023-09-19T03:47:38.000Z</published>
+    <updated>2023-09-19T03:57:04.648Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>在 VSCode 的 ipynb 中，如果已執行過加入套件參考後，修改套件的版本號，再執行，就會發生 <strong>Error: &lt;你的套件&gt; version &lt;新版本號&gt; cannot be added because version &lt;已加入的版本號&gt; was added previously.</strong><br>這時要怎麼解決呢?</p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>因為先前版本已被加入參考，所以要參考<strong>不同版本</strong>套件時，<br>請按下工具列中的<strong>Restart</strong>來將已參考的套件清除掉。</p><img src="/2023/09/19/ipynb-package-cannot-be-added-version-was-added-previously/01.png" class="" title="Restart"><p>再重新執行一次就可以順利使用新版本的套件了。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;在 VSCode 的 ipynb 中，如果已執行過加入套件參考後，修改套件的版本號，再執行，就會發生 &lt;strong&gt;Error: &amp;lt;</summary>
+      
+    
+    
+    
+    
+    <category term="ipynb" scheme="https://rainmakerho.github.io/tags/ipynb/"/>
+    
+    <category term="nuget" scheme="https://rainmakerho.github.io/tags/nuget/"/>
+    
+    <category term="package" scheme="https://rainmakerho.github.io/tags/package/"/>
+    
+    <category term="vscode" scheme="https://rainmakerho.github.io/tags/vscode/"/>
+    
+  </entry>
   
   <entry>
     <title>Jenkins, Build step &#39;PowerShell&#39; marked build as failure</title>
@@ -594,36 +622,6 @@
     <category term="FreeBusyAndSuggestions" scheme="https://rainmakerho.github.io/tags/FreeBusyAndSuggestions/"/>
     
     <category term="GetUserAvailability" scheme="https://rainmakerho.github.io/tags/GetUserAvailability/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>透過 Exchange Web Service (EWS) 來取得使用者的會議資訊</title>
-    <link href="https://rainmakerho.github.io/2023/05/18/ews-get-user-appointments/"/>
-    <id>https://rainmakerho.github.io/2023/05/18/ews-get-user-appointments/</id>
-    <published>2023-05-18T06:25:12.000Z</published>
-    <updated>2023-05-18T08:17:53.629Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>要如何透過 Exchange Web Service (EWS) 來取得使用者的會議資訊呢?<br>可以參考 <a href="https://stackoverflow.com/questions/47553584/how-to-get-the-calendar-items-from-other-users-with-ews-api-outlook">how to get the calendar items from other users with EWS API Outlook</a><br>透過 <strong>FolderId</strong> 及 <strong>CalendarFolder.Bind</strong> 來達到。</p><h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><p>1.專案請加入 <code>Microsoft.Exchange.WebServices</code> Nuget 套件及 <code>System.DirectoryServices</code> 參考。</p><p>2.接下來 EWS 的 Web Service URL 及設定連線人員帳&#x2F;密，就可以取得使用者的會議資訊，如下，</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> Microsoft.Exchange.WebServices.Data;</span><br><span class="line"><span class="keyword">using</span> System.Collections.ObjectModel;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> adUser = <span class="string">&quot;要查的User&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> adUserPwd = <span class="string">&quot;password&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> domainName = <span class="string">&quot;你的exchangeDomain&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> dateFormat = <span class="string">&quot;yyyy/MM/dd&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> timeFormat = <span class="string">&quot;HH:mm:ss&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> service = <span class="keyword">new</span> ExchangeService();</span><br><span class="line">service.Credentials = <span class="keyword">new</span> WebCredentials(adUser, adUserPwd);</span><br><span class="line"><span class="comment">//service.TraceEnabled = true;</span></span><br><span class="line"><span class="comment">//service.TraceFlags = TraceFlags.All;</span></span><br><span class="line"><span class="keyword">var</span> serverUrl = <span class="string">@&quot;https://你的exchangeFQDN/EWS/Exchange.asmx&quot;</span>;</span><br><span class="line">service.Url = <span class="keyword">new</span> Uri(serverUrl);</span><br><span class="line"><span class="keyword">var</span> dateFormat = <span class="string">&quot;yyyy/MM/dd&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> timeFormat = <span class="string">&quot;HH:mm:ss&quot;</span>;</span><br><span class="line"><span class="comment">//取得某人/某天的行事曆</span></span><br><span class="line"><span class="keyword">var</span> user1Email = <span class="string">$&quot;<span class="subst">&#123;adUser&#125;</span>@<span class="subst">&#123;domainName&#125;</span>&quot;</span>;</span><br><span class="line">DateTime <span class="keyword">from</span> = <span class="keyword">new</span> DateTime(<span class="number">2023</span>, <span class="number">5</span>, <span class="number">19</span>);</span><br><span class="line">DateTime to = <span class="keyword">new</span> DateTime(<span class="number">2023</span>, <span class="number">5</span>, <span class="number">19</span>, <span class="number">23</span>, <span class="number">59</span>, <span class="number">59</span>);</span><br><span class="line"><span class="keyword">var</span> user1Appointments = GetAppointments(service, user1Email, <span class="keyword">from</span>, to);</span><br><span class="line">Console.WriteLine(<span class="string">$&quot;*** <span class="subst">&#123;user1Email&#125;</span> 從 <span class="subst">&#123;<span class="keyword">from</span>.ToString(dateFormat)&#125;</span>~<span class="subst">&#123;to.ToString(timeFormat)&#125;</span> 的行事曆資料如下，&quot;</span>);</span><br><span class="line"><span class="keyword">foreach</span> (<span class="keyword">var</span> a <span class="keyword">in</span> user1Appointments)</span><br><span class="line">&#123;</span><br><span class="line">    Console.Write(<span class="string">&quot;Subject: &quot;</span> + a.Subject.ToString() + <span class="string">&quot; &quot;</span>);</span><br><span class="line">    Console.Write(<span class="string">&quot;Start: &quot;</span> + a.Start.ToString(<span class="string">$&quot;<span class="subst">&#123;dateFormat&#125;</span> <span class="subst">&#123;timeFormat&#125;</span>&quot;</span>) + <span class="string">&quot; &quot;</span>);</span><br><span class="line">    Console.Write(<span class="string">&quot;End: &quot;</span> + a.End.ToString(<span class="string">$&quot;<span class="subst">&#123;dateFormat&#125;</span> <span class="subst">&#123;timeFormat&#125;</span>&quot;</span>));</span><br><span class="line">    <span class="comment">//Console.Write(&quot;TimeZone: &quot; + a.TimeZone);</span></span><br><span class="line">    Console.WriteLine();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> Collection&lt;Appointment&gt; <span class="title">GetAppointments</span>(<span class="params">ExchangeService service</span></span></span><br><span class="line"><span class="params"><span class="function">    ,<span class="built_in">string</span> email, DateTime <span class="keyword">from</span>, DateTime to</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">var</span> durationView = <span class="keyword">new</span> CalendarView(<span class="keyword">from</span>, to);</span><br><span class="line">    <span class="keyword">var</span> folderIdFromCalendar = <span class="keyword">new</span> FolderId(WellKnownFolderName.Calendar, email);</span><br><span class="line">    CalendarFolder calendar = CalendarFolder.Bind(service, folderIdFromCalendar, <span class="keyword">new</span> PropertySet());</span><br><span class="line">    FindItemsResults&lt;Appointment&gt; findResults = calendar.FindAppointments(durationView);</span><br><span class="line">    <span class="keyword">return</span> findResults.Items;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>輸出如下，</p><img src="/2023/05/18/ews-get-user-appointments/01.png" class="" title="Appointments"><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://stackoverflow.com/questions/47553584/how-to-get-the-calendar-items-from-other-users-with-ews-api-outlook">how to get the calendar items from other users with EWS API Outlook</a><br><a href="https://learn.microsoft.com/en-us/exchange/client-developer/exchange-web-services/how-to-get-appointments-and-meetings-by-using-ews-in-exchange">Get appointments and meetings by using EWS in Exchange</a></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;要如何透過 Exchange Web Service (EWS) 來取得使用者的會議資訊呢?&lt;br&gt;可以參考 &lt;a href=&quot;https:</summary>
-      
-    
-    
-    
-    
-    <category term="C#" scheme="https://rainmakerho.github.io/tags/C/"/>
-    
-    <category term="EWS" scheme="https://rainmakerho.github.io/tags/EWS/"/>
-    
-    <category term="Exchange" scheme="https://rainmakerho.github.io/tags/Exchange/"/>
-    
-    <category term="Exchange Web Service" scheme="https://rainmakerho.github.io/tags/Exchange-Web-Service/"/>
-    
-    <category term="Appointments" scheme="https://rainmakerho.github.io/tags/Appointments/"/>
     
   </entry>
   
