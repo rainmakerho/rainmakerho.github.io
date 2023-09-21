@@ -19,12 +19,14 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://rainmakerho.github.io/2023/09/20/sk-getting-started/01.png">
 <meta property="article:published_time" content="2023-09-20T05:17:43.000Z">
-<meta property="article:modified_time" content="2023-09-20T06:31:12.996Z">
+<meta property="article:modified_time" content="2023-09-21T06:13:57.810Z">
 <meta property="article:author" content="亂馬客">
 <meta property="article:tag" content="SK">
 <meta property="article:tag" content="Semantic Kernel">
 <meta property="article:tag" content="Skill">
 <meta property="article:tag" content="Joke">
+<meta property="article:tag" content="WithAzureChatCompletionService">
+<meta property="article:tag" content="ImportSemanticSkillFromDirectory">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://rainmakerho.github.io/2023/09/20/sk-getting-started/01.png">
   
@@ -186,6 +188,7 @@
 <p>再來就是建立 <code>00-getting-started-2.ipynb</code> 來一步步測試，</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!import config/SettingsReader.cs</span></span><br><span class="line"><span class="comment">//使用最新的 preview 版本</span></span><br><span class="line"><span class="meta">#r &quot;nuget:Microsoft.SemanticKernel, *-*&quot;</span></span><br></pre></td></tr></table></figure>
 
+<p>這裡使用版本號使用 <code>*-*&quot;</code> 表示取得 最新的 Preview 版本</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> Microsoft.SemanticKernel;</span><br><span class="line"><span class="comment">//Create Kernel Builder</span></span><br><span class="line"><span class="keyword">var</span> builder = <span class="keyword">new</span> KernelBuilder();</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> aiAlais = <span class="string">&quot;gpt&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> config = SettingsReader.LoadFromFile(<span class="keyword">alias</span>:<span class="string">&quot;gpt&quot;</span>).FirstOrDefault();</span><br><span class="line">builder.WithAzureChatCompletionService(config.model, config.endpoint, config.apikey);</span><br></pre></td></tr></table></figure>
@@ -194,6 +197,7 @@
 
 <img src="/2023/09/20/sk-getting-started/01.png" class="" title="joke-skill">
 
+<p>從上面可以發現，只要透過 <code>config.json</code> 及 <code>skprompt.txt</code> 就可以建立 Skill，<br>然後透過 SemanticKernel 將它 Import 進來，就可以使用它了。<br><code>skprompt.txt</code>中的<code>&#123;&#123;$input&#125;&#125;</code>會被取代成<code>穿越到凡人修仙時代</code></p>
 <h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a target="_blank" rel="noopener" href="https://github.com/microsoft/semantic-kernel/blob/main/dotnet/notebooks/00-getting-started.ipynb">00-getting-started.ipynb</a></p>
    
     </div>
@@ -218,6 +222,14 @@
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Joke</a>
         		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">WithAzureChatCompletionService</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ImportSemanticSkillFromDirectory</a>
+        		</li>
       		
 		</ul>
 	</div>
@@ -229,6 +241,15 @@
 </article>
  
 <nav id="article-nav">
+  
+    <a href="/2023/09/21/sk-semantic-kernel-inline-function/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          SK-Semantic Kernel 動態新增 Function
+        
+      </div>
+    </a>
   
   
     <a href="/2023/09/19/sk-vscode-settings/" id="article-nav-older" class="article-nav-link-wrap">
@@ -5405,6 +5426,30 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Joke</a>
               </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">inline</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">function</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">WithAzureChatCompletionService</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">RegisterSemanticFunction</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">CreateSemanticFunction</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ImportSemanticSkillFromDirectory</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
@@ -5486,7 +5531,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">大家好，我是亂馬客 Rainmaker，目前任職於叡揚資訊，大家也都叫我 RM 。 平常負責開發公司各產品線的加值、共用的軟體，例如 Chatbot, Graph Database ... 同時 Support 公司各種技術及資安修改問題。 Blog中的內容也是個人的看法，  如果有需要討論的地方，   可以留言，或是 mail 給我 :)  rainmaker_ho@gss.com.tw
+  	  		<div class="aboutme-wrap" id="js-aboutme">大家好，我是亂馬客 Rainmaker，目前任職於叡揚資訊，大家也都叫我 RM 。 平常負責開發公司各產品線的加值、共用的軟體，例如 Azure, OpenAI, Chatbot, Database ... 同時 Support 公司各種技術及資安修改問題。 Blog中的內容也是個人的看法， 如果有需要討論的地方， 可以留言，或是 mail 給我 :) rainmaker_ho@gss.com.tw
 </div>
   	  	
     	</section>
