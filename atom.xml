@@ -6,7 +6,7 @@
   <link href="https://rainmakerho.github.io/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2023-09-21T06:45:54.714Z</updated>
+  <updated>2023-09-27T07:35:25.965Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>DB Query + File 操作，導致 Checkmarx 噴 Heuristic 2nd Order SQL Injection 問題?</title>
+    <link href="https://rainmakerho.github.io/2023/09/27/checkmark-heuristic-2nd-order-sql-injection/"/>
+    <id>https://rainmakerho.github.io/2023/09/27/checkmark-heuristic-2nd-order-sql-injection/</id>
+    <published>2023-09-27T05:45:11.000Z</published>
+    <updated>2023-09-27T07:35:25.965Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近遇到專案被 Checkmarx 掃出 <code>Heuristic_2nd_Order_SQL_Injection</code> 的低風險問題。<br>看了一下程式，它的邏輯是在 MVC 的 Controller 接收一個 No 字串參數，再透過該參數到 DB 中取回單號的年度，<br>再依年度組出檔案路徑，進行檔案的操作。<br>才一個 DB 的 Query ，怎麼會<strong>疑似</strong>有 <strong>2nd Order SQL Injection</strong> 問題呢?</p><h3 id="研究"><a href="#研究" class="headerlink" title="研究"></a>研究</h3><p>針對 SQL Injection 的防護，大多使用 Parameter 的方式，<br>而該 Query 也是使用 DbParameter 的方式，<br>為什麼 Checkmarx 會覺得有 Injection 的問題呢?<br>程式是使用 Dapper 的 SqlMapper 來 Query</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Controller</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> JsonResult <span class="title">Delete</span>(<span class="params"><span class="built_in">string</span> SRNO</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> Json(dac.DeletePlan(SRNO));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//DeletePlan</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> RtnResultModel <span class="title">DeletePlan</span>(<span class="params"><span class="built_in">string</span> SRNO</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">using</span> (TransactionScope scope = <span class="keyword">new</span> TransactionScope())</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">using</span> (CommonDac dac = <span class="keyword">new</span> CommonDac(loggedUser))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">string</span> year = dac.GetPlanYear(SRNO);</span><br><span class="line">            <span class="comment">// file 操作 ... call fileaccess(year);</span></span><br><span class="line">        &#125;</span><br><span class="line">        scope.Complete();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> RtnResultModel(<span class="literal">true</span>, <span class="string">&quot;訊息...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//GetYear</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="built_in">string</span> <span class="title">GetPlanYear</span>(<span class="params"><span class="built_in">string</span> SRNO</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">var</span> conn =  ...;</span><br><span class="line">    strSql = <span class="string">@&quot;SELECT [dbo].[fn_GetPlanYear](@SRNO) &quot;</span>;</span><br><span class="line">    objParam = <span class="keyword">new</span></span><br><span class="line">    &#123;</span><br><span class="line">        SRNO = SRNO</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">var</span> strYear = conn.Query&lt;<span class="built_in">string</span>&gt;(conn,strSql, objParam).ToList().SingleOrDefault();</span><br><span class="line">    <span class="keyword">return</span> strYear;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>從 Checkmarx 的圖中，經過的 Path 只有一個 DB 的 Query，</p><img src="/2023/09/27/checkmark-heuristic-2nd-order-sql-injection/01.png" class="" title="checkmarx"><p>而且 SQL 的參數，也沒有使用 字串 串接的方式，<br>所以沒有 2nd Order SQL Injection 的問題。<br>有可能是 Checkmarx 不認得 <code>SqlMapper.Query</code> 的擴充 Method。<br>將 Dapper 改用 Ado.NET 來操作，</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="built_in">string</span> <span class="title">GetPlanYear</span>(<span class="params"><span class="built_in">string</span> SRNO</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">var</span> conn =  ...;</span><br><span class="line">    strSql = <span class="string">@&quot;SELECT [dbo].[fn_GetPlanYear](@SRNO) &quot;</span>;</span><br><span class="line">    SqlCommand cmd = <span class="keyword">new</span> SqlCommand(strSql, conn);</span><br><span class="line">    cmd.Parameters.Add(<span class="string">&quot;@SRNO&quot;</span>, SqlDbType.VarChar);</span><br><span class="line">    cmd.Parameters[<span class="string">&quot;@SRNO&quot;</span>].Value = CryptSet.DecryptAES(SRNO);</span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">    &#123;</span><br><span class="line">        conn.Open();</span><br><span class="line">        <span class="keyword">return</span> (<span class="built_in">string</span>)cmd.ExecuteScalar();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">catch</span> (Exception ex)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">throw</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>再掃一次 <code>Heuristic_2nd_Order_SQL_Injection</code> 就不會再出現。<br>如果客戶可以接受說明，應該可以不需要進行調整，<br>如果一定要調整的話，除了改用 Ado.NET 方式外，<br>也可以透過驗證資料型別的方式來解，<br>例如，判斷是否為 int 再將值傳出，如下，</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="built_in">string</span> <span class="title">GetPlanYear</span>(<span class="params"><span class="built_in">string</span> SRNO</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">var</span> conn =  ...;</span><br><span class="line">    strSql = <span class="string">@&quot;SELECT [dbo].[fn_GetPlanYear](@SRNO) &quot;</span>;</span><br><span class="line">    objParam = <span class="keyword">new</span></span><br><span class="line">    &#123;</span><br><span class="line">        SRNO = SRNO</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">var</span> strYear = conn.Query&lt;<span class="built_in">string</span>&gt;(conn,strSql, objParam).ToList().SingleOrDefault();</span><br><span class="line">    <span class="keyword">var</span> intYear = <span class="built_in">int</span>.Parse(strYear);</span><br><span class="line">    <span class="keyword">return</span> intYear.ToString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://infosecwriteups.com/the-wrath-of-second-order-sql-injection-c9338a51c6d">What is a Second-Order SQL Injection and how can you exploit it successfully?</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;最近遇到專案被 Checkmarx 掃出 &lt;code&gt;Heuristic_2nd_Order_SQL_Injection&lt;/code&gt; 的低</summary>
+      
+    
+    
+    
+    
+    <category term="Checkmarx" scheme="https://rainmakerho.github.io/tags/Checkmarx/"/>
+    
+    <category term="Heuristic_2nd_Order_SQL_Injection" scheme="https://rainmakerho.github.io/tags/Heuristic-2nd-Order-SQL-Injection/"/>
+    
+    <category term="SqlMapper" scheme="https://rainmakerho.github.io/tags/SqlMapper/"/>
+    
+    <category term="Path" scheme="https://rainmakerho.github.io/tags/Path/"/>
+    
+    <category term="Dapper" scheme="https://rainmakerho.github.io/tags/Dapper/"/>
+    
+  </entry>
   
   <entry>
     <title>SK-Semantic Kernel 動態新增 Function</title>
@@ -590,39 +620,6 @@
     <category term="CAS" scheme="https://rainmakerho.github.io/tags/CAS/"/>
     
     <category term="encrypt" scheme="https://rainmakerho.github.io/tags/encrypt/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>在 Windows 中安裝 Apereo CAS 6.X</title>
-    <link href="https://rainmakerho.github.io/2023/05/30/apereo-cas-install-windows/"/>
-    <id>https://rainmakerho.github.io/2023/05/30/apereo-cas-install-windows/</id>
-    <published>2023-05-30T06:13:49.000Z</published>
-    <updated>2023-06-05T07:36:04.251Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>環境: cas-overlay-template 6.6</p><p>在網路上尋找將 Apereo CAS 安裝在 Windows 上的文章，</p><p>1.安裝 <a href="https://learn.microsoft.com/zh-tw/java/openjdk/download">OpenJDK</a></p><p>2.安裝 <a href="https://tomcat.apache.org/download-10.cgi">Tomcat 10</a></p><p>3.透過 <code>keytool</code> 來建立自簽憑證，來設定 Tomcat 啟用 TLS 走 8443 Port</p><p>4.建置 <a href="https://github.com/apereo/cas-overlay-template">cas-overlay-template</a></p><p>5.將 建置好的 war 檔(build\lib\cas.war)放到 Tomcat webapps 目錄中，Browser 到 <code>https://localhost:8443/cas</code> 就搞定了。</p><p>結果，我一跑，就噴 404，如下，</p><img src="/2023/05/30/apereo-cas-install-windows/01.png" class="" title="tomcat error"><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>詢問同事 Willy 大大，他測試 透過 <strong>gradlew</strong> <code>clean build</code>, <code>createKeystore</code> 再 <code>run</code> ，<br>Browser 到 <code>https://localhost:8443/cas</code> 就可以了… 傻眼 …<br>所以 …<br>前面的 Tomcat 不需要裝，也不需要把 war 放到 Tomcat 的 WebApps 目錄中 。<br>可以 Work 的 Step 如下，</p><p>1.下載 <a href="https://github.com/apereo/cas-overlay-template">cas-overlay-template</a>，或是開啟命令視窗執行 <code>git clone https://github.com/apereo/cas-overlay-template.git cas-server</code> 來下載。</p><p>2.開啟命令視窗，<code>cd cas-server</code>，切換到要使用的版本，可透過 <code>git checkout -b 6.6 origin/6.6</code> 來切換。</p><img src="/2023/05/30/apereo-cas-install-windows/02.png" class="" title="download cas-overlay"><p>3.在<a href="https://github.com/apereo/cas-overlay-template">cas-overlay-template</a>檔案的根目錄下，新增 <code>etc\cas</code> 目錄</p><img src="/2023/05/30/apereo-cas-install-windows/03.png" class="" title="crete etc folder"><p>4.在命令視窗中執行 <code>gradlew clean build</code></p><p>5.在命令視窗中執行 <code>gradlew createKeystore</code>，這個 task 會在<code>c:\etc\cas</code>目錄中，建立自簽憑證。</p><img src="/2023/05/30/apereo-cas-install-windows/04.png" class="" title="createKeystore"><p>6.在命令視窗中執行 <code>gradlew run</code></p><img src="/2023/05/30/apereo-cas-install-windows/05.png" class="" title="gradlew run"><p>7.開啟 Browser ，網址列輸入 <code>https://localhost:8443/cas/login</code> 就會出現 CAS 的登入畫面，使用 casuser&#x2F;Mellon 登入。</p><img src="/2023/05/30/apereo-cas-install-windows/06.png" class="" title="cas-login"><img src="/2023/05/30/apereo-cas-install-windows/07.png" class="" title="cas-login2"><p>以上是 單獨跑，那如果要放到 tomcat 中呢??</p><blockquote><p>目前 cas-overlay-template 6.6 ，要使用 <a href="https://tomcat.apache.org/download-90.cgi">Tomcat 9</a> 哦~<br>改用 <a href="https://tomcat.apache.org/download-90.cgi">Tomcat 9</a> ，把前面 Build 好的 war 放到 webapps 目錄就可以了 , QQ</p></blockquote><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://cloud.tencent.com/developer/article/2154554">Apereo CAS（一）在本地运行</a><br><a href="https://learn.microsoft.com/zh-tw/java/openjdk/download">下載 OpenJDK 的 Microsoft 組建</a></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;環境: cas-overlay-template 6.6&lt;/p&gt;
-&lt;p&gt;在網路上尋找將 Apereo CAS 安裝在 Windows 上的文</summary>
-      
-    
-    
-    
-    
-    <category term="404" scheme="https://rainmakerho.github.io/tags/404/"/>
-    
-    <category term="Windows" scheme="https://rainmakerho.github.io/tags/Windows/"/>
-    
-    <category term="SSO" scheme="https://rainmakerho.github.io/tags/SSO/"/>
-    
-    <category term="CAS" scheme="https://rainmakerho.github.io/tags/CAS/"/>
-    
-    <category term="cas-overlay-template" scheme="https://rainmakerho.github.io/tags/cas-overlay-template/"/>
-    
-    <category term="Tomcat 10" scheme="https://rainmakerho.github.io/tags/Tomcat-10/"/>
     
   </entry>
   

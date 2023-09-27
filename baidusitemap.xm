@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://rainmakerho.github.io//2023/09/27/checkmark-heuristic-2nd-order-sql-injection/</loc>
+    <lastmod>2023-09-27</lastmod>
+  </url>
+  <url>
     <loc>https://rainmakerho.github.io//2023/09/21/sk-semantic-kernel-inline-function/</loc>
     <lastmod>2023-09-21</lastmod>
   </url>
