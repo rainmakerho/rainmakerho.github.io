@@ -6,7 +6,7 @@
   <link href="https://rainmakerho.github.io/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2023-09-27T07:35:25.965Z</updated>
+  <updated>2023-10-05T07:43:01.889Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>AppScan Missing or insecure &quot;Script-Src&quot; or &quot;Default-src&quot; policy in &quot;Content-Security-Policy&quot; header</title>
+    <link href="https://rainmakerho.github.io/2023/10/05/missing-or-insecure-content-security-policy-header-appscan/"/>
+    <id>https://rainmakerho.github.io/2023/10/05/missing-or-insecure-content-security-policy-header-appscan/</id>
+    <published>2023-10-05T07:32:05.000Z</published>
+    <updated>2023-10-05T07:43:01.889Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>系統透過 AppScan 掃過後，其中有 <code>Missing or insecure &quot;Script-Src&quot; or &quot;Default-src&quot; policy in &quot;Content-Security-Policy&quot; header</code> 的 Issue。<br>但系統中的 <code>Content-Security-Policy</code> Header 都已設定 <code>self</code> 了，<br>怎麼還會有那個 Issue 呢?</p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>系統的 <code>Content-Security-Policy</code> Header 值如下，<br><code>default-src &#39;self&#39;; script-src &#39;self&#39;; img-src &#39;self&#39;; style-src &#39;self&#39;;frame-src &#39;self&#39;; font-src &#39;self&#39;;</code></p><p>Report 中的建議值為 <code>none</code>，<br>這樣加上去不就全不能用了嗎??</p><p>後來看到 <a href="https://csplite.com/csp283/">Security: HCL &#x2F; IBM AppScan: Missing or insecure Content-Security-Policy header</a> ，<br>是先將預設成 <code>none</code>，再針對其他項目設定 <code>self</code>，<br>所以只要把原本的<code>default-src &#39;self&#39;;</code> 改成 <code>default-src &#39;none&#39;;</code> 就可以了。<br>最後的 CSP 值如下，<br><code>default-src &#39;none&#39;; script-src &#39;self&#39;; img-src &#39;self&#39;; style-src &#39;self&#39;;frame-src &#39;self&#39;; font-src &#39;self&#39;;</code></p><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://csplite.com/csp283/">Security: HCL &#x2F; IBM AppScan: Missing or insecure Content-Security-Policy header</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;系統透過 AppScan 掃過後，其中有 &lt;code&gt;Missing or insecure &amp;quot;Script-Src&amp;quot; </summary>
+      
+    
+    
+    
+    
+    <category term="AppScan" scheme="https://rainmakerho.github.io/tags/AppScan/"/>
+    
+    <category term="Content-Security-Policy" scheme="https://rainmakerho.github.io/tags/Content-Security-Policy/"/>
+    
+    <category term="CSP" scheme="https://rainmakerho.github.io/tags/CSP/"/>
+    
+    <category term="none" scheme="https://rainmakerho.github.io/tags/none/"/>
+    
+    <category term="self" scheme="https://rainmakerho.github.io/tags/self/"/>
+    
+  </entry>
   
   <entry>
     <title>DB Query + File 操作，導致 Checkmarx 噴 Heuristic 2nd Order SQL Injection 問題?</title>
@@ -588,38 +618,6 @@
     <category term="camera" scheme="https://rainmakerho.github.io/tags/camera/"/>
     
     <category term="permanent" scheme="https://rainmakerho.github.io/tags/permanent/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JDBC 連 SQL Server 噴 &quot;驅動程式無法使用安全通訊端層 (SSL) 加密建立與 SQL Server 的安全連接&quot; 的錯誤</title>
-    <link href="https://rainmakerho.github.io/2023/06/14/cas-jdbc-sqlserverexception-ssl-pkix/"/>
-    <id>https://rainmakerho.github.io/2023/06/14/cas-jdbc-sqlserverexception-ssl-pkix/</id>
-    <published>2023-06-14T07:02:02.000Z</published>
-    <updated>2023-06-14T07:13:10.302Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>同事設定 CAS 連接 MS SQL Server 啟動後會噴以下的錯誤，<br><code>org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is com.microsoft.sqlserver.jdbc.SQLServerException: 驅動程式無法使用安全通訊端層 (SSL) 加密建立與 SQL Server 的安全連接。錯誤: &quot;PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target&quot;。 ClientConnectionId:7c5b19e7-9ebe-4175-83d8-b179b04fe16d / Failed to obtain JDBC Connection; nested exception is com.microsoft.sqlserver.jdbc.SQLServerException: 驅動程式無法使用安全通訊端層 (SSL) 加 密建立與 SQL Server 的安全連接。錯誤: &quot;PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target</code></p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>查看連線字串為 <code>jdbc:sqlserver://rmsql\sqlexpress;databaseName=cas;integratedSecurity=true</code><br>依<a href="https://learn.microsoft.com/zh-tw/sql/connect/jdbc/understanding-ssl-support?view=sql-server-ver16">JDBC 了解加密支援</a> 連線字串中沒設定 <code>encrypt</code> 就表示不啟用 encrypt，<br>那怎麼會走 SSL 呢?<br>詢問 Java 開發的同事 9G 及 Willy 大大，<br>他說加一下 <code>encrypt=false</code> 。<br>結果，加上去再跑，果然就過了，QQ。</p><p>所以，如果在本機測試，不想要走 SSL 的話，請記得要設定 <code>encrypt=false</code>，<br>才不會強迫走 TLS 哦~</p><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://learn.microsoft.com/zh-tw/sql/connect/jdbc/building-the-connection-url?view=sql-server-ver16">JDBC 建置連線 URL</a><br><a href="https://learn.microsoft.com/zh-tw/sql/connect/jdbc/understanding-ssl-support?view=sql-server-ver16">JDBC 了解加密支援</a></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;同事設定 CAS 連接 MS SQL Server 啟動後會噴以下的錯誤，&lt;br&gt;&lt;code&gt;org.springframework.jdb</summary>
-      
-    
-    
-    
-    
-    <category term="TLS" scheme="https://rainmakerho.github.io/tags/TLS/"/>
-    
-    <category term="JDBC" scheme="https://rainmakerho.github.io/tags/JDBC/"/>
-    
-    <category term="SSL" scheme="https://rainmakerho.github.io/tags/SSL/"/>
-    
-    <category term="SQL Server" scheme="https://rainmakerho.github.io/tags/SQL-Server/"/>
-    
-    <category term="CAS" scheme="https://rainmakerho.github.io/tags/CAS/"/>
-    
-    <category term="encrypt" scheme="https://rainmakerho.github.io/tags/encrypt/"/>
     
   </entry>
   
