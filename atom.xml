@@ -6,7 +6,7 @@
   <link href="https://rainmakerho.github.io/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2023-10-05T07:43:01.889Z</updated>
+  <updated>2023-10-13T05:52:19.412Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,70 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>為什麼在 Host 檔案中自定的 Host 在 IIS 的 Windows 整合驗證都無法通過?</title>
+    <link href="https://rainmakerho.github.io/2023/10/12/iis-windows-authentication-custom-hostname/"/>
+    <id>https://rainmakerho.github.io/2023/10/12/iis-windows-authentication-custom-hostname/</id>
+    <published>2023-10-12T09:30:36.000Z</published>
+    <updated>2023-10-13T05:52:19.412Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近在 Client 測試 IIS 的 Windows 驗證，<br>於是在 <code>Default.aspx</code> 只將 <code>Windows 驗證</code>啟用，</p><img src="/2023/10/12/iis-windows-authentication-custom-hostname/01.png" class="" title="Windows 驗證"><p>並在 <code>C:\Windows\System32\drivers\etc\hosts</code> 加入<br><code>127.0.0.1  rm.gss.com.tw</code> 的設定。</p><p><code>default.aspx</code> 的內容如下，</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">Page_Load</span>(<span class="params"><span class="built_in">object</span> sender, EventArgs e</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">var</span> adUserId = Request.ServerVariables[<span class="string">&quot;LOGON_USER&quot;</span>]?.ToString();</span><br><span class="line">    Response.Write(<span class="string">$&quot;LOGON_USER:&#x27;<span class="subst">&#123;adUserId&#125;</span>&#x27;&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>用 <code>localhost</code>, <code>127.0.0.1</code> 及 <code>rm.gss.com.tw</code> 為 Host 來測試。</p><h4 id="使用-localhost"><a href="#使用-localhost" class="headerlink" title="使用 localhost"></a>使用 localhost</h4><p>連到 <code>http://localhost/web1/default.aspx</code><br>會直接顯示這台電腦的登入者，如下，</p><img src="/2023/10/12/iis-windows-authentication-custom-hostname/02.png" class="" title="localhost"><h4 id="使用-127-0-0-1"><a href="#使用-127-0-0-1" class="headerlink" title="使用 127.0.0.1"></a>使用 127.0.0.1</h4><p>連到 <code>http://127.0.0.1/web1/default.aspx</code><br>會要使用者輸入這台電腦(本機)的登入者及密碼來登入，如下，</p><img src="/2023/10/12/iis-windows-authentication-custom-hostname/03.png" class="" title="127.0.0.1"><h4 id="使用-rm-gss-com-tw"><a href="#使用-rm-gss-com-tw" class="headerlink" title="使用 rm.gss.com.tw"></a>使用 rm.gss.com.tw</h4><p>連到 <code>http://rm.gss.com.tw/web1/default.aspx</code><br>會要使用者輸入這台電腦(本機)的登入者及密碼來登入，<br>但卻一直沒有辦法通過驗證，</p><img src="/2023/10/12/iis-windows-authentication-custom-hostname/04.png" class="" title="rm.gss.com.tw"><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>參考 <a href="https://stackoverflow.com/questions/7387156/unable-to-get-windows-authentication-to-work-through-local-iis/13017510">Unable to get windows authentication to work through local IIS</a> 這篇解法，<br>要設定 <code>DisableStrictNameChecking</code> 及 <code>BackConnectionHostNames</code> 2 個機碼。</p><p>依筆者的測試，只需將 <code>rm.gss.com.tw</code> 加入到 <code>BackConnectionHostNames</code> 中就可以了哦~</p><img src="/2023/10/12/iis-windows-authentication-custom-hostname/05.png" class="" title="BackConnectionHostNames"><ul><li>註: 感謝同事 Garry 江 的分享</li></ul><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://stackoverflow.com/questions/7387156/unable-to-get-windows-authentication-to-work-through-local-iis/13017510">Unable to get windows authentication to work through local IIS</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;最近在 Client 測試 IIS 的 Windows 驗證，&lt;br&gt;於是在 &lt;code&gt;Default.aspx&lt;/code&gt; 只將 &lt;c</summary>
+      
+    
+    
+    
+    
+    <category term="IIS" scheme="https://rainmakerho.github.io/tags/IIS/"/>
+    
+    <category term="Host" scheme="https://rainmakerho.github.io/tags/Host/"/>
+    
+    <category term="自定Host" scheme="https://rainmakerho.github.io/tags/%E8%87%AA%E5%AE%9AHost/"/>
+    
+    <category term="Windows 驗證" scheme="https://rainmakerho.github.io/tags/Windows-%E9%A9%97%E8%AD%89/"/>
+    
+    <category term="hosts" scheme="https://rainmakerho.github.io/tags/hosts/"/>
+    
+    <category term="localhost" scheme="https://rainmakerho.github.io/tags/localhost/"/>
+    
+    <category term="DisableStrictNameChecking" scheme="https://rainmakerho.github.io/tags/DisableStrictNameChecking/"/>
+    
+    <category term="BackConnectionHostNames" scheme="https://rainmakerho.github.io/tags/BackConnectionHostNames/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>別忽略 CS1988 非同步方法缺少 &#39;await&#39; 運算子 的警告</title>
+    <link href="https://rainmakerho.github.io/2023/10/06/cs1998-missing-await/"/>
+    <id>https://rainmakerho.github.io/2023/10/06/cs1998-missing-await/</id>
+    <published>2023-10-06T09:01:58.000Z</published>
+    <updated>2023-10-06T09:18:36.043Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近同事透過 K6 進行 WebAPI 壓測時，<br>發現當 Thread 數多時，就會出奇怪的錯誤，<br>例如 在 進入 Middlewares 中取好資料到 UserRols 中，<br>然後在 Controller 中判斷是否存在某個角色時 <code>UserRols.Any(ur =&gt; ur.Code == &quot;Admin&quot;)</code> ，<br>本應有資料的，卻變成沒有資料。</p><h3 id="研究"><a href="#研究" class="headerlink" title="研究"></a>研究</h3><p>原本懷疑是不是有 <code>static</code> 物件互相干擾，但沒找到。<br>現來發現有一段程式碼下面有蚯蚓符號的警告，<br>看了那個 Function 是 <code>async</code>，<br>但呼叫的地方卻沒有加上 <code>await</code> ，<br>於是將 <code>await</code> 加上去，再測試一次，就沒出現錯誤了。</p><p>有時使用 VS.NET 開發時，<br>都只專注在 <code>錯誤</code> 卻忽略了 <code>警告</code>，<br>尤其是 <code>CS1988</code> 少加上 <code>await</code> 的這個警告，<br>更有可能會造成系統在多人操作時，產生非預期的錯誤。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;最近同事透過 K6 進行 WebAPI 壓測時，&lt;br&gt;發現當 Thread 數多時，就會出奇怪的錯誤，&lt;br&gt;例如 在 進入 Middle</summary>
+      
+    
+    
+    
+    
+    <category term=".NET" scheme="https://rainmakerho.github.io/tags/NET/"/>
+    
+    <category term="CS1988" scheme="https://rainmakerho.github.io/tags/CS1988/"/>
+    
+    <category term="await" scheme="https://rainmakerho.github.io/tags/await/"/>
+    
+    <category term="async" scheme="https://rainmakerho.github.io/tags/async/"/>
+    
+  </entry>
   
   <entry>
     <title>AppScan Missing or insecure &quot;Script-Src&quot; or &quot;Default-src&quot; policy in &quot;Content-Security-Policy&quot; header</title>
@@ -562,62 +626,6 @@
     <category term="ChannelId" scheme="https://rainmakerho.github.io/tags/ChannelId/"/>
     
     <category term="Guid" scheme="https://rainmakerho.github.io/tags/Guid/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>討論 TSQL Query 低效問題</title>
-    <link href="https://rainmakerho.github.io/2023/06/20/tsql-low-performing/"/>
-    <id>https://rainmakerho.github.io/2023/06/20/tsql-low-performing/</id>
-    <published>2023-06-20T01:22:25.000Z</published>
-    <updated>2023-06-20T04:06:47.807Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>當系統在 Query 資料庫時，執行太久時，要如何處理呢?<br>我們可以建立 Checklist 的問題，來釐清問題所在。<br>例如以下 <strong>檢核表</strong> 的例子，</p><table><thead><tr><th>問題</th><th>使用者回覆</th><th>可能問題</th></tr></thead><tbody><tr><td>這個 Query 的目的是什麼?</td><td>將資料輸出到 Excel 後，依年度產生每個地區的銷售數量(包含 銷售人員)。例如，2019 年北美地區銷售訂單狀態為進行中的資料</td><td>Query 是否跟目的相符?</td></tr><tr><td>目前想要解決什麼問題</td><td>這個查詢太久了，是否可以讓它快一點?</td><td>查看 Query 篩選是否符合 SARG</td></tr><tr><td>Query 是否有取回正確的資料?</td><td>可能有吧~</td><td>Query 篩選條件可能有問題</td></tr><tr><td>Query 有取回多餘的資料嗎?</td><td>有。在 Excel 中，我要刪除許多欄位，並過濾掉許多資料</td><td>Query 篩選條件有問題，是否 Select 過多的欄位?</td></tr><tr><td>這個 Query 曾經快過嗎?</td><td>有的，在幾個月前，它跑的是快的</td><td>幾個月前是否更新程式導致變慢</td></tr></tbody></table><h3 id="找找-Query-問題點"><a href="#找找-Query-問題點" class="headerlink" title="找找 Query 問題點"></a>找找 Query 問題點</h3><p>Query 目的為 <strong>取得 2019 年北美地區銷售訂單狀態為進行中的資料</strong> 來檢視以下的 SQL 有那些要調整的地方，</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> Sales.SalesOrder so</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> Sales.SalesTerritory st <span class="keyword">ON</span> so.SalesTerritory <span class="operator">=</span> st.Id</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> Sales.SalesPerson sp <span class="keyword">ON</span> so.SalesPerson <span class="operator">=</span> sp.Id</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> Sales.SalesPersonLevel spl <span class="keyword">ON</span> spl.Id <span class="operator">=</span> sp.LevelId</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> Sales.SalesOrderStatus sos <span class="keyword">ON</span> sos.Id <span class="operator">=</span> so.SalesOrderStatus</span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">CONVERT</span>(<span class="type">CHAR</span>(<span class="number">10</span>),so.SalesDate,<span class="number">121</span>) <span class="operator">&gt;=</span> <span class="string">&#x27;2019-01-01&#x27;</span></span><br><span class="line"><span class="keyword">AND</span> <span class="keyword">CONVERT</span>(<span class="type">CHAR</span>(<span class="number">10</span>),so.SalesDate,<span class="number">121</span>) <span class="operator">&lt;=</span> <span class="string">&#x27;2019-12-31&#x27;</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> so.SalesDate,</span><br><span class="line">so.SalesAmount <span class="keyword">DESC</span>;</span><br></pre></td></tr></table></figure><p>… 有找到那些問題呢???</p><p>1.<code>so.SalesDate</code> 是 DateTime 類別，所以不用再透過 <strong>CONVERT</strong> 來轉換 (SARG)，這樣會讓 <code>so.SalesDate</code> 無法用到 index</p><p>2.要加上 <code>北美地區銷售</code> 及 <code>訂單狀態為進行中</code> 的篩選條件</p><p>3.<code>Select * </code> 改成列出需要的欄位</p><p>4.使用者會將資料匯出 Excel 再後製，所以是否有必要排序?</p><p>所以調整過的 Query 可能會如下，</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> so.Col1, So.Col2, ...</span><br><span class="line"><span class="keyword">FROM</span> Sales.SalesOrder so</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> Sales.SalesTerritory st <span class="keyword">ON</span> so.SalesTerritory <span class="operator">=</span> st.Id</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> Sales.SalesPerson sp <span class="keyword">ON</span> so.SalesPerson <span class="operator">=</span> sp.Id</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> Sales.SalesPersonLevel spl <span class="keyword">ON</span> spl.Id <span class="operator">=</span> sp.LevelId</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> Sales.SalesOrderStatus sos <span class="keyword">ON</span> sos.Id <span class="operator">=</span> so.SalesOrderStatus</span><br><span class="line"><span class="keyword">WHERE</span> so.SalesDate <span class="operator">&gt;=</span> <span class="string">&#x27;2019/01/01&#x27;</span></span><br><span class="line"><span class="keyword">AND</span> so.SalesDate <span class="operator">&lt;=</span> <span class="string">&#x27;2019/12/31 23:59:59&#x27;</span></span><br><span class="line"><span class="keyword">AND</span> st.[<span class="keyword">Group</span>] <span class="operator">=</span> <span class="string">&#x27;North America&#x27;</span></span><br><span class="line"><span class="keyword">AND</span> sos.StatusName <span class="operator">=</span> <span class="string">&#x27;In Progress&#x27;</span>;</span><br></pre></td></tr></table></figure><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://learn.microsoft.com/zh-tw/troubleshoot/sql/database-engine/performance/troubleshoot-slow-running-queries">針對 SQL Server 上執行緩慢的查詢進行疑難排解</a><br><a href="https://www.sqlshack.com/how-to-use-sargable-expressions-in-t-sql-queries-performance-advantages-and-examples/">How to use sargable expressions in T-SQL queries; performance advantages and examples</a></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;當系統在 Query 資料庫時，執行太久時，要如何處理呢?&lt;br&gt;我們可以建立 Checklist 的問題，來釐清問題所在。&lt;br&gt;例如以下</summary>
-      
-    
-    
-    
-    
-    <category term="MSSQL" scheme="https://rainmakerho.github.io/tags/MSSQL/"/>
-    
-    <category term="TSQL" scheme="https://rainmakerho.github.io/tags/TSQL/"/>
-    
-    <category term="Performance" scheme="https://rainmakerho.github.io/tags/Performance/"/>
-    
-    <category term="SARG" scheme="https://rainmakerho.github.io/tags/SARG/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>如何永久停用 Teams 的 照相機</title>
-    <link href="https://rainmakerho.github.io/2023/06/16/teams-permanent-disable-camera/"/>
-    <id>https://rainmakerho.github.io/2023/06/16/teams-permanent-disable-camera/</id>
-    <published>2023-06-16T02:19:32.000Z</published>
-    <updated>2023-06-16T02:35:04.469Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>大家在使用 Teams 時，有時要開啟 麥克風 時，<strong>照相機</strong> 也會自動被開啟一下下，然後再自動停用掉。<br>有時一場會議中，<strong>照相機</strong> 會來來回回的開開關關的 …<br>如果說，大多不會開啟 <strong>照相機</strong> 的話，是否有什麼方式可以<strong>永久停用</strong> <strong>照相機</strong> 的方式嗎?</p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>要 <strong>永久停用</strong> Teams 的 <strong>照相機</strong> 可以直接把 系統的 <strong>照相機</strong> 停用就可以了。<br>在檔案總管中的「本機」按右鍵，選「管理」，開啟「電腦管理」，<br>點選「裝置管理員」，在「相機」上按右鍵，選取「停用裝置」就可以了哦。</p><img src="/2023/06/16/teams-permanent-disable-camera/01.png" class="" title="disable-camera">]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;大家在使用 Teams 時，有時要開啟 麥克風 時，&lt;strong&gt;照相機&lt;/strong&gt; 也會自動被開啟一下下，然後再自動停用掉。&lt;br</summary>
-      
-    
-    
-    
-    
-    <category term="teams" scheme="https://rainmakerho.github.io/tags/teams/"/>
-    
-    <category term="disable" scheme="https://rainmakerho.github.io/tags/disable/"/>
-    
-    <category term="camera" scheme="https://rainmakerho.github.io/tags/camera/"/>
-    
-    <category term="permanent" scheme="https://rainmakerho.github.io/tags/permanent/"/>
     
   </entry>
   
