@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://rainmakerho.github.io//2023/10/19/msdeploy-an-existing-connection-was-forcibly-closed-by-the-remote-host-140-5/</loc>
+    <lastmod>2023-10-19</lastmod>
+  </url>
+  <url>
     <loc>https://rainmakerho.github.io//2023/10/12/iis-windows-authentication-custom-hostname/</loc>
     <lastmod>2023-10-13</lastmod>
   </url>
