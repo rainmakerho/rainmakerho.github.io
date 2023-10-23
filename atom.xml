@@ -6,7 +6,7 @@
   <link href="https://rainmakerho.github.io/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2023-10-19T02:02:55.270Z</updated>
+  <updated>2023-10-23T08:17:49.153Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>為什麼系統中新增一堆空白名稱的Cookie?</title>
+    <link href="https://rainmakerho.github.io/2023/10/23/why-multiple-empty-name-cookies-iis/"/>
+    <id>https://rainmakerho.github.io/2023/10/23/why-multiple-empty-name-cookies-iis/</id>
+    <published>2023-10-23T06:29:00.000Z</published>
+    <updated>2023-10-23T08:17:49.153Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近同事詢問一個怪問題，透過 Browser 操作系統時，會產生出一堆空白名稱的 Cookie，如下，</p><img src="/2023/10/23/why-multiple-empty-name-cookies-iis/01.png" class="" title="Empty Name Cookies"><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>請同事存一下操作系統的網路狀況發現，<strong>每個 Request</strong>都會往 Client 端寫 Cookie，如下，</p><img src="/2023/10/23/why-multiple-empty-name-cookies-iis/02.png" class="" title="set-cookie"><p>從上面的狀況來看，有可能是 <code>Global.asax</code>, <code>Middleware</code> 或是寫在 IIS 的<code>HTTP 回應標頭</code>之中。<br>而操作公司 VM 中的系統，並不會有這種狀況，所以應該是 IIS 的問題。<br>於是請同事檢查一下 IIS 的<code>HTTP 回應標頭</code>，<br>果然，被寫在裡面，如下，</p><img src="/2023/10/23/why-multiple-empty-name-cookies-iis/03.png" class="" title="HTTP 回應標頭"><p>請同事將它移除之後就沒問題了。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;最近同事詢問一個怪問題，透過 Browser 操作系統時，會產生出一堆空白名稱的 Cookie，如下，&lt;/p&gt;
+&lt;img src=&quot;/202</summary>
+      
+    
+    
+    
+    
+    <category term="IIS" scheme="https://rainmakerho.github.io/tags/IIS/"/>
+    
+    <category term=".NET" scheme="https://rainmakerho.github.io/tags/NET/"/>
+    
+    <category term="Cookie" scheme="https://rainmakerho.github.io/tags/Cookie/"/>
+    
+    <category term="Empty Name" scheme="https://rainmakerho.github.io/tags/Empty-Name/"/>
+    
+  </entry>
   
   <entry>
     <title>MSDeploy.targets Web 部署工作失敗 基礎連接已關閉 無法從傳輸連接讀取資料 遠端主機已強制關閉一個現存的連線</title>
@@ -604,36 +633,6 @@
     <category term="Table" scheme="https://rainmakerho.github.io/tags/Table/"/>
     
     <category term="InsertRow" scheme="https://rainmakerho.github.io/tags/InsertRow/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>執行 node 時，發生 listen EACCES permission denied 0.0.0.0:3000 錯誤</title>
-    <link href="https://rainmakerho.github.io/2023/07/13/node-js-listen-eacces-permission-denied-3000/"/>
-    <id>https://rainmakerho.github.io/2023/07/13/node-js-listen-eacces-permission-denied-3000/</id>
-    <published>2023-07-13T08:13:16.000Z</published>
-    <updated>2023-07-13T08:41:26.430Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>有時在開啟 Node 執行起來時，會噴 <code>Error: listen EACCES: permission denied 0.0.0.0:3000</code> (3000 為專案使用的 Port) 的錯誤，如下，</p><blockquote><p>error Failed to start server<br>Error: listen EACCES: permission denied 0.0.0.0:3000<br>at Server.setupListenHandle [as _listen2] (node:net:1723:21)<br>at listenInCluster (node:net:1788:12)<br>at Server.listen (node:net:1876:7)<br>code: ‘EACCES’,<br>errno: -4092,</p></blockquote><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>有時可以換別的 Port Number ，但是有時一大堆的 Port 都不能使用，<br>要一個個換也蠻麻煩的。<br>要看 port 有沒有被佔住，可以執行 <code>netsh interface ipv4 show excludedportrange protocol=tcp</code> 來看一下，<br>看看要用的 port 有在那些 Range 之中。</p><img src="/2023/07/13/node-js-listen-eacces-permission-denied-3000/01.png" class="" title="excludedportrange"><p>解法可以將 <strong>winnat</strong> 服務重新啟動，<br>以<strong>系統管理者身份</strong>執行 命令視窗，執行 <code>net stop/start winnat</code> ，<br>應該就可以了，如下，</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">net stop winnat</span><br><span class="line">net start winnat</span><br></pre></td></tr></table></figure><img src="/2023/07/13/node-js-listen-eacces-permission-denied-3000/02.png" class="" title="net stop"><ul><li>註: 除了 node js 專案外，只要是 port 沒發現被別的 process 佔住，就可以用這個方式來解看看哦~</li></ul><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://stackoverflow.com/questions/9164915/node-js-eacces-error-when-listening-on-most-ports">Node.js EACCES error when listening on most ports</a><br><a href="https://medium.com/@Bartleby/ports-are-not-available-listen-tcp-0-0-0-0-3000-165892441b9d">Ports are not available: listen tcp 0.0.0.0:3000: bind: An attempt was made to access a socket in a way forbidden by its access permissions.</a></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;有時在開啟 Node 執行起來時，會噴 &lt;code&gt;Error: listen EACCES: permission denied 0.0.</summary>
-      
-    
-    
-    
-    
-    <category term="node" scheme="https://rainmakerho.github.io/tags/node/"/>
-    
-    <category term="listen" scheme="https://rainmakerho.github.io/tags/listen/"/>
-    
-    <category term="EACCES" scheme="https://rainmakerho.github.io/tags/EACCES/"/>
-    
-    <category term="port" scheme="https://rainmakerho.github.io/tags/port/"/>
-    
-    <category term="permission denied" scheme="https://rainmakerho.github.io/tags/permission-denied/"/>
     
   </entry>
   
