@@ -152,6 +152,224 @@
             
   
     <article
+  id="post-Reflected-XSS-All-Clients-Return-String"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/10/14/Reflected-XSS-All-Clients-Return-String/">Function return string 被掃出 Reflected_XSS_All_Clients 問題</a>
+    </h1>
+  
+  <a href="/2021/10/14/Reflected-XSS-All-Clients-Return-String/" class="archive-article-date">
+  	<time datetime="2021-10-14T01:53:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-14</time>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>我們有系統是從 DB 讀取資料放到 DataTable 之中，再透過 JsonConvert.SerializeObject 將字串傳出去，如下，</p> 
+      <p class="article-more-link">
+        <a href="/2021/10/14/Reflected-XSS-All-Clients-Return-String/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">DataTable</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Reflected_XSS_All_Clients</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JsonConvert.SerializeObject</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JsonSerializerSettings</a>
+        		</li>
+      		
+		</ul>
+	</div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+ <aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside> 
+
+  
+    <article
+  id="post-Log-Forging"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/10/08/Log-Forging/">Checkmarx Log_Forging</a>
+    </h1>
+  
+  <a href="/2021/10/08/Log-Forging/" class="archive-article-date">
+  	<time datetime="2021-10-08T03:18:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-08</time>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>當系統有將外部資料(Post or Get or Session … 的值)寫入Log時，<br>就會被 Checkmarx 找出有 Log_Forging 的問題。<br>因為怕該內容裡面放了<strong>換行</strong>符號，<br>導致 Log 被偽造，例如原本使用者登入會寫一個 Log 為<br>login ok rm 或是 login fail rm<br>那如果帳號的內容改成 “admin” + NewLine + “login ok admin”，<br>而 Log 就會變成</p> 
+      <p class="article-more-link">
+        <a href="/2021/10/08/Log-Forging/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Checkmarx</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Log_Forging</a>
+        		</li>
+      		
+		</ul>
+	</div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+ <aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside> 
+
+  
+    <article
+  id="post-HTTP-Response-Splitting"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/10/07/HTTP-Response-Splitting/">Checkmarx HTTP_Response_Splitting</a>
+    </h1>
+  
+  <a href="/2021/10/07/HTTP-Response-Splitting/" class="archive-article-date">
+  	<time datetime="2021-10-07T12:39:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-07</time>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>系統從 QueryString 取得加密過的檔案名稱，透過解密後，<br>要加入到 Response.Headers 裡時，<br>被 Checkmarx 掃出有 HTTP_Response_Splitting 的風險。<br>那怎麼辦呢?</p> 
+      <p class="article-more-link">
+        <a href="/2021/10/07/HTTP-Response-Splitting/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Checkmarx</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTTP_Response_Splitting</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Response.AddHeader</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">VBNET</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">UrlEncode</a>
+        		</li>
+      		
+		</ul>
+	</div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+ <aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside> 
+
+  
+    <article
   id="post-one-date-to-range-sql"
   class="article article-type-post  article-index"
   itemscope
@@ -478,264 +696,6 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">CVE-2021-23413</a>
-        		</li>
-      		
-		</ul>
-	</div>
- 
-  
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
- <aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside> 
-
-  
-    <article
-  id="post-protect-static-files-in-aspx"
-  class="article article-type-post  article-index"
-  itemscope
-  itemprop="blogPost"
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/09/23/protect-static-files-in-aspx/">ASP.NET 中如何保護靜態檔案，例如 XLS, DOC or TXT 等檔案?</a>
-    </h1>
-  
-  <a href="/2021/09/23/protect-static-files-in-aspx/" class="archive-article-date">
-  	<time datetime="2021-09-23T05:37:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-23</time>
-</a> 
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 ASP.NET 中，透過 URL 取得靜態檔案(例如: <a target="_blank" rel="noopener" href="http://rm.com/download/d1.txt">http://rm.com/download/d1.txt</a>) 並不會透過 ASP.NET Handler 去處理，<br>所以當透過 Browser 直接輸入 URL 時，會直接依 IIS 中針對附檔名的設定，選取對應的處理常式(可查看 IIS 中的 <strong>處理常式對應</strong>)來處理，<br>預設是 StaticFile ，所以這些靜態檔案會依 IIS 中 MIME 的設定來決定在 Browser 直接顯示內容，還是下載檔案。<br>那要讓 TXT, XLS 等檔案在透過 URL 下載時，先驗證是否有登入系統才可下載要如何做呢?<br>當然是寫個客製化的 HttpHandler 來處理。<br>但是應用程式在 <strong>傳統模式</strong> or <strong>整合模式</strong> 的設定是不同的。</p> 
-      <p class="article-more-link">
-        <a href="/2021/09/23/protect-static-files-in-aspx/#more"> more &gt;&gt; </a>
-      </p>
-         
-    </div>
-    <div class="article-info article-info-index">
-       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">ASPX</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">VB.NET</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">WebForm</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">IHttpHandler</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Static Files</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">TXT</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">XLS</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">StaticFile</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Classic Mode</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Integrated Mode</a>
-        		</li>
-      		
-		</ul>
-	</div>
- 
-  
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
- <aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside> 
-
-  
-    <article
-  id="post-secure-iis-with-ModSecurity-WAF-Config"
-  class="article article-type-post  article-index"
-  itemscope
-  itemprop="blogPost"
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/09/02/secure-iis-with-ModSecurity-WAF-Config/">如何使用 ModSecurity WAF 來保護 Windows IIS - 設定</a>
-    </h1>
-  
-  <a href="/2021/09/02/secure-iis-with-ModSecurity-WAF-Config/" class="archive-article-date">
-  	<time datetime="2021-09-02T13:20:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-02</time>
-</a> 
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在前一篇<a href="https://rainmakerho.github.io/2021/09/01/secure-iis-with-ModSecurity-WAF/">如何使用 ModSecurity WAF 來保護 Windows IIS - 安裝</a>已將 <strong>ModSecurity</strong> 安裝在 Windows 上，<br>接下來需要再設定目錄及安裝一些 Rules 來偵測防範 SQL Injection、XSS等資安風險。</p> 
-      <p class="article-more-link">
-        <a href="/2021/09/02/secure-iis-with-ModSecurity-WAF-Config/#more"> more &gt;&gt; </a>
-      </p>
-         
-    </div>
-    <div class="article-info article-info-index">
-       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">IIS</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">WAF</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Web Application Firewall</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">ModSecurity</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">UrlScan</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">OWASP ModSecurity Core Rule Set</a>
-        		</li>
-      		
-		</ul>
-	</div>
- 
-  
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
- <aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside> 
-
-  
-    <article
-  id="post-secure-iis-with-ModSecurity-WAF"
-  class="article article-type-post  article-index"
-  itemscope
-  itemprop="blogPost"
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/09/01/secure-iis-with-ModSecurity-WAF/">如何使用 ModSecurity WAF 來保護 Windows IIS - 安裝</a>
-    </h1>
-  
-  <a href="/2021/09/01/secure-iis-with-ModSecurity-WAF/" class="archive-article-date">
-  	<time datetime="2021-09-01T03:27:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-01</time>
-</a> 
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>以前在 IIS 7 時，有使用 UrlScan 這個 WAF 來保護 IIS，但目前 UrlScan 已無法用在 IIS 10 上面。<br>所以可以改使用 <strong>ModSecurity</strong> ，以下介紹如何在 Windows 2019 有 IIS 的 Web Server 上安裝啟用 ModSecurity 。</p> 
-      <p class="article-more-link">
-        <a href="/2021/09/01/secure-iis-with-ModSecurity-WAF/#more"> more &gt;&gt; </a>
-      </p>
-         
-    </div>
-    <div class="article-info article-info-index">
-       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">IIS</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">WAF</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Web Application Firewall</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">ModSecurity</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">UrlScan</a>
         		</li>
       		
 		</ul>
@@ -6021,6 +5981,42 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Empty Name</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">SqlException</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">0x80131904</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">0x80090325</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">此憑證鏈結是由不受信任的授權單位發出的</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Subscription</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">subscription filter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">knex</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Undefined</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Raw.toSQL</a>
               </li>
             
             <div class="clearfix"></div>

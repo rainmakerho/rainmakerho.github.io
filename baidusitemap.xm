@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://rainmakerho.github.io//2023/11/09/azure-cannot-see-subscriptions/</loc>
+    <lastmod>2023-11-09</lastmod>
+  </url>
+  <url>
+    <loc>https://rainmakerho.github.io//2023/11/08/knex-undefined-bindings-detected-for-keys/</loc>
+    <lastmod>2023-11-08</lastmod>
+  </url>
+  <url>
+    <loc>https://rainmakerho.github.io//2023/11/06/sqlexception-80131904-ssl-provider/</loc>
+    <lastmod>2023-11-06</lastmod>
+  </url>
+  <url>
     <loc>https://rainmakerho.github.io//2023/10/23/why-multiple-empty-name-cookies-iis/</loc>
     <lastmod>2023-10-23</lastmod>
   </url>
