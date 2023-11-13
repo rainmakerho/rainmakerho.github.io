@@ -6,7 +6,7 @@
   <link href="https://rainmakerho.github.io/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2023-11-09T05:46:15.959Z</updated>
+  <updated>2023-11-13T07:56:36.990Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>HttpClientFactory.CreateClient 造成 Checkmarx 狂噴 CSRF</title>
+    <link href="https://rainmakerho.github.io/2023/11/13/checkmarx-csrf-httpclientfactory-createclient-false-positive/"/>
+    <id>https://rainmakerho.github.io/2023/11/13/checkmarx-csrf-httpclientfactory-createclient-false-positive/</id>
+    <published>2023-11-13T07:38:41.000Z</published>
+    <updated>2023-11-13T07:56:36.990Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>ASP.NET Core MVC 專案中的 WebAPI Controller 被 Checkmarx V9.4.5.1012 HF24 掃出一堆的 <strong>CSRF</strong> 問題。</p><h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>查看它的 <code>Find_CSRF</code> Rule 中，在過濾掉 <code>Find_CSRF_Sanitize</code> 結果後，<br>又再加入 <code>Find_ASP_MVC_CSRF()</code>。<br>而在 <code>Find_ASP_MVC_CSRF()</code> 中又會去找一些可能跟 DB Update 相關的 Method，如下，</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">CxList dbUpdateMethods = methods.FindByShortNames(<span class="keyword">new</span> List&lt;<span class="built_in">string</span>&gt; &#123;</span><br><span class="line"><span class="string">&quot;SaveChanges&quot;</span>, <span class="string">&quot;SaveChangesAsync&quot;</span>,</span><br><span class="line"><span class="string">&quot;SubmitChanges&quot;</span>, <span class="string">&quot;TryUpdateModel&quot;</span>,</span><br><span class="line"><span class="string">&quot;TryUpdateModelAsync&quot;</span>, <span class="string">&quot;UpdateModel&quot;</span></span><br><span class="line">&#125;, <span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">dbUpdateMethods.Add(methods.FindByShortNames(<span class="keyword">new</span> List&lt;<span class="built_in">string</span>&gt;()&#123;</span><br><span class="line"><span class="string">&quot;Set*&quot;</span>, <span class="string">&quot;Change*&quot;</span>, <span class="string">&quot;Update*&quot;</span>, <span class="string">&quot;Save*&quot;</span>, <span class="string">&quot;Apply*&quot;</span>, <span class="string">&quot;Create*&quot;</span>, <span class="string">&quot;Add*&quot;</span>, <span class="string">&quot;Delete*&quot;</span></span><br><span class="line">&#125;));</span><br><span class="line">dbUpdateMethods.Add(methods.FindByMemberAccess(<span class="string">&quot;UserManager&quot;</span>, <span class="string">&quot;CreateAsync&quot;</span>, <span class="literal">true</span>));</span><br><span class="line">dbUpdateMethods -= All.FindByMemberAccesses(<span class="keyword">new</span> <span class="built_in">string</span>[]&#123;<span class="string">&quot;ModelState.AddModelError&quot;</span>,<span class="string">&quot;List.Add&quot;</span>&#125;);</span><br></pre></td></tr></table></figure><p>詢問同事 Jer 後，有可能是因為 keyword Create 找到了程式中的 <code>HttpClientFactory.CreateClient</code> 所以它就認為它有 <strong>CSRF</strong> 問題。<br>將原本用 <code>HttpClientFactory.CreateClient</code> 改成 <code>new HttpClient()</code> 後，<br>CSRF 的問題果然就不見了。</p><p>這個問題原廠的回覆如下，</p><blockquote><p>After reviewing your case, we can confirm the issue is as you suspected. The engine is assuming that the “CreateClient()” method is a database access because it contains the keyword “create”, which is used to search for CSRF vulnerabilities in the code.</p></blockquote><p>只能等待以色列原廠的修復了。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;ASP.NET Core MVC 專案中的 WebAPI Controller 被 Checkmarx V9.4.5.1012 HF24 掃</summary>
+      
+    
+    
+    
+    
+    <category term="C#" scheme="https://rainmakerho.github.io/tags/C/"/>
+    
+    <category term="Checkmarx" scheme="https://rainmakerho.github.io/tags/Checkmarx/"/>
+    
+    <category term="CSRF" scheme="https://rainmakerho.github.io/tags/CSRF/"/>
+    
+    <category term="HttpClientFactory.CreateClient" scheme="https://rainmakerho.github.io/tags/HttpClientFactory-CreateClient/"/>
+    
+  </entry>
   
   <entry>
     <title>Azure 看不到訂閱(Subscriptions)</title>
@@ -584,36 +612,6 @@
     <category term="Reply" scheme="https://rainmakerho.github.io/tags/Reply/"/>
     
     <category term="Discrod機器人" scheme="https://rainmakerho.github.io/tags/Discrod%E6%A9%9F%E5%99%A8%E4%BA%BA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SQL Server Reporting Services(SSRS) ReportViewer 開啟報表 Hang 住問題</title>
-    <link href="https://rainmakerho.github.io/2023/08/07/ssrs-ie-hang/"/>
-    <id>https://rainmakerho.github.io/2023/08/07/ssrs-ie-hang/</id>
-    <published>2023-08-07T02:02:54.000Z</published>
-    <updated>2023-08-07T03:07:58.659Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近將 SQL Server 從 2008 升級到 2016 ，<br>透過 IE 開啟 Reporting Services(SSRS) 的報表時，<br>有時候會有卡住(Hang)的狀況。<br>正常的狀況下， 開啟(GET) <code>ReportViewer.aspx</code> 後，<br>會再透過 <code>ScriptManager</code>(POST) 將報表給 Load 出來，如下，</p><img src="/2023/08/07/ssrs-ie-hang/01.png" class="" title="normal"><p>有卡住(Hang)的狀況，就是沒有第二次的 <code>POST</code>，所以畫面上就只有 Report 工具列顯示出來。</p><h3 id="解決"><a href="#解決" class="headerlink" title="解決"></a>解決</h3><p>以下為 SSRS 報表在 IE 上 Hang 住的狀況，</p><img src="/2023/08/07/ssrs-ie-hang/02.png" class="" title="normal"><p>看起來網頁似乎沒有 Load 完，<br>但是按下停止 Load (X) 後，<br>報表卻顯示出來了。</p><p>在 <code>ReportViewer.aspx</code> 中覆寫 <code>__doPostBack(eventTarget, eventArgument)</code> 加入 <code>alert</code>，<br>Hang 住的狀況，<code>__doPostBack</code> 並不會被執行到。<br>一直在 IE 上測試，將 URL Copy 到 Chrome 測試看看，<br>結果測試了 30 幾遍，在 Chrome 上並不會有 Hang 住的狀況。</p><p>回到 IE 來看，<code>ReportViewer.aspx</code> 似乎有套用 <strong>相容性</strong>，<br>於是在 <code>ReportViewer.aspx</code> 原始碼中加入<strong>使用最新版本</strong> 的 Header，如下，</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;IE=edge&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure><p>再執行多次，就不會有 Hang 住的狀況了~</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;最近將 SQL Server 從 2008 升級到 2016 ，&lt;br&gt;透過 IE 開啟 Reporting Services(SSRS) </summary>
-      
-    
-    
-    
-    
-    <category term="IE" scheme="https://rainmakerho.github.io/tags/IE/"/>
-    
-    <category term="SSRS" scheme="https://rainmakerho.github.io/tags/SSRS/"/>
-    
-    <category term="ReportViewer" scheme="https://rainmakerho.github.io/tags/ReportViewer/"/>
-    
-    <category term="Hang" scheme="https://rainmakerho.github.io/tags/Hang/"/>
-    
-    <category term="SQL Server Reporting Services" scheme="https://rainmakerho.github.io/tags/SQL-Server-Reporting-Services/"/>
     
   </entry>
   
