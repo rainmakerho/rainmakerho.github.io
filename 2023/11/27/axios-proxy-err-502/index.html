@@ -18,7 +18,7 @@
 <meta property="og:description" content="問題Windows Server 連外要透過 Proxy 時，原本在 Windows 設定中，設定 proxy 。結果我們的 nodejs app 卻沒辦法吃到系統的設定。設定 npm config set https-proxy http:&#x2F;&#x2F;192.168.0.100:808 去跑，也還是會噴 502 的錯誤。在 axios 設定 proxy config ，也還是噴 502 的錯誤。 解法最">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-11-27T03:28:46.000Z">
-<meta property="article:modified_time" content="2023-11-27T03:44:23.512Z">
+<meta property="article:modified_time" content="2023-11-29T09:35:18.766Z">
 <meta property="article:author" content="亂馬客">
 <meta property="article:tag" content="node">
 <meta property="article:tag" content="axios">
@@ -182,6 +182,9 @@
 
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> dotenv <span class="keyword">from</span> <span class="string">&quot;dotenv&quot;</span>;</span><br><span class="line">dotenv.<span class="title function_">config</span>();</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">HttpsProxyAgent</span> &#125; <span class="keyword">from</span> <span class="string">&quot;https-proxy-agent&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> fetch <span class="keyword">from</span> <span class="string">&quot;node-fetch&quot;</span>;</span><br><span class="line"><span class="comment">//http://192.168.0.100:808</span></span><br><span class="line"><span class="keyword">let</span> httpsAgent = <span class="keyword">new</span> <span class="title class_">HttpsProxyAgent</span>(process.<span class="property">env</span>.<span class="property">proxy</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> clientId = process.<span class="property">env</span>.<span class="property">clientId</span>;</span><br><span class="line"><span class="keyword">const</span> clientSecret = process.<span class="property">env</span>.<span class="property">clientSecret</span>;</span><br><span class="line"><span class="keyword">const</span> tenantId = process.<span class="property">env</span>.<span class="property">tenantId</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> url = <span class="string">`https://login.microsoftonline.com/<span class="subst">$&#123;tenantId&#125;</span>/oauth2/v2.0/token`</span>;</span><br><span class="line"><span class="keyword">let</span> formData = <span class="keyword">new</span> <span class="title class_">FormData</span>();</span><br><span class="line">formData.<span class="title function_">append</span>(<span class="string">&quot;client_id&quot;</span>, clientId);</span><br><span class="line">formData.<span class="title function_">append</span>(<span class="string">&quot;scope&quot;</span>, <span class="string">&quot;https://graph.microsoft.com/.default&quot;</span>);</span><br><span class="line">formData.<span class="title function_">append</span>(<span class="string">&quot;client_secret&quot;</span>, clientSecret);</span><br><span class="line">formData.<span class="title function_">append</span>(<span class="string">&quot;grant_type&quot;</span>, <span class="string">&quot;client_credentials&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(</span><br><span class="line">    <span class="string">&quot;============================ Start fetch Testing ============================================&quot;</span></span><br><span class="line">);</span><br><span class="line"><span class="title function_">fetch</span>(url, &#123;</span><br><span class="line">    <span class="attr">method</span>: <span class="string">&quot;POST&quot;</span>,</span><br><span class="line">    <span class="attr">body</span>: formData,</span><br><span class="line">    <span class="attr">agent</span>: httpsAgent,</span><br><span class="line">&#125;)</span><br><span class="line">    .<span class="title function_">then</span>(<span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (!response.<span class="property">ok</span>) &#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;XXXXX ERROR XXXXX&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 解析 JSON 格式的 response body</span></span><br><span class="line">        <span class="keyword">return</span> response.<span class="title function_">json</span>();</span><br><span class="line">    &#125;)</span><br><span class="line">    .<span class="title function_">then</span>(<span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Response from server:&quot;</span>, data);</span><br><span class="line">    &#125;)</span><br><span class="line">    .<span class="title function_">catch</span>(<span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">// 處理錯誤</span></span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&quot;Error:&quot;</span>, error);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
 
+<p>查看 npm 的 proxy 設定可以查看</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm config get proxy</span><br><span class="line">npm config get https-proxy</span><br></pre></td></tr></table></figure>
+
 <h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a target="_blank" rel="noopener" href="https://github.com/axios/axios/issues/2937">Axios proxy is not working.</a><br><a target="_blank" rel="noopener" href="https://github.com/axios/axios/issues/5078">ERR_BAD_RESPONSE 502 when using proxy</a></p>
    
     </div>
@@ -221,6 +224,15 @@
 </article>
  
 <nav id="article-nav">
+  
+    <a href="/2023/11/29/teams-bot-behind-firewall/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          在地端 Firewall 中的 Teams Bot 要如何設定 Egress 及 Ingress?
+        
+      </div>
+    </a>
   
   
     <a href="/2023/11/13/checkmarx-csrf-httpclientfactory-createclient-false-positive/" id="article-nav-older" class="article-nav-link-wrap">
@@ -5576,6 +5588,30 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">httpsAgent</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Firewall</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Ingress</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Egress</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">node-pre-gyp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">OpenAI</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Assistants</a>
               </li>
             
             <div class="clearfix"></div>
