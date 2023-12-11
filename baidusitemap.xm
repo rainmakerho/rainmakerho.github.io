@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://rainmakerho.github.io//2023/12/11/why-openai-assistants-api-no-gpt4/</loc>
+    <lastmod>2023-12-11</lastmod>
+  </url>
+  <url>
+    <loc>https://rainmakerho.github.io//2023/12/11/path-traversal-checkmarx-file/</loc>
+    <lastmod>2023-12-11</lastmod>
+  </url>
+  <url>
     <loc>https://rainmakerho.github.io//2023/11/29/openai-assistant-api/</loc>
-    <lastmod>2023-11-30</lastmod>
+    <lastmod>2023-12-08</lastmod>
+  </url>
+  <url>
+    <loc>https://rainmakerho.github.io//2023/11/27/axios-proxy-err-502/</loc>
+    <lastmod>2023-12-01</lastmod>
   </url>
   <url>
     <loc>https://rainmakerho.github.io//2022/01/13/npm-ERR-sqlite-install/</loc>
     <lastmod>2023-11-30</lastmod>
-  </url>
-  <url>
-    <loc>https://rainmakerho.github.io//2023/11/27/axios-proxy-err-502/</loc>
-    <lastmod>2023-11-29</lastmod>
   </url>
   <url>
     <loc>https://rainmakerho.github.io//2023/11/29/teams-bot-behind-firewall/</loc>
