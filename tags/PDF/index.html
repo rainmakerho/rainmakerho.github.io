@@ -5593,172 +5593,29 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Usage tiers</a>
               </li>
-            
-            <div class="clearfix"></div>
-          </ul>
-        </div>
-        <ul class="search-ul">
-          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
-            3、在根目录_config.yml里添加配置：
-<pre style="font-size: 12px;" q-show="jsonFail">
-  jsonContent:
-    meta: false
-    pages: false
-    posts:
-      title: true
-      date: true
-      path: true
-      text: false
-      raw: false
-      content: false
-      slug: false
-      updated: false
-      comments: false
-      link: false
-      permalink: false
-      excerpt: false
-      categories: false
-      tags: true
-</pre>
-          </p>
-          <li class="search-li" q-repeat="items" q-show="isShow">
-            <a q-attr="href:path" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
-            <p class="search-time">
-              <i class="icon-calendar icon"></i>
-              <span q-text="date|dateformat"></span>
-            </p>
-            <p class="search-tag">
-              <i class="icon-price-tags icon"></i>
-              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
-            </p>
-          </li>
-        </ul>
-    	</section>
-    
-
-    
-    	<section class="tools-section tools-section-friends" q-show="friends">
-  		
-        <ul class="search-ul">
-          
-            <li class="search-li">
-              <a href="https://dotblogs.com.tw/rainmaker" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>亂馬客-點部落</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="https://www.techsmith.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>TechSmith</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="https://www.pluralsight.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>pluralsight</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="https://www.wintellectnow.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>wintellectnow</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://www.gss.com.tw/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>叡揚資訊</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="https://learn.microsoft.com/zh-tw/dotnet/standard/design-guidelines/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>Framework 設計方針</a>
-            </li>
-          
-        </ul>
-  		
-    	</section>
-    
-
-    
-    	<section class="tools-section tools-section-me" q-show="aboutme">
-  	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">大家好，我是亂馬客 Rainmaker，目前任職於叡揚資訊，大家也都叫我 RM 。 平常負責開發公司各產品線的加值、共用的軟體，例如 Azure, OpenAI, Chatbot, Database ... 同時 Support 公司各種技術及資安修改問題。 Blog中的內容也是個人的看法， 如果有需要討論的地方， 可以留言，或是 mail 給我 :) rainmaker_ho@gss.com.tw
-</div>
-  	  	
-    	</section>
-    
-  </div>
-  
-</div>
-    <!-- Root element of PhotoSwipe. Must have class pswp. -->
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
-    <!-- Background of PhotoSwipe. 
-         It's a separate element as animating opacity is faster than rgba(). -->
-    <div class="pswp__bg"></div>
-
-    <!-- Slides wrapper with overflow:hidden. -->
-    <div class="pswp__scroll-wrap">
-
-        <!-- Container that holds slides. 
-            PhotoSwipe keeps only 3 of them in the DOM to save memory.
-            Don't modify these 3 pswp__item elements, data is added later on. -->
-        <div class="pswp__container">
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-        </div>
-
-        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
-        <div class="pswp__ui pswp__ui--hidden">
-
-            <div class="pswp__top-bar">
-
-                <!--  Controls are self-explanatory. Order can be changed. -->
-
-                <div class="pswp__counter"></div>
-
-                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-
-                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
-
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-
-                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
-                <!-- element will get class pswp__preloader--active when preloader is running -->
-                <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                      <div class="pswp__preloader__cut">
-                        <div class="pswp__preloader__donut"></div>
-                      </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip"></div> 
-            </div>
-
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-            </button>
-
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-            </button>
-
-            <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-  </div>
-</body>
-</html>t4</a>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">GUID</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ChatGPT</a>
+                <a href="javascript:void(0)" class="js-tag color1">Short</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Usage tiers</a>
+                <a href="javascript:void(0)" class="js-tag color4">URL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">短網址</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Base62</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Base64UrlEncode</a>
               </li>
             
             <div class="clearfix"></div>
@@ -5917,30 +5774,174 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
 </div>
   </div>
 </body>
-</html>             </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">node-pre-gyp</a>
+</html>/a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">OpenAI</a>
+                <a href="javascript:void(0)" class="js-tag color2">Base62</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Assistants</a>
+                <a href="javascript:void(0)" class="js-tag color1">Base64UrlEncode</a>
               </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">UNABLE_TO_GET_ISSUER_CERT_LOCALLY</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">openai</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">assistants api</a>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            3、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" q-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: false
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" q-repeat="items" q-show="isShow">
+            <a q-attr="href:path" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat"></span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
+            </p>
+          </li>
+        </ul>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends" q-show="friends">
+  		
+        <ul class="search-ul">
+          
+            <li class="search-li">
+              <a href="https://dotblogs.com.tw/rainmaker" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>亂馬客-點部落</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://www.techsmith.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>TechSmith</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://www.pluralsight.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>pluralsight</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://www.wintellectnow.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>wintellectnow</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://www.gss.com.tw/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>叡揚資訊</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://learn.microsoft.com/zh-tw/dotnet/standard/design-guidelines/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>Framework 設計方針</a>
+            </li>
+          
+        </ul>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me" q-show="aboutme">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">大家好，我是亂馬客 Rainmaker，目前任職於叡揚資訊，大家也都叫我 RM 。 平常負責開發公司各產品線的加值、共用的軟體，例如 Azure, OpenAI, Chatbot, Database ... 同時 Support 公司各種技術及資安修改問題。 Blog中的內容也是個人的看法， 如果有需要討論的地方， 可以留言，或是 mail 給我 :) rainmaker_ho@gss.com.tw
+</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>ss="js-tag color5">assistants api</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -5953,6 +5954,30 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Usage tiers</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">GUID</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Short</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">URL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">短網址</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Base62</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Base64UrlEncode</a>
               </li>
             
             <div class="clearfix"></div>
