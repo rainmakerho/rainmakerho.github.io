@@ -6,7 +6,7 @@
   <link href="https://rainmakerho.github.io/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2023-12-18T08:31:46.115Z</updated>
+  <updated>2023-12-21T02:17:33.922Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Azure 設定 OIDC App 額外的 宣告(claim)</title>
+    <link href="https://rainmakerho.github.io/2023/12/21/azure-oidc-add-claims-sso/"/>
+    <id>https://rainmakerho.github.io/2023/12/21/azure-oidc-add-claims-sso/</id>
+    <published>2023-12-21T01:04:27.000Z</published>
+    <updated>2023-12-21T02:17:33.922Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近同仁透過 CAS 接 Azure OIDC ，當同仁登入 Azure 後，Azure 傳給 CAS 的 Claims 只有預設的那些。<br>但是在 Azure User 的屬性中有一個<code>mailnickname</code>，我們想要把這個屬性當作額外的 Claim 傳給 CAS。<br>這樣要怎麼設定呢?</p><h3 id="做法"><a href="#做法" class="headerlink" title="做法"></a>做法</h3><p>一般在設定時，一定會在 Microsoft Entra ID(舊 Azure AD) 中的 <code>App registrations</code> 建立 App(Supported account types 為 <code>Single tenant</code>)，<br>它同時也會在 <code>Enterprise applications</code> 建立該 App。</p><p>1.在 <code>App registrations</code> 中的 App 設定 <strong>Manifest</strong> 中的 <code>acceptMappedClaims</code><br>在 <code>App registrations</code> 中選到建立的 App ，點選 <code>Manifest</code> ，將 <code>acceptMappedClaims</code> 設定為 <code>true</code>。<br><code>accessTokenAcceptedVersion</code> 預設值為 null ，也就是 v1.0 id_tokens 的版本，如果需要 v2.0 ，就將它改成 2。<br>詳細設定請參考: <a href="https://learn.microsoft.com/zh-tw/entra/identity-platform/reference-app-manifest?WT.mc_id=Portal-Microsoft_AAD_RegisteredApps">Microsoft Entra 應用程式資訊清單</a></p><img src="/2023/12/21/azure-oidc-add-claims-sso/01.png" class="" title="Manifest"><p>2.在 <code>Enterprise applications</code> 中的 App 的 <code>Single sing-on</code> 中增加 Claims<br>在 <code>Enterprise applications</code> 中選到建立的 App，點選 <code>Single sing-on</code> 在 <strong>2</strong> <code>Atrributes &amp; Claims</code> 按下 Edit</p><img src="/2023/12/21/azure-oidc-add-claims-sso/02.png" class="" title="Single sing-on"><p>在<code>Atrributes &amp; Claims</code>功能中，按下<code>+ Add new claim</code>，</p><img src="/2023/12/21/azure-oidc-add-claims-sso/03.png" class="" title="Add new claim"><p>填入 <code>name</code> 並選擇 <code>Source attribute</code> 為 <code>user.mailnickname</code> (請依需求調整)，最後按下 <code>Save</code></p><img src="/2023/12/21/azure-oidc-add-claims-sso/04.png" class="" title="Save"><p>設定完成後，在 CAS 那透過 Azrue OIDC 登入後，就可以多取到一個叫 <code>mailnickname</code> 的 Claim 了哦~</p><ul><li>註:如果 CAS 出現 <code>This application is required to be configured with an application-specific signing key. It is either not configured with one, or the key has expired or is not yet valid.</code> 表示沒設定 <strong>Manifest</strong></li></ul><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://learn.microsoft.com/en-us/answers/questions/390941/app-registrations-vs-enterprise-applications-in-az">App Registrations vs Enterprise Applications in Azure AD - Certificate Significance</a><br><a href="https://stackoverflow.com/questions/54071385/difference-between-enterprise-application-and-app-registration-in-azure">Difference between “enterprise application” and “app registration” in Azure</a><br><a href="https://learn.microsoft.com/zh-tw/entra/identity-platform/reference-app-manifest?WT.mc_id=Portal-Microsoft_AAD_RegisteredApps">Microsoft Entra 應用程式資訊清單</a><br><a href="https://stackoverflow.com/questions/73746617/when-using-a-custom-azure-claimsmappingpolicy-cant-sign-in-this-application-is">When using a custom Azure ClaimsMappingPolicy can’t sign in “This application is required to be configured with an application-specific signing key. “</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;最近同仁透過 CAS 接 Azure OIDC ，當同仁登入 Azure 後，Azure 傳給 CAS 的 Claims 只有預設的那些。&lt;</summary>
+      
+    
+    
+    
+    
+    <category term="oidc" scheme="https://rainmakerho.github.io/tags/oidc/"/>
+    
+    <category term="azure" scheme="https://rainmakerho.github.io/tags/azure/"/>
+    
+    <category term="add" scheme="https://rainmakerho.github.io/tags/add/"/>
+    
+    <category term="claims" scheme="https://rainmakerho.github.io/tags/claims/"/>
+    
+    <category term="oauth" scheme="https://rainmakerho.github.io/tags/oauth/"/>
+    
+  </entry>
   
   <entry>
     <title>C# 把字串變短，以 GUID 為例</title>
@@ -598,36 +628,6 @@
     <category term="SK" scheme="https://rainmakerho.github.io/tags/SK/"/>
     
     <category term="Semantic Kernel" scheme="https://rainmakerho.github.io/tags/Semantic-Kernel/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Node 升到 v18 後，執行 Bot Framework Node 版 Bot 時，會出現 TypeError ... Readable</title>
-    <link href="https://rainmakerho.github.io/2023/09/19/node-bot-framework-typeerror-cannot-set-property-closed-restify/"/>
-    <id>https://rainmakerho.github.io/2023/09/19/node-bot-framework-typeerror-cannot-set-property-closed-restify/</id>
-    <published>2023-09-19T08:20:06.000Z</published>
-    <updated>2023-09-19T08:41:46.919Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>目前使用的 Node 版本為 <code>V18.17.1</code> ，透過 <code>yo botbuilder</code> 建立好 Bot 後。<br>執行 <code>npm start</code> 就會噴錯，如下，</p><blockquote><p>Request.prototype.closed &#x3D; function closed() {<br>TypeError: Cannot set property closed of #<Readable> which has only a getter<br>at patch (C:\projects\xbot\node_modules\restify\lib\request.js:848:30)</p></blockquote><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p><code>package.json</code> 中 <code>restify</code> 套件的版本是 <code>~8.5.1</code> ，<br>可以依 <a href="https://github.com/restify/node-restify/issues/1925">TypeError: Cannot set property closed of #<Readable> which has only a getter</a> 方式，先將 <code>restify</code>套件 移除，再安裝最新的 <code>restify</code>套件(<code>^11.1.0</code>)，如下，</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm remove restify</span><br><span class="line">npm i restify</span><br></pre></td></tr></table></figure><p>或是將 package.json 中的 <code>restify</code>套件版本改成 <code>^11.1.0</code>，<br>再執行 <code>npm install</code></p><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://github.com/restify/node-restify/issues/1925">TypeError: Cannot set property closed of #<Readable> which has only a getter</a><br><a href="https://learn.microsoft.com/en-us/azure/bot-service/bot-service-quickstart-create-bot?view=azure-bot-service-4.0&tabs=csharp,vs">Create a bot with the Bot Framework SDK</a></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;目前使用的 Node 版本為 &lt;code&gt;V18.17.1&lt;/code&gt; ，透過 &lt;code&gt;yo botbuilder&lt;/code&gt; 建立</summary>
-      
-    
-    
-    
-    
-    <category term="Node" scheme="https://rainmakerho.github.io/tags/Node/"/>
-    
-    <category term="restify" scheme="https://rainmakerho.github.io/tags/restify/"/>
-    
-    <category term="TypeError" scheme="https://rainmakerho.github.io/tags/TypeError/"/>
-    
-    <category term="Readable" scheme="https://rainmakerho.github.io/tags/Readable/"/>
-    
-    <category term="V18" scheme="https://rainmakerho.github.io/tags/V18/"/>
     
   </entry>
   
