@@ -152,6 +152,100 @@
             
   
     <article
+  id="post-ews-get-room-mailbox"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/05/16/ews-get-room-mailbox/">C# 透過 LDAP 取得 Exchange Server 的 Room Email</a>
+    </h1>
+  
+  <a href="/2023/05/16/ews-get-room-mailbox/" class="archive-article-date">
+  	<time datetime="2023-05-16T07:05:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-05-16</time>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>要如何透過 Exchange Web Service (EWS) 來取得所有的 會議室(Room) 呢?<br>EWS 可取得 RoomList ，可以取得會議室群組，<br>但是各別的 會議室 要怎麼取得呢?<br>Exchange Shell 可以透過 filter 來取得，如下，<br><code>Get-Mailbox -Filter &quot;RecipientTypeDetails -eq &#39;RoomMailbox&#39;&quot;</code><br>或是<br><code>Get-Mailbox | Where &#123;$_.ResourceType -eq &quot;Room&quot;&#125;</code></p> 
+      <p class="article-more-link">
+        <a href="/2023/05/16/ews-get-room-mailbox/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">C#</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">LDAP</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">EWS</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Exchange</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Room</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Exchange Web Service</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">會議室</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Unknown error (0x80005000)</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">無法指出的錯誤</a>
+        		</li>
+      		
+		</ul>
+	</div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+ <aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside> 
+
+  
+    <article
   id="post-uncaught-typeerror-dopostback-is-not-a-function"
   class="article article-type-post  article-index"
   itemscope
@@ -690,72 +784,6 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">minified</a>
-        		</li>
-      		
-		</ul>
-	</div>
- 
-  
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
- <aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside> 
-
-  
-    <article
-  id="post-abp-dto"
-  class="article article-type-post  article-index"
-  itemscope
-  itemprop="blogPost"
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/04/15/abp-dto/">ABP DTOs (Data Transfer Objects)</a>
-    </h1>
-  
-  <a href="/2023/04/15/abp-dto/" class="archive-article-date">
-  	<time datetime="2023-04-15T03:37:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-04-15</time>
-</a> 
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-         <h3 id="DTO"><a href="#DTO" class="headerlink" title="DTO"></a>DTO</h3><p>在 Domain 及 Application 層是使用 Entity,<br>而 Application 層 Presentation 層溝通則會使用 DTO ，<br>跟 presentation 層溝通則會使用 DTO ，<br>所以 DTO 通常有以下幾項特性，</p> 
-      <p class="article-more-link">
-        <a href="/2023/04/15/abp-dto/#more"> more &gt;&gt; </a>
-      </p>
-         
-    </div>
-    <div class="article-info article-info-index">
-       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">DTO</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ABP</a>
         		</li>
       		
 		</ul>
@@ -6253,6 +6281,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Chunks</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Postgres</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">pgvector</a>
               </li>
             
             <div class="clearfix"></div>

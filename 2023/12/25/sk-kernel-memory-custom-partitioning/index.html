@@ -8,11 +8,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests;">
   <link rel="dns-prefetch" href="https://rainmakerho.github.io">
-  <title>SK-Kernel Memory (KM) 設定內容切段的 Tokens 數 | 亂馬客</title>
+  <title>Semantic Kernel(SK) - Kernel Memory (KM) 設定內容切段的 Tokens 數 | 亂馬客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="前言在前幾篇文章中，從直接使用 MemoryServerless 到將 Kernel Memory 啟動為 Service ，並以 MemoryWebClient 去操作它。接下來我們將 Embedding DB 改存到 Qdrant 並透過 TextPartitioningOptions 來設定切 Chunks 的 Token 數 實作使用 Qdrant您可以透過 Docker 來啟動 Qdra">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SK-Kernel Memory (KM) 設定內容切段的 Tokens 數">
+<meta property="og:title" content="Semantic Kernel(SK) - Kernel Memory (KM) 設定內容切段的 Tokens 數">
 <meta property="og:url" content="https://rainmakerho.github.io/2023/12/25/sk-kernel-memory-custom-partitioning/index.html">
 <meta property="og:site_name" content="亂馬客">
 <meta property="og:description" content="前言在前幾篇文章中，從直接使用 MemoryServerless 到將 Kernel Memory 啟動為 Service ，並以 MemoryWebClient 去操作它。接下來我們將 Embedding DB 改存到 Qdrant 並透過 TextPartitioningOptions 來設定切 Chunks 的 Token 數 實作使用 Qdrant您可以透過 Docker 來啟動 Qdra">
@@ -21,7 +21,7 @@
 <meta property="og:image" content="https://rainmakerho.github.io/2023/12/25/sk-kernel-memory-custom-partitioning/02.png">
 <meta property="og:image" content="https://rainmakerho.github.io/2023/12/25/sk-kernel-memory-custom-partitioning/03.png">
 <meta property="article:published_time" content="2023-12-25T05:03:18.000Z">
-<meta property="article:modified_time" content="2023-12-25T07:19:42.477Z">
+<meta property="article:modified_time" content="2023-12-26T03:40:41.242Z">
 <meta property="article:author" content="亂馬客">
 <meta property="article:tag" content="Semantic Kernel">
 <meta property="article:tag" content="Kernel Memory">
@@ -174,7 +174,7 @@
       
   
     <h1 class="article-title" itemprop="name">
-      SK-Kernel Memory (KM) 設定內容切段的 Tokens 數
+      Semantic Kernel(SK) - Kernel Memory (KM) 設定內容切段的 Tokens 數
     </h1>
   
   <a href="/2023/12/25/sk-kernel-memory-custom-partitioning/" class="archive-article-date">
@@ -198,7 +198,7 @@
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">readonly</span> <span class="built_in">int</span> _maxTokensPerParagraph = <span class="number">1000</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">readonly</span> <span class="built_in">int</span> _maxTokensPerLine = <span class="number">300</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">readonly</span> <span class="built_in">int</span> _overlappingTokens = <span class="number">100</span>;</span><br></pre></td></tr></table></figure>
 
 <p>以上改成每段最大的 Token 數為 800，每行最多的 Token 數為 150，Overlapping 的 Token 為 50。<br><code>Constants.DefaultPipeline</code> 就是預設會進行處理的 Tasks ，分別是 extract,partition,gen_embeddings 及 save_records</p>
-<p>3.extract,partition,gen_embeddings,save_records<br>接下來將上傳檔案，讀取內容，依<code>TextPartitioningOptions</code>設定切，<br>透過 OpenAI 建立內容 embedding ，存到 Qdrant 並設定 index 為 <strong>tooth</strong>。</p>
+<p>3.extract,partition,gen_embeddings,save_records<br>接下來將上傳檔案，讀取內容，依<code>TextPartitioningOptions</code>設定切Chunk的大小，<br>透過 OpenAI 建立內容 embedding ，存到 Qdrant 並設定 index 為 <strong>tooth</strong>。</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> id = <span class="string">&quot;tooth&quot;</span>;</span><br><span class="line"><span class="keyword">await</span> memory.ImportDocumentAsync(<span class="keyword">new</span> Document(id)</span><br><span class="line">    .AddFiles(<span class="keyword">new</span> [] &#123;<span class="string">@&quot;C:\OpenAI\docs\tooth\qa.docx&quot;</span></span><br><span class="line">     ,<span class="string">@&quot;C:\OpenAI\docs\tooth\stdtable.docx&quot;</span></span><br><span class="line">     , <span class="string">@&quot;C:\OpenAI\docs\tooth\terms.docx&quot;</span>&#125;)</span><br><span class="line">    .AddTag(<span class="string">&quot;type&quot;</span>,<span class="string">&quot;tooth&quot;</span>)</span><br><span class="line">    , index:id);</span><br></pre></td></tr></table></figure>
 
 <p>所以在 Qdrant 上可以看到這次建立的 <strong>tooth</strong> index。</p>
@@ -208,9 +208,12 @@
 <img src="/2023/12/25/sk-kernel-memory-custom-partitioning/02.png" class="" title="Qdrant index">
 
 <p>4.將使用者問題轉成 Embeddings 到 Qdrant <strong>tooth</strong> index 進行搜尋，並將相關內容透過 OpenAI 進行 Summary</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> answer = <span class="keyword">await</span> memory.AskAsync(<span class="string">&quot;請問洗牙有什麼規定?&quot;</span>, index:id);</span><br><span class="line">Console.WriteLine(<span class="string">$&quot;\nAnswer: <span class="subst">&#123;answer.Result&#125;</span>&quot;</span>);</span><br><span class="line">Console.WriteLine(<span class="string">$&quot; ====== 參考資訊 ======&quot;</span>);</span><br><span class="line"><span class="keyword">foreach</span> (<span class="keyword">var</span> x <span class="keyword">in</span> a.RelevantSources)</span><br><span class="line">&#123;</span><br><span class="line">    Console.WriteLine(x.SourceUrl != <span class="literal">null</span></span><br><span class="line">        ? <span class="string">$&quot;  - <span class="subst">&#123;x.SourceUrl&#125;</span> [<span class="subst">&#123;x.Partitions.First().LastUpdate:D&#125;</span>]&quot;</span></span><br><span class="line">        : <span class="string">$&quot;  - <span class="subst">&#123;x.SourceName&#125;</span>  - <span class="subst">&#123;x.Link&#125;</span> [<span class="subst">&#123;x.Partitions.First().LastUpdate:D&#125;</span>]&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> answer = <span class="keyword">await</span> memory.AskAsync(<span class="string">&quot;請問洗牙有什麼規定?&quot;</span>, index:id);</span><br><span class="line">Console.WriteLine(<span class="string">$&quot;\nAnswer: <span class="subst">&#123;answer.Result&#125;</span>&quot;</span>);</span><br><span class="line">Console.WriteLine(<span class="string">$&quot; ====== 參考資訊 ======&quot;</span>);</span><br><span class="line"><span class="keyword">foreach</span> (<span class="keyword">var</span> x <span class="keyword">in</span> answer.RelevantSources)</span><br><span class="line">&#123;</span><br><span class="line">    Console.WriteLine(x.SourceUrl != <span class="literal">null</span></span><br><span class="line">        ? <span class="string">$&quot;  - <span class="subst">&#123;x.SourceUrl&#125;</span> [<span class="subst">&#123;x.Partitions.First().LastUpdate:D&#125;</span>]&quot;</span></span><br><span class="line">        : <span class="string">$&quot;  - <span class="subst">&#123;x.SourceName&#125;</span>  - <span class="subst">&#123;x.Link&#125;</span> [<span class="subst">&#123;x.Partitions.First().LastUpdate:D&#125;</span>]&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <img src="/2023/12/25/sk-kernel-memory-custom-partitioning/03.png" class="" title="Answer">
+
+<p>5.刪除 index ，<br>最後如果不想再用這個 index ，可以刪除它</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">await</span> memory.DeleteIndexAsync(id);</span><br></pre></td></tr></table></figure>
 
 <h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://rainmakerho.github.io/2023/12/22/sk-kernel-memory/">SK-Kernel Memory (KM) 初探</a><br><a href="https://rainmakerho.github.io/2023/12/22/sk-kernel-memory-service-memorywebclient/">SK-Kernel Memory (KM) Service 與 MemoryWebClient</a></p>
    
@@ -264,9 +267,18 @@
  
 <nav id="article-nav">
   
+    <a href="/2023/12/26/sk-kernel-memory-postgresql/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Semantic Kernel(SK) - Kernel Memory (KM) 使用 Postgres 當 Vector DB
+        
+      </div>
+    </a>
+  
   
     <a href="/2023/12/22/sk-kernel-memory-service-memorywebclient/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">SK-Kernel Memory (KM) Service 與 MemoryWebClient</div>
+      <div class="article-nav-title">Semantic Kernel(SK) - Kernel Memory (KM) Service 與 MemoryWebClient</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -5774,6 +5786,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Chunks</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Postgres</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">pgvector</a>
               </li>
             
             <div class="clearfix"></div>
