@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://rainmakerho.github.io//2023/12/28/vs-CS8652/</loc>
+    <lastmod>2023-12-28</lastmod>
+  </url>
+  <url>
     <loc>https://rainmakerho.github.io//2023/12/22/sk-kernel-memory/</loc>
     <lastmod>2023-12-26</lastmod>
   </url>

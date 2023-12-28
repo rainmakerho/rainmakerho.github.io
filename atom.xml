@@ -6,7 +6,7 @@
   <link href="https://rainmakerho.github.io/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2023-12-26T03:25:03.826Z</updated>
+  <updated>2023-12-28T04:02:07.584Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CS8652 功能 &#39;collection literals&#39; 目前處理預覽階段，且*不受支援*。若要使用預覽功能，請使用「預覽語言」版本。</title>
+    <link href="https://rainmakerho.github.io/2023/12/28/vs-CS8652/"/>
+    <id>https://rainmakerho.github.io/2023/12/28/vs-CS8652/</id>
+    <published>2023-12-28T03:47:39.000Z</published>
+    <updated>2023-12-28T04:02:07.584Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>原本使用 Visual Studio Code 建置並沒有錯誤，<br>改用 Visual Studio 2022 開始後，<br>在錯誤清單中出現了 <strong>CS8652</strong> <code>CS8652 功能 &#39;collection literals&#39; 目前處理預覽階段，且*不受支援*。若要使用預覽功能，請使用「預覽語言」版本。</code> 錯誤要如何解決呢?</p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>那就是要設定<strong>使用「預覽語言」版本</strong>，<br>開啟編輯專案內容(.csproj)，<br>在<code>PropertyGroup</code>中加入<code>LangVersion</code>的設定(<code>&lt;LangVersion&gt;preview&lt;/LangVersion&gt;</code>)，如下，</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Project</span> <span class="attr">Sdk</span>=<span class="string">&quot;Microsoft.NET.Sdk&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">PropertyGroup</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">OutputType</span>&gt;</span>Exe<span class="tag">&lt;/<span class="name">OutputType</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">TargetFramework</span>&gt;</span>net8.0<span class="tag">&lt;/<span class="name">TargetFramework</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ImplicitUsings</span>&gt;</span>enable<span class="tag">&lt;/<span class="name">ImplicitUsings</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Nullable</span>&gt;</span>enable<span class="tag">&lt;/<span class="name">Nullable</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">LangVersion</span>&gt;</span>preview<span class="tag">&lt;/<span class="name">LangVersion</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">PropertyGroup</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">ItemGroup</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">PackageReference</span> <span class="attr">Include</span>=<span class="string">&quot;Microsoft.Extensions.Logging&quot;</span> <span class="attr">Version</span>=<span class="string">&quot;8.0.0&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">PackageReference</span> <span class="attr">Include</span>=<span class="string">&quot;Microsoft.Extensions.Logging.Console&quot;</span> <span class="attr">Version</span>=<span class="string">&quot;8.0.0&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">PackageReference</span> <span class="attr">Include</span>=<span class="string">&quot;Microsoft.Extensions.Logging.Debug&quot;</span> <span class="attr">Version</span>=<span class="string">&quot;8.0.0&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ItemGroup</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">Project</span>&gt;</span></span><br></pre></td></tr></table></figure><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://learn.microsoft.com/zh-tw/dotnet/csharp/language-reference/configure-language-version">C# 語言版本控制</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;原本使用 Visual Studio Code 建置並沒有錯誤，&lt;br&gt;改用 Visual Studio 2022 開始後，&lt;br&gt;在錯誤清</summary>
+      
+    
+    
+    
+    
+    <category term="Visual Studio" scheme="https://rainmakerho.github.io/tags/Visual-Studio/"/>
+    
+    <category term="CS8652" scheme="https://rainmakerho.github.io/tags/CS8652/"/>
+    
+  </entry>
   
   <entry>
     <title>Semantic Kernel(SK) - Kernel Memory (KM) 使用 Postgres 當 Vector DB</title>
@@ -603,34 +627,6 @@
     <category term="DisableStrictNameChecking" scheme="https://rainmakerho.github.io/tags/DisableStrictNameChecking/"/>
     
     <category term="BackConnectionHostNames" scheme="https://rainmakerho.github.io/tags/BackConnectionHostNames/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>別忽略 CS1988 非同步方法缺少 &#39;await&#39; 運算子 的警告</title>
-    <link href="https://rainmakerho.github.io/2023/10/06/cs1998-missing-await/"/>
-    <id>https://rainmakerho.github.io/2023/10/06/cs1998-missing-await/</id>
-    <published>2023-10-06T09:01:58.000Z</published>
-    <updated>2023-10-06T09:18:36.043Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近同事透過 K6 進行 WebAPI 壓測時，<br>發現當 Thread 數多時，就會出奇怪的錯誤，<br>例如 在 進入 Middlewares 中取好資料到 UserRols 中，<br>然後在 Controller 中判斷是否存在某個角色時 <code>UserRols.Any(ur =&gt; ur.Code == &quot;Admin&quot;)</code> ，<br>本應有資料的，卻變成沒有資料。</p><h3 id="研究"><a href="#研究" class="headerlink" title="研究"></a>研究</h3><p>原本懷疑是不是有 <code>static</code> 物件互相干擾，但沒找到。<br>現來發現有一段程式碼下面有蚯蚓符號的警告，<br>看了那個 Function 是 <code>async</code>，<br>但呼叫的地方卻沒有加上 <code>await</code> ，<br>於是將 <code>await</code> 加上去，再測試一次，就沒出現錯誤了。</p><p>有時使用 VS.NET 開發時，<br>都只專注在 <code>錯誤</code> 卻忽略了 <code>警告</code>，<br>尤其是 <code>CS1988</code> 少加上 <code>await</code> 的這個警告，<br>更有可能會造成系統在多人操作時，產生非預期的錯誤。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;最近同事透過 K6 進行 WebAPI 壓測時，&lt;br&gt;發現當 Thread 數多時，就會出奇怪的錯誤，&lt;br&gt;例如 在 進入 Middle</summary>
-      
-    
-    
-    
-    
-    <category term=".NET" scheme="https://rainmakerho.github.io/tags/NET/"/>
-    
-    <category term="CS1988" scheme="https://rainmakerho.github.io/tags/CS1988/"/>
-    
-    <category term="await" scheme="https://rainmakerho.github.io/tags/await/"/>
-    
-    <category term="async" scheme="https://rainmakerho.github.io/tags/async/"/>
     
   </entry>
   
