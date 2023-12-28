@@ -10,15 +10,15 @@
   <link rel="dns-prefetch" href="https://rainmakerho.github.io">
   <title>CS8652 功能 &#39;collection literals&#39; 目前處理預覽階段，且*不受支援*。若要使用預覽功能，請使用「預覽語言」版本。 | 亂馬客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="問題原本使用 Visual Studio Code 建置並沒有錯誤，改用 Visual Studio 2022 開始後，在錯誤清單中出現了 CS8652 CS8652 功能 &#39;collection literals&#39; 目前處理預覽階段，且*不受支援*。若要使用預覽功能，請使用「預覽語言」版本。 錯誤要如何解決呢? 解法那就是要設定使用「預覽語言」版本，開啟編輯專案內容(.cspro">
+  <meta name="description" content="問題原本使用 Visual Studio Code 建置並沒有錯誤，改用 Visual Studio 2022 開始後，在錯誤清單中出現了 CS8652 CS8652 功能 &#39;collection literals&#39; 目前處理預覽階段，且*不受支援*。若要使用預覽功能，請使用「預覽語言」版本。 錯誤要如何解決呢? 解法那就是要設定使用「預覽語言」版本，開啟專案檔(.csproj)，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CS8652 功能 &#39;collection literals&#39; 目前處理預覽階段，且*不受支援*。若要使用預覽功能，請使用「預覽語言」版本。">
 <meta property="og:url" content="https://rainmakerho.github.io/2023/12/28/vs-CS8652/index.html">
 <meta property="og:site_name" content="亂馬客">
-<meta property="og:description" content="問題原本使用 Visual Studio Code 建置並沒有錯誤，改用 Visual Studio 2022 開始後，在錯誤清單中出現了 CS8652 CS8652 功能 &#39;collection literals&#39; 目前處理預覽階段，且*不受支援*。若要使用預覽功能，請使用「預覽語言」版本。 錯誤要如何解決呢? 解法那就是要設定使用「預覽語言」版本，開啟編輯專案內容(.cspro">
+<meta property="og:description" content="問題原本使用 Visual Studio Code 建置並沒有錯誤，改用 Visual Studio 2022 開始後，在錯誤清單中出現了 CS8652 CS8652 功能 &#39;collection literals&#39; 目前處理預覽階段，且*不受支援*。若要使用預覽功能，請使用「預覽語言」版本。 錯誤要如何解決呢? 解法那就是要設定使用「預覽語言」版本，開啟專案檔(.csproj)，">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-12-28T03:47:39.000Z">
-<meta property="article:modified_time" content="2023-12-28T04:02:07.584Z">
+<meta property="article:modified_time" content="2023-12-28T09:29:32.375Z">
 <meta property="article:author" content="亂馬客">
 <meta property="article:tag" content="Visual Studio">
 <meta property="article:tag" content="CS8652">
@@ -174,7 +174,7 @@
     
     <div class="article-entry" itemprop="articleBody">
          <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>原本使用 Visual Studio Code 建置並沒有錯誤，<br>改用 Visual Studio 2022 開始後，<br>在錯誤清單中出現了 <strong>CS8652</strong> <code>CS8652 功能 &#39;collection literals&#39; 目前處理預覽階段，且*不受支援*。若要使用預覽功能，請使用「預覽語言」版本。</code> 錯誤要如何解決呢?</p>
-<h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>那就是要設定<strong>使用「預覽語言」版本</strong>，<br>開啟編輯專案內容(.csproj)，<br>在<code>PropertyGroup</code>中加入<code>LangVersion</code>的設定(<code>&lt;LangVersion&gt;preview&lt;/LangVersion&gt;</code>)，如下，</p>
+<h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>那就是要設定<strong>使用「預覽語言」版本</strong>，<br>開啟專案檔(.csproj)，<br>在<code>PropertyGroup</code>中加入<code>LangVersion</code>的設定(<code>&lt;LangVersion&gt;preview&lt;/LangVersion&gt;</code>)，如下，</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Project</span> <span class="attr">Sdk</span>=<span class="string">&quot;Microsoft.NET.Sdk&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">PropertyGroup</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">OutputType</span>&gt;</span>Exe<span class="tag">&lt;/<span class="name">OutputType</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">TargetFramework</span>&gt;</span>net8.0<span class="tag">&lt;/<span class="name">TargetFramework</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ImplicitUsings</span>&gt;</span>enable<span class="tag">&lt;/<span class="name">ImplicitUsings</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Nullable</span>&gt;</span>enable<span class="tag">&lt;/<span class="name">Nullable</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">LangVersion</span>&gt;</span>preview<span class="tag">&lt;/<span class="name">LangVersion</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">PropertyGroup</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">ItemGroup</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">PackageReference</span> <span class="attr">Include</span>=<span class="string">&quot;Microsoft.Extensions.Logging&quot;</span> <span class="attr">Version</span>=<span class="string">&quot;8.0.0&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">PackageReference</span> <span class="attr">Include</span>=<span class="string">&quot;Microsoft.Extensions.Logging.Console&quot;</span> <span class="attr">Version</span>=<span class="string">&quot;8.0.0&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">PackageReference</span> <span class="attr">Include</span>=<span class="string">&quot;Microsoft.Extensions.Logging.Debug&quot;</span> <span class="attr">Version</span>=<span class="string">&quot;8.0.0&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ItemGroup</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">Project</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-tw/dotnet/csharp/language-reference/configure-language-version">C# 語言版本控制</a></p>
@@ -204,6 +204,15 @@
 </article>
  
 <nav id="article-nav">
+  
+    <a href="/2023/12/28/vs-copy-folder-to-output-directory/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          dotnet 專案如何設定將某目錄建置時 Copy 到輸出目錄呢?
+        
+      </div>
+    </a>
   
   
     <a href="/2023/12/26/sk-kernel-memory-postgresql/" id="article-nav-older" class="article-nav-link-wrap">
@@ -5727,6 +5736,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">CS8652</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">copy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">folder</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">output</a>
               </li>
             
             <div class="clearfix"></div>
