@@ -21,8 +21,9 @@
 <meta property="og:image" content="https://rainmakerho.github.io/2024/01/04/sk-agent/02.png">
 <meta property="og:image" content="https://rainmakerho.github.io/2024/01/04/sk-agent/03.png">
 <meta property="og:image" content="https://rainmakerho.github.io/2024/01/04/sk-agent/04.png">
+<meta property="og:image" content="https://rainmakerho.github.io/2024/01/04/sk-agent/05.png">
 <meta property="article:published_time" content="2024-01-04T03:11:19.000Z">
-<meta property="article:modified_time" content="2024-01-04T07:32:10.342Z">
+<meta property="article:modified_time" content="2024-01-04T08:37:23.442Z">
 <meta property="article:author" content="亂馬客">
 <meta property="article:tag" content="Plugins">
 <meta property="article:tag" content="Semantic Kernel">
@@ -204,7 +205,10 @@
 <p>所以最後 Agent 就會回，已請假完成等 Summary 的資訊，如下，</p>
 <img src="/2024/01/04/sk-agent/04.png" class="" title="請假完成">
 
-<p>以往我們通常會先將使用者的要求，找出它的意圖，及相關資訊，不足地方則程式控制來詢問使用者，<br>例如使用者只說我要請假，那程式則將必填的欄位透過程式一個一個詢問使用者。<br><code>ChatCompletionService</code>是透過語義的方式<strong>自動</strong>尋找可完成的<code>Planner</code>並搭配許多<code>Plugins</code>來完成使用者的要求，<br>如果使用者給的訊息，缺少 Function 需要的參數，則是由 Agent 自動詢問使用者取得來完成工作。</p>
+<p>另一個範例，</p>
+<img src="/2024/01/04/sk-agent/05.png" class="" title="請病假">
+
+<p>以往我們通常會先將使用者的要求，找出它的意圖，及相關資訊，不足地方則程式控制來詢問使用者，<br>例如使用者只說我要請假，那程式則將必填的欄位透過程式一個一個詢問使用者。<br><code>ChatCompletionService</code>是透過語義的方式<strong>自動</strong>尋找可完成的<code>Planner</code>並搭配許多<code>Plugins</code>來完成使用者的要求，<br>如果使用者給的訊息，缺少 Function 需要的參數，則是由 Agent 自動詢問使用者取得來完成工作。<br>雖然這種方式很方便，但是透過 GPT 來整理相關的訊息會花費較長時間，<br>因為它將要將目前的<code>ChatHistory</code>做整理。</p>
 <h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/semantic-kernel/agents/">What is an agent?</a><br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/semantic-kernel/agents/plugins/">plugins</a><br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/semantic-kernel/agents/planners/">planners</a></p>
 <blockquote>
 <p>一人計，不如百人算:集合外數人的意見，可成客觀而有系統的結論(三個臭皮匠，湊個諸葛亮)。</p>
