@@ -6,7 +6,7 @@
   <link href="https://rainmakerho.github.io/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2024-01-05T06:20:50.518Z</updated>
+  <updated>2024-01-05T09:11:03.264Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>DevExpress XtraReport 報表列印或匯出 PDF ，中文字都變空白(不見了)</title>
+    <link href="https://rainmakerho.github.io/2024/01/05/devexpress-report-pdf-not-display-chinese-characters/"/>
+    <id>https://rainmakerho.github.io/2024/01/05/devexpress-report-pdf-not-display-chinese-characters/</id>
+    <published>2024-01-05T08:37:05.000Z</published>
+    <updated>2024-01-05T09:11:03.264Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>ASP.NET 程式在預覽 DevExpress 報表後，列印或匯出 PDF 後，中文字全不見了。<br>為什麼中文字都不見了呢? 是因為英文作業系統的關係嗎? 可是 <code>標楷體</code> 有安裝了呀~</p><blockquote><p>環境</p></blockquote><p>作業系統: <strong>英文版 Windows</strong><br>程式: IIS, ASP.NET<br>報表: <strong>DevExpress 報表字型都是設定為 <code>標楷體</code></strong><br>字型: <strong>標楷體</strong>(有將標楷體安裝進 %windir%&#x2F;fonts 目錄)</p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>查看 <a href="https://supportcenter.devexpress.com/ticket/details/t1195725/reporting-in-net-core-not-supporting-chinese-characters">Reporting in .net core not supporting chinese characters</a> 是說 DevExpress 要將報表轉成 PDF 時，需要去找到它的字型，<br>如果找不到，那就不會把字畫出來，自然就看不見了。<br>同事在安裝字型後，也有重新開機過。</p><p>本來以為是因為 IIS Application Pool 的 <code>載入使用者設定檔</code> 沒有設定成 <strong>true</strong> ，<br>但同事查了一下是有設 true 的。</p><p>後來同事在OS中建立一個新的帳號，並在 Application Pool 設定那個 帳號 去執行，<br>報表列印或匯出 PDF ，中文字就可以正常呈現了。</p><p>猜想有可能是 Application Pool 帳號沒權限讀到 <code>%windir%/fonts 目錄</code>。<br>或許可以試著在 <code>%windir%/fonts 目錄</code> 設定給 Application Pool 帳號讀的權限，<br>試看看是否一樣有效。</p><p>以上最後的解法，感謝同事 Eric 及 Jenny 的分享</p><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://supportcenter.devexpress.com/ticket/details/t1195725/reporting-in-net-core-not-supporting-chinese-characters">Reporting in .net core not supporting chinese characters</a><br><a href="https://supportcenter.devexpress.com/ticket/details/t621865/how-to-solve-the-problem-of-missing-chinese-character-when-exporting-report-to-pdf">How to solve the problem of missing Chinese character when exporting report to PDF</a><br><a href="https://www.thedummyprogrammer.com/asp-net/configure-access-permission-to-a-folder-for-an-iis-application-pool">Configure access permission to a folder for an IIS Application pool</a></p><blockquote><p>一人不喝酒、二人不賭錢 : 志趣相同，嗜好相同，大家便會聚集在一起的。</p></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;ASP.NET 程式在預覽 DevExpress 報表後，列印或匯出 PDF 後，中文字全不見了。&lt;br&gt;為什麼中文字都不見了呢? 是因為英</summary>
+      
+    
+    
+    
+    
+    <category term="標楷體" scheme="https://rainmakerho.github.io/tags/%E6%A8%99%E6%A5%B7%E9%AB%94/"/>
+    
+    <category term="Font" scheme="https://rainmakerho.github.io/tags/Font/"/>
+    
+    <category term="DevExpress" scheme="https://rainmakerho.github.io/tags/DevExpress/"/>
+    
+    <category term="XtraReport" scheme="https://rainmakerho.github.io/tags/XtraReport/"/>
+    
+    <category term="Empty" scheme="https://rainmakerho.github.io/tags/Empty/"/>
+    
+    <category term="IIS Application pool" scheme="https://rainmakerho.github.io/tags/IIS-Application-pool/"/>
+    
+  </entry>
   
   <entry>
     <title>Semantic Kernel(SK) 如何建立智慧助理(Agent)</title>
@@ -607,34 +639,6 @@
     <category term="Subscription" scheme="https://rainmakerho.github.io/tags/Subscription/"/>
     
     <category term="subscription filter" scheme="https://rainmakerho.github.io/tags/subscription-filter/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>knex Error Undefined binding(s) detected for keys when compiling RAW query</title>
-    <link href="https://rainmakerho.github.io/2023/11/08/knex-undefined-bindings-detected-for-keys/"/>
-    <id>https://rainmakerho.github.io/2023/11/08/knex-undefined-bindings-detected-for-keys/</id>
-    <published>2023-11-08T07:01:06.000Z</published>
-    <updated>2023-11-08T07:12:04.991Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近程式透過 <code>knex.raw(...).toQuery</code> 時，發生 <code>Undefined binding(s) detected for keys</code> 的錯誤，詳細如下，</p><blockquote><p>Error: Undefined binding(s) detected for keys [GroupOrRoomId] when compiling RAW query: (?,:GroupOrRoomId,?)at Raw.toSQL</p></blockquote><p>程式碼如下，</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> value = knex</span><br><span class="line">    .<span class="title function_">raw</span>(</span><br><span class="line">        <span class="string">`(</span></span><br><span class="line"><span class="string">                :Id, </span></span><br><span class="line"><span class="string">                :GroupOrRoomId, </span></span><br><span class="line"><span class="string">                :Data</span></span><br><span class="line"><span class="string">                )`</span>,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="title class_">Id</span>: data.<span class="property">id</span>,</span><br><span class="line">            <span class="title class_">GroupOrRoomId</span>: data.<span class="property">groupOrRoomId</span>,</span><br><span class="line">            <span class="title class_">Data</span>: data.<span class="property">data</span>,</span><br><span class="line">        &#125;</span><br><span class="line">    )</span><br><span class="line">    .<span class="title function_">toQuery</span>();</span><br></pre></td></tr></table></figure><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>錯誤有將 Key 指出來，就是 <code>GroupOrRoomId</code> 對應的物件為 <code>Undefined</code> 。<br>所以就針對 <code>data.groupOrRoomId</code> 檢查它的值為 <code>undefined</code> 是否合理，<br>或是允許它為空字串，就可以加上保護程式，如下，</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(!data.<span class="property">groupOrRoomId</span>) data.<span class="property">groupOrRoomId</span>=<span class="string">&#x27;&#x27;</span>;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;最近程式透過 &lt;code&gt;knex.raw(...).toQuery&lt;/code&gt; 時，發生 &lt;code&gt;Undefined binding</summary>
-      
-    
-    
-    
-    
-    <category term="node" scheme="https://rainmakerho.github.io/tags/node/"/>
-    
-    <category term="knex" scheme="https://rainmakerho.github.io/tags/knex/"/>
-    
-    <category term="Undefined" scheme="https://rainmakerho.github.io/tags/Undefined/"/>
-    
-    <category term="Raw.toSQL" scheme="https://rainmakerho.github.io/tags/Raw-toSQL/"/>
     
   </entry>
   
