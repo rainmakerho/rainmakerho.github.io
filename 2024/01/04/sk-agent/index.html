@@ -8,14 +8,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests;">
   <link rel="dns-prefetch" href="https://rainmakerho.github.io">
-  <title>Semantic Kernel(SK) 如何使用 Semantic Kernel 建立智慧助理(Agent) | 亂馬客</title>
+  <title>Semantic Kernel(SK) 如何建立智慧助理(Agent) | 亂馬客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言智慧助理(Agent)是一種能夠回答問題和自動化流程的人工智慧。使用 Semantic Kernel，讓我們可以輕易地建立智慧助理，而不需要您是一個 AI 專家。Agent 在 由 Semantic Kernel 中，由plugins, planners 及 persona(角色&#x2F;人設) 三個核心組件組成。這些組件是讓 Agent 能夠從使用者或其他系統獲取資訊，規劃如何使用資訊，並">
+  <meta name="description" content="前言之前，做 ChatBot 時，收到使用者輸入，會先判斷它的意圖，然後判斷要完成該意圖缺多少的內容，再一一地詢問使用者。現在，透過 Semantic Kernel(SK)，這些不足的資訊，可以透過ChatCompletionService來幫我們。以下就來看看要如何做到呢? Agent 在 由 Semantic Kernel 中，由plugins, planners 及 persona(角色&amp;#">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Semantic Kernel(SK) 如何使用 Semantic Kernel 建立智慧助理(Agent)">
+<meta property="og:title" content="Semantic Kernel(SK) 如何建立智慧助理(Agent)">
 <meta property="og:url" content="https://rainmakerho.github.io/2024/01/04/sk-agent/index.html">
 <meta property="og:site_name" content="亂馬客">
-<meta property="og:description" content="前言智慧助理(Agent)是一種能夠回答問題和自動化流程的人工智慧。使用 Semantic Kernel，讓我們可以輕易地建立智慧助理，而不需要您是一個 AI 專家。Agent 在 由 Semantic Kernel 中，由plugins, planners 及 persona(角色&#x2F;人設) 三個核心組件組成。這些組件是讓 Agent 能夠從使用者或其他系統獲取資訊，規劃如何使用資訊，並">
+<meta property="og:description" content="前言之前，做 ChatBot 時，收到使用者輸入，會先判斷它的意圖，然後判斷要完成該意圖缺多少的內容，再一一地詢問使用者。現在，透過 Semantic Kernel(SK)，這些不足的資訊，可以透過ChatCompletionService來幫我們。以下就來看看要如何做到呢? Agent 在 由 Semantic Kernel 中，由plugins, planners 及 persona(角色&amp;#">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://rainmakerho.github.io/2024/01/04/sk-agent/01.png">
 <meta property="og:image" content="https://rainmakerho.github.io/2024/01/04/sk-agent/02.png">
@@ -23,13 +23,15 @@
 <meta property="og:image" content="https://rainmakerho.github.io/2024/01/04/sk-agent/04.png">
 <meta property="og:image" content="https://rainmakerho.github.io/2024/01/04/sk-agent/05.png">
 <meta property="article:published_time" content="2024-01-04T03:11:19.000Z">
-<meta property="article:modified_time" content="2024-01-04T08:37:23.442Z">
+<meta property="article:modified_time" content="2024-01-05T06:20:50.518Z">
 <meta property="article:author" content="亂馬客">
 <meta property="article:tag" content="Plugins">
 <meta property="article:tag" content="Semantic Kernel">
 <meta property="article:tag" content="Planners">
 <meta property="article:tag" content="Personas">
 <meta property="article:tag" content="KernelFunction">
+<meta property="article:tag" content="ChatCompletionService">
+<meta property="article:tag" content="semantic-kernel">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://rainmakerho.github.io/2024/01/04/sk-agent/01.png">
   
@@ -173,7 +175,7 @@
       
   
     <h1 class="article-title" itemprop="name">
-      Semantic Kernel(SK) 如何使用 Semantic Kernel 建立智慧助理(Agent)
+      Semantic Kernel(SK) 如何建立智慧助理(Agent)
     </h1>
   
   <a href="/2024/01/04/sk-agent/" class="archive-article-date">
@@ -182,9 +184,10 @@
     </header>
     
     <div class="article-entry" itemprop="articleBody">
-         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>智慧助理(Agent)是一種能夠回答問題和自動化流程的人工智慧。<br>使用 Semantic Kernel，讓我們可以輕易地建立智慧助理，而不需要您是一個 AI 專家。<br>Agent 在 由 Semantic Kernel 中，由<a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/semantic-kernel/agents/plugins/">plugins</a>, <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/semantic-kernel/agents/planners/">planners</a> 及 persona(角色&#x2F;人設) 三個核心組件組成。<br>這些組件是讓 Agent 能夠從使用者或其他系統獲取資訊，規劃如何使用資訊，並使用資訊來回應使用者或執行動作。<br>以下我們以一個幫助使用者請假的 HR Copilot 為例。<br>在取得使用者資訊後，Semantic Kernel 透過 <code>ChatCompletionService</code> 找尋要完成任務的<a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/semantic-kernel/agents/plugins/">plugins</a>並呼叫它，<br>最後再將這些<a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/semantic-kernel/agents/plugins/">plugins</a>的結果給使用者。</p>
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>之前，做 ChatBot 時，收到使用者輸入，會先判斷它的意圖，<br>然後判斷要完成該意圖缺多少的內容，再一一地詢問使用者。<br>現在，透過 Semantic Kernel(SK)，這些不足的資訊，可以透過<code>ChatCompletionService</code>來幫我們。<br>以下就來看看要如何做到呢?</p>
+<p>Agent 在 由 Semantic Kernel 中，由<a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/semantic-kernel/agents/plugins/">plugins</a>, <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/semantic-kernel/agents/planners/">planners</a> 及 persona(角色&#x2F;人設) 三個核心組件組成。<br>這些組件是讓 Agent 能夠從使用者或其他系統獲取資訊，規劃如何使用資訊，並使用資訊來回應使用者或執行動作。<br>以下我們以一個幫助使用者請假的 HR Copilot 為例。<br>在取得使用者資訊後，Semantic Kernel 透過 <code>ChatCompletionService</code> 找尋要完成任務的<a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/semantic-kernel/agents/plugins/">plugins</a>並呼叫它，<br>最後再將這些<a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/semantic-kernel/agents/plugins/">plugins</a>的結果給使用者。</p>
 <h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><p>建立 Console 程式，並加入以下套件，</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">dotnet add package Microsoft.Extensions.Logging</span><br><span class="line">dotnet add package Microsoft.Extensions.Logging.Debug</span><br><span class="line">dotnet add package Microsoft.SemanticKernel <span class="literal">--prerelease</span></span><br><span class="line">dotnet add package Microsoft.SemanticKernel.Connectors.OpenAI <span class="literal">--prerelease</span></span><br><span class="line">dotnet add package Microsoft.SemanticKernel.Plugins.Core <span class="literal">--prerelease</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">dotnet new console <span class="literal">-n</span> hragent <span class="literal">-o</span> hragent</span><br><span class="line">dotnet add package Microsoft.Extensions.Logging</span><br><span class="line">dotnet add package Microsoft.Extensions.Logging.Debug</span><br><span class="line">dotnet add package Microsoft.SemanticKernel <span class="literal">--prerelease</span></span><br><span class="line">dotnet add package Microsoft.SemanticKernel.Connectors.OpenAI <span class="literal">--prerelease</span></span><br><span class="line">dotnet add package Microsoft.SemanticKernel.Plugins.Core <span class="literal">--prerelease</span></span><br></pre></td></tr></table></figure>
 
 <p>要完成這個簡單的<strong>請假計畫</strong>包含以下幾步， 1.取得請假的起、迄日期區間 2.請假假別 3.請假原因</p>
 <p>所以我們要建立 Plugins 來讓 Agent 有請假的能力。<br>這個就是 Plugins 的作用，讓 Agent 增加技能。<br>所以就建立 <code>LeavePlanner</code> 類別，<br>裡面有 <code>ApplyLeaveAsync</code> 處理請假，<code>ParseTimeRange</code>處理<code>上/下午</code>時間區間，<br>Function 要設定 <code>KernelFunction</code> ，<code>Description</code> 也要寫清楚，<br>這樣 <code>ChatCompletionService</code> 才可以找得到它，如下，</p>
@@ -208,7 +211,8 @@
 <p>另一個範例，</p>
 <img src="/2024/01/04/sk-agent/05.png" class="" title="請病假">
 
-<p>以往我們通常會先將使用者的要求，找出它的意圖，及相關資訊，不足地方則程式控制來詢問使用者，<br>例如使用者只說我要請假，那程式則將必填的欄位透過程式一個一個詢問使用者。<br><code>ChatCompletionService</code>是透過語義的方式<strong>自動</strong>尋找可完成的<code>Planner</code>並搭配許多<code>Plugins</code>來完成使用者的要求，<br>如果使用者給的訊息，缺少 Function 需要的參數，則是由 Agent 自動詢問使用者取得來完成工作。<br>雖然這種方式很方便，但是透過 GPT 來整理相關的訊息會花費較長時間，<br>因為它將要將目前的<code>ChatHistory</code>做整理。</p>
+<p>以往我們通常會先將使用者的要求，找出它的意圖，及相關資訊，不足地方則程式控制來詢問使用者，<br>例如使用者只說我要請假，那程式則將必填的欄位透過程式一個一個詢問使用者。</p>
+<p><code>ChatCompletionService</code>是透過語義的方式<strong>自動</strong>尋找可完成的<code>Planner</code>並搭配許多<code>Plugins</code>來完成使用者的要求，<br>如果使用者給的訊息，缺少 Function 需要的參數，則是由 Agent 自動詢問使用者取得來完成工作。<br>雖然這種方式很方便，但是透過 GPT 來整理相關的訊息會花費較長時間，<br>因為它將要將目前的<code>ChatHistory</code>做整理。</p>
 <h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/semantic-kernel/agents/">What is an agent?</a><br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/semantic-kernel/agents/plugins/">plugins</a><br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/semantic-kernel/agents/planners/">planners</a></p>
 <blockquote>
 <p>一人計，不如百人算:集合外數人的意見，可成客觀而有系統的結論(三個臭皮匠，湊個諸葛亮)。</p>
@@ -239,6 +243,14 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">KernelFunction</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">ChatCompletionService</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">semantic-kernel</a>
         		</li>
       		
 		</ul>
@@ -5838,6 +5850,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">KernelFunction</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">ChatCompletionService</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">semantic-kernel</a>
               </li>
             
             <div class="clearfix"></div>

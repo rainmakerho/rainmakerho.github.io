@@ -1,16 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://rainmakerho.github.io//2024/01/04/sk-agent/</loc>
-    <lastmod>2024-01-04</lastmod>
+    <loc>https://rainmakerho.github.io//2023/09/21/sk-semantic-kernel-inline-function/</loc>
+    <lastmod>2024-01-05</lastmod>
   </url>
   <url>
     <loc>https://rainmakerho.github.io//2024/01/02/sk-prompt-template/</loc>
-    <lastmod>2024-01-02</lastmod>
+    <lastmod>2024-01-05</lastmod>
+  </url>
+  <url>
+    <loc>https://rainmakerho.github.io//2023/12/22/sk-kernel-memory/</loc>
+    <lastmod>2024-01-05</lastmod>
+  </url>
+  <url>
+    <loc>https://rainmakerho.github.io//2023/12/22/sk-kernel-memory-service-memorywebclient/</loc>
+    <lastmod>2024-01-05</lastmod>
+  </url>
+  <url>
+    <loc>https://rainmakerho.github.io//2023/12/26/sk-kernel-memory-postgresql/</loc>
+    <lastmod>2024-01-05</lastmod>
+  </url>
+  <url>
+    <loc>https://rainmakerho.github.io//2023/12/25/sk-kernel-memory-custom-partitioning/</loc>
+    <lastmod>2024-01-05</lastmod>
   </url>
   <url>
     <loc>https://rainmakerho.github.io//2023/12/29/sk-improving-prompt-with-prompt-engineering/</loc>
-    <lastmod>2023-12-29</lastmod>
+    <lastmod>2024-01-05</lastmod>
+  </url>
+  <url>
+    <loc>https://rainmakerho.github.io//2023/09/20/sk-getting-started/</loc>
+    <lastmod>2024-01-05</lastmod>
+  </url>
+  <url>
+    <loc>https://rainmakerho.github.io//2024/01/04/sk-agent/</loc>
+    <lastmod>2024-01-05</lastmod>
   </url>
   <url>
     <loc>https://rainmakerho.github.io//2023/12/28/vs-copy-folder-to-output-directory/</loc>
@@ -21,31 +45,7 @@
     <lastmod>2023-12-28</lastmod>
   </url>
   <url>
-    <loc>https://rainmakerho.github.io//2023/12/22/sk-kernel-memory/</loc>
-    <lastmod>2023-12-26</lastmod>
-  </url>
-  <url>
-    <loc>https://rainmakerho.github.io//2023/12/25/sk-kernel-memory-custom-partitioning/</loc>
-    <lastmod>2023-12-26</lastmod>
-  </url>
-  <url>
-    <loc>https://rainmakerho.github.io//2023/12/26/sk-kernel-memory-postgresql/</loc>
-    <lastmod>2023-12-26</lastmod>
-  </url>
-  <url>
-    <loc>https://rainmakerho.github.io//2023/12/22/sk-kernel-memory-service-memorywebclient/</loc>
-    <lastmod>2023-12-26</lastmod>
-  </url>
-  <url>
-    <loc>https://rainmakerho.github.io//2023/09/20/sk-getting-started/</loc>
-    <lastmod>2023-12-26</lastmod>
-  </url>
-  <url>
     <loc>https://rainmakerho.github.io//2023/09/19/sk-vscode-settings/</loc>
-    <lastmod>2023-12-26</lastmod>
-  </url>
-  <url>
-    <loc>https://rainmakerho.github.io//2023/09/21/sk-semantic-kernel-inline-function/</loc>
     <lastmod>2023-12-26</lastmod>
   </url>
   <url>
