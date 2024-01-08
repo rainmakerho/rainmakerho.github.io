@@ -6,7 +6,7 @@
   <link href="https://rainmakerho.github.io/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2024-01-05T09:11:03.264Z</updated>
+  <updated>2024-01-08T09:18:53.992Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>500.21 處理常式 &quot;aspNetCore&quot; 的模組清單中有錯誤的模組 &quot;AspNetCoreModuleV2&quot;</title>
+    <link href="https://rainmakerho.github.io/2024/01/08/aspnetcore-error-aspnetcoremodulev2/"/>
+    <id>https://rainmakerho.github.io/2024/01/08/aspnetcore-error-aspnetcoremodulev2/</id>
+    <published>2024-01-08T08:22:26.000Z</published>
+    <updated>2024-01-08T09:18:53.992Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近把程式移到另一台 IIS Server 上，安裝好 .NET 6 後，設定好應用程式。<br>測試時，會出現</p><blockquote><p>HTTP 錯誤 500.21 - Internal Server Error<br>處理常式 “aspNetCore” 的模組清單中有錯誤的模組 “AspNetCoreModuleV2”</p></blockquote><h3 id="解決"><a href="#解決" class="headerlink" title="解決"></a>解決</h3><p>這通常是 <code>web.config</code> 設定要使用的為 <code>AspNetCoreModuleV2</code> 模組，</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;utf-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">location</span> <span class="attr">path</span>=<span class="string">&quot;.&quot;</span> <span class="attr">inheritInChildApplications</span>=<span class="string">&quot;false&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">system.webServer</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">handlers</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">add</span> <span class="attr">name</span>=<span class="string">&quot;aspNetCore&quot;</span> <span class="attr">path</span>=<span class="string">&quot;*&quot;</span> <span class="attr">verb</span>=<span class="string">&quot;*&quot;</span> <span class="attr">modules</span>=<span class="string">&quot;AspNetCoreModuleV2&quot;</span> <span class="attr">resourceType</span>=<span class="string">&quot;Unspecified&quot;</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">handlers</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">aspNetCore</span> <span class="attr">processPath</span>=<span class="string">&quot;dotnet&quot;</span> <span class="attr">arguments</span>=<span class="string">&quot;.\你的dll.dll&quot;</span> <span class="attr">stdoutLogEnabled</span>=<span class="string">&quot;false&quot;</span> <span class="attr">stdoutLogFile</span>=<span class="string">&quot;.\logs\stdout&quot;</span> <span class="attr">hostingModel</span>=<span class="string">&quot;inprocess&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">system.webServer</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">location</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure><p>但目前 IIS 沒有安裝 <code>AspNetCoreModuleV2</code> 模組，<br>就是 <strong>IIS runtime support (ASP.NET Core Module v2)</strong> 沒有裝。<br>所以請再安裝 <code>Hosting Bundle</code> 就可以了。</p><img src="/2024/01/08/aspnetcore-error-aspnetcoremodulev2/01.png" class="" title="Hosting Bundle"><p>當然，如果 runtime 沒裝的話，也要一併安裝哦~</p><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://dotnet.microsoft.com/en-us/download/dotnet/6.0">下載 .net 6 SDK, Runtime, IIS Hosting Bundle</a><br><a href="https://dotnet.microsoft.com/en-us/download/dotnet/8.0">下載 .net 8 SDK, Runtime, IIS Hosting Bundle</a></p><blockquote><p>一人主張，不值兩人思量: 一個人的意見，不如二個人的研討。因為個人的見解往往存有主觀和偏見，所以，共策共勵，處理事情較為妥當。</p></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;最近把程式移到另一台 IIS Server 上，安裝好 .NET 6 後，設定好應用程式。&lt;br&gt;測試時，會出現&lt;/p&gt;
+&lt;blockquo</summary>
+      
+    
+    
+    
+    
+    <category term="IIS" scheme="https://rainmakerho.github.io/tags/IIS/"/>
+    
+    <category term="aspNetCore" scheme="https://rainmakerho.github.io/tags/aspNetCore/"/>
+    
+    <category term="AspNetCoreModuleV2" scheme="https://rainmakerho.github.io/tags/AspNetCoreModuleV2/"/>
+    
+    <category term="Hosting Bundle" scheme="https://rainmakerho.github.io/tags/Hosting-Bundle/"/>
+    
+  </entry>
   
   <entry>
     <title>DevExpress XtraReport 報表列印或匯出 PDF ，中文字都變空白(不見了)</title>
@@ -613,32 +642,6 @@
     <category term="CSRF" scheme="https://rainmakerho.github.io/tags/CSRF/"/>
     
     <category term="HttpClientFactory.CreateClient" scheme="https://rainmakerho.github.io/tags/HttpClientFactory-CreateClient/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Azure 看不到訂閱(Subscriptions)</title>
-    <link href="https://rainmakerho.github.io/2023/11/09/azure-cannot-see-subscriptions/"/>
-    <id>https://rainmakerho.github.io/2023/11/09/azure-cannot-see-subscriptions/</id>
-    <published>2023-11-09T03:50:18.000Z</published>
-    <updated>2023-11-09T05:46:15.959Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>當你擁有新的訂閱權限時，在訂用帳戶(Subscriptions)中卻看不到它，但卻又能在搜尋到。<br>要怎麼讓這些 訂用帳戶(Subscriptions) 預設顯示出來呢?</p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>點選右上方<strong>入口網站設定(Portal settings)</strong> 或是連到 <code>https://portal.azure.com/#settings/directory</code><br>在 <strong><a href="https://portal.azure.com/#settings/directory">目錄+訂閱(Directories + subscriptions)</a></strong> 中，<br>設定 <strong>預設訂用帳戶篩選(Default subscription filter)</strong> 為 <strong>所有訂閱(All subscriptions)</strong> 就可以了哦~<br>如下，</p><img src="/2023/11/09/azure-cannot-see-subscriptions/01.png" class="" title="目錄+訂閱"><img src="/2023/11/09/azure-cannot-see-subscriptions/02.png" class="" title="Directories + subscriptions">]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;當你擁有新的訂閱權限時，在訂用帳戶(Subscriptions)中卻看不到它，但卻又能在搜尋到。&lt;br&gt;要怎麼讓這些 訂用帳戶(Subscr</summary>
-      
-    
-    
-    
-    
-    <category term="Azure" scheme="https://rainmakerho.github.io/tags/Azure/"/>
-    
-    <category term="Subscription" scheme="https://rainmakerho.github.io/tags/Subscription/"/>
-    
-    <category term="subscription filter" scheme="https://rainmakerho.github.io/tags/subscription-filter/"/>
     
   </entry>
   
