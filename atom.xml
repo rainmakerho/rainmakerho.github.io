@@ -6,7 +6,7 @@
   <link href="https://rainmakerho.github.io/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2024-01-08T09:18:53.992Z</updated>
+  <updated>2024-01-17T07:36:49.779Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,39 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ASP.NET Bundle 的 Javascript, CSS ，IIS 設定靜態壓縮沒作用?</title>
+    <link href="https://rainmakerho.github.io/2024/01/17/iis-compression-donnt-work-bundle-files/"/>
+    <id>https://rainmakerho.github.io/2024/01/17/iis-compression-donnt-work-bundle-files/</id>
+    <published>2024-01-17T06:36:40.000Z</published>
+    <updated>2024-01-17T07:36:49.779Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近同事詢問，為什麼一些透過 Bundle 出來的 JS, CSS 無法被壓縮傳遞呢?</p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>開始之前先來了解一下 IIS，</p><p>IIS 的動態壓縮預設是不會安裝的，但<strong>預設會被啟用</strong>，<br>所以在操作 IIS 中的<strong>壓縮</strong>可以發現<strong>動態壓縮</strong>是被勾選起來的，<br>但是它卻是<strong>灰灰的</strong></p><img src="/2024/01/17/iis-compression-donnt-work-bundle-files/01.png" class="" title="IIS"><p>這就表示沒有安裝<strong>動態壓縮</strong>功能。<br>而如果沒有灰灰的，就表示有安裝<strong>動態壓縮</strong>功能。</p><p>所以，如果勾選<strong>靜態壓縮</strong>，那實體檔案的 js, css 就會被透過壓縮傳遞。</p><p>所以如果發現<strong>動態壓縮</strong>有被勾選，但是<strong>灰灰的</strong>，就新增 IIS <strong>動態壓縮</strong> 功能，再重開機就可以了。</p><p>好了，確認 IIS 的環境後，回到原本的問題，<br>為什麼實體 js, css 檔可以透過<strong>靜態壓縮</strong>，Bundle 的 js, css 卻沒辦法呢?<br>因為 Bundle 的 js, css 是透過程式動態產生出來的，所以要透過<strong>動態壓縮</strong>來進行壓縮才行哦!</p><blockquote><p>如果啟用<strong>靜態壓縮</strong>，但實體 js , css 檔卻沒被壓縮，請檢查對應的<strong>應用程式集區</strong>識別(例如: Network Service)是否有加入 <strong>IIS_IUSRS</strong> 群組中<br>如果<strong>啟用動態壓縮</strong>，會包含 靜態、動態一起進行壓縮(全壓縮)</p></blockquote><p>預設 IIS 壓縮 會使用低於 CPU 50% ， 如果怕 CPU 被用太多，可以在<strong>設定編輯器</strong>中進行調整，</p><img src="/2024/01/17/iis-compression-donnt-work-bundle-files/02.png" class="" title="設定編輯器"><blockquote><p>一人開井，千人飲水: 大家都能互愛，人人都能得益</p></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;最近同事詢問，為什麼一些透過 Bundle 出來的 JS, CSS 無法被壓縮傳遞呢?&lt;/p&gt;
+&lt;h3 id=&quot;解法&quot;&gt;&lt;a href=&quot;#</summary>
+      
+    
+    
+    
+    
+    <category term="IIS" scheme="https://rainmakerho.github.io/tags/IIS/"/>
+    
+    <category term="Compression" scheme="https://rainmakerho.github.io/tags/Compression/"/>
+    
+    <category term="urlCompression" scheme="https://rainmakerho.github.io/tags/urlCompression/"/>
+    
+    <category term="靜態壓縮" scheme="https://rainmakerho.github.io/tags/%E9%9D%9C%E6%85%8B%E5%A3%93%E7%B8%AE/"/>
+    
+    <category term="doStaticCompression" scheme="https://rainmakerho.github.io/tags/doStaticCompression/"/>
+    
+    <category term="doDynamicCompression" scheme="https://rainmakerho.github.io/tags/doDynamicCompression/"/>
+    
+  </entry>
   
   <entry>
     <title>500.21 處理常式 &quot;aspNetCore&quot; 的模組清單中有錯誤的模組 &quot;AspNetCoreModuleV2&quot;</title>
@@ -614,34 +647,6 @@
     <category term="httpsAgent" scheme="https://rainmakerho.github.io/tags/httpsAgent/"/>
     
     <category term="UNABLE_TO_GET_ISSUER_CERT_LOCALLY" scheme="https://rainmakerho.github.io/tags/UNABLE-TO-GET-ISSUER-CERT-LOCALLY/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>HttpClientFactory.CreateClient 造成 Checkmarx 狂噴 CSRF</title>
-    <link href="https://rainmakerho.github.io/2023/11/13/checkmarx-csrf-httpclientfactory-createclient-false-positive/"/>
-    <id>https://rainmakerho.github.io/2023/11/13/checkmarx-csrf-httpclientfactory-createclient-false-positive/</id>
-    <published>2023-11-13T07:38:41.000Z</published>
-    <updated>2023-11-13T07:56:36.990Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>ASP.NET Core MVC 專案中的 WebAPI Controller 被 Checkmarx V9.4.5.1012 HF24 掃出一堆的 <strong>CSRF</strong> 問題。</p><h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>查看它的 <code>Find_CSRF</code> Rule 中，在過濾掉 <code>Find_CSRF_Sanitize</code> 結果後，<br>又再加入 <code>Find_ASP_MVC_CSRF()</code>。<br>而在 <code>Find_ASP_MVC_CSRF()</code> 中又會去找一些可能跟 DB Update 相關的 Method，如下，</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">CxList dbUpdateMethods = methods.FindByShortNames(<span class="keyword">new</span> List&lt;<span class="built_in">string</span>&gt; &#123;</span><br><span class="line"><span class="string">&quot;SaveChanges&quot;</span>, <span class="string">&quot;SaveChangesAsync&quot;</span>,</span><br><span class="line"><span class="string">&quot;SubmitChanges&quot;</span>, <span class="string">&quot;TryUpdateModel&quot;</span>,</span><br><span class="line"><span class="string">&quot;TryUpdateModelAsync&quot;</span>, <span class="string">&quot;UpdateModel&quot;</span></span><br><span class="line">&#125;, <span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">dbUpdateMethods.Add(methods.FindByShortNames(<span class="keyword">new</span> List&lt;<span class="built_in">string</span>&gt;()&#123;</span><br><span class="line"><span class="string">&quot;Set*&quot;</span>, <span class="string">&quot;Change*&quot;</span>, <span class="string">&quot;Update*&quot;</span>, <span class="string">&quot;Save*&quot;</span>, <span class="string">&quot;Apply*&quot;</span>, <span class="string">&quot;Create*&quot;</span>, <span class="string">&quot;Add*&quot;</span>, <span class="string">&quot;Delete*&quot;</span></span><br><span class="line">&#125;));</span><br><span class="line">dbUpdateMethods.Add(methods.FindByMemberAccess(<span class="string">&quot;UserManager&quot;</span>, <span class="string">&quot;CreateAsync&quot;</span>, <span class="literal">true</span>));</span><br><span class="line">dbUpdateMethods -= All.FindByMemberAccesses(<span class="keyword">new</span> <span class="built_in">string</span>[]&#123;<span class="string">&quot;ModelState.AddModelError&quot;</span>,<span class="string">&quot;List.Add&quot;</span>&#125;);</span><br></pre></td></tr></table></figure><p>詢問同事 Jer 後，有可能是因為 keyword Create 找到了程式中的 <code>HttpClientFactory.CreateClient</code> 所以它就認為它有 <strong>CSRF</strong> 問題。<br>將原本用 <code>HttpClientFactory.CreateClient</code> 改成 <code>new HttpClient()</code> 後，<br>CSRF 的問題果然就不見了。</p><p>這個問題原廠的回覆如下，</p><blockquote><p>After reviewing your case, we can confirm the issue is as you suspected. The engine is assuming that the “CreateClient()” method is a database access because it contains the keyword “create”, which is used to search for CSRF vulnerabilities in the code.</p></blockquote><p>只能等待以色列原廠的修復了。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;ASP.NET Core MVC 專案中的 WebAPI Controller 被 Checkmarx V9.4.5.1012 HF24 掃</summary>
-      
-    
-    
-    
-    
-    <category term="C#" scheme="https://rainmakerho.github.io/tags/C/"/>
-    
-    <category term="Checkmarx" scheme="https://rainmakerho.github.io/tags/Checkmarx/"/>
-    
-    <category term="CSRF" scheme="https://rainmakerho.github.io/tags/CSRF/"/>
-    
-    <category term="HttpClientFactory.CreateClient" scheme="https://rainmakerho.github.io/tags/HttpClientFactory-CreateClient/"/>
     
   </entry>
   
