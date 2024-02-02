@@ -18,7 +18,7 @@
 <meta property="og:description" content="問題最近同事詢問一個 Crystal Report 匯出成 PDF 檔案時，在 Browser 中呈現會全都是空白的內容。透過 Adobe Reader 開啟卻會出現「開啟此文件時出錯。 檔案已損壞且無法修復。」的錯誤。 除錯程式碼很簡單，就是利用 ReportDocument 將報表檔 Load 進來，並設定資料庫連線及報表參數後，呼叫 ExportToHttpResponse 匯出 PDF 1">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-03-15T08:12:37.000Z">
-<meta property="article:modified_time" content="2023-03-17T06:27:45.679Z">
+<meta property="article:modified_time" content="2024-01-26T08:16:21.110Z">
 <meta property="article:author" content="亂馬客">
 <meta property="article:tag" content="ExportToHttpResponse">
 <meta property="article:tag" content="Crystal Report">
@@ -186,7 +186,8 @@
 <p>4.行為 GET ，從 Server 端到 Client 之中，應該有什麼程序在處理， 導致<strong>破壞</strong>了原本正常的 PDF 內容。</p>
 <p>5.這種程序在 IIS 上有可能是 ISAPI 篩選器，ASP.NET 中有可能是 HttpModule or HttpHandler，ASP.NET Core 就是 Middleware</p>
 <p>6.檢查 IIS 上並無 ISAPI 篩選器</p>
-<p>7.檢查 web.config 中並沒有設定特別的 HttpModule 或是 HttpHandler 8.檢查 global.asax &#x3D;&gt; 結果在 Application_BeginRequest 中，有設定 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/dotnet/api/system.web.httpresponse.filter?view=netframework-4.8">HttpResponse.Filter</a></p>
+<p>7.檢查 web.config 中並沒有設定特別的 HttpModule 或是 HttpHandler</p>
+<p>8.檢查 global.asax &#x3D;&gt; 結果在 Application_BeginRequest 中，有設定 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/dotnet/api/system.web.httpresponse.filter?view=netframework-4.8">HttpResponse.Filter</a></p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">Application_BeginRequest</span>(<span class="params"><span class="built_in">object</span> sender, EventArgs e</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (Request.HttpMethod == <span class="string">&quot;GET&quot;</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (Request.AppRelativeCurrentExecutionFilePath.EndsWith(<span class="string">&quot;.aspx&quot;</span>))</span><br><span class="line">        &#123;</span><br><span class="line">            Response.Filter = <span class="keyword">new</span> ScriptDeferFilter(Response);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>那個 <a target="_blank" rel="noopener" href="https://weblogs.asp.net/omarzabir/fast-page-loading-by-moving-asp-net-ajax-scripts-after-visible-content">ScriptDeferFilter</a> 是將頁面中的 script tag 移到最後，並會以 UTF8 輸出，所以就導致匯出 PDF 發生錯誤</p>
@@ -5881,6 +5882,34 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">doDynamicCompression</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">show only vulnerable</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Nuget</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">DependencyCheck</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ssl.com</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Can not retrieve credential</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">eSigner</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Signing credentials not configured</a>
               </li>
             
             <div class="clearfix"></div>

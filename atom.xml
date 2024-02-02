@@ -6,7 +6,7 @@
   <link href="https://rainmakerho.github.io/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2024-01-17T07:36:49.779Z</updated>
+  <updated>2024-02-02T06:10:47.276Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,62 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用 SSL.com eSigner Cloud Key Adapter 噴 Can not retrieve credential 錯誤</title>
+    <link href="https://rainmakerho.github.io/2024/02/02/ssl-com-eSigner-Can-not-retrieve-credential-error/"/>
+    <id>https://rainmakerho.github.io/2024/02/02/ssl-com-eSigner-Can-not-retrieve-credential-error/</id>
+    <published>2024-02-02T05:39:01.000Z</published>
+    <updated>2024-02-02T06:10:47.276Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>要簽署 EXE 程式的發行公司，我們使用 SSL.COM 上的憑證。<br>當公司管理人員將我邀進 SSL.COM 的團隊後，<br>我註冊登入 SSL.COM 後，<br>下載 <a href="https://www.ssl.com/download/ssl-com-esigner-cka">eSigner CKA (Cloud Key Adapter)</a> 安裝完成後，<br>透過使用者登入後，就噴 <code>Can not retrieve credential!</code> 的錯誤。</p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>透過 Fiddler 發現，透過 <strong>eSigner CKA</strong> 登入後會取得 User 的 AccessToken，<br>然後呼叫 <code>https://cs.ssl.com/csc/v0/credentials/list</code> 要取得公司的 EVCS (Extended Validation Code Signing)，結果取不到資料，就回傳 <strong>400</strong> 的錯誤。</p><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;error&quot;</span><span class="punctuation">:</span> <span class="string">&quot;invalid_request&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;error_description&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Signing credentials not configured. Make sure certificate is issued before signing&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure><p>為什麼會這樣子呢?<br>因為<strong>少了設定 eSigner PIN 碼</strong>，<br>而 <strong>eSigner CKA</strong> 在登入後，就是需要使用者輸入它的 <code>secret code</code>。</p><p>所以，登入到 SSL.COM 後，就要到公司 order 頁面(<code>https://secure.ssl.com/team/&#123;teamid&#125;/certificate_orders/co-&#123;orderid&#125;</code>)，設定 <strong>eSigner PIN 碼</strong>，<br>設定的 PIN 碼要記錄下來，下次如果要 Show PIN QRCode 時，需要輸入當時的 PIN 碼。</p><p>其他簽署的方式可以參考 <a href="https://hackmd.io/@vantist/ryFqUUvqp">SSL.com eSigner 使用方法</a></p><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://www.ssl.com/how-to/automate-ev-code-signing-with-signtool-or-certutil-esigner/">How to Automate EV Code Signing With Signtool.exe or Certutil.exe Using eSigner CKA (Cloud Key Adapter)</a><br><a href="https://hackmd.io/@vantist/ryFqUUvqp">SSL.com eSigner 使用方法</a></p><blockquote><p>一天叫三次苦，黃金變成土: 時常聽人說，不窮也被你叫窮，有的人因小小的不如意，就長歎短歎的，這種人即無大志，也不腳踏實地，改善自己的生活，只知怨天尤人，不能成大事立大業的。</p></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;要簽署 EXE 程式的發行公司，我們使用 SSL.COM 上的憑證。&lt;br&gt;當公司管理人員將我邀進 SSL.COM 的團隊後，&lt;br&gt;我註冊</summary>
+      
+    
+    
+    
+    
+    <category term="ssl.com" scheme="https://rainmakerho.github.io/tags/ssl-com/"/>
+    
+    <category term="Can not retrieve credential" scheme="https://rainmakerho.github.io/tags/Can-not-retrieve-credential/"/>
+    
+    <category term="eSigner" scheme="https://rainmakerho.github.io/tags/eSigner/"/>
+    
+    <category term="Signing credentials not configured" scheme="https://rainmakerho.github.io/tags/Signing-credentials-not-configured/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Visual Studio Nuget 套件管理員中的 &quot;只顯示易受攻擊&quot; 選項</title>
+    <link href="https://rainmakerho.github.io/2024/02/02/vs-show-only-vulnerable-checkbox/"/>
+    <id>https://rainmakerho.github.io/2024/02/02/vs-show-only-vulnerable-checkbox/</id>
+    <published>2024-02-02T04:02:07.000Z</published>
+    <updated>2024-02-02T05:34:11.380Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="Nuget-套件-只顯示易受攻擊-選項"><a href="#Nuget-套件-只顯示易受攻擊-選項" class="headerlink" title="Nuget 套件 只顯示易受攻擊 選項"></a>Nuget 套件 只顯示易受攻擊 選項</h3><p>系統程式碼除了透過資安黑、白箱掃描外，又會有掃描套件是否有漏洞。<br>像是 <a href="https://github.com/jeremylong/DependencyCheck">DependencyCheck</a>, <a href="https://www.mend.io/">Mend</a>, <a href="https://www.sonatype.com/">sonatype</a> 等等。<br>現在 Visual Studio 的 Nuget 套件管理員中，有一個 <strong>只顯示易受攻擊</strong> 選項，將它勾選起來，就可以知道那些套件有風險。</p><img src="/2024/02/02/vs-show-only-vulnerable-checkbox/01.png" class="" title="只顯示易受攻擊"><p>所以開發人員可以隨時知道，進行更新，<br>而不用等到被掃出來後，才拿著報表進行更新哦~</p><blockquote><p>一人算，不如百人算:一個人的計謀，不如多數人的籌劃。</p></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;Nuget-套件-只顯示易受攻擊-選項&quot;&gt;&lt;a href=&quot;#Nuget-套件-只顯示易受攻擊-選項&quot; class=&quot;headerlink&quot; title=&quot;Nuget 套件 只顯示易受攻擊 選項&quot;&gt;&lt;/a&gt;Nuget 套件 只顯示易受攻擊 選項&lt;/h3&gt;&lt;p&gt;系統</summary>
+      
+    
+    
+    
+    
+    <category term="Visual Studio" scheme="https://rainmakerho.github.io/tags/Visual-Studio/"/>
+    
+    <category term="show only vulnerable" scheme="https://rainmakerho.github.io/tags/show-only-vulnerable/"/>
+    
+    <category term="Nuget" scheme="https://rainmakerho.github.io/tags/Nuget/"/>
+    
+    <category term="DependencyCheck" scheme="https://rainmakerho.github.io/tags/DependencyCheck/"/>
+    
+  </entry>
   
   <entry>
     <title>ASP.NET Bundle 的 Javascript, CSS ，IIS 設定靜態壓縮沒作用?</title>
@@ -584,69 +640,6 @@
     <category term="OpenAI" scheme="https://rainmakerho.github.io/tags/OpenAI/"/>
     
     <category term="Assistants" scheme="https://rainmakerho.github.io/tags/Assistants/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>在地端 Firewall 中的 Teams Bot 要如何設定 Egress 及 Ingress?</title>
-    <link href="https://rainmakerho.github.io/2023/11/29/teams-bot-behind-firewall/"/>
-    <id>https://rainmakerho.github.io/2023/11/29/teams-bot-behind-firewall/</id>
-    <published>2023-11-29T07:39:11.000Z</published>
-    <updated>2023-11-29T08:07:08.944Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>在企業內的 Teams Bot ，Firewall 要怎麼設定才能讓使用者在 Teams 中可以順利跟 Bot 對話呢?</p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>在開發 Bot 時，通常會透過 ngrok 來測試，所以可以看到 teams 打過來的 ip 是 <code>52.187.55.201</code>，<br>但下次測試又是別的 ip ，直接請網管設定 firewall 允許進來的 ip 為它又不太保險。<br>後來有查到 <a href="https://blog.botframework.com/2020/11/23/bots-secured-behind-a-firewall-teams/">Bots Secured Behind a Firewall &amp; Teams</a> ，<br>Ingress 設定為允許 <code>52.112.0.0/14</code>，Egress 設定為允許 <code>52.112.0.0/14</code>，<code>login.microsoftonline.com</code> 及 <code>login.botframework.com</code>。</p><p>後來再問 Microsoft Support 則建議參考，<a href="https://learn.microsoft.com/en-us/microsoft-365/enterprise/urls-and-ip-address-ranges?view=o365-worldwide#skype-for-business-online-and-microsoft-teams">Office 365 URLs and IP address ranges-Skype for Business Online and Microsoft Teams</a> 中的 ID 12 的部份，<br>FQDN 則設定 <code>*.lync.com</code>, <code>*.teams.microsoft.com</code>, <code>teams.microsoft.com</code><br>IPv4 則設定 <code>13.107.64.0/18</code>, <code>52.112.0.0/14</code>, <code>52.122.0.0/15</code>, <code>52.238.119.141/32</code>, <code>52.244.160.207/32</code><br>IPv6 則設定 <code>603:1027::/48</code>, <code>2603:1037::/48</code>, <code>2603:1047::/48</code>, <code>2603:1057::/48</code>, <code>2603:1063::/38</code>, <code>2620:1ec:6::/48</code>, <code>2620:1ec:40::/42</code></p><p>當然，還是要隨注 <a href="https://learn.microsoft.com/en-us/microsoft-365/enterprise/urls-and-ip-address-ranges?view=o365-worldwide#skype-for-business-online-and-microsoft-teams">Office 365 URLs and IP address ranges-Skype for Business Online and Microsoft Teams</a> 有沒有改變哦~</p><h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><p><a href="https://blog.botframework.com/2020/11/23/bots-secured-behind-a-firewall-teams/">Bots Secured Behind a Firewall &amp; Teams</a></p><p><a href="https://learn.microsoft.com/en-us/microsoft-365/enterprise/urls-and-ip-address-ranges?view=o365-worldwide#skype-for-business-online-and-microsoft-teams">Office 365 URLs and IP address ranges-Skype for Business Online and Microsoft Teams</a></p><p><a href="https://learn.microsoft.com/en-us/microsoftteams/platform/sbs-teams-conversation-bot?source=recommendations&tabs=dev">Create Teams conversation bot</a></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;在企業內的 Teams Bot ，Firewall 要怎麼設定才能讓使用者在 Teams 中可以順利跟 Bot 對話呢?&lt;/p&gt;
-&lt;h3 i</summary>
-      
-    
-    
-    
-    
-    <category term="Teams" scheme="https://rainmakerho.github.io/tags/Teams/"/>
-    
-    <category term="Bot" scheme="https://rainmakerho.github.io/tags/Bot/"/>
-    
-    <category term="Firewall" scheme="https://rainmakerho.github.io/tags/Firewall/"/>
-    
-    <category term="Ingress" scheme="https://rainmakerho.github.io/tags/Ingress/"/>
-    
-    <category term="Egress" scheme="https://rainmakerho.github.io/tags/Egress/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>axios 透過 proxy 連線發生 502 錯誤問題</title>
-    <link href="https://rainmakerho.github.io/2023/11/27/axios-proxy-err-502/"/>
-    <id>https://rainmakerho.github.io/2023/11/27/axios-proxy-err-502/</id>
-    <published>2023-11-27T03:28:46.000Z</published>
-    <updated>2023-12-01T07:43:17.901Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>Windows Server 連外要透過 Proxy 時，原本在 Windows 設定中，設定 proxy 。<br>結果我們的 nodejs app 卻沒辦法吃到系統的設定。<br>設定 <code>npm config set https-proxy http://192.168.0.100:808</code> 去跑，<br>也還是會噴 <strong>502</strong> 的錯誤。<br>在 axios 設定 <code>proxy</code> config ，也還是噴 <strong>502</strong> 的錯誤。</p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>最後參考 <a href="https://github.com/axios/axios/issues/2937">Axios proxy is not working.</a> 的設定，<br><code>proxy</code> config 設定成 false, 並使用 <code>https-proxy-agent</code> 這個套件來設定 proxy。<br>這個也可以套用到 <code>node-fetch</code> 哦~<br>所以最後，環境變數，npm config 都不用設定，只要設定 <code>httpsAgent</code> 及 <code>proxy</code> 就可以了哦。<br><code>npm install --save axios https-proxy-agent node-fetch dotenv</code><br>package type 為 “module”<br>以下為 axios 及 node-fetch 的測試程式，</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> dotenv <span class="keyword">from</span> <span class="string">&quot;dotenv&quot;</span>;</span><br><span class="line">dotenv.<span class="title function_">config</span>();</span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&quot;axios&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">HttpsProxyAgent</span> &#125; <span class="keyword">from</span> <span class="string">&quot;https-proxy-agent&quot;</span>;</span><br><span class="line"><span class="comment">//http://192.168.0.100:808</span></span><br><span class="line"><span class="keyword">let</span> httpsAgent = <span class="keyword">new</span> <span class="title class_">HttpsProxyAgent</span>(process.<span class="property">env</span>.<span class="property">proxy</span>);</span><br><span class="line"><span class="keyword">const</span> clientId = process.<span class="property">env</span>.<span class="property">clientId</span>;</span><br><span class="line"><span class="keyword">const</span> clientSecret = process.<span class="property">env</span>.<span class="property">clientSecret</span>;</span><br><span class="line"><span class="keyword">const</span> tenantId = process.<span class="property">env</span>.<span class="property">tenantId</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> url = <span class="string">`https://login.microsoftonline.com/<span class="subst">$&#123;tenantId&#125;</span>/oauth2/v2.0/token`</span>;</span><br><span class="line"><span class="keyword">let</span> formData = <span class="keyword">new</span> <span class="title class_">FormData</span>();</span><br><span class="line">formData.<span class="title function_">append</span>(<span class="string">&quot;client_id&quot;</span>, clientId);</span><br><span class="line">formData.<span class="title function_">append</span>(<span class="string">&quot;scope&quot;</span>, <span class="string">&quot;https://graph.microsoft.com/.default&quot;</span>);</span><br><span class="line">formData.<span class="title function_">append</span>(<span class="string">&quot;client_secret&quot;</span>, clientSecret);</span><br><span class="line">formData.<span class="title function_">append</span>(<span class="string">&quot;grant_type&quot;</span>, <span class="string">&quot;client_credentials&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(</span><br><span class="line">    <span class="string">&quot;============================ Start axios Testing ============================================&quot;</span></span><br><span class="line">);</span><br><span class="line"><span class="keyword">const</span> options = &#123;</span><br><span class="line">    <span class="attr">proxy</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">httpsAgent</span>: httpsAgent,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">axios.<span class="title function_">post</span>(url, formData, options).<span class="title function_">then</span>(</span><br><span class="line">    <span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;****** OK ******&quot;</span>);</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(response.<span class="property">data</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;XXXXX ERROR XXXXX&quot;</span>);</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(error);</span><br><span class="line">    &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> dotenv <span class="keyword">from</span> <span class="string">&quot;dotenv&quot;</span>;</span><br><span class="line">dotenv.<span class="title function_">config</span>();</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">HttpsProxyAgent</span> &#125; <span class="keyword">from</span> <span class="string">&quot;https-proxy-agent&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> fetch <span class="keyword">from</span> <span class="string">&quot;node-fetch&quot;</span>;</span><br><span class="line"><span class="comment">//http://192.168.0.100:808</span></span><br><span class="line"><span class="keyword">let</span> httpsAgent = <span class="keyword">new</span> <span class="title class_">HttpsProxyAgent</span>(process.<span class="property">env</span>.<span class="property">proxy</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> clientId = process.<span class="property">env</span>.<span class="property">clientId</span>;</span><br><span class="line"><span class="keyword">const</span> clientSecret = process.<span class="property">env</span>.<span class="property">clientSecret</span>;</span><br><span class="line"><span class="keyword">const</span> tenantId = process.<span class="property">env</span>.<span class="property">tenantId</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> url = <span class="string">`https://login.microsoftonline.com/<span class="subst">$&#123;tenantId&#125;</span>/oauth2/v2.0/token`</span>;</span><br><span class="line"><span class="keyword">let</span> formData = <span class="keyword">new</span> <span class="title class_">FormData</span>();</span><br><span class="line">formData.<span class="title function_">append</span>(<span class="string">&quot;client_id&quot;</span>, clientId);</span><br><span class="line">formData.<span class="title function_">append</span>(<span class="string">&quot;scope&quot;</span>, <span class="string">&quot;https://graph.microsoft.com/.default&quot;</span>);</span><br><span class="line">formData.<span class="title function_">append</span>(<span class="string">&quot;client_secret&quot;</span>, clientSecret);</span><br><span class="line">formData.<span class="title function_">append</span>(<span class="string">&quot;grant_type&quot;</span>, <span class="string">&quot;client_credentials&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(</span><br><span class="line">    <span class="string">&quot;============================ Start fetch Testing ============================================&quot;</span></span><br><span class="line">);</span><br><span class="line"><span class="title function_">fetch</span>(url, &#123;</span><br><span class="line">    <span class="attr">method</span>: <span class="string">&quot;POST&quot;</span>,</span><br><span class="line">    <span class="attr">body</span>: formData,</span><br><span class="line">    <span class="attr">agent</span>: httpsAgent,</span><br><span class="line">&#125;)</span><br><span class="line">    .<span class="title function_">then</span>(<span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (!response.<span class="property">ok</span>) &#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;XXXXX ERROR XXXXX&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 解析 JSON 格式的 response body</span></span><br><span class="line">        <span class="keyword">return</span> response.<span class="title function_">json</span>();</span><br><span class="line">    &#125;)</span><br><span class="line">    .<span class="title function_">then</span>(<span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Response from server:&quot;</span>, data);</span><br><span class="line">    &#125;)</span><br><span class="line">    .<span class="title function_">catch</span>(<span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">// 處理錯誤</span></span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&quot;Error:&quot;</span>, error);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure><p>查看 npm 的 proxy 設定可以查看</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm config get proxy</span><br><span class="line">npm config get https-proxy</span><br></pre></td></tr></table></figure><h3 id="UNABLE-TO-GET-ISSUER-CERT-LOCALLY"><a href="#UNABLE-TO-GET-ISSUER-CERT-LOCALLY" class="headerlink" title="UNABLE_TO_GET_ISSUER_CERT_LOCALLY"></a>UNABLE_TO_GET_ISSUER_CERT_LOCALLY</h3><p>如果噴 <code>UNABLE_TO_GET_ISSUER_CERT_LOCALLY</code> <code>unable to get local issuer certificate</code> 的錯誤，<br>請參考 <a href="https://weekendprojects.dev/posts/fixed-npm-err-code-unable_to_get_issuer_cert_locally/">NPM err code unable_to_get_issuer_cert_locally</a> 調整</p><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://github.com/axios/axios/issues/2937">Axios proxy is not working.</a><br><a href="https://github.com/axios/axios/issues/5078">ERR_BAD_RESPONSE 502 when using proxy</a><br><a href="https://weekendprojects.dev/posts/fixed-npm-err-code-unable_to_get_issuer_cert_locally/">NPM err code unable_to_get_issuer_cert_locally</a></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;Windows Server 連外要透過 Proxy 時，原本在 Windows 設定中，設定 proxy 。&lt;br&gt;結果我們的 nodej</summary>
-      
-    
-    
-    
-    
-    <category term="node" scheme="https://rainmakerho.github.io/tags/node/"/>
-    
-    <category term="axios" scheme="https://rainmakerho.github.io/tags/axios/"/>
-    
-    <category term="proxy" scheme="https://rainmakerho.github.io/tags/proxy/"/>
-    
-    <category term="502" scheme="https://rainmakerho.github.io/tags/502/"/>
-    
-    <category term="httpsAgent" scheme="https://rainmakerho.github.io/tags/httpsAgent/"/>
-    
-    <category term="UNABLE_TO_GET_ISSUER_CERT_LOCALLY" scheme="https://rainmakerho.github.io/tags/UNABLE-TO-GET-ISSUER-CERT-LOCALLY/"/>
     
   </entry>
   
