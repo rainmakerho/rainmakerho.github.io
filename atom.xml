@@ -2,11 +2,11 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>亂馬客</title>
   <icon>https://www.gravatar.com/avatar/cd3aed042ccd7a5a5d9956b0bc07dc81</icon>
-  <subtitle>Re:從零開始的軟體開發生活</subtitle>
+  <subtitle>Hello! 我是RM</subtitle>
   <link href="https://rainmakerho.github.io/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2024-02-07T03:28:27.672Z</updated>
+  <updated>2024-02-07T05:28:19.378Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Edge開發者工具中的網路沒辦法顯示任何的要求訊息</title>
+    <link href="https://rainmakerho.github.io/2024/02/07/edge-network-empty/"/>
+    <id>https://rainmakerho.github.io/2024/02/07/edge-network-empty/</id>
+    <published>2024-02-07T04:04:11.000Z</published>
+    <updated>2024-02-07T05:28:19.378Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近開啟 Edge 的開發者工具中的網路來錄網頁的要求行為時，<br>下方的區塊都是空空的，似乎不知道被那裡過濾掉，要怎麼辦呢?</p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>不知那個設定把要求都過濾掉，那就只好<strong>還原</strong>它。</p><p>在 <strong>開發者工具</strong> 右邊，按下 <code>...</code> ，選擇 <code>設定</code> ，</p><img src="/2024/02/07/edge-network-empty/01.png" class="" title="DevTools-設定"><p>在<code>同步</code>最下方有一個<code>還原成預設值，並重新整理</code>，<br>按下它，就可以了哦。</p><img src="/2024/02/07/edge-network-empty/02.png" class="" title="還原成預設值"><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://blog.csdn.net/u013427969/article/details/113135474">edge 等浏览器打开开发者工具（F12）之后在 NetWork 看不到请求头等信息</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;最近開啟 Edge 的開發者工具中的網路來錄網頁的要求行為時，&lt;br&gt;下方的區塊都是空空的，似乎不知道被那裡過濾掉，要怎麼辦呢?&lt;/p&gt;
+&lt;</summary>
+      
+    
+    
+    
+    
+    <category term="Edge" scheme="https://rainmakerho.github.io/tags/Edge/"/>
+    
+    <category term="Empty" scheme="https://rainmakerho.github.io/tags/Empty/"/>
+    
+    <category term="DevTools" scheme="https://rainmakerho.github.io/tags/DevTools/"/>
+    
+    <category term="Network" scheme="https://rainmakerho.github.io/tags/Network/"/>
+    
+  </entry>
   
   <entry>
     <title>改變 Windows 10 網卡的 MAC Address(實體位址)</title>
@@ -615,34 +644,6 @@
     <category term="ChatGPT" scheme="https://rainmakerho.github.io/tags/ChatGPT/"/>
     
     <category term="Usage tiers" scheme="https://rainmakerho.github.io/tags/Usage-tiers/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Checkmarx Path Traversal 的怪問題(File.)</title>
-    <link href="https://rainmakerho.github.io/2023/12/11/path-traversal-checkmarx-file/"/>
-    <id>https://rainmakerho.github.io/2023/12/11/path-traversal-checkmarx-file/</id>
-    <published>2023-12-11T00:42:23.000Z</published>
-    <updated>2023-12-11T01:18:04.850Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近同事詢問在處理 Checkmarx (V 9.4.5.1012 HF24) Path Traversal 透過 <code>Replace</code> 卻無法消除問題。<br>來源是 <code>data</code> ，目的地是 <code>FilesName</code><br>程式如下，</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">HttpPost</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> ActionResult <span class="title">UploadArichiveClassficationReport</span>(<span class="params">UploadArichiveClassficationReportForm data</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">var</span> filePath = data.File.FilesName.Replace(<span class="string">&quot;..&quot;</span>, <span class="string">&quot;&quot;</span>).Replace(<span class="string">&quot;/&quot;</span>, <span class="string">&quot;&quot;</span>).Replace(<span class="string">&quot;\\&quot;</span>, <span class="string">&quot;&quot;</span>).Replace(<span class="string">&quot;&#x27;&quot;</span>, <span class="string">&quot;&quot;</span>)</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>從 Checkmarx 管理 UI 中發現，Checkmarx 似乎不理會 <code>FilesName</code> 後面的 <code>Replace</code>，<br>直接就決定 <code>FilesName</code> 這裡有問題。</p><img src="/2023/12/11/path-traversal-checkmarx-file/01.png" class="" title="Checkmarx UI"><p>都還在處理 File 的路徑，Checkmarx 怎麼直接就噴有問題呢?</p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>從 <code>data.File</code>，<code>File</code> 是 <code>UploadArichiveClassficationReportForm</code> 類別的屬性名稱。<br>但從上述來看， Checkmarx 將 <code>File.FilesName</code> 的 <code>File</code> 當成是 <code>System.IO.File</code>。<br>看來是因為 <strong>屬性</strong> 名稱取成 <code>File</code> ，所以中招了 …<br>那怎麼辦呢?</p><p>1.改屬性名稱，將<code>File</code>改成 別的屬性名稱，儘量別跟 <code>System.IO</code> 類別名稱一樣</p><p>2.先將 <code>data.File</code> 放到變數之中，再來操作，如下</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">HttpPost</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> ActionResult <span class="title">UploadArichiveClassficationReport</span>(<span class="params">UploadArichiveClassficationReportForm data</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">var</span> file = data.File;</span><br><span class="line">    <span class="keyword">var</span> filePath = file.FilesName.Replace(<span class="string">&quot;..&quot;</span>, <span class="string">&quot;&quot;</span>).Replace(<span class="string">&quot;/&quot;</span>, <span class="string">&quot;&quot;</span>).Replace(<span class="string">&quot;\\&quot;</span>, <span class="string">&quot;&quot;</span>).Replace(<span class="string">&quot;&#x27;&quot;</span>, <span class="string">&quot;&quot;</span>)</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://rainmakerho.github.io/2021/05/21/Path-Traversal-Vulnerability-Checkmarx/">Checkmarx Path Traversal 的解法</a></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;最近同事詢問在處理 Checkmarx (V 9.4.5.1012 HF24) Path Traversal 透過 &lt;code&gt;Replac</summary>
-      
-    
-    
-    
-    
-    <category term="C#" scheme="https://rainmakerho.github.io/tags/C/"/>
-    
-    <category term="Checkmarx" scheme="https://rainmakerho.github.io/tags/Checkmarx/"/>
-    
-    <category term="Path Traversal" scheme="https://rainmakerho.github.io/tags/Path-Traversal/"/>
-    
-    <category term="File" scheme="https://rainmakerho.github.io/tags/File/"/>
     
   </entry>
   
