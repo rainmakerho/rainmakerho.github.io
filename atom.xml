@@ -6,7 +6,7 @@
   <link href="https://rainmakerho.github.io/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2024-02-07T05:28:19.378Z</updated>
+  <updated>2024-02-15T06:18:23.378Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -17,13 +17,43 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>C# 為什麼 Console App 不需要 using System 就可以直接用 Console.WriteLine?</title>
+    <link href="https://rainmakerho.github.io/2024/02/15/implicitly-imported-namespaces-csharp/"/>
+    <id>https://rainmakerho.github.io/2024/02/15/implicitly-imported-namespaces-csharp/</id>
+    <published>2024-02-15T05:27:37.000Z</published>
+    <updated>2024-02-15T06:18:23.378Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="疑問"><a href="#疑問" class="headerlink" title="疑問"></a>疑問</h3><p>不知道有沒有發現新增 Console 應用程式後，<br>沒有任何的 <code>using</code>，程式中就可以直接使用 <code>Console.WriteLine(&quot;Hello, World!&quot;);</code>?</p><h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>那是因為 .NET 6(含以後版本)使用 C# 10 的<strong>global namespace imports</strong>，<br>會把常用的一些 namespace 自動 import 進來哦~<br>會加那些 namespace 呢?<br>可以從專案屬性中看到，如下，</p><img src="/2024/02/15/implicitly-imported-namespaces-csharp/02.png" class="" title="專案屬性"><p>專案內容中有設定<code>ImplicitUsings</code>(隱含全域 Using)，預設是為<code>enable</code></p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ImplicitUsings</span>&gt;</span>enable<span class="tag">&lt;/<span class="name">ImplicitUsings</span>&gt;</span></span><br></pre></td></tr></table></figure><p>或是在建置專案後，可以查看 <strong>obj&#x2F;Debug</strong> 目錄中的 <code>&#123;專案名稱&#125;.GlobalUsings.g.cs</code> 內容，</p><img src="/2024/02/15/implicitly-imported-namespaces-csharp/01.png" class="" title="GlobalUsings.g.cs"><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// &lt;auto-generated/&gt;</span></span><br><span class="line"><span class="keyword">global</span> <span class="keyword">using</span> <span class="keyword">global</span>::System;</span><br><span class="line"><span class="keyword">global</span> <span class="keyword">using</span> <span class="keyword">global</span>::System.Collections.Generic;</span><br><span class="line"><span class="keyword">global</span> <span class="keyword">using</span> <span class="keyword">global</span>::System.IO;</span><br><span class="line"><span class="keyword">global</span> <span class="keyword">using</span> <span class="keyword">global</span>::System.Linq;</span><br><span class="line"><span class="keyword">global</span> <span class="keyword">using</span> <span class="keyword">global</span>::System.Net.Http;</span><br><span class="line"><span class="keyword">global</span> <span class="keyword">using</span> <span class="keyword">global</span>::System.Threading;</span><br><span class="line"><span class="keyword">global</span> <span class="keyword">using</span> <span class="keyword">global</span>::System.Threading.Tasks;</span><br></pre></td></tr></table></figure><p>如果要加其他的 Global Using ，可以在<code>csproj</code>檔案中加入，如下，</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ItemGroup</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Using</span> <span class="attr">Include</span>=<span class="string">&quot;System.Text.Json&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Using</span> <span class="attr">Include</span>=<span class="string">&quot;System.Text.Json.Serialization&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ItemGroup</span>&gt;</span></span><br></pre></td></tr></table></figure><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://xamlabs.com/2023/08/03/simplifying-namespace-imports-in-c-with-global-using-directives/">Simplifying Namespace Imports in C# with Global Using Directives</a><br><a href="https://endjin.com/blog/2021/09/dotnet-csharp-10-implicit-global-using-directives">C# 10.0 implicit global using directives</a></p><blockquote><p>一百句，五十雙: 喻人說來說去都是這一套，沒有新意，一點建議性都沒有</p></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;疑問&quot;&gt;&lt;a href=&quot;#疑問&quot; class=&quot;headerlink&quot; title=&quot;疑問&quot;&gt;&lt;/a&gt;疑問&lt;/h3&gt;&lt;p&gt;不知道有沒有發現新增 Console 應用程式後，&lt;br&gt;沒有任何的 &lt;code&gt;using&lt;/code&gt;，程式中就可以直接使用 &lt;code</summary>
+      
+    
+    
+    
+    
+    <category term="C#" scheme="https://rainmakerho.github.io/tags/C/"/>
+    
+    <category term="Console" scheme="https://rainmakerho.github.io/tags/Console/"/>
+    
+    <category term="Implicitly imported namespaces" scheme="https://rainmakerho.github.io/tags/Implicitly-imported-namespaces/"/>
+    
+    <category term=".NET 6" scheme="https://rainmakerho.github.io/tags/NET-6/"/>
+    
+    <category term="隱含全域 Using" scheme="https://rainmakerho.github.io/tags/%E9%9A%B1%E5%90%AB%E5%85%A8%E5%9F%9F-Using/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Edge開發者工具中的網路沒辦法顯示任何的要求訊息</title>
     <link href="https://rainmakerho.github.io/2024/02/07/edge-network-empty/"/>
     <id>https://rainmakerho.github.io/2024/02/07/edge-network-empty/</id>
     <published>2024-02-07T04:04:11.000Z</published>
-    <updated>2024-02-07T05:28:19.378Z</updated>
+    <updated>2024-02-15T00:41:54.962Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近開啟 Edge 的開發者工具中的網路來錄網頁的要求行為時，<br>下方的區塊都是空空的，似乎不知道被那裡過濾掉，要怎麼辦呢?</p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>不知那個設定把要求都過濾掉，那就只好<strong>還原</strong>它。</p><p>在 <strong>開發者工具</strong> 右邊，按下 <code>...</code> ，選擇 <code>設定</code> ，</p><img src="/2024/02/07/edge-network-empty/01.png" class="" title="DevTools-設定"><p>在<code>同步</code>最下方有一個<code>還原成預設值，並重新整理</code>，<br>按下它，就可以了哦。</p><img src="/2024/02/07/edge-network-empty/02.png" class="" title="還原成預設值"><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://blog.csdn.net/u013427969/article/details/113135474">edge 等浏览器打开开发者工具（F12）之后在 NetWork 看不到请求头等信息</a></p>]]></content>
+    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近開啟 Edge 的開發者工具中的網路來錄網頁的要求行為時，<br>下方的區塊都是空空的，似乎不知道被那裡過濾掉，要怎麼辦呢?</p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>不知那個設定把要求都過濾掉，那就只好<strong>還原</strong>它。</p><p>在 <strong>開發者工具</strong> 右邊，按下 <code>...</code> ，選擇 <code>設定</code> ，</p><img src="/2024/02/07/edge-network-empty/01.png" class="" title="DevTools-設定"><p>在<code>同步</code>最下方有一個<code>還原成預設值，並重新整理</code>，<br>按下它，就可以了哦。</p><img src="/2024/02/07/edge-network-empty/02.png" class="" title="還原成預設值"><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://blog.csdn.net/u013427969/article/details/113135474">edge 等浏览器打开开发者工具（F12）之后在 NetWork 看不到请求头等信息</a></p><blockquote><p>一天一個現在:「現在」只有一個，若把這個「現在」放過，第二個「現在」就不會再出現</p></blockquote>]]></content>
     
     
       
@@ -50,9 +80,9 @@
     <link href="https://rainmakerho.github.io/2024/02/07/change-mac-address-in-windows10/"/>
     <id>https://rainmakerho.github.io/2024/02/07/change-mac-address-in-windows10/</id>
     <published>2024-02-07T03:00:17.000Z</published>
-    <updated>2024-02-07T03:28:27.672Z</updated>
+    <updated>2024-02-15T00:46:00.171Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>在 Windows 中如何改變網卡的 MAC Address(實體位址) 呢?</p><h3 id="做法"><a href="#做法" class="headerlink" title="做法"></a>做法</h3><p>可以參考 <a href="https://www.shareus.com/windows/how-to-change-my-mac-address-in-windows-10-mac-address-spoofing.html">How to Change My MAC Address in Windows 10 - MAC Address Spoofing</a> 做法，找到網卡-&gt;設定-&gt;進階 有 <code>Network Address</code> 可以設定的網卡，<br>設定它的值後，再到命令視窗輸入 <code>ipconfig /all</code> 就可以發現 mac address 被改成剛才的設定值。</p><img src="/2024/02/07/change-mac-address-in-windows10/01.png" class="" title="change mac address"><p>可以到機碼中，<code>NetworkAddress</code> 的值也被加進去哦~</p><blockquote><p>最穩定的改變方式是從 <code>電腦管理</code>-&gt;<code>裝置管理員</code>-&gt;<code>網路介面卡</code>-&gt;選網卡-&gt;按右鍵-&gt;進階 Tab-&gt;內容裡面的<code>Network Address</code></p></blockquote><ul><li>有些設定值是不會改變的，例如 <code>0123456789AB</code></li></ul><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://www.shareus.com/windows/how-to-change-my-mac-address-in-windows-10-mac-address-spoofing.html">How to Change My MAC Address in Windows 10 - MAC Address Spoofing</a></p>]]></content>
+    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>在 Windows 中如何改變網卡的 MAC Address(實體位址) 呢?</p><h3 id="做法"><a href="#做法" class="headerlink" title="做法"></a>做法</h3><p>可以參考 <a href="https://www.shareus.com/windows/how-to-change-my-mac-address-in-windows-10-mac-address-spoofing.html">How to Change My MAC Address in Windows 10 - MAC Address Spoofing</a> 做法，找到網卡-&gt;設定-&gt;進階 有 <code>Network Address</code> 可以設定的網卡，<br>設定它的值後，再到命令視窗輸入 <code>ipconfig /all</code> 就可以發現 mac address 被改成剛才的設定值。</p><img src="/2024/02/07/change-mac-address-in-windows10/01.png" class="" title="change mac address"><p>可以到機碼中，<code>NetworkAddress</code> 的值也被加進去哦~</p><blockquote><p>最穩定的改變方式是從 <code>電腦管理</code>-&gt;<code>裝置管理員</code>-&gt;<code>網路介面卡</code>-&gt;選網卡-&gt;按右鍵-&gt;進階 Tab-&gt;內容裡面的<code>Network Address</code></p></blockquote><ul><li>有些設定值是不會改變的，例如 <code>0123456789AB</code></li></ul><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://www.shareus.com/windows/how-to-change-my-mac-address-in-windows-10-mac-address-spoofing.html">How to Change My MAC Address in Windows 10 - MAC Address Spoofing</a></p><blockquote><p>一百隻麻雀炒成一碟菜(都是嘴): 比喻很多人聚集在一起，興高彩烈地說個不停或只憑一張嘴的意思</p></blockquote>]]></content>
     
     
       
@@ -613,37 +643,6 @@
     <category term="Base62" scheme="https://rainmakerho.github.io/tags/Base62/"/>
     
     <category term="Base64UrlEncode" scheme="https://rainmakerho.github.io/tags/Base64UrlEncode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>為什麼 OpenAI Assistants API 選不到 GPT4?</title>
-    <link href="https://rainmakerho.github.io/2023/12/11/why-openai-assistants-api-no-gpt4/"/>
-    <id>https://rainmakerho.github.io/2023/12/11/why-openai-assistants-api-no-gpt4/</id>
-    <published>2023-12-11T01:19:18.000Z</published>
-    <updated>2023-12-11T01:46:03.680Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>在測試 OpenAI Assistants API 時，為什麼選不到 GPT 4 model 呢?</p><h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>原本以為升級到 <strong>ChatGPT Plus</strong> 才會有，<br>後來發現是因為 <strong>Usage tiers</strong> 的關系。<br>預設的 <strong>Usage tiers</strong> 是 <strong>Free</strong>，所以選不到 <strong>GPT4</strong> 的 Model。<br>起碼要付費成為 <strong>非 Free Tier</strong> 帳號才選得到 GPT4 哦~</p><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://platform.openai.com/docs/guides/rate-limits/usage-tiers?context=tier-free">Usage tiers</a><br><a href="https://rainmakerho.github.io/2023/11/29/openai-assistant-api/">OpenAI Assistants API 初體驗</a></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;在測試 OpenAI Assistants API 時，為什麼選不到 GPT 4 model 呢?&lt;/p&gt;
-&lt;h3 id=&quot;原因&quot;&gt;&lt;a h</summary>
-      
-    
-    
-    
-    
-    <category term="openai" scheme="https://rainmakerho.github.io/tags/openai/"/>
-    
-    <category term="assistants api" scheme="https://rainmakerho.github.io/tags/assistants-api/"/>
-    
-    <category term="gpt4" scheme="https://rainmakerho.github.io/tags/gpt4/"/>
-    
-    <category term="ChatGPT" scheme="https://rainmakerho.github.io/tags/ChatGPT/"/>
-    
-    <category term="Usage tiers" scheme="https://rainmakerho.github.io/tags/Usage-tiers/"/>
     
   </entry>
   
