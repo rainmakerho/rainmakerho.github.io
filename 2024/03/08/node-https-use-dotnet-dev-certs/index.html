@@ -19,7 +19,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://rainmakerho.github.io/2024/03/08/node-https-use-dotnet-dev-certs/01.png">
 <meta property="article:published_time" content="2024-03-08T09:27:24.000Z">
-<meta property="article:modified_time" content="2024-03-08T10:24:28.737Z">
+<meta property="article:modified_time" content="2024-03-19T03:15:53.527Z">
 <meta property="article:author" content="亂馬客">
 <meta property="article:tag" content="Node.js">
 <meta property="article:tag" content="Https">
@@ -180,7 +180,7 @@
          <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>同事在開發環境中，使用 ASP.NET Core 開發，走 HTTPS 所以會使用 ASP.NET Core 的自我簽署憑證。<br>使用 React 開發前端 UI，使用 OIDC 跑起來，也需要 TLS 憑證，於是同事又透過 chocolatey 安裝 mkcert 來建立憑證。<br>即然 ASP.NET Core 已經有 TLS 憑證了，在本機跑起來也沒有問題，<br>那 Node.js 是否能用那個憑證呢?</p>
 <h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>要讓 Node.js 使用 ASP.NET Core 的自我簽署憑證，就要先找到含金鑰憑證在那裡。<br>一般會是在 <code>C:\Users\&#123;user帳號&#125;\.aspnet</code> 裡面，可以找看看有沒有<strong>pfx</strong>的檔案。<br>如果沒找到就重新再建立一個(新的憑證要放到憑證-本機電腦-受信任的根憑證授權單位之中)，<br>可以選擇需要的是 <code>pfx</code> or <code>PEM</code> 檔，並要記得密碼。</p>
 <p>確定 dotnet web 程式跑在 Browser 上沒問題，又有需要的 pfx or pem<br>，就可以在 Node.js 程式中設定要使用的 TLS 憑證，如下，<br>以下我使用 pfx 檔案，</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> https = <span class="built_in">require</span>(<span class="string">&quot;https&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">&quot;fs&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> options = &#123;</span><br><span class="line">    <span class="attr">pfx</span>: fs.<span class="title function_">readFileSync</span>(<span class="string">&quot;./aspnetapp.pfx&quot;</span>),</span><br><span class="line">    <span class="attr">passphrase</span>: <span class="string">&quot;你的密碼&quot;</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> server = https</span><br><span class="line">    .<span class="title function_">createServer</span>(options, <span class="keyword">function</span> (<span class="params">request, response</span>) &#123;</span><br><span class="line">        fs.<span class="title function_">readFile</span>(<span class="string">&quot;index.html&quot;</span>, <span class="keyword">function</span> (<span class="params">error, data</span>) &#123;</span><br><span class="line">            response.<span class="title function_">writeHead</span>(<span class="number">200</span>, &#123; <span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;text/html&quot;</span> &#125;);</span><br><span class="line">            response.<span class="title function_">end</span>(data);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;)</span><br><span class="line">    .<span class="title function_">listen</span>(<span class="number">12345</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;server running&quot;</span>);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> https = <span class="built_in">require</span>(<span class="string">&quot;https&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">&quot;fs&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> options = &#123;</span><br><span class="line">    <span class="attr">pfx</span>: fs.<span class="title function_">readFileSync</span>(<span class="string">&quot;./你的憑證檔.pfx&quot;</span>),</span><br><span class="line">    <span class="attr">passphrase</span>: <span class="string">&quot;你的密碼&quot;</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> server = https</span><br><span class="line">    .<span class="title function_">createServer</span>(options, <span class="keyword">function</span> (<span class="params">request, response</span>) &#123;</span><br><span class="line">        fs.<span class="title function_">readFile</span>(<span class="string">&quot;index.html&quot;</span>, <span class="keyword">function</span> (<span class="params">error, data</span>) &#123;</span><br><span class="line">            response.<span class="title function_">writeHead</span>(<span class="number">200</span>, &#123; <span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;text/html&quot;</span> &#125;);</span><br><span class="line">            response.<span class="title function_">end</span>(data);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;)</span><br><span class="line">    .<span class="title function_">listen</span>(<span class="number">12345</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;server running&quot;</span>);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
 
 <p>從 Browser 中，可以發現憑證是使用<strong>ASP.NET Core 的自我簽署憑證</strong>，如下，</p>
 <img src="/2024/03/08/node-https-use-dotnet-dev-certs/01.png" class="" title="ASP.NET Core 的自我簽署憑證">
@@ -189,6 +189,9 @@
 <li>註: 當 ASP.NET Core 的自我簽署憑證已在本機電腦-受信任的根憑證授權單位之中，本機 IIS 也可以直接選到它來使用哦。</li>
 </ul>
 <h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-tw/dotnet/core/tools/dotnet-dev-certs">dotnet dev-certs</a><br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-tw/dotnet/core/additional-tools/self-signed-certificates-guide">使用 .NET CLI 產生自我簽署憑證</a><br><a href="https://rainmakerho.github.io/2022/03/22/visual-studio-adding-certificate-to-trusted-root-failed/">Microsoft Visual Studio 無法將憑證新增至受信任的根憑證存放區 - 無法信任憑證</a></p>
+<blockquote>
+<p>一手掩盡天下耳目: 因做錯了事，希望能瞞騙天下的人，是一種自欺欺人的行為。</p>
+</blockquote>
    
     </div>
     <div class="article-info article-info-index">
@@ -223,6 +226,15 @@
 </article>
  
 <nav id="article-nav">
+  
+    <a href="/2024/03/19/dev-local-custom-authentication/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Creating an authentication from appsettings in ASP.NET Core
+        
+      </div>
+    </a>
   
   
     <a href="/2024/03/08/ml-missing-field-exception-OneDalDispatchingEnabled/" id="article-nav-older" class="article-nav-link-wrap">
@@ -6002,6 +6014,26 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">dev-certs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">appsettings.json</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Middleware</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">ClaimsPrincipal</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Identity.Application</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">ClaimsIdentity</a>
               </li>
             
             <div class="clearfix"></div>
