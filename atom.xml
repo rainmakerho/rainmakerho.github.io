@@ -6,7 +6,7 @@
   <link href="https://rainmakerho.github.io/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2024-03-19T05:30:21.217Z</updated>
+  <updated>2024-03-25T08:48:37.957Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,70 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>(ODBC SQL Server Driver)SQL Server 不存在或拒絕存取(無效的連線字串屬性)</title>
+    <link href="https://rainmakerho.github.io/2024/03/25/odbc-sqlserver-driver-dbnetlib-sql-server-does-not-exist/"/>
+    <id>https://rainmakerho.github.io/2024/03/25/odbc-sqlserver-driver-dbnetlib-sql-server-does-not-exist/</id>
+    <published>2024-03-25T05:05:15.000Z</published>
+    <updated>2024-03-25T08:48:37.957Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近朋友一個系統環境 DB 是 SQL Server 2008 R2 (<code>192.168.211.213</code>)，AP Server 改使用 Windows 2022。<br>分別裝了 2 台 AP Server (<code>192.168.211.204</code> 及 <code>192.168.211.205</code>)，卻發現其中有一台(<code>192.168.211.204</code>)連線時會發生 <code>SQL Server does not exist or access denied</code> 的錯誤，另一台則是正常的。</p><blockquote><p>ERROR [08001] [Microsoft][ODBC SQL Server Driver][DBNETLIB]SQL Server 不存在或拒絕存取。<br>ERROR [01000] [Microsoft][ODBC SQL Server Driver][DBNETLIB]ConnectionOpen (Connect()).<br>ERROR [01S00] [Microsoft][ODBC SQL Server Driver]無效的連線字串屬性</p></blockquote><h3 id="調查及解決"><a href="#調查及解決" class="headerlink" title="調查及解決"></a>調查及解決</h3><p>它的連線字串為，<br><code>driver=&#123;SQL Server&#125;;Server=192.168.211.213;port=62667;Database=RMDB;uid=rm;pwd=rmpwd</code><br>使用 <code>OdbcConnection</code>，程式如下，<br>設定檔內容，</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">appSettings</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">add</span> <span class="attr">key</span>=<span class="string">&quot;DB2_HOSTNAME&quot;</span> <span class="attr">value</span>=<span class="string">&quot;192.168.211.213&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">add</span> <span class="attr">key</span>=<span class="string">&quot;DB2_PORT&quot;</span> <span class="attr">value</span>=<span class="string">&quot;62667&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">add</span> <span class="attr">key</span>=<span class="string">&quot;DB2_DB&quot;</span> <span class="attr">value</span>=<span class="string">&quot;RMDB&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">add</span> <span class="attr">key</span>=<span class="string">&quot;DB2_UID&quot;</span> <span class="attr">value</span>=<span class="string">&quot;rm&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">add</span> <span class="attr">key</span>=<span class="string">&quot;DB2_PWD&quot;</span> <span class="attr">value</span>=<span class="string">&quot;rmpwd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">appSettings</span>&gt;</span></span><br></pre></td></tr></table></figure><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">OdbcConnection conn = <span class="keyword">new</span> OdbcConnection();</span><br><span class="line">strConnString = <span class="string">&quot;driver=&#123;SQL Server&#125;;Server=[DB2_HOSTNAME設定值];port=[DB2_PORT設定值];Database=[DB2_DB設定值];uid=[DB2_UID設定值];pwd=[DB2_PWD設定值]&quot;</span>;</span><br><span class="line">conn.ConnectionString = strConnString;</span><br><span class="line">conn.Open();</span><br></pre></td></tr></table></figure><p>因為 ODBC 除了有 <code>SQL Server</code> 這個 Driver ，還有 <code>ODBC Driver 17 for SQL Server</code> ，<br>所以就將連線字串改成，<br><code>driver=&#123;ODBC Driver 17 for SQL Server&#125;;Server=192.168.211.213;port=62667;Database=RMDB;uid=rm;pwd=rmpwd</code></p><p>結果就發生 <code>具名管理提供者: 無法開啟 SQL Server 連線</code> 的錯誤，如下，</p><blockquote><p>ERROR [08001] [Microsoft][ODBC Driver 17 for SQL Server]具名管理提供者: 無法開啟 SQL Server 連線 [5]<br>ERROR [01S00] [Microsoft][ODBC Driver 17 for SQL Server]無效的連線字串屬性</p></blockquote><p>奇怪，怎麼不是走 <code>TCP/IP</code> ，而是走 <code>Named Pipes</code> 呢?<br>透過<a href="https://www.microsoft.com/en-us/download/details.aspx?id=4865">Microsoft Network Monitor 3.4</a>在 DB Server 錄到的封包，<br><code>192.168.211.204</code> &#x3D;&gt; <code>192.168.211.213</code></p><img src="/2024/03/25/odbc-sqlserver-driver-dbnetlib-sql-server-does-not-exist/01.png" class="" title="204-&gt;213"><p><code>192.168.211.205</code> &#x3D;&gt; <code>192.168.211.213</code></p><img src="/2024/03/25/odbc-sqlserver-driver-dbnetlib-sql-server-does-not-exist/02.png" class="" title="205-&gt;213"><p>可以發現，用同樣的連線字串，AP(204)連 DB 是走<code>1433</code> Port, 而 AP(205)卻是走正確的<code>62667</code><br>仔細看一下連線字串好像怪怪的，參考<a href="https://learn.microsoft.com/zh-tw/dotnet/api/system.data.sqlclient.sqlconnection.open?view=netframework-4.8">SqlConnection.Open 方法</a>的說明，</p><blockquote><p>如果您嘗試連線到 SQL Server 的實例，並使用 TCP&#x2F;IP 以外的通訊協定時，指定 1433 以外的埠號碼，此方法就會 Open 失敗。 若要指定 1433 以外的埠號碼，請在連接字串中包含 「server&#x3D;machinename,port number」，並使用 TCP&#x2F;IP 通訊協定</p></blockquote><p>目前的連線字串是<br><code>driver=&#123;SQL Server&#125;;Server=192.168.211.213;port=62667;Database=RMDB;uid=rm;pwd=rmpwd</code>，<br>應該是要改成<br><code>driver=&#123;SQL Server&#125;;Server=192.168.211.213,62667;Database=RMDB;uid=rm;pwd=rmpwd</code>，<br>才是正確的。</p><p>所以將設定內容中的<code>&lt;add key=&quot;DB2_HOSTNAME&quot; value=&quot;192.168.211.213&quot;&gt;</code><br>改成<code>&lt;add key=&quot;DB2_HOSTNAME&quot; value=&quot;192.168.211.213,62667&quot;&gt;</code> AP-204 就可以正常連線了。</p><p>但為什麼 AP-205 連線字串的 HOST 並沒有加<code>,port number</code>，卻可以連線成功呢?<br>於是想到 <strong>SQL Server 組態管理員</strong> 可以設定 Client 的通訊協定及別名，<br>但是 AP 打開來，裡面的確有設定<code>192.168.211.213</code>別名，同時設定它走 62667 Port。<br>卻只有<code>32位元</code>的 Client 設定，並沒有<code>64位元</code>的 Client 設定</p><img src="/2024/03/25/odbc-sqlserver-driver-dbnetlib-sql-server-does-not-exist/03.png" class="" title="SQL Server 組態管理員"><p>但因為程式是 X64 的，所以直接看機碼比較快，<br><code>64位元</code>的機碼如下，<br><code>電腦\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\MSSQLServer\Client\ConnectTo</code></p><p><code>32位元</code>的機碼如下，<br><code>電腦\HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\MSSQLServer\Client\ConnectTo</code></p><p>結果一看 AP-205 有一個<code>192.168.211.213</code>別名，並設定走 TCP 62667 Port。<br>而 AP-204 別名卻是<code>192.168.211.213,62667</code>，並設定走 TCP 62667 Port。</p><img src="/2024/03/25/odbc-sqlserver-driver-dbnetlib-sql-server-does-not-exist/04.png" class="" title="Alias"><p>原來是別名設定錯誤，難怪 AP-204 會用 TCP 1433 去連。<br>請朋友將機碼的名稱從<code>192.168.211.213,62667</code> 改成 <code>192.168.211.213</code> 就沒問題了。</p><h3 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h3><p>以上雖然只是幾步，但查花了幾天的時間才找出這些問題。<br>如果有詳細去看錯誤訊息<code>無效的連線字串屬性</code>，應該可以及早發現是連線字串的問題。</p><p>如果可以早點到機碼檢查 SQL Client 別名，應該也可以早點確認是<strong>SQL Server 組態管理員</strong>設定別名的問題。</p><p>為什麼那個連線字串為什麼 Port 寫在連線字串的屬性中(<code>port=62667</code>)呢?<br>從設定中的名稱就可以發現原本使用的 DB 應該是<strong>IBM DB2</strong>，後來才改成<strong>SQL Server</strong>的。<br>因為 IBM DB2 的 ODBC 連線字串就是<code>Driver=&#123;IBM DB2 ODBC DRIVER&#125;;Database=myDataBase;Hostname=myServerAddress;Port=1234;Protocol=TCPIP;Uid=myUsername;Pwd=myPassword;</code>。</p><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://www.microsoft.com/en-us/download/details.aspx?id=4865">Microsoft Network Monitor 3.4</a><br><a href="https://learn.microsoft.com/zh-tw/dotnet/api/system.data.sqlclient.sqlconnection.open?view=netframework-4.8">SqlConnection.Open 方法</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;最近朋友一個系統環境 DB 是 SQL Server 2008 R2 (&lt;code&gt;192.168.211.213&lt;/code&gt;)，AP S</summary>
+      
+    
+    
+    
+    
+    <category term="ODBC" scheme="https://rainmakerho.github.io/tags/ODBC/"/>
+    
+    <category term="8001" scheme="https://rainmakerho.github.io/tags/8001/"/>
+    
+    <category term="DBNETLIB" scheme="https://rainmakerho.github.io/tags/DBNETLIB/"/>
+    
+    <category term="ODBC SQL Server Driver" scheme="https://rainmakerho.github.io/tags/ODBC-SQL-Server-Driver/"/>
+    
+    <category term="SQL Server does not exist or access denied" scheme="https://rainmakerho.github.io/tags/SQL-Server-does-not-exist-or-access-denied/"/>
+    
+    <category term="OdbcConnection" scheme="https://rainmakerho.github.io/tags/OdbcConnection/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Docker 環境無法連到外部IP(getaddrinfo Temporary failure in name resolution, NET::LDAP::Error)</title>
+    <link href="https://rainmakerho.github.io/2024/03/21/docker-error-getaddrinfo-Temporary-failure-in-name-resolution/"/>
+    <id>https://rainmakerho.github.io/2024/03/21/docker-error-getaddrinfo-Temporary-failure-in-name-resolution/</id>
+    <published>2024-03-21T00:44:46.000Z</published>
+    <updated>2024-03-21T01:03:01.336Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>Gitlab 的 Docker 環境中要透過 Webhook 連到外部的 IP，會出現以下的錯誤訊息，</p><blockquote><p>“exception.class”:”NET::LDAP::Error”,<br>“exception.message”:”getaddrinfo: Temporary failure in name resolution”<br>“exception.backtrace”:[“lib&#x2F;gitlab&#x2F;auth&#x2F;ldap&#x2F;adapter.rb:13:in <code>open</code>, …]</p></blockquote><h3 id="問題原因"><a href="#問題原因" class="headerlink" title="問題原因"></a>問題原因</h3><p>看起來在 Docker 中連線被 Block 掉，而 Docker 的 Host VM 是可以正常直接連線到外面的。<br>猜想會是其他的問題嗎?<br>於是想到因為公司的所有 VM 都要裝防毒軟體，<br>請同事先將<strong>ESET 防毒</strong>移除看看。<br>結果一移除後，Docker 的網路就通了。</p><p>有可能是<strong>ESET 防毒</strong>在防火牆的設定問題，<br>就請 MIS 重新安裝並設定後，就 OK 了哦~</p><blockquote><p>一本三字經，讀迂腐了: 不知變通的意思。</p></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;Gitlab 的 Docker 環境中要透過 Webhook 連到外部的 IP，會出現以下的錯誤訊息，&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;</summary>
+      
+    
+    
+    
+    
+    <category term="LDAP" scheme="https://rainmakerho.github.io/tags/LDAP/"/>
+    
+    <category term="Docker" scheme="https://rainmakerho.github.io/tags/Docker/"/>
+    
+    <category term="getaddrinfo" scheme="https://rainmakerho.github.io/tags/getaddrinfo/"/>
+    
+    <category term="Temporary failure in name resolution" scheme="https://rainmakerho.github.io/tags/Temporary-failure-in-name-resolution/"/>
+    
+    <category term="ESET" scheme="https://rainmakerho.github.io/tags/ESET/"/>
+    
+  </entry>
   
   <entry>
     <title>Creating an authentication from appsettings in ASP.NET Core</title>
@@ -564,61 +628,6 @@
     <category term="提示工程" scheme="https://rainmakerho.github.io/tags/%E6%8F%90%E7%A4%BA%E5%B7%A5%E7%A8%8B/"/>
     
     <category term="semantic-kernel" scheme="https://rainmakerho.github.io/tags/semantic-kernel/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>dotnet 專案如何設定將某目錄建置時 Copy 到輸出目錄呢?</title>
-    <link href="https://rainmakerho.github.io/2023/12/28/vs-copy-folder-to-output-directory/"/>
-    <id>https://rainmakerho.github.io/2023/12/28/vs-copy-folder-to-output-directory/</id>
-    <published>2023-12-28T09:25:46.000Z</published>
-    <updated>2023-12-28T09:38:59.765Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>dotnet 專案如何設定將某目錄建置時 Copy 到輸出目錄呢?</p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>開啟專案檔(.csproj)，<br>在 <code>ItemGroup</code> 區段中加入 <code>None</code> 項目，設定要 Copy 的 目錄，如下，</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ItemGroup</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">None</span> <span class="attr">Update</span>=<span class="string">&quot;prompts\**&quot;</span> <span class="attr">CopyToOutputDirectory</span>=<span class="string">&quot;PreserveNewest&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ItemGroup</span>&gt;</span></span><br></pre></td></tr></table></figure><p><code>CopyToOutputDirectory</code> 的值可以為 <code>Never</code>, <code>Always</code> 或是 <code>PreserveNewest</code></p><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://github.com/dotnet/msbuild/issues/2949#issuecomment-362824225">How to copy a folder to output directory and keep its root folder?</a><br><a href="https://learn.microsoft.com/en-us/visualstudio/msbuild/common-msbuild-project-items?view=vs-2022">Common MSBuild project items</a></p><blockquote><p>冬不可以廢葛，夏不可以廢裘 : 不能因為眼前一時用不著，便不作預防，為人應作長遠計劃。</p></blockquote>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;dotnet 專案如何設定將某目錄建置時 Copy 到輸出目錄呢?&lt;/p&gt;
-&lt;h3 id=&quot;解法&quot;&gt;&lt;a href=&quot;#解法&quot; class=</summary>
-      
-    
-    
-    
-    
-    <category term="Visual Studio" scheme="https://rainmakerho.github.io/tags/Visual-Studio/"/>
-    
-    <category term="dotnet" scheme="https://rainmakerho.github.io/tags/dotnet/"/>
-    
-    <category term="copy" scheme="https://rainmakerho.github.io/tags/copy/"/>
-    
-    <category term="folder" scheme="https://rainmakerho.github.io/tags/folder/"/>
-    
-    <category term="output" scheme="https://rainmakerho.github.io/tags/output/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CS8652 功能 &#39;collection literals&#39; 目前處理預覽階段，且*不受支援*。若要使用預覽功能，請使用「預覽語言」版本。</title>
-    <link href="https://rainmakerho.github.io/2023/12/28/vs-CS8652/"/>
-    <id>https://rainmakerho.github.io/2023/12/28/vs-CS8652/</id>
-    <published>2023-12-28T03:47:39.000Z</published>
-    <updated>2023-12-28T09:29:32.375Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>原本使用 Visual Studio Code 建置並沒有錯誤，<br>改用 Visual Studio 2022 開始後，<br>在錯誤清單中出現了 <strong>CS8652</strong> <code>CS8652 功能 &#39;collection literals&#39; 目前處理預覽階段，且*不受支援*。若要使用預覽功能，請使用「預覽語言」版本。</code> 錯誤要如何解決呢?</p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>那就是要設定<strong>使用「預覽語言」版本</strong>，<br>開啟專案檔(.csproj)，<br>在<code>PropertyGroup</code>中加入<code>LangVersion</code>的設定(<code>&lt;LangVersion&gt;preview&lt;/LangVersion&gt;</code>)，如下，</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Project</span> <span class="attr">Sdk</span>=<span class="string">&quot;Microsoft.NET.Sdk&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">PropertyGroup</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">OutputType</span>&gt;</span>Exe<span class="tag">&lt;/<span class="name">OutputType</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">TargetFramework</span>&gt;</span>net8.0<span class="tag">&lt;/<span class="name">TargetFramework</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ImplicitUsings</span>&gt;</span>enable<span class="tag">&lt;/<span class="name">ImplicitUsings</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Nullable</span>&gt;</span>enable<span class="tag">&lt;/<span class="name">Nullable</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">LangVersion</span>&gt;</span>preview<span class="tag">&lt;/<span class="name">LangVersion</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">PropertyGroup</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">ItemGroup</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">PackageReference</span> <span class="attr">Include</span>=<span class="string">&quot;Microsoft.Extensions.Logging&quot;</span> <span class="attr">Version</span>=<span class="string">&quot;8.0.0&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">PackageReference</span> <span class="attr">Include</span>=<span class="string">&quot;Microsoft.Extensions.Logging.Console&quot;</span> <span class="attr">Version</span>=<span class="string">&quot;8.0.0&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">PackageReference</span> <span class="attr">Include</span>=<span class="string">&quot;Microsoft.Extensions.Logging.Debug&quot;</span> <span class="attr">Version</span>=<span class="string">&quot;8.0.0&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ItemGroup</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">Project</span>&gt;</span></span><br></pre></td></tr></table></figure><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://learn.microsoft.com/zh-tw/dotnet/csharp/language-reference/configure-language-version">C# 語言版本控制</a></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;原本使用 Visual Studio Code 建置並沒有錯誤，&lt;br&gt;改用 Visual Studio 2022 開始後，&lt;br&gt;在錯誤清</summary>
-      
-    
-    
-    
-    
-    <category term="Visual Studio" scheme="https://rainmakerho.github.io/tags/Visual-Studio/"/>
-    
-    <category term="CS8652" scheme="https://rainmakerho.github.io/tags/CS8652/"/>
     
   </entry>
   
