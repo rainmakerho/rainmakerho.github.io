@@ -22,7 +22,7 @@
 <meta property="og:image" content="https://rainmakerho.github.io/2024/03/25/odbc-sqlserver-driver-dbnetlib-sql-server-does-not-exist/03.png">
 <meta property="og:image" content="https://rainmakerho.github.io/2024/03/25/odbc-sqlserver-driver-dbnetlib-sql-server-does-not-exist/04.png">
 <meta property="article:published_time" content="2024-03-25T05:05:15.000Z">
-<meta property="article:modified_time" content="2024-03-25T08:48:37.957Z">
+<meta property="article:modified_time" content="2024-03-26T01:04:15.155Z">
 <meta property="article:author" content="亂馬客">
 <meta property="article:tag" content="ODBC">
 <meta property="article:tag" content="8001">
@@ -218,9 +218,12 @@
 
 <p>原來是別名設定錯誤，難怪 AP-204 會用 TCP 1433 去連。<br>請朋友將機碼的名稱從<code>192.168.211.213,62667</code> 改成 <code>192.168.211.213</code> 就沒問題了。</p>
 <h3 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h3><p>以上雖然只是幾步，但查花了幾天的時間才找出這些問題。<br>如果有詳細去看錯誤訊息<code>無效的連線字串屬性</code>，應該可以及早發現是連線字串的問題。</p>
-<p>如果可以早點到機碼檢查 SQL Client 別名，應該也可以早點確認是<strong>SQL Server 組態管理員</strong>設定別名的問題。</p>
-<p>為什麼那個連線字串為什麼 Port 寫在連線字串的屬性中(<code>port=62667</code>)呢?<br>從設定中的名稱就可以發現原本使用的 DB 應該是<strong>IBM DB2</strong>，後來才改成<strong>SQL Server</strong>的。<br>因為 IBM DB2 的 ODBC 連線字串就是<code>Driver=&#123;IBM DB2 ODBC DRIVER&#125;;Database=myDataBase;Hostname=myServerAddress;Port=1234;Protocol=TCPIP;Uid=myUsername;Pwd=myPassword;</code>。</p>
+<p>如果可以早點到機碼檢查 SQL Client 別名，應該也可以早點確認是<strong>SQL Server 組態管理員</strong>設定別名的問題。<br>原來<strong>SQL Server 組態管理員</strong>的<strong>SQL Native Client 11.0 組態</strong>會影響到<strong>ODBC</strong>的 SQL 連線。</p>
+<p>為什麼那個連線字串為什麼 Port 寫在連線字串的屬性中(<code>port=62667</code>)呢?<br>從設定中的名稱就可以發現原本使用的 DB 應該是<strong>IBM DB2</strong>，後來才改成<strong>SQL Server</strong>的。<br>因為 IBM DB2 的 ODBC 連線字串就是<br><code>Driver=&#123;IBM DB2 ODBC DRIVER&#125;;Database=myDataBase;Hostname=myServerAddress;Port=1234;Protocol=TCPIP;Uid=myUsername;Pwd=myPassword;</code></p>
 <h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a target="_blank" rel="noopener" href="https://www.microsoft.com/en-us/download/details.aspx?id=4865">Microsoft Network Monitor 3.4</a><br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-tw/dotnet/api/system.data.sqlclient.sqlconnection.open?view=netframework-4.8">SqlConnection.Open 方法</a></p>
+<blockquote>
+<p>一床被，蓋不出兩樣人: 有其父必有其子，是好是壞，差不了多少。</p>
+</blockquote>
    
     </div>
     <div class="article-info article-info-index">
