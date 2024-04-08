@@ -6,7 +6,7 @@
   <link href="https://rainmakerho.github.io/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2024-04-02T04:06:50.850Z</updated>
+  <updated>2024-04-08T05:44:15.237Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Semantic Kernel | 透過改變 Prompt 來限制用戶題問範圍及解決參數幻覺問題</title>
+    <link href="https://rainmakerho.github.io/2024/04/08/sk-prompt-solve-hallucinate/"/>
+    <id>https://rainmakerho.github.io/2024/04/08/sk-prompt-solve-hallucinate/</id>
+    <published>2024-04-08T03:36:44.000Z</published>
+    <updated>2024-04-08T05:44:15.237Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在<a href="https://rainmakerho.github.io/2024/04/02/sk-exploring-application-in-customer-service-bots/">探索 Semantic Kernel 在客服 ChatBot 中的應用(我的客服 Bot 除了會說，還會做)</a>這篇之中，<br>學到了透過 Semantic Kernel 可以快速打造出客服對話機器人。<br>但如果用戶輸入詢問風景等問題，還是會呼叫我們的 Ask Function，<br>所以我們要限定 AI 只能回覆特定的問題。<br>接 Gpt 3.5 API 時，有時會有<strong>參數幻覺問題(hallucinate parameters)</strong><br>所以我們參考<a href="https://community.openai.com/t/make-gpt-ask-questions-to-the-user/284436">Make gpt ask questions to the user</a>的方式，<br>來改變<strong>systemmessage prompt</strong>，看看是否能解決這些問題。</p><h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><p>將<strong>systemMessage</strong>改成限定只有線上購物相關的議題才會呼叫 Function，<br>不然就要一直跟 User 說明跟網購相關的問題才能詢問，如下，</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">ChatHistory chatMessages = <span class="keyword">new</span>(<span class="string">&quot;&quot;</span><span class="string">&quot;</span></span><br><span class="line"><span class="string">### Operational parameters</span></span><br><span class="line"><span class="string">You are an AI chatbot. You are provided conversational history to examine the information you have previously gathered. Use zh-TW.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">### Goals</span></span><br><span class="line"><span class="string">Your goal is to collect online shopping related questions from users efficiently.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">### Rules</span></span><br><span class="line"><span class="string">- AI must prompt and require users to provide information related to online shopping.</span></span><br><span class="line"><span class="string">- AI will only engage in conversation after receiving all necessary information.</span></span><br><span class="line"><span class="string">- Assume users may provide inconsistent or deceptive information.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">### Function</span></span><br><span class="line"><span class="string">Do not call the backend function to process user data until all required information is provided.</span></span><br><span class="line"><span class="string">&quot;</span><span class="string">&quot;&quot;</span>);</span><br></pre></td></tr></table></figure><p>將程式跑起來後，詢問無關問題時，會被引導只能詢問網購相關問題，<br>改接 <strong>Gpt 3.5 API</strong> 也不會再出現**參數幻覺問題(hallucinate parameters)**，如下圖，</p><img src="/2024/04/08/sk-prompt-solve-hallucinate/01.png" class="" title="執行結果"><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://community.openai.com/t/make-gpt-ask-questions-to-the-user/284436">Make gpt ask questions to the user</a><br><a href="https://rainmakerho.github.io/2024/04/02/sk-exploring-application-in-customer-service-bots/">探索 Semantic Kernel 在客服 ChatBot 中的應用(我的客服 Bot 除了會說，還會做)</a></p><blockquote><p>一隻鷺鶿守一個灘: 比喻每個人有每個人的工作。</p></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;在&lt;a href=&quot;https://rainmakerho.github.io/2024/04/02/sk-exploring-applic</summary>
+      
+    
+    
+    
+    
+    <category term="SK" scheme="https://rainmakerho.github.io/tags/SK/"/>
+    
+    <category term="Semantic Kernel" scheme="https://rainmakerho.github.io/tags/Semantic-Kernel/"/>
+    
+    <category term="prompt" scheme="https://rainmakerho.github.io/tags/prompt/"/>
+    
+    <category term="hallucinate" scheme="https://rainmakerho.github.io/tags/hallucinate/"/>
+    
+    <category term="systemMessage" scheme="https://rainmakerho.github.io/tags/systemMessage/"/>
+    
+    <category term="參數幻覺" scheme="https://rainmakerho.github.io/tags/%E5%8F%83%E6%95%B8%E5%B9%BB%E8%A6%BA/"/>
+    
+  </entry>
   
   <entry>
     <title>Semantic Kernel | 探索 Semantic Kernel 在客服 ChatBot 中的應用(我的客服Bot除了會說，還會做)</title>
@@ -583,35 +615,6 @@
     <category term="doStaticCompression" scheme="https://rainmakerho.github.io/tags/doStaticCompression/"/>
     
     <category term="doDynamicCompression" scheme="https://rainmakerho.github.io/tags/doDynamicCompression/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>500.21 處理常式 &quot;aspNetCore&quot; 的模組清單中有錯誤的模組 &quot;AspNetCoreModuleV2&quot;</title>
-    <link href="https://rainmakerho.github.io/2024/01/08/aspnetcore-error-aspnetcoremodulev2/"/>
-    <id>https://rainmakerho.github.io/2024/01/08/aspnetcore-error-aspnetcoremodulev2/</id>
-    <published>2024-01-08T08:22:26.000Z</published>
-    <updated>2024-01-08T09:18:53.992Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近把程式移到另一台 IIS Server 上，安裝好 .NET 6 後，設定好應用程式。<br>測試時，會出現</p><blockquote><p>HTTP 錯誤 500.21 - Internal Server Error<br>處理常式 “aspNetCore” 的模組清單中有錯誤的模組 “AspNetCoreModuleV2”</p></blockquote><h3 id="解決"><a href="#解決" class="headerlink" title="解決"></a>解決</h3><p>這通常是 <code>web.config</code> 設定要使用的為 <code>AspNetCoreModuleV2</code> 模組，</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;utf-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">location</span> <span class="attr">path</span>=<span class="string">&quot;.&quot;</span> <span class="attr">inheritInChildApplications</span>=<span class="string">&quot;false&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">system.webServer</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">handlers</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">add</span> <span class="attr">name</span>=<span class="string">&quot;aspNetCore&quot;</span> <span class="attr">path</span>=<span class="string">&quot;*&quot;</span> <span class="attr">verb</span>=<span class="string">&quot;*&quot;</span> <span class="attr">modules</span>=<span class="string">&quot;AspNetCoreModuleV2&quot;</span> <span class="attr">resourceType</span>=<span class="string">&quot;Unspecified&quot;</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">handlers</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">aspNetCore</span> <span class="attr">processPath</span>=<span class="string">&quot;dotnet&quot;</span> <span class="attr">arguments</span>=<span class="string">&quot;.\你的dll.dll&quot;</span> <span class="attr">stdoutLogEnabled</span>=<span class="string">&quot;false&quot;</span> <span class="attr">stdoutLogFile</span>=<span class="string">&quot;.\logs\stdout&quot;</span> <span class="attr">hostingModel</span>=<span class="string">&quot;inprocess&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">system.webServer</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">location</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure><p>但目前 IIS 沒有安裝 <code>AspNetCoreModuleV2</code> 模組，<br>就是 <strong>IIS runtime support (ASP.NET Core Module v2)</strong> 沒有裝。<br>所以請再安裝 <code>Hosting Bundle</code> 就可以了。</p><img src="/2024/01/08/aspnetcore-error-aspnetcoremodulev2/01.png" class="" title="Hosting Bundle"><p>當然，如果 runtime 沒裝的話，也要一併安裝哦~</p><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://dotnet.microsoft.com/en-us/download/dotnet/6.0">下載 .net 6 SDK, Runtime, IIS Hosting Bundle</a><br><a href="https://dotnet.microsoft.com/en-us/download/dotnet/8.0">下載 .net 8 SDK, Runtime, IIS Hosting Bundle</a></p><blockquote><p>一人主張，不值兩人思量: 一個人的意見，不如二個人的研討。因為個人的見解往往存有主觀和偏見，所以，共策共勵，處理事情較為妥當。</p></blockquote>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;最近把程式移到另一台 IIS Server 上，安裝好 .NET 6 後，設定好應用程式。&lt;br&gt;測試時，會出現&lt;/p&gt;
-&lt;blockquo</summary>
-      
-    
-    
-    
-    
-    <category term="IIS" scheme="https://rainmakerho.github.io/tags/IIS/"/>
-    
-    <category term="aspNetCore" scheme="https://rainmakerho.github.io/tags/aspNetCore/"/>
-    
-    <category term="AspNetCoreModuleV2" scheme="https://rainmakerho.github.io/tags/AspNetCoreModuleV2/"/>
-    
-    <category term="Hosting Bundle" scheme="https://rainmakerho.github.io/tags/Hosting-Bundle/"/>
     
   </entry>
   
