@@ -6,7 +6,7 @@
   <link href="https://rainmakerho.github.io/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2024-04-16T08:47:13.902Z</updated>
+  <updated>2024-04-19T09:40:47.191Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>npm install 出現 UNABLE_TO_VERIFY_LEAF_SIGNATURE(unable to verify the first certificate) 的錯誤</title>
+    <link href="https://rainmakerho.github.io/2024/04/19/npm-install-UNABLE-TO-VERIFY-LEAF-SIGNATURE/"/>
+    <id>https://rainmakerho.github.io/2024/04/19/npm-install-UNABLE-TO-VERIFY-LEAF-SIGNATURE/</id>
+    <published>2024-04-19T08:52:47.000Z</published>
+    <updated>2024-04-19T09:40:47.191Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>今天同事透過<code>npm install</code>時發生了<strong>UNABLE_TO_VERIFY_LEAF_SIGNATURE</strong>的錯誤。<br>原本以為只有那台電腦有問題，結果大家的電腦都是如此。</p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>網路上大多數的都是設定 npm 去忽略憑證問題，如下，</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config <span class="built_in">set</span> strict-ssl <span class="literal">false</span></span><br></pre></td></tr></table></figure><p>等裝好之後，再設定回<strong>true</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config <span class="built_in">set</span> strict-ssl <span class="literal">true</span></span><br></pre></td></tr></table></figure><p>錄到網路如下，</p><img src="/2024/04/19/npm-install-UNABLE-TO-VERIFY-LEAF-SIGNATURE/01.png" class="" title="執行結果"><p>後來同事 Marty 找到<a href="https://stackoverflow.com/questions/78343601/node-unable-to-verify-the-first-certificate">Node unable to verify the first certificate</a>，是因為 ESET 自簽憑證的問題。</p><p>所以在目前 ESET 未給出解法前，除了設定 ESET 先不掃<code>node.exe</code>外，<br>就是要安裝套件前先設定<code>strict-ssl false</code>後，<br>安裝好之後，再設定<code>strict-ssl true</code>回來。</p><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://stackoverflow.com/questions/78343601/node-unable-to-verify-the-first-certificate">Node unable to verify the first certificate</a><br><a href="https://forum.eset.com/topic/40702-eset-ssl-protection-produces-an-invalid-certificate-chain-for-nodejs-apps/">ESET SSL protection produces an invalid certificate chain for NodeJS apps</a></p><blockquote><p>一杯酒，暖烘烘;一尺布，擋那風: 一杯酒尚能抵一陣寒，一尺布，卻無濟於事。喻某些東西雖然為數不多，仍能濟一時之急。</p></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;今天同事透過&lt;code&gt;npm install&lt;/code&gt;時發生了&lt;strong&gt;UNABLE_TO_VERIFY_LEAF_SIGNAT</summary>
+      
+    
+    
+    
+    
+    <category term="npm" scheme="https://rainmakerho.github.io/tags/npm/"/>
+    
+    <category term="SSL" scheme="https://rainmakerho.github.io/tags/SSL/"/>
+    
+    <category term="ESET" scheme="https://rainmakerho.github.io/tags/ESET/"/>
+    
+    <category term="UNABLE_TO_VERIFY_LEAF_SIGNATURE" scheme="https://rainmakerho.github.io/tags/UNABLE-TO-VERIFY-LEAF-SIGNATURE/"/>
+    
+    <category term="unable to verify the first certificate" scheme="https://rainmakerho.github.io/tags/unable-to-verify-the-first-certificate/"/>
+    
+  </entry>
   
   <entry>
     <title>Semantic Kernel | 如何透過Kernel Memory對RAG資料的進行權限控管</title>
@@ -53,9 +83,9 @@
     <link href="https://rainmakerho.github.io/2024/04/08/sk-prompt-solve-hallucinate/"/>
     <id>https://rainmakerho.github.io/2024/04/08/sk-prompt-solve-hallucinate/</id>
     <published>2024-04-08T03:36:44.000Z</published>
-    <updated>2024-04-08T05:44:15.237Z</updated>
+    <updated>2024-04-17T06:17:18.971Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在<a href="https://rainmakerho.github.io/2024/04/02/sk-exploring-application-in-customer-service-bots/">探索 Semantic Kernel 在客服 ChatBot 中的應用(我的客服 Bot 除了會說，還會做)</a>這篇之中，<br>學到了透過 Semantic Kernel 可以快速打造出客服對話機器人。<br>但如果用戶輸入詢問風景等問題，還是會呼叫我們的 Ask Function，<br>所以我們要限定 AI 只能回覆特定的問題。<br>接 Gpt 3.5 API 時，有時會有<strong>參數幻覺問題(hallucinate parameters)</strong><br>所以我們參考<a href="https://community.openai.com/t/make-gpt-ask-questions-to-the-user/284436">Make gpt ask questions to the user</a>的方式，<br>來改變<strong>systemmessage prompt</strong>，看看是否能解決這些問題。</p><h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><p>將<strong>systemMessage</strong>改成限定只有線上購物相關的議題才會呼叫 Function，<br>不然就要一直跟 User 說明跟網購相關的問題才能詢問，如下，</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">ChatHistory chatMessages = <span class="keyword">new</span>(<span class="string">&quot;&quot;</span><span class="string">&quot;</span></span><br><span class="line"><span class="string">### Operational parameters</span></span><br><span class="line"><span class="string">You are an AI chatbot. You are provided conversational history to examine the information you have previously gathered. Use zh-TW.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">### Goals</span></span><br><span class="line"><span class="string">Your goal is to collect online shopping related questions from users efficiently.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">### Rules</span></span><br><span class="line"><span class="string">- AI must prompt and require users to provide information related to online shopping.</span></span><br><span class="line"><span class="string">- AI will only engage in conversation after receiving all necessary information.</span></span><br><span class="line"><span class="string">- Assume users may provide inconsistent or deceptive information.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">### Function</span></span><br><span class="line"><span class="string">Do not call the backend function to process user data until all required information is provided.</span></span><br><span class="line"><span class="string">&quot;</span><span class="string">&quot;&quot;</span>);</span><br></pre></td></tr></table></figure><p>將程式跑起來後，詢問無關問題時，會被引導只能詢問網購相關問題，<br>改接 <strong>Gpt 3.5 API</strong> 也不會再出現**參數幻覺問題(hallucinate parameters)**，如下圖，</p><img src="/2024/04/08/sk-prompt-solve-hallucinate/01.png" class="" title="執行結果"><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://community.openai.com/t/make-gpt-ask-questions-to-the-user/284436">Make gpt ask questions to the user</a><br><a href="https://rainmakerho.github.io/2024/04/02/sk-exploring-application-in-customer-service-bots/">探索 Semantic Kernel 在客服 ChatBot 中的應用(我的客服 Bot 除了會說，還會做)</a></p><blockquote><p>一隻鷺鶿守一個灘: 比喻每個人有每個人的工作。</p></blockquote>]]></content>
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在<a href="https://rainmakerho.github.io/2024/04/02/sk-exploring-application-in-customer-service-bots/">探索 Semantic Kernel 在客服 ChatBot 中的應用(我的客服 Bot 除了會說，還會做)</a>這篇之中，<br>學到了透過 Semantic Kernel 可以快速打造出客服對話機器人。<br>但如果用戶輸入詢問風景等問題，還是會呼叫我們的 Ask Function，<br>所以我們要限定 AI 只能回覆特定的問題。<br>接 Gpt 3.5 API 時，有時會有<strong>參數幻覺問題(hallucinate parameters)</strong><br>所以我們參考<a href="https://community.openai.com/t/make-gpt-ask-questions-to-the-user/284436">Make gpt ask questions to the user</a>的方式，<br>來改變<strong>systemmessage prompt</strong>，看看是否能解決這些問題。</p><h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><p>將<strong>systemMessage</strong>改成限定只有線上購物相關的議題才會呼叫 Function，<br>不然就要一直跟 User 說明跟網購相關的問題才能詢問，如下，</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">ChatHistory chatMessages = <span class="keyword">new</span>(<span class="string">&quot;&quot;</span><span class="string">&quot;</span></span><br><span class="line"><span class="string">### Operational parameters</span></span><br><span class="line"><span class="string">You are an AI chatbot. You are provided conversational history to examine the information you have previously gathered. Use zh-TW.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">### Goals</span></span><br><span class="line"><span class="string">Your goal is to collect online shopping related questions from users efficiently.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">### Rules</span></span><br><span class="line"><span class="string">- AI must prompt and require users to provide information related to online shopping.</span></span><br><span class="line"><span class="string">- AI will only engage in conversation after receiving all necessary information.</span></span><br><span class="line"><span class="string">- Assume users may provide inconsistent or deceptive information.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">### Function</span></span><br><span class="line"><span class="string">Do not call the backend function to process user data until all required information is provided.</span></span><br><span class="line"><span class="string">&quot;</span><span class="string">&quot;&quot;</span>);</span><br></pre></td></tr></table></figure><p>將程式跑起來後，詢問無關問題時，會被引導只能詢問網購相關問題，<br>改接<strong>Gpt 3.5 API</strong>也不會再出現<strong>參數幻覺問題 hallucinate parameters</strong>，如下圖，</p><img src="/2024/04/08/sk-prompt-solve-hallucinate/01.png" class="" title="執行結果"><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://community.openai.com/t/make-gpt-ask-questions-to-the-user/284436">Make gpt ask questions to the user</a><br><a href="https://rainmakerho.github.io/2024/04/02/sk-exploring-application-in-customer-service-bots/">探索 Semantic Kernel 在客服 ChatBot 中的應用(我的客服 Bot 除了會說，還會做)</a></p><blockquote><p>一隻鷺鶿守一個灘: 比喻每個人有每個人的工作。</p></blockquote>]]></content>
     
     
       
@@ -586,34 +616,6 @@
     <category term="eSigner" scheme="https://rainmakerho.github.io/tags/eSigner/"/>
     
     <category term="Signing credentials not configured" scheme="https://rainmakerho.github.io/tags/Signing-credentials-not-configured/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Visual Studio Nuget 套件管理員中的 &quot;只顯示易受攻擊&quot; 選項</title>
-    <link href="https://rainmakerho.github.io/2024/02/02/vs-show-only-vulnerable-checkbox/"/>
-    <id>https://rainmakerho.github.io/2024/02/02/vs-show-only-vulnerable-checkbox/</id>
-    <published>2024-02-02T04:02:07.000Z</published>
-    <updated>2024-02-02T05:34:11.380Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="Nuget-套件-只顯示易受攻擊-選項"><a href="#Nuget-套件-只顯示易受攻擊-選項" class="headerlink" title="Nuget 套件 只顯示易受攻擊 選項"></a>Nuget 套件 只顯示易受攻擊 選項</h3><p>系統程式碼除了透過資安黑、白箱掃描外，又會有掃描套件是否有漏洞。<br>像是 <a href="https://github.com/jeremylong/DependencyCheck">DependencyCheck</a>, <a href="https://www.mend.io/">Mend</a>, <a href="https://www.sonatype.com/">sonatype</a> 等等。<br>現在 Visual Studio 的 Nuget 套件管理員中，有一個 <strong>只顯示易受攻擊</strong> 選項，將它勾選起來，就可以知道那些套件有風險。</p><img src="/2024/02/02/vs-show-only-vulnerable-checkbox/01.png" class="" title="只顯示易受攻擊"><p>所以開發人員可以隨時知道，進行更新，<br>而不用等到被掃出來後，才拿著報表進行更新哦~</p><blockquote><p>一人算，不如百人算:一個人的計謀，不如多數人的籌劃。</p></blockquote>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;Nuget-套件-只顯示易受攻擊-選項&quot;&gt;&lt;a href=&quot;#Nuget-套件-只顯示易受攻擊-選項&quot; class=&quot;headerlink&quot; title=&quot;Nuget 套件 只顯示易受攻擊 選項&quot;&gt;&lt;/a&gt;Nuget 套件 只顯示易受攻擊 選項&lt;/h3&gt;&lt;p&gt;系統</summary>
-      
-    
-    
-    
-    
-    <category term="Visual Studio" scheme="https://rainmakerho.github.io/tags/Visual-Studio/"/>
-    
-    <category term="show only vulnerable" scheme="https://rainmakerho.github.io/tags/show-only-vulnerable/"/>
-    
-    <category term="Nuget" scheme="https://rainmakerho.github.io/tags/Nuget/"/>
-    
-    <category term="DependencyCheck" scheme="https://rainmakerho.github.io/tags/DependencyCheck/"/>
     
   </entry>
   
