@@ -152,6 +152,92 @@
             
   
     <article
+  id="post-Migrate-MS-SQL-to-PostgreSQL-bcp"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/02/05/Migrate-MS-SQL-to-PostgreSQL-bcp/">將 Microsoft SQL Server Database 資料轉到 PostgreSQL - BCP/Import</a>
+    </h1>
+  
+  <a href="/2021/02/05/Migrate-MS-SQL-to-PostgreSQL-bcp/" class="archive-article-date">
+  	<time datetime="2021-02-05T08:13:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-05</time>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>以下筆者將介紹如何將 Microsoft SQL Server Database 資料轉到 PostgreSQL Database。<br>環境 : Windows Server 2019, Microsoft SQL Server 2019, PostgreSQL V.13<br>使用的方式是先將 MSSQL資料表 建立到 PostgreSQL ，<br>再透過 BCP 將資料轉成 csv 後，再 Import 到 PostgreSQL</p> 
+      <p class="article-more-link">
+        <a href="/2021/02/05/Migrate-MS-SQL-to-PostgreSQL-bcp/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MSSQL</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">PostgreSQL</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Migration</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">ODBC</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Database</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">SSMS</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">BCP</a>
+        		</li>
+      		
+		</ul>
+	</div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+ <aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside> 
+
+  
+    <article
   id="post-Migrate-MS-SQL-to-PostgreSQL-1"
   class="article article-type-post  article-index"
   itemscope
@@ -702,88 +788,6 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">strict MIME type</a>
-        		</li>
-      		
-		</ul>
-	</div>
- 
-  
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
- <aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside> 
-
-  
-    <article
-  id="post-RecoverDeletedDataSQL"
-  class="article article-type-post  article-index"
-  itemscope
-  itemprop="blogPost"
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/12/21/RecoverDeletedDataSQL/">透過 Transaction Log(fn_dblog) 找回被刪除的資料</a>
-    </h1>
-  
-  <a href="/2020/12/21/RecoverDeletedDataSQL/" class="archive-article-date">
-  	<time datetime="2020-12-21T07:48:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-21</time>
-</a> 
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>之前寫了一篇 <a target="_blank" rel="noopener" href="https://dotblogs.com.tw/rainmaker/2013/05/23/104746">[SQL]透過 Transaction Log(fn_dblog) 找回被刪除的資料</a> ，<br>有調整 <a target="_blank" rel="noopener" href="https://raresql.com/2012/10/24/sql-server-how-to-find-who-deleted-what-records-at-what-time/">SQL Server – How to find Who Deleted What records at What Time</a> 它的 Stored Procedure ，但是因為直接執行會有一些問題。<br>而原本修正的附件又不見了，有許多人在詢問，所以就再寫一版到 <a target="_blank" rel="noopener" href="https://github.com/rainmakerho/RecoverDeletedDataSQL">Github</a>上。</p> 
-      <p class="article-more-link">
-        <a href="/2020/12/21/RecoverDeletedDataSQL/#more"> more &gt;&gt; </a>
-      </p>
-         
-    </div>
-    <div class="article-info article-info-index">
-       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">fn_dblog</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">find Deleted records</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">REVERSE</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">定序</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">COLLATE</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">從 binary/varbinary 字串轉換成 datetime 時，轉換失敗</a>
         		</li>
       		
 		</ul>
@@ -6697,6 +6701,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">EnableKernelFunctions</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Phi-3</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">AddOpenAIChatCompletion</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">AddAzureOpenAIChatCompletion</a>
               </li>
             
             <div class="clearfix"></div>

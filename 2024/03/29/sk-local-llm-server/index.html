@@ -22,13 +22,14 @@
 <meta property="og:image" content="https://rainmakerho.github.io/2024/03/29/sk-local-llm-server/03.png">
 <meta property="og:image" content="https://rainmakerho.github.io/2024/03/29/sk-local-llm-server/04.png">
 <meta property="article:published_time" content="2024-03-29T09:19:45.000Z">
-<meta property="article:modified_time" content="2024-03-31T06:22:27.288Z">
+<meta property="article:modified_time" content="2024-05-06T09:43:51.450Z">
 <meta property="article:author" content="亂馬客">
 <meta property="article:tag" content="SK">
 <meta property="article:tag" content="Semantic Kernel">
 <meta property="article:tag" content="LM Studio">
 <meta property="article:tag" content="Local Server">
 <meta property="article:tag" content="Phi-2">
+<meta property="article:tag" content="AddAzureOpenAIChatCompletion">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://rainmakerho.github.io/2024/03/29/sk-local-llm-server/01.png">
   
@@ -194,7 +195,7 @@
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">LocalLLMHttpHandler</span>(<span class="params"><span class="built_in">string</span> url</span>) : HttpClientHandler</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> Uri _Uri = <span class="keyword">new</span> Uri(url);</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">override</span> Task&lt;HttpResponseMessage&gt; <span class="title">SendAsync</span>(<span class="params">HttpRequestMessage request, CancellationToken cancellationToken</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//原本的URL是 /v1/chat/completions/openai/deployments/localLLM/chat/completions?api-version=2024-02-15-preview</span></span><br><span class="line">        <span class="comment">//要改成 http://localhost:1234/v1/chat/completions</span></span><br><span class="line">        request.RequestUri = _Uri;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">base</span>.SendAsync(request, cancellationToken);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>所以透過<code>KernelBuilder.AddAzureOpenAIChatCompletion</code>時，<br>要傳入有設定<code>LocalLLMHttpHandler</code>的<code>HttpClient</code>就可以了，如下，</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> deploymentName = <span class="string">&quot;localLLM&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> endpoint = <span class="string">&quot;http://localhost:1234/v1/chat/completions&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> apikey = <span class="string">&quot;lm-studio&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> httpClient = <span class="keyword">new</span> HttpClient(<span class="keyword">new</span> LocalLLMHttpHandler(endpoint)) ;</span><br><span class="line">httpClient.BaseAddress = <span class="keyword">new</span> Uri(endpoint);</span><br><span class="line"><span class="keyword">var</span> kernelBuilder = Kernel.CreateBuilder();</span><br><span class="line">kernelBuilder.AddAzureOpenAIChatCompletion(deploymentName, endpoint, apikey, httpClient:httpClient);</span><br><span class="line"><span class="keyword">var</span> kernel = kernelBuilder.Build();</span><br><span class="line"><span class="keyword">var</span> historyFunction = KernelFunctionFactory.CreateFromPrompt(<span class="string">&quot;Briefly describe historical information about Taiwan&quot;</span><span class="string">&quot;);</span></span><br><span class="line"><span class="string">//var response = await kernel.InvokeAsync(historyFunction);</span></span><br><span class="line"><span class="string">//Console.WriteLine(response.GetValue&lt;string&gt;());</span></span><br><span class="line"><span class="string">var response = kernel.InvokeStreamingAsync(historyFunction);</span></span><br><span class="line"><span class="string">await foreach(var item in  response)</span></span><br><span class="line"><span class="string">&#123;</span></span><br><span class="line"><span class="string">    Console.Write(item);</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> deploymentName = <span class="string">&quot;localLLM&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> endpoint = <span class="string">&quot;http://localhost:1234/v1/chat/completions&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> apikey = <span class="string">&quot;lm-studio&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> httpClient = <span class="keyword">new</span> HttpClient(<span class="keyword">new</span> LocalLLMHttpHandler(endpoint)) ;</span><br><span class="line">httpClient.BaseAddress = <span class="keyword">new</span> Uri(endpoint);</span><br><span class="line"><span class="keyword">var</span> kernelBuilder = Kernel.CreateBuilder();</span><br><span class="line">kernelBuilder.AddAzureOpenAIChatCompletion(deploymentName, endpoint, apikey, httpClient:httpClient);</span><br><span class="line"><span class="keyword">var</span> kernel = kernelBuilder.Build();</span><br><span class="line"><span class="keyword">var</span> historyFunction = KernelFunctionFactory.CreateFromPrompt(<span class="string">&quot;Briefly describe historical information about Taiwan&quot;</span>);</span><br><span class="line"><span class="comment">//var response = await kernel.InvokeAsync(historyFunction);</span></span><br><span class="line"><span class="comment">//Console.WriteLine(response.GetValue&lt;string&gt;());</span></span><br><span class="line"><span class="keyword">var</span> response = kernel.InvokeStreamingAsync(historyFunction);</span><br><span class="line"><span class="keyword">await</span> <span class="keyword">foreach</span>(<span class="keyword">var</span> item <span class="keyword">in</span>  response)</span><br><span class="line">&#123;</span><br><span class="line">    Console.Write(item);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>執行結果如下，</p>
 <img src="/2024/03/29/sk-local-llm-server/04.png" class="" title="Semantic Kernel Result">
@@ -229,6 +230,10 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Phi-2</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">AddAzureOpenAIChatCompletion</a>
         		</li>
       		
 		</ul>
@@ -6177,6 +6182,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">EnableKernelFunctions</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Phi-3</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">AddOpenAIChatCompletion</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">AddAzureOpenAIChatCompletion</a>
               </li>
             
             <div class="clearfix"></div>
