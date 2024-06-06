@@ -6,7 +6,7 @@
   <link href="https://rainmakerho.github.io/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2024-06-06T05:03:33.435Z</updated>
+  <updated>2024-06-06T06:49:08.524Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Javascript Call 網頁時，沒帶著 Cookie 呢?</title>
+    <link href="https://rainmakerho.github.io/2024/06/06/not-sending-cookies/"/>
+    <id>https://rainmakerho.github.io/2024/06/06/not-sending-cookies/</id>
+    <published>2024-06-06T06:29:40.000Z</published>
+    <updated>2024-06-06T06:49:08.524Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>我們的程式架構是使用 React (簡稱 F) + ASP.NET Core API (簡稱 B)，<br>在 Local 開發時，會呼叫 B API 進行登入並寫下帳號的 Cookie ，<br>再 Redirect 回到 前端 F。<br>因為 B 已有 Cookie 存在，所以 F 透過 axios 設定 <code>withCredentials: true</code>，<br>讓 F 打 API 時，會帶著 B 的 Cookie ，就可以順利呼叫 API。<br>今天有同事詢問，為什麼他的 Chrome 一直無法登入呢?</p><h3 id="研究"><a href="#研究" class="headerlink" title="研究"></a>研究</h3><p>查看後端程式會確實將 Cookie 寫進去，但在呼叫 API 時，就是不會帶著 B 的 Cookie 。<br>如果直接輸入 B 的 URL，又是會有 Cookie 。<br>但是在 F 透過 axios 去 GET B 的 URL ，就是不會有 Cookie 。<br>請同事改用 Edge 卻是沒問題的，會正常帶著 B 的 Cookie 。</p><p>後來同事想到他有調整 Chrome 的<a href="chrome://settings/cookies"><strong>第三方 Cookie</strong>的設定</a>，<br>他是設定成<code>封鎖第三方 Cookie</code>，所以透過 axios 去 Request 都不會帶著 Cookie。<br>將它調整回<code>允許第三方 Cookie</code> 就沒問題了。</p><img src="/2024/06/06/not-sending-cookies/01.png" class="" title="第三方 Cookie設定"><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://support.google.com/chrome/answer/95647?hl=zh-Hant&co=GENIE.Platform=Desktop">在 Chrome 中刪除、允許使用與管理 Cookie</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;我們的程式架構是使用 React (簡稱 F) + ASP.NET Core API (簡稱 B)，&lt;br&gt;在 Local 開發時，會呼叫 </summary>
+      
+    
+    
+    
+    
+    <category term="axios" scheme="https://rainmakerho.github.io/tags/axios/"/>
+    
+    <category term="cookies" scheme="https://rainmakerho.github.io/tags/cookies/"/>
+    
+    <category term="withCredentials" scheme="https://rainmakerho.github.io/tags/withCredentials/"/>
+    
+    <category term="第三方 Cookie" scheme="https://rainmakerho.github.io/tags/%E7%AC%AC%E4%B8%89%E6%96%B9-Cookie/"/>
+    
+  </entry>
   
   <entry>
     <title>遠端電腦需要網路層級驗證，但您的電腦並不支援。</title>
@@ -596,32 +624,6 @@
     <category term="chemical" scheme="https://rainmakerho.github.io/tags/chemical/"/>
     
     <category term="formulas" scheme="https://rainmakerho.github.io/tags/formulas/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Checkmarx Unsafe Reflection</title>
-    <link href="https://rainmakerho.github.io/2024/03/01/checkmarx-unsafe-reflection-2/"/>
-    <id>https://rainmakerho.github.io/2024/03/01/checkmarx-unsafe-reflection-2/</id>
-    <published>2024-03-01T06:44:18.000Z</published>
-    <updated>2024-03-01T07:06:50.669Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在前篇 <a href="https://rainmakerho.github.io/2023/02/17/checkmarx-unsafe-reflection/">Checkmarx Unsafe_Reflection</a> 是依 <strong>if + 白名單 + Contains</strong> 的方式來處理，<br>但 Checkmarx 更版後，就沒辦法成功了，怎麼辦呢?</p><ul><li>環境: Checkmarx 版本：V 9.5.5.1007 HF14</li><li>類別：Unsafe Reflection</li><li>嚴重程度：高風險</li></ul><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>Checkmarx 最新的 Rule 如下，</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">CxList inputs = Find_Inputs();</span><br><span class="line">CxList comCreations = Find_ObjectCreations().FindByTypes(<span class="keyword">new</span> String[]&#123;</span><br><span class="line">    <span class="string">&quot;CodeSnippetExpression&quot;</span>,</span><br><span class="line">    <span class="string">&quot;CodeEntryPointMethod&quot;</span>,</span><br><span class="line">    <span class="string">&quot;CodeTypeReference&quot;</span>,</span><br><span class="line">    <span class="string">&quot;CodeTypeReference&quot;</span>,</span><br><span class="line">    <span class="string">&quot;CodeObjectCreateExpression&quot;</span>,</span><br><span class="line">    <span class="string">&quot;CodeMethodInvokeExpression&quot;</span>,</span><br><span class="line">    <span class="string">&quot;CodeTypeReferenceExpression&quot;</span>,</span><br><span class="line">    <span class="string">&quot;CodeMethodReturnStatement&quot;</span>,</span><br><span class="line">    <span class="string">&quot;CodeMemberMethod&quot;</span>&#125;);</span><br><span class="line"></span><br><span class="line">CxList unknownList = All.NewCxList();</span><br><span class="line">unknownList.Add(</span><br><span class="line">    Find_UnknownReference(),</span><br><span class="line">    Find_Param(),</span><br><span class="line">    Find_TypeRef());</span><br><span class="line"></span><br><span class="line">CxList auxInput = All.NewCxList();</span><br><span class="line">auxInput.Add(</span><br><span class="line">    inputs,</span><br><span class="line">    unknownList.FindAllReferences(inputs.GetAssignee()));</span><br><span class="line"></span><br><span class="line">CxList methods = Find_Methods();</span><br><span class="line"></span><br><span class="line">CxList relevantMethods = methods.FindByMemberAccesses(<span class="keyword">new</span> <span class="built_in">string</span> [] &#123;<span class="string">&quot;Type.GetType&quot;</span>, <span class="string">&quot;Type.GetMethod&quot;</span>, <span class="string">&quot;Type.InvokeMember&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Module.GetType&quot;</span>, <span class="string">&quot;Module.GetMethod&quot;</span>, <span class="string">&quot;Assembly.Load&quot;</span>, <span class="string">&quot;Assembly.LoadFile&quot;</span>, <span class="string">&quot;Assembly.LoadFrom&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Assembly.LoadModule&quot;</span>, <span class="string">&quot;Assembly.LoadWithPartialName&quot;</span>, <span class="string">&quot;Assembly.ReflectionOnlyLoad&quot;</span>, <span class="string">&quot;Assembly.ReflectionOnlyLoadFrom&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Assembly.UnsafeLoadFrom&quot;</span>, <span class="string">&quot;Assembly.GetType&quot;</span>, <span class="string">&quot;TypeInfo.GetMethod&quot;</span>,</span><br><span class="line">    <span class="string">&quot;TypeInfo.InvokeMember&quot;</span>, <span class="string">&quot;TypeDelegator.InvokeMember&quot;</span>&#125;, <span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line">CxList relevantSinks = unknownList.GetParameters(relevantMethods, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">CxList containsMethods = methods.FindByMemberAccess(<span class="string">&quot;*.Contains&quot;</span>).GetByAncs(Find_Ifs());</span><br><span class="line">CxList influenceIfparams = auxInput.GetParameters(containsMethods.FindByParameters(auxInput), <span class="number">0</span>);</span><br><span class="line">CxList allReferencesOfifParams = auxInput.FindAllReferences(influenceIfparams);</span><br><span class="line"></span><br><span class="line">CxList notInfluencedChecks = relevantSinks - relevantSinks.FindByParameters(allReferencesOfifParams);</span><br><span class="line">notInfluencedChecks.Add(All.FindAllReferences(notInfluencedChecks.GetAssignee()));</span><br><span class="line"></span><br><span class="line">CxList notInfluencedComCreations = comCreations - comCreations.FindByParameters(allReferencesOfifParams);</span><br><span class="line">CxList objsC = notInfluencedComCreations.FindByParameters(All.GetParameters(notInfluencedComCreations) * auxInput);</span><br><span class="line"></span><br><span class="line">CxList sinks = All.NewCxList();</span><br><span class="line">sinks.Add(notInfluencedChecks, objsC);</span><br><span class="line"></span><br><span class="line">CxList sanitizers = Find_Integers();</span><br><span class="line"></span><br><span class="line">result = inputs.InfluencingOnAndNotSanitized(sinks, sanitizers).ReduceFlow(CxList.ReduceFlowType.ReduceBigFlow);</span><br></pre></td></tr></table></figure><p>在上面程式中，可以發現，<strong>if + 白名單 + Contains</strong>還是存在的，<br>而另一個確定的做法是轉成 <strong>Int</strong> (如果轉 int 可以，那 GUID 也應該可以才對)。<br>有問題的程式類似如下，是一個 WebService 程式，<br>主要是依 reportId 來取得報表範本，並產生報表。</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ResponseData <span class="title">ReportServiceInData</span>(<span class="params"><span class="built_in">string</span> reportId, <span class="built_in">string</span> user, DataSet data</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    IReportGenerator rpt;</span><br><span class="line">    rpt = factory.CreateReportGenerator(reportId, user);</span><br><span class="line">    result = rpt.ExportReport(data);</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//CreateReportGenerator 就透過 Assembly.LoadFile 來載入 DLL</span></span><br></pre></td></tr></table></figure><p>因為有轉 int 的 rule 在，所以可以檢查一下 reportId 是不是有固定的命名規則，<br>有的話，就先將它轉成 int 後，再組回來，就可以解掉問題。<br>例如 reportId 為 R001, R002, R003 …<br>所以就可以將 reportId 去掉 R ，轉成 int ，再組回去就行了，<br>傳給<code>factory.CreateReportGenerator</code> 就是轉過 <code>int</code> 的 <code>newRptId</code> 如下，</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ResponseData <span class="title">ReportServiceInData</span>(<span class="params"><span class="built_in">string</span> reportId, <span class="built_in">string</span> user, DataSet data</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">int</span> rptId = Convert.ToInt32(reportId.Replace(<span class="string">&quot;R&quot;</span>, <span class="built_in">string</span>.Empty));</span><br><span class="line">    <span class="keyword">var</span> newRptId = <span class="string">$&quot;R<span class="subst">&#123;rptId:##<span class="number">000</span>&#125;</span>&quot;</span>;</span><br><span class="line">    <span class="keyword">var</span> factory = <span class="keyword">new</span> Factory();</span><br><span class="line">    IReportGenerator rpt;</span><br><span class="line">    rpt = factory.CreateReportGenerator(newRptId, user);</span><br><span class="line">    result = rpt.ExportReport(data);</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>當然，以上僅在規則中調整，最好當然將 <code>Assembly.LoadFile</code> 改掉。</p><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://rainmakerho.github.io/2023/02/17/checkmarx-unsafe-reflection/">Checkmarx Unsafe_Reflection</a></p><blockquote><p>一文錢買個糖人(吃了沒玩的，玩了沒吃的):喻人對某一件事，處於取捨兩難之間，一時無法抉擇的意思</p></blockquote>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;在前篇 &lt;a href=&quot;https://rainmakerho.github.io/2023/02/17/checkmarx-unsafe</summary>
-      
-    
-    
-    
-    
-    <category term="Checkmarx" scheme="https://rainmakerho.github.io/tags/Checkmarx/"/>
-    
-    <category term="Unsafe Reflection" scheme="https://rainmakerho.github.io/tags/Unsafe-Reflection/"/>
-    
-    <category term="Assembly.LoadFile" scheme="https://rainmakerho.github.io/tags/Assembly-LoadFile/"/>
     
   </entry>
   
