@@ -6,7 +6,7 @@
   <link href="https://rainmakerho.github.io/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2024-06-07T03:23:30.282Z</updated>
+  <updated>2024-06-14T07:04:10.871Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Checkmarx Potential Clickjacking on Legacy Browsers</title>
+    <link href="https://rainmakerho.github.io/2024/06/14/checkmarx-potential-clickjacking-on-legacy-browsers/"/>
+    <id>https://rainmakerho.github.io/2024/06/14/checkmarx-potential-clickjacking-on-legacy-browsers/</id>
+    <published>2024-06-14T06:24:33.000Z</published>
+    <updated>2024-06-14T07:04:10.871Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近同事將 aspx 程式給 Checkmarx 掃時，<br>aspx 會出現 JavaScript 的 <code>Potential Clickjacking on Legacy Browsers</code> 問題。</p><img src="/2024/06/14/checkmarx-potential-clickjacking-on-legacy-browsers/01.png" class="" title="Checkmarx"><p><strong>Potential Clickjacking on Legacy Browsers</strong>的問題是怕正常的網頁被放在 IFrame 之中，<br>來騙使用者進行非預期的操作，例如<a href="https://github.com/rainmakerho/OWASPMVC5/blob/main/MyStore/Attacker.MyStore/Views/WinSurfacePro/Index.cshtml">Clickjacking</a>詐騙的網頁中放一個改密碼的 iframe，<br>去覆蓋在原有的頁面上面，讓使用者實際上是操作到 iframe 的頁面。</p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>所以解法可透過設定<code>X-Frame-Options</code>及<code>Content Security Policy (CSP)</code>來避免，<br>例如在 <code>web.config</code>中設定如下，</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">system.webServer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">httpProtocol</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">customHeaders</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">add</span> <span class="attr">name</span>=<span class="string">&quot;X-Frame-Options&quot;</span> <span class="attr">value</span>=<span class="string">&quot;SAMEORIGIN&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">add</span> <span class="attr">name</span>=<span class="string">&quot;Content-Security-Policy&quot;</span> <span class="attr">value</span>=<span class="string">&quot;frame-ancestors &#x27;self&#x27;&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">customHeaders</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">httpProtocol</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">system.webServer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure><p>但上面的方式 Checkmarx 不認得，所以就只能用程式來解，如下，</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (top !== self) &#123;</span><br><span class="line">    top.<span class="property">location</span> = self.<span class="property">location</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>但這樣子加上去後，又噴了<code>Client_DOM_XSS</code>及<code>Client_DOM_Open_Redirect</code>的問題，<br>針對 <code>self.location</code> 要進行<code>Client_DOM_XSS</code>及<code>Client_DOM_Open_Redirect</code>處理，<br>所以可以使用<code>encodeURI</code>來處理<code>Client_DOM_XSS</code>，<br>用白名單 Function 來處理<code>Client_DOM_Open_Redirect</code>，如下</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (top !== self) &#123;</span><br><span class="line">    <span class="comment">//top.location = self.location;</span></span><br><span class="line">    <span class="keyword">var</span> u = <span class="built_in">encodeURI</span>(self.<span class="property">location</span>);</span><br><span class="line">    <span class="keyword">var</span> newU = <span class="title function_">sanitizeUrl</span>(u)</span><br><span class="line">    top.<span class="property">location</span> = newU;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">functin <span class="title function_">sanitizeUrl</span>(<span class="params">url</span>)&#123;</span><br><span class="line">    <span class="keyword">var</span> allowedDomains = [<span class="string">&quot;白名單的Domain，例如 rm.com.tw&quot;</span>];</span><br><span class="line">    <span class="keyword">var</span> u = <span class="keyword">new</span> <span class="title function_">URL</span>(url);</span><br><span class="line">    <span class="keyword">if</span> (allowedDomains.<span class="title function_">includes</span>(u.<span class="property">hostname</span>)) &#123;</span><br><span class="line">        <span class="keyword">return</span> url;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;Parameter is not a number!&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>註 1: 白名單 Function 要以<code>sanitize</code>開頭<br>註 2: Checkmarx 版本為 <code>V 9.5.5.1007 HF14</code></p><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://github.com/rainmakerho/OWASPMVC5">OWASP Top 10 - 2017 Examples - ASP.NET MVC 5</a></p><blockquote><p>一個蛋，不能算一隻雞: 假設就是假設，不能當作事實。</p></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;最近同事將 aspx 程式給 Checkmarx 掃時，&lt;br&gt;aspx 會出現 JavaScript 的 &lt;code&gt;Potential </summary>
+      
+    
+    
+    
+    
+    <category term="Checkmarx" scheme="https://rainmakerho.github.io/tags/Checkmarx/"/>
+    
+    <category term="Client_DOM_Open_Redirect" scheme="https://rainmakerho.github.io/tags/Client-DOM-Open-Redirect/"/>
+    
+    <category term="Potential Clickjacking on Legacy Browsers" scheme="https://rainmakerho.github.io/tags/Potential-Clickjacking-on-Legacy-Browsers/"/>
+    
+    <category term="Client_DOM_XSS" scheme="https://rainmakerho.github.io/tags/Client-DOM-XSS/"/>
+    
+  </entry>
   
   <entry>
     <title>Windows Task 排程 Error 0x41301</title>
@@ -599,34 +627,6 @@
     <category term="OneDalDispatchingEnabled" scheme="https://rainmakerho.github.io/tags/OneDalDispatchingEnabled/"/>
     
     <category term="MissingFieldException" scheme="https://rainmakerho.github.io/tags/MissingFieldException/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ABP DbMigrationService.MigrateAsync 做那些事?</title>
-    <link href="https://rainmakerho.github.io/2024/03/05/abp-migrateasync/"/>
-    <id>https://rainmakerho.github.io/2024/03/05/abp-migrateasync/</id>
-    <published>2024-03-05T02:52:25.000Z</published>
-    <updated>2024-03-05T05:05:09.473Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>當透過 ABP CLI 建立專案後，會透過執行方案中的 <code>DbMigrator</code> 來建立資料庫及資料表。<br>那執行 <code>DbMigrator.EXE</code> 會做那些事呢?</p><h3 id="研究"><a href="#研究" class="headerlink" title="研究"></a>研究</h3><p><code>DbMigrator.EXE</code> 會執行 Domain 專案中的 <code>DbMigrationService.MigrateAsync</code>，<br>它會做以下幾件事，</p><p>1.呼叫 <code>AddInitialMigrationIfNotExist</code> 檢查初始的 DB Migration 是否有建立出來<br>　　 1.1.判斷是否有 <code>EntityFrameworkCoreProject</code> 目錄<br>　　 1.2.如果 <code>EntityFrameworkCoreProject</code> 目錄存在，判斷是否有 <code>Migrations</code> 子目錄，如果沒有，就執行 <code>abp create-migration-and-run-migrator</code> 建立初始的 Migration(通常不會發生，因為方案一建立好後，會一併建立初始 Migration)</p><p>2.如果有執行建立初始 Migration(<code>AddInitialMigrationIfNotExist()</code>回傳值為<code>true</code>)，就離開 <code>MigrateAsync</code> Method</p><p>3.執行 host(Tenant 為 null) 的 DB Migration(<code>MigrateDatabaseSchemaAsync</code>)，相當於執行 EF 的 database update(<code>dotnet ef database update</code>)</p><p>4.建立 host(Tenant 為 null) 的 Seed Data(<code>SeedDataAsync</code>)，會掃方案中有實作<code>IDataSeedContributor</code>類別，然後執行它的<code>SeedAsync</code></p><p>在 DomainModule 的 <code>ConfigureService</code> 加入設定 <code>AbpDataSeedOptions</code> 程式碼，<br>可以從 <code>options.Contributors</code> 查看有多少的 DataSeedContributor 要執行，</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Configure&lt;AbpDataSeedOptions&gt;(options =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">var</span> dataSeedContributors = options.Contributors;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>5.檢查是否有其他的 Tenant ，並設定跑在別的 DB 上面，有就重覆執行 DB Migration 及 Seed Data</p><h4 id="Q-可以讓系統自動執行-DbMigrationService-MigrateAsync-嗎"><a href="#Q-可以讓系統自動執行-DbMigrationService-MigrateAsync-嗎" class="headerlink" title="Q.可以讓系統自動執行 DbMigrationService.MigrateAsync 嗎?"></a>Q.可以讓系統自動執行 DbMigrationService.MigrateAsync 嗎?</h4><p>可以在<code>Program.cs</code>中的<code>await app.InitializeApplicationAsync();</code>後，<code>await app.RunAsync();</code>前，<br>加入執行 <code>DbMigrationService.MigrateAsync</code> 就可以了。</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">async</span> <span class="keyword">static</span> Task&lt;<span class="built_in">int</span>&gt; <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">var</span> builder = WebApplication.CreateBuilder(args);</span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">        <span class="keyword">var</span> app = builder.Build();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">await</span> app.InitializeApplicationAsync();</span><br><span class="line">        <span class="comment">//auto migration at runtime</span></span><br><span class="line">        <span class="keyword">await</span> app.Services</span><br><span class="line">            .GetRequiredService&lt;BookStoreDbMigrationService&gt;()</span><br><span class="line">            .MigrateAsync();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">await</span> app.RunAsync();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">catch</span> (Exception ex)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://rainmakerho.github.io/2023/03/08/abp-dataseedcontributor-duplicate/">ABP 系統建立的 DataSeedContributor 會跑 2 次 SeedAsync，導致發生 DB duplicate key 的錯誤?</a><br><a href="https://learn.microsoft.com/zh-tw/ef/core/managing-schemas/migrations/applying?tabs=dotnet-core-cli#apply-migrations-at-runtime">EF 在執行階段套用移轉</a></p><blockquote><p>一行服一行，煙膏怕紅糖 : 萬物相克，一物克一物。</p></blockquote>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;當透過 ABP CLI 建立專案後，會透過執行方案中的 &lt;code&gt;DbMigrator&lt;/code&gt; 來建立資料庫及資料表。&lt;br&gt;那執行</summary>
-      
-    
-    
-    
-    
-    <category term="ABP" scheme="https://rainmakerho.github.io/tags/ABP/"/>
-    
-    <category term="MigrateAsync" scheme="https://rainmakerho.github.io/tags/MigrateAsync/"/>
-    
-    <category term="DbMigrationService" scheme="https://rainmakerho.github.io/tags/DbMigrationService/"/>
-    
-    <category term="apply-migrations-at-runtime" scheme="https://rainmakerho.github.io/tags/apply-migrations-at-runtime/"/>
     
   </entry>
   
