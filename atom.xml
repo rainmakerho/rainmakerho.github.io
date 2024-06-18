@@ -6,7 +6,7 @@
   <link href="https://rainmakerho.github.io/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2024-06-14T07:04:10.871Z</updated>
+  <updated>2024-06-18T05:42:27.958Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MSSQL 運算元類型衝突 varchar 與 nvarchar encrypted with (encryption_type = ... 不相容的錯誤</title>
+    <link href="https://rainmakerho.github.io/2024/06/18/mssql-data-types-nvarchar-encrypted-with-encryption/"/>
+    <id>https://rainmakerho.github.io/2024/06/18/mssql-data-types-nvarchar-encrypted-with-encryption/</id>
+    <published>2024-06-18T05:21:47.000Z</published>
+    <updated>2024-06-18T05:42:27.958Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近同事透過 SSMS 針對加密欄位查詢時，會發生<code>運算元類型衝突</code>的錯誤，如下，</p><blockquote><p>訊息 206，層級 16，<br>運算元類型衝突: varchar 與 nvarchar(300) encrypted with (encryption_type &#x3D; ‘DETERMINISTIC’, encryption_algorithm_name &#x3D; ‘AEAD_AES_256_CBC_HMAC_SHA_256’,…) 不相容</p></blockquote><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>SQL 如下，</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> top <span class="number">1</span> 加密欄位 <span class="keyword">FROM</span> DOC</span><br><span class="line"><span class="keyword">union</span> <span class="keyword">all</span></span><br><span class="line"><span class="keyword">select</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="comment">-- 運算元類型衝突: varchar 與 nvarchar(300) encrypted 不相容</span></span><br></pre></td></tr></table></figure><p>查看一下錯誤訊息想說 SQL 不是會自動 Convert 嗎?<br>即然不行，就手動 Convert 成 nvarchar(300)。</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> top <span class="number">1</span> 加密欄位 <span class="keyword">FROM</span> DOC</span><br><span class="line"><span class="keyword">union</span> <span class="keyword">all</span></span><br><span class="line"><span class="keyword">select</span> <span class="built_in">cast</span>(<span class="string">&#x27;&#x27;</span> <span class="keyword">as</span> nvarchar(<span class="number">300</span>))</span><br><span class="line"><span class="comment">-- 運算元類型衝突: nvarchar 與 nvarchar(300) encrypted 不相容</span></span><br></pre></td></tr></table></figure><p>結果錯誤變成了，<code>運算元類型衝突: nvarchar 與 nvarchar(300) encrypted ... 不相容 </code></p><p>後來參考<a href="https://learn.microsoft.com/zh-tw/sql/relational-databases/security/encryption/always-encrypted-query-columns-ssms?view=sql-server-ver16">使用 Always Encrypted 與 SQL Server Management Studio 查詢資料行</a>，<br>與<strong>加密欄位</strong>打交道，需要使用<strong>參數</strong>才行，<br>如果是 Where 條件，則有可能會是 <code>equal to 運算子中的資料類型 nvarchar(300) encrypted with ... 不相容</code><br>所以 SQL 要改成以<strong>參數</strong>的方式，如下，</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">declare</span> <span class="variable">@r</span> nvarchar(<span class="number">300</span>) <span class="operator">=</span> <span class="string">&#x27;&#x27;</span>;</span><br><span class="line"><span class="keyword">SELECT</span> top <span class="number">1</span> 加密欄位 <span class="keyword">FROM</span> DOC</span><br><span class="line"><span class="keyword">union</span> <span class="keyword">all</span></span><br><span class="line"><span class="keyword">select</span> <span class="variable">@r</span></span><br><span class="line"><span class="comment">-- 運算元類型衝突: nvarchar 與 nvarchar(300) encrypted 不相容</span></span><br></pre></td></tr></table></figure><ul><li>註:在執行 SQL 時，請確認該機器有安裝憑證，不然會有<code>無法使用金鑰存放區提供者 &#39;MSSQL_CERTIFICATE_STORE&#39; 解密資料行加密金鑰</code>的錯誤哦</li></ul><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://learn.microsoft.com/zh-tw/sql/relational-databases/security/encryption/always-encrypted-query-columns-ssms?view=sql-server-ver16">使用 Always Encrypted 與 SQL Server Management Studio 查詢資料行</a></p><blockquote><p>一把柴火不拾，燒啥? : 喻人做事毫無準備，難達願望。</p></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;最近同事透過 SSMS 針對加密欄位查詢時，會發生&lt;code&gt;運算元類型衝突&lt;/code&gt;的錯誤，如下，&lt;/p&gt;
+&lt;blockquote&gt;
+</summary>
+      
+    
+    
+    
+    
+    <category term="mssql" scheme="https://rainmakerho.github.io/tags/mssql/"/>
+    
+    <category term="Always Encrypted" scheme="https://rainmakerho.github.io/tags/Always-Encrypted/"/>
+    
+    <category term="運算元類型衝突" scheme="https://rainmakerho.github.io/tags/%E9%81%8B%E7%AE%97%E5%85%83%E9%A1%9E%E5%9E%8B%E8%A1%9D%E7%AA%81/"/>
+    
+  </entry>
   
   <entry>
     <title>Checkmarx Potential Clickjacking on Legacy Browsers</title>
@@ -599,34 +627,6 @@
     <category term="dotnet" scheme="https://rainmakerho.github.io/tags/dotnet/"/>
     
     <category term="dev-certs" scheme="https://rainmakerho.github.io/tags/dev-certs/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MissingFieldException Microsoft.ML.MLContext.OneDalDispatchingEnabled</title>
-    <link href="https://rainmakerho.github.io/2024/03/08/ml-missing-field-exception-OneDalDispatchingEnabled/"/>
-    <id>https://rainmakerho.github.io/2024/03/08/ml-missing-field-exception-OneDalDispatchingEnabled/</id>
-    <published>2024-03-08T01:36:04.000Z</published>
-    <updated>2024-03-19T03:14:01.565Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近把 ML.NET 從 1.7 升到 3.0.1 結果在跑 <code>EstimatorChain.Fit</code> Method 時，<br>出現了 <strong>MissingFieldException</strong> ‘Microsoft.ML.MLContext.OneDalDispatchingEnabled’ 的錯誤</p><blockquote><p>System.MissingFieldException<br>HResult&#x3D;0x80131511<br>Message&#x3D;找不到欄位: ‘Microsoft.ML.MLContext.OneDalDispatchingEnabled’。<br>Source&#x3D;Microsoft.ML.Mkl.Components<br>StackTrace:<br>於 Microsoft.ML.Trainers.OlsTrainer.TrainCore(IChannel ch, Factory cursorFactory, Int32 featureCount)<br>於 Microsoft.ML.Trainers.OlsTrainer.TrainModelCore(TrainContext context)<br>於 Microsoft.ML.Trainers.TrainerEstimatorBase<code>2.TrainTransformer(IDataView trainSet, IDataView validationSet, IPredictor initPredictor)  於 Microsoft.ML.Data.EstimatorChain</code>1.Fit(IDataView input)</p></blockquote><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>查看 <a href="https://github.com/dotnet/machinelearning/blob/main/src/Microsoft.ML.Data/MLContext.cs">MLContext.cs</a> 程式碼中會載入<code>Microsoft.ML.OneDal</code>這個組件，所以就直接噴那個 Exception。</p><p>所以…就在專案中，將<code>Microsoft.ML.OneDal</code>套件加進來就可以了哦~</p><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://devblogs.microsoft.com/dotnet/accelerate-ml-net-training-with-intel-onedal/">Accelerate ML.NET training with Intel oneDAL</a></p><blockquote><p>一正避三邪: 一個人的行為正直，就不怕一切的邪氣，因為邪不勝正。</p></blockquote>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;最近把 ML.NET 從 1.7 升到 3.0.1 結果在跑 &lt;code&gt;EstimatorChain.Fit&lt;/code&gt; Method </summary>
-      
-    
-    
-    
-    
-    <category term="ML.NET" scheme="https://rainmakerho.github.io/tags/ML-NET/"/>
-    
-    <category term="Microsoft.ML" scheme="https://rainmakerho.github.io/tags/Microsoft-ML/"/>
-    
-    <category term="OneDalDispatchingEnabled" scheme="https://rainmakerho.github.io/tags/OneDalDispatchingEnabled/"/>
-    
-    <category term="MissingFieldException" scheme="https://rainmakerho.github.io/tags/MissingFieldException/"/>
     
   </entry>
   
