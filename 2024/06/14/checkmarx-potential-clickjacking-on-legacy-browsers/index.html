@@ -10,16 +10,16 @@
   <link rel="dns-prefetch" href="https://rainmakerho.github.io">
   <title>Checkmarx Potential Clickjacking on Legacy Browsers | 亂馬客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="問題最近同事將 aspx 程式給 Checkmarx 掃時，aspx 會出現 JavaScript 的 Potential Clickjacking on Legacy Browsers 問題。   Potential Clickjacking on Legacy Browsers的問題是怕正常的網頁被放在 IFrame 之中，來騙使用者進行非預期的操作，例如Clickjacking詐騙的網頁中放">
+  <meta name="description" content="問題最近同事將 aspx 程式給 Checkmarx 掃時，aspx 會出現 JavaScript 的 Potential Clickjacking on Legacy Browsers 問題。  主要是因為這支程式中有&lt;script&gt;區段，Checkmarx 就會噴那個問題。 Potential Clickjacking on Legacy Browsers的問題是怕正常的網頁被放在">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Checkmarx Potential Clickjacking on Legacy Browsers">
 <meta property="og:url" content="https://rainmakerho.github.io/2024/06/14/checkmarx-potential-clickjacking-on-legacy-browsers/index.html">
 <meta property="og:site_name" content="亂馬客">
-<meta property="og:description" content="問題最近同事將 aspx 程式給 Checkmarx 掃時，aspx 會出現 JavaScript 的 Potential Clickjacking on Legacy Browsers 問題。   Potential Clickjacking on Legacy Browsers的問題是怕正常的網頁被放在 IFrame 之中，來騙使用者進行非預期的操作，例如Clickjacking詐騙的網頁中放">
+<meta property="og:description" content="問題最近同事將 aspx 程式給 Checkmarx 掃時，aspx 會出現 JavaScript 的 Potential Clickjacking on Legacy Browsers 問題。  主要是因為這支程式中有&lt;script&gt;區段，Checkmarx 就會噴那個問題。 Potential Clickjacking on Legacy Browsers的問題是怕正常的網頁被放在">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://rainmakerho.github.io/2024/06/14/checkmarx-potential-clickjacking-on-legacy-browsers/01.png">
 <meta property="article:published_time" content="2024-06-14T06:24:33.000Z">
-<meta property="article:modified_time" content="2024-06-14T07:04:10.871Z">
+<meta property="article:modified_time" content="2024-06-19T03:09:08.858Z">
 <meta property="article:author" content="亂馬客">
 <meta property="article:tag" content="Checkmarx">
 <meta property="article:tag" content="Client_DOM_Open_Redirect">
@@ -179,7 +179,7 @@
     <div class="article-entry" itemprop="articleBody">
          <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近同事將 aspx 程式給 Checkmarx 掃時，<br>aspx 會出現 JavaScript 的 <code>Potential Clickjacking on Legacy Browsers</code> 問題。</p>
 <img src="/2024/06/14/checkmarx-potential-clickjacking-on-legacy-browsers/01.png" class="" title="Checkmarx">
-
+<p>主要是因為這支程式中有<code>&lt;script&gt;</code>區段，Checkmarx 就會噴那個問題。</p>
 <p><strong>Potential Clickjacking on Legacy Browsers</strong>的問題是怕正常的網頁被放在 IFrame 之中，<br>來騙使用者進行非預期的操作，例如<a target="_blank" rel="noopener" href="https://github.com/rainmakerho/OWASPMVC5/blob/main/MyStore/Attacker.MyStore/Views/WinSurfacePro/Index.cshtml">Clickjacking</a>詐騙的網頁中放一個改密碼的 iframe，<br>去覆蓋在原有的頁面上面，讓使用者實際上是操作到 iframe 的頁面。</p>
 <h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>所以解法可透過設定<code>X-Frame-Options</code>及<code>Content Security Policy (CSP)</code>來避免，<br>例如在 <code>web.config</code>中設定如下，</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">system.webServer</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">httpProtocol</span>&gt;</span></span><br><span class="line">		  <span class="tag">&lt;<span class="name">customHeaders</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">add</span> <span class="attr">name</span>=<span class="string">&quot;X-Frame-Options&quot;</span> <span class="attr">value</span>=<span class="string">&quot;SAMEORIGIN&quot;</span> /&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">add</span> <span class="attr">name</span>=<span class="string">&quot;Content-Security-Policy&quot;</span> <span class="attr">value</span>=<span class="string">&quot;frame-ancestors &#x27;self&#x27;&quot;</span>/&gt;</span></span><br><span class="line">		  <span class="tag">&lt;/<span class="name">customHeaders</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">httpProtocol</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">system.webServer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -6241,6 +6241,26 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">運算元類型衝突</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Stream</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MemoryStream</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ToArray</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Read</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">BinaryReader</a>
               </li>
             
             <div class="clearfix"></div>
