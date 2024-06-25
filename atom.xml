@@ -6,7 +6,7 @@
   <link href="https://rainmakerho.github.io/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2024-06-24T03:06:20.839Z</updated>
+  <updated>2024-06-25T05:22:46.419Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Swashbuckle SwaggerUI 套用 CSP 錯誤的解法</title>
+    <link href="https://rainmakerho.github.io/2024/06/25/swashbuckle-swaggerui-csp/"/>
+    <id>https://rainmakerho.github.io/2024/06/25/swashbuckle-swaggerui-csp/</id>
+    <published>2024-06-25T03:29:19.000Z</published>
+    <updated>2024-06-25T05:22:46.419Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>當程式有設定 CSP(Content Security Policy)，值為<code>default-src &#39;self&#39;;</code>後，<br>會發現 SwaggerUI <code>index.html</code> 會一片白白的，<br>Browser 主控台就會顯示<code>CSP</code>的錯誤，如下，</p><blockquote><p>Refused to apply inline style because it violates the following Content Security Policy directive: “default-src ‘self’”. Either the ‘unsafe-inline’ keyword, a hash (‘sha256-wkAU1AW&#x2F;h8YFx0XlzvpTllAKnFEO2tw8aKErs5a26LY&#x3D;’), or a nonce (‘nonce-…’) is required to enable inline execution. Note also that ‘style-src’ was not explicitly set, so ‘default-src’ is used as a fallback.</p></blockquote><blockquote><p>Refused to execute inline script because it violates the following Content Security Policy directive: “default-src ‘self’”. Either the ‘unsafe-inline’ keyword, a hash (‘sha256-Tui7QoFlnLXkJCSl1&#x2F;JvEZdIXTmBttnWNxzJpXomQjg&#x3D;’), or a nonce (‘nonce-…’) is required to enable inline execution. Note also that ‘script-src’ was not explicitly set, so ‘default-src’ is used as a fallback.</p></blockquote><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>因為 SwaggerUI 有使用<strong>inline style</strong>及<strong>inline script</strong>，<br>所以被<strong>CSP</strong>的設定擋掉了。</p><h5 id="解法-1-加入-unsafe-inline"><a href="#解法-1-加入-unsafe-inline" class="headerlink" title="解法 1(加入 unsafe-inline)"></a>解法 1(加入 unsafe-inline)</h5><p>所以在<strong>CSP</strong>中可以加入<code>&#39;unsafe-inline&#39;</code> 及 image 的設定(<code>img-src data: https:;</code>)，如下，<br><code>default-src &#39;self&#39;;style-src &#39;self&#39; &#39;unsafe-inline&#39;;script-src &#39;self&#39; &#39;unsafe-inline&#39;;img-src data: https:;</code></p><h5 id="解法-2-使用-nonce"><a href="#解法-2-使用-nonce" class="headerlink" title="解法 2(使用 nonce)"></a>解法 2(使用 nonce)</h5><p>如果不想使用<code>&#39;unsafe-inline&#39;</code>, 那就需要使用<code>nonce</code>。<br>可以在<code>appsettings.json</code>中設定 CSP 的值及要使用的<code>nonce</code>，<br>將<code>&#39;unsafe-inline&#39;</code> 改以 <code>&#39;nonce-&#123;nonceValue&#125;&#39;</code> 替代，如下，</p><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;CSP&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;Nonce&quot;</span><span class="punctuation">:</span> <span class="string">&quot;rxa0mkex&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;Content&quot;</span><span class="punctuation">:</span> <span class="string">&quot;default-src &#x27;self&#x27;;style-src &#x27;self&#x27; &#x27;nonce-&#123;nonceValue&#125;&#x27;;script-src &#x27;self&#x27; &#x27;nonce-&#123;nonceValue&#125;&#x27;;img-src data: https:;&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure><p>然後設定<strong>CSP</strong>，<code>nonce</code>的值，如下，</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> cspNonce = _configuration[<span class="string">&quot;CSP:Nonce&quot;</span>];</span><br><span class="line"><span class="keyword">var</span> cspContent = _configuration[<span class="string">&quot;CSP:Content&quot;</span>].Replace(<span class="string">&quot;&#123;nonceValue&#125;&quot;</span>, cspNonce);</span><br><span class="line">context.Response.Headers.Append(<span class="string">&quot;Content-Security-Policy&quot;</span>, cspContent);</span><br></pre></td></tr></table></figure><p>再參考<a href="https://mderriey.com/2020/12/14/how-to-lock-down-csp-using-swachbuckle/">How to lock down your CSP when using Swashbuckle</a>，<br>在 SwaggerUI 產生 index.html 時，將 inline script, style ，加上<strong>noce</strong>的值，如下，</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">app.UseSwaggerUI(options =&gt;</span><br><span class="line">&#123;</span><br><span class="line">options.SwaggerEndpoint(<span class="string">&quot;/swagger/v1/swagger.json&quot;</span>, <span class="string">&quot;Portal API&quot;</span>);</span><br><span class="line"><span class="comment">//加入處理 SwaggerUI CSP 問題</span></span><br><span class="line"><span class="keyword">var</span> originallIndexStreamFactory = options.IndexStream;</span><br><span class="line">options.IndexStream = () =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">using</span> <span class="keyword">var</span> originalStream = originallIndexStreamFactory();</span><br><span class="line">    <span class="keyword">using</span> <span class="keyword">var</span> originalStreamReader = <span class="keyword">new</span> StreamReader(originalStream); ;</span><br><span class="line">    <span class="keyword">var</span> originalIndexHtmlContents = originalStreamReader.ReadToEnd();</span><br><span class="line">    <span class="keyword">var</span> requestSpecificNonce = config[<span class="string">&quot;CSP:Nonce&quot;</span>];</span><br><span class="line">    <span class="keyword">var</span> nonceEnabledIndexHtmlContents = originalIndexHtmlContents</span><br><span class="line">    .Replace(<span class="string">&quot;&lt;script&gt;&quot;</span>, <span class="string">$&quot;&quot;</span><span class="string">&quot;&lt;script nonce=&quot;</span>&#123;requestSpecificNonce&#125;<span class="string">&quot;&gt;&quot;</span><span class="string">&quot;&quot;</span>, StringComparison.OrdinalIgnoreCase)</span><br><span class="line">    .Replace(<span class="string">&quot;&lt;style&gt;&quot;</span>, <span class="string">$&quot;&quot;</span><span class="string">&quot;&lt;style nonce=&quot;</span>&#123;requestSpecificNonce&#125;<span class="string">&quot;&gt;&quot;</span><span class="string">&quot;&quot;</span>, StringComparison.OrdinalIgnoreCase);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> MemoryStream(Encoding.UTF8.GetBytes(nonceEnabledIndexHtmlContents));</span><br><span class="line">&#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><img src="/2024/06/25/swashbuckle-swaggerui-csp/01.png" class="" title="CSP-nonce"><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://mderriey.com/2020/12/14/how-to-lock-down-csp-using-swachbuckle/">How to lock down your CSP when using Swashbuckle</a></p><blockquote><p>一時花，二時雨: 喻人做事沒有恆心，毫無決斷力，有時好時壞。</p></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;當程式有設定 CSP(Content Security Policy)，值為&lt;code&gt;default-src &amp;#39;self&amp;#39;</summary>
+      
+    
+    
+    
+    
+    <category term="Content-Security-Policy" scheme="https://rainmakerho.github.io/tags/Content-Security-Policy/"/>
+    
+    <category term="CSP" scheme="https://rainmakerho.github.io/tags/CSP/"/>
+    
+    <category term="Swashbuckle" scheme="https://rainmakerho.github.io/tags/Swashbuckle/"/>
+    
+    <category term="SwaggerUI" scheme="https://rainmakerho.github.io/tags/SwaggerUI/"/>
+    
+    <category term="SwaggerUIOptions" scheme="https://rainmakerho.github.io/tags/SwaggerUIOptions/"/>
+    
+  </entry>
   
   <entry>
     <title>為什麼VS.NET 2022新增Class時，都是 internal 呢?</title>
@@ -595,38 +625,6 @@
     <category term="SQL Server does not exist or access denied" scheme="https://rainmakerho.github.io/tags/SQL-Server-does-not-exist-or-access-denied/"/>
     
     <category term="OdbcConnection" scheme="https://rainmakerho.github.io/tags/OdbcConnection/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Docker 環境無法連到外部IP(getaddrinfo Temporary failure in name resolution, NET::LDAP::Error)</title>
-    <link href="https://rainmakerho.github.io/2024/03/21/docker-error-getaddrinfo-Temporary-failure-in-name-resolution/"/>
-    <id>https://rainmakerho.github.io/2024/03/21/docker-error-getaddrinfo-Temporary-failure-in-name-resolution/</id>
-    <published>2024-03-21T00:44:46.000Z</published>
-    <updated>2024-03-21T01:03:01.336Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>Gitlab 的 Docker 環境中要透過 Webhook 連到外部的 IP，會出現以下的錯誤訊息，</p><blockquote><p>“exception.class”:”NET::LDAP::Error”,<br>“exception.message”:”getaddrinfo: Temporary failure in name resolution”<br>“exception.backtrace”:[“lib&#x2F;gitlab&#x2F;auth&#x2F;ldap&#x2F;adapter.rb:13:in <code>open</code>, …]</p></blockquote><h3 id="問題原因"><a href="#問題原因" class="headerlink" title="問題原因"></a>問題原因</h3><p>看起來在 Docker 中連線被 Block 掉，而 Docker 的 Host VM 是可以正常直接連線到外面的。<br>猜想會是其他的問題嗎?<br>於是想到因為公司的所有 VM 都要裝防毒軟體，<br>請同事先將<strong>ESET 防毒</strong>移除看看。<br>結果一移除後，Docker 的網路就通了。</p><p>有可能是<strong>ESET 防毒</strong>在防火牆的設定問題，<br>就請 MIS 重新安裝並設定後，就 OK 了哦~</p><blockquote><p>一本三字經，讀迂腐了: 不知變通的意思。</p></blockquote>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;Gitlab 的 Docker 環境中要透過 Webhook 連到外部的 IP，會出現以下的錯誤訊息，&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;</summary>
-      
-    
-    
-    
-    
-    <category term="LDAP" scheme="https://rainmakerho.github.io/tags/LDAP/"/>
-    
-    <category term="Docker" scheme="https://rainmakerho.github.io/tags/Docker/"/>
-    
-    <category term="getaddrinfo" scheme="https://rainmakerho.github.io/tags/getaddrinfo/"/>
-    
-    <category term="Temporary failure in name resolution" scheme="https://rainmakerho.github.io/tags/Temporary-failure-in-name-resolution/"/>
-    
-    <category term="ESET" scheme="https://rainmakerho.github.io/tags/ESET/"/>
     
   </entry>
   
