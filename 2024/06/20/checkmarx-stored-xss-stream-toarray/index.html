@@ -8,17 +8,17 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests;">
   <link rel="dns-prefetch" href="https://rainmakerho.github.io">
-  <title>Checkmarx Stream ToArray Read 會被掃出 Stored XSS | 亂馬客</title>
+  <title>Checkmarx | Stream ToArray Read 會被掃出 Stored XSS | 亂馬客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="問題最近同事詢問為什麼程式中的Stream.ToArray(), Stream.Read會被 Checkmarx 判斷有Stored XSS的問題呢?Checkmarx 版本為V9.5.5.1007 HF14。 解法Checkmarx 描述為，Stream.Read  使用 Read 生成輸出，但未經過適當的消毒或編碼就將不可信資料嵌入生成的輸出中，這使得攻擊者能夠注入惡意程式碼到生成的網頁中。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Checkmarx Stream ToArray Read 會被掃出 Stored XSS">
+<meta property="og:title" content="Checkmarx | Stream ToArray Read 會被掃出 Stored XSS">
 <meta property="og:url" content="https://rainmakerho.github.io/2024/06/20/checkmarx-stored-xss-stream-toarray/index.html">
 <meta property="og:site_name" content="亂馬客">
 <meta property="og:description" content="問題最近同事詢問為什麼程式中的Stream.ToArray(), Stream.Read會被 Checkmarx 判斷有Stored XSS的問題呢?Checkmarx 版本為V9.5.5.1007 HF14。 解法Checkmarx 描述為，Stream.Read  使用 Read 生成輸出，但未經過適當的消毒或編碼就將不可信資料嵌入生成的輸出中，這使得攻擊者能夠注入惡意程式碼到生成的網頁中。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-06-20T01:28:05.000Z">
-<meta property="article:modified_time" content="2024-06-20T02:20:29.473Z">
+<meta property="article:modified_time" content="2024-06-28T09:27:13.773Z">
 <meta property="article:author" content="亂馬客">
 <meta property="article:tag" content="C#">
 <meta property="article:tag" content="Checkmarx">
@@ -169,7 +169,7 @@
       
   
     <h1 class="article-title" itemprop="name">
-      Checkmarx Stream ToArray Read 會被掃出 Stored XSS
+      Checkmarx | Stream ToArray Read 會被掃出 Stored XSS
     </h1>
   
   <a href="/2024/06/20/checkmarx-stored-xss-stream-toarray/" class="archive-article-date">
@@ -179,16 +179,16 @@
     
     <div class="article-entry" itemprop="articleBody">
          <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近同事詢問為什麼程式中的<code>Stream.ToArray()</code>, <code>Stream.Read</code>會被 Checkmarx 判斷有<code>Stored XSS</code>的問題呢?<br>Checkmarx 版本為<strong>V9.5.5.1007 HF14</strong>。</p>
-<h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>Checkmarx 描述為，<br><code>Stream.Read</code></p>
+<h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>Checkmarx 描述為，<br><strong>Stream.Read</strong></p>
 <blockquote>
 <p>使用 Read 生成輸出，但未經過適當的消毒或編碼就將不可信資料嵌入生成的輸出中，這使得攻擊者能夠注入惡意程式碼到生成的網頁中。</p>
 </blockquote>
-<p><code>Stream.ToArray()</code></p>
+<p><strong>Stream.ToArray()</strong></p>
 <blockquote>
 <p>使用 ToArray 生成輸出，但未經過適當的消毒或編碼就將不可信資料嵌入生成的輸出中，這使得攻擊者能夠注入惡意程式碼到生成的網頁中。</p>
 </blockquote>
 <p>看 Checkmarx Rule ，如果輸出為 File 可以加入<code>X-Content-Type-Options</code>Header , 值為<code>nosniff</code> 來避免 XSS。<br>但加入後，問題還是存在，應該是 Checkmarx 的 Bug 吧~<br>透過 Jer 測試後發現，在 Checkmarx<strong>V9.6</strong>就不會有這問題~~<br>所以目前的解法可以請原廠拿<strong>V9.6</strong>的 C# Stored XSS Rule 匯到<strong>V9.5</strong>中。<br>或是改做法來避開，<br><code>Stream.ToArray()</code> 就改用 <code>BinaryReader</code> 如下，</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//byte[] fileContent = stream.ToArray();</span></span><br><span class="line"><span class="built_in">byte</span>[] fileContent = <span class="literal">null</span>;</span><br><span class="line"><span class="keyword">using</span> (<span class="keyword">var</span> binaryReader = <span class="keyword">new</span> BinaryReader(stream))</span><br><span class="line">&#123;</span><br><span class="line">    fileContent =  binaryReader.ReadBytes((<span class="built_in">int</span>)stream.Length);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//byte[] fileContent = stream.ToArray();</span></span><br><span class="line"><span class="built_in">byte</span>[] fileContent = <span class="literal">null</span>;</span><br><span class="line"><span class="keyword">using</span> (<span class="keyword">var</span> binaryReader = <span class="keyword">new</span> BinaryReader(stream))</span><br><span class="line">&#123;</span><br><span class="line">    stream.Position = <span class="number">0</span>;</span><br><span class="line">    fileContent =  binaryReader.ReadBytes((<span class="built_in">int</span>)stream.Length);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><code>Stream.Read</code> 就改用<code>StreamReader</code>，例如</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> (<span class="keyword">var</span> reader = <span class="keyword">new</span> StreamReader(stream, Encoding.UTF8, leaveOpen: <span class="literal">true</span>))</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">string</span> requestBody = <span class="keyword">await</span> reader.ReadToEndAsync();</span><br><span class="line">    <span class="keyword">return</span> requestBody;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -6296,6 +6296,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">SwaggerUIOptions</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Minimal API</a>
               </li>
             
             <div class="clearfix"></div>

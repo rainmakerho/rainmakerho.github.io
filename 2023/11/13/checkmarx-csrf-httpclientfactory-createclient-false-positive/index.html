@@ -8,17 +8,17 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests;">
   <link rel="dns-prefetch" href="https://rainmakerho.github.io">
-  <title>HttpClientFactory.CreateClient 造成 Checkmarx 狂噴 CSRF | 亂馬客</title>
+  <title>Checkmarx | HttpClientFactory.CreateClient 造成 Checkmarx 狂噴 CSRF | 亂馬客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="問題ASP.NET Core MVC 專案中的 WebAPI Controller 被 Checkmarx V9.4.5.1012 HF24 掃出一堆的 CSRF 問題。 分析查看它的 Find_CSRF Rule 中，在過濾掉 Find_CSRF_Sanitize 結果後，又再加入 Find_ASP_MVC_CSRF()。而在 Find_ASP_MVC_CSRF() 中又會去找一些可能跟 DB">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HttpClientFactory.CreateClient 造成 Checkmarx 狂噴 CSRF">
+<meta property="og:title" content="Checkmarx | HttpClientFactory.CreateClient 造成 Checkmarx 狂噴 CSRF">
 <meta property="og:url" content="https://rainmakerho.github.io/2023/11/13/checkmarx-csrf-httpclientfactory-createclient-false-positive/index.html">
 <meta property="og:site_name" content="亂馬客">
 <meta property="og:description" content="問題ASP.NET Core MVC 專案中的 WebAPI Controller 被 Checkmarx V9.4.5.1012 HF24 掃出一堆的 CSRF 問題。 分析查看它的 Find_CSRF Rule 中，在過濾掉 Find_CSRF_Sanitize 結果後，又再加入 Find_ASP_MVC_CSRF()。而在 Find_ASP_MVC_CSRF() 中又會去找一些可能跟 DB">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-11-13T07:38:41.000Z">
-<meta property="article:modified_time" content="2023-11-13T07:56:36.990Z">
+<meta property="article:modified_time" content="2024-06-28T09:26:33.416Z">
 <meta property="article:author" content="亂馬客">
 <meta property="article:tag" content="C#">
 <meta property="article:tag" content="Checkmarx">
@@ -166,7 +166,7 @@
       
   
     <h1 class="article-title" itemprop="name">
-      HttpClientFactory.CreateClient 造成 Checkmarx 狂噴 CSRF
+      Checkmarx | HttpClientFactory.CreateClient 造成 Checkmarx 狂噴 CSRF
     </h1>
   
   <a href="/2023/11/13/checkmarx-csrf-httpclientfactory-createclient-false-positive/" class="archive-article-date">
@@ -6271,6 +6271,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">SwaggerUIOptions</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Minimal API</a>
               </li>
             
             <div class="clearfix"></div>
