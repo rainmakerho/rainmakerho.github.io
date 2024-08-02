@@ -8,26 +8,18 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests;">
   <link rel="dns-prefetch" href="https://rainmakerho.github.io">
-  <title>Checkmarx | DB Query + File 操作，導致 Checkmarx 噴 Heuristic 2nd Order SQL Injection 問題? | 亂馬客</title>
+  <title>Tag: Unchecked_Input_For_Loop_Condition | 亂馬客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言最近遇到專案被 Checkmarx 掃出 Heuristic_2nd_Order_SQL_Injection 的低風險問題。看了一下程式，它的邏輯是在 MVC 的 Controller 接收一個 No 字串參數，再透過該參數到 DB 中取回單號的年度，再依年度組出檔案路徑，進行檔案的操作。才一個 DB 的 Query ，怎麼會疑似有 2nd Order SQL Injection 問題呢? 研">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Checkmarx | DB Query + File 操作，導致 Checkmarx 噴 Heuristic 2nd Order SQL Injection 問題?">
-<meta property="og:url" content="https://rainmakerho.github.io/2023/09/27/checkmark-heuristic-2nd-order-sql-injection/index.html">
+  <meta name="description" content="Hello! 我是RM">
+<meta property="og:type" content="website">
+<meta property="og:title" content="亂馬客">
+<meta property="og:url" content="https://rainmakerho.github.io/tags/Unchecked-Input-For-Loop-Condition/index.html">
 <meta property="og:site_name" content="亂馬客">
-<meta property="og:description" content="前言最近遇到專案被 Checkmarx 掃出 Heuristic_2nd_Order_SQL_Injection 的低風險問題。看了一下程式，它的邏輯是在 MVC 的 Controller 接收一個 No 字串參數，再透過該參數到 DB 中取回單號的年度，再依年度組出檔案路徑，進行檔案的操作。才一個 DB 的 Query ，怎麼會疑似有 2nd Order SQL Injection 問題呢? 研">
+<meta property="og:description" content="Hello! 我是RM">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://rainmakerho.github.io/2023/09/27/checkmark-heuristic-2nd-order-sql-injection/01.png">
-<meta property="article:published_time" content="2023-09-27T05:45:11.000Z">
-<meta property="article:modified_time" content="2024-06-28T09:26:04.327Z">
 <meta property="article:author" content="亂馬客">
-<meta property="article:tag" content="Checkmarx">
-<meta property="article:tag" content="Heuristic_2nd_Order_SQL_Injection">
-<meta property="article:tag" content="SqlMapper">
-<meta property="article:tag" content="Path">
-<meta property="article:tag" content="Dapper">
+<meta property="article:tag" content="前端,js,jquery,javascript,html5,C#,Developer,Programmer,Coder,chatbot,botframework,.net,netcore">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://rainmakerho.github.io/2023/09/27/checkmark-heuristic-2nd-order-sql-injection/01.png">
   
     <link rel="alternative" href="/atom.xml" title="亂馬客" type="application/atom+xml">
   
@@ -157,135 +149,73 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article
-  id="post-checkmark-heuristic-2nd-order-sql-injection"
-  class="article article-type-post "
-  itemscope
-  itemprop="blogPost"
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
+            
   
-    <h1 class="article-title" itemprop="name">
-      Checkmarx | DB Query + File 操作，導致 Checkmarx 噴 Heuristic 2nd Order SQL Injection 問題?
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2024" class="archive-year">2024</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2024/08/02/checkmarx-server-dos-by-loop-nodejs/" class="archive-article-date">
+  	<time datetime="2024-08-02T07:18:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-08-02</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2024/08/02/checkmarx-server-dos-by-loop-nodejs/">Checkmarx | Server_Dos_by_Loop (Node.js)</a>
     </h1>
   
-  <a href="/2023/09/27/checkmark-heuristic-2nd-order-sql-injection/" class="archive-article-date">
-  	<time datetime="2023-09-27T05:45:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-09-27</time>
-</a> 
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近遇到專案被 Checkmarx 掃出 <code>Heuristic_2nd_Order_SQL_Injection</code> 的低風險問題。<br>看了一下程式，它的邏輯是在 MVC 的 Controller 接收一個 No 字串參數，再透過該參數到 DB 中取回單號的年度，<br>再依年度組出檔案路徑，進行檔案的操作。<br>才一個 DB 的 Query ，怎麼會<strong>疑似</strong>有 <strong>2nd Order SQL Injection</strong> 問題呢?</p>
-<h3 id="研究"><a href="#研究" class="headerlink" title="研究"></a>研究</h3><p>針對 SQL Injection 的防護，大多使用 Parameter 的方式，<br>而該 Query 也是使用 DbParameter 的方式，<br>為什麼 Checkmarx 會覺得有 Injection 的問題呢?<br>程式是使用 Dapper 的 SqlMapper 來 Query</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Controller</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> JsonResult <span class="title">Delete</span>(<span class="params"><span class="built_in">string</span> SRNO</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> Json(dac.DeletePlan(SRNO));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//DeletePlan</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> RtnResultModel <span class="title">DeletePlan</span>(<span class="params"><span class="built_in">string</span> SRNO</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">using</span> (TransactionScope scope = <span class="keyword">new</span> TransactionScope())</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">using</span> (CommonDac dac = <span class="keyword">new</span> CommonDac(loggedUser))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">string</span> year = dac.GetPlanYear(SRNO);</span><br><span class="line">            <span class="comment">// file 操作 ... call fileaccess(year);</span></span><br><span class="line">        &#125;</span><br><span class="line">        scope.Complete();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> RtnResultModel(<span class="literal">true</span>, <span class="string">&quot;訊息...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//GetYear</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="built_in">string</span> <span class="title">GetPlanYear</span>(<span class="params"><span class="built_in">string</span> SRNO</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">var</span> conn =  ...;</span><br><span class="line">    strSql = <span class="string">@&quot;SELECT [dbo].[fn_GetPlanYear](@SRNO) &quot;</span>;</span><br><span class="line">    objParam = <span class="keyword">new</span></span><br><span class="line">    &#123;</span><br><span class="line">        SRNO = SRNO</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">var</span> strYear = conn.Query&lt;<span class="built_in">string</span>&gt;(conn,strSql, objParam).ToList().SingleOrDefault();</span><br><span class="line">    <span class="keyword">return</span> strYear;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>從 Checkmarx 的圖中，經過的 Path 只有一個 DB 的 Query，</p>
-<img src="/2023/09/27/checkmark-heuristic-2nd-order-sql-injection/01.png" class="" title="checkmarx">
-
-<p>而且 SQL 的參數，也沒有使用 字串 串接的方式，<br>所以沒有 2nd Order SQL Injection 的問題。<br>有可能是 Checkmarx 不認得 <code>SqlMapper.Query</code> 的擴充 Method。<br>將 Dapper 改用 Ado.NET 來操作，</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="built_in">string</span> <span class="title">GetPlanYear</span>(<span class="params"><span class="built_in">string</span> SRNO</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">var</span> conn =  ...;</span><br><span class="line">    strSql = <span class="string">@&quot;SELECT [dbo].[fn_GetPlanYear](@SRNO) &quot;</span>;</span><br><span class="line">    SqlCommand cmd = <span class="keyword">new</span> SqlCommand(strSql, conn);</span><br><span class="line">    cmd.Parameters.Add(<span class="string">&quot;@SRNO&quot;</span>, SqlDbType.VarChar);</span><br><span class="line">    cmd.Parameters[<span class="string">&quot;@SRNO&quot;</span>].Value = CryptSet.DecryptAES(SRNO);</span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">    &#123;</span><br><span class="line">        conn.Open();</span><br><span class="line">        <span class="keyword">return</span> (<span class="built_in">string</span>)cmd.ExecuteScalar();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">catch</span> (Exception ex)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">throw</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>再掃一次 <code>Heuristic_2nd_Order_SQL_Injection</code> 就不會再出現。<br>如果客戶可以接受說明，應該可以不需要進行調整，<br>如果一定要調整的話，除了改用 Ado.NET 方式外，<br>也可以透過驗證資料型別的方式來解，<br>例如，判斷是否為 int 再將值傳出，如下，</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="built_in">string</span> <span class="title">GetPlanYear</span>(<span class="params"><span class="built_in">string</span> SRNO</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">var</span> conn =  ...;</span><br><span class="line">    strSql = <span class="string">@&quot;SELECT [dbo].[fn_GetPlanYear](@SRNO) &quot;</span>;</span><br><span class="line">    objParam = <span class="keyword">new</span></span><br><span class="line">    &#123;</span><br><span class="line">        SRNO = SRNO</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">var</span> strYear = conn.Query&lt;<span class="built_in">string</span>&gt;(conn,strSql, objParam).ToList().SingleOrDefault();</span><br><span class="line">    <span class="keyword">var</span> intYear = <span class="built_in">int</span>.Parse(strYear);</span><br><span class="line">    <span class="keyword">return</span> intYear.ToString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a target="_blank" rel="noopener" href="https://infosecwriteups.com/the-wrath-of-second-order-sql-injection-c9338a51c6d">What is a Second-Order SQL Injection and how can you exploit it successfully?</a></p>
-   
-    </div>
-    <div class="article-info article-info-index">
-       
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Node.js</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Checkmarx</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Heuristic_2nd_Order_SQL_Injection</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Server_Dos_by_Loop</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">SqlMapper</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Path</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Dapper</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Unchecked_Input_For_Loop_Condition</a>
         		</li>
       		
 		</ul>
 	</div>
- 
-  
-      <div class="clearfix"></div>
-    </div>
+
+          
+
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
- 
-<nav id="article-nav">
-  
-    <a href="/2023/10/05/missing-or-insecure-content-security-policy-header-appscan/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          AppScan Missing or insecure &#34;Script-Src&#34; or &#34;Default-src&#34; policy in &#34;Content-Security-Policy&#34; header
-        
-      </div>
-    </a>
   
   
-    <a href="/2023/09/21/sk-semantic-kernel-inline-function/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Semantic Kernel | 動態新增 Function</div>
-      <i class="icon-circle-right"></i>
-    </a>
+    </div></section>
   
-</nav>
-  <aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>     
-<section id="comments">
-  <div id="disqus_thread"></div>
-  <script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-    var disqus_shortname = "rainmakergit"; // required: replace example with your forum shortname
 
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function () {
-      var dsq = document.createElement("script");
-      dsq.type = "text/javascript";
-      dsq.async = true;
-      dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
-      (
-        document.getElementsByTagName("head")[0] ||
-        document.getElementsByTagName("body")[0]
-      ).appendChild(dsq);
-    })();
-  </script>
-  <noscript
-    >Please enable JavaScript to view the
-    <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-  </noscript>
-</section>
-  
+    
+
 
           </div>
         </div>
@@ -307,9 +237,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
@@ -6354,6 +6284,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">OpenAIAssistantAgent</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Server_Dos_by_Loop</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Unchecked_Input_For_Loop_Condition</a>
               </li>
             
             <div class="clearfix"></div>

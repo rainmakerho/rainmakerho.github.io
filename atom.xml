@@ -6,7 +6,7 @@
   <link href="https://rainmakerho.github.io/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2024-07-19T07:00:03.319Z</updated>
+  <updated>2024-08-02T07:38:10.364Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Checkmarx | Server_Dos_by_Loop (Node.js)</title>
+    <link href="https://rainmakerho.github.io/2024/08/02/checkmarx-server-dos-by-loop-nodejs/"/>
+    <id>https://rainmakerho.github.io/2024/08/02/checkmarx-server-dos-by-loop-nodejs/</id>
+    <published>2024-08-02T07:18:07.000Z</published>
+    <updated>2024-08-02T07:38:10.364Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近 Node.js 的程式被 Checkmarx 掃出有 <strong>Server_Dos_by_Loop</strong> Issue.<br>依 Checkmarx 的建議需要加上迴圈數量的限制，例如，</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="variable constant_">MAX_ITERATIONS</span> = <span class="number">120</span>;</span><br><span class="line"><span class="keyword">const</span> iterations = req.<span class="property">query</span>.<span class="property">iterations</span>;</span><br><span class="line"><span class="keyword">if</span> (iterations &lt; <span class="variable constant_">MAX_ITERATIONS</span>) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; iterations; i++) &#123;</span><br><span class="line">        <span class="comment">// Perform action</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>但依建議這樣子改，還是會噴一樣的問題。<br>而且有的還會改噴<strong>Unchecked_Input_For_Loop_Condition</strong>的 Issue。</p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>後來同事 Jer 建議直接將限制數放在 Loop 中，<br>在裡面去判斷大小，再跳出迴圈，就可以解掉 Checkmarx 亂噴的問題。<br>一開始的程式如下，</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">replaceNullToEmpty</span>(<span class="params">data</span>) &#123;</span><br><span class="line"><span class="keyword">let</span> keys = <span class="title class_">Object</span>.<span class="title function_">keys</span>(data);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; keys.<span class="property">length</span>; i++) &#123;</span><br><span class="line"><span class="keyword">if</span> (!data[keys[i]]) &#123;</span><br><span class="line">data[keys[i]] = <span class="string">&quot;&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>改成取最小的迴圈數，</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">replaceNullToEmpty</span>(<span class="params">data</span>) &#123;</span><br><span class="line"><span class="keyword">let</span> keys = <span class="title class_">Object</span>.<span class="title function_">keys</span>(data);</span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">MAX_ITERATIONS</span> = <span class="number">120</span>;</span><br><span class="line"><span class="keyword">const</span> loopCount =<span class="title class_">Math</span>.<span class="title function_">min</span>(keys.<span class="property">length</span>, <span class="variable constant_">MAX_ITERATIONS</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; loopCount; i++) &#123;</span><br><span class="line"><span class="keyword">if</span> (!data[keys[i]]) &#123;</span><br><span class="line">data[keys[i]] = <span class="string">&quot;&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>Checkmarx 還是噴 ….</p><p>改成先用 限制迴圈 ，再到 Loop 中判斷要不要跳出去，如下，</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">replaceNullToEmpty</span>(<span class="params">data</span>) &#123;</span><br><span class="line"><span class="keyword">let</span> keys = <span class="title class_">Object</span>.<span class="title function_">keys</span>(data);</span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">MAX_ITERATIONS</span> = <span class="number">120</span>;</span><br><span class="line"><span class="keyword">const</span> loopCount = <span class="title class_">Math</span>.<span class="title function_">min</span>(keys.<span class="property">length</span>, <span class="variable constant_">MAX_ITERATIONS</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="variable constant_">MAX_ITERATIONS</span>; i++) &#123;</span><br><span class="line"><span class="keyword">if</span> (i &gt;= loopCount) <span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">if</span> (!data[keys[i]]) &#123;</span><br><span class="line">data[keys[i]] = <span class="string">&quot;&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><blockquote><p>一筆難寫兩個字，一心難帶兩個人: 一心不可二用，凡事要專注一致。</p></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;最近 Node.js 的程式被 Checkmarx 掃出有 &lt;strong&gt;Server_Dos_by_Loop&lt;/strong&gt; Issu</summary>
+      
+    
+    
+    
+    
+    <category term="Node.js" scheme="https://rainmakerho.github.io/tags/Node-js/"/>
+    
+    <category term="Checkmarx" scheme="https://rainmakerho.github.io/tags/Checkmarx/"/>
+    
+    <category term="Server_Dos_by_Loop" scheme="https://rainmakerho.github.io/tags/Server-Dos-by-Loop/"/>
+    
+    <category term="Unchecked_Input_For_Loop_Condition" scheme="https://rainmakerho.github.io/tags/Unchecked-Input-For-Loop-Condition/"/>
+    
+  </entry>
   
   <entry>
     <title>Semantic Kernel | OpenAI Assistants API RAG</title>
@@ -591,36 +619,6 @@
     <category term="access_token" scheme="https://rainmakerho.github.io/tags/access-token/"/>
     
     <category term="FormsAuthentication" scheme="https://rainmakerho.github.io/tags/FormsAuthentication/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>npm install 出現 UNABLE_TO_VERIFY_LEAF_SIGNATURE(unable to verify the first certificate) 的錯誤</title>
-    <link href="https://rainmakerho.github.io/2024/04/19/npm-install-UNABLE-TO-VERIFY-LEAF-SIGNATURE/"/>
-    <id>https://rainmakerho.github.io/2024/04/19/npm-install-UNABLE-TO-VERIFY-LEAF-SIGNATURE/</id>
-    <published>2024-04-19T08:52:47.000Z</published>
-    <updated>2024-04-19T09:40:47.191Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>今天同事透過<code>npm install</code>時發生了<strong>UNABLE_TO_VERIFY_LEAF_SIGNATURE</strong>的錯誤。<br>原本以為只有那台電腦有問題，結果大家的電腦都是如此。</p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>網路上大多數的都是設定 npm 去忽略憑證問題，如下，</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config <span class="built_in">set</span> strict-ssl <span class="literal">false</span></span><br></pre></td></tr></table></figure><p>等裝好之後，再設定回<strong>true</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config <span class="built_in">set</span> strict-ssl <span class="literal">true</span></span><br></pre></td></tr></table></figure><p>錄到網路如下，</p><img src="/2024/04/19/npm-install-UNABLE-TO-VERIFY-LEAF-SIGNATURE/01.png" class="" title="執行結果"><p>後來同事 Marty 找到<a href="https://stackoverflow.com/questions/78343601/node-unable-to-verify-the-first-certificate">Node unable to verify the first certificate</a>，是因為 ESET 自簽憑證的問題。</p><p>所以在目前 ESET 未給出解法前，除了設定 ESET 先不掃<code>node.exe</code>外，<br>就是要安裝套件前先設定<code>strict-ssl false</code>後，<br>安裝好之後，再設定<code>strict-ssl true</code>回來。</p><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://stackoverflow.com/questions/78343601/node-unable-to-verify-the-first-certificate">Node unable to verify the first certificate</a><br><a href="https://forum.eset.com/topic/40702-eset-ssl-protection-produces-an-invalid-certificate-chain-for-nodejs-apps/">ESET SSL protection produces an invalid certificate chain for NodeJS apps</a></p><blockquote><p>一杯酒，暖烘烘;一尺布，擋那風: 一杯酒尚能抵一陣寒，一尺布，卻無濟於事。喻某些東西雖然為數不多，仍能濟一時之急。</p></blockquote>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;今天同事透過&lt;code&gt;npm install&lt;/code&gt;時發生了&lt;strong&gt;UNABLE_TO_VERIFY_LEAF_SIGNAT</summary>
-      
-    
-    
-    
-    
-    <category term="npm" scheme="https://rainmakerho.github.io/tags/npm/"/>
-    
-    <category term="SSL" scheme="https://rainmakerho.github.io/tags/SSL/"/>
-    
-    <category term="ESET" scheme="https://rainmakerho.github.io/tags/ESET/"/>
-    
-    <category term="UNABLE_TO_VERIFY_LEAF_SIGNATURE" scheme="https://rainmakerho.github.io/tags/UNABLE-TO-VERIFY-LEAF-SIGNATURE/"/>
-    
-    <category term="unable to verify the first certificate" scheme="https://rainmakerho.github.io/tags/unable-to-verify-the-first-certificate/"/>
     
   </entry>
   
