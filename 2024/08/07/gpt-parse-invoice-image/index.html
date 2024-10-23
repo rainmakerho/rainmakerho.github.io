@@ -8,26 +8,29 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests;">
   <link rel="dns-prefetch" href="https://rainmakerho.github.io">
-  <title>透過 GPT-4o 解析 手寫發票 圖片 | 亂馬客</title>
+  <title>透過 GPT-4o/Azure OCR 解析 手寫發票 圖片 | 亂馬客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="前言在前一章透過 GPT-4o 解析 Captcha 圖片，GPT-4o 可以輕易解析出台灣大多數銀行登入的Captcha 圖片，那接下來試看看解析手寫發票來看看狀況如下 實作程式碼跟透過 GPT-4o 解析 Captcha 圖片一樣，只是這裡的圖片來源我們改用網路上的圖片來測試，分別是如何開發票（手開發票）及開始賣東西了，發票怎麼開，好難喔~程式如下， 123456789101112131415">
 <meta property="og:type" content="article">
-<meta property="og:title" content="透過 GPT-4o 解析 手寫發票 圖片">
+<meta property="og:title" content="透過 GPT-4o&#x2F;Azure OCR 解析 手寫發票 圖片">
 <meta property="og:url" content="https://rainmakerho.github.io/2024/08/07/gpt-parse-invoice-image/index.html">
 <meta property="og:site_name" content="亂馬客">
 <meta property="og:description" content="前言在前一章透過 GPT-4o 解析 Captcha 圖片，GPT-4o 可以輕易解析出台灣大多數銀行登入的Captcha 圖片，那接下來試看看解析手寫發票來看看狀況如下 實作程式碼跟透過 GPT-4o 解析 Captcha 圖片一樣，只是這裡的圖片來源我們改用網路上的圖片來測試，分別是如何開發票（手開發票）及開始賣東西了，發票怎麼開，好難喔~程式如下， 123456789101112131415">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://rainmakerho.github.io/2024/08/07/gpt-parse-invoice-image/01.png">
 <meta property="og:image" content="https://rainmakerho.github.io/2024/08/07/gpt-parse-invoice-image/02.png">
+<meta property="og:image" content="https://rainmakerho.github.io/2024/08/07/gpt-parse-invoice-image/03.png">
 <meta property="article:published_time" content="2024-08-07T07:02:02.000Z">
-<meta property="article:modified_time" content="2024-08-07T07:26:27.359Z">
+<meta property="article:modified_time" content="2024-10-23T02:24:00.089Z">
 <meta property="article:author" content="亂馬客">
+<meta property="article:tag" content="Azure">
 <meta property="article:tag" content="GPT-4o">
 <meta property="article:tag" content="OCR">
 <meta property="article:tag" content="Image">
 <meta property="article:tag" content="手寫辨識">
 <meta property="article:tag" content="發票">
 <meta property="article:tag" content="invoice">
+<meta property="article:tag" content="Cognitive">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://rainmakerho.github.io/2024/08/07/gpt-parse-invoice-image/01.png">
   
@@ -171,7 +174,7 @@
       
   
     <h1 class="article-title" itemprop="name">
-      透過 GPT-4o 解析 手寫發票 圖片
+      透過 GPT-4o/Azure OCR 解析 手寫發票 圖片
     </h1>
   
   <a href="/2024/08/07/gpt-parse-invoice-image/" class="archive-article-date">
@@ -196,7 +199,10 @@
 <li>註:圖片來自 <a target="_blank" rel="noopener" href="https://www.hway.tw/index.php/zh/blog-list-for-content/transport/vat">開始賣東西了，發票怎麼開，好難喔~</a></li>
 </ul>
 <p>目前測試起來，處理每張圖大約是<strong>6~7 秒</strong>，<br>手寫解析方面還是不是很精確。</p>
-<h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a target="_blank" rel="noopener" href="https://www.hway.tw/index.php/zh/blog-list-for-content/transport/vat">開始賣東西了，發票怎麼開，好難喔~</a><br><a target="_blank" rel="noopener" href="https://www.tron-island.com/blog/issue-a-gui-fapiao">如何開發票（手開發票）</a><br><a href="https://rainmakerho.github.io/2024/07/16/gpt-parse-captcha-image/">透過 GPT-4o 解析 Captcha 圖片</a></p>
+<h4 id="Azure-OCR"><a href="#Azure-OCR" class="headerlink" title="Azure OCR"></a>Azure OCR</h4><p>使用 <a target="_blank" rel="noopener" href="https://portal.vision.cognitive.azure.com/demo/extract-text-from-images">Vision Studio 的 Extract text from images</a> 來處理辨識中文字效果還蠻好的，而且速度還蠻快的哦~，如下，</p>
+<img src="/2024/08/07/gpt-parse-invoice-image/03.png" class="" title="Extract text from images">
+
+<h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a target="_blank" rel="noopener" href="https://www.hway.tw/index.php/zh/blog-list-for-content/transport/vat">開始賣東西了，發票怎麼開，好難喔~</a><br><a target="_blank" rel="noopener" href="https://www.tron-island.com/blog/issue-a-gui-fapiao">如何開發票（手開發票）</a><br><a href="https://rainmakerho.github.io/2024/07/16/gpt-parse-captcha-image/">透過 GPT-4o 解析 Captcha 圖片</a><br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-tw/azure/ai-services/computer-vision/overview-ocr">Azure OCR</a><br><a target="_blank" rel="noopener" href="https://portal.vision.cognitive.azure.com/demo/extract-text-from-images">Vision Studio 的 Extract text from images</a></p>
    
     </div>
     <div class="article-info article-info-index">
@@ -205,6 +211,10 @@
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Azure</a>
+        		</li>
+      		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">GPT-4o</a>
         		</li>
@@ -227,6 +237,10 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">invoice</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Cognitive</a>
         		</li>
       		
 		</ul>
@@ -6383,6 +6397,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Permissive Content Security Policy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Cognitive</a>
               </li>
             
             <div class="clearfix"></div>
