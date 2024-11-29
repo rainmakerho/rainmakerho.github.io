@@ -6,7 +6,7 @@
   <link href="https://rainmakerho.github.io/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2024-11-08T03:08:24.852Z</updated>
+  <updated>2024-11-29T05:42:46.746Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Windows 工作排程器中的排程忽然不跑了?</title>
+    <link href="https://rainmakerho.github.io/2024/11/29/windows-task-dont-work/"/>
+    <id>https://rainmakerho.github.io/2024/11/29/windows-task-dont-work/</id>
+    <published>2024-11-29T05:26:31.000Z</published>
+    <updated>2024-11-29T05:42:46.746Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>今天同事詢問客戶端將工作排程器中的一個排程更換執行人員後，<br>設定每天週期執行、每天隔 5 分去跑一次。<br>但是，設定完成後，一直都沒有跑。</p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>建立一個新的 Task ，並先跑簡單的 Bat 檔案看能不能跑。<br>結果是可以正常執行。<br>再直接去跑 EXE ，也是可以正常執行的。</p><p>於是將有問題的 Task 及沒問題的 Task 匯出 XML 來比較，<br>結果發現有問題的 Task 中，沒有<code>&lt;Duration&gt;P1D&lt;/Duration&gt;</code>這個內容。</p><p>也就是有問題的排程設定每 5 分執行，但<strong>持續時間為(F):<strong>這個欄位是設定成</strong>不限制</strong><br>而沒問題的排程設定中，<strong>持續時間為(F):<strong>這個欄位是設定成</strong>1 天</strong></p><img src="/2024/11/29/windows-task-dont-work/01.png" class="" title="排程設定"><p>將<strong>持續時間為(F):<strong>這個欄位，從</strong>不限制</strong>改成<strong>1 天</strong>，<br>就可以正常執行了。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;今天同事詢問客戶端將工作排程器中的一個排程更換執行人員後，&lt;br&gt;設定每天週期執行、每天隔 5 分去跑一次。&lt;br&gt;但是，設定完成後，一直都</summary>
+      
+    
+    
+    
+    
+    <category term="Windows" scheme="https://rainmakerho.github.io/tags/Windows/"/>
+    
+    <category term="Task" scheme="https://rainmakerho.github.io/tags/Task/"/>
+    
+    <category term="工作排程器" scheme="https://rainmakerho.github.io/tags/%E5%B7%A5%E4%BD%9C%E6%8E%92%E7%A8%8B%E5%99%A8/"/>
+    
+    <category term="Duration" scheme="https://rainmakerho.github.io/tags/Duration/"/>
+    
+  </entry>
   
   <entry>
     <title>abp AppService 覆寫 Method 的 Authorize?</title>
@@ -581,38 +609,6 @@
     <category term="withCredentials" scheme="https://rainmakerho.github.io/tags/withCredentials/"/>
     
     <category term="第三方 Cookie" scheme="https://rainmakerho.github.io/tags/%E7%AC%AC%E4%B8%89%E6%96%B9-Cookie/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>遠端電腦需要網路層級驗證，但您的電腦並不支援。</title>
-    <link href="https://rainmakerho.github.io/2024/06/06/mstsc-credssp/"/>
-    <id>https://rainmakerho.github.io/2024/06/06/mstsc-credssp/</id>
-    <published>2024-06-06T03:47:56.000Z</published>
-    <updated>2024-06-07T03:22:08.307Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>透過 遠端桌面連線(mstsc.exe) 來連接電腦時，會出現<code>遠端電腦需要網路層級驗證，但您的電腦並不支援。如需協助，請連絡您的系統管理員或技術支援人員。</code>的錯誤。如下圖，</p><img src="/2024/06/06/mstsc-credssp/01.png" class="" title="遠端電腦需要網路層級驗證"><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>按下<code>顯示選項(O)</code>，按下<code>另存新檔(V)</code>的 Button，<br>將它存成 <code>rdp</code> 檔案。<br>再用筆記本將它打開，尋找<code>enablecredsspsupport</code>的值，<br>原本的值為<code>enablecredsspsupport:i:0</code>，<br>將它改成<code>enablecredsspsupport:i:1</code> 存檔後，<br>再開啟它去連遠端電腦應該就可以了哦~<br>內容大約如下，</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">full address:s:你的電腦:3389</span><br><span class="line">prompt for credentials:i:1</span><br><span class="line">enablecredsspsupport:i:1</span><br></pre></td></tr></table></figure><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://learn.microsoft.com/en-us/windows-server/remote/remote-desktop-services/clients/rdp-files">Supported RDP properties with Remote Desktop Services</a></p><blockquote><p>一登龍門，聲價十倍: 文章經過名人品題，名聲馬上就高起來。</p></blockquote>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;透過 遠端桌面連線(mstsc.exe) 來連接電腦時，會出現&lt;code&gt;遠端電腦需要網路層級驗證，但您的電腦並不支援。如需協助，請連絡您的</summary>
-      
-    
-    
-    
-    
-    <category term="Windows 10" scheme="https://rainmakerho.github.io/tags/Windows-10/"/>
-    
-    <category term="RDP" scheme="https://rainmakerho.github.io/tags/RDP/"/>
-    
-    <category term="CredSSP" scheme="https://rainmakerho.github.io/tags/CredSSP/"/>
-    
-    <category term="mstsc" scheme="https://rainmakerho.github.io/tags/mstsc/"/>
-    
-    <category term="遠端桌面" scheme="https://rainmakerho.github.io/tags/%E9%81%A0%E7%AB%AF%E6%A1%8C%E9%9D%A2/"/>
-    
-    <category term="網路層級驗證" scheme="https://rainmakerho.github.io/tags/%E7%B6%B2%E8%B7%AF%E5%B1%A4%E7%B4%9A%E9%A9%97%E8%AD%89/"/>
     
   </entry>
   
