@@ -6,7 +6,7 @@
   <link href="https://rainmakerho.github.io/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2024-11-29T05:42:46.746Z</updated>
+  <updated>2024-12-02T01:50:51.974Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>判斷字串是否包含簡體中文(是否為繁體中文)</title>
+    <link href="https://rainmakerho.github.io/2024/12/02/determine-string-is-simplified-chinese-hans/"/>
+    <id>https://rainmakerho.github.io/2024/12/02/determine-string-is-simplified-chinese-hans/</id>
+    <published>2024-12-02T01:04:38.000Z</published>
+    <updated>2024-12-02T01:50:51.974Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近有個需求是要判斷使用者輸入的字串是否有<strong>簡體中文</strong>，<br>不好透過字串的編碼範圍來判斷。<br>所以，將使用者的輸入轉成<strong>繁體中文</strong>，<br>如果相同，則表示使用者輸入的是<strong>繁體中文</strong>。<br>如果不相同，則表示使用者輸入的<strong>不是繁體中文</strong>。</p><h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><p>所以可以透過<strong>OpenCCNET</strong>這個套件來幫我們進行<strong>簡&#x2F;繁</strong>轉換。</p><p>1.加入 OpenCCNET Nuget 套件</p><p>2.進行轉換測試，</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 判斷字串是否為繁體中文</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;s&quot;&gt;</span><span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;returns&gt;</span><span class="doctag">&lt;/returns&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> (<span class="params"><span class="built_in">bool</span>, List&lt;<span class="built_in">string</span>&gt;</span>) <span class="title">CheckHant</span>(<span class="params"><span class="built_in">string</span> s</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">var</span> result = <span class="keyword">new</span> List&lt;<span class="built_in">string</span>&gt;();</span><br><span class="line">    <span class="keyword">var</span> strHant = ZhConverter.HansToHant(s);</span><br><span class="line">    <span class="keyword">var</span> isTW = (strHant == s);</span><br><span class="line">    <span class="keyword">foreach</span> (<span class="built_in">char</span> c <span class="keyword">in</span> s)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> cn = c.ToString();</span><br><span class="line">        <span class="keyword">var</span> tw = ZhConverter.HansToHant(cn);</span><br><span class="line">        <span class="keyword">if</span>(tw != cn)</span><br><span class="line">        &#123;</span><br><span class="line">            result.Add(cn);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (isTW, result);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> s1 = <span class="string">&quot;這是繁體中文abc&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> s2 = <span class="string">&quot;这是繁体中文abc&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> s3 = <span class="string">&quot;これは繁体字中国語のabcです&quot;</span>;</span><br><span class="line">ZhConverter.Initialize();</span><br><span class="line"><span class="keyword">var</span> (isS1TW, s1CnResult) = CheckHant(s1);</span><br><span class="line">Console.WriteLine(<span class="string">$&quot;<span class="subst">&#123;s1&#125;</span>是繁體中文嗎?<span class="subst">&#123;isS1TW&#125;</span>&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> (isS2TW, s2CnResult) = CheckHant(s2);</span><br><span class="line">Console.WriteLine(<span class="string">$&quot;<span class="subst">&#123;s2&#125;</span>是繁體中文嗎?<span class="subst">&#123;isS2TW&#125;</span>&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> (isS3TW, s3CnResult) = CheckHant(s3);</span><br><span class="line">Console.WriteLine(<span class="string">$&quot;<span class="subst">&#123;s3&#125;</span>是繁體中文嗎?<span class="subst">&#123;isS3TW&#125;</span>&quot;</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure><h3 id="參考資訊"><a href="#參考資訊" class="headerlink" title="參考資訊"></a>參考資訊</h3><p><a href="https://github.com/CosineG/OpenCC.NET">OpenCCNET</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;最近有個需求是要判斷使用者輸入的字串是否有&lt;strong&gt;簡體中文&lt;/strong&gt;，&lt;br&gt;不好透過字串的編碼範圍來判斷。&lt;br&gt;所以，將</summary>
+      
+    
+    
+    
+    
+    <category term=".NET" scheme="https://rainmakerho.github.io/tags/NET/"/>
+    
+    <category term="zh-Hans" scheme="https://rainmakerho.github.io/tags/zh-Hans/"/>
+    
+    <category term="zh-Hant" scheme="https://rainmakerho.github.io/tags/zh-Hant/"/>
+    
+    <category term="zh-CN" scheme="https://rainmakerho.github.io/tags/zh-CN/"/>
+    
+    <category term="zh-TW" scheme="https://rainmakerho.github.io/tags/zh-TW/"/>
+    
+    <category term="OpenCCNET" scheme="https://rainmakerho.github.io/tags/OpenCCNET/"/>
+    
+  </entry>
   
   <entry>
     <title>Windows 工作排程器中的排程忽然不跑了?</title>
@@ -581,34 +613,6 @@
     <category term="Pause" scheme="https://rainmakerho.github.io/tags/Pause/"/>
     
     <category term="bat" scheme="https://rainmakerho.github.io/tags/bat/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Javascript Call 網頁時，沒帶著 Cookie 呢?</title>
-    <link href="https://rainmakerho.github.io/2024/06/06/not-sending-cookies/"/>
-    <id>https://rainmakerho.github.io/2024/06/06/not-sending-cookies/</id>
-    <published>2024-06-06T06:29:40.000Z</published>
-    <updated>2024-06-07T03:22:13.460Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>我們的程式架構是使用 React (簡稱 F) + ASP.NET Core API (簡稱 B)，<br>在 Local 開發時，會呼叫 B API 進行登入並寫下帳號的 Cookie ，<br>再 Redirect 回到 前端 F。<br>因為 B 已有 Cookie 存在，所以 F 透過 axios 設定 <code>withCredentials: true</code>，<br>讓 F 打 API 時，會帶著 B 的 Cookie ，就可以順利呼叫 API。<br>今天有同事詢問，為什麼他的 Chrome 一直無法登入呢?</p><h3 id="研究"><a href="#研究" class="headerlink" title="研究"></a>研究</h3><p>查看後端程式會確實將 Cookie 寫進去，但在呼叫 API 時，就是不會帶著 B 的 Cookie 。<br>如果直接輸入 B 的 URL，又是會有 Cookie 。<br>但是在 F 透過 axios 去 GET B 的 URL ，就是不會有 Cookie 。<br>請同事改用 Edge 卻是沒問題的，會正常帶著 B 的 Cookie 。</p><p>後來同事想到他有調整 Chrome 的 <strong>第三方 Cookie</strong>的設定(chrome:&#x2F;&#x2F;settings&#x2F;cookies)，<br>他是設定成<code>封鎖第三方 Cookie</code>，所以透過 axios 去 Request 都不會帶著 Cookie。<br>將它調整回<code>允許第三方 Cookie</code> 就沒問題了。</p><img src="/2024/06/06/not-sending-cookies/01.png" class="" title="第三方 Cookie設定"><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://support.google.com/chrome/answer/95647?hl=zh-Hant&co=GENIE.Platform=Desktop">在 Chrome 中刪除、允許使用與管理 Cookie</a></p><blockquote><p>一知半解，最易僨事: 不知之謂知，知之謂不知，遇事只知皮毛，而自以為知，這種人最易壞事。</p></blockquote>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;我們的程式架構是使用 React (簡稱 F) + ASP.NET Core API (簡稱 B)，&lt;br&gt;在 Local 開發時，會呼叫 </summary>
-      
-    
-    
-    
-    
-    <category term="axios" scheme="https://rainmakerho.github.io/tags/axios/"/>
-    
-    <category term="cookies" scheme="https://rainmakerho.github.io/tags/cookies/"/>
-    
-    <category term="withCredentials" scheme="https://rainmakerho.github.io/tags/withCredentials/"/>
-    
-    <category term="第三方 Cookie" scheme="https://rainmakerho.github.io/tags/%E7%AC%AC%E4%B8%89%E6%96%B9-Cookie/"/>
     
   </entry>
   
