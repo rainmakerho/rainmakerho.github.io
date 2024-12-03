@@ -6,7 +6,7 @@
   <link href="https://rainmakerho.github.io/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2024-12-02T01:50:51.974Z</updated>
+  <updated>2024-12-03T06:42:24.332Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用 Vanna 來練習 Text2SQL</title>
+    <link href="https://rainmakerho.github.io/2024/12/03/text2sql-nl2sql-use-vanna-ai/"/>
+    <id>https://rainmakerho.github.io/2024/12/03/text2sql-nl2sql-use-vanna-ai/</id>
+    <published>2024-12-03T05:27:09.000Z</published>
+    <updated>2024-12-03T06:42:24.332Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p><a href="https://github.com/vanna-ai/vanna">Vanna</a>可以將 Table Schema, 文件說明, 問題&#x2F;SQL 存到向量資料庫之中。當使用者提出問題時，會以取出相關的 Table 資訊，結合 Prompt 去詢問 LLM 來產生 SQL 。<br>再執行 SQL ，並以不同格式來呈現結果。<br>以下就以 MSSQL 的 AdventureWorks2022 DB 來練習。<br>環境: Windows 10, VS Code, chromadb, openai, SQL Server</p><h3 id="練習"><a href="#練習" class="headerlink" title="練習"></a>練習</h3><p>1.建立 text2sql 目錄</p><p>2.透過 VS Code 開啟 text2sql 目錄</p><p>3.建立 <code>vannasql.ipynb</code> ，選擇 python</p><p>4.安裝 vanna 並包含 chromadb, openai</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%pip install vanna[chromadb,openai]</span><br></pre></td></tr></table></figure><ul><li>註: 如果沒安裝過 pyodbc ，也請安裝它 <code>%pip install pyodbc</code></li></ul><p>5.建立 vanna instance</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyVanna</span>(ChromaDB_VectorStore, OpenAI_Chat):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, config=<span class="literal">None</span></span>):</span><br><span class="line">        ChromaDB_VectorStore.__init__(self, config=config)</span><br><span class="line">        OpenAI_Chat.__init__(self, config=config)</span><br><span class="line">apikey = <span class="string">&#x27;openai apikey&#x27;</span>;</span><br><span class="line">vn = MyVanna(config=&#123;<span class="string">&#x27;api_key&#x27;</span>: apikey, <span class="string">&#x27;model&#x27;</span>: <span class="string">&#x27;gpt-4o&#x27;</span>&#125;)</span><br></pre></td></tr></table></figure><p>6.連接 db</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vn.connect_to_mssql(odbc_conn_str=<span class="string">&#x27;DRIVER=&#123;ODBC Driver 17 for SQL Server&#125;;SERVER=.;DATABASE=AdventureWorks2022;Trusted_Connection=yes;&#x27;</span>)</span><br></pre></td></tr></table></figure><p>7.取出 Table Schema，建立訓練資料</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">df_information_schema = vn.run_sql(<span class="string">&quot;SELECT * FROM INFORMATION_SCHEMA.COLUMNS&quot;</span>)</span><br><span class="line">plan = vn.get_training_plan_generic(df_information_schema)</span><br><span class="line"><span class="comment">#plan</span></span><br><span class="line">vn.train(plan=plan)</span><br></pre></td></tr></table></figure><ul><li>註:在目錄中，它會產生<code>chroma.sqlite3</code>及許多的<code>Guid</code>的目錄，就是 Vanna 的訓練資料，<br>如果要重新訓練資料，就將這些目錄及檔案刪除掉。</li></ul><p>8.詢問問題<br>訓練好之後，就可以開始詢問它，如下，</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vn.ask(<span class="string">&#x27;Find out the top 5 best salespeople&#x27;</span>)</span><br></pre></td></tr></table></figure><img src="/2024/12/03/text2sql-nl2sql-use-vanna-ai/01.png" class="" title="vn.ask"><p>9.執行 vanna.flask 來建立 Vanna Web 網站</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> vanna.flask <span class="keyword">import</span> VannaFlaskApp</span><br><span class="line"></span><br><span class="line">app = VannaFlaskApp(vn)</span><br><span class="line">app.run()</span><br></pre></td></tr></table></figure><img src="/2024/12/03/text2sql-nl2sql-use-vanna-ai/02.png" class="" title="vanna.flask"><p>當網站建立起來後，可以在網頁中進行查詢。<br>如果查詢結果有錯誤，可以進行手動修正。</p><img src="/2024/12/03/text2sql-nl2sql-use-vanna-ai/03.png" class="" title="vanna webUI"><p>每個 Table 它會建立的訓練資料如下，</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">The following columns are in the SalesTaxRate table in the AdventureWorks2022 database:</span><br><span class="line">| | TABLE_CATALOG | TABLE_SCHEMA | TABLE_NAME | COLUMN_NAME | DATA_TYPE | |---:|:-------------------|:---------------|:-------------|:----------------|:-----------------| | 0 | AdventureWorks2022 | Sales | SalesTaxRate | SalesTaxRateID | int | | 1 | AdventureWorks2022 | Sales | SalesTaxRate | StateProvinceID | int | | 2 | AdventureWorks2022 | Sales | SalesTaxRate | TaxType | tinyint | | 3 | AdventureWorks2022 | Sales | SalesTaxRate | TaxRate | smallmoney | | 4 | AdventureWorks2022 | Sales | SalesTaxRate | Name | nvarchar | | 5 | AdventureWorks2022 | Sales | SalesTaxRate | rowguid | uniqueidentifier | | 6 | AdventureWorks2022 | Sales | SalesTaxRate | ModifiedDate | datetime |</span><br></pre></td></tr></table></figure><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://vanna.ai/docs/mssql-openai-standard-chromadb/">Generating SQL for Microsoft SQL Server using OpenAI, ChromaDB</a><br><a href="https://github.com/vanna-ai/vanna">Vanna</a><br><a href="https://blog.csdn.net/qq_49070564/article/details/139717376">AI 与数据库交互</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/vanna-ai/vanna&quot;&gt;Vanna&lt;/a&gt;可以將 Table Schema,</summary>
+      
+    
+    
+    
+    
+    <category term="mssql" scheme="https://rainmakerho.github.io/tags/mssql/"/>
+    
+    <category term="Text2SQL" scheme="https://rainmakerho.github.io/tags/Text2SQL/"/>
+    
+    <category term="NL2SQL" scheme="https://rainmakerho.github.io/tags/NL2SQL/"/>
+    
+    <category term="vanna-ai" scheme="https://rainmakerho.github.io/tags/vanna-ai/"/>
+    
+  </entry>
   
   <entry>
     <title>判斷字串是否包含簡體中文(是否為繁體中文)</title>
@@ -581,38 +609,6 @@
     <category term="Potential Clickjacking on Legacy Browsers" scheme="https://rainmakerho.github.io/tags/Potential-Clickjacking-on-Legacy-Browsers/"/>
     
     <category term="Client_DOM_XSS" scheme="https://rainmakerho.github.io/tags/Client-DOM-XSS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Windows Task 排程 Error 0x41301</title>
-    <link href="https://rainmakerho.github.io/2024/06/07/windows-task-0x41301/"/>
-    <id>https://rainmakerho.github.io/2024/06/07/windows-task-0x41301/</id>
-    <published>2024-06-07T03:03:09.000Z</published>
-    <updated>2024-06-07T03:23:30.282Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>同事詢問設定 Windows 排程執行 Bat 檔案，<br>設定成<code>只有使用者登入時才執行(R)</code>可以正常執行，<br>設定成<code>不論使用者登入與否均執行(W)</code>卻會發生<code>0x41301</code>的錯誤</p><h3 id="解決"><a href="#解決" class="headerlink" title="解決"></a>解決</h3><p>檢查</p><p>1.在「條件」Tab，有勾選<code>喚醒電腦以執行此工作(W)</code></p><p>2.執行的使用者也在 Administrators 群組之中</p><p>3.有勾選<code>以最高權限執行(I)</code></p><p>4.檢查 bat 中的內容是否有會卡住、等待的語法，</p><figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> Hello World</span><br><span class="line"><span class="built_in">pause</span></span><br></pre></td></tr></table></figure><p>居然有<strong>pause</strong>在 bat 檔中 …. 問題找到了…<br>請同事不要使用 pause 會卡住執行的語法，問題就解了哦~</p><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://blog.csdn.net/weixin_44635274/article/details/107923716">windows 任务计划程序 0x41301 问题解决方法</a><br><a href="https://davidhu0903ex3.pixnet.net/blog/post/453551861-%5B%E5%B7%B2%E8%A7%A3%E6%B1%BA%5D-%E5%B7%A5%E4%BD%9C%E6%8E%92%E7%A8%8B%E5%99%A8---%E8%87%AA%E5%8B%95%E5%96%9A%E9%86%92%E5%9F%B7%E8%A1%8C">工作排程器 - 自動喚醒執行 (0x41301)(0x800710E0)</a></p><blockquote><p>一家門口，一個天: 各有各的生活環境，各有各的生活方式。</p></blockquote>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;同事詢問設定 Windows 排程執行 Bat 檔案，&lt;br&gt;設定成&lt;code&gt;只有使用者登入時才執行(R)&lt;/code&gt;可以正常執行，&lt;b</summary>
-      
-    
-    
-    
-    
-    <category term="Windows" scheme="https://rainmakerho.github.io/tags/Windows/"/>
-    
-    <category term="267009" scheme="https://rainmakerho.github.io/tags/267009/"/>
-    
-    <category term="Task" scheme="https://rainmakerho.github.io/tags/Task/"/>
-    
-    <category term="排程" scheme="https://rainmakerho.github.io/tags/%E6%8E%92%E7%A8%8B/"/>
-    
-    <category term="Pause" scheme="https://rainmakerho.github.io/tags/Pause/"/>
-    
-    <category term="bat" scheme="https://rainmakerho.github.io/tags/bat/"/>
     
   </entry>
   
