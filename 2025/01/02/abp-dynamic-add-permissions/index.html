@@ -8,11 +8,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests;">
   <link rel="dns-prefetch" href="https://rainmakerho.github.io">
-  <title>ABP 動態新增 Permissions，而不用重啟系統 | 亂馬客</title>
+  <title>ABP Dynamic Permissions，動態異動 ABP Permissions，不需重啟系統即可使用 Permissions | 亂馬客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="問題預設 ABP 的權限會定義在繼承自PermissionDefinitionProvider的類別中，當系統跑起來時，會自動將它們加到 Memory 之中，並存到AbpPermissionGroups及AbpPermissions資料表之中。但是，如果要動態地去新增權限，要怎麼做呢? 解法預設如果在AbpPermissions 資料表中的資料，卻沒定義在程式中，就不會被 Load 到 Memor">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ABP 動態新增 Permissions，而不用重啟系統">
+<meta property="og:title" content="ABP Dynamic Permissions，動態異動 ABP Permissions，不需重啟系統即可使用 Permissions">
 <meta property="og:url" content="https://rainmakerho.github.io/2025/01/02/abp-dynamic-add-permissions/index.html">
 <meta property="og:site_name" content="亂馬客">
 <meta property="og:description" content="問題預設 ABP 的權限會定義在繼承自PermissionDefinitionProvider的類別中，當系統跑起來時，會自動將它們加到 Memory 之中，並存到AbpPermissionGroups及AbpPermissions資料表之中。但是，如果要動態地去新增權限，要怎麼做呢? 解法預設如果在AbpPermissions 資料表中的資料，卻沒定義在程式中，就不會被 Load 到 Memor">
@@ -20,7 +20,7 @@
 <meta property="og:image" content="https://rainmakerho.github.io/2025/01/02/abp-dynamic-add-permissions/01.png">
 <meta property="og:image" content="https://rainmakerho.github.io/2025/01/02/abp-dynamic-add-permissions/02.png">
 <meta property="article:published_time" content="2025-01-02T08:31:22.000Z">
-<meta property="article:modified_time" content="2025-01-02T09:44:42.074Z">
+<meta property="article:modified_time" content="2025-01-03T01:02:06.126Z">
 <meta property="article:author" content="亂馬客">
 <meta property="article:tag" content="ABP">
 <meta property="article:tag" content="Dynamic">
@@ -172,7 +172,7 @@
       
   
     <h1 class="article-title" itemprop="name">
-      ABP 動態新增 Permissions，而不用重啟系統
+      ABP Dynamic Permissions，動態異動 ABP Permissions，不需重啟系統即可使用 Permissions
     </h1>
   
   <a href="/2025/01/02/abp-dynamic-add-permissions/" class="archive-article-date">
