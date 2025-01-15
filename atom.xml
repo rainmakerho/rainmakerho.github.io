@@ -6,7 +6,7 @@
   <link href="https://rainmakerho.github.io/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2025-01-03T01:02:06.126Z</updated>
+  <updated>2025-01-15T02:57:56.454Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>這個作業已經被取消，因為這個電腦受到限制</title>
+    <link href="https://rainmakerho.github.io/2025/01/15/windows-this-operation-has-been-cancelled-due-to-restrictions/"/>
+    <id>https://rainmakerho.github.io/2025/01/15/windows-this-operation-has-been-cancelled-due-to-restrictions/</id>
+    <published>2025-01-15T02:51:22.000Z</published>
+    <updated>2025-01-15T02:57:56.454Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>開啟 Outlook 時，噴「Outlook 這個作業已經被取消，因為這個電腦受到限制。請連絡您的系統管理員」的錯誤。<br>但是用安全模式來開啟又是可以的<code>outlook.exe /safe</code> 。</p><h3 id="解決"><a href="#解決" class="headerlink" title="解決"></a>解決</h3><p>後來查到<a href="https://medium.com/@breich_84283/fix-this-operation-has-been-cancelled-due-to-restrictions-in-effect-on-this-computer-error-ec54825b30f">Fix “This operation has been cancelled due to restrictions in effect on this computer” Error</a>。<br>將機碼<br><code>\HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\</code><br>裡面的 <strong>DisallowRun</strong> Key ，刪除掉，就可以了。</p><ul><li>感謝 Terry 的回饋。</li></ul><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://medium.com/@breich_84283/fix-this-operation-has-been-cancelled-due-to-restrictions-in-effect-on-this-computer-error-ec54825b30f">Fix “This operation has been cancelled due to restrictions in effect on this computer” Error</a><br><a href="https://www.partitionwizard.com/clone-disk/this-operation-has-been-cancelled-due-to-restrictions.html">This Operation Has Been Cancelled Due to Restrictions?</a><br><a href="https://www.youtube.com/watch?v=rtCILYzvt4Y">This operation has been cancelled due to restrictions in effect on this computer</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;開啟 Outlook 時，噴「Outlook 這個作業已經被取消，因為這個電腦受到限制。請連絡您的系統管理員」的錯誤。&lt;br&gt;但是用安全模式</summary>
+      
+    
+    
+    
+    
+    <category term="Windows" scheme="https://rainmakerho.github.io/tags/Windows/"/>
+    
+    <category term="Outlook" scheme="https://rainmakerho.github.io/tags/Outlook/"/>
+    
+    <category term="operation has been cancelled" scheme="https://rainmakerho.github.io/tags/operation-has-been-cancelled/"/>
+    
+  </entry>
   
   <entry>
     <title>ABP Dynamic Permissions，動態異動 ABP Permissions，不需重啟系統即可使用 Permissions</title>
@@ -583,40 +609,6 @@
     <category term="VS 2022" scheme="https://rainmakerho.github.io/tags/VS-2022/"/>
     
     <category term="public" scheme="https://rainmakerho.github.io/tags/public/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Checkmarx | Stream ToArray Read 會被掃出 Stored XSS</title>
-    <link href="https://rainmakerho.github.io/2024/06/20/checkmarx-stored-xss-stream-toarray/"/>
-    <id>https://rainmakerho.github.io/2024/06/20/checkmarx-stored-xss-stream-toarray/</id>
-    <published>2024-06-20T01:28:05.000Z</published>
-    <updated>2024-06-28T09:27:13.773Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近同事詢問為什麼程式中的<code>Stream.ToArray()</code>, <code>Stream.Read</code>會被 Checkmarx 判斷有<code>Stored XSS</code>的問題呢?<br>Checkmarx 版本為<strong>V9.5.5.1007 HF14</strong>。</p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>Checkmarx 描述為，<br><strong>Stream.Read</strong></p><blockquote><p>使用 Read 生成輸出，但未經過適當的消毒或編碼就將不可信資料嵌入生成的輸出中，這使得攻擊者能夠注入惡意程式碼到生成的網頁中。</p></blockquote><p><strong>Stream.ToArray()</strong></p><blockquote><p>使用 ToArray 生成輸出，但未經過適當的消毒或編碼就將不可信資料嵌入生成的輸出中，這使得攻擊者能夠注入惡意程式碼到生成的網頁中。</p></blockquote><p>看 Checkmarx Rule ，如果輸出為 File 可以加入<code>X-Content-Type-Options</code>Header , 值為<code>nosniff</code> 來避免 XSS。<br>但加入後，問題還是存在，應該是 Checkmarx 的 Bug 吧~<br>透過 Jer 測試後發現，在 Checkmarx<strong>V9.6</strong>就不會有這問題~~<br>所以目前的解法可以請原廠拿<strong>V9.6</strong>的 C# Stored XSS Rule 匯到<strong>V9.5</strong>中。<br>或是改做法來避開，<br><code>Stream.ToArray()</code> 就改用 <code>BinaryReader</code> 如下，</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//byte[] fileContent = stream.ToArray();</span></span><br><span class="line"><span class="built_in">byte</span>[] fileContent = <span class="literal">null</span>;</span><br><span class="line"><span class="keyword">using</span> (<span class="keyword">var</span> binaryReader = <span class="keyword">new</span> BinaryReader(stream))</span><br><span class="line">&#123;</span><br><span class="line">    stream.Position = <span class="number">0</span>;</span><br><span class="line">    fileContent =  binaryReader.ReadBytes((<span class="built_in">int</span>)stream.Length);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><code>Stream.Read</code> 就改用<code>StreamReader</code>，例如</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> (<span class="keyword">var</span> reader = <span class="keyword">new</span> StreamReader(stream, Encoding.UTF8, leaveOpen: <span class="literal">true</span>))</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">string</span> requestBody = <span class="keyword">await</span> reader.ReadToEndAsync();</span><br><span class="line">    <span class="keyword">return</span> requestBody;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>註: <code>X-Content-Type-Options</code>設為<code>nosniff</code>可避免<strong>MIME 嗅探（MIME sniffing)<strong>，<br>為什麼</strong>MIME 嗅探（MIME sniffing)<strong>會有 XSS 問題呢?<br>例如，如果原本<code>Content-Type</code>設定為<code>text/plain</code>，但裡面包含<code>HTML</code>, <code>JavaScript</code>，<br>Browser 可能會把它當成是 HTML 來執行，就有可能會執行<code>JavaScript</code>，而產生</strong>XSS</strong>問題。</p><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options">X-Content-Type-Options</a></p><blockquote><p>一把粉抹在後頭窩: 喻人顧後不顧前，不要臉面。</p></blockquote>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;最近同事詢問為什麼程式中的&lt;code&gt;Stream.ToArray()&lt;/code&gt;, &lt;code&gt;Stream.Read&lt;/code&gt;會被</summary>
-      
-    
-    
-    
-    
-    <category term="C#" scheme="https://rainmakerho.github.io/tags/C/"/>
-    
-    <category term="Checkmarx" scheme="https://rainmakerho.github.io/tags/Checkmarx/"/>
-    
-    <category term="Stream" scheme="https://rainmakerho.github.io/tags/Stream/"/>
-    
-    <category term="MemoryStream" scheme="https://rainmakerho.github.io/tags/MemoryStream/"/>
-    
-    <category term="ToArray" scheme="https://rainmakerho.github.io/tags/ToArray/"/>
-    
-    <category term="Read" scheme="https://rainmakerho.github.io/tags/Read/"/>
-    
-    <category term="BinaryReader" scheme="https://rainmakerho.github.io/tags/BinaryReader/"/>
     
   </entry>
   
