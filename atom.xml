@@ -6,7 +6,7 @@
   <link href="https://rainmakerho.github.io/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2025-01-15T02:57:56.454Z</updated>
+  <updated>2025-01-21T06:13:13.528Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ABP 如何使用 Azure Active Directory 驗證登入</title>
+    <link href="https://rainmakerho.github.io/2025/01/21/abp-use-azure-active-directory-auth/"/>
+    <id>https://rainmakerho.github.io/2025/01/21/abp-use-azure-active-directory-auth/</id>
+    <published>2025-01-21T05:09:17.000Z</published>
+    <updated>2025-01-21T06:13:13.528Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>ABP 預設會使用自己的驗證，如果要使用 Azure AD 驗證登入的話，<br>可以依 <a href="https://abp.io/community/articles/how-to-use-the-azure-active-directory-authentication-for-mvc-razor-page-applications-4603b9cf">How to Use the Azure Active Directory Authentication for MVC &#x2F; Razor Page Applications</a> ，<br>來啟用 Azure AD OpenIdConnect 驗證登入，以下就一步步地來實作它</p><h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><p>1.註冊 App<br>到<a href="https://portal.azure.com/">Portal Azure</a>的<strong>Microsoft Entra ID</strong>中，<br>選點 Menu Manage -&gt; App registrations 功能，點選「+ New registration」來註冊 App，</p><img src="/2025/01/21/abp-use-azure-active-directory-auth/01.png" class="" title="New registration"><p>輸入 App 的名稱，選擇 account type(如果是公司內用請選擇<strong>Single tenant</strong>)，<br><strong>Redirect URI (optional)<strong>請選擇</strong>Web</strong>及輸入 Abp 網站的 URL，並加上<strong>signin-oidc</strong>(例如<code>https://localhost:44392/signin-oidc</code>)，然後按下<strong>Register</strong> Button。</p><p>2.產生 Client Secrets<br>在已建立好的 App 中，選點 Menu Manage-&gt; Certificates &amp; secrets<br>點選<strong>Client secrets</strong>，按下「+ New client secret」，輸入 Description，選擇過期時間，再按下<strong>Add</strong></p><img src="/2025/01/21/abp-use-azure-active-directory-auth/02.png" class="" title="New client secret"><p>3.Copy client secret 的值<br>將 client secret 的值 Copy 存下來，如下圖</p><img src="/2025/01/21/abp-use-azure-active-directory-auth/03.png" class="" title="Copy client secret"><p>4.Copy Directory (tenant) ID 及 Application (client) ID<br>點選 Menu Overview ，將 Directory (tenant) ID 及 Application (client) ID Copy 存下來<br>選選<strong>Endpoints</strong>可以知道要驗證的 URL，<br>如果是 Single Tenant ，OAuth 的 endpoint 會是 <code>https://login.microsoftonline.com/&#123;你的TenantId&#125;/oauth2/v2.0</code>，如果是多租戶，原本的 TenantId 則改為 <strong>common</strong></p><img src="/2025/01/21/abp-use-azure-active-directory-auth/04.png" class="" title="App Endpoints"><p>5.在<code>appsettings.json</code>中加入 Azure AD 的 App 設定值，<br>在<a href="https://abp.io/community/articles/how-to-use-the-azure-active-directory-authentication-for-mvc-razor-page-applications-4603b9cf">How to Use the Azure Active Directory Authentication for MVC &#x2F; Razor Page Applications</a>的<strong>ResponseType</strong>是使用<code>CodeIdToken</code>，這裡我們改用<code>code</code></p><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;AzureAd&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;Instance&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://login.microsoftonline.com/&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;TenantId&quot;</span><span class="punctuation">:</span> <span class="string">&quot;common&quot;</span><span class="punctuation">,</span> <span class="comment">//如果是 Single Tenant 請改成 TenantId</span></span><br><span class="line">  <span class="attr">&quot;ClientId&quot;</span><span class="punctuation">:</span> <span class="string">&quot;ClientId Value&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;ClientSecret&quot;</span><span class="punctuation">:</span> <span class="string">&quot;ClientSecret Value&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;CallbackPath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/signin-oidc&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;ResponseType&quot;</span><span class="punctuation">:</span> <span class="string">&quot;code&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure><p>6.在 Web 專案的<strong>Module</strong>檔案中的<code>ConfigureAuthentication</code> Method 中設定啟用 Azure AD 驗證<br>在 Web 專案加入<code>Microsoft.AspNetCore.Authentication.OpenIdConnect</code>套件，並修改<code>ConfigureAuthentication</code> Method<br><strong>ConfigureAuthentication</strong> Method，因為需要取得<code>appsettings.json</code>中的設定值，所以要多一個<code>IConfiguration configuration</code>的參數</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">ConfigureAuthentication</span>(<span class="params">ServiceConfigurationContext context, IConfiguration configuration</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">context.Services.AddAuthentication()</span><br><span class="line">.AddOpenIdConnect(<span class="string">&quot;AzureOpenId&quot;</span>, <span class="string">&quot;Azure Active Directory OpenId&quot;</span>, options =&gt;</span><br><span class="line">&#123;</span><br><span class="line">options.Authority = <span class="string">$&quot;<span class="subst">&#123;configuration[<span class="string">&quot;AzureAd:Instance&quot;</span>]&#125;</span><span class="subst">&#123;configuration[<span class="string">&quot;AzureAd:TenantId&quot;</span>]&#125;</span>/v2.0&quot;</span>;</span><br><span class="line"></span><br><span class="line">options.ClientId = configuration[<span class="string">&quot;AzureAd:ClientId&quot;</span>];</span><br><span class="line">options.CallbackPath = configuration[<span class="string">&quot;AzureAd:CallbackPath&quot;</span>];</span><br><span class="line">options.ClientSecret = configuration[<span class="string">&quot;AzureAd:ClientSecret&quot;</span>];</span><br><span class="line">options.ResponseType = configuration[<span class="string">&quot;AzureAd:ResponseType&quot;</span>]!;</span><br><span class="line">options.GetClaimsFromUserInfoEndpoint = <span class="literal">true</span>;</span><br><span class="line">options.SaveTokens = <span class="literal">true</span>;</span><br><span class="line">options.SignInScheme = IdentityConstants.ExternalScheme;</span><br><span class="line">options.TokenValidationParameters = <span class="keyword">new</span> TokenValidationParameters</span><br><span class="line">&#123;</span><br><span class="line">ValidateIssuer = <span class="literal">true</span>,</span><br><span class="line">IssuerValidator = (issuer, securityToken, validationParameters) =&gt;</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">if</span> (issuer.StartsWith(<span class="string">$&quot;<span class="subst">&#123;configuration[<span class="string">&quot;AzureAd:Instance&quot;</span>]&#125;</span>&quot;</span>) &amp;&amp; issuer.EndsWith(<span class="string">&quot;/v2.0&quot;</span>))</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">return</span> issuer;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> SecurityTokenInvalidIssuerException(<span class="string">$&quot;Invalid issuer: <span class="subst">&#123;issuer&#125;</span>&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line">&#125;;</span><br><span class="line">&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>7.執行程式進行測試<br>在<strong>登入</strong>頁面中，點下<strong>Azure Active Directory OpenId</strong>Button，<br>就會導到 Azure AD 進行登入驗證，如下圖</p><img src="/2025/01/21/abp-use-azure-active-directory-auth/05.png" class="" title="Login"><img src="/2025/01/21/abp-use-azure-active-directory-auth/06.png" class="" title="Azure AD 登入"><p>Azure AD 登入驗證後，會回到 Abp 程式，進行註冊來將 User 新增到資料庫之中，如下圖</p><img src="/2025/01/21/abp-use-azure-active-directory-auth/07.png" class="" title="註冊"><p>回到首頁後，就可以看到使用者已登入到系統，如下圖</p><img src="/2025/01/21/abp-use-azure-active-directory-auth/08.png" class="" title="首頁"><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://abp.io/community/articles/how-to-use-the-azure-active-directory-authentication-for-mvc-razor-page-applications-4603b9cf">How to Use the Azure Active Directory Authentication for MVC &#x2F; Razor Page Applications</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;ABP 預設會使用自己的驗證，如果要使用 Azure AD 驗證登入的話，&lt;br&gt;可以依 &lt;a href=&quot;https://abp.io/c</summary>
+      
+    
+    
+    
+    
+    <category term="Abp" scheme="https://rainmakerho.github.io/tags/Abp/"/>
+    
+    <category term="AzureAD" scheme="https://rainmakerho.github.io/tags/AzureAD/"/>
+    
+    <category term="Azure Active Directory" scheme="https://rainmakerho.github.io/tags/Azure-Active-Directory/"/>
+    
+    <category term="OpenIdConnect" scheme="https://rainmakerho.github.io/tags/OpenIdConnect/"/>
+    
+  </entry>
   
   <entry>
     <title>這個作業已經被取消，因為這個電腦受到限制</title>
@@ -581,34 +609,6 @@
     <category term="SwaggerUI" scheme="https://rainmakerho.github.io/tags/SwaggerUI/"/>
     
     <category term="SwaggerUIOptions" scheme="https://rainmakerho.github.io/tags/SwaggerUIOptions/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>為什麼VS.NET 2022新增Class時，都是 internal 呢?</title>
-    <link href="https://rainmakerho.github.io/2024/06/24/vs-add-new-class-is-always-internal/"/>
-    <id>https://rainmakerho.github.io/2024/06/24/vs-add-new-class-is-always-internal/</id>
-    <published>2024-06-24T01:29:59.000Z</published>
-    <updated>2024-06-24T03:06:20.839Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>在 Microsoft Visual Studio 2022 新增一個 Class 時，<br>為什麼預設會是<code>internal</code>的 Class ，而不是<code>public</code>呢?</p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>可以參考<a href="https://stackoverflow.com/questions/700086/how-do-you-default-a-new-class-to-public-when-creating-it-in-visual-studio">How do you default a new class to public when creating it in Visual Studio?</a>，<br>修改<code>C:\Program Files\Microsoft Visual Studio\2022\版本\Common7\IDE\ItemTemplates\CSharp\Code\1033\Class\Class.cs</code>加上<code>public</code>。<br>上面 Code 目錄下的數值，請依地區版本來調整，例如，如果是 TW 版本的話，請 Code 請改成<code>1028</code>，如下<br><code>C:\Program Files\Microsoft Visual Studio\2022\版本\Common7\IDE\ItemTemplates\CSharp\Code\1028\Class\Class.cs</code>。</p><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://stackoverflow.com/questions/700086/how-do-you-default-a-new-class-to-public-when-creating-it-in-visual-studio">How do you default a new class to public when creating it in Visual Studio?</a></p><blockquote><p>一發如雷，一敗如灰: 喻人做事，開始時如陣雨，銳不可當，但是，不到五分鐘，便煙消雲散。這種人缺乏毅力和恆心，不論才幹如何，終不能成大事。</p></blockquote>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;在 Microsoft Visual Studio 2022 新增一個 Class 時，&lt;br&gt;為什麼預設會是&lt;code&gt;internal&lt;</summary>
-      
-    
-    
-    
-    
-    <category term="class" scheme="https://rainmakerho.github.io/tags/class/"/>
-    
-    <category term="internal" scheme="https://rainmakerho.github.io/tags/internal/"/>
-    
-    <category term="VS 2022" scheme="https://rainmakerho.github.io/tags/VS-2022/"/>
-    
-    <category term="public" scheme="https://rainmakerho.github.io/tags/public/"/>
     
   </entry>
   
