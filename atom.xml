@@ -6,7 +6,7 @@
   <link href="https://rainmakerho.github.io/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2025-01-21T06:13:13.528Z</updated>
+  <updated>2025-01-24T07:47:43.000Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ABP 如何客製 Blazor Server 的 Login Page</title>
+    <link href="https://rainmakerho.github.io/2025/01/24/abp-blazor-custom-login/"/>
+    <id>https://rainmakerho.github.io/2025/01/24/abp-blazor-custom-login/</id>
+    <published>2025-01-24T07:13:27.000Z</published>
+    <updated>2025-01-24T07:47:43.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>想要在 ABP Blazor Server 專案中客製 Login 頁面要怎麼做呢?</p><h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><p>ABP Blazor 登入是使用 Razor Page，</p><p>1.在 Blazor 專案的<strong>Pages</strong>目錄中，新增<strong>Account</strong>目錄，並新增<strong>Login.cshtml</strong>，如下，</p><img src="/2025/01/24/abp-blazor-custom-login/01.png" class="" title="add Login.cshtml"><p>請注意，是專案的<strong>Pages</strong>目錄，不是<strong>Components&#x2F;Pages</strong>目錄哦~~</p><p>2.在<strong>Login.cshtml.cs</strong>中，修改 Model 名稱，並繼承自<code>Volo.Abp.Account.Web.Pages.Account.LoginModel</code><br>並將預設的<code>OnGet</code> Method 刪除掉，如下，</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CustomLoginModel</span> : <span class="title">LoginModel</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">CustomLoginModel</span>(<span class="params"></span></span></span><br><span class="line"><span class="params"><span class="function">        IAuthenticationSchemeProvider schemeProvider,</span></span></span><br><span class="line"><span class="params"><span class="function">        IOptions&lt;AbpAccountOptions&gt; accountOptions,</span></span></span><br><span class="line"><span class="params"><span class="function">        IOptions&lt;IdentityOptions&gt; identityOptions,</span></span></span><br><span class="line"><span class="params"><span class="function">        IdentityDynamicClaimsPrincipalContributorCache identityDynamicClaimsPrincipalContributorCache</span>)</span></span><br><span class="line"><span class="function">        : <span class="title">base</span>(<span class="params">schemeProvider, accountOptions, identityOptions, identityDynamicClaimsPrincipalContributorCache</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>3.Copy <a href="https://github.com/abpframework/abp/blob/dev/modules/account/src/Volo.Abp.Account.Web/Pages/Account/Login.cshtml">Abp Login.cshtml</a>的內容到<strong>Login.cshtml</strong>中，並將<code>@model</code>改成<code>CustomLoginModel</code>，如下，</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">@page</span><br><span class="line">@model 專案Blazor.Pages.Account.CustomLoginModel</span><br><span class="line"></span><br><span class="line">@using Microsoft.AspNetCore.Mvc.Localization</span><br><span class="line">@using Volo.Abp.Account.Localization</span><br><span class="line">@using Volo.Abp.Account.Settings</span><br><span class="line">@using Volo.Abp.Account.Web.Pages.Account</span><br><span class="line">@using Volo.Abp.AspNetCore.Mvc.UI.Theming</span><br><span class="line">@using Volo.Abp.Identity;</span><br><span class="line">@using Volo.Abp.Settings</span><br><span class="line"></span><br><span class="line">@inject IHtmlLocalizer&lt;AccountResource&gt; L</span><br><span class="line">@inject IThemeManager ThemeManager</span><br><span class="line">@inject Volo.Abp.Settings.ISettingProvider SettingProvider</span><br><span class="line"></span><br><span class="line">... 其他的 內容</span><br></pre></td></tr></table></figure><p>4.在<strong>Pages</strong>目錄中，新增<code>_ViewImports.cshtml</code>，並刪除<code>ViewImports.cshtml.cs</code>檔案<br>在<code>_ViewImports.cshtml</code>中加入 TagHelper 設定，</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers</span><br><span class="line">@addTagHelper *, Volo.Abp.AspNetCore.Mvc.UI</span><br><span class="line">@addTagHelper *, Volo.Abp.AspNetCore.Mvc.UI.Bootstrap</span><br><span class="line">@addTagHelper *, Volo.Abp.AspNetCore.Mvc.UI.Bundling</span><br></pre></td></tr></table></figure><p>所以最後會新增<code>Login.cshtml</code> 及 <code>_ViewImports.cshtml</code> ，如下，</p><img src="/2025/01/24/abp-blazor-custom-login/02.png" class="" title="Projects"><p>再運行系統來檢查一下，切到登入頁面來驗證是否有跑到我們的客製登入頁，</p><img src="/2025/01/24/abp-blazor-custom-login/03.png" class="" title="Login"><p>同時檢查一下，驗證看看 Razor Page 的 TagHelper 是否有正常運作，<br>Form 是否有包含<code>__RequestVerificationToken</code>的 Hidden Field，</p><img src="/2025/01/24/abp-blazor-custom-login/04.png" class="" title="Verify Login Html"><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://github.com/abpframework/abp/blob/dev/modules/account/src/Volo.Abp.Account.Web/Pages/Account/Login.cshtml">Abp Login.cshtml</a><br><a href="https://abp.io/docs/latest/framework/ui/mvc-razor-pages/customization-user-interface">Abp Overriding a Razor Page</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;想要在 ABP Blazor Server 專案中客製 Login 頁面要怎麼做呢?&lt;/p&gt;
+&lt;h3 id=&quot;實作&quot;&gt;&lt;a href=&quot;#實</summary>
+      
+    
+    
+    
+    
+    <category term="Blazor" scheme="https://rainmakerho.github.io/tags/Blazor/"/>
+    
+    <category term="Custom" scheme="https://rainmakerho.github.io/tags/Custom/"/>
+    
+    <category term="Abp" scheme="https://rainmakerho.github.io/tags/Abp/"/>
+    
+    <category term="Login" scheme="https://rainmakerho.github.io/tags/Login/"/>
+    
+    <category term="cshtml" scheme="https://rainmakerho.github.io/tags/cshtml/"/>
+    
+  </entry>
   
   <entry>
     <title>ABP 如何使用 Azure Active Directory 驗證登入</title>
@@ -579,36 +610,6 @@
     <category term="Reflected_XSS_All_Clients" scheme="https://rainmakerho.github.io/tags/Reflected-XSS-All-Clients/"/>
     
     <category term="Minimal API" scheme="https://rainmakerho.github.io/tags/Minimal-API/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Swashbuckle SwaggerUI 套用 CSP 錯誤的解法</title>
-    <link href="https://rainmakerho.github.io/2024/06/25/swashbuckle-swaggerui-csp/"/>
-    <id>https://rainmakerho.github.io/2024/06/25/swashbuckle-swaggerui-csp/</id>
-    <published>2024-06-25T03:29:19.000Z</published>
-    <updated>2024-06-25T05:22:46.419Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>當程式有設定 CSP(Content Security Policy)，值為<code>default-src &#39;self&#39;;</code>後，<br>會發現 SwaggerUI <code>index.html</code> 會一片白白的，<br>Browser 主控台就會顯示<code>CSP</code>的錯誤，如下，</p><blockquote><p>Refused to apply inline style because it violates the following Content Security Policy directive: “default-src ‘self’”. Either the ‘unsafe-inline’ keyword, a hash (‘sha256-wkAU1AW&#x2F;h8YFx0XlzvpTllAKnFEO2tw8aKErs5a26LY&#x3D;’), or a nonce (‘nonce-…’) is required to enable inline execution. Note also that ‘style-src’ was not explicitly set, so ‘default-src’ is used as a fallback.</p></blockquote><blockquote><p>Refused to execute inline script because it violates the following Content Security Policy directive: “default-src ‘self’”. Either the ‘unsafe-inline’ keyword, a hash (‘sha256-Tui7QoFlnLXkJCSl1&#x2F;JvEZdIXTmBttnWNxzJpXomQjg&#x3D;’), or a nonce (‘nonce-…’) is required to enable inline execution. Note also that ‘script-src’ was not explicitly set, so ‘default-src’ is used as a fallback.</p></blockquote><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>因為 SwaggerUI 有使用<strong>inline style</strong>及<strong>inline script</strong>，<br>所以被<strong>CSP</strong>的設定擋掉了。</p><h5 id="解法-1-加入-unsafe-inline"><a href="#解法-1-加入-unsafe-inline" class="headerlink" title="解法 1(加入 unsafe-inline)"></a>解法 1(加入 unsafe-inline)</h5><p>所以在<strong>CSP</strong>中可以加入<code>&#39;unsafe-inline&#39;</code> 及 image 的設定(<code>img-src data: https:;</code>)，如下，<br><code>default-src &#39;self&#39;;style-src &#39;self&#39; &#39;unsafe-inline&#39;;script-src &#39;self&#39; &#39;unsafe-inline&#39;;img-src data: https:;</code></p><h5 id="解法-2-使用-nonce"><a href="#解法-2-使用-nonce" class="headerlink" title="解法 2(使用 nonce)"></a>解法 2(使用 nonce)</h5><p>如果不想使用<code>&#39;unsafe-inline&#39;</code>, 那就需要使用<code>nonce</code>。<br>可以在<code>appsettings.json</code>中設定 CSP 的值及要使用的<code>nonce</code>，<br>將<code>&#39;unsafe-inline&#39;</code> 改以 <code>&#39;nonce-&#123;nonceValue&#125;&#39;</code> 替代，如下，</p><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;CSP&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;Nonce&quot;</span><span class="punctuation">:</span> <span class="string">&quot;rxa0mkex&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;Content&quot;</span><span class="punctuation">:</span> <span class="string">&quot;default-src &#x27;self&#x27;;style-src &#x27;self&#x27; &#x27;nonce-&#123;nonceValue&#125;&#x27;;script-src &#x27;self&#x27; &#x27;nonce-&#123;nonceValue&#125;&#x27;;img-src data: https:;&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure><p>然後設定<strong>CSP</strong>，<code>nonce</code>的值，如下，</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> cspNonce = _configuration[<span class="string">&quot;CSP:Nonce&quot;</span>];</span><br><span class="line"><span class="keyword">var</span> cspContent = _configuration[<span class="string">&quot;CSP:Content&quot;</span>].Replace(<span class="string">&quot;&#123;nonceValue&#125;&quot;</span>, cspNonce);</span><br><span class="line">context.Response.Headers.Append(<span class="string">&quot;Content-Security-Policy&quot;</span>, cspContent);</span><br></pre></td></tr></table></figure><p>再參考<a href="https://mderriey.com/2020/12/14/how-to-lock-down-csp-using-swachbuckle/">How to lock down your CSP when using Swashbuckle</a>，<br>在 SwaggerUI 產生 index.html 時，將 inline script, style ，加上<strong>noce</strong>的值，如下，</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">app.UseSwaggerUI(options =&gt;</span><br><span class="line">&#123;</span><br><span class="line">options.SwaggerEndpoint(<span class="string">&quot;/swagger/v1/swagger.json&quot;</span>, <span class="string">&quot;Portal API&quot;</span>);</span><br><span class="line"><span class="comment">//加入處理 SwaggerUI CSP 問題</span></span><br><span class="line"><span class="keyword">var</span> originallIndexStreamFactory = options.IndexStream;</span><br><span class="line">options.IndexStream = () =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">using</span> <span class="keyword">var</span> originalStream = originallIndexStreamFactory();</span><br><span class="line">    <span class="keyword">using</span> <span class="keyword">var</span> originalStreamReader = <span class="keyword">new</span> StreamReader(originalStream); ;</span><br><span class="line">    <span class="keyword">var</span> originalIndexHtmlContents = originalStreamReader.ReadToEnd();</span><br><span class="line">    <span class="keyword">var</span> requestSpecificNonce = config[<span class="string">&quot;CSP:Nonce&quot;</span>];</span><br><span class="line">    <span class="keyword">var</span> nonceEnabledIndexHtmlContents = originalIndexHtmlContents</span><br><span class="line">    .Replace(<span class="string">&quot;&lt;script&gt;&quot;</span>, <span class="string">$&quot;&quot;</span><span class="string">&quot;&lt;script nonce=&quot;</span>&#123;requestSpecificNonce&#125;<span class="string">&quot;&gt;&quot;</span><span class="string">&quot;&quot;</span>, StringComparison.OrdinalIgnoreCase)</span><br><span class="line">    .Replace(<span class="string">&quot;&lt;style&gt;&quot;</span>, <span class="string">$&quot;&quot;</span><span class="string">&quot;&lt;style nonce=&quot;</span>&#123;requestSpecificNonce&#125;<span class="string">&quot;&gt;&quot;</span><span class="string">&quot;&quot;</span>, StringComparison.OrdinalIgnoreCase);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> MemoryStream(Encoding.UTF8.GetBytes(nonceEnabledIndexHtmlContents));</span><br><span class="line">&#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><img src="/2024/06/25/swashbuckle-swaggerui-csp/01.png" class="" title="CSP-nonce"><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://mderriey.com/2020/12/14/how-to-lock-down-csp-using-swachbuckle/">How to lock down your CSP when using Swashbuckle</a></p><blockquote><p>一時花，二時雨: 喻人做事沒有恆心，毫無決斷力，有時好時壞。</p></blockquote>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;當程式有設定 CSP(Content Security Policy)，值為&lt;code&gt;default-src &amp;#39;self&amp;#39;</summary>
-      
-    
-    
-    
-    
-    <category term="Content-Security-Policy" scheme="https://rainmakerho.github.io/tags/Content-Security-Policy/"/>
-    
-    <category term="CSP" scheme="https://rainmakerho.github.io/tags/CSP/"/>
-    
-    <category term="Swashbuckle" scheme="https://rainmakerho.github.io/tags/Swashbuckle/"/>
-    
-    <category term="SwaggerUI" scheme="https://rainmakerho.github.io/tags/SwaggerUI/"/>
-    
-    <category term="SwaggerUIOptions" scheme="https://rainmakerho.github.io/tags/SwaggerUIOptions/"/>
     
   </entry>
   
