@@ -6,7 +6,7 @@
   <link href="https://rainmakerho.github.io/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2025-01-24T07:47:43.000Z</updated>
+  <updated>2025-02-06T02:54:22.210Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用 Kernel Memory 的 TextChunker 來幫我們切 Chunk</title>
+    <link href="https://rainmakerho.github.io/2025/02/06/kernel-memory-textchunker/"/>
+    <id>https://rainmakerho.github.io/2025/02/06/kernel-memory-textchunker/</id>
+    <published>2025-02-06T02:40:50.000Z</published>
+    <updated>2025-02-06T02:54:22.210Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>使用 RAG(Retrieval-Augmented Generation)需要將內容切成 Chunk,<br>而 <a href="https://github.com/microsoft/kernel-memory">Kernel Memory</a> 的 TextChunker 正可以幫我們來做這件事。</p><h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><p>1.加入<code>Microsoft.KernelMemory</code> Nuget 套件 2.讀取文件內容後，交給<code>TextChunker</code> 來處理</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> Microsoft.KernelMemory.AI;</span><br><span class="line"><span class="keyword">using</span> Microsoft.KernelMemory.DataFormats.Text;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> <span class="keyword">warning</span> disable KMEXP00</span></span><br><span class="line"><span class="built_in">string</span> contents = System.IO.File.ReadAllText(<span class="string">@&quot;你的文字檔&quot;</span>);</span><br><span class="line">TextChunker.TokenCounter tokenCounter = <span class="keyword">new</span> CL100KTokenizer().CountTokens;</span><br><span class="line"></span><br><span class="line"><span class="comment">//計算字串的Token數</span></span><br><span class="line"><span class="built_in">int</span> tokenCount = tokenCounter(contents);</span><br><span class="line">Console.WriteLine(<span class="string">$&quot;The text contains <span class="subst">&#123;tokenCount&#125;</span> tokens.&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//每行最多100個Token，超過就換到下一行</span></span><br><span class="line"><span class="built_in">int</span> maxTokensPerLine = <span class="number">100</span>;</span><br><span class="line"><span class="keyword">var</span> sentences = TextChunker.SplitPlainTextLines(contents, maxTokensPerLine: maxTokensPerLine, tokenCounter: tokenCounter);</span><br><span class="line">Console.WriteLine(<span class="string">&quot;======= SplitPlainTextLines =======&quot;</span>);</span><br><span class="line"><span class="built_in">int</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">foreach</span> (<span class="keyword">var</span> sentence <span class="keyword">in</span> sentences) &#123;</span><br><span class="line">    Console.WriteLine(<span class="string">$&quot;<span class="subst">&#123;++i&#125;</span>=&gt;<span class="subst">&#123;sentence&#125;</span>&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//每個段落最多400個Token，超過就換到下一個段落</span></span><br><span class="line"><span class="built_in">int</span> maxTokensPerParagraph = <span class="number">400</span>;</span><br><span class="line"><span class="built_in">int</span> overlapTokens = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">var</span> partitions = TextChunker.SplitPlainTextParagraphs(sentences,</span><br><span class="line">    maxTokensPerParagraph: maxTokensPerParagraph, overlapTokens: overlapTokens, tokenCounter: tokenCounter);</span><br><span class="line">Console.WriteLine(<span class="string">&quot;======= SplitPlainTextParagraphs =======&quot;</span>);</span><br><span class="line">i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">foreach</span> (<span class="keyword">var</span> partition <span class="keyword">in</span> partitions)</span><br><span class="line">&#123;</span><br><span class="line">    Console.WriteLine(<span class="string">$&quot;<span class="subst">&#123;++i&#125;</span>=&gt;<span class="subst">&#123;partition&#125;</span>&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//最後將這些 partition 呼叫 Embedding Model ，轉成 Vector 一併儲起來</span></span><br><span class="line"></span><br></pre></td></tr></table></figure><ul><li>註: maxTokensPerLine, maxTokensPerParagraph, overlapTokens 請依文件內容來進行調整。</li></ul><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://github.com/microsoft/kernel-memory">Kernel Memory</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;使用 RAG(Retrieval-Augmented Generation)需要將內容切成 Chunk,&lt;br&gt;而 &lt;a href=&quot;htt</summary>
+      
+    
+    
+    
+    
+    <category term="Kernel Memory" scheme="https://rainmakerho.github.io/tags/Kernel-Memory/"/>
+    
+    <category term="RAG" scheme="https://rainmakerho.github.io/tags/RAG/"/>
+    
+    <category term="TextChunker" scheme="https://rainmakerho.github.io/tags/TextChunker/"/>
+    
+    <category term="SplitPlainTextLines" scheme="https://rainmakerho.github.io/tags/SplitPlainTextLines/"/>
+    
+    <category term="SplitPlainTextParagraphs" scheme="https://rainmakerho.github.io/tags/SplitPlainTextParagraphs/"/>
+    
+  </entry>
   
   <entry>
     <title>ABP 如何客製 Blazor Server 的 Login Page</title>
@@ -582,34 +612,6 @@
     <category term="Json" scheme="https://rainmakerho.github.io/tags/Json/"/>
     
     <category term="Regex.Unescape" scheme="https://rainmakerho.github.io/tags/Regex-Unescape/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Checkmarx | ASP.NET Core Minimal API Inject Service 會被掃出 Reflected_XSS_All_Clients</title>
-    <link href="https://rainmakerho.github.io/2024/06/28/checkmarx-reflected-xss-all-clients-aspnet-minimal-api/"/>
-    <id>https://rainmakerho.github.io/2024/06/28/checkmarx-reflected-xss-all-clients-aspnet-minimal-api/</id>
-    <published>2024-06-28T09:04:00.000Z</published>
-    <updated>2024-06-28T09:25:33.213Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>Checkmarx 版本為 V9.5.5.1007 HF14。<br>ASP.NET Core Minimal API 的程式中，<br>有 Inject Service 時，全都被 Checkmarx 判斷有*Reflected_XSS_All_Clients***的 Issue。<br>程式碼如下，</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">app.MapGet(<span class="string">&quot;/users/&#123;userId&#125;&quot;</span>, (<span class="built_in">string</span> userId, [FromServices] IAccessControlService accessControlService) =&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> accessControlService.LoadUserAccessControlAsync(userId);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>Checkmarx 說明如下，</p><blockquote><p>方法 app.MapGet 在 Program.cs 的第 54 行使用 LoadUserAccessControlAsync 將不受信用的資料嵌入生成的輸出。這些不受信任的資料被嵌入輸出而沒有進行適當的消毒或編碼，使攻擊者能夠將惡意程式碼注入生成的網頁。</p></blockquote><blockquote><p>攻擊者可通過簡單地在使用者輸入 accessControlService 中提供修改過的資料，該資料由 Program.cs 中的 app.MapGet 方法在第 54 行讀取。然後該輸入資料直接通過程式碼流到輸出網頁，而不經過任何消毒處理。</p></blockquote><p><strong>在使用者輸入 accessControlService</strong>???，這個是系統的服務，怎麼會從使用者輸入取得呢?</p><p>看來 Checkmarx 應該是不認得<strong>ASP.NET Core Minimal API 注入 Service</strong>的寫法，<br>導致將注入的 Service 當成是使用者的輸入來判斷，而導致<strong>誤判</strong>。</p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>要等 Checkmarx 修正!</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;Checkmarx 版本為 V9.5.5.1007 HF14。&lt;br&gt;ASP.NET Core Minimal API 的程式中，&lt;br&gt;有</summary>
-      
-    
-    
-    
-    
-    <category term="ASP.NET" scheme="https://rainmakerho.github.io/tags/ASP-NET/"/>
-    
-    <category term="Checkmarx" scheme="https://rainmakerho.github.io/tags/Checkmarx/"/>
-    
-    <category term="Reflected_XSS_All_Clients" scheme="https://rainmakerho.github.io/tags/Reflected-XSS-All-Clients/"/>
-    
-    <category term="Minimal API" scheme="https://rainmakerho.github.io/tags/Minimal-API/"/>
     
   </entry>
   
