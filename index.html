@@ -152,6 +152,84 @@
             
   
     <article
+  id="post-kernel-memory-plaintext-chunker"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2025/02/19/kernel-memory-plaintext-chunker/">使用 Kernel Memory 的 PlainTextChunker 來幫我們切 Chunk</a>
+    </h1>
+  
+  <a href="/2025/02/19/kernel-memory-plaintext-chunker/" class="archive-article-date">
+  	<time datetime="2025-02-19T07:19:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2025-02-19</time>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>Kernel Memory 0.97.250211.1 已改用<code>PlainTextChunker</code>來切 Chunk，<br>之前使用<code>TextChunker</code>要設定每行的最大 Token 數及每段的最大 Token。<br>而<code>PlainTextChunker</code>只需要設定每段的最大 Token 數就可以了，以下我們來看看要怎麼透過它來切 Chunks.</p> 
+      <p class="article-more-link">
+        <a href="/2025/02/19/kernel-memory-plaintext-chunker/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Kernel Memory</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">RAG</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Chunk</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">KM</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Split</a>
+        		</li>
+      		
+		</ul>
+	</div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+ <aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside> 
+
+  
+    <article
   id="post-kernel-memory-textchunker"
   class="article article-type-post  article-index"
   itemscope
@@ -172,7 +250,7 @@
     </header>
     
     <div class="article-entry" itemprop="articleBody">
-         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>使用 RAG(Retrieval-Augmented Generation)需要將內容切成 Chunk,<br>而 <a target="_blank" rel="noopener" href="https://github.com/microsoft/kernel-memory">Kernel Memory</a> 的 TextChunker 正可以幫我們來做這件事。</p> 
+         <h3 id="註-Kernel-Memory-0-97-250211-1-已改用-PlainTextChunker"><a href="#註-Kernel-Memory-0-97-250211-1-已改用-PlainTextChunker" class="headerlink" title="註: Kernel Memory 0.97.250211.1 已改用 PlainTextChunker"></a>註: Kernel Memory 0.97.250211.1 已改用 PlainTextChunker</h3><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>使用 RAG(Retrieval-Augmented Generation)需要將內容切成 Chunk,<br>而 <a target="_blank" rel="noopener" href="https://github.com/microsoft/kernel-memory">Kernel Memory</a> 的 TextChunker 正可以幫我們來做這件事。</p> 
       <p class="article-more-link">
         <a href="/2025/02/06/kernel-memory-textchunker/#more"> more &gt;&gt; </a>
       </p>
@@ -689,91 +767,9 @@
 </aside> 
 
   
-    <article
-  id="post-determine-string-is-simplified-chinese-hans"
-  class="article article-type-post  article-index"
-  itemscope
-  itemprop="blogPost"
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2024/12/02/determine-string-is-simplified-chinese-hans/">判斷字串是否包含簡體中文(是否為繁體中文)</a>
-    </h1>
-  
-  <a href="/2024/12/02/determine-string-is-simplified-chinese-hans/" class="archive-article-date">
-  	<time datetime="2024-12-02T01:04:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-12-02</time>
-</a> 
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-         <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近有個需求是要判斷使用者輸入的字串是否有<strong>簡體中文</strong>，<br>不好透過字串的編碼範圍來判斷。<br>所以，將使用者的輸入轉成<strong>繁體中文</strong>，<br>如果相同，則表示使用者輸入的是<strong>繁體中文</strong>。<br>如果不相同，則表示使用者輸入的<strong>不是繁體中文</strong>。</p> 
-      <p class="article-more-link">
-        <a href="/2024/12/02/determine-string-is-simplified-chinese-hans/#more"> more &gt;&gt; </a>
-      </p>
-         
-    </div>
-    <div class="article-info article-info-index">
-       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">.NET</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">zh-Hans</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">zh-Hant</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">zh-CN</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">zh-TW</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenCCNET</a>
-        		</li>
-      		
-		</ul>
-	</div>
- 
-  
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
- <aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside> 
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/52/">52</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/53/">53</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -7009,6 +7005,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">SplitPlainTextParagraphs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Chunk</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">KM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Split</a>
               </li>
             
             <div class="clearfix"></div>
