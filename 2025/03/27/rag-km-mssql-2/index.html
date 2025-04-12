@@ -21,7 +21,7 @@
 <meta property="og:image" content="https://rainmakerho.github.io/2025/03/27/rag-km-mssql-2/02.png">
 <meta property="og:image" content="https://rainmakerho.github.io/2025/03/27/rag-km-mssql-2/03.png">
 <meta property="article:published_time" content="2025-03-27T06:30:31.000Z">
-<meta property="article:modified_time" content="2025-03-27T06:56:19.078Z">
+<meta property="article:modified_time" content="2025-04-02T01:47:55.512Z">
 <meta property="article:author" content="亂馬客">
 <meta property="article:tag" content="MSSQL">
 <meta property="article:tag" content="Kernel Memory">
@@ -184,7 +184,7 @@
     <div class="article-entry" itemprop="articleBody">
          <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在前一篇<a href="https://rainmakerho.github.io/2025/03/27/rag-km-mssql/">使用 Kernel Memory 和 MSSQL 快速建立 RAG 服務</a>可以很快建立出 RAG 服務，並讓使用者進行問答。<br>接下來我們來看一下它在 SQLServer 中是如何處理</p>
 <h3 id="研究"><a href="#研究" class="headerlink" title="研究"></a>研究</h3><h5 id="ImportDocumentAsync"><a href="#ImportDocumentAsync" class="headerlink" title="ImportDocumentAsync"></a>ImportDocumentAsync</h5><p>從 <code>await kmClient.ImportDocumentAsync(docPath, index: tenantId, documentId: documentId);</code>開始，<br>它會呼叫 Kernel Memory 的<code>/upload</code> API，<br>呼叫<code>MemoryServerless.ImportDocumentAsync</code>(因為<code>OrchestrationType</code> 設定成 <code>InProcess</code>)，<br>呼叫<code>BaseOrchestrator.ImportDocumentAsync</code>執行<strong>Pipeline</strong>的處理，<br>因為沒設定 Pipeline 自定的 Steps，所以會使用預設的 Steps，<br>預設的 Steps 為<code>extract</code>(讀取文件內容), <code>partition</code>(將文件內容切成多個 Chunks), <code>gen_embeddings</code>(將各 Chunks 轉成 Embedding) 及 <code>save_records</code>(將 Chunks 及 Embeddings 存到 MSSQL)</p>
-<p>在<strong>save_records</strong>時，會做以下幾個步</p>
+<p>在<strong>save_records</strong>時，會做以下幾個步驟</p>
 <p>1.建立基本 Tables<br>建立<code>KMCollections</code>及<code>KMMemories</code>(config 中 SqlServer 區段<code>MemoryCollectionTableName</code>及<code>MemoryTableName</code>的設定值)這 2 個 Table(<code>SqlServerMemory.CreateTablesIfNotExistsAsync</code>)。<br><code>KMCollections</code> Table 只有一個<code>id nvarchar(256)</code>這個欄位，是記錄<code>index</code>的值。<br><code>KMMemories</code> Table 會記錄文件 Chunks 的相關內容。</p>
 <img src="/2025/03/27/rag-km-mssql-2/01.png" class="" title="KMMemories Schema">
 
@@ -6654,6 +6654,54 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">MsExcelDecoder</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">ubuntu</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">dify</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">certificate</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">certifi</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">docker-compose</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">台灣政府憑證</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">root ca</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">gcis.nat.gov.tw</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">憑證問題</a>
               </li>
             
             <div class="clearfix"></div>
