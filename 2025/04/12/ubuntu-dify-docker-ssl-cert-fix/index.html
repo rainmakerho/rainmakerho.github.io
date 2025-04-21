@@ -18,7 +18,7 @@
 <meta property="og:description" content="前言今天原本使用好好的政府 OpenData API (https:&#x2F;&#x2F;gcis.nat.gov.tw) 在 Dify 的 Http 節點中居然出現[SSL:CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)的錯誤。以下紀錄在部署 Dif">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-04-12T05:16:43.000Z">
-<meta property="article:modified_time" content="2025-04-12T06:30:26.858Z">
+<meta property="article:modified_time" content="2025-04-12T06:39:26.671Z">
 <meta property="article:author" content="亂馬客">
 <meta property="article:tag" content="ubuntu">
 <meta property="article:tag" content="docker">
@@ -184,7 +184,7 @@
     
     <div class="article-entry" itemprop="articleBody">
          <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>今天原本使用好好的政府 OpenData API (<a target="_blank" rel="noopener" href="https://gcis.nat.gov.tw/">https://gcis.nat.gov.tw</a>) 在 Dify 的 Http 節點中居然出現<code>[SSL:CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)</code>的錯誤。<br>以下紀錄在部署 Dify 至 Ubuntu Docker Compose 環境時，遇到 SSL 憑證驗證失敗的問題，包含台灣政府 CA 安裝、Python certifi 處理、Proxy 設定與完整排查修復流程。</p>
-<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>先在 Ubuntu 執行 curl 就出現<strong>curl: (60) SSL certificate problem: unable to get local issuer certificate</strong>的錯誤。</p>
+<h3 id="問題場景與解決"><a href="#問題場景與解決" class="headerlink" title="問題場景與解決"></a>問題場景與解決</h3><p>先在 Ubuntu 執行 curl 就出現<strong>curl: (60) SSL certificate problem: unable to get local issuer certificate</strong>的錯誤。</p>
 <h5 id="Step-1-確認-ubuntu-SSL-問題"><a href="#Step-1-確認-ubuntu-SSL-問題" class="headerlink" title="Step 1.確認 ubuntu SSL 問題"></a>Step 1.確認 ubuntu SSL 問題</h5><p>使用 openssl 檢查憑證鏈：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl s_client -connect data.gcis.nat.gov.tw:443</span><br></pre></td></tr></table></figure>
 
