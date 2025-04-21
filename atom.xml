@@ -6,7 +6,7 @@
   <link href="https://rainmakerho.github.io/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2025-04-12T06:39:26.671Z</updated>
+  <updated>2025-04-21T08:11:35.017Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>解決 MSSQL 8632 錯誤|到達運算式服務的限制，SQL 查詢過於複雜的修正建議</title>
+    <link href="https://rainmakerho.github.io/2025/04/21/mssql-8632-expression-limit-error-solution/"/>
+    <id>https://rainmakerho.github.io/2025/04/21/mssql-8632-expression-limit-error-solution/</id>
+    <published>2025-04-21T08:01:12.000Z</published>
+    <updated>2025-04-21T08:11:35.017Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>當最近將資料庫從 SQL Server 2017 升級到 SQL Server 2019 後，系統在執行特定功能時，遇到了以下錯誤：</p><p><strong>MSSQL 錯誤 8632：內部錯誤: 到達運算式服務的限制。請找出查詢中潛在的複雜運算式，並嘗試加以簡化。</strong></p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>這個錯誤通常代表 SQL 查詢中的計算欄位、常數、CASE 條件或內嵌運算式過於複雜，已經超出 SQL Server 2019 的查詢處理限制。<br>依<a href="https://learn.microsoft.com/zh-tw/sql/relational-databases/errors-events/mssqlserver-8632-database-engine-error?view=sql-server-ver16">MSSQLSERVER_8632</a>建議是要改寫 SQL。<br>如果短時間內無法重構 SQL，則可以暫時調整資料庫的<strong>相容性層級回到 SQL Server 2017</strong>，避免觸發此錯誤，作為緩解措施。<br>最終仍建議優先修改查詢，以符合新版 SQL Server 2019 的運算限制。</p><p>如果你也在 SQL Server 升級後遇到 <strong>8632</strong> 錯誤，請先檢查查詢設計，避免運算式過於複雜，並視情況暫時調整相容性層級以確保系統穩定運行。</p><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://learn.microsoft.com/zh-tw/sql/relational-databases/errors-events/mssqlserver-8632-database-engine-error?view=sql-server-ver16">MSSQLSERVER_8632</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;當最近將資料庫從 SQL Server 2017 升級到 SQL Server 2019 後，系統在執行特定功能時，遇到了以下錯誤：&lt;/p&gt;</summary>
+      
+    
+    
+    
+    
+    <category term="MSSQL 2019" scheme="https://rainmakerho.github.io/tags/MSSQL-2019/"/>
+    
+    <category term="8632" scheme="https://rainmakerho.github.io/tags/8632/"/>
+    
+    <category term="到達運算式服務的限制" scheme="https://rainmakerho.github.io/tags/%E5%88%B0%E9%81%94%E9%81%8B%E7%AE%97%E5%BC%8F%E6%9C%8D%E5%8B%99%E7%9A%84%E9%99%90%E5%88%B6/"/>
+    
+  </entry>
   
   <entry>
     <title>Dify Docker Compose SSL 憑證驗證失敗排查與修復指南（Ubuntu 環境實戰）</title>
@@ -604,32 +630,6 @@
     <category term="Authorize" scheme="https://rainmakerho.github.io/tags/Authorize/"/>
     
     <category term="ASP0026" scheme="https://rainmakerho.github.io/tags/ASP0026/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Checkmarx | Permissive Content Security Policy</title>
-    <link href="https://rainmakerho.github.io/2024/10/07/checkmarx-permissive-content-security-policy/"/>
-    <id>https://rainmakerho.github.io/2024/10/07/checkmarx-permissive-content-security-policy/</id>
-    <published>2024-10-07T06:29:58.000Z</published>
-    <updated>2024-10-07T07:57:36.218Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="Issue"><a href="#Issue" class="headerlink" title="Issue"></a>Issue</h3><p>ASP.NET Core Web 專案中，加入許多 Header 時，其中包含<strong>Content-Security-Policy</strong>，<br>被 Checkmarx 掃出有<strong>Permissive Content Security Policy</strong>的問題，程式碼如下，</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">context.Response.Headers.Add(<span class="string">&quot;X-Content-Security-Policy&quot;</span>, <span class="string">&quot;default-src &#x27;self&#x27; http://localhost:61161; img-src &#x27;self&#x27; blob: data:; frame-ancestors &#x27;self&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;;&quot;</span>);</span><br><span class="line">context.Response.Headers.Add(<span class="string">&quot;X-Frame-Options&quot;</span>, <span class="string">&quot;DENY&quot;</span>);</span><br><span class="line">context.Response.Headers.Add(<span class="string">&quot;Strict-Transport-Security&quot;</span>, <span class="string">&quot;max-age=31536000; includeSubDomains; preload&quot;</span>);</span><br><span class="line">context.Response.Headers.Add(<span class="string">&quot;X-Content-Type-Options&quot;</span>, <span class="string">&quot;nosniff&quot;</span>);</span><br></pre></td></tr></table></figure><p>但 Checkmarx 指的位置卻是在<br><code>context.Response.Headers.Add(&quot;X-Content-Type-Options&quot;, &quot;nosniff&quot;);</code><br><code>context.Response.Headers.Add(&quot;Strict-Transport-Security&quot;, &quot;max-age=31536000; includeSubDomains; preload&quot;);</code><br>…其他非<code>X-Content-Security-Policy</code> Header 的地方。</p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>查看 Checkmarx 的 Rule 會檢查是否有 <strong>Content-Security-Policy</strong> Header, 值是否有 <code>default-src *</code> ，<code>form-action *</code>，<code>frame-ancestors *</code> ，才會有問題。</p><p>詢問同事 Jer 建議將 <strong>Content-Security-Policy</strong> 設定移到最後，以避免 Checkmarx 的誤判，</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">context.Response.Headers.Add(<span class="string">&quot;X-Frame-Options&quot;</span>, <span class="string">&quot;DENY&quot;</span>);</span><br><span class="line">context.Response.Headers.Add(<span class="string">&quot;Strict-Transport-Security&quot;</span>, <span class="string">&quot;max-age=31536000; includeSubDomains; preload&quot;</span>);</span><br><span class="line">context.Response.Headers.Add(<span class="string">&quot;X-Content-Type-Options&quot;</span>, <span class="string">&quot;nosniff&quot;</span>);</span><br><span class="line">context.Response.Headers.Add(<span class="string">&quot;X-Content-Security-Policy&quot;</span>, <span class="string">&quot;default-src &#x27;self&#x27; http://localhost:61161; img-src &#x27;self&#x27; blob: data:; frame-ancestors &#x27;self&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;;&quot;</span>);</span><br></pre></td></tr></table></figure><p>再掃一次就沒有<strong>Permissive Content Security Policy</strong>的問題了。<br>或是將<code>context.Response.Headers.Add</code>改成<code>context.Response.Headers.Append</code>也 OK 哦~</p><h3 id="環境"><a href="#環境" class="headerlink" title="環境"></a>環境</h3><ul><li>Checkmarx 版本：9.5.5.1007 HF14</li><li>類別：Permissive Content Security Policy</li><li>嚴重程度：低風險</li></ul>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;Issue&quot;&gt;&lt;a href=&quot;#Issue&quot; class=&quot;headerlink&quot; title=&quot;Issue&quot;&gt;&lt;/a&gt;Issue&lt;/h3&gt;&lt;p&gt;ASP.NET Core Web 專案中，加入許多 Header 時，其中包含&lt;strong&gt;Content-Sec</summary>
-      
-    
-    
-    
-    
-    <category term="Content-Security-Policy" scheme="https://rainmakerho.github.io/tags/Content-Security-Policy/"/>
-    
-    <category term="Checkmarx" scheme="https://rainmakerho.github.io/tags/Checkmarx/"/>
-    
-    <category term="Permissive Content Security Policy" scheme="https://rainmakerho.github.io/tags/Permissive-Content-Security-Policy/"/>
     
   </entry>
   
