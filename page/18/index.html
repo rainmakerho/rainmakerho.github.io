@@ -152,6 +152,84 @@
             
   
     <article
+  id="post-ef-indexer-properties"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/03/20/ef-indexer-properties/">EF Core Indexer properties and Property bag entity types</a>
+    </h1>
+  
+  <a href="/2023/03/20/ef-indexer-properties/" class="archive-article-date">
+  	<time datetime="2023-03-20T08:34:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-03-20</time>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>假設 Entity Class 要提供 Dictionary 的屬性，<br>可以使用 <strong>Indexer Properties</strong>，例如，<br><code>customer[&quot;CustomerType&quot;]</code>。<br>如果不想在原有的 Table 中新增欄位，<br>則可以使用 <strong>property bag entity types</strong>，例如，<br><code>customerExt[&quot;CustomerType&quot;]</code><br>以下我們來看一下做法。</p> 
+      <p class="article-more-link">
+        <a href="/2023/03/20/ef-indexer-properties/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">EF</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Indexer</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">property bag entity types</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Dictionary</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">SharedTypeEntity</a>
+        		</li>
+      		
+		</ul>
+	</div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+ <aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside> 
+
+  
+    <article
   id="post-ef-shadow-properties"
   class="article article-type-post  article-index"
   itemscope
@@ -666,80 +744,6 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Cannot read properties of null (reading '_notified')</a>
-        		</li>
-      		
-		</ul>
-	</div>
- 
-  
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
- <aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside> 
-
-  
-    <article
-  id="post-abp-domain-service-repository"
-  class="article article-type-post  article-index"
-  itemscope
-  itemprop="blogPost"
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/03/06/abp-domain-service-repository/">ABP Domain Services, Repositories</a>
-    </h1>
-  
-  <a href="/2023/03/06/abp-domain-service-repository/" class="archive-article-date">
-  	<time datetime="2023-03-06T01:04:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-03-06</time>
-</a> 
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>以下記錄 ABP 在 Domain Servcice 及 Repository 方面的設計，<br>為何需要 Domain Service?<br>設計 Repository 有什麼要注意的地方?</p> 
-      <p class="article-more-link">
-        <a href="/2023/03/06/abp-domain-service-repository/#more"> more &gt;&gt; </a>
-      </p>
-         
-    </div>
-    <div class="article-info article-info-index">
-       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ABP</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Domain service</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Repository</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Specification</a>
         		</li>
       		
 		</ul>
@@ -7166,6 +7170,42 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">到達運算式服務的限制</a>
               </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">MFA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Two-Factor Authentication</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">ABP MVC MFA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">ASP.NET Core MFA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ABP 身份驗證</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">ABP 兩步驟登入</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">ABP 強制 MFA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Identity TwoFactor</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">ABP 多因素認證</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
@@ -7271,7 +7311,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">大家好，我是亂馬客 Rainmaker，目前任職於叡揚資訊，大家也都叫我 RM 。 平常負責開發公司各產品線的加值、共用的軟體，例如 Azure, OpenAI, Chatbot, Database ... 同時 Support 公司各種技術及資安修改問題。 Blog中的內容也是個人的看法， 如果有需要討論的地方， 可以留言，或是 mail 給我 :) rainmaker_ho@gss.com.tw
+  	  		<div class="aboutme-wrap" id="js-aboutme">大家好，我是亂馬客 Rainmaker，目前任職於叡揚資訊，大家也都叫我 RM 。 平常負責開發公司各產品線的加值、共用的軟體，例如 Azure, OpenAI, Chatbot, Database ... 同時 Support 公司各種技術及資安黑箱(AppScan)、白箱(Checkmarx)等問題的解決。 Blog中的內容也是個人的看法， 如果有需要討論的地方， 可以留言，或是 mail 給我 :) rainmaker_ho@gss.com.tw
 </div>
   	  	
     	</section>
