@@ -152,6 +152,88 @@
             
   
     <article
+  id="post-assistant-api-in-gpt-mis-encodes-function-call-arguments"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2025/03/13/assistant-api-in-gpt-mis-encodes-function-call-arguments/">Assistant API 的 Function Call Arguments 亂碼問題</a>
+    </h1>
+  
+  <a href="/2025/03/13/assistant-api-in-gpt-mis-encodes-function-call-arguments/" class="archive-article-date">
+  	<time datetime="2025-03-13T05:51:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2025-03-13</time>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近使用 Azure AI 中的 <strong>Assistant API</strong> 時，當它使用到了<strong>Function Call</strong>時，它傳入的參數值居然變成了亂碼!!!<br>似乎本來是 UTF-8 結果被轉成了 Latin-1 編碼。</p> 
+      <p class="article-more-link">
+        <a href="/2025/03/13/assistant-api-in-gpt-mis-encodes-function-call-arguments/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">亂碼</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">AOAI</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Assistant API</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">arguments</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">mis-encodes</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Latin-1</a>
+        		</li>
+      		
+		</ul>
+	</div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+ <aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside> 
+
+  
+    <article
   id="post-azure-ad-app-consent-permissions"
   class="article article-type-post  article-index"
   itemscope
@@ -658,84 +740,6 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">IsDynamicPermissionStoreEnabled</a>
-        		</li>
-      		
-		</ul>
-	</div>
- 
-  
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
- <aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside> 
-
-  
-    <article
-  id="post-abp-json-possible-object-cycle-was-detected-err"
-  class="article article-type-post  article-index"
-  itemscope
-  itemprop="blogPost"
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2024/12/31/abp-json-possible-object-cycle-was-detected-err/">ABP A possible object cycle was detected.</a>
-    </h1>
-  
-  <a href="/2024/12/31/abp-json-possible-object-cycle-was-detected-err/" class="archive-article-date">
-  	<time datetime="2024-12-31T06:59:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-12-31</time>
-</a> 
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-         <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>在 Abp AppService 中回傳的物件如果有 recursion 的狀況，像是取回 <code>PermissionGroupDefinition</code> ，會包含 <code>List&lt;PermissionDefinition&gt;</code> ，而 <code>PermissionDefinition</code> 又會包含 <code>List&lt;PermissionDefinition&gt;</code>，所以就會出現以下的錯誤，</p> 
-      <p class="article-more-link">
-        <a href="/2024/12/31/abp-json-possible-object-cycle-was-detected-err/#more"> more &gt;&gt; </a>
-      </p>
-         
-    </div>
-    <div class="article-info article-info-index">
-       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">json</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">JsonSerializerOptions</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">abp</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">ReferenceHandler.Preserve</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">recursion</a>
         		</li>
       		
 		</ul>
@@ -7197,6 +7201,30 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ABP 多因素認證</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Global.asax.cs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Application_PreSendRequestHeaders</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Application_Start</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">X-AspNet-Version</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">X-AspNetMvc-Version</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Server Header</a>
               </li>
             
             <div class="clearfix"></div>
