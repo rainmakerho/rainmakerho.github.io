@@ -10,26 +10,27 @@
   <link rel="dns-prefetch" href="https://rainmakerho.github.io">
   <title>以 LLM 為核心打造零程式碼查詢流程：簡化 Dify 流程設計、讓非工程人員也能上手 | 亂馬客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在初期導入 Dify 建立企業資訊查詢流程時，我們使用了多個「代碼執行」節點來處理 API 回傳資料，例如提取統一編號與公司名稱。然而，我們很快發現：這樣的設計對非工程背景的成員不夠友善，維護成本也偏高。 因此，我們重新思考了一個問題：  能不能只透過自然語言與 LLM，讓流程變得更簡潔、更直覺？  Dify 企業資料來源流程主要會透過使用商工行政資料開放平臺 Swagger 及 2,000 大企">
+  <meta name="description" content="在初期導入 Dify 建立企業資訊查詢流程時，我們使用了多個「代碼執行」節點來處理 API 回傳資料，例如提取統一編號與公司名稱。然而，我們很快發現：這樣的設計對非工程背景的成員不夠友善，維護成本也偏高。 因此，我們重新思考了一個問題：  能不能只透過自然語言與 LLM，讓流程變得更簡潔、更直覺？  以下說明企業資訊查詢流程的資料來源與流程設計，並分享我們如何透過 LLM 來簡化流程設計。 Dif">
 <meta property="og:type" content="article">
 <meta property="og:title" content="以 LLM 為核心打造零程式碼查詢流程：簡化 Dify 流程設計、讓非工程人員也能上手">
 <meta property="og:url" content="https://rainmakerho.github.io/2025/05/19/build-dify-flow-without-code/index.html">
 <meta property="og:site_name" content="亂馬客">
-<meta property="og:description" content="在初期導入 Dify 建立企業資訊查詢流程時，我們使用了多個「代碼執行」節點來處理 API 回傳資料，例如提取統一編號與公司名稱。然而，我們很快發現：這樣的設計對非工程背景的成員不夠友善，維護成本也偏高。 因此，我們重新思考了一個問題：  能不能只透過自然語言與 LLM，讓流程變得更簡潔、更直覺？  Dify 企業資料來源流程主要會透過使用商工行政資料開放平臺 Swagger 及 2,000 大企">
+<meta property="og:description" content="在初期導入 Dify 建立企業資訊查詢流程時，我們使用了多個「代碼執行」節點來處理 API 回傳資料，例如提取統一編號與公司名稱。然而，我們很快發現：這樣的設計對非工程背景的成員不夠友善，維護成本也偏高。 因此，我們重新思考了一個問題：  能不能只透過自然語言與 LLM，讓流程變得更簡潔、更直覺？  以下說明企業資訊查詢流程的資料來源與流程設計，並分享我們如何透過 LLM 來簡化流程設計。 Dif">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://rainmakerho.github.io/2025/05/19/build-dify-flow-without-code/01.png">
+<meta property="og:image" content="https://rainmakerho.github.io/2025/05/19/build-dify-flow-without-code/05.png">
+<meta property="og:image" content="https://rainmakerho.github.io/2025/05/19/build-dify-flow-without-code/06.png">
 <meta property="og:image" content="https://rainmakerho.github.io/2025/05/19/build-dify-flow-without-code/02.png">
 <meta property="og:image" content="https://rainmakerho.github.io/2025/05/19/build-dify-flow-without-code/03.png">
 <meta property="og:image" content="https://rainmakerho.github.io/2025/05/19/build-dify-flow-without-code/04.png">
 <meta property="article:published_time" content="2025-05-19T03:52:45.000Z">
-<meta property="article:modified_time" content="2025-05-19T07:30:06.651Z">
+<meta property="article:modified_time" content="2025-05-19T08:50:07.544Z">
 <meta property="article:author" content="亂馬客">
 <meta property="article:tag" content="Dify 流程設計">
 <meta property="article:tag" content="零程式碼 AI">
 <meta property="article:tag" content="LLM 自動化流程">
 <meta property="article:tag" content="Dify 教學">
 <meta property="article:tag" content="查詢企業資訊">
-<meta property="article:tag" content="GPT 自動處理資料">
 <meta property="article:tag" content="無程式自動化">
 <meta property="article:tag" content="AI 工作流程設計">
 <meta property="article:tag" content="Dify 範例">
@@ -190,6 +191,7 @@
 <blockquote>
 <p>能不能只透過自然語言與 LLM，讓流程變得更簡潔、更直覺？</p>
 </blockquote>
+<p>以下說明<strong>企業資訊查詢流程</strong>的資料來源與流程設計，並分享我們如何透過 LLM 來簡化流程設計。</p>
 <h3 id="Dify-企業資料來源"><a href="#Dify-企業資料來源" class="headerlink" title="Dify 企業資料來源"></a>Dify 企業資料來源</h3><p>流程主要會透過使用<a target="_blank" rel="noopener" href="https://data.gcis.nat.gov.tw/resources/swagger/index.html">商工行政資料開放平臺 Swagger</a> 及 <strong>2,000 大企業</strong>文件檢索的方式來取得企業的資訊。<br>會用以下的方式來取得資料，</p>
 <p>1.統一編號 → 呼叫<strong>公司登記基本資料-應用一</strong>來取得公司資訊(統編、名稱、資本額、負責人…)</p>
 <p>2.公司名稱 → 呼叫<strong>公司登記關鍵字查詢</strong>來取得公司資訊(統編、名稱、資本額、負責人…)</p>
@@ -208,21 +210,21 @@
 <p>Dify 的流程畫面如下:</p>
 <img src="/2025/05/19/build-dify-flow-without-code/01.png" class="" title="代碼執行">
 
-<p>以上「代碼執行」節點的程式碼，雖然不會很復雜，但對非工程背景的成員來說，還是會有些難度。<br>如果將這些內容交由 LLM 來處理，那麼流程會變得更加簡單、直覺。</p>
+<p>以上「代碼執行」節點的程式碼，雖然不會很複雜，但對非工程背景的成員來說，還是會有些難度。<br>如果將這些內容交由 LLM 來處理，那麼流程會變得更加簡單、直覺。</p>
 <h3 id="Dify-改善流程"><a href="#Dify-改善流程" class="headerlink" title="Dify 改善流程"></a>Dify 改善流程</h3><p>1.直接呼叫「公司登記基本資料-應用一」及「公司登記關鍵字查詢」將結果透過「LLM」節點來判斷是否有找到正確的公司資訊</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">使用者會輸入「統一編號」或「公司名稱」來查詢公司資料，</span><br><span class="line">請根據以下 API 回傳結果進行判斷與處理。</span><br><span class="line"></span><br><span class="line">### 查詢類型</span><br><span class="line">使用者輸入內容如下：</span><br><span class="line">&#123;&#123;#sys.query#&#125;&#125;</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">### 統一編號查詢結果（最多一筆）：</span><br><span class="line">&#123;&#123;#公司登記基本資料-應用一HTTP結果.body#&#125;&#125;</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">### 公司名稱查詢結果（可能多筆）：</span><br><span class="line">&#123;&#123;#公司登記關鍵字查詢HTTP結果.body#&#125;&#125;</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line">### 任務說明：</span><br><span class="line">1. 若統一編號查詢結果有資料（陣列含一筆物件），請依以下格式輸出一家公司資訊：</span><br><span class="line">&#123;</span><br><span class="line">  &quot;統一編號&quot;: &quot;xxxxxxx&quot;,</span><br><span class="line">  &quot;公司名稱&quot;: &quot;xxx股份有限公司&quot;,</span><br><span class="line">  &quot;公司狀態&quot;: &quot;核准設立&quot;,</span><br><span class="line">  &quot;負責人&quot;: &quot;姓名&quot;,</span><br><span class="line">  &quot;資本總額&quot;: &quot;1,000,000 元&quot;,</span><br><span class="line">  &quot;實收資本額&quot;: &quot;800,000 元&quot;,</span><br><span class="line">  &quot;公司地址&quot;: &quot;地址&quot;,</span><br><span class="line">  &quot;登記機關&quot;: &quot;主管機關&quot;,</span><br><span class="line">  &quot;設立日期&quot;: &quot;民國XX年MM月DD日&quot;,</span><br><span class="line">  &quot;最後核准變更日期&quot;: &quot;民國XX年MM月DD日&quot; // 若原始欄位為空，則不輸出此欄位</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">2. 若「公司名稱查詢結果」有多筆資料：</span><br><span class="line">請執行以下兩個動作：</span><br><span class="line">  - 輸出一份編號列表，每一項為一筆公司(`1. 統一編號：xxxxxxx，公司名稱：xxx股份有限公司 `)。</span><br><span class="line"></span><br><span class="line">  - 緊接著，單獨輸出一行文字如下（必須輸出）：`**請重新查詢** 查詢結果包含多家公司，請重新輸入更明確的公司名稱或統一編號以查詢特定公司資訊。`</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">3. 如果兩個查詢皆無資料，請回覆：</span><br><span class="line"> **請重新查詢** 查無資料，請確認輸入的公司名稱或統一編號是否正確。</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">【補充格式轉換說明】</span><br><span class="line">- 千分位範例：1000000000 → 1,000,000,000</span><br><span class="line">- 日期格式範例：</span><br><span class="line">  - 原始值：&quot;0760316&quot; → 民國76年03月16日</span><br><span class="line">  - 原始值：&quot;1131106&quot; → 民國113年11月06日</span><br><span class="line">  - 若日期為空字串，請略去該行</span><br><span class="line"></span><br><span class="line">請依照上述規則輸出，不需要額外補充說明文字。</span><br></pre></td></tr></table></figure>
+<img src="/2025/05/19/build-dify-flow-without-code/05.png" class="" title="匯總查統編及公司名稱的資料的Prompt">
 
 <p>2.如果「LLM」節點輸出內容包含「請重新查詢」，則要求使用者重新輸入</p>
 <p>3.透過「LLM」節點來取出「公司名稱」及「統一編號」</p>
 <p>4.透過「HTTP」節點，呼叫「公司登記基本資料-應用三」來取得公司資訊</p>
 <p>5.用「公司名稱」透過文件檢索的方式來取得是否在<strong>2,000 大企業</strong>之中的<strong>行業排名</strong></p>
 <p>6.將所有資訊組合起來，透過「LLM」節點整理後，輸出給使用者</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">請根據以下公司資訊與比對資料，完成格式化資訊整合。</span><br><span class="line">### 公司資訊</span><br><span class="line">&#123;&#123;#step1的結果.text#&#125;&#125;</span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">### 網頁資料</span><br><span class="line">&#123;&#123;#Search網頁的結果.body#&#125;&#125;</span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">### 營業項目</span><br><span class="line">&#123;&#123;#公司登記基本資料-應用三HTTP結果.body#&#125;&#125;</span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">### 2千大資料</span><br><span class="line">&#123;&#123;#2,000 大企業文件檢索結果#&#125;&#125;</span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 任務說明：</span><br><span class="line">1. 輸出公司資訊原始內容（保持欄位順序與格式）。</span><br><span class="line">2. 若「公司資訊中的公司名稱」與「網頁資料的 name 欄位」完全相同（不含括號、空格），則輸出：</span><br><span class="line">&gt; 員工數：&#123;employeeCountDesc&#125;（資料來源：網頁）</span><br><span class="line">否則輸出：</span><br><span class="line">&gt; 員工數：無資料（資料來源：網頁）</span><br><span class="line">3. 若「公司資訊中的公司名稱」與「2千大資料中的公司名稱」相符（可允許部分簡化，如「華邦電子股份有限公司」與「華邦電子」視為相符），則輸出：</span><br><span class="line">行業排名：&#123;行業排名&#125;</span><br><span class="line">產業別：&#123;產業別&#125;</span><br><span class="line">否則輸出：</span><br><span class="line">不在2千大排名之中</span><br><span class="line">4. 輸出營業項目列表,</span><br><span class="line">  - &#123;Business_Item&#125;:&#123;Business_Item_Desc&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 請注意：</span><br><span class="line">- 僅輸出整合結果，**不得解釋判斷過程**</span><br><span class="line">- 禁止使用任何自然語言說明、分析、說明性括號（例如：「比對結果」、「呈現為」、「編碼前為」…等敘述）</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line">### 輸出範例格式：</span><br><span class="line">統一編號：22425662</span><br><span class="line">公司名稱：叡揚資訊股份有限公司</span><br><span class="line">公司狀態：核准設立</span><br><span class="line">負責人：張培鏞</span><br><span class="line">資本總額：1,000,000,000 元</span><br><span class="line">實收資本額：353,801,400 元</span><br><span class="line">公司地址：臺北市中山區德惠街9號5樓</span><br><span class="line">登記機關：臺北市政府</span><br><span class="line">設立日期：民國76年03月16日</span><br><span class="line">最後核准變更日期：民國113年11月06日</span><br><span class="line">員工數：800人（資料來源：網頁）</span><br><span class="line">行業排名：31</span><br><span class="line">產業別：軟體</span><br><span class="line">營業項目:</span><br><span class="line">  - I301010｜資訊軟體服務業</span><br><span class="line">只輸出上方格式，不要加入其他說明。</span><br></pre></td></tr></table></figure>
+<img src="/2025/05/19/build-dify-flow-without-code/06.png" class="" title="匯整所有公司資訊的Prompt">
 
 <p>改善後的 Dify 的流程畫面如下:</p>
 <img src="/2025/05/19/build-dify-flow-without-code/02.png" class="" title="代碼執行">
-
-<h3 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h3><p>以上我們成功將原本仰賴「代碼執行」節點的設計，轉換為以 LLM 為核心、自然語言驅動的架構。<br>這不僅大幅降低了維護與學習門檻，讓非工程背景的同仁也能輕鬆參與流程設計，更讓整體查詢流程變得直覺、彈性且易於擴充。<br>最終流程可以簡化為三步驟：準備資料 → 交由 LLM 推論處理 → 直接輸出結果，大幅提升可維護性與開發效率。</p>
+<p>先將資料準備好，再透過 LLM 進行匯整，整個流程簡潔了很多。</p>
+<h3 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h3><p>以上我們成功將原本仰賴「代碼執行」節點的設計，轉換為以 LLM 為核心、自然語言驅動的架構。<br>這不僅大幅降低了維護與學習門檻，讓非工程背景的同仁也能輕鬆參與流程設計，更讓整體查詢流程變得直覺、彈性且易於擴充。<br>最終流程可以簡化為三步驟：準備資料 → 交由 LLM 推論處理 → 直接輸出結果，大幅提升可維護性與開發效率。<br>以上提供的 Prompt 範例，僅供參考，實際使用時請根據需求進行調整。</p>
 <h3 id="文件檢索查詢問題分享"><a href="#文件檢索查詢問題分享" class="headerlink" title="文件檢索查詢問題分享"></a>文件檢索查詢問題分享</h3><p>問題說明:<br>在<strong>2,000 大企業</strong>文件檢索時，如果用公司全稱(華邦電子股份有限公司)，查出的華邦電子不在第一筆的話，如下圖，</p>
 <img src="/2025/05/19/build-dify-flow-without-code/03.png" class="" title="公司全稱查詢">
 
@@ -256,10 +258,6 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">查詢企業資訊</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">GPT 自動處理資料</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -6851,10 +6849,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">查詢企業資訊</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">GPT 自動處理資料</a>
               </li>
              
               <li class="article-tag-list-item">
