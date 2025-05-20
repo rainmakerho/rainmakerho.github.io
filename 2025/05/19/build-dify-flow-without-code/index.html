@@ -19,14 +19,16 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://rainmakerho.github.io/2025/05/19/build-dify-flow-without-code/01.png">
 <meta property="og:image" content="https://rainmakerho.github.io/2025/05/19/build-dify-flow-without-code/05.png">
+<meta property="og:image" content="https://rainmakerho.github.io/2025/05/19/build-dify-flow-without-code/09.png">
 <meta property="og:image" content="https://rainmakerho.github.io/2025/05/19/build-dify-flow-without-code/06.png">
+<meta property="og:image" content="https://rainmakerho.github.io/2025/05/19/build-dify-flow-without-code/10.png">
 <meta property="og:image" content="https://rainmakerho.github.io/2025/05/19/build-dify-flow-without-code/02.png">
 <meta property="og:image" content="https://rainmakerho.github.io/2025/05/19/build-dify-flow-without-code/07.png">
 <meta property="og:image" content="https://rainmakerho.github.io/2025/05/19/build-dify-flow-without-code/08.png">
 <meta property="og:image" content="https://rainmakerho.github.io/2025/05/19/build-dify-flow-without-code/03.png">
 <meta property="og:image" content="https://rainmakerho.github.io/2025/05/19/build-dify-flow-without-code/04.png">
 <meta property="article:published_time" content="2025-05-19T03:52:45.000Z">
-<meta property="article:modified_time" content="2025-05-20T01:03:53.020Z">
+<meta property="article:modified_time" content="2025-05-20T01:46:29.400Z">
 <meta property="article:author" content="亂馬客">
 <meta property="article:tag" content="Dify 流程設計">
 <meta property="article:tag" content="零程式碼 AI">
@@ -213,17 +215,22 @@
 <img src="/2025/05/19/build-dify-flow-without-code/01.png" class="" title="代碼執行">
 
 <p>以上「代碼執行」節點的程式碼，雖然不會很複雜，但對非工程背景的成員來說，還是會有些難度。<br>如果將這些內容交由 LLM 來處理，那麼流程會變得更加簡單、直覺。</p>
-<h3 id="Dify-改善流程"><a href="#Dify-改善流程" class="headerlink" title="Dify 改善流程"></a>Dify 改善流程</h3><p>1.直接呼叫「公司登記基本資料-應用一」及「公司登記關鍵字查詢」將結果透過「LLM」節點來判斷是否有找到正確的公司資訊</p>
+<h3 id="Dify-改善流程"><a href="#Dify-改善流程" class="headerlink" title="Dify 改善流程"></a>Dify 改善流程</h3><p>1.直接呼叫「公司登記基本資料-應用一」及「公司登記關鍵字查詢」將結果透過「LLM」節點來判斷是否有找到正確的公司資訊，Prompt 如下，</p>
 <img src="/2025/05/19/build-dify-flow-without-code/05.png" class="" title="匯總查統編及公司名稱的資料的Prompt">
 
 <p>2.如果「LLM」節點輸出內容包含「請重新查詢」，則要求使用者重新輸入</p>
-<p>3.透過「LLM」節點來取出「公司名稱」及「統一編號」</p>
+<p>3.透過「LLM」節點來取出「公司名稱」及「統一編號」<br>在 Dify 從開始到取出「公司名稱」及「統一編號」，靠 LLM 節點來處理，如下圖:</p>
+<img src="/2025/05/19/build-dify-flow-without-code/09.png" class="" title="Dify 前半段流程">
+
 <p>4.透過「HTTP」節點，呼叫「公司登記基本資料-應用三」來取得公司資訊</p>
 <p>5.用「公司名稱」透過文件檢索的方式來取得是否在<strong>2,000 大企業</strong>之中的<strong>行業排名</strong></p>
-<p>6.將所有資訊組合起來，透過「LLM」節點整理後，輸出給使用者</p>
+<p>6.將所有資訊組合起來，透過「LLM」節點整理後，輸出給使用者，Prompt 如下，</p>
 <img src="/2025/05/19/build-dify-flow-without-code/06.png" class="" title="匯整所有公司資訊的Prompt">
 
-<p>改善後的 Dify 的流程畫面如下:</p>
+<p>Dify 步驟 4 ~ 6 的流程畫面如下:</p>
+<img src="/2025/05/19/build-dify-flow-without-code/10.png" class="" title="Dify 後半段流程">
+
+<p>改善後的整個 Dify 流程畫面如下:</p>
 <img src="/2025/05/19/build-dify-flow-without-code/02.png" class="" title="代碼執行">
 <p>先將資料準備好，再透過 LLM 進行匯整，整個流程簡潔了很多。<br>以下為用「統一編號」來查詢的企業資訊，如下圖，</p>
 <img src="/2025/05/19/build-dify-flow-without-code/07.png" class="" title="以統編來查詢">
