@@ -21,10 +21,12 @@
 <meta property="og:image" content="https://rainmakerho.github.io/2025/05/19/build-dify-flow-without-code/05.png">
 <meta property="og:image" content="https://rainmakerho.github.io/2025/05/19/build-dify-flow-without-code/06.png">
 <meta property="og:image" content="https://rainmakerho.github.io/2025/05/19/build-dify-flow-without-code/02.png">
+<meta property="og:image" content="https://rainmakerho.github.io/2025/05/19/build-dify-flow-without-code/07.png">
+<meta property="og:image" content="https://rainmakerho.github.io/2025/05/19/build-dify-flow-without-code/08.png">
 <meta property="og:image" content="https://rainmakerho.github.io/2025/05/19/build-dify-flow-without-code/03.png">
 <meta property="og:image" content="https://rainmakerho.github.io/2025/05/19/build-dify-flow-without-code/04.png">
 <meta property="article:published_time" content="2025-05-19T03:52:45.000Z">
-<meta property="article:modified_time" content="2025-05-19T08:50:07.544Z">
+<meta property="article:modified_time" content="2025-05-20T01:03:53.020Z">
 <meta property="article:author" content="亂馬客">
 <meta property="article:tag" content="Dify 流程設計">
 <meta property="article:tag" content="零程式碼 AI">
@@ -223,7 +225,12 @@
 
 <p>改善後的 Dify 的流程畫面如下:</p>
 <img src="/2025/05/19/build-dify-flow-without-code/02.png" class="" title="代碼執行">
-<p>先將資料準備好，再透過 LLM 進行匯整，整個流程簡潔了很多。</p>
+<p>先將資料準備好，再透過 LLM 進行匯整，整個流程簡潔了很多。<br>以下為用「統一編號」來查詢的企業資訊，如下圖，</p>
+<img src="/2025/05/19/build-dify-flow-without-code/07.png" class="" title="以統編來查詢">
+
+<p>以下為用「公司名稱」來查詢的企業資訊，如下圖，</p>
+<img src="/2025/05/19/build-dify-flow-without-code/08.png" class="" title="以名稱來查詢">
+
 <h3 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h3><p>以上我們成功將原本仰賴「代碼執行」節點的設計，轉換為以 LLM 為核心、自然語言驅動的架構。<br>這不僅大幅降低了維護與學習門檻，讓非工程背景的同仁也能輕鬆參與流程設計，更讓整體查詢流程變得直覺、彈性且易於擴充。<br>最終流程可以簡化為三步驟：準備資料 → 交由 LLM 推論處理 → 直接輸出結果，大幅提升可維護性與開發效率。<br>以上提供的 Prompt 範例，僅供參考，實際使用時請根據需求進行調整。</p>
 <h3 id="文件檢索查詢問題分享"><a href="#文件檢索查詢問題分享" class="headerlink" title="文件檢索查詢問題分享"></a>文件檢索查詢問題分享</h3><p>問題說明:<br>在<strong>2,000 大企業</strong>文件檢索時，如果用公司全稱(華邦電子股份有限公司)，查出的華邦電子不在第一筆的話，如下圖，</p>
 <img src="/2025/05/19/build-dify-flow-without-code/03.png" class="" title="公司全稱查詢">
