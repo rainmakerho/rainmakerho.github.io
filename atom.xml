@@ -6,7 +6,7 @@
   <link href="https://rainmakerho.github.io/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2025-05-20T01:46:29.400Z</updated>
+  <updated>2025-05-21T02:47:03.593Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,46 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Apple Silicon Mac 上用 Docker 跑 SQL Server？Colima、Podman 實戰相容性解析</title>
+    <link href="https://rainmakerho.github.io/2025/05/21/apple-silicon-mac-m4-sql-server-docker-colima-podman/"/>
+    <id>https://rainmakerho.github.io/2025/05/21/apple-silicon-mac-m4-sql-server-docker-colima-podman/</id>
+    <published>2025-05-21T01:44:43.000Z</published>
+    <updated>2025-05-21T02:47:03.593Z</updated>
+    
+    <content type="html"><![CDATA[<p>隨著 Apple Silicon（M1、M2、M3、M4）筆電普及，越來越多開發者在 Mac 上執行 Docker，尤其是企業常用的 Microsoft SQL Server（mssql）container。<br>但<strong>許多人在 ARM 架構下安裝 mssql server 時，常常遇到平台不符（platform mismatch）警告、Container 直接啟動失敗</strong>等狀況。</p><p>這篇將深入解析：</p><ul><li><strong>官方 mssql-server image 是否支援 ARM</strong></li><li><strong>Colima、Podman 在 Apple Silicon 上跑 amd64 image 的差異</strong></li><li><strong>QEMU 模擬與 VM 架構調整</strong></li><li><strong>最佳開發實務建議</strong></li></ul><h3 id="微軟-SQL-Server-Docker-image-支援哪些平台？"><a href="#微軟-SQL-Server-Docker-image-支援哪些平台？" class="headerlink" title="微軟 SQL Server Docker image 支援哪些平台？"></a>微軟 SQL Server Docker image 支援哪些平台？</h3><p>在 <a href="https://hub.docker.com/r/microsoft/mssql-server">dockerhub mssql-server</a> 中，它的架構都是<strong>amd64</strong></p><p>以下使用 <a href="https://github.com/abiosoft/colima">colima</a> 及 <a href="https://podman.io/docs/installation">podman</a> 來安裝 mssql-server 並進行測試。</p><h3 id="使用-colima"><a href="#使用-colima" class="headerlink" title="使用 colima"></a>使用 <a href="https://github.com/abiosoft/colima">colima</a></h3><p>在 M4 上直接使用 <a href="https://github.com/abiosoft/colima">colima</a> 來執行 mssql ，會發生以下的警告訊息:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WARNING: The requested image&#x27;s platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested</span><br></pre></td></tr></table></figure><p>然後 docker 就結束了，mssql server 也沒有啟動成功。<br>這是因為 Colima VM 預設是 <strong>arm64</strong> 架構，直接執行 amd64 image 會需要 QEMU 虛擬化，若 QEMU 沒安裝或沒正確啟用，container 會啟動失敗。<br>建議重建 Colima VM 並指定 x86_64 架構，這樣所有 amd64 image 都可直接啟動且較為穩定。<br>指令如下：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">colima stop</span><br><span class="line">colima delete</span><br><span class="line">colima start --<span class="built_in">arch</span> x86_64</span><br></pre></td></tr></table></figure><p>如果出現</p><blockquote><p>FATA[0000] error starting vm: error at ‘creating and starting’: qemu is required to emulate x86_64: qemu-img not found, run ‘brew install qemu’ to install</p></blockquote><p>這是因為 qemu 沒有安裝，我們可以透過 brew 來安裝 qemu:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install qemu</span><br></pre></td></tr></table></figure><p>然後再啟動 colima:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">colima start --<span class="built_in">arch</span> x86_64</span><br></pre></td></tr></table></figure><p>下次要啟動只要執行 <code>colima start</code> 即可。<br>執行<code>colima status</code>可以發現，目前已經是<strong>x86_64</strong>架構，如下:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">INFO[0000] colima is running using macOS Virtualization.Framework</span><br><span class="line">INFO[0000] <span class="built_in">arch</span>: x86_64</span><br><span class="line">INFO[0000] runtime: docker</span><br><span class="line">INFO[0000] mountType: sshfs</span><br><span class="line">INFO[0000] socket: unix:///Users/rainmaker_ho/.colima/default/docker.sock</span><br></pre></td></tr></table></figure><p>再來使用 docker 執行 mssql-server (請調整密碼)，就可以正常啟動了:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker run -e <span class="string">&quot;ACCEPT_EULA=Y&quot;</span> -e <span class="string">&quot;MSSQL_SA_PASSWORD=p@ssw0rd&quot;</span> \</span><br><span class="line">   -p 1433:1433 --name sql1 --hostname sql1 \</span><br><span class="line">   -d \</span><br><span class="line">   mcr.microsoft.com/mssql/server:2025-latest</span><br></pre></td></tr></table></figure><h3 id="使用-podman"><a href="#使用-podman" class="headerlink" title="使用 podman"></a>使用 <a href="https://podman.io/docs/installation">podman</a></h3><p><a href="https://podman.io/docs/installation">podman</a> 執行<code>podman machine start</code>後，執行<code>podman info</code>可以發現它的架構是<strong>linux&#x2F;arm64</strong>, 如下:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">version:</span><br><span class="line">  APIVersion: 5.5.0</span><br><span class="line">  BuildOrigin: <span class="string">&#x27;Copr: packit/containers-podman-26126&#x27;</span></span><br><span class="line">  Built: 1747094400</span><br><span class="line">  BuiltTime: Tue May 13 08:00:00 2025</span><br><span class="line">  GitCommit: 0dbcb51477ee7ab8d3b47d30facf71fc38bb0c98</span><br><span class="line">  GoVersion: go1.23.8</span><br><span class="line">  Os: linux</span><br><span class="line">  OsArch: linux/arm64</span><br><span class="line">  Version: 5.5.0</span><br></pre></td></tr></table></figure><p>所以透過<a href="https://podman.io/docs/installation">podman</a>來執行 mssql-server (請調整密碼):</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">podman run -e <span class="string">&quot;ACCEPT_EULA=Y&quot;</span> -e <span class="string">&quot;MSSQL_SA_PASSWORD=p@ssw0rd&quot;</span> \</span><br><span class="line">   -p 1433:1433 --name sql1 --hostname sql1 \</span><br><span class="line">   -d \</span><br><span class="line">   mcr.microsoft.com/mssql/server:2025-latest</span><br></pre></td></tr></table></figure><p>會出現以下的警告訊息:</p><blockquote><p>WARNING: image platform (linux&#x2F;amd64) does not match the expected platform (linux&#x2F;arm64)</p></blockquote><p>mssql-server 還是可以正常啟動（QEMU 自動模擬），執行<code>podman ps</code>可驗證服務已啟動</p><h3 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h3><p><a href="https://podman.io/docs/installation">podman</a> 無需特別處理架構，自動啟動 QEMU，可直接跑 amd64 image。<br><a href="https://github.com/abiosoft/colima">colima</a> 需明確指定 VM 架構為 x86_64 並重建 VM，否則容易失敗。<br>整體而言，Podman 對於 Apple Silicon (M1&#x2F;M2&#x2F;M3&#x2F;M4) 用戶體驗更方便！</p><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://github.com/abiosoft/colima">colima</a><br><a href="https://podman.io/docs/installation">podman</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;隨著 Apple Silicon（M1、M2、M3、M4）筆電普及，越來越多開發者在 Mac 上執行 Docker，尤其是企業常用的 Microsoft SQL Server（mssql）container。&lt;br&gt;但&lt;strong&gt;許多人在 ARM 架構下安裝 mssql</summary>
+      
+    
+    
+    
+    
+    <category term="mac" scheme="https://rainmakerho.github.io/tags/mac/"/>
+    
+    <category term="docker" scheme="https://rainmakerho.github.io/tags/docker/"/>
+    
+    <category term="apple silicon" scheme="https://rainmakerho.github.io/tags/apple-silicon/"/>
+    
+    <category term="m4" scheme="https://rainmakerho.github.io/tags/m4/"/>
+    
+    <category term="colima" scheme="https://rainmakerho.github.io/tags/colima/"/>
+    
+    <category term="podman" scheme="https://rainmakerho.github.io/tags/podman/"/>
+    
+    <category term="sql server" scheme="https://rainmakerho.github.io/tags/sql-server/"/>
+    
+    <category term="qemu" scheme="https://rainmakerho.github.io/tags/qemu/"/>
+    
+    <category term="arm64" scheme="https://rainmakerho.github.io/tags/arm64/"/>
+    
+    <category term="amd64" scheme="https://rainmakerho.github.io/tags/amd64/"/>
+    
+  </entry>
   
   <entry>
     <title>以 LLM 為核心打造零程式碼查詢流程：簡化 Dify 流程設計、讓非工程人員也能上手</title>
@@ -644,32 +684,6 @@
     <category term="Azure Active Directory" scheme="https://rainmakerho.github.io/tags/Azure-Active-Directory/"/>
     
     <category term="OpenIdConnect" scheme="https://rainmakerho.github.io/tags/OpenIdConnect/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>這個作業已經被取消，因為這個電腦受到限制</title>
-    <link href="https://rainmakerho.github.io/2025/01/15/windows-this-operation-has-been-cancelled-due-to-restrictions/"/>
-    <id>https://rainmakerho.github.io/2025/01/15/windows-this-operation-has-been-cancelled-due-to-restrictions/</id>
-    <published>2025-01-15T02:51:22.000Z</published>
-    <updated>2025-01-15T02:57:56.454Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>開啟 Outlook 時，噴「Outlook 這個作業已經被取消，因為這個電腦受到限制。請連絡您的系統管理員」的錯誤。<br>但是用安全模式來開啟又是可以的<code>outlook.exe /safe</code> 。</p><h3 id="解決"><a href="#解決" class="headerlink" title="解決"></a>解決</h3><p>後來查到<a href="https://medium.com/@breich_84283/fix-this-operation-has-been-cancelled-due-to-restrictions-in-effect-on-this-computer-error-ec54825b30f">Fix “This operation has been cancelled due to restrictions in effect on this computer” Error</a>。<br>將機碼<br><code>\HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\</code><br>裡面的 <strong>DisallowRun</strong> Key ，刪除掉，就可以了。</p><ul><li>感謝 Terry 的回饋。</li></ul><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://medium.com/@breich_84283/fix-this-operation-has-been-cancelled-due-to-restrictions-in-effect-on-this-computer-error-ec54825b30f">Fix “This operation has been cancelled due to restrictions in effect on this computer” Error</a><br><a href="https://www.partitionwizard.com/clone-disk/this-operation-has-been-cancelled-due-to-restrictions.html">This Operation Has Been Cancelled Due to Restrictions?</a><br><a href="https://www.youtube.com/watch?v=rtCILYzvt4Y">This operation has been cancelled due to restrictions in effect on this computer</a></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;開啟 Outlook 時，噴「Outlook 這個作業已經被取消，因為這個電腦受到限制。請連絡您的系統管理員」的錯誤。&lt;br&gt;但是用安全模式</summary>
-      
-    
-    
-    
-    
-    <category term="Windows" scheme="https://rainmakerho.github.io/tags/Windows/"/>
-    
-    <category term="Outlook" scheme="https://rainmakerho.github.io/tags/Outlook/"/>
-    
-    <category term="operation has been cancelled" scheme="https://rainmakerho.github.io/tags/operation-has-been-cancelled/"/>
     
   </entry>
   
