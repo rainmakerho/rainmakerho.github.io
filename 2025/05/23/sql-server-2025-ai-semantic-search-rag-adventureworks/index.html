@@ -10,12 +10,12 @@
   <link rel="dns-prefetch" href="https://rainmakerho.github.io">
   <title>SQL Server 2025 實戰：資料庫內建 AI 向量語義搜尋與 RAG 教學（以 AdventureWorks 為例） | 亂馬客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言在 AI 驅動的時代，資料庫不僅僅是儲存與查詢的工具，還是智能運算的核心。過去想要在資料庫實作語義搜尋（Semantic Search）或 RAG（Retrieval-Augmented Generation）時，往往必須額外串接多個外部服務與資料庫：  需額外部署如 Pinecone、Qdrant 這類向量資料庫，儲存語意向量（embedding）。 還要串接 OpenAI、Azure Op">
+  <meta name="description" content="前言在 AI 驅動的時代，資料庫不僅僅是儲存與查詢的工具，還是智能運算的核心。過去想要在資料庫實作語義搜尋（Semantic Search）或 RAG（Retrieval-Augmented Generation）時，往往必須額外串接多個外部服務與資料庫，還需要資料權限控管：  需額外部署如 Pinecone、Qdrant 這類向量資料庫，儲存語意向量（embedding）。 還要串接 OpenA">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SQL Server 2025 實戰：資料庫內建 AI 向量語義搜尋與 RAG 教學（以 AdventureWorks 為例）">
 <meta property="og:url" content="https://rainmakerho.github.io/2025/05/23/sql-server-2025-ai-semantic-search-rag-adventureworks/index.html">
 <meta property="og:site_name" content="亂馬客">
-<meta property="og:description" content="前言在 AI 驅動的時代，資料庫不僅僅是儲存與查詢的工具，還是智能運算的核心。過去想要在資料庫實作語義搜尋（Semantic Search）或 RAG（Retrieval-Augmented Generation）時，往往必須額外串接多個外部服務與資料庫：  需額外部署如 Pinecone、Qdrant 這類向量資料庫，儲存語意向量（embedding）。 還要串接 OpenAI、Azure Op">
+<meta property="og:description" content="前言在 AI 驅動的時代，資料庫不僅僅是儲存與查詢的工具，還是智能運算的核心。過去想要在資料庫實作語義搜尋（Semantic Search）或 RAG（Retrieval-Augmented Generation）時，往往必須額外串接多個外部服務與資料庫，還需要資料權限控管：  需額外部署如 Pinecone、Qdrant 這類向量資料庫，儲存語意向量（embedding）。 還要串接 OpenA">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://rainmakerho.github.io/2025/05/23/sql-server-2025-ai-semantic-search-rag-adventureworks/01.png">
 <meta property="og:image" content="https://rainmakerho.github.io/2025/05/23/sql-server-2025-ai-semantic-search-rag-adventureworks/02.png">
@@ -27,7 +27,7 @@
 <meta property="og:image" content="https://rainmakerho.github.io/2025/05/23/sql-server-2025-ai-semantic-search-rag-adventureworks/08.png">
 <meta property="og:image" content="https://rainmakerho.github.io/2025/05/23/sql-server-2025-ai-semantic-search-rag-adventureworks/09.png">
 <meta property="article:published_time" content="2025-05-23T01:36:19.000Z">
-<meta property="article:modified_time" content="2025-05-23T04:35:54.314Z">
+<meta property="article:modified_time" content="2025-05-25T02:43:02.327Z">
 <meta property="article:author" content="亂馬客">
 <meta property="article:tag" content="OpenAI">
 <meta property="article:tag" content="RAG">
@@ -193,14 +193,15 @@
     </header>
     
     <div class="article-entry" itemprop="articleBody">
-         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 AI 驅動的時代，資料庫不僅僅是儲存與查詢的工具，還是智能運算的核心。過去想要在資料庫實作語義搜尋（Semantic Search）或 RAG（Retrieval-Augmented Generation）時，往往必須額外串接多個外部服務與資料庫：</p>
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 AI 驅動的時代，資料庫不僅僅是儲存與查詢的工具，還是智能運算的核心。過去想要在資料庫實作語義搜尋（Semantic Search）或 RAG（Retrieval-Augmented Generation）時，往往必須額外串接多個外部服務與資料庫，還需要資料權限控管：</p>
 <ul>
 <li>需額外部署如 Pinecone、Qdrant 這類向量資料庫，儲存語意向量（embedding）。</li>
 <li>還要串接 OpenAI、Azure OpenAI 等等 Embedding API，產生向量。</li>
 <li>為了資料同步，要設計 ETL 串接資料庫與向量資料庫，開發與維護門檻極高。</li>
+<li>通常 RAG Search，還需要透過權限控管去 Filter 資料是否有權限閱讀，這些過程都需要額外開發與維護。</li>
 </ul>
 <blockquote>
-<p>現在，SQL Server 2025 直接把這些現代 AI 能力內建進來！<br>你可以用 SQL 原生支援外部 AI 模型呼叫、向量資料型別、語義相似度查詢與嵌入生成，所有流程都在資料庫內部安全完成，無須維護多套系統。</p>
+<p>現在，SQL Server 2025 直接把這些現代 AI 能力內建進來！<br>你可以用 SQL 原生支援外部 AI 模型呼叫、向量資料型別、語義相似度查詢與嵌入生成，所有流程都在資料庫內部安全地完成，無須維護多套系統。</p>
 </blockquote>
 <p>接下來先分別介紹這些功能，最後再整個整合起來。</p>
 <h3 id="用-sp-invoke-external-rest-endpoint-呼叫-OpenAI-Chat"><a href="#用-sp-invoke-external-rest-endpoint-呼叫-OpenAI-Chat" class="headerlink" title="用 sp_invoke_external_rest_endpoint 呼叫 OpenAI Chat"></a>用 sp_invoke_external_rest_endpoint 呼叫 OpenAI Chat</h3><p>SQL Server 2025 新增的 <code>sp_invoke_external_rest_endpoint</code>，可在 T-SQL 直接呼叫外部 REST API，像打 OpenAI API 這樣：<br>使用之前，請先確定有啟用<code>external rest endpoint enabled</code>設定，如下:</p>
@@ -248,7 +249,7 @@
 
 <img src="/2025/05/23/sql-server-2025-ai-semantic-search-rag-adventureworks/07.png" class="" title="AI_GENERATE_EMBEDDINGS">
 
-<h3 id="AdventureWorks2022：完整語義搜尋實作"><a href="#AdventureWorks2022：完整語義搜尋實作" class="headerlink" title="AdventureWorks2022：完整語義搜尋實作"></a>AdventureWorks2022：完整語義搜尋實作</h3><p>最後，我們來實作一個完整的語義搜尋範例，使用 AdventureWorks2022 資料庫，如下:</p>
+<h3 id="AdventureWorks2022：完整語義搜尋實作"><a href="#AdventureWorks2022：完整語義搜尋實作" class="headerlink" title="AdventureWorks2022：完整語義搜尋實作"></a>AdventureWorks2022：完整語義搜尋實作</h3><p>最後，我們來實作一個完整的語義搜尋範例，使用 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-tw/sql/samples/adventureworks-install-configure?view=sql-server-ver16&tabs=ssms">AdventureWorks2022 資料庫</a>，如下:</p>
 <h5 id="新增欄位存-embedding"><a href="#新增欄位存-embedding" class="headerlink" title="新增欄位存 embedding"></a>新增欄位存 embedding</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 加入要放 Chunk &amp; 向量的欄位</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> [Production].[Product]</span><br><span class="line">    <span class="keyword">ADD</span> embeddings VECTOR (<span class="number">1536</span>),</span><br><span class="line">        chunk NVARCHAR (<span class="number">2000</span>);</span><br></pre></td></tr></table></figure>
 
 <ul>
@@ -263,7 +264,7 @@
 
 <img src="/2025/05/23/sql-server-2025-ai-semantic-search-rag-adventureworks/09.png" class="" title="查詢「紅色腳踏車」">
 
-<h3 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h3><p>以往要做語義搜尋、RAG，常要額外建向量資料庫、自己串 embedding API 並搞資料同步。<br>SQL Server 2025 直接將 AI 語義搜尋變成 SQL 查詢本身的能力，不僅開發更快、維運更安全，資料不離開資料庫，現代 AI 搜尋的所有需求都能一站搞定！</p>
+<h3 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h3><p>以往要做語義搜尋、RAG，常要額外建向量資料庫、自己串 embedding API 並搞資料同步，還要處理資料權限控管。<br>SQL Server 2025 直接將 AI 語義搜尋變成 SQL 查詢本身的能力，不僅開發更快、維運更安全，資料不離開資料庫，現代 AI 搜尋的所有需求都能一站搞定！</p>
 <h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/sql/t-sql/statements/create-external-model-transact-sql?view=sql-server-ver17">CREATE EXTERNAL MODEL</a><br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-invoke-external-rest-endpoint-transact-sql?view=fabric&tabs=request-headers">sp_invoke_external_rest_endpoint</a><br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/sql/t-sql/functions/ai-generate-chunks-transact-sql?view=sql-server-ver17">AI_GENERATE_CHUNKS</a><br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-tw/sql/t-sql/functions/ai-generate-embeddings-transact-sql?view=sql-server-ver17">AI_GENERATE_EMBEDDINGS</a><br><a target="_blank" rel="noopener" href="https://github.com/AzureSQLDB/SQLin5/blob/main/newAIinSQL2025/getting-started-with-ai.md">Getting started with AI in SQL Server 2025 on Windows</a></p>
    
     </div>
