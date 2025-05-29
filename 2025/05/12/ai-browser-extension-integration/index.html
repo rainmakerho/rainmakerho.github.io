@@ -20,9 +20,10 @@
 <meta property="og:image" content="https://rainmakerho.github.io/2025/05/12/ai-browser-extension-integration/04.png">
 <meta property="og:image" content="https://rainmakerho.github.io/2025/05/12/ai-browser-extension-integration/01.png">
 <meta property="og:image" content="https://rainmakerho.github.io/2025/05/12/ai-browser-extension-integration/02.png">
+<meta property="og:image" content="https://rainmakerho.github.io/2025/05/12/ai-browser-extension-integration/05.png">
 <meta property="og:image" content="https://rainmakerho.github.io/2025/05/12/ai-browser-extension-integration/03.png">
 <meta property="article:published_time" content="2025-05-12T06:40:53.000Z">
-<meta property="article:modified_time" content="2025-05-16T05:52:48.127Z">
+<meta property="article:modified_time" content="2025-05-29T02:19:36.181Z">
 <meta property="article:author" content="亂馬客">
 <meta property="article:tag" content="AI整合">
 <meta property="article:tag" content="LangChain">
@@ -190,6 +191,8 @@
 <p>1.<a href="../ai-browser-extension-context-bridge">為什麼 AI 工具需要瀏覽器擴充功能來補全 Web 背景？</a></p>
 <p>2.<a href="../wxt-langchain-ai-sidepanel-chrome-extension">如何用 WXT 和 LangChain 快速打造具備 SidePanel 的 AI Chrome 擴充功能</a></p>
 <p>3.<a href="../../../05/14/optimize-sidepanel-ui-for-chatbot-interface-with-llm">優化 SidePanel 的 UI，將其轉變為對話機器人的界面，並探索更多與 LLM 結合的可能性</a></p>
+<p>4.<a href="../../../05/29/ai-autofill-browser-extension/">AI 自動填表，一鍵搞定！最強 Browser Extension 全教學</a></p>
+<h3 id="結果"><a href="#結果" class="headerlink" title="結果"></a>結果</h3><p>實作完成後，使用者只要點選瀏覽器擴充功能，就可以將當前畫面資訊匯整，並透過 AI 來分析資訊，提供相關建議。</p>
 <p>以下為實際操作畫面：</p>
 <img src="/2025/05/12/ai-browser-extension-integration/04.png" class="" title="網頁匯整">
 <p>整理網頁內容，取出重點項目</p>
@@ -197,10 +200,13 @@
 <p>查詢行事曆</p>
 <img src="/2025/05/12/ai-browser-extension-integration/02.png" class="" title="合約審查">
 <p>貼上合約內容，讓 AI 依系統畫面欄位來提供建議的輸入值，省去使用者一面看合約檔，一面回到系統來輸入內容</p>
+<p>最後取得網頁表單欄位資訊與使用者輸入的內容，透過 AI 來分析，來自動寫回網頁的表單欄位之中，省去使用者手動填寫的時間。<br>例如 Sales 開會帶回來的 Teams 對話記錄，在 SidePanel 中輸入，然後 AI 會分析出會議內容，並自動寫回網頁的表單欄位之中。</p>
+<img src="/2025/05/12/ai-browser-extension-integration/05.png" class="" title="自動寫回網頁的表單欄位之中">
+
 <p>以下為整體執行流程示意圖：</p>
 <img src="/2025/05/12/ai-browser-extension-integration/03.png" class="" title="執行流程">
 
-<h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a target="_blank" rel="noopener" href="https://developer.chrome.com/docs/extensions/get-started?hl=zh-tw">Chrome Browser Extension</a><br><a href="../ai-browser-extension-context-bridge">為什麼 AI 工具需要瀏覽器擴充功能來補全 Web 背景？</a><br><a href="../wxt-langchain-ai-sidepanel-chrome-extension">如何用 WXT 和 LangChain 快速打造具備 SidePanel 的 AI Chrome 擴充功能</a><br><a href="../../../05/14/optimize-sidepanel-ui-for-chatbot-interface-with-llm">優化 SidePanel 的 UI，將其轉變為對話機器人的界面，並探索更多與 LLM 結合的可能性</a><br><a target="_blank" rel="noopener" href="https://github.com/rainmakerho/wxtagent/tree/25.05.01">wxtagent 程式碼</a></p>
+<h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a target="_blank" rel="noopener" href="https://developer.chrome.com/docs/extensions/get-started?hl=zh-tw">Chrome Browser Extension</a><br><a href="../ai-browser-extension-context-bridge">為什麼 AI 工具需要瀏覽器擴充功能來補全 Web 背景？</a><br><a href="../wxt-langchain-ai-sidepanel-chrome-extension">如何用 WXT 和 LangChain 快速打造具備 SidePanel 的 AI Chrome 擴充功能</a><br><a href="../../../05/14/optimize-sidepanel-ui-for-chatbot-interface-with-llm">優化 SidePanel 的 UI，將其轉變為對話機器人的界面，並探索更多與 LLM 結合的可能性</a><br><a target="_blank" rel="noopener" href="https://github.com/rainmakerho/wxtagent/tree/25.05.01">wxtagent 程式碼</a><br><a href="../../../05/29/ai-autofill-browser-extension/">AI 自動填表，一鍵搞定！最強 Browser Extension 全教學</a></p>
    
     </div>
     <div class="article-info article-info-index">
@@ -6907,6 +6913,34 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">AI_GENERATE_EMBEDDINGS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">AI自動填表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">一鍵自動填表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">AI填表神器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">網頁自動填表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">wxt</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">AI自動化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">langchain</a>
               </li>
             
             <div class="clearfix"></div>
