@@ -6,7 +6,7 @@
   <link href="https://rainmakerho.github.io/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2025-05-29T07:54:42.051Z</updated>
+  <updated>2025-05-31T09:06:46.102Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,42 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>GitHub Copilot 串接 Ollama：地端自託管 LLM，守護企業程式碼資安的 AI 補全解決方案</title>
+    <link href="https://rainmakerho.github.io/2025/05/30/github-copilot-ollama-local-llm/"/>
+    <id>https://rainmakerho.github.io/2025/05/30/github-copilot-ollama-local-llm/</id>
+    <published>2025-05-30T13:43:32.000Z</published>
+    <updated>2025-05-31T09:06:46.102Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>AI 編程助手（如 GitHub Copilot、ChatGPT）已成為現代開發團隊必備工具。<br>但對於企業來說，最擔心的就是原始碼外洩：資料送到雲端 AI 推理時，萬一被第三方取得，就可能造成商業機密或客戶資料風險。</p><p>傳統 Copilot 只能連接雲端 LLM，所以之前筆者找到 <a href="https://codegeex.cn/">CodeGeex</a>(北京智谱华章科技股份有限公司) 及 <a href="https://github.com/continuedev/continue">Continue</a> 的 IDE 插件，都有支援地端 LLM，但使用起來，筆者個人而言，還是 GitHub Copilot 比較順手一點。</p><p>但隨著 VSCode 到了 1.99 版增加<a href="https://code.visualstudio.com/updates/v1_99#_bring-your-own-key-byok-preview">Bring Your Own Key (BYOK) Preview</a>功能，現在<strong>Copilot 終於能連接本地地端 Ollama 的 LLM</strong>，讓企業可以完全掌控推理資料流，<strong>原始碼不離開本地／內網，兼顧效率與資安</strong>。</p><h3 id="Copilot-串接地端-Ollama-LLM"><a href="#Copilot-串接地端-Ollama-LLM" class="headerlink" title="Copilot 串接地端 Ollama LLM"></a>Copilot 串接地端 Ollama LLM</h3><h5 id="設定-Ollama"><a href="#設定-Ollama" class="headerlink" title="設定 Ollama"></a>設定 Ollama</h5><p>安裝好 <a href="https://ollama.com/download">Ollama</a> 後，開啟命令視窗，執行<code>ollama serve</code> 把服務跑起來，開啟網頁連到<code>http://localhost:11434/</code> 會顯示 <strong>Ollama is running</strong>。<br>再另開一個命令視窗，執行<code>ollama pull phi4-mini</code>，下載要使用的 Model（這裡以 phi4-mini 為例）。</p><h5 id="設定-GitHub-Copilot"><a href="#設定-GitHub-Copilot" class="headerlink" title="設定 GitHub Copilot"></a>設定 GitHub Copilot</h5><p>下載好模型後，打開 VSCode，於 GitHub Copilot 對話視窗最下方的模型切換選單中，點選**Manage Models…**，如下圖:</p><img src="/2025/05/30/github-copilot-ollama-local-llm/01.png" class="" title="Manage Models"><p>然後選擇<strong>Ollama</strong>，如下圖:</p><img src="/2025/05/30/github-copilot-ollama-local-llm/02.png" class="" title="選擇Ollama"><p>然後就會列出可以使用的 Model，如下圖:</p><img src="/2025/05/30/github-copilot-ollama-local-llm/03.png" class="" title="選擇Models"><p>接下來回到 GitHub Copilot 對話視窗，將模型切換為 phi4-mini 或 codellama，即可開始使用 AI 助手。此時 Copilot 補全將透過本地 LLM 運算，程式碼資料只會流向你自己的電腦／內網，不會外洩到外部雲端。如下圖：</p><img src="/2025/05/30/github-copilot-ollama-local-llm/04.png" class="" title="地端LLM"><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://code.visualstudio.com/updates/v1_99#_bring-your-own-key-byok-preview">VS Code Bring Your Own Key (BYOK) Preview</a><br><a href="https://ollama.com/">Ollama</a><br><a href="https://codegeex.cn/">CodeGeex</a>(北京智谱华章科技股份有限公司)<br><a href="https://github.com/continuedev/continue">Continue</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;AI 編程助手（如 GitHub Copilot、ChatGPT）已成為現代開發團隊必備工具。&lt;br&gt;但對於企業來說，最擔心的就是原始碼外洩</summary>
+      
+    
+    
+    
+    
+    <category term="資安" scheme="https://rainmakerho.github.io/tags/%E8%B3%87%E5%AE%89/"/>
+    
+    <category term="VSCode" scheme="https://rainmakerho.github.io/tags/VSCode/"/>
+    
+    <category term="LLM" scheme="https://rainmakerho.github.io/tags/LLM/"/>
+    
+    <category term="GitHub Copilot" scheme="https://rainmakerho.github.io/tags/GitHub-Copilot/"/>
+    
+    <category term="Ollama" scheme="https://rainmakerho.github.io/tags/Ollama/"/>
+    
+    <category term="AI" scheme="https://rainmakerho.github.io/tags/AI/"/>
+    
+    <category term="AI Code Completion" scheme="https://rainmakerho.github.io/tags/AI-Code-Completion/"/>
+    
+    <category term="地端" scheme="https://rainmakerho.github.io/tags/%E5%9C%B0%E7%AB%AF/"/>
+    
+  </entry>
   
   <entry>
     <title>AI自動填表，一鍵搞定！最強Browser Extension全教學</title>
@@ -677,36 +713,6 @@
     <category term="KM" scheme="https://rainmakerho.github.io/tags/KM/"/>
     
     <category term="Split" scheme="https://rainmakerho.github.io/tags/Split/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>使用 Kernel Memory 的 TextChunker 來幫我們切 Chunk</title>
-    <link href="https://rainmakerho.github.io/2025/02/06/kernel-memory-textchunker/"/>
-    <id>https://rainmakerho.github.io/2025/02/06/kernel-memory-textchunker/</id>
-    <published>2025-02-06T02:40:50.000Z</published>
-    <updated>2025-02-19T07:24:08.785Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="註-Kernel-Memory-0-97-250211-1-已改用-PlainTextChunker"><a href="#註-Kernel-Memory-0-97-250211-1-已改用-PlainTextChunker" class="headerlink" title="註: Kernel Memory 0.97.250211.1 已改用 PlainTextChunker"></a>註: Kernel Memory 0.97.250211.1 已改用 PlainTextChunker</h3><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>使用 RAG(Retrieval-Augmented Generation)需要將內容切成 Chunk,<br>而 <a href="https://github.com/microsoft/kernel-memory">Kernel Memory</a> 的 TextChunker 正可以幫我們來做這件事。</p><h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><p>1.加入<code>Microsoft.KernelMemory</code> Nuget 套件</p><p>2.讀取文件內容後，交給<code>TextChunker</code> 來處理</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> Microsoft.KernelMemory.AI;</span><br><span class="line"><span class="keyword">using</span> Microsoft.KernelMemory.DataFormats.Text;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> <span class="keyword">warning</span> disable KMEXP00</span></span><br><span class="line"><span class="built_in">string</span> contents = System.IO.File.ReadAllText(<span class="string">@&quot;你的文字檔&quot;</span>);</span><br><span class="line">TextChunker.TokenCounter tokenCounter = <span class="keyword">new</span> CL100KTokenizer().CountTokens;</span><br><span class="line"></span><br><span class="line"><span class="comment">//計算字串的Token數</span></span><br><span class="line"><span class="built_in">int</span> tokenCount = tokenCounter(contents);</span><br><span class="line">Console.WriteLine(<span class="string">$&quot;The text contains <span class="subst">&#123;tokenCount&#125;</span> tokens.&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//每行最多100個Token，超過就換到下一行</span></span><br><span class="line"><span class="built_in">int</span> maxTokensPerLine = <span class="number">100</span>;</span><br><span class="line"><span class="keyword">var</span> sentences = TextChunker.SplitPlainTextLines(contents, maxTokensPerLine: maxTokensPerLine, tokenCounter: tokenCounter);</span><br><span class="line">Console.WriteLine(<span class="string">&quot;======= SplitPlainTextLines =======&quot;</span>);</span><br><span class="line"><span class="built_in">int</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">foreach</span> (<span class="keyword">var</span> sentence <span class="keyword">in</span> sentences) &#123;</span><br><span class="line">    Console.WriteLine(<span class="string">$&quot;<span class="subst">&#123;++i&#125;</span>=&gt;<span class="subst">&#123;sentence&#125;</span>&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//每個段落最多400個Token，超過就換到下一個段落</span></span><br><span class="line"><span class="built_in">int</span> maxTokensPerParagraph = <span class="number">400</span>;</span><br><span class="line"><span class="built_in">int</span> overlapTokens = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">var</span> partitions = TextChunker.SplitPlainTextParagraphs(sentences,</span><br><span class="line">    maxTokensPerParagraph: maxTokensPerParagraph, overlapTokens: overlapTokens, tokenCounter: tokenCounter);</span><br><span class="line">Console.WriteLine(<span class="string">&quot;======= SplitPlainTextParagraphs =======&quot;</span>);</span><br><span class="line">i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">foreach</span> (<span class="keyword">var</span> partition <span class="keyword">in</span> partitions)</span><br><span class="line">&#123;</span><br><span class="line">    Console.WriteLine(<span class="string">$&quot;<span class="subst">&#123;++i&#125;</span>=&gt;<span class="subst">&#123;partition&#125;</span>&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//最後將這些 partition 呼叫 Embedding Model ，轉成 Vector 一併儲起來</span></span><br><span class="line"></span><br></pre></td></tr></table></figure><ul><li>註: maxTokensPerLine, maxTokensPerParagraph, overlapTokens 請依文件內容來進行調整。</li></ul><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://github.com/microsoft/kernel-memory">Kernel Memory</a></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;註-Kernel-Memory-0-97-250211-1-已改用-PlainTextChunker&quot;&gt;&lt;a href=&quot;#註-Kernel-Memory-0-97-250211-1-已改用-PlainTextChunker&quot; class=&quot;headerlink&quot;</summary>
-      
-    
-    
-    
-    
-    <category term="Kernel Memory" scheme="https://rainmakerho.github.io/tags/Kernel-Memory/"/>
-    
-    <category term="RAG" scheme="https://rainmakerho.github.io/tags/RAG/"/>
-    
-    <category term="TextChunker" scheme="https://rainmakerho.github.io/tags/TextChunker/"/>
-    
-    <category term="SplitPlainTextLines" scheme="https://rainmakerho.github.io/tags/SplitPlainTextLines/"/>
-    
-    <category term="SplitPlainTextParagraphs" scheme="https://rainmakerho.github.io/tags/SplitPlainTextParagraphs/"/>
     
   </entry>
   
