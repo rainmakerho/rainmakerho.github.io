@@ -6,7 +6,7 @@
   <link href="https://rainmakerho.github.io/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2025-06-27T04:04:00.629Z</updated>
+  <updated>2025-07-01T00:44:18.956Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,40 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>如何在 Roo-Code 和 Kilocode 中設定 Azure OpenAI（AOAI）</title>
+    <link href="https://rainmakerho.github.io/2025/06/30/setup-azure-openai-roo-code-kilocode/"/>
+    <id>https://rainmakerho.github.io/2025/06/30/setup-azure-openai-roo-code-kilocode/</id>
+    <published>2025-06-30T09:50:08.000Z</published>
+    <updated>2025-07-01T00:44:18.956Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>在 VSCode 中使用 Roo-Code 或 Kilocode 的 AI 助理時，<br>可以讓我們設定各種 LLM API Provider，<br>但裡面却没有提供 Azure OpenAI 的設定方式。<br>那麼，如果使用 Azure OpenAI ，要怎麼設定呢？</p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>使用 Azure OpenAI 的 API Provider 設定如下：</p><ol><li>API Provider 請選擇 <strong>OpenAI Compatible</strong></li><li>Base URL 請填写 Azure OpenAI 的完整 URL，例如 <code>https://你的.openai.azure.com/openai/deployments/你的部署名稱/chat/completions?api-version=2025-01-01-preview</code></li><li>API Key 填入 AOAI 的 API Key</li><li>Model 請填入使用的模型名稱，例如 gpt-4.1</li><li>勾選<strong>Use Azure</strong></li></ol><p>如下圖所示:</p><img src="/2025/06/30/setup-azure-openai-roo-code-kilocode/01.png" class="" title="API Provider"><p>之後就可以開始使用 <a href="https://github.com/RooCodeInc/Roo-Code">Roo-Code</a> &#x2F; <a href="https://github.com/Kilo-Org/kilocode">Kilocode</a> AI 助手了。</p><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://github.com/RooCodeInc/Roo-Code">Roo-Code</a><br><a href="https://github.com/Kilo-Org/kilocode">Kilocode</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;在 VSCode 中使用 Roo-Code 或 Kilocode 的 AI 助理時，&lt;br&gt;可以讓我們設定各種 LLM API Provid</summary>
+      
+    
+    
+    
+    
+    <category term="Azure" scheme="https://rainmakerho.github.io/tags/Azure/"/>
+    
+    <category term="VSCode" scheme="https://rainmakerho.github.io/tags/VSCode/"/>
+    
+    <category term="OpenAI" scheme="https://rainmakerho.github.io/tags/OpenAI/"/>
+    
+    <category term="AOAI" scheme="https://rainmakerho.github.io/tags/AOAI/"/>
+    
+    <category term="Roo-Code" scheme="https://rainmakerho.github.io/tags/Roo-Code/"/>
+    
+    <category term="Kilocode" scheme="https://rainmakerho.github.io/tags/Kilocode/"/>
+    
+    <category term="API Provider" scheme="https://rainmakerho.github.io/tags/API-Provider/"/>
+    
+  </entry>
   
   <entry>
     <title>用 Dify Agent 智能辨識高鐵票，分批上傳後再匯出 Excel</title>
@@ -715,34 +749,6 @@
     <category term="本地模型" scheme="https://rainmakerho.github.io/tags/%E6%9C%AC%E5%9C%B0%E6%A8%A1%E5%9E%8B/"/>
     
     <category term="SQLServer" scheme="https://rainmakerho.github.io/tags/SQLServer/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>在 ConnectionString 中設定 CommandTimeout !!!</title>
-    <link href="https://rainmakerho.github.io/2025/03/13/set-commandtimeout-in-connectionstring/"/>
-    <id>https://rainmakerho.github.io/2025/03/13/set-commandtimeout-in-connectionstring/</id>
-    <published>2025-03-13T06:19:06.000Z</published>
-    <updated>2025-03-13T06:22:45.080Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p><strong>ConnectionTimeout</strong> 是在 <strong>ConnectionString</strong> 之中設定，<br>而 <strong>CommandTimeout</strong> 是設定 Command 物件的 <strong>CommandTimeout</strong> 屬性。<br>CommandTimeout 可以在 ConnectionString 之中設定嗎?</p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>如果 Microsoft SQLServer ，並使用<strong>SqlClient</strong>，是可以的哦~<br>在<a href="https://learn.microsoft.com/en-us/dotnet/api/microsoft.data.sqlclient.sqlconnection.connectionstring?view=sqlclient-dotnet-standard-5.2">SqlConnection.ConnectionString Property</a>中有<code>Command Timeout</code>屬性可以設定。預設<code>Command Timeout</code>是<strong>30 秒</strong>。<br>所以連線字串設定如下，<br><code>Data Source=(local);Integrated Security=true;Initial Catalog=Chinook;Command Timeout=300</code><br>這樣就不用在<strong>Command</strong>物件去設定它的<code>CommandTimeout</code>，只要針對個別的需要不同<code>CommandTimeout</code>特別設定就可以了。</p><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://learn.microsoft.com/en-us/dotnet/api/microsoft.data.sqlclient.sqlconnection.connectionstring?view=sqlclient-dotnet-standard-5.2">SqlConnection.ConnectionString Property</a><br><a href="https://erikej.github.io/sqlclient/2020/10/26/sqlclient-commandtimeout-preview.html">Setting the command timeout with the latest .NET SqlClient</a></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;ConnectionTimeout&lt;/strong&gt; 是在 &lt;strong&gt;ConnectionString&lt;/strong</summary>
-      
-    
-    
-    
-    
-    <category term="SqlConnection" scheme="https://rainmakerho.github.io/tags/SqlConnection/"/>
-    
-    <category term="ConnectionString" scheme="https://rainmakerho.github.io/tags/ConnectionString/"/>
-    
-    <category term="CommandTimeout" scheme="https://rainmakerho.github.io/tags/CommandTimeout/"/>
-    
-    <category term="SqlClient" scheme="https://rainmakerho.github.io/tags/SqlClient/"/>
     
   </entry>
   
