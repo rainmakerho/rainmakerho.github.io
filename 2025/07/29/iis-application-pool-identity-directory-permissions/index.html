@@ -8,11 +8,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests;">
   <link rel="dns-prefetch" href="https://rainmakerho.github.io">
-  <title>IIS Application Pool 目錄權限完全解析：為什麼不用加帳號也能運作？ | 亂馬客</title>
+  <title>IIS Application Pool 檔案目錄權限解析：為什麼不用加帳號也能運作？ | 亂馬客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="前言在將 ASP.NET Core 網站部署到 IIS 的過程中，許多人都遇過這個疑問： 1.部署網站目錄時，是否一定要手動加上 IIS AppPool\YourAppPool 帳號的權限？ 2.為什麼很多時候沒加也能正常執行？ 這篇文章將徹底解析 IIS Application Pool Identity 的目錄權限運作原理，分享實際測試、設定流程，以及安全性最佳實踐，幫助你徹底搞懂這個主題！">
 <meta property="og:type" content="article">
-<meta property="og:title" content="IIS Application Pool 目錄權限完全解析：為什麼不用加帳號也能運作？">
+<meta property="og:title" content="IIS Application Pool 檔案目錄權限解析：為什麼不用加帳號也能運作？">
 <meta property="og:url" content="https://rainmakerho.github.io/2025/07/29/iis-application-pool-identity-directory-permissions/index.html">
 <meta property="og:site_name" content="亂馬客">
 <meta property="og:description" content="前言在將 ASP.NET Core 網站部署到 IIS 的過程中，許多人都遇過這個疑問： 1.部署網站目錄時，是否一定要手動加上 IIS AppPool\YourAppPool 帳號的權限？ 2.為什麼很多時候沒加也能正常執行？ 這篇文章將徹底解析 IIS Application Pool Identity 的目錄權限運作原理，分享實際測試、設定流程，以及安全性最佳實踐，幫助你徹底搞懂這個主題！">
@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://rainmakerho.github.io/2025/07/29/iis-application-pool-identity-directory-permissions/07.png">
 <meta property="og:image" content="https://rainmakerho.github.io/2025/07/29/iis-application-pool-identity-directory-permissions/08.png">
 <meta property="article:published_time" content="2025-07-29T03:31:56.000Z">
-<meta property="article:modified_time" content="2025-07-29T06:25:06.948Z">
+<meta property="article:modified_time" content="2025-07-29T06:41:42.247Z">
 <meta property="article:author" content="亂馬客">
 <meta property="article:tag" content="IIS">
 <meta property="article:tag" content="Application Pool">
@@ -182,7 +182,7 @@
       
   
     <h1 class="article-title" itemprop="name">
-      IIS Application Pool 目錄權限完全解析：為什麼不用加帳號也能運作？
+      IIS Application Pool 檔案目錄權限解析：為什麼不用加帳號也能運作？
     </h1>
   
   <a href="/2025/07/29/iis-application-pool-identity-directory-permissions/" class="archive-article-date">
@@ -291,7 +291,7 @@
   
   
     <a href="/2025/07/25/dify-handwritten-invoice/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">結合 Dify 與 Azure AI，辨識手寫發票並輸出 JSON 結構</div>
+      <div class="article-nav-title">結合 Dify 與 Azure AI Content Understanding，辨識手寫發票並輸出 JSON 結構</div>
       <i class="icon-circle-right"></i>
     </a>
   
