@@ -8,14 +8,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests;">
   <link rel="dns-prefetch" href="https://rainmakerho.github.io">
-  <title>使用 Dify 自動辨識高鐵票 | 亂馬客</title>
+  <title>使用 Dify 自動辨識非手寫圖片票據超 Easy：以高鐵票為例 | 亂馬客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言現在一些非手寫的車票、收據、名片等圖片，透過 Multimodal Large Language Models (MLLMs) 來擷取資料效果都還不錯。以下將介紹使用 Dify 搭配 Azure OpenAI GPT-4.1-mini 來讓使用者上傳圖片，不管圖片中是一張還是多張高鐵票，不管是新式或是舊式的高鐵票都可以輕鬆且正確地擷取高鐵票資訊。 實作1.建立聊天流 App        預設">
+  <meta name="description" content="前言現在一些非手寫的車票、收據、名片等圖片，透過 Multimodal Large Language Models (MLLMs) 來擷取資料效果都還不錯。以下將介紹使用 Dify 搭配 Azure OpenAI GPT-4.1-mini 來讓使用者上傳圖片，不管圖片中是一張還是多張高鐵票，不管是新式或是舊式的高鐵票都可以輕鬆且正確地擷取高鐵票資訊。 實作1.建立聊天流 App    預設的流程就">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用 Dify 自動辨識高鐵票">
+<meta property="og:title" content="使用 Dify 自動辨識非手寫圖片票據超 Easy：以高鐵票為例">
 <meta property="og:url" content="https://rainmakerho.github.io/2025/06/23/dify-high-speed-rail-ticket-ocr/index.html">
 <meta property="og:site_name" content="亂馬客">
-<meta property="og:description" content="前言現在一些非手寫的車票、收據、名片等圖片，透過 Multimodal Large Language Models (MLLMs) 來擷取資料效果都還不錯。以下將介紹使用 Dify 搭配 Azure OpenAI GPT-4.1-mini 來讓使用者上傳圖片，不管圖片中是一張還是多張高鐵票，不管是新式或是舊式的高鐵票都可以輕鬆且正確地擷取高鐵票資訊。 實作1.建立聊天流 App        預設">
+<meta property="og:description" content="前言現在一些非手寫的車票、收據、名片等圖片，透過 Multimodal Large Language Models (MLLMs) 來擷取資料效果都還不錯。以下將介紹使用 Dify 搭配 Azure OpenAI GPT-4.1-mini 來讓使用者上傳圖片，不管圖片中是一張還是多張高鐵票，不管是新式或是舊式的高鐵票都可以輕鬆且正確地擷取高鐵票資訊。 實作1.建立聊天流 App    預設的流程就">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://rainmakerho.github.io/2025/06/23/dify-high-speed-rail-ticket-ocr/01.png">
 <meta property="og:image" content="https://rainmakerho.github.io/2025/06/23/dify-high-speed-rail-ticket-ocr/07.png">
@@ -25,7 +25,7 @@
 <meta property="og:image" content="https://rainmakerho.github.io/2025/06/23/dify-high-speed-rail-ticket-ocr/05.png">
 <meta property="og:image" content="https://rainmakerho.github.io/2025/06/23/dify-high-speed-rail-ticket-ocr/06.png">
 <meta property="article:published_time" content="2025-06-23T00:02:02.000Z">
-<meta property="article:modified_time" content="2025-06-23T01:33:57.815Z">
+<meta property="article:modified_time" content="2025-08-07T02:42:50.223Z">
 <meta property="article:author" content="亂馬客">
 <meta property="article:tag" content="OCR">
 <meta property="article:tag" content="Dify">
@@ -181,7 +181,7 @@
       
   
     <h1 class="article-title" itemprop="name">
-      使用 Dify 自動辨識高鐵票
+      使用 Dify 自動辨識非手寫圖片票據超 Easy：以高鐵票為例
     </h1>
   
   <a href="/2025/06/23/dify-high-speed-rail-ticket-ocr/" class="archive-article-date">
@@ -191,30 +191,37 @@
     
     <div class="article-entry" itemprop="articleBody">
          <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>現在一些<strong>非手寫</strong>的車票、收據、名片等圖片，透過 Multimodal Large Language Models (MLLMs) 來擷取資料效果都還不錯。<br>以下將介紹使用 Dify 搭配 Azure OpenAI GPT-4.1-mini 來讓使用者上傳圖片，不管圖片中是一張還是多張高鐵票，不管是新式或是舊式的高鐵票都可以<strong>輕鬆且正確地擷取高鐵票資訊</strong>。</p>
-<h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><p>1.建立<strong>聊天流</strong> App<br>  <img src="/2025/06/23/dify-high-speed-rail-ticket-ocr/01.png" class="" title="create app"></p>
-  <img src="/2025/06/23/dify-high-speed-rail-ticket-ocr/07.png" class="" title="default workflow">
-<p>  預設的流程就是「開始」-&gt;「LLM」-&gt;「直接回覆」</p>
-<p>2.設定<strong>LLM</strong><br>  2.1.設定 LLM 節點的模型使用<strong>gpt-4.1-mini</strong><br>  <img src="/2025/06/23/dify-high-speed-rail-ticket-ocr/02.png" class="" title="gpt-4.1-mini"><br>  你會發現 gpt-4.1-mini 後方有 <strong>chat</strong> 與<strong>眼睛</strong>圖示，代表該模型支援文字及圖片輸入（有眼睛圖示即表示支援圖片辨識功能）</p>
-<p>  2.2.啟用<strong>視覺</strong>功能<br>  <img src="/2025/06/23/dify-high-speed-rail-ticket-ocr/03.png" class="" title="視覺"><br>  預設會帶入<strong>sys.files</strong>，這樣即可將使用者上傳的圖片自動傳遞給模型辨識。</p>
-<p>  2.3.設定 System Prompt<br>  <img src="/2025/06/23/dify-high-speed-rail-ticket-ocr/04.png" class="" title="system-prompt"><br>  內容如下:</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">你是一個專業的「高鐵票辨識小幫手」，負責從上傳的圖片中辨識所有出現的台灣高鐵票券。請依照以下指示執行：</span><br><span class="line">一張圖片可能包含多張高鐵票，請你針對每一張票獨立辨識、解析。</span><br><span class="line">對於每張高鐵票，請抽取以下資訊（如有缺漏請以空值回傳）：</span><br><span class="line">票面號碼（如有）</span><br><span class="line">乘車日期</span><br><span class="line">乘車時間</span><br><span class="line">發車站</span><br><span class="line">抵達站</span><br><span class="line">車廂與座位（如有）</span><br><span class="line">票種（如標準車廂/商務車廂/自由座/敬老/孩童/早鳥等）</span><br><span class="line">價格</span><br><span class="line"></span><br><span class="line">請將所有辨識到的高鐵票資訊以陣列結構回傳（JSON 格式），每個物件對應一張票。</span><br><span class="line"></span><br><span class="line">回傳內容僅只需給出辨識到的票券結構化資訊，請勿多餘評論。</span><br><span class="line">【範例輸出格式】</span><br><span class="line">`</span><br><span class="line">[</span><br><span class="line">  &#123;</span><br><span class="line">    &quot;票面號碼&quot;: &quot;123456789&quot;,</span><br><span class="line">    &quot;乘車日期&quot;: &quot;2024-07-01&quot;,</span><br><span class="line">    &quot;乘車時間&quot;: &quot;13:20&quot;,</span><br><span class="line">    &quot;發車站&quot;: &quot;台北&quot;,</span><br><span class="line">    &quot;抵達站&quot;: &quot;左營&quot;,</span><br><span class="line">    &quot;車廂&quot;: &quot;5&quot;,</span><br><span class="line">    &quot;座位&quot;: &quot;12A&quot;,</span><br><span class="line">    &quot;票種&quot;: &quot;標準車廂&quot;,</span><br><span class="line">    &quot;價格&quot;: &quot;1490&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    &quot;票面號碼&quot;: &quot;&quot;,</span><br><span class="line">    &quot;乘車日期&quot;: &quot;2024-07-01&quot;,</span><br><span class="line">    &quot;乘車時間&quot;: &quot;13:20&quot;,</span><br><span class="line">    &quot;發車站&quot;: &quot;台中&quot;,</span><br><span class="line">    &quot;抵達站&quot;: &quot;台南&quot;,</span><br><span class="line">    &quot;車廂&quot;: &quot;3&quot;,</span><br><span class="line">    &quot;座位&quot;: &quot;8D&quot;,</span><br><span class="line">    &quot;票種&quot;: &quot;自由座&quot;,</span><br><span class="line">    &quot;價格&quot;: &quot;790&quot;</span><br><span class="line">  &#125;</span><br><span class="line">]</span><br><span class="line">`</span><br><span class="line">若無高鐵票：</span><br><span class="line">`[]`</span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+<h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><p>1.建立<strong>聊天流</strong> App</p>
+<img src="/2025/06/23/dify-high-speed-rail-ticket-ocr/01.png" class="" title="create app">
 
+<img src="/2025/06/23/dify-high-speed-rail-ticket-ocr/07.png" class="" title="default workflow">
+<p>預設的流程就是「開始」-&gt;「LLM」-&gt;「直接回覆」</p>
+<p>2.設定<strong>LLM</strong><br>2.1.設定 LLM 節點的模型使用<strong>gpt-4.1-mini</strong></p>
+<img src="/2025/06/23/dify-high-speed-rail-ticket-ocr/02.png" class="" title="gpt-4.1-mini">
+<p>你會發現 gpt-4.1-mini 後方有 <strong>chat</strong> 與<strong>眼睛</strong>圖示，代表該模型支援文字及圖片輸入（有眼睛圖示即表示支援圖片辨識功能）</p>
+<p>2.2.啟用<strong>視覺</strong>功能</p>
+<img src="/2025/06/23/dify-high-speed-rail-ticket-ocr/03.png" class="" title="視覺">
+<p>預設會帶入<strong>sys.files</strong>，這樣即可將使用者上傳的圖片自動傳遞給模型辨識。</p>
+<p>2.3.設定 System Prompt</p>
+<img src="/2025/06/23/dify-high-speed-rail-ticket-ocr/04.png" class="" title="system-prompt">
+<p>內容如下:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">你是一個專業的「高鐵票辨識小幫手」，負責從上傳的圖片中辨識所有出現的台灣高鐵票券。請依照以下指示執行：</span><br><span class="line">一張圖片可能包含多張高鐵票，請你針對每一張票獨立辨識、解析。</span><br><span class="line">對於每張高鐵票，請抽取以下資訊（如有缺漏請以空值回傳）：</span><br><span class="line">票面號碼（如有）</span><br><span class="line">乘車日期</span><br><span class="line">乘車時間</span><br><span class="line">發車站</span><br><span class="line">抵達站</span><br><span class="line">車廂與座位（如有）</span><br><span class="line">票種（如標準車廂/商務車廂/自由座/敬老/孩童/早鳥等）</span><br><span class="line">價格</span><br><span class="line"></span><br><span class="line">請將所有辨識到的高鐵票資訊以陣列結構回傳（JSON 格式），每個物件對應一張票。</span><br><span class="line"></span><br><span class="line">回傳內容僅只需給出辨識到的票券結構化資訊，請勿多餘評論。</span><br><span class="line">【範例輸出格式】</span><br><span class="line">`</span><br><span class="line">[</span><br><span class="line">  &#123;</span><br><span class="line">    &quot;票面號碼&quot;: &quot;123456789&quot;,</span><br><span class="line">    &quot;乘車日期&quot;: &quot;2024-07-01&quot;,</span><br><span class="line">    &quot;乘車時間&quot;: &quot;13:20&quot;,</span><br><span class="line">    &quot;發車站&quot;: &quot;台北&quot;,</span><br><span class="line">    &quot;抵達站&quot;: &quot;左營&quot;,</span><br><span class="line">    &quot;車廂&quot;: &quot;5&quot;,</span><br><span class="line">    &quot;座位&quot;: &quot;12A&quot;,</span><br><span class="line">    &quot;票種&quot;: &quot;標準車廂&quot;,</span><br><span class="line">    &quot;價格&quot;: &quot;1490&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    &quot;票面號碼&quot;: &quot;&quot;,</span><br><span class="line">    &quot;乘車日期&quot;: &quot;2024-07-01&quot;,</span><br><span class="line">    &quot;乘車時間&quot;: &quot;13:20&quot;,</span><br><span class="line">    &quot;發車站&quot;: &quot;台中&quot;,</span><br><span class="line">    &quot;抵達站&quot;: &quot;台南&quot;,</span><br><span class="line">    &quot;車廂&quot;: &quot;3&quot;,</span><br><span class="line">    &quot;座位&quot;: &quot;8D&quot;,</span><br><span class="line">    &quot;票種&quot;: &quot;自由座&quot;,</span><br><span class="line">    &quot;價格&quot;: &quot;790&quot;</span><br><span class="line">  &#125;</span><br><span class="line">]</span><br><span class="line">`</span><br><span class="line">若無高鐵票：</span><br><span class="line">`[]`</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p>3.進行測試<br>  使用單張車票<a target="_blank" rel="noopener" href="https://www.bnext.com.tw/article/61931/tw-high-speed-rail-and-travel-platform">高鐵攜手KKday、KLOOK推「國旅聯票」，搭行程就有85折高鐵票！一次看懂怎麼買</a>進行測試，結果如下圖：</p>
+<p>3.進行測試<br>使用單張車票<a target="_blank" rel="noopener" href="https://www.bnext.com.tw/article/61931/tw-high-speed-rail-and-travel-platform">高鐵攜手 KKday、KLOOK 推「國旅聯票」，搭行程就有 85 折高鐵票！一次看懂怎麼買</a>進行測試，結果如下圖：</p>
 <img src="/2025/06/23/dify-high-speed-rail-ticket-ocr/05.png" class="" title="single">
 
-<p>  使用<a target="_blank" rel="noopener" href="https://news.ltn.com.tw/news/life/breakingnews/4890325">高鐵車票變大了！新版QR Code紙票今起3站先販售</a>新、舊車票進行測試，結果如下圖：</p>
+<p>使用<a target="_blank" rel="noopener" href="https://news.ltn.com.tw/news/life/breakingnews/4890325">高鐵車票變大了！新版 QR Code 紙票今起 3 站先販售</a>新、舊車票進行測試，結果如下圖：</p>
 <img src="/2025/06/23/dify-high-speed-rail-ticket-ocr/06.png" class="" title="new and old">
 
 <p>測試結果顯示，辨識正確率達 100%。</p>
 <h3 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h3><p>使用 Dify 搭配 gpt-4.1-mini，可以在<strong>不到 3 分鐘</strong>內建立高鐵票自動辨識流程，大幅提升票據數位化的效率與準確率。<br>此流程不僅適用於台灣高鐵票，也能根據需求擴展至台鐵票、發票、收據等各類型票據，實現資料自動化歸檔與管理。</p>
 <p>與傳統人工輸入或一般 OCR 工具相比，本方案更省時、省力，並能結合 API 或 Excel 外掛(<a target="_blank" rel="noopener" href="https://github.com/rainmakerho/excel-dify-plugin">excel-dify-plugin</a>)，靈活整合到現有的報帳或行政系統中。<br>無論是技術人員還是業務、行政同仁，都能輕鬆上手並根據實際情境調整設定。</p>
-<p>未來若能進一步與內部資料流、RPA 流程自動化結合，將有助於打造更智慧的辦公環境。  </p>
+<p>未來若能進一步與內部資料流、RPA 流程自動化結合，將有助於打造更智慧的辦公環境。</p>
 <ul>
 <li>提醒：極少數非標準票券或圖片模糊時，建議仍保留人工複核流程，以確保辨識品質。</li>
 <li>在圖片辨識上面，目前使用 <strong>gpt-4.1-mini</strong> 比 <strong>gpt-4.1</strong> 還好</li>
 </ul>
-<h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a target="_blank" rel="noopener" href="https://github.com/rainmakerho/excel-dify-plugin">excel-dify-plugin</a><br><a target="_blank" rel="noopener" href="https://www.bnext.com.tw/article/61931/tw-high-speed-rail-and-travel-platform">高鐵攜手KKday、KLOOK推「國旅聯票」，搭行程就有85折高鐵票！一次看懂怎麼買</a><br><a target="_blank" rel="noopener" href="https://news.ltn.com.tw/news/life/breakingnews/4890325">高鐵車票變大了！新版QR Code紙票今起3站先販售</a></p>
+<h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a target="_blank" rel="noopener" href="https://github.com/rainmakerho/excel-dify-plugin">excel-dify-plugin</a><br><a target="_blank" rel="noopener" href="https://www.bnext.com.tw/article/61931/tw-high-speed-rail-and-travel-platform">高鐵攜手 KKday、KLOOK 推「國旅聯票」，搭行程就有 85 折高鐵票！一次看懂怎麼買</a><br><a target="_blank" rel="noopener" href="https://news.ltn.com.tw/news/life/breakingnews/4890325">高鐵車票變大了！新版 QR Code 紙票今起 3 站先販售</a></p>
    
     </div>
     <div class="article-info article-info-index">
@@ -7197,6 +7204,62 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">會員管理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">GPT-4.1</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">GPT-5</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">API pricing</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">token cost</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">AI model comparison</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">GPT-4.1 price</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">GPT-5 price</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">cached input</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">input token cost</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">output token cost</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">GPT-4.1 vs GPT-5</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">AI cost optimization</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">GPT API</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">AI pricing guide</a>
               </li>
             
             <div class="clearfix"></div>
