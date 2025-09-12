@@ -6,7 +6,7 @@
   <link href="https://rainmakerho.github.io/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2025-09-12T02:06:57.109Z</updated>
+  <updated>2025-09-12T06:50:28.296Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Dapper 使用 DynamicParameters 被 Checkmarx 掃出 SQL Injection 的問題與解法</title>
+    <link href="https://rainmakerho.github.io/2025/09/12/checkmarx-dapper-dynamicparameters-sqlinjection/"/>
+    <id>https://rainmakerho.github.io/2025/09/12/checkmarx-dapper-dynamicparameters-sqlinjection/</id>
+    <published>2025-09-12T06:28:17.000Z</published>
+    <updated>2025-09-12T06:50:28.296Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>Checkmarx 升級到 V9.6.7.1005 HF20 後, 原本使用 Dapper 的程式居然被掃出有 <strong>SQL Injection</strong> 的風險。<br>程式以 Console 程式來說明，大約如下，</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> dbFile = <span class="string">&quot;mydb.sqlite&quot;</span>;</span><br><span class="line"><span class="built_in">string</span> connectionString = <span class="string">$&quot;Data Source=<span class="subst">&#123;dbFile&#125;</span>&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">var</span> connection = <span class="keyword">new</span> SqliteConnection(connectionString);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 查詢 table_1</span></span><br><span class="line"><span class="built_in">string</span> sql = <span class="string">&quot;SELECT Id, Name FROM table_1 WHERE Name=@name&quot;</span>;</span><br><span class="line"><span class="built_in">string</span> name = args[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> DynamicParameters();</span><br><span class="line">p1.Add(<span class="string">&quot;name&quot;</span>, name);</span><br><span class="line">IEnumerable&lt;Table1&gt; results = connection.Query&lt;Table1&gt;(sql, p1);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Table1</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> Id &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> Name &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>在 <code>IEnumerable&lt;Table1&gt; results = connection.Query&lt;Table1&gt;(sql, p1);</code> 會被 Checkmarx 掃出有 <strong>SQL Injection</strong> 的風險。</p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>經過多方的測試，發現 Checkmarx 並不認得上述的那種做法，所以就改用匿名物件放在<strong>Query</strong>的第二個參數之中才會 Pass ，如下，</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IEnumerable&lt;Table1&gt; results = connection.Query&lt;Table1&gt;(sql, <span class="keyword">new</span> &#123; name &#125;);</span><br></pre></td></tr></table></figure><ul><li>註: 感謝同事 unciax_wu 的幫忙</li></ul><h3 id="參考資訊"><a href="#參考資訊" class="headerlink" title="參考資訊"></a>參考資訊</h3><p><a href="https://www.learndapper.com/parameters">Using Parameters With Dapper</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;Checkmarx 升級到 V9.6.7.1005 HF20 後, 原本使用 Dapper 的程式居然被掃出有 &lt;strong&gt;SQL In</summary>
+      
+    
+    
+    
+    
+    <category term="Checkmarx" scheme="https://rainmakerho.github.io/tags/Checkmarx/"/>
+    
+    <category term="SQL Injection" scheme="https://rainmakerho.github.io/tags/SQL-Injection/"/>
+    
+    <category term="Dapper" scheme="https://rainmakerho.github.io/tags/Dapper/"/>
+    
+    <category term="DynamicParameters" scheme="https://rainmakerho.github.io/tags/DynamicParameters/"/>
+    
+    <category term="V9.6.7" scheme="https://rainmakerho.github.io/tags/V9-6-7/"/>
+    
+  </entry>
   
   <entry>
     <title>Teams Bot 發送訊息給 Teams User 回傳 401 錯誤解決方案</title>
@@ -763,43 +793,6 @@
     <category term="arm64" scheme="https://rainmakerho.github.io/tags/arm64/"/>
     
     <category term="amd64" scheme="https://rainmakerho.github.io/tags/amd64/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>以 LLM 為核心打造零程式碼查詢流程：簡化 Dify 流程設計、讓非工程人員也能上手</title>
-    <link href="https://rainmakerho.github.io/2025/05/19/build-dify-flow-without-code/"/>
-    <id>https://rainmakerho.github.io/2025/05/19/build-dify-flow-without-code/</id>
-    <published>2025-05-19T03:52:45.000Z</published>
-    <updated>2025-05-20T01:46:29.400Z</updated>
-    
-    <content type="html"><![CDATA[<p>在初期導入 Dify 建立<strong>企業資訊查詢流程</strong>時，我們使用了多個「代碼執行」節點來處理 API 回傳資料，例如提取統一編號與公司名稱。<br>然而，我們很快發現：這樣的設計對非工程背景的成員不夠友善，維護成本也偏高。</p><p>因此，我們重新思考了一個問題：</p><blockquote><p>能不能只透過自然語言與 LLM，讓流程變得更簡潔、更直覺？</p></blockquote><p>以下說明<strong>企業資訊查詢流程</strong>的資料來源與流程設計，並分享我們如何透過 LLM 來簡化流程設計。</p><h3 id="Dify-企業資料來源"><a href="#Dify-企業資料來源" class="headerlink" title="Dify 企業資料來源"></a>Dify 企業資料來源</h3><p>流程主要會透過使用<a href="https://data.gcis.nat.gov.tw/resources/swagger/index.html">商工行政資料開放平臺 Swagger</a> 及 <strong>2,000 大企業</strong>文件檢索的方式來取得企業的資訊。<br>會用以下的方式來取得資料，</p><p>1.統一編號 → 呼叫<strong>公司登記基本資料-應用一</strong>來取得公司資訊(統編、名稱、資本額、負責人…)</p><p>2.公司名稱 → 呼叫<strong>公司登記關鍵字查詢</strong>來取得公司資訊(統編、名稱、資本額、負責人…)</p><p>3.統一編號 → 呼叫<strong>公司登記基本資料-應用三</strong>來取得公司的營業項目</p><p>4.公司名稱 → 透過文件檢索的方式來取得是否在<strong>2,000 大企業</strong>之中的<strong>行業排名</strong></p><h3 id="Dify-流程設計"><a href="#Dify-流程設計" class="headerlink" title="Dify 流程設計"></a>Dify 流程設計</h3><p>1.允許使用者輸入「統一編號」或「公司名稱」來查詢，根據使用者輸入的查詢類型（統一編號或公司名稱），流程會分為兩條路徑進行處理</p><p>2.透過「問題分類器」讓 LLM 判斷使用者輸入的是「統一編號」或「公司名稱」</p><p>3.如果是「統一編號」<br>3.1.透過「 HTTP」 節點，呼叫「公司登記基本資料-應用一」來取得公司資訊(0, 1 筆)<br>3.2.如果發生錯誤或取不到任何資料，就要求使用者重新輸入<br>3.3.透過 「代碼執行」節點，從 HTTP 執行結果的內容中取出「公司名稱」，程式碼如下:</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">main</span>(<span class="params">&#123; arg1 &#125;</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> data = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(arg1);</span><br><span class="line">  <span class="keyword">const</span> companyName = data[<span class="number">0</span>]?.<span class="property">Company_Name</span> || <span class="string">&quot;無法擷取公司名稱&quot;</span>;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="attr">result</span>: companyName,</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>3.4.透過「 HTTP」 節點，呼叫「公司登記基本資料-應用三」來取得公司資訊<br>3.5.透過「代碼執行」節點，從 HTTP 執行結果的內容中取出「公司的營業項目」<br>3.6.用「公司名稱」透過文件檢索的方式來取得是否在<strong>2,000 大企業</strong>之中的<strong>行業排名</strong><br>3.7.將所有資訊組合起來，透過「LLM」節點整理後，輸出給使用者</p><p>4.如果是「公司名稱」<br>4.1.透過「 HTTP」 節點，呼叫「公司登記關鍵字查詢」來取得公司資訊(0, 1, 多筆)<br>4.2.如果發生錯誤、取不到任何資料或超過一筆，就要求使用者重新輸入<br>4.3.透過「代碼執行」節點，從 HTTP 執行結果的內容中取出「統一編號」，程式碼如下:</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">main</span>(<span class="params">&#123; arg1 &#125;</span>) &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> data = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(arg1);</span><br><span class="line">    <span class="keyword">const</span> businessNo = data[<span class="number">0</span>]?.<span class="property">Business_Accounting_NO</span> || <span class="string">&quot;無法擷取統一編號&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      <span class="attr">result</span>: businessNo,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      <span class="attr">result</span>: <span class="string">`解析失敗：<span class="subst">$&#123;error.message&#125;</span>`</span>,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>4.4.透過「HTTP」節點，呼叫「公司登記基本資料-應用三」來取得公司資訊<br>4.5.透過「代碼執行」節點，從 HTTP 執行結果的內容中取出「公司的營業項目」<br>4.6.用「公司名稱」透過文件檢索的方式來取得是否在<strong>2,000 大企業</strong>之中的<strong>行業排名</strong><br>4.7.將所有資訊組合起來，透過「LLM」節點整理後，輸出給使用者</p><p>Dify 的流程畫面如下:</p><img src="/2025/05/19/build-dify-flow-without-code/01.png" class="" title="代碼執行"><p>以上「代碼執行」節點的程式碼，雖然不會很複雜，但對非工程背景的成員來說，還是會有些難度。<br>如果將這些內容交由 LLM 來處理，那麼流程會變得更加簡單、直覺。</p><h3 id="Dify-改善流程"><a href="#Dify-改善流程" class="headerlink" title="Dify 改善流程"></a>Dify 改善流程</h3><p>1.直接呼叫「公司登記基本資料-應用一」及「公司登記關鍵字查詢」將結果透過「LLM」節點來判斷是否有找到正確的公司資訊，Prompt 如下，</p><img src="/2025/05/19/build-dify-flow-without-code/05.png" class="" title="匯總查統編及公司名稱的資料的Prompt"><p>2.如果「LLM」節點輸出內容包含「請重新查詢」，則要求使用者重新輸入</p><p>3.透過「LLM」節點來取出「公司名稱」及「統一編號」<br>在 Dify 從開始到取出「公司名稱」及「統一編號」，靠 LLM 節點來處理，如下圖:</p><img src="/2025/05/19/build-dify-flow-without-code/09.png" class="" title="Dify 前半段流程"><p>4.透過「HTTP」節點，呼叫「公司登記基本資料-應用三」來取得公司資訊</p><p>5.用「公司名稱」透過文件檢索的方式來取得是否在<strong>2,000 大企業</strong>之中的<strong>行業排名</strong></p><p>6.將所有資訊組合起來，透過「LLM」節點整理後，輸出給使用者，Prompt 如下，</p><img src="/2025/05/19/build-dify-flow-without-code/06.png" class="" title="匯整所有公司資訊的Prompt"><p>Dify 步驟 4 ~ 6 的流程畫面如下:</p><img src="/2025/05/19/build-dify-flow-without-code/10.png" class="" title="Dify 後半段流程"><p>改善後的整個 Dify 流程畫面如下:</p><img src="/2025/05/19/build-dify-flow-without-code/02.png" class="" title="代碼執行"><p>先將資料準備好，再透過 LLM 進行匯整，整個流程簡潔了很多。<br>以下為用「統一編號」來查詢的企業資訊，如下圖，</p><img src="/2025/05/19/build-dify-flow-without-code/07.png" class="" title="以統編來查詢"><p>以下為用「公司名稱」來查詢的企業資訊，如下圖，</p><img src="/2025/05/19/build-dify-flow-without-code/08.png" class="" title="以名稱來查詢"><h3 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h3><p>以上我們成功將原本仰賴「代碼執行」節點的設計，轉換為以 LLM 為核心、自然語言驅動的架構。<br>這不僅大幅降低了維護與學習門檻，讓非工程背景的同仁也能輕鬆參與流程設計，更讓整體查詢流程變得直覺、彈性且易於擴充。<br>最終流程可以簡化為三步驟：準備資料 → 交由 LLM 推論處理 → 直接輸出結果，大幅提升可維護性與開發效率。<br>以上提供的 Prompt 範例，僅供參考，實際使用時請根據需求進行調整。</p><h3 id="文件檢索查詢問題分享"><a href="#文件檢索查詢問題分享" class="headerlink" title="文件檢索查詢問題分享"></a>文件檢索查詢問題分享</h3><p>問題說明:<br>在<strong>2,000 大企業</strong>文件檢索時，如果用公司全稱(華邦電子股份有限公司)，查出的華邦電子不在第一筆的話，如下圖，</p><img src="/2025/05/19/build-dify-flow-without-code/03.png" class="" title="公司全稱查詢"><p>可以加一個「模版轉換」節點，「公司名稱」組成<strong>完整語意單元句</strong>，為<code>公司名稱為&#123;&#123; 公司名稱參數 &#125;&#125;，行業排名是多少</code><br>這樣就可以在第一筆查到「華邦電子」，如下圖，</p><img src="/2025/05/19/build-dify-flow-without-code/04.png" class="" title="完整語意單元句"><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://data.gcis.nat.gov.tw/od/datacategory">商工行政資料開放平臺</a><br><a href="https://data.gcis.nat.gov.tw/resources/swagger/index.html">商工行政資料開放平臺 Swagger</a></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;在初期導入 Dify 建立&lt;strong&gt;企業資訊查詢流程&lt;/strong&gt;時，我們使用了多個「代碼執行」節點來處理 API 回傳資料，例如提取統一編號與公司名稱。&lt;br&gt;然而，我們很快發現：這樣的設計對非工程背景的成員不夠友善，維護成本也偏高。&lt;/p&gt;
-&lt;p&gt;因此，我們重</summary>
-      
-    
-    
-    
-    
-    <category term="Dify 流程設計" scheme="https://rainmakerho.github.io/tags/Dify-%E6%B5%81%E7%A8%8B%E8%A8%AD%E8%A8%88/"/>
-    
-    <category term="零程式碼 AI" scheme="https://rainmakerho.github.io/tags/%E9%9B%B6%E7%A8%8B%E5%BC%8F%E7%A2%BC-AI/"/>
-    
-    <category term="LLM 自動化流程" scheme="https://rainmakerho.github.io/tags/LLM-%E8%87%AA%E5%8B%95%E5%8C%96%E6%B5%81%E7%A8%8B/"/>
-    
-    <category term="Dify 教學" scheme="https://rainmakerho.github.io/tags/Dify-%E6%95%99%E5%AD%B8/"/>
-    
-    <category term="查詢企業資訊" scheme="https://rainmakerho.github.io/tags/%E6%9F%A5%E8%A9%A2%E4%BC%81%E6%A5%AD%E8%B3%87%E8%A8%8A/"/>
-    
-    <category term="無程式自動化" scheme="https://rainmakerho.github.io/tags/%E7%84%A1%E7%A8%8B%E5%BC%8F%E8%87%AA%E5%8B%95%E5%8C%96/"/>
-    
-    <category term="AI 工作流程設計" scheme="https://rainmakerho.github.io/tags/AI-%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B%E8%A8%AD%E8%A8%88/"/>
-    
-    <category term="Dify 範例" scheme="https://rainmakerho.github.io/tags/Dify-%E7%AF%84%E4%BE%8B/"/>
     
   </entry>
   
