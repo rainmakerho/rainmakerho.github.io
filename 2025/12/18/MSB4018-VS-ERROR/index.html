@@ -10,21 +10,23 @@
   <link rel="dns-prefetch" href="https://rainmakerho.github.io">
   <title>MSB4018 工作發生未預期的失敗 DirectoryNotFoundException | 亂馬客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="問題透過 VS.NET 建置專案時，會發生以下的錯誤，  GenerateStaticWebAssetsPropsFile 工作發生未預期的失敗System.IO.DirectoryNotFoundException: 找不到路徑 …  但是如果透過命令視窗卻可以正常建置。 解法發生這個問題是因為專案的路徑太長，所以解法有以下的方式， 1.縮短路徑:所以可以依 How to fix: The Ge">
+  <meta name="description" content="問題透過 VS.NET 建置專案時，會發生以下的錯誤，  GenerateStaticWebAssetsPropsFile 工作發生未預期的失敗System.IO.DirectoryNotFoundException: 找不到路徑 …    但是如果透過命令視窗卻可以正常建置。 解法發生這個問題是因為專案的路徑太長，所以解法有以下的方式， 1.縮短路徑:所以可以依 How to fix: The">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MSB4018 工作發生未預期的失敗 DirectoryNotFoundException">
 <meta property="og:url" content="https://rainmakerho.github.io/2025/12/18/MSB4018-VS-ERROR/index.html">
 <meta property="og:site_name" content="亂馬客">
-<meta property="og:description" content="問題透過 VS.NET 建置專案時，會發生以下的錯誤，  GenerateStaticWebAssetsPropsFile 工作發生未預期的失敗System.IO.DirectoryNotFoundException: 找不到路徑 …  但是如果透過命令視窗卻可以正常建置。 解法發生這個問題是因為專案的路徑太長，所以解法有以下的方式， 1.縮短路徑:所以可以依 How to fix: The Ge">
+<meta property="og:description" content="問題透過 VS.NET 建置專案時，會發生以下的錯誤，  GenerateStaticWebAssetsPropsFile 工作發生未預期的失敗System.IO.DirectoryNotFoundException: 找不到路徑 …    但是如果透過命令視窗卻可以正常建置。 解法發生這個問題是因為專案的路徑太長，所以解法有以下的方式， 1.縮短路徑:所以可以依 How to fix: The">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://rainmakerho.github.io/2025/12/18/MSB4018-VS-ERROR/01.png">
 <meta property="article:published_time" content="2025-12-18T02:15:36.000Z">
-<meta property="article:modified_time" content="2025-12-18T02:29:43.011Z">
+<meta property="article:modified_time" content="2025-12-18T08:05:27.870Z">
 <meta property="article:author" content="亂馬客">
 <meta property="article:tag" content="Visual Studio">
 <meta property="article:tag" content="DirectoryNotFoundException">
 <meta property="article:tag" content="MSB4018">
 <meta property="article:tag" content="LongPathsEnabled">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://rainmakerho.github.io/2025/12/18/MSB4018-VS-ERROR/01.png">
   
     <link rel="alternative" href="/atom.xml" title="亂馬客" type="application/atom+xml">
   
@@ -179,6 +181,8 @@
 <blockquote>
 <p>GenerateStaticWebAssetsPropsFile 工作發生未預期的失敗<br>System.IO.DirectoryNotFoundException: 找不到路徑 …</p>
 </blockquote>
+<img src="/2025/12/18/MSB4018-VS-ERROR/01.png" class="" title="GenerateStaticWebAssetsPropsFile">
+
 <p>但是如果透過命令視窗卻可以正常建置。</p>
 <h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>發生這個問題是因為專案的路徑太長，所以解法有以下的方式，</p>
 <h4 id="1-縮短路徑"><a href="#1-縮短路徑" class="headerlink" title="1.縮短路徑:"></a>1.縮短路徑:</h4><p>所以可以依 <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=GtqQn36onAg">How to fix: The GenerateStaticWebAsssetsPropsFile task failed unexpectedly in Visual Studio</a> 的方式，讓專案所在的整個路徑不要那麼長。</p>
@@ -221,6 +225,15 @@
 </article>
  
 <nav id="article-nav">
+  
+    <a href="/2025/12/22/net6-system-data-sqlclient-perfmon-connection-pool/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          .NET 6 System.Data.SqlClient 查看 Connection 效能計數器
+        
+      </div>
+    </a>
   
   
     <a href="/2025/12/02/playwright-Driver-not-found/" id="article-nav-older" class="article-nav-link-wrap">
@@ -7364,6 +7377,34 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">LongPathsEnabled</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">.net6</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">System.Data.SqlClient</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Microsoft.Data.SqlClient</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">PerfMon</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Connection Pool</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">performance-counters</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">dotnet-counters</a>
               </li>
             
             <div class="clearfix"></div>
