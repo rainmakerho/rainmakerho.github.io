@@ -6,7 +6,7 @@
   <link href="https://rainmakerho.github.io/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2025-12-25T08:43:15.273Z</updated>
+  <updated>2026-01-23T09:33:54.525Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>影像 OCR 實戰心得：LLM 與 Azure Document Intelligence 的選擇策略</title>
+    <link href="https://rainmakerho.github.io/2026/01/23/ocr-llm-vs-azure-document-intelligence-experience/"/>
+    <id>https://rainmakerho.github.io/2026/01/23/ocr-llm-vs-azure-document-intelligence-experience/</id>
+    <published>2026-01-23T09:00:32.000Z</published>
+    <updated>2026-01-23T09:33:54.525Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在實務上使用大型語言模型（LLM）進行影像內容解析（OCR + 內容理解）時，<br>並不存在一個模型可以適用所有情境的解法。</p><p>影像的<strong>數量、解析度、內容多寡，以及是否包含表格或手寫文字</strong>，<br>都會大幅影響解析結果的正確性與穩定度。</p><p>本文整理實際專案中，針對 <strong>LLM（GPT-4.1-mini、Gemini）</strong><br>以及 <strong>Azure Document Intelligence</strong> 在不同影像解析場景下的使用心得。</p><hr><h2 id="情境一：單張或少量影像、內容單純（無表格）"><a href="#情境一：單張或少量影像、內容單純（無表格）" class="headerlink" title="情境一：單張或少量影像、內容單純（無表格）"></a>情境一：單張或少量影像、內容單純（無表格）</h2><h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><ul><li>單張或少量影像</li><li>內容不多</li><li>無表格結構</li><li>以印刷體文字為主</li></ul><h3 id="建議工具"><a href="#建議工具" class="headerlink" title="建議工具"></a>建議工具</h3><ul><li><strong>GPT-4.1-mini&#x2F;Gemini 3 Flash</strong></li></ul><h3 id="實際案例"><a href="#實際案例" class="headerlink" title="實際案例"></a>實際案例</h3><ul><li>加油發票</li><li>簡單收據</li><li>欄位固定、格式單純的文件</li></ul><p>在這類情境中，直接使用 LLM 解析影像即可，<br>具備速度快、成本低且彈性高的優勢。</p><hr><h2 id="情境二：多張影像同時辨識（解析度影響明顯）"><a href="#情境二：多張影像同時辨識（解析度影響明顯）" class="headerlink" title="情境二：多張影像同時辨識（解析度影響明顯）"></a>情境二：多張影像同時辨識（解析度影響明顯）</h2><h3 id="特性-1"><a href="#特性-1" class="headerlink" title="特性"></a>特性</h3><ul><li>一次輸入多張影像</li><li>例如：一頁中包含 5 張加油發票</li><li>單張影像解析度偏低</li></ul><h3 id="實務觀察"><a href="#實務觀察" class="headerlink" title="實務觀察"></a>實務觀察</h3><ul><li><p><strong>GPT-4.1-mini</strong></p><ul><li>當影像解析度不足時，中文辨識可能出現錯字或漏字</li></ul></li><li><p><strong>Gemini 3 Flash</strong></p><ul><li>在相同條件下，能完整且正確擷取中文內容</li></ul></li><li><p><strong>Azure Document Intelligence</strong></p><ul><li>因缺乏表格結構，多張發票內容容易發生欄位或文字錯置</li></ul></li><li><p>註:在「多張影像、低解析度、無表格」的情境下，<br><strong>Gemini 3 Flash 的穩定度與中文辨識表現較佳</strong>。</p></li></ul><hr><h2 id="情境三：影像包含表格、內容多或有手寫文字"><a href="#情境三：影像包含表格、內容多或有手寫文字" class="headerlink" title="情境三：影像包含表格、內容多或有手寫文字"></a>情境三：影像包含表格、內容多或有手寫文字</h2><h3 id="特性-2"><a href="#特性-2" class="headerlink" title="特性"></a>特性</h3><ul><li>具備明確表格結構</li><li>內容量大</li><li>同時包含印刷體與手寫文字</li></ul><h3 id="建議工具-1"><a href="#建議工具-1" class="headerlink" title="建議工具"></a>建議工具</h3><ul><li><strong>Azure Document Intelligence</strong></li></ul><h3 id="實際案例-1"><a href="#實際案例-1" class="headerlink" title="實際案例"></a>實際案例</h3><ul><li>電費單</li><li>水費單</li><li>帳單、報表類文件</li></ul><p>這類文件結構明確，<br>Azure Document Intelligence 在<strong>表格解析、欄位對齊與手寫文字辨識</strong>方面表現穩定，<br>比純 LLM 更適合長篇且結構化的文件。</p><hr><h2 id="整體選擇建議總結"><a href="#整體選擇建議總結" class="headerlink" title="整體選擇建議總結"></a>整體選擇建議總結</h2><p>可簡單歸納為以下原則：</p><ul><li><strong>有表格、內容多、包含手寫文字</strong><ul><li>優先使用 <strong>Azure Document Intelligence</strong></li></ul></li><li><strong>內容少、無表格</strong><ul><li>使用 <strong>LLM（GPT-4.1-mini 或 Gemini）</strong></li></ul></li><li><strong>多張影像、解析度偏低</strong><ul><li>優先考慮 <strong>Gemini 3 Flash</strong></li></ul></li></ul><p>但使用 <strong>Azure Document Intelligence</strong> 後，通常會再把內容給 LLM 來整理出需要的內容。<br>如果只能在地端的話，以<strong>中國</strong>的模型效果比較好，例如 Qwen 的模型。<br>如果是特別的領域，可以拿<strong>中國</strong>的模型再來 Finetune 成自家需要的 Model。</p><hr><h2 id="結語"><a href="#結語" class="headerlink" title="結語"></a>結語</h2><p>影像 OCR 並不存在「一個工具打天下」的最佳解法，<br><strong>理解文件特性並選擇合適的工具</strong>，往往比追求最新模型更重要。</p><p>在實務系統中，混合使用 <strong>LLM 與文件解析服務</strong>，<br>通常能在成本、準確率與穩定度之間取得更好的平衡。</p><p>希望這些實戰心得，能對正在進行影像解析或文件自動化的你有所幫助。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;在實務上使用大型語言模型（LLM）進行影像內容解析（OCR + 內容理解）時，&lt;br&gt;並不存在一個模型可以適用所有情境的解法。&lt;/p&gt;
+&lt;p</summary>
+      
+    
+    
+    
+    
+    <category term="azure document intelligence" scheme="https://rainmakerho.github.io/tags/azure-document-intelligence/"/>
+    
+    <category term="gpt" scheme="https://rainmakerho.github.io/tags/gpt/"/>
+    
+    <category term="gemini" scheme="https://rainmakerho.github.io/tags/gemini/"/>
+    
+    <category term="ocr" scheme="https://rainmakerho.github.io/tags/ocr/"/>
+    
+  </entry>
   
   <entry>
     <title>推動「綠色軟體」的同時，我們是否正陷入地端 AI 的排碳陷阱?</title>
@@ -701,48 +730,6 @@
     <category term="Kilocode" scheme="https://rainmakerho.github.io/tags/Kilocode/"/>
     
     <category term="API Provider" scheme="https://rainmakerho.github.io/tags/API-Provider/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>用 Dify Agent 智能辨識高鐵票，分批上傳後再匯出 Excel</title>
-    <link href="https://rainmakerho.github.io/2025/06/27/dify-ai-hsr-ticket-ocr-batch-upload-export-excel/"/>
-    <id>https://rainmakerho.github.io/2025/06/27/dify-ai-hsr-ticket-ocr-batch-upload-export-excel/</id>
-    <published>2025-06-27T02:29:29.000Z</published>
-    <updated>2025-06-27T04:04:00.629Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p><a href="https://rainmakerho.github.io/2025/06/23/dify-high-speed-rail-ticket-ocr/">使用 Dify 自動辨識高鐵票</a>一篇中，<br>我們在 Dify 建立<strong>聊天流</strong>來辨識高鐵票，一次對話處理一個，這種方式適合固定的作業流程，例如後續還要呼叫費用系統 API 等情境。</p><p>如果我有 20 幾圖，而 Dify <strong>聊天流</strong>最多只能一次上傳<strong>10</strong>張圖片，<br>那麼，可以多次上傳圖片進行辨識，最後再匯出 Excel 嗎？</p><p>像這種需要根據使用者要求執行對應任務的情境，可以改用 Dify 的 Agent + Tools 來實現，<br>以下就來實作這個多次上傳圖片進行辨識，最後再匯出 Excel 檔案的流程。</p><h3 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h3><h4 id="建立-JSON-匯出-Excel-的工作流"><a href="#建立-JSON-匯出-Excel-的工作流" class="headerlink" title="建立 JSON 匯出 Excel 的工作流"></a>建立 JSON 匯出 Excel 的工作流</h4><p>1.在開始節點中加入 2 個字串型態的輸入字段，對應 Json2ExcelTool 的參數(json, filename)，如下圖所示:</p><img src="/2025/06/27/dify-ai-hsr-ticket-ocr-batch-upload-export-excel/01.png" class="" title="加入2個字串型態的輸入字段"><p>2.在 Json2ExcelTool 節點，將這 2 個輸入字段對應到 Json2ExcelTool 的輸入變量，如下圖所示:</p><img src="/2025/06/27/dify-ai-hsr-ticket-ocr-batch-upload-export-excel/02.png" class="" title="字段對應"><p>3.結束節點增加<code>result</code>輸出變量，值來自 Json2ExcelTool 節點的輸出變量 files，如下圖所示:</p><img src="/2025/06/27/dify-ai-hsr-ticket-ocr-batch-upload-export-excel/03.png" class="" title="輸出變量"><p>4.發佈為工具<br>按下「發佈」-&gt;「發佈更新」後，</p><img src="/2025/06/27/dify-ai-hsr-ticket-ocr-batch-upload-export-excel/04.png" class="" title="發佈更新"><p>再點「發佈為工具」，設定工具名稱及描述，如下圖所示:</p><img src="/2025/06/27/dify-ai-hsr-ticket-ocr-batch-upload-export-excel/05.png" class="" title="設定工具名稱及描述"><ul><li>註: 本來想直接使用 <a href="https://github.com/rainmakerho/excel-dify-plugin">excel-dify-plugin</a> ，但無法正確顯示檔案，因此改用工作流來實現。</li></ul><h4 id="建立-Agent"><a href="#建立-Agent" class="headerlink" title="建立 Agent"></a>建立 Agent</h4><p>1.建立 高鐵票 Agent<br>選擇 Agent ，並輸入名稱，如下圖所示:</p><img src="/2025/06/27/dify-ai-hsr-ticket-ocr-batch-upload-export-excel/06.png" class="" title="建立 Agent"><p>2.設定模型<br>這裡我們選擇<strong>GPT4.1-mini</strong></p><img src="/2025/06/27/dify-ai-hsr-ticket-ocr-batch-upload-export-excel/07.png" class="" title="設定模型"><p>3.啟用<strong>視覺</strong>功能</p><img src="/2025/06/27/dify-ai-hsr-ticket-ocr-batch-upload-export-excel/08.png" class="" title="啟用視覺"><p>4.設定工具<br>加入前面建立的[JSON 匯出 Excel 的工作流]工具，如下圖所示:</p><img src="/2025/06/27/dify-ai-hsr-ticket-ocr-batch-upload-export-excel/09.png" class="" title="建立 Agent"><p>5.設定提示詞</p><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line">你是一個專業的「高鐵票辨識小幫手」，負責從上傳的圖片中辨識所有出現的台灣高鐵票券，並支援票券資訊的累積、查詢與匯出。請依照以下指示執行：</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"><span class="section">## 功能說明</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">1.</span> <span class="strong">**累積辨識結果**</span>  </span><br><span class="line">   每當使用者上傳新的高鐵票圖片並完成辨識後，請將本次辨識到的所有票券資訊（JSON 陣列）加入到現有的票券記錄清單中，並保留所有已上傳的票券資料，直到使用者明確要求清除或結束。</span><br><span class="line"></span><br><span class="line"><span class="bullet">2.</span> <span class="strong">**查詢累積結果**</span>  </span><br><span class="line">   當使用者要求檢視或查詢時，請回傳所有已辨識票券的累積資訊（JSON 陣列）。</span><br><span class="line"></span><br><span class="line"><span class="bullet">3.</span> <span class="strong">**合併匯出 Excel**</span>  </span><br><span class="line">   當使用者要求「匯出 Excel」時，請將每次辨識所得的 JSON 陣列全部合併成一個完整陣列，然後將此陣列以「標準 JSON 陣列字串」傳遞給 JSON 轉 Excel 工具（json 欄位），產生 Excel 檔案，並在工具產生 Excel 檔案後，提供下載連結。</span><br><span class="line"><span class="bullet">   -</span> 請確保 json<span class="emphasis">_str 為標準 JSON 陣列格式，例如：</span></span><br><span class="line"><span class="emphasis">     [</span></span><br><span class="line"><span class="emphasis">     &#123;&quot;票面號碼&quot;:&quot;123&quot;,&quot;乘車日期&quot;:&quot;2024/07/01&quot;, ...&#125;,</span></span><br><span class="line"><span class="emphasis">     &#123;&quot;票面號碼&quot;:&quot;456&quot;,&quot;乘車日期&quot;:&quot;2024/07/02&quot;, ...&#125;</span></span><br><span class="line"><span class="emphasis">     ]</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">---</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">## 辨識規則</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">- 一張圖片可能包含多張高鐵票，請你針對每一張票獨立辨識、解析。</span></span><br><span class="line"><span class="emphasis">- 對於每張高鐵票，請抽取以下資訊（如有缺漏請以空值回傳）：</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">  - 票面號碼（如有）</span></span><br><span class="line"><span class="emphasis">  - 乘車日期</span></span><br><span class="line"><span class="emphasis">  - 乘車時間</span></span><br><span class="line"><span class="emphasis">  - 發車站</span></span><br><span class="line"><span class="emphasis">  - 抵達站</span></span><br><span class="line"><span class="emphasis">  - 車廂與座位（如有）</span></span><br><span class="line"><span class="emphasis">  - 票種（如標準車廂/商務車廂/自由座/敬老/孩童/早鳥等）</span></span><br><span class="line"><span class="emphasis">  - 價格</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">- 請將所有辨識到的高鐵票資訊以陣列結構回傳（JSON 格式），每個物件對應一張票。</span></span><br><span class="line"><span class="emphasis">- 回傳內容請勿發表多餘評論，只需給出辨識到的票券結構化資訊。</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">---</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">## 範例輸出格式</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">[</span></span><br><span class="line"><span class="emphasis">&#123;</span></span><br><span class="line"><span class="emphasis">&quot;票面號碼&quot;: &quot;123456789&quot;,</span></span><br><span class="line"><span class="emphasis">&quot;乘車日期&quot;: &quot;2024-07-01&quot;,</span></span><br><span class="line"><span class="emphasis">&quot;乘車時間&quot;: &quot;13:20&quot;,</span></span><br><span class="line"><span class="emphasis">&quot;發車站&quot;: &quot;台北&quot;,</span></span><br><span class="line"><span class="emphasis">&quot;抵達站&quot;: &quot;左營&quot;,</span></span><br><span class="line"><span class="emphasis">&quot;車廂&quot;: &quot;5&quot;,</span></span><br><span class="line"><span class="emphasis">&quot;座位&quot;: &quot;12A&quot;,</span></span><br><span class="line"><span class="emphasis">&quot;票種&quot;: &quot;標準車廂&quot;,</span></span><br><span class="line"><span class="emphasis">&quot;價格&quot;: &quot;1490&quot;</span></span><br><span class="line"><span class="emphasis">&#125;,</span></span><br><span class="line"><span class="emphasis">&#123;</span></span><br><span class="line"><span class="emphasis">&quot;票面號碼&quot;: &quot;&quot;,</span></span><br><span class="line"><span class="emphasis">&quot;乘車日期&quot;: &quot;2024-07-01&quot;,</span></span><br><span class="line"><span class="emphasis">&quot;乘車時間&quot;: &quot;13:20&quot;,</span></span><br><span class="line"><span class="emphasis">&quot;發車站&quot;: &quot;台中&quot;,</span></span><br><span class="line"><span class="emphasis">&quot;抵達站&quot;: &quot;台南&quot;,</span></span><br><span class="line"><span class="emphasis">&quot;車廂&quot;: &quot;3&quot;,</span></span><br><span class="line"><span class="emphasis">&quot;座位&quot;: &quot;8D&quot;,</span></span><br><span class="line"><span class="emphasis">&quot;票種&quot;: &quot;自由座&quot;,</span></span><br><span class="line"><span class="emphasis">&quot;價格&quot;: &quot;790&quot;</span></span><br><span class="line"><span class="emphasis">&#125;</span></span><br><span class="line"><span class="emphasis">]</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">若無高鐵票：</span></span><br><span class="line"><span class="emphasis">[]</span></span><br></pre></td></tr></table></figure><h4 id="進行測試"><a href="#進行測試" class="headerlink" title="進行測試"></a>進行測試</h4><p>1.多次上傳圖片進行辨識，如下圖所示:</p><img src="/2025/06/27/dify-ai-hsr-ticket-ocr-batch-upload-export-excel/10.png" class="" title="多次上傳圖片"><p>2.將所有辨識結果匯出成 Excel，如下圖所示:</p><img src="/2025/06/27/dify-ai-hsr-ticket-ocr-batch-upload-export-excel/11.png" class="" title="多次上傳圖片"><h3 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h3><p>透過 Dify Agent + Tools 的架構，我們可以輕鬆實現高鐵票多次上傳辨識、自動累積所有結果，並在需要時匯出 Excel。<br>這種設計大幅提升了大量票據影像處理的彈性與效率，不但解決了 Dify 內建聊天流一次只能處理有限張圖片的限制，也讓資料整合與後續應用（如報帳、統計）變得更加自動化。</p><p>本實作展示了如何利用 Dify 的工作流與自訂工具串接，讓 AI 具備「資料多批整合」、「結構化欄位抽取」、「彈性匯出」等高階能力。<br>對於有批次票據處理需求、或想要將 AI 導入實際行政場景的開發者與企業，這是一個低門檻且高度擴充的解決方案。</p><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://rainmakerho.github.io/2025/06/23/dify-high-speed-rail-ticket-ocr/">使用 Dify 自動辨識高鐵票</a><br><a href="https://github.com/rainmakerho/excel-dify-plugin">excel-dify-plugin</a></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;&lt;a href=&quot;https://rainmakerho.github.io/2025/06/23/dify-high-speed-rail</summary>
-      
-    
-    
-    
-    
-    <category term="Excel" scheme="https://rainmakerho.github.io/tags/Excel/"/>
-    
-    <category term="OCR" scheme="https://rainmakerho.github.io/tags/OCR/"/>
-    
-    <category term="Dify" scheme="https://rainmakerho.github.io/tags/Dify/"/>
-    
-    <category term="台灣高鐵票" scheme="https://rainmakerho.github.io/tags/%E5%8F%B0%E7%81%A3%E9%AB%98%E9%90%B5%E7%A5%A8/"/>
-    
-    <category term="AI 資料抽取" scheme="https://rainmakerho.github.io/tags/AI-%E8%B3%87%E6%96%99%E6%8A%BD%E5%8F%96/"/>
-    
-    <category term="智慧文件辨識" scheme="https://rainmakerho.github.io/tags/%E6%99%BA%E6%85%A7%E6%96%87%E4%BB%B6%E8%BE%A8%E8%AD%98/"/>
-    
-    <category term="票據數位化" scheme="https://rainmakerho.github.io/tags/%E7%A5%A8%E6%93%9A%E6%95%B8%E4%BD%8D%E5%8C%96/"/>
-    
-    <category term="文件自動辨識" scheme="https://rainmakerho.github.io/tags/%E6%96%87%E4%BB%B6%E8%87%AA%E5%8B%95%E8%BE%A8%E8%AD%98/"/>
-    
-    <category term="高鐵票" scheme="https://rainmakerho.github.io/tags/%E9%AB%98%E9%90%B5%E7%A5%A8/"/>
-    
-    <category term="Agent" scheme="https://rainmakerho.github.io/tags/Agent/"/>
-    
-    <category term="Excel Plugin" scheme="https://rainmakerho.github.io/tags/Excel-Plugin/"/>
     
   </entry>
   

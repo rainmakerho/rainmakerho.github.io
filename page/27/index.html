@@ -152,6 +152,88 @@
             
   
     <article
+  id="post-non-null-assertion-operator-syntax"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/11/10/non-null-assertion-operator-syntax/">C# 使用 non-null 的運算子</a>
+    </h1>
+  
+  <a href="/2022/11/10/non-null-assertion-operator-syntax/" class="archive-article-date">
+  	<time datetime="2022-11-10T09:16:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-10</time>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在寫 C# 時，有些關於 Null 的一些警告內容為 <strong>CS8600</strong> 或是 <strong>CS8602</strong> ，如下，<br>CS8600 &#x2F;&#x2F; 正在將 Null 常值或可能的 Null 值轉換為不可為 Null 的型別。<br>CS8602 &#x2F;&#x2F; 可能 null 參考的取值 (dereference)。<br>從這些警告來看，筆著想到一個問題，<br>通常怕物件為 null ，怕會有 <strong>NullReferenceException</strong> 通常都會加上 <strong>?</strong> ，<br>那如果確定該物件不為 null 要加上什麼呢?</p> 
+      <p class="article-more-link">
+        <a href="/2022/11/10/non-null-assertion-operator-syntax/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">C#</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">NullReferenceException</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">non-null</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">!</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">CS8602</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">CS8600</a>
+        		</li>
+      		
+		</ul>
+	</div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+ <aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside> 
+
+  
+    <article
   id="post-az305"
   class="article article-type-post  article-index"
   itemscope
@@ -669,76 +751,6 @@
 </aside> 
 
   
-    <article
-  id="post-metasploit-privilege-escalation"
-  class="article article-type-post  article-index"
-  itemscope
-  itemprop="blogPost"
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/08/31/metasploit-privilege-escalation/">Metasploit 提權</a>
-    </h1>
-  
-  <a href="/2022/08/31/metasploit-privilege-escalation/" class="archive-article-date">
-  	<time datetime="2022-08-31T08:31:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-31</time>
-</a> 
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>成功透過 Metasploit 建立 meterpreter session 時，可以透過 <code>hashdump</code> 將 Security Accounts Manager (SAM) 資料 dump 出來，但如果使用者的權限不足，這時就需要提升權限。<br>可以透過 metasploit Suggester 來掃看看受害電腦可能有那些被提權的攻擊模組，<br>或是查看有那些有漏洞的 Service 可以讓我們以它的身份建立 meterpreter session。</p> 
-      <p class="article-more-link">
-        <a href="/2022/08/31/metasploit-privilege-escalation/#more"> more &gt;&gt; </a>
-      </p>
-         
-    </div>
-    <div class="article-info article-info-index">
-       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">metasploit</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">meterpreter</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">privilege escalation</a>
-        		</li>
-      		
-		</ul>
-	</div>
- 
-  
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
- <aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside> 
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/26/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><a class="page-number" href="/page/26/">26</a><span class="page-number current">27</span><a class="page-number" href="/page/28/">28</a><a class="page-number" href="/page/29/">29</a><span class="space">&hellip;</span><a class="page-number" href="/page/58/">58</a><a class="extend next" rel="next" href="/page/28/">Next &amp;raquo;</a>
@@ -753,7 +765,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2025 亂馬客
+    		&copy; 2026 亂馬客
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -7877,6 +7889,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">GPU</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">azure document intelligence</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">gpt</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">gemini</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ocr</a>
               </li>
             
             <div class="clearfix"></div>

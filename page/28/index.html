@@ -152,6 +152,76 @@
             
   
     <article
+  id="post-metasploit-privilege-escalation"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/08/31/metasploit-privilege-escalation/">Metasploit 提權</a>
+    </h1>
+  
+  <a href="/2022/08/31/metasploit-privilege-escalation/" class="archive-article-date">
+  	<time datetime="2022-08-31T08:31:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-31</time>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>成功透過 Metasploit 建立 meterpreter session 時，可以透過 <code>hashdump</code> 將 Security Accounts Manager (SAM) 資料 dump 出來，但如果使用者的權限不足，這時就需要提升權限。<br>可以透過 metasploit Suggester 來掃看看受害電腦可能有那些被提權的攻擊模組，<br>或是查看有那些有漏洞的 Service 可以讓我們以它的身份建立 meterpreter session。</p> 
+      <p class="article-more-link">
+        <a href="/2022/08/31/metasploit-privilege-escalation/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">metasploit</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">meterpreter</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">privilege escalation</a>
+        		</li>
+      		
+		</ul>
+	</div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+ <aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside> 
+
+  
+    <article
   id="post-metasploit-meterpreter-session"
   class="article article-type-post  article-index"
   itemscope
@@ -693,80 +763,6 @@
 </aside> 
 
   
-    <article
-  id="post-ps-import-module-0x80131515"
-  class="article article-type-post  article-index"
-  itemscope
-  itemprop="blogPost"
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/07/05/ps-import-module-0x80131515/">Import-Module 出現 Could not load file or assembly or one of its dependencies. Operation is not supported. 0x80131515 錯誤</a>
-    </h1>
-  
-  <a href="/2022/07/05/ps-import-module-0x80131515/" class="archive-article-date">
-  	<time datetime="2022-07-05T09:18:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-05</time>
-</a> 
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>今天要將 VMDK 轉到 VHD 時，從網路下載 <a target="_blank" rel="noopener" href="https://1drv.ms/u/s!Amctqf6I8YYKj_0kR_iru8F0-9CBGg?e=FJzCxA">Microsoft Virtual Machine Converter 3.0</a> Zip 檔案。<br>下載解壓縮後，開啟 PowerShell 執行 <code>Import-Module</code> ，卻出現 <strong>Import-Module : Could not load file or assembly ‘file:&#x2F;&#x2F;&#x2F;C:\Program Files\Microsoft Virtual Machine Converter\MvmcCmdlet.dll’ or one of its dependencies. Operation is not supported. (Exception from HRESULT: 0x80131515)</strong> 的錯誤。</p> 
-      <p class="article-more-link">
-        <a href="/2022/07/05/ps-import-module-0x80131515/#more"> more &gt;&gt; </a>
-      </p>
-         
-    </div>
-    <div class="article-info article-info-index">
-       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">zip</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">0x80131515</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Import-Module</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">dll</a>
-        		</li>
-      		
-		</ul>
-	</div>
- 
-  
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
- <aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside> 
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/27/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><a class="page-number" href="/page/27/">27</a><span class="page-number current">28</span><a class="page-number" href="/page/29/">29</a><a class="page-number" href="/page/30/">30</a><span class="space">&hellip;</span><a class="page-number" href="/page/58/">58</a><a class="extend next" rel="next" href="/page/29/">Next &amp;raquo;</a>
@@ -781,7 +777,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2025 亂馬客
+    		&copy; 2026 亂馬客
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -7905,6 +7901,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">GPU</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">azure document intelligence</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">gpt</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">gemini</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ocr</a>
               </li>
             
             <div class="clearfix"></div>
