@@ -152,6 +152,104 @@
             
   
     <article
+  id="post-google-map-polyline-too-many-points-staticmap-error-solution"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2025/07/31/google-map-polyline-too-many-points-staticmap-error-solution/">當 Google Maps Static API Polyline 點數過多：錯誤原因與最佳解法</a>
+    </h1>
+  
+  <a href="/2025/07/31/google-map-polyline-too-many-points-staticmap-error-solution/" class="archive-article-date">
+  	<time datetime="2025-07-31T01:55:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2025-07-31</time>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近使用 C# 透過<a target="_blank" rel="noopener" href="https://developers.google.cn/maps/documentation/routes/reference/rest/v2/TopLevel/computeRoutes?hl=zh-tw">Google Map Routes API 的 Compute Routes</a> 來規劃起、迄的路徑，取得<strong>polyline</strong>(整體路線的折線)，再利用<a target="_blank" rel="noopener" href="https://developers.google.com/maps/documentation/maps-static/overview?hl=zh-tw">Google Maps Static API</a>來產生含有起、迄路徑的圖。<br>但是如果起、迄路徑中的折線太多，例如使用<strong>開車</strong>的方式，從<strong>上海</strong>到<strong>深圳</strong>，它的折線就有<strong>8 千多個</strong>，這就會導致使用<a target="_blank" rel="noopener" href="https://developers.google.com/maps/documentation/maps-static/overview?hl=zh-tw">Google Maps Static API</a>它的<strong>URL</strong>長度會爆長而導致發生以下的錯誤，</p> 
+      <p class="article-more-link">
+        <a href="/2025/07/31/google-map-polyline-too-many-points-staticmap-error-solution/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">C#</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">URL</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Polyline</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Google Maps API</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Maps Static</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">點數過多</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">NetTopologySuite</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">簡化路徑</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Your client has issued a malformed or illegal request</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">DouglasPeuckerSimplifier</a>
+        		</li>
+      		
+		</ul>
+	</div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+ <aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside> 
+
+  
+    <article
   id="post-iis-application-pool-identity-directory-permissions"
   class="article article-type-post  article-index"
   itemscope
@@ -774,96 +872,6 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">實作</a>
-        		</li>
-      		
-		</ul>
-	</div>
- 
-  
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
- <aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside> 
-
-  
-    <article
-  id="post-github-copilot-ollama-local-llm"
-  class="article article-type-post  article-index"
-  itemscope
-  itemprop="blogPost"
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2025/05/30/github-copilot-ollama-local-llm/">GitHub Copilot 串接 Ollama：地端自託管 LLM，守護企業程式碼資安的 AI 補全解決方案</a>
-    </h1>
-  
-  <a href="/2025/05/30/github-copilot-ollama-local-llm/" class="archive-article-date">
-  	<time datetime="2025-05-30T13:43:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2025-05-30</time>
-</a> 
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>AI 編程助手（如 GitHub Copilot、ChatGPT）已成為現代開發團隊必備工具。<br>但對於企業來說，最擔心的就是原始碼外洩：資料送到雲端 AI 推理時，萬一被第三方取得，就可能造成商業機密或客戶資料風險。</p> 
-      <p class="article-more-link">
-        <a href="/2025/05/30/github-copilot-ollama-local-llm/#more"> more &gt;&gt; </a>
-      </p>
-         
-    </div>
-    <div class="article-info article-info-index">
-       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">資安</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">VSCode</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">LLM</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">GitHub Copilot</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Ollama</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">AI</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">AI Code Completion</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">地端</a>
         		</li>
       		
 		</ul>
@@ -8045,6 +8053,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ocr</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">MCP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">AADSTS9010010</a>
               </li>
             
             <div class="clearfix"></div>

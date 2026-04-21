@@ -152,6 +152,72 @@
             
   
     <article
+  id="post-Log-Forging"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/10/08/Log-Forging/">Checkmarx Log_Forging</a>
+    </h1>
+  
+  <a href="/2021/10/08/Log-Forging/" class="archive-article-date">
+  	<time datetime="2021-10-08T03:18:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-08</time>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>當系統有將外部資料(Post or Get or Session … 的值)寫入Log時，<br>就會被 Checkmarx 找出有 Log_Forging 的問題。<br>因為怕該內容裡面放了<strong>換行</strong>符號，<br>導致 Log 被偽造，例如原本使用者登入會寫一個 Log 為<br>login ok rm 或是 login fail rm<br>那如果帳號的內容改成 “admin” + NewLine + “login ok admin”，<br>而 Log 就會變成</p> 
+      <p class="article-more-link">
+        <a href="/2021/10/08/Log-Forging/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Checkmarx</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Log_Forging</a>
+        		</li>
+      		
+		</ul>
+	</div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+ <aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside> 
+
+  
+    <article
   id="post-HTTP-Response-Splitting"
   class="article article-type-post  article-index"
   itemscope
@@ -654,88 +720,6 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Integrated Mode</a>
-        		</li>
-      		
-		</ul>
-	</div>
- 
-  
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
- <aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside> 
-
-  
-    <article
-  id="post-secure-iis-with-ModSecurity-WAF-Config"
-  class="article article-type-post  article-index"
-  itemscope
-  itemprop="blogPost"
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/09/02/secure-iis-with-ModSecurity-WAF-Config/">如何使用 ModSecurity WAF 來保護 Windows IIS - 設定</a>
-    </h1>
-  
-  <a href="/2021/09/02/secure-iis-with-ModSecurity-WAF-Config/" class="archive-article-date">
-  	<time datetime="2021-09-02T13:20:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-02</time>
-</a> 
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在前一篇<a href="https://rainmakerho.github.io/2021/09/01/secure-iis-with-ModSecurity-WAF/">如何使用 ModSecurity WAF 來保護 Windows IIS - 安裝</a>已將 <strong>ModSecurity</strong> 安裝在 Windows 上，<br>接下來需要再設定目錄及安裝一些 Rules 來偵測防範 SQL Injection、XSS等資安風險。</p> 
-      <p class="article-more-link">
-        <a href="/2021/09/02/secure-iis-with-ModSecurity-WAF-Config/#more"> more &gt;&gt; </a>
-      </p>
-         
-    </div>
-    <div class="article-info article-info-index">
-       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">IIS</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">WAF</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Web Application Firewall</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">ModSecurity</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">UrlScan</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">OWASP ModSecurity Core Rule Set</a>
         		</li>
       		
 		</ul>
@@ -7917,6 +7901,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ocr</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">MCP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">AADSTS9010010</a>
               </li>
             
             <div class="clearfix"></div>

@@ -152,6 +152,76 @@
             
   
     <article
+  id="post-2018019"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/05/2018019/">Implement global message handlers and resets the dialog stack</a>
+    </h1>
+  
+  <a href="/2018/06/05/2018019/" class="archive-article-date">
+  	<time datetime="2018-06-05T01:45:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-05</time>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <p>在 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/azure/bot-service/dotnet/bot-builder-dotnet-global-handlers?view=azure-bot-service-3.0">Implement global message handlers</a> 有說明如何透過 global message handlers 來處理一些 help, cancel 等等的全域處理。例如在一個對話當中，使用者輸入了取得待批示的指令，這時需要將處理待批示清單的 Dialog 叫出來，並且將目前處理中的對話堆疉清除(this.task.Reset())。</p> 
+      <p class="article-more-link">
+        <a href="/2018/06/05/2018019/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">botframework</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">IDialogTask</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ScorableBase</a>
+        		</li>
+      		
+		</ul>
+	</div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+ <aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside> 
+
+  
+    <article
   id="post-2018018"
   class="article article-type-post  article-index"
   itemscope
@@ -686,76 +756,6 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">empty</a>
-        		</li>
-      		
-		</ul>
-	</div>
- 
-  
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
- <aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside> 
-
-  
-    <article
-  id="post-2018011"
-  class="article article-type-post  article-index"
-  itemscope
-  itemprop="blogPost"
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/13/2018011/">System.NullReferenceException when Aspose.Pdf.License.SetLicense(String licenseName)</a>
-    </h1>
-  
-  <a href="/2018/03/13/2018011/" class="archive-article-date">
-  	<time datetime="2018-03-13T06:54:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-13</time>
-</a> 
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-         <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近在 Web 使用 Aspose.Pdf 來產生文件時，有時候會忽然出現 <em>System.NullReferenceException</em> 的錯誤。<br>而錯誤的地方居然是在 License.SetLicense 的 Method，如下，<br>System.NullReferenceException: 並未將物件參考設定為物件的執行個體。<br>    於 .(Stream )<br>    於 .(String , Assembly )<br>    於 Aspose.Pdf.License.SetLicense(String licenseName)</p> 
-      <p class="article-more-link">
-        <a href="/2018/03/13/2018011/#more"> more &gt;&gt; </a>
-      </p>
-         
-    </div>
-    <div class="article-info article-info-index">
-       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Aspose</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SetLicense</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">NullReferenceException</a>
         		</li>
       		
 		</ul>
@@ -7937,6 +7937,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ocr</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">MCP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">AADSTS9010010</a>
               </li>
             
             <div class="clearfix"></div>

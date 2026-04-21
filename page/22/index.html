@@ -152,6 +152,88 @@
             
   
     <article
+  id="post-file-big5-utf8-get-correct"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/03/23/file-big5-utf8-get-correct/">透過比較編碼的 Byte 數，取得 BIG5/UTF8/UTF8 BOM 檔案正確的內容</a>
+    </h1>
+  
+  <a href="/2023/03/23/file-big5-utf8-get-correct/" class="archive-article-date">
+  	<time datetime="2023-03-23T05:37:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-03-23</time>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 <a target="_blank" rel="noopener" href="https://dotblogs.com.tw/rainmaker/2013/05/20/104547">透過 StreamReader.CurrentEncoding 判斷檔案的編碼</a>這篇是透過 <code>StreamReader.CurrentEncoding</code> 來取得檔案的編碼。<br>另外 同事 提供也可透過透過各編碼來取得 Byte 數，來比較出是否為該編碼，<br>以下來看看範例，</p> 
+      <p class="article-more-link">
+        <a href="/2023/03/23/file-big5-utf8-get-correct/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">FILE</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">BIG5</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">UTF8</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">UTF8 BOM</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Encoding</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">GetEncoding(950)</a>
+        		</li>
+      		
+		</ul>
+	</div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+ <aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside> 
+
+  
+    <article
   id="post-ef-owned-entity-types"
   class="article article-type-post  article-index"
   itemscope
@@ -650,92 +732,6 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">EF Core</a>
-        		</li>
-      		
-		</ul>
-	</div>
- 
-  
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
- <aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside> 
-
-  
-    <article
-  id="post-abp-dataseedcontributor-duplicate"
-  class="article article-type-post  article-index"
-  itemscope
-  itemprop="blogPost"
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/03/08/abp-dataseedcontributor-duplicate/">ABP 系統建立的 DataSeedContributor 會跑 2 次 SeedAsync，導致發生 DB duplicate key 的錯誤?</a>
-    </h1>
-  
-  <a href="/2023/03/08/abp-dataseedcontributor-duplicate/" class="archive-article-date">
-  	<time datetime="2023-03-08T06:24:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-03-08</time>
-</a> 
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>將 ABP v4.x 版本的方案升級到 ABP v5.x 後，<br>再執行 DbMigrator 專案後，居然發生 <strong>EntityFrameworkCore.DbUpdateException</strong> 的錯誤 (Cannot insert duplicate key row)</p> 
-      <p class="article-more-link">
-        <a href="/2023/03/08/abp-dataseedcontributor-duplicate/#more"> more &gt;&gt; </a>
-      </p>
-         
-    </div>
-    <div class="article-info article-info-index">
-       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ABP</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">DataSeedContributor</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">DataSeeder</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">duplicate key</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">AbpPermissionGrants</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">IX_AbpPermissionGrants_TenantId_Name_ProviderName_ProviderKey</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">SeedAsync</a>
         		</li>
       		
 		</ul>
@@ -7917,6 +7913,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ocr</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">MCP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">AADSTS9010010</a>
               </li>
             
             <div class="clearfix"></div>
