@@ -152,6 +152,96 @@
             
   
     <article
+  id="post-2020018"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/08/29/2020018/">有效地使用 ASP.NET Core Logging - 3</a>
+    </h1>
+  
+  <a href="/2020/08/29/2020018/" class="archive-article-date">
+  	<time datetime="2020-08-29T06:23:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-29</time>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>前幾篇從 <a href="https://rainmakerho.github.io/2020/08/05/2020014/">有效地使用 ASP.NET Core Logging - 1</a> 介紹使用 Serilog 來記錄，並加入錯誤的處理。<br><a href="https://rainmakerho.github.io/2020/08/26/2020017/">有效地使用 ASP.NET Core Logging - 2</a> 透過 Filter 去記錄每個 Page, Action 的執行時間。<br>在 log 中有些內容是每個訊息最好要提供的，例如機器名稱、使用者資訊。這些共通的資料我們可以透過 BeginScope 來將這些資料記錄下來。</p> 
+      <p class="article-more-link">
+        <a href="/2020/08/29/2020018/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ASP.NET Core</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Logging</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Api</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">MVC</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">GetTokenAsync</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">DelegatingHandler</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">IExceptionHandlerPathFeature</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">BeginScope</a>
+        		</li>
+      		
+		</ul>
+	</div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+ <aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside> 
+
+  
+    <article
   id="post-2020017"
   class="article article-type-post  article-index"
   itemscope
@@ -678,80 +768,6 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">PageNumber</a>
-        		</li>
-      		
-		</ul>
-	</div>
- 
-  
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
- <aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside> 
-
-  
-    <article
-  id="post-2020010"
-  class="article article-type-post  article-index"
-  itemscope
-  itemprop="blogPost"
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/01/2020010/">Uncaught DOMException: Blocked a frame with origin</a>
-    </h1>
-  
-  <a href="/2020/07/01/2020010/" class="archive-article-date">
-  	<time datetime="2020-07-01T09:49:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-01</time>
-</a> 
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近同事詢問一個將 Webfocus 報表放入 iframe 的問題，雖然畫面會出來，但是有些報表中的操作項目卻出不來，Browser 的 Console 會噴以下的錯誤，<br>Uncaught DOMException: Blocked a frame with origin “<a target="_blank" rel="noopener" href="http://192.xxx.xxx.xxx/">http://192.xxx.xxx.xxx</a>“ from accessing a cross-origin frame.<br>    at getPathNameObj (olapctl.js:72:97)<br>    at getLoginStatus (olapctl.js:63:387)<br>    at olapBaseWindowSetup (olapctl.js:648:113)<br>    at olapOnloadFuncInitOCPLite (olapctl.js:633:90)<br>    at olapJavaSetupCompleted (olapctl.js:798:422)<br>    at olapWindowOnload (olap.js:83:232)<br>    at eval (eval at ibigblInitTables_doOnLoad (<a target="_blank" rel="noopener" href="http://192.xxx.xxx.xxx/ibi_apps/ibi_html/S22_15593321851F/javaassist/ibi/html/js/ibigbl.js:943:13">http://192.xxx.xxx.xxx/ibi_apps/ibi_html/S22_15593321851F/javaassist/ibi/html/js/ibigbl.js:943:13</a>), <anonymous>:1:1)<br>    at ibigblInitTables_doOnLoad [as doOnLoad] (<a target="_blank" rel="noopener" href="http://192.xxx.xxx.xxx/ibi_apps/ibi_html/S22_15593321851F/javaassist/ibi/html/js/ibigbl.js:943:13">http://192.xxx.xxx.xxx/ibi_apps/ibi_html/S22_15593321851F/javaassist/ibi/html/js/ibigbl.js:943:13</a>)<br>    at ibigblOnLoad (<a target="_blank" rel="noopener" href="http://192.xxx.xxx.xxx/ibi_apps/ibi_html/S22_15593321851F/javaassist/ibi/html/js/ibigbl.js:1507:20">http://192.xxx.xxx.xxx/ibi_apps/ibi_html/S22_15593321851F/javaassist/ibi/html/js/ibigbl.js:1507:20</a>)<br>    at onload (<a target="_blank" rel="noopener" href="http://192.xxx.xxx.xxx/ibi_apps/run?PG_REQTYPE=REDIRECT&PG_MRsaved=false&PG_Func=GETBINARY&PG_File=ivyvkvqj.htm:90:32">http://192.xxx.xxx.xxx/ibi_apps/run?PG_REQTYPE=REDIRECT&amp;PG_MRsaved=false&amp;PG_Func=GETBINARY&amp;PG_File=ivyvkvqj.htm:90:32</a>)</p> 
-      <p class="article-more-link">
-        <a href="/2020/07/01/2020010/#more"> more &gt;&gt; </a>
-      </p>
-         
-    </div>
-    <div class="article-info article-info-index">
-       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">X-Frame-Options</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">iframe</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Uncaught DOMException</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Blocked a frame with origin</a>
         		</li>
       		
 		</ul>
@@ -7941,6 +7957,46 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">AADSTS9010010</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">ASP.NET Core 10</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Passkey</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">WebAuthn</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">FIDO2</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">無密碼登入</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Identity</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Razor Pages</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">.NET 10</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">生物辨識</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">密碼金鑰</a>
               </li>
             
             <div class="clearfix"></div>

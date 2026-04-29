@@ -152,6 +152,84 @@
             
   
     <article
+  id="post-vmdk-to-vhd-azure"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/05/06/vmdk-to-vhd-azure/">將 VMDK (VHD) 移轉到 Azure</a>
+    </h1>
+  
+  <a href="/2021/05/06/vmdk-to-vhd-azure/" class="archive-article-date">
+  	<time datetime="2021-05-06T08:38:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-06</time>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>以下介紹如何將一個 VMWare VM(vmdk) 移轉到 Azure 上。<br>開始之前請先下載並安裝以下軟體，<br><a target="_blank" rel="noopener" href="https://1drv.ms/u/s!Amctqf6I8YYKj_0kR_iru8F0-9CBGg?e=FJzCxA">Microsoft Virtual Machine Converter 3.0</a> : 透過它的 PowerShell Cmdlet 來將 VMDK 轉成 VHD，請將它解壓縮後，放到 C:\Program Files 目錄之中。<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-tw/azure/storage/common/storage-use-azcopy-v10#download-and-install-azcopy">AzCopy</a> : 透過它將 VHD 上傳到 Azure Disk (可與vmdk 放在相同目錄)<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-tw/cli/azure/install-azure-cli">Azure CLI</a> : 透過它來建立 Azure Disk 並建立 Azure VM </p> 
+      <p class="article-more-link">
+        <a href="/2021/05/06/vmdk-to-vhd-azure/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">VMDK</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">VHD</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Azure CLI</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">VMDK to Azure</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">VHD to Azure</a>
+        		</li>
+      		
+		</ul>
+	</div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+ <aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside> 
+
+  
+    <article
   id="post-mstsc-CredSSP-Error"
   class="article article-type-post  article-index"
   itemscope
@@ -654,92 +732,6 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Blind SQL Injection</a>
-        		</li>
-      		
-		</ul>
-	</div>
- 
-  
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
- <aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside> 
-
-  
-    <article
-  id="post-failed-Error-during-WebScoket-handshake"
-  class="article article-type-post  article-index"
-  itemscope
-  itemprop="blogPost"
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/02/22/failed-Error-during-WebScoket-handshake/">failed: Error during WebSocket handshake: net::ERR_CONNECTION_RESET</a>
-    </h1>
-  
-  <a href="/2021/02/22/failed-Error-during-WebScoket-handshake/" class="archive-article-date">
-  	<time datetime="2021-02-22T03:03:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-22</time>
-</a> 
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近同事9G 詢問他們的系統在內容同仁執行都沒問題，但是如果透過外網連接的話，就會發生以下的錯誤<br><strong>failed: Error during WebSocket handshake: net::ERR_CONNECTION_RESET</strong></p> 
-      <p class="article-more-link">
-        <a href="/2021/02/22/failed-Error-during-WebScoket-handshake/#more"> more &gt;&gt; </a>
-      </p>
-         
-    </div>
-    <div class="article-info article-info-index">
-       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">WebScoket</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">nginx</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">WAF</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Error during WebSocket handshake</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">ERR_CONNECTION_RESET</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">外網</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Citrix NetScaler</a>
         		</li>
       		
 		</ul>
@@ -7929,6 +7921,46 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">AADSTS9010010</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">ASP.NET Core 10</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Passkey</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">WebAuthn</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">FIDO2</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">無密碼登入</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Identity</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Razor Pages</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">.NET 10</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">生物辨識</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">密碼金鑰</a>
               </li>
             
             <div class="clearfix"></div>
