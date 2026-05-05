@@ -152,6 +152,80 @@
             
   
     <article
+  id="post-checkmarx-unsafe-reflection"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/02/17/checkmarx-unsafe-reflection/">Checkmarx | Unsafe_Reflection</a>
+    </h1>
+  
+  <a href="/2023/02/17/checkmarx-unsafe-reflection/" class="archive-article-date">
+  	<time datetime="2023-02-17T03:01:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-02-17</time>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近系統被 Checkmarx V9.4.5 掃出有 Unsafe_Reflection 的問題，<br>程式碼中有透過傳入的 Type Name 及 參數值來動態建立物件執行該 Method 。<br>問題的<strong>來源</strong>是 Controller Action Method 的<strong>參數</strong>，<br>問題的<strong>目的地</strong>則是 <strong>Invoke Method</strong> 。</p> 
+      <p class="article-more-link">
+        <a href="/2023/02/17/checkmarx-unsafe-reflection/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Checkmarx</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Unsafe_Reflection</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">V9.4.5</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">CWE-470</a>
+        		</li>
+      		
+		</ul>
+	</div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+ <aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside> 
+
+  
+    <article
   id="post-dynamic-set-property-with-ts"
   class="article article-type-post  article-index"
   itemscope
@@ -646,80 +720,6 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Client_Potential_DOM_Open_Redirect</a>
-        		</li>
-      		
-		</ul>
-	</div>
- 
-  
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
- <aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside> 
-
-  
-    <article
-  id="post-azure-function-bindings-triggers"
-  class="article article-type-post  article-index"
-  itemscope
-  itemprop="blogPost"
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/12/29/azure-function-bindings-triggers/">將 Http Trigger Function 內容寫到 Queue 中，並透過 Queue trigger Function 取出來，存到 Blob</a>
-    </h1>
-  
-  <a href="/2022/12/29/azure-function-bindings-triggers/" class="archive-article-date">
-  	<time datetime="2022-12-29T07:32:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-12-29</time>
-</a> 
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在前一篇<a href="https://rainmakerho.github.io/2022/12/29/azure-function-by-vs/">使用 Visual Studio 建立 Azure Function</a>，<br>建立了一個 Http Trigger Function ，是將 訊息 Response 出去，<br>接下來可以將<strong>訊息</strong>放到 Storage Queue 之中，<br>並新增一個 Queue trigger Function 來取得 Queue 中的資料，<br>並存到 Blob 之中</p> 
-      <p class="article-more-link">
-        <a href="/2022/12/29/azure-function-bindings-triggers/#more"> more &gt;&gt; </a>
-      </p>
-         
-    </div>
-    <div class="article-info article-info-index">
-       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Azure Function</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Function App</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Queue trigger</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Blob</a>
         		</li>
       		
 		</ul>
@@ -7949,6 +7949,30 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">密碼金鑰</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">專業開發者</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">技術債</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">RPA 轉型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">自動化效率</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">AutoIt</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">企業數位轉型</a>
               </li>
             
             <div class="clearfix"></div>

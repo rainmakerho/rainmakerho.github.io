@@ -152,6 +152,84 @@
             
   
     <article
+  id="post-oAuth2-Basic"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/02/15/oAuth2-Basic/">OAuth 2.0 - Authorization Code Flow</a>
+    </h1>
+  
+  <a href="/2022/02/15/oAuth2-Basic/" class="archive-article-date">
+  	<time datetime="2022-02-15T05:18:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-15</time>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>OAuth是”Open Authorization”,它讓使用者在授權伺服器上，同意 Client App 代表使用者去存取資源。<br>使用者會在授權伺服器上驗證帳密，將 Access Token 交給 Client App，所以 Client App 並不會拿到 使用者的帳密。<br><img src="https://identityserver4.readthedocs.io/en/3.1.0/_images/protocols.png" alt="OAuth2"><br>以上圖來說，當使用者使用 Web App 需要輸入帳密時，應該是網頁轉到 Security Token Service(Authorization Server) 輸入使用者的帳密，而 Web App 從 Token Service 取得 Token 去存取 API。</p> 
+      <p class="article-more-link">
+        <a href="/2022/02/15/oAuth2-Basic/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OAuth 2.0</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Authorization Code Flow</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">response_type=code</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">grant_type=authorization_code</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">private client</a>
+        		</li>
+      		
+		</ul>
+	</div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+ <aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside> 
+
+  
+    <article
   id="post-fiddler-cannot-trace-httpclient"
   class="article article-type-post  article-index"
   itemscope
@@ -646,92 +724,6 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Windows 10 環境變數</a>
-        		</li>
-      		
-		</ul>
-	</div>
- 
-  
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
- <aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside> 
-
-  
-    <article
-  id="post-Heap-Inspection-ASPX"
-  class="article article-type-post  article-index"
-  itemscope
-  itemprop="blogPost"
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/28/Heap-Inspection-ASPX/">Checkmarx V9.4 在 Heap_Inspection 的改變(ASPX)</a>
-    </h1>
-  
-  <a href="/2021/12/28/Heap-Inspection-ASPX/" class="archive-article-date">
-  	<time datetime="2021-12-28T01:09:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-28</time>
-</a> 
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>之前在 ASP.NET WebForm ASPX 中，只要有 Password 等機敏性名稱的元件、屬性及變數都會被 Checkmarx 找出 <strong>Heap Inspection</strong> ，例如登入頁面的 <code>&lt;asp:TextBox ID=&quot;txtPassword&quot; TextMode=&quot;Password&quot; runat=&quot;server&quot;&gt;&lt;/asp:TextBox&gt;</code> 欄位。而且該問題還是<strong>中風險</strong>(在 Checkmarx V8.9測試)。</p> 
-      <p class="article-more-link">
-        <a href="/2021/12/28/Heap-Inspection-ASPX/#more"> more &gt;&gt; </a>
-      </p>
-         
-    </div>
-    <div class="article-info article-info-index">
-       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">ASPX</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ASP.NET</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Checkmarx</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Password</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Heap Inspection</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Heap_Inspection</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">WebForm</a>
         		</li>
       		
 		</ul>
@@ -7961,6 +7953,30 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">密碼金鑰</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">專業開發者</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">技術債</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">RPA 轉型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">自動化效率</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">AutoIt</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">企業數位轉型</a>
               </li>
             
             <div class="clearfix"></div>

@@ -152,6 +152,76 @@
             
   
     <article
+  id="post-Path-Traversal-Vulnerability-Checkmarx"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/05/21/Path-Traversal-Vulnerability-Checkmarx/">Checkmarx Path Traversal 的解法</a>
+    </h1>
+  
+  <a href="/2021/05/21/Path-Traversal-Vulnerability-Checkmarx/" class="archive-article-date">
+  	<time datetime="2021-05-21T05:40:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-21</time>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>Path Traversal 這個問題當使用上傳檔案時，如果沒有進行適當的處理，就很常會被 Checkmarx 掃出來。<br>最簡單的當然是將那些有可能會造成檔案跑到別的目錄去的字 Replace 掉就好了。<br>那些字串有那些呢?</p> 
+      <p class="article-more-link">
+        <a href="/2021/05/21/Path-Traversal-Vulnerability-Checkmarx/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Replace</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Checkmarx</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Path Traversal</a>
+        		</li>
+      		
+		</ul>
+	</div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+ <aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside> 
+
+  
+    <article
   id="post-vmdk-to-vhd-azure"
   class="article article-type-post  article-index"
   itemscope
@@ -662,76 +732,6 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Migration Toolkit</a>
-        		</li>
-      		
-		</ul>
-	</div>
- 
-  
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
- <aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside> 
-
-  
-    <article
-  id="post-owasp-sql-injection"
-  class="article article-type-post  article-index"
-  itemscope
-  itemprop="blogPost"
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/03/15/owasp-sql-injection/">OWASP Top 10 2017 - SQL Injection</a>
-    </h1>
-  
-  <a href="/2021/03/15/owasp-sql-injection/" class="archive-article-date">
-  	<time datetime="2021-03-15T05:52:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-15</time>
-</a> 
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在　OWASP Top 10 - 2017 之中，Injection 還是在排在第一位，可見 Injection 所帶來的影響很大。<br>本文將跟大家介紹 Explicit &#x2F; Blind SQL Injection 以及一些 SQL 常見的手法。<br>首先，先來了解一下 SQL Injection<br>當 URL 為 <strong><a target="_blank" rel="noopener" href="http://www.mysite.com/product?id=1">http://www.mysite.com/product?id=1</a></strong> 時，<br>會對應到 SQL 為  <strong>SELECT * FROM Product WHERE Id &#x3D; 1</strong>,<br>當中不信任的資料為 id 的參數值 1。<br>所以當我們把 URL 改成 <strong><a target="_blank" rel="noopener" href="http://www.mysite.com/product?id=1">http://www.mysite.com/product?id=1</a> or 1&#x3D;1</strong><br>程式如果沒驗證的話，SQL 就會變成 <strong>SELECT * FROM Product WHERE Id &#x3D; 1 or 1&#x3D;1</strong>, </p> 
-      <p class="article-more-link">
-        <a href="/2021/03/15/owasp-sql-injection/#more"> more &gt;&gt; </a>
-      </p>
-         
-    </div>
-    <div class="article-info article-info-index">
-       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SQL Injection</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">OWASP Top 10</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Blind SQL Injection</a>
         		</li>
       		
 		</ul>
@@ -7961,6 +7961,30 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">密碼金鑰</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">專業開發者</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">技術債</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">RPA 轉型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">自動化效率</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">AutoIt</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">企業數位轉型</a>
               </li>
             
             <div class="clearfix"></div>

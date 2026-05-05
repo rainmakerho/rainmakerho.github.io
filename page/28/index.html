@@ -152,6 +152,80 @@
             
   
     <article
+  id="post-ado-pre-login-handshake-tcp-provider-error-0"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/10/20/ado-pre-login-handshake-tcp-provider-error-0/">當 SQL Server 將 TLS 1.0/1.1 關掉之後的怪現象 - SSL 安全性錯誤 (pre-login handshake)</a>
+    </h1>
+  
+  <a href="/2022/10/20/ado-pre-login-handshake-tcp-provider-error-0/" class="archive-article-date">
+  	<time datetime="2022-10-20T00:35:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-10-20</time>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>發生問題的環境是 DB Server 為 MS SQL 2014, Client 為 Windows 10, 應用程式為 .NET 1.1 Windows Form Application。當透過 IIS Crypto 關掉 TLS 1.0&#x2F;1.1 後，有些 Windows 10 Client 執行程式時，就會發生 <b>System.Data.SqlClient.ConnectionPool.GetConnection &lt;System.Data.SqlClient.SqlException&gt; SSL 安全性錯誤</b> 的錯誤。</p> 
+      <p class="article-more-link">
+        <a href="/2022/10/20/ado-pre-login-handshake-tcp-provider-error-0/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">.NET 1.1</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ADO.NET</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">pre-login handshake</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">TCP Provider</a>
+        		</li>
+      		
+		</ul>
+	</div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+ <aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside> 
+
+  
+    <article
   id="post-UseHttpsRedirection-not-redirect-https"
   class="article article-type-post  article-index"
   itemscope
@@ -658,80 +732,6 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">AuthorizationCodeReceivedNotification</a>
-        		</li>
-      		
-		</ul>
-	</div>
- 
-  
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
- <aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside> 
-
-  
-    <article
-  id="post-tls-do-not-a-common-algorithm"
-  class="article article-type-post  article-index"
-  itemscope
-  itemprop="blogPost"
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/07/12/tls-do-not-a-common-algorithm/">用戶端和伺服器無法溝通，因為它們沒有公用的演算法</a>
-    </h1>
-  
-  <a href="/2022/07/12/tls-do-not-a-common-algorithm/" class="archive-article-date">
-  	<time datetime="2022-07-12T03:56:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-12</time>
-</a> 
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-         <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近同事將一台 Server 設定停用 TLS 1.0, TLS 1.1 後，<br>ASP.NET 4.X 的程式呼叫 Https 的 Web Service 會噴出 <strong>用戶端和伺服器無法溝通，因為它們沒有公用的演算法。</strong> 的錯誤。</p> 
-      <p class="article-more-link">
-        <a href="/2022/07/12/tls-do-not-a-common-algorithm/#more"> more &gt;&gt; </a>
-      </p>
-         
-    </div>
-    <div class="article-info article-info-index">
-       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ASP.NET</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">TLS</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">TLS 1.2</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Disable TLS 1.1</a>
         		</li>
       		
 		</ul>
@@ -7961,6 +7961,30 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">密碼金鑰</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">專業開發者</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">技術債</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">RPA 轉型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">自動化效率</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">AutoIt</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">企業數位轉型</a>
               </li>
             
             <div class="clearfix"></div>

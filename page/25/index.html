@@ -152,6 +152,80 @@
             
   
     <article
+  id="post-azure-function-bindings-triggers"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/12/29/azure-function-bindings-triggers/">將 Http Trigger Function 內容寫到 Queue 中，並透過 Queue trigger Function 取出來，存到 Blob</a>
+    </h1>
+  
+  <a href="/2022/12/29/azure-function-bindings-triggers/" class="archive-article-date">
+  	<time datetime="2022-12-29T07:32:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-12-29</time>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在前一篇<a href="https://rainmakerho.github.io/2022/12/29/azure-function-by-vs/">使用 Visual Studio 建立 Azure Function</a>，<br>建立了一個 Http Trigger Function ，是將 訊息 Response 出去，<br>接下來可以將<strong>訊息</strong>放到 Storage Queue 之中，<br>並新增一個 Queue trigger Function 來取得 Queue 中的資料，<br>並存到 Blob 之中</p> 
+      <p class="article-more-link">
+        <a href="/2022/12/29/azure-function-bindings-triggers/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Azure Function</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Function App</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Queue trigger</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Blob</a>
+        		</li>
+      		
+		</ul>
+	</div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+ <aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside> 
+
+  
+    <article
   id="post-azure-function-by-vs"
   class="article article-type-post  article-index"
   itemscope
@@ -682,84 +756,6 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">mosquitto.conf</a>
-        		</li>
-      		
-		</ul>
-	</div>
- 
-  
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
- <aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside> 
-
-  
-    <article
-  id="post-mqtt-with-mqttnet"
-  class="article article-type-post  article-index"
-  itemscope
-  itemprop="blogPost"
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/12/15/mqtt-with-mqttnet/">C# MQTT using MQTTnet</a>
-    </h1>
-  
-  <a href="/2022/12/15/mqtt-with-mqttnet/" class="archive-article-date">
-  	<time datetime="2022-12-15T02:37:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-12-15</time>
-</a> 
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近需要透過 MQTT 來收取 IOT Sensor 的資料，<br>所以到 <a target="_blank" rel="noopener" href="https://mqtt.org/">MQTT.org</a> 看一下有那些軟體可以當 MQTT Broker 及 MQTT Client。<br>有人使用 <a target="_blank" rel="noopener" href="https://mosquitto.org/">mosquitto</a>，也有人使用 <a target="_blank" rel="noopener" href="https://www.rabbitmq.com/mqtt.html">RabbitMQ with MQTT Plugin</a>。<br>而 .NET 則可以使用 <a target="_blank" rel="noopener" href="https://github.com/dotnet/MQTTnet">MQTTnet</a>。<br>以下本文將使用 <a target="_blank" rel="noopener" href="https://github.com/dotnet/MQTTnet">MQTTnet</a> 來測試 Sensor 送資料到 Broker ，<br>再由 Backend ControlCenter 將訂閱的 Topic 訊息讀取出來，<br>最後再讀取來自 <a target="_blank" rel="noopener" href="https://mosquitto.org/">mosquitto</a> 的訊息。</p> 
-      <p class="article-more-link">
-        <a href="/2022/12/15/mqtt-with-mqttnet/#more"> more &gt;&gt; </a>
-      </p>
-         
-    </div>
-    <div class="article-info article-info-index">
-       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">C#</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">MQTTnet</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">mosquitto</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">MQTT</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">IOT</a>
         		</li>
       		
 		</ul>
@@ -7989,6 +7985,30 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">密碼金鑰</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">專業開發者</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">技術債</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">RPA 轉型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">自動化效率</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">AutoIt</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">企業數位轉型</a>
               </li>
             
             <div class="clearfix"></div>

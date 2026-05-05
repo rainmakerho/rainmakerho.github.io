@@ -152,6 +152,88 @@
             
   
     <article
+  id="post-AADSTS700016-azure-bot"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/12/21/AADSTS700016-azure-bot/">AADSTS700016 Application with identifier &#39;c4c9c950-2042-1234-b487-3a1234567890&#39; was not found in the directory &#39;Bot Framework&#39;. This can happen if the application has not been installed by the administrator of the tenant or consented to by any user in the tenant.</a>
+    </h1>
+  
+  <a href="/2023/12/21/AADSTS700016-azure-bot/" class="archive-article-date">
+  	<time datetime="2023-12-21T05:30:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-21</time>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>在 Microsoft Entra ID(Azure AD)的 App registrations 建立 App (Supported account types 設定為 <code>Accounts in this organizational directory only (你的組織 only - Single tenant)</code>)並建立它的 Certificates &amp; secrets ，然後建立 Azure Bot 並設定 Microsoft App ID ，<code>Type of App</code> 設定為 <strong>Single Tenant</strong> 對應到上述的 App。<br>透過 App 的 clientId 及 secrets 到 <code>https://login.microsoftonline.com/botframework.com/oauth2/v2.0/token</code> 取得 token 時，發生<strong>AADSTS700016</strong>的錯誤。</p> 
+      <p class="article-more-link">
+        <a href="/2023/12/21/AADSTS700016-azure-bot/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Teams</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">AADSTS700016</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Azure Bot</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Single Tenant</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Type of App</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Supported account types</a>
+        		</li>
+      		
+		</ul>
+	</div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+ <aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside> 
+
+  
+    <article
   id="post-azure-oidc-add-claims-sso"
   class="article article-type-post  article-index"
   itemscope
@@ -682,80 +764,6 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">UNABLE_TO_GET_ISSUER_CERT_LOCALLY</a>
-        		</li>
-      		
-		</ul>
-	</div>
- 
-  
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
- <aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside> 
-
-  
-    <article
-  id="post-checkmarx-csrf-httpclientfactory-createclient-false-positive"
-  class="article article-type-post  article-index"
-  itemscope
-  itemprop="blogPost"
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/11/13/checkmarx-csrf-httpclientfactory-createclient-false-positive/">Checkmarx | HttpClientFactory.CreateClient 造成 Checkmarx 狂噴 CSRF</a>
-    </h1>
-  
-  <a href="/2023/11/13/checkmarx-csrf-httpclientfactory-createclient-false-positive/" class="archive-article-date">
-  	<time datetime="2023-11-13T07:38:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-11-13</time>
-</a> 
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-         <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>ASP.NET Core MVC 專案中的 WebAPI Controller 被 Checkmarx V9.4.5.1012 HF24 掃出一堆的 <strong>CSRF</strong> 問題。</p> 
-      <p class="article-more-link">
-        <a href="/2023/11/13/checkmarx-csrf-httpclientfactory-createclient-false-positive/#more"> more &gt;&gt; </a>
-      </p>
-         
-    </div>
-    <div class="article-info article-info-index">
-       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">C#</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Checkmarx</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">CSRF</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">HttpClientFactory.CreateClient</a>
         		</li>
       		
 		</ul>
@@ -7985,6 +7993,30 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">密碼金鑰</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">專業開發者</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">技術債</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">RPA 轉型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">自動化效率</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">AutoIt</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">企業數位轉型</a>
               </li>
             
             <div class="clearfix"></div>

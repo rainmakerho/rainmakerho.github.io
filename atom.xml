@@ -6,7 +6,7 @@
   <link href="https://rainmakerho.github.io/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2026-04-29T09:42:56.445Z</updated>
+  <updated>2026-05-05T08:45:59.665Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,42 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>別讓技術瓶頸，成為公司的發展上限</title>
+    <link href="https://rainmakerho.github.io/2026/05/05/professional-dev-mindset-overcoming-technical-bottlenecks-in-enterprise-rpa/"/>
+    <id>https://rainmakerho.github.io/2026/05/05/professional-dev-mindset-overcoming-technical-bottlenecks-in-enterprise-rpa/</id>
+    <published>2026-05-05T03:57:38.000Z</published>
+    <updated>2026-05-05T08:45:59.665Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="消失的n年與「永不結案」的自動化"><a href="#消失的n年與「永不結案」的自動化" class="headerlink" title="消失的n年與「永不結案」的自動化"></a>消失的n年與「永不結案」的自動化</h3><p>在大型企業的開發職涯中，我們偶爾會遇到一種令人費解的現象：一個原本應提升效率、簡化流程的 RPA（流程自動化）專案，執行了n年卻依然無法穩定「結案」。</p><p>每當腳本失效，開發人員總是以「網銀改版」、「網路不穩」或「環境變動」作為理由。但身為技術人員，我們必須誠實地自問：<strong>這究竟是外部環境的限制，還是我們選用的工具與思維，早已跟不上現代網頁架構的演進？</strong></p><h3 id="座標模擬的窮途末路：AutoIt-的侷限性"><a href="#座標模擬的窮途末路：AutoIt-的侷限性" class="headerlink" title="座標模擬的窮途末路：AutoIt 的侷限性"></a>座標模擬的窮途末路：AutoIt 的侷限性</h3><p>在過去的桌面軟體時代，AutoIt 憑藉簡單腳本邏輯與 UI 模擬能力，確實解決了不少問題。然而面對現代複雜網頁，傳統 UI 模擬（甚至包含 UIA 模式）已顯得力不從心：</p><ol><li>「盲人摸象」的操作邏輯：AutoIt 的 UIA 本質上是透過作業系統層級的輔助介面去「窺探」瀏覽器。它並不真正理解網頁 DOM 結構，面對動態渲染（React&#x2F;Vue）時，常發生定位偏移或找不到元素。</li><li>無法感知的網路狀態：這是最致命的缺點。AutoIt 難以判斷瀏覽器底層請求是否真的完成，開發者被迫塞入大量 <code>Sleep</code>，靠「猜測」與「盲等」維持運作。這不僅效率低，更是穩定性問題的核心來源。</li><li>數據傳輸的風險：依賴系統剪貼簿（Ctrl+C &#x2F; Ctrl+V）進行數據交換，極易受到系統彈窗、輸入法切換或人為操作干擾。</li></ol><h3 id="職場的慣性陷阱：當「習慣錯誤」成為阻力"><a href="#職場的慣性陷阱：當「習慣錯誤」成為阻力" class="headerlink" title="職場的慣性陷阱：當「習慣錯誤」成為阻力"></a>職場的慣性陷阱：當「習慣錯誤」成為阻力</h3><p>比技術債更可怕的，是「心態債」。在推動轉型時，最常遇到的阻力往往來自於：</p><ol><li>承辦人員的舒適圈：長期合作的承辦人員往往習慣了與原維護人員的對話模式：「出錯、報修、微調」。雖然效率低下，但因為熟悉而感到安全。面對更先進、穩定的新技術，反而可能因擔心失去流程掌控感而排斥。</li><li>技術壟斷下的資訊不透明：當開發者不與同仁交流，並將工具缺陷包裝成環境限制時，主管與承辦人就會被誤導，認為現狀已是最好。這種閉門造車，本質上是把個人技術瓶頸，強加成公司的發展上限。</li></ol><h3 id="現代化轉型：Playwright-C-的實戰優勢"><a href="#現代化轉型：Playwright-C-的實戰優勢" class="headerlink" title="現代化轉型：Playwright + C# 的實戰優勢"></a>現代化轉型：Playwright + C# 的實戰優勢</h3><p>為了終結惡性循環，我們需要的是具備「可觀測性」與「可維護性」的現代化架構：</p><ol><li>原生驅動（Playwright）：直接與瀏覽器引擎溝通，並可搭配等待條件與斷言（load state、locator assertions）降低流程不確定性。相較傳統 UI 模擬，在動態網頁場景通常有更高穩定性。</li><li>精準定位與自動等待：透過語意化 locator 與內建 auto-wait，可大幅減少使用 <code>Sleep</code>。即使網頁小幅改版，通常也能以較小成本完成調整。</li><li>無感數據整合（C#）：透過 C# 直接處理資料流（檔案、記憶體物件、API），降低對剪貼簿與前景視窗的依賴，明顯減少非預期干擾。</li></ol><h3 id="成效要能被驗證：用-KPI-讓轉型不是口號"><a href="#成效要能被驗證：用-KPI-讓轉型不是口號" class="headerlink" title="成效要能被驗證：用 KPI 讓轉型不是口號"></a>成效要能被驗證：用 KPI 讓轉型不是口號</h3><p>若要讓主管與承辦人信服，除了技術語言，更需要可被追蹤的成果。建議至少建立以下三個指標，按月回顧：</p><ol><li>自動化失敗率：定義每月排程總次數中，失敗任務所占比例。目標不是零失敗，而是持續下降且可解釋。</li><li>平均修復時間（MTTR）：從告警到恢復正常所需時間。框架標準化後，MTTR 應顯著縮短。</li><li>人工介入次數：統計每月需要人工接手的次數。若轉型有效，介入頻率應下降，且集中在真正例外情境。</li></ol><h3 id="警惕「技術斷層」與營運危機"><a href="#警惕「技術斷層」與營運危機" class="headerlink" title="警惕「技術斷層」與營運危機"></a>警惕「技術斷層」與營運危機</h3><p>大型企業面臨最嚴重的危機，莫過於「人退程式亡」。當關鍵自動化流程依賴單一人員，且工具過時又無人願意接手時，企業營運連續性將面臨巨大考驗。</p><p>引入現代化、標準化開發框架（如 C# 與 Playwright），目的不只是讓專案結案，更是建立一套<strong>透明、可維護且具備知識傳承價值</strong>的企業數位資產。</p><h3 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h3><p>一個專案做了n年還沒結案，本身就是對效率的警示。身為開發者，我們不應滿足於「程式會動」，而應追求「程式優雅且穩定」。</p><p>打破技術孤島，主動引進更高效的工具，是我們對專業的負責，也是對企業價值的守護。真正成熟的技術人，不只會把功能做出來，更能把流程做穩、把知識交接出去、把風險透明化。</p><p><strong>當團隊從「靠人撐系統」走向「靠系統撐營運」，這才是企業數位轉型真正的完成態。</strong></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;消失的n年與「永不結案」的自動化&quot;&gt;&lt;a href=&quot;#消失的n年與「永不結案」的自動化&quot; class=&quot;headerlink&quot; title=&quot;消失的n年與「永不結案」的自動化&quot;&gt;&lt;/a&gt;消失的n年與「永不結案」的自動化&lt;/h3&gt;&lt;p&gt;在大型企業的開發職涯中，我們</summary>
+      
+    
+    
+    
+    
+    <category term="C#" scheme="https://rainmakerho.github.io/tags/C/"/>
+    
+    <category term="Playwright" scheme="https://rainmakerho.github.io/tags/Playwright/"/>
+    
+    <category term="專業開發者" scheme="https://rainmakerho.github.io/tags/%E5%B0%88%E6%A5%AD%E9%96%8B%E7%99%BC%E8%80%85/"/>
+    
+    <category term="技術債" scheme="https://rainmakerho.github.io/tags/%E6%8A%80%E8%A1%93%E5%82%B5/"/>
+    
+    <category term="RPA 轉型" scheme="https://rainmakerho.github.io/tags/RPA-%E8%BD%89%E5%9E%8B/"/>
+    
+    <category term="自動化效率" scheme="https://rainmakerho.github.io/tags/%E8%87%AA%E5%8B%95%E5%8C%96%E6%95%88%E7%8E%87/"/>
+    
+    <category term="AutoIt" scheme="https://rainmakerho.github.io/tags/AutoIt/"/>
+    
+    <category term="企業數位轉型" scheme="https://rainmakerho.github.io/tags/%E4%BC%81%E6%A5%AD%E6%95%B8%E4%BD%8D%E8%BD%89%E5%9E%8B/"/>
+    
+  </entry>
   
   <entry>
     <title>.NET 10 全新功能：在 ASP.NET Core Razor Pages 中實作 Passkey 無密碼登入</title>
@@ -703,40 +739,6 @@
     <category term="安全性" scheme="https://rainmakerho.github.io/tags/%E5%AE%89%E5%85%A8%E6%80%A7/"/>
     
     <category term="最佳實踐" scheme="https://rainmakerho.github.io/tags/%E6%9C%80%E4%BD%B3%E5%AF%A6%E8%B8%90/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>低成本高效率！用 Dify + Azure AI 快速處理手寫發票，準確率超高</title>
-    <link href="https://rainmakerho.github.io/2025/07/25/dify-handwritten-invoice/"/>
-    <id>https://rainmakerho.github.io/2025/07/25/dify-handwritten-invoice/</id>
-    <published>2025-07-25T06:18:35.000Z</published>
-    <updated>2025-08-07T02:33:00.408Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>手寫發票的資料輸入是營業稅申報流程中最費時的一環，傳統人工輸入容易出錯又耗時。<br>本文將介紹，如何透過 Dify API 結合 Azure AI，把這段流程完全自動化，大幅減少人工作業時間與錯誤風險。</p><p>延續我在 <a href="https://rainmakerho.github.io/2025/06/23/dify-high-speed-rail-ticket-ocr/">使用 Dify 自動辨識高鐵票</a> 的實作經驗，<br>在 Dify 中只要加入 LLM 節點，使用 gpt-4.1-mini 模型來辨識<strong>高鐵票</strong>，又快又準確。<br>但是當我將<strong>高鐵票</strong>改成<strong>手寫發票</strong>時，有些手寫的數字就有可能會辨識錯誤，例如<code>9</code>，有可能會被辨識成<code>7</code>，<br>這時候要怎麼辦呢?</p><h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>GPT 雖然強大，但在辨識手寫內容上仍有一定限制。<br>此時我們可以改用<a href="https://learn.microsoft.com/zh-tw/azure/ai-services/content-understanding/">Azure AI Content Understanding</a>先進行辨識，再將結果交給 LLM 處理成我們需要的 JSON 格式。以下是完整流程：</p><p>1.在 Dify 中安裝 <a href="https://github.com/fujita-h/dify-plugin-azure-ai-document-intelligence">dify-plugin-azure-ai-document-intelligence</a> 插件<br>在 Dify 中，點擊<strong>外掛</strong>，點擊<strong>安裝插件</strong>，選擇<strong>Github 的</strong>，貼上<a href="https://github.com/fujita-h/dify-plugin-azure-ai-document-intelligence">dify-plugin-azure-ai-document-intelligence</a>的 url，選擇<strong>版本</strong>及<strong>套餐</strong>，再按<strong>下一個</strong>即可，如下圖:</p><img src="/2025/07/25/dify-handwritten-invoice/03.png" class="" title="dify-plugin-azure-ai-document-intelligence"><p>2.建立 Azure AI Content Understanding<br>建立好 Azure AI Foundry project 後，請點選<strong>My assets</strong>中的<strong>Models + endpoints</strong>，切到<strong>Service endpoints</strong> Tab，如下圖:</p><img src="/2025/07/25/dify-handwritten-invoice/01.png" class="" title="Azure AI Foundry project"><p>3.設定 <a href="https://github.com/fujita-h/dify-plugin-azure-ai-document-intelligence">dify-plugin-azure-ai-document-intelligence</a> 插件的授權<br>複製 Azure AI Content Understanding 的 endpoint 及 Primary Key, 設定到 <a href="https://github.com/fujita-h/dify-plugin-azure-ai-document-intelligence">dify-plugin-azure-ai-document-intelligence</a> 插件的授權，如下圖:</p><img src="/2025/07/25/dify-handwritten-invoice/02.png" class="" title="endpoint 及 Primary Key"><br/><img src="/2025/07/25/dify-handwritten-invoice/04.png" class="" title="set plugin lic"><p>4.設定流程<br>在 Dify 中，先使用<a href="https://github.com/fujita-h/dify-plugin-azure-ai-document-intelligence">dify-plugin-azure-ai-document-intelligence</a>插件，再將它的輸入結果給下個 LLM 節點來整理我們要的資訊，最後再輸出 LLM 整理後的結果，如下圖:</p><img src="/2025/07/25/dify-handwritten-invoice/05.png" class="" title="Dify"><p>插件的 Text 設定給 LLM 節點 的 上下文參數，LLM 節點的 Prompt 如下，</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">你是發票文字辨識專家，請從下列 OCR 文字中抽取統一發票資訊，並以 JSON 格式輸出以下欄位：</span><br><span class="line">&#123;</span><br><span class="line">  &quot;INVOICE_NO&quot;: &quot;發票號碼，格式為開頭2碼英文字母加上8碼數字，例如 MT27721864&quot;,</span><br><span class="line">  &quot;BUYER_UNIFORM_NO&quot;: &quot;買方統一編號，通常出現在「買受人」或「統一編號」欄位後方&quot;,</span><br><span class="line">  &quot;DATE&quot;: &quot;發票日期，格式為中華民國年月日，例如 114年6月11日&quot;,</span><br><span class="line">  &quot;SUBTOTAL&quot;: &quot;銷售額小計（應稅金額），為未稅金額&quot;,</span><br><span class="line">  &quot;TAX&quot;: &quot;營業稅金額&quot;,</span><br><span class="line">  &quot;SELLER_UNIFORM_NO&quot;: &quot;賣方統一編號，通常出現在統一發票專用章附近&quot;,</span><br><span class="line">  &quot;TOTAL&quot;: &quot;總計金額，含稅&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">請注意：</span><br><span class="line">- 所有金額與統編請輸出為半形數字</span><br><span class="line">- 日期請保留中華民國格式（例如 114年6月11日）</span><br><span class="line">- 若欄位無法明確辨識，請填入空字串 &quot;&quot;</span><br><span class="line">- 僅輸出純 JSON，請勿加入說明文字</span><br><span class="line"></span><br><span class="line">以下是 OCR 辨識後的文字內容：</span><br><span class="line">&#123;&#123;上下文內容&#125;&#125;</span><br></pre></td></tr></table></figure><p>完成後，拿<a href="https://digit.make9.tw/startup/entrepreneur/%E4%B8%89%E8%81%AF%E5%BC%8F%E7%99%BC%E7%A5%A8%E6%80%8E%E9%BA%BC%E9%96%8B%EF%BC%9F%E8%A4%87%E5%AF%AB%E7%B4%99%E7%94%A8%E6%B3%95%EF%BC%9F/">三聯式發票怎麼開？複寫紙用法？手把手開給你看！</a>的圖片來解析，結果如下圖:</p><img src="/2025/07/25/dify-handwritten-invoice/06.png" class="" title="結果"><p>辨識結果準確，處理時間約 6.5 秒，且推論成本低，可滿足企業對效能與成本控管的需求，具備導入價值。</p><h3 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h3><p>如果是非手寫圖片，例如車票、名片等等可以用 gpt-4.1-mini 大部份都可以精準地辨識出來。<br>但遇到手寫圖片時，僅靠 GPT 模型的能力可能會有所限制，此時可透過 <a href="https://learn.microsoft.com/zh-tw/azure/ai-services/content-understanding/">Azure AI Content Understanding</a> 先進行辨識，再交由 LLM 結構化輸出資訊。</p><p>手寫發票的資料輸入是營業稅申報流程中最費時的一環，<br>本文介紹的解法，透過 Dify API 結合 Azure AI，即可將這段流程自動化，大幅減少人工作業時間與錯誤風險。</p><p>綜合來看，只要結合 <strong>Azure AI Content Understanding 插件</strong> 與 <strong>LLM 節點</strong>，就能有效完成手寫發票的文字辨識與結構化輸出，成為自動化營業稅資料建檔的強大工具。<br>而整個設定過程在 Dify 中不到 1 分鐘即可完成。</p><h3 id="加入處理-三聯式發票"><a href="#加入處理-三聯式發票" class="headerlink" title="加入處理 三聯式發票"></a>加入處理 三聯式發票</h3><p>如果要加入處理<strong>三聯式發票</strong>可以在 Prompt 中加入 補充說明 如下，</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">補充說明：</span><br><span class="line">- 三聯式發票中，發票號碼格式相同，常出現在頂部，如「VN 02283153」</span><br><span class="line">- 賣方統編（SELLER_UNIFORM_NO）常見於公司資訊欄位，例如「統編:64145404」</span><br><span class="line">- 買方統編（BUYER_UNIFORM_NO）可能以「實費人統編」或類似詞出現</span><br><span class="line">- 日期格式可從「民國年/月/日」或「100-07-22」推導為「中華民國100年7月22日」</span><br><span class="line">- 小計（SUBTOTAL）與稅額（TAX）通常在「銷售額」、「營業稅」等標示後出現</span><br><span class="line">- 總計金額（TOTAL）可能為「發票稅計」、「合計」、「應收金額」或付款方式金額（如「現金470元」）</span><br></pre></td></tr></table></figure><p>這樣 三聯式發票 也可以很快的辨識出來，使用<a href="https://news.ltn.com.tw/news/focus/paper/527444">打了統編 可報帳抵稅&#x2F;&#x2F; 捶心肝…發票中千萬 不能領</a>的圖片來測試，如下:</p><img src="/2025/07/25/dify-handwritten-invoice/07.png" class="" title="三聯式發票"><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://rainmakerho.github.io/2025/06/23/dify-high-speed-rail-ticket-ocr/">使用 Dify 自動辨識高鐵票</a><br><a href="https://digit.make9.tw/startup/entrepreneur/%E4%B8%89%E8%81%AF%E5%BC%8F%E7%99%BC%E7%A5%A8%E6%80%8E%E9%BA%BC%E9%96%8B%EF%BC%9F%E8%A4%87%E5%AF%AB%E7%B4%99%E7%94%A8%E6%B3%95%EF%BC%9F/">三聯式發票怎麼開？複寫紙用法？手把手開給你看！</a><br><a href="https://learn.microsoft.com/zh-tw/azure/ai-services/content-understanding/">Azure AI Content Understanding</a><br><a href="https://github.com/fujita-h/dify-plugin-azure-ai-document-intelligence">dify-plugin-azure-ai-document-intelligence</a><br><a href="https://news.ltn.com.tw/news/focus/paper/527444">打了統編 可報帳抵稅&#x2F;&#x2F; 捶心肝…發票中千萬 不能領</a></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;手寫發票的資料輸入是營業稅申報流程中最費時的一環，傳統人工輸入容易出錯又耗時。&lt;br&gt;本文將介紹，如何透過 Dify API 結合 Azur</summary>
-      
-    
-    
-    
-    
-    <category term="發票" scheme="https://rainmakerho.github.io/tags/%E7%99%BC%E7%A5%A8/"/>
-    
-    <category term="Dify" scheme="https://rainmakerho.github.io/tags/Dify/"/>
-    
-    <category term="手寫發票" scheme="https://rainmakerho.github.io/tags/%E6%89%8B%E5%AF%AB%E7%99%BC%E7%A5%A8/"/>
-    
-    <category term="Azure AI" scheme="https://rainmakerho.github.io/tags/Azure-AI/"/>
-    
-    <category term="文件自動化" scheme="https://rainmakerho.github.io/tags/%E6%96%87%E4%BB%B6%E8%87%AA%E5%8B%95%E5%8C%96/"/>
-    
-    <category term="GPT-4" scheme="https://rainmakerho.github.io/tags/GPT-4/"/>
-    
-    <category term="營業稅申報" scheme="https://rainmakerho.github.io/tags/%E7%87%9F%E6%A5%AD%E7%A8%85%E7%94%B3%E5%A0%B1/"/>
     
   </entry>
   
