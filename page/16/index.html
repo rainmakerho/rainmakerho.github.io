@@ -152,6 +152,88 @@
             
   
     <article
+  id="post-axios-proxy-err-502"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/11/27/axios-proxy-err-502/">axios 透過 proxy 連線發生 502 錯誤問題</a>
+    </h1>
+  
+  <a href="/2023/11/27/axios-proxy-err-502/" class="archive-article-date">
+  	<time datetime="2023-11-27T03:28:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-11-27</time>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>Windows Server 連外要透過 Proxy 時，原本在 Windows 設定中，設定 proxy 。<br>結果我們的 nodejs app 卻沒辦法吃到系統的設定。<br>設定 <code>npm config set https-proxy http://192.168.0.100:808</code> 去跑，<br>也還是會噴 <strong>502</strong> 的錯誤。<br>在 axios 設定 <code>proxy</code> config ，也還是噴 <strong>502</strong> 的錯誤。</p> 
+      <p class="article-more-link">
+        <a href="/2023/11/27/axios-proxy-err-502/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">node</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">axios</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">proxy</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">502</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">httpsAgent</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">UNABLE_TO_GET_ISSUER_CERT_LOCALLY</a>
+        		</li>
+      		
+		</ul>
+	</div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+ <aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside> 
+
+  
+    <article
   id="post-checkmarx-csrf-httpclientfactory-createclient-false-positive"
   class="article article-type-post  article-index"
   itemscope
@@ -678,80 +760,6 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">BackConnectionHostNames</a>
-        		</li>
-      		
-		</ul>
-	</div>
- 
-  
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
- <aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside> 
-
-  
-    <article
-  id="post-cs1998-missing-await"
-  class="article article-type-post  article-index"
-  itemscope
-  itemprop="blogPost"
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/10/06/cs1998-missing-await/">別忽略 CS1988 非同步方法缺少 &#39;await&#39; 運算子 的警告</a>
-    </h1>
-  
-  <a href="/2023/10/06/cs1998-missing-await/" class="archive-article-date">
-  	<time datetime="2023-10-06T09:01:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-10-06</time>
-</a> 
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-         <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近同事透過 K6 進行 WebAPI 壓測時，<br>發現當 Thread 數多時，就會出奇怪的錯誤，<br>例如 在 進入 Middlewares 中取好資料到 UserRols 中，<br>然後在 Controller 中判斷是否存在某個角色時 <code>UserRols.Any(ur =&gt; ur.Code == &quot;Admin&quot;)</code> ，<br>本應有資料的，卻變成沒有資料。</p> 
-      <p class="article-more-link">
-        <a href="/2023/10/06/cs1998-missing-await/#more"> more &gt;&gt; </a>
-      </p>
-         
-    </div>
-    <div class="article-info article-info-index">
-       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">.NET</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">CS1988</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">await</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">async</a>
         		</li>
       		
 		</ul>
@@ -8005,6 +8013,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">企業數位轉型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Microsoft Foundry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Azure AI Foundry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Custom Models</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">BYOK</a>
               </li>
             
             <div class="clearfix"></div>

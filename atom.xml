@@ -6,7 +6,7 @@
   <link href="https://rainmakerho.github.io/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2026-05-05T08:45:59.665Z</updated>
+  <updated>2026-05-14T08:57:36.774Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>如何設定 GitHub Copilot 使用 Microsoft Foundry 的自訂模型</title>
+    <link href="https://rainmakerho.github.io/2026/05/14/copilot-models/"/>
+    <id>https://rainmakerho.github.io/2026/05/14/copilot-models/</id>
+    <published>2026-05-14T05:55:54.000Z</published>
+    <updated>2026-05-14T08:57:36.774Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>GitHub Copilot 除了使用內建模型外，也可以使用我們提供的自訂模型。<br>以下說明如何設定 Microsoft Foundry 的 模型</p><h3 id="新增-Microsoft-Foundry-的-模型"><a href="#新增-Microsoft-Foundry-的-模型" class="headerlink" title="新增 Microsoft Foundry 的 模型"></a>新增 Microsoft Foundry 的 模型</h3><p>在 Azure Portal 中，新增 Microsoft Foundry (如果已有就不用新增)<br>到 Microsoft Foundry(<code>https://ai.azure.com/</code>)新增要提供的 Model，<br>部署完成後，到<code>聊天遊樂場</code>測試沒問題後，點擊<strong>檢視程式碼</strong>，<br>會有<strong>endpoint</strong>及<strong>API 金鑰</strong></p><h3 id="設定-Github-Copilot-Custom-Models"><a href="#設定-Github-Copilot-Custom-Models" class="headerlink" title="設定  Github Copilot Custom Models"></a>設定  Github Copilot Custom Models</h3><p>到 Github Copilot 的 Models 功能，<br>進入 <strong>Copilot models</strong> 功能後，點選<strong>Custom models</strong>(Preview) Tab，</p><h5 id="新增-API-key"><a href="#新增-API-key" class="headerlink" title="新增 API key"></a>新增 API key</h5><p>點選<strong>Add API key</strong>，Provider 選擇<code>OpenAI Compatible</code>，<br>輸入<code>名稱</code>, <code>API Key</code>及<code>Base API URL</code>(<strong>檢視程式碼</strong>中的<strong>endpoint</strong>)</p><ul><li>註: <strong>Base API URL</strong> 要填 Foundry endpoint，且保留<code>/openai/v1</code></li></ul><p>然後就在<code>Available models</code>的 Search 輸入框中輸入前面新增模型的deployment_name，再按下**+** Button，如下圖，</p><img src="/2026/05/14/copilot-models/01.png" class="" title="API keys"><ul><li><code>deployment_name</code> 是你在 Microsoft Foundry 部署模型時設定的名稱</li><li>一定自已輸入<code>deployment_name</code>，再按下<code>+</code>新增模型</li></ul><h5 id="設定-模型"><a href="#設定-模型" class="headerlink" title="設定 模型"></a>設定 模型</h5><p>選好要用的 模型 後，點選<strong>Added models</strong>設定剛才加入的模型，如下圖，</p><img src="/2026/05/14/copilot-models/02.png" class="" title="Configure"> <ul><li>也可以設定要不要啟用它</li></ul><h3 id="VS-Code-中使用"><a href="#VS-Code-中使用" class="headerlink" title="VS Code 中使用"></a>VS Code 中使用</h3><p>等待約 2 分鐘後，在 Copilot 中，點擊 Manage Language Model 功能，如下圖，</p><img src="/2026/05/14/copilot-models/03.png" class="" title="Manage Language Model"> <p>就可以在 Language Models 看到我們新增的 Models，如下圖，</p><img src="/2026/05/14/copilot-models/04.png" class="" title="Custom Model"> <p>之後就可以在 Copilot 切換到該 模型 來使用它了哦~</p><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://docs.github.com/en/copilot/how-tos/copilot-sdk/authenticate-copilot-sdk/bring-your-own-key">Bring your own key (BYOK)</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;GitHub Copilot 除了使用內建模型外，也可以使用我們提供的自訂模型。&lt;br&gt;以下說明如何設定 Microsoft Foundry</summary>
+      
+    
+    
+    
+    
+    <category term="GitHub Copilot" scheme="https://rainmakerho.github.io/tags/GitHub-Copilot/"/>
+    
+    <category term="Microsoft Foundry" scheme="https://rainmakerho.github.io/tags/Microsoft-Foundry/"/>
+    
+    <category term="Azure AI Foundry" scheme="https://rainmakerho.github.io/tags/Azure-AI-Foundry/"/>
+    
+    <category term="Custom Models" scheme="https://rainmakerho.github.io/tags/Custom-Models/"/>
+    
+    <category term="BYOK" scheme="https://rainmakerho.github.io/tags/BYOK/"/>
+    
+  </entry>
   
   <entry>
     <title>別讓技術瓶頸，成為公司的發展上限</title>
@@ -696,49 +726,6 @@
     <category term="Your client has issued a malformed or illegal request" scheme="https://rainmakerho.github.io/tags/Your-client-has-issued-a-malformed-or-illegal-request/"/>
     
     <category term="DouglasPeuckerSimplifier" scheme="https://rainmakerho.github.io/tags/DouglasPeuckerSimplifier/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>IIS Application Pool 檔案目錄權限解析：為什麼不用加帳號也能運作？</title>
-    <link href="https://rainmakerho.github.io/2025/07/29/iis-application-pool-identity-directory-permissions/"/>
-    <id>https://rainmakerho.github.io/2025/07/29/iis-application-pool-identity-directory-permissions/</id>
-    <published>2025-07-29T03:31:56.000Z</published>
-    <updated>2025-07-29T06:41:42.247Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在將 ASP.NET Core 網站部署到 IIS 的過程中，許多人都遇過這個疑問：</p><p>1.部署網站目錄時，是否一定要手動加上 <code>IIS AppPool\YourAppPool</code> 帳號的權限？</p><p>2.為什麼很多時候沒加也能正常執行？</p><p>這篇文章將徹底解析 IIS Application Pool Identity 的目錄權限運作原理，分享實際測試、設定流程，以及安全性最佳實踐，幫助你徹底搞懂這個主題！</p><h3 id="IIS-Application-Pool-Identity"><a href="#IIS-Application-Pool-Identity" class="headerlink" title="IIS Application Pool Identity"></a>IIS Application Pool Identity</h3><p>IIS 預設會使用 Application Pool Identity（<code>IIS AppPool\YourAppPool</code>）來執行網站程序。它有以下特點：</p><ul><li>只要目錄權限有 <code>BUILTIN\Users</code> 或 <code>NT AUTHORITY\Authenticated Users</code>，IIS AppPool Identity 預設就能正常存取。</li><li>如果這些群組被移除，就必須**明確加入 <code>IIS AppPool\YourAppPool</code>**，否則會遇到 500 錯誤。</li></ul><p>這樣的設計，雖然方便，但不符合「最小權限原則」（Least Privilege Principle）。<br>建議為生產環境<strong>明確只授權給實際需要的 AppPool Identity，移除其他不必要的群組帳號</strong>。</p><h3 id="ASP-NET-Core-網站在-IIS-部署與最小權限設定"><a href="#ASP-NET-Core-網站在-IIS-部署與最小權限設定" class="headerlink" title="ASP.NET Core 網站在 IIS 部署與最小權限設定"></a>ASP.NET Core 網站在 IIS 部署與最小權限設定</h3><p>以下是一套完整、符合最佳實踐的 IIS 目錄權限設定步驟：</p><p>1.在部署的 Server 上安裝 ASP.NET Core Hosting Bundle 後，執行 <code>iisreset</code></p><p>2.在 IIS 中建立一個新的<strong>應用程式集區</strong>(假設名稱為<code>webdemo</code>)，如下圖:</p><img src="/2025/07/29/iis-application-pool-identity-directory-permissions/01.png" class="" title="new application_pool"><p>3.在 IIS 中建立一個新的<strong>應用程式</strong>(假設名稱為<code>webdemo</code>)，並將應用程式集區指定到上面建立的集區，設定檔案所在目錄</p><img src="/2025/07/29/iis-application-pool-identity-directory-permissions/02.png" class="" title="new application"><p>4.在 IIS 站台，點擊<code>webdemo</code>，設定<strong>HTTP 回應標頭</strong>(移除不必要的標頭，加入 Security 的一些標頭)，如下圖:</p><img src="/2025/07/29/iis-application-pool-identity-directory-permissions/06.png" class="" title="http headers"><p>5.在檔案總管中，點選部署目錄-&gt;內容-&gt;安全性-&gt;SYSTEM 的權限(P)-&gt;點擊「進階」Button-&gt;點擊「停用繼承(I)」 Button 後，按下「確定」，如下圖:</p><img src="/2025/07/29/iis-application-pool-identity-directory-permissions/04.png" class="" title="SYSTEM"><p>6.在檔案總管中，點選部署目錄-&gt;內容-&gt;安全性-&gt;群組或使用者名稱(G)-&gt;點擊「編輯」Button-&gt;移除<strong>Authenticated Users</strong> 及 <strong>Users</strong> 群組帳號，如下圖:</p><img src="/2025/07/29/iis-application-pool-identity-directory-permissions/03.png" class="" title="remove users"><p>7.在檔案總管中，點選部署目錄-&gt;內容-&gt;安全性-&gt;群組或使用者名稱(G)-&gt;點擊「編輯」Button-&gt;加入 <strong>IIS AppPool\webdemo</strong> 帳號(允許<code>讀取與執行</code>, <code>列出資料夾內容</code> 及 <code>讀取</code> 權限)，如下圖:</p><img src="/2025/07/29/iis-application-pool-identity-directory-permissions/05.png" class="" title="add appPool"><br/><img src="/2025/07/29/iis-application-pool-identity-directory-permissions/07.png" class="" title="set appPool permissions"><p>8.針對特定子目錄（如 uploads、logs）加「寫入」或「寫入 + 修改」(有要刪除檔案) 權限，如下圖:</p><img src="/2025/07/29/iis-application-pool-identity-directory-permissions/08.png" class="" title="set uploads permissions"><h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h3><p><a href="https://learn.microsoft.com/zh-tw/iis/manage/configuring-security/application-pool-identities">應用程式集區身分識別</a></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;在將 ASP.NET Core 網站部署到 IIS 的過程中，許多人都遇過這個疑問：&lt;/p&gt;
-&lt;p&gt;1.部署網站目錄時，是否一定要手動加上 </summary>
-      
-    
-    
-    
-    
-    <category term="IIS" scheme="https://rainmakerho.github.io/tags/IIS/"/>
-    
-    <category term="Application Pool" scheme="https://rainmakerho.github.io/tags/Application-Pool/"/>
-    
-    <category term="ASP.NET Core" scheme="https://rainmakerho.github.io/tags/ASP-NET-Core/"/>
-    
-    <category term="權限" scheme="https://rainmakerho.github.io/tags/%E6%AC%8A%E9%99%90/"/>
-    
-    <category term="目錄權限" scheme="https://rainmakerho.github.io/tags/%E7%9B%AE%E9%8C%84%E6%AC%8A%E9%99%90/"/>
-    
-    <category term="AppPool Identity" scheme="https://rainmakerho.github.io/tags/AppPool-Identity/"/>
-    
-    <category term="虛擬帳號" scheme="https://rainmakerho.github.io/tags/%E8%99%9B%E6%93%AC%E5%B8%B3%E8%99%9F/"/>
-    
-    <category term="Windows Server" scheme="https://rainmakerho.github.io/tags/Windows-Server/"/>
-    
-    <category term="網站部署" scheme="https://rainmakerho.github.io/tags/%E7%B6%B2%E7%AB%99%E9%83%A8%E7%BD%B2/"/>
-    
-    <category term="安全性" scheme="https://rainmakerho.github.io/tags/%E5%AE%89%E5%85%A8%E6%80%A7/"/>
-    
-    <category term="最佳實踐" scheme="https://rainmakerho.github.io/tags/%E6%9C%80%E4%BD%B3%E5%AF%A6%E8%B8%90/"/>
     
   </entry>
   

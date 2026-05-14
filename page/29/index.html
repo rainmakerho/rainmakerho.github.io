@@ -152,6 +152,88 @@
             
   
     <article
+  id="post-mvc5-owin-azure-ad-openid"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/07/29/mvc5-owin-azure-ad-openid/">ASP.NET MVC 使用 Microsoft.Owin.Security 驗證 Azure AD，並傳送自定參數</a>
+    </h1>
+  
+  <a href="/2022/07/29/mvc5-owin-azure-ad-openid/" class="archive-article-date">
+  	<time datetime="2022-07-29T06:49:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-29</time>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>同事在練習 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-tw/learn/modules/msgraph-build-aspnetmvc-apps/5-exercise-add-auth">將 Microsoft 驗證程式庫納入 ASP.NET MVC Web 應用程式</a> 時，想要在 <strong>AccountController</strong> 的 <strong>SignIn()</strong> 中，在轉址到 Azure AD 驗證登入前先存入某些參數，然後在 Azure AD 驗證登入成功後，取回該參數。</p> 
+      <p class="article-more-link">
+        <a href="/2022/07/29/mvc5-owin-azure-ad-openid/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">ASP.NET MVC</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Azure AD</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Owin.Security</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Owin.Security.OpenIdConnect</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">AuthenticationProperties</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">AuthorizationCodeReceivedNotification</a>
+        		</li>
+      		
+		</ul>
+	</div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+ <aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside> 
+
+  
+    <article
   id="post-tls-do-not-a-common-algorithm"
   class="article article-type-post  article-index"
   itemscope
@@ -650,88 +732,6 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">IP addresses</a>
-        		</li>
-      		
-		</ul>
-	</div>
- 
-  
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
- <aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside> 
-
-  
-    <article
-  id="post-metasploit-reverse-tcp"
-  class="article article-type-post  article-index"
-  itemscope
-  itemprop="blogPost"
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/06/23/metasploit-reverse-tcp/">Metasploit Framework - 遠端控制 Windows 電腦</a>
-    </h1>
-  
-  <a href="/2022/06/23/metasploit-reverse-tcp/" class="archive-article-date">
-  	<time datetime="2022-06-23T03:21:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-06-23</time>
-</a> 
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>Metasploit Framework 是一個功能強大的資安工具組，<br>它將許多工具以Module的方式整合在一起，<br>而不用到到處去找、去下載不同的工具來做滲透測試。<br>正式開始學習之前先來淺嘗一下 Metasploit Framework 的強大之處。<br>練習情境為受害者收到釣魚信去下載惡意檔案並執行，<br>導致受害者的電腦(Windows 7)受到控制。</p> 
-      <p class="article-more-link">
-        <a href="/2022/06/23/metasploit-reverse-tcp/#more"> more &gt;&gt; </a>
-      </p>
-         
-    </div>
-    <div class="article-info article-info-index">
-       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">資安</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">metasploit</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">reverse_tcp</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">msfvenom</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">exploit/multi/handler</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">msfconsole</a>
         		</li>
       		
 		</ul>
@@ -7985,6 +7985,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">企業數位轉型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Microsoft Foundry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Azure AI Foundry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Custom Models</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">BYOK</a>
               </li>
             
             <div class="clearfix"></div>
