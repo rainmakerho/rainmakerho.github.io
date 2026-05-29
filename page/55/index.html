@@ -152,6 +152,80 @@
             
   
     <article
+  id="post-2018015"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/17/2018015/">Replace JSON 字串中的屬性值 (Replace JSON Value String)</a>
+    </h1>
+  
+  <a href="/2018/04/17/2018015/" class="archive-article-date">
+  	<time datetime="2018-04-17T13:12:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-17</time>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>  同事需要將一個 JSON 字串，裡面屬性值需要透過 Replace 的方式，來置換新的內容。但那些內容之中包含一些 JSON 的保留字，例如 &#x2F; &#x2F;&#x2F; 等字串。所以字串 Replace 之後，透過 JObject.Parse 去處理就報錯了。<br>  <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> tmpJsonStringBefore = <span class="string">@&quot;&#123;s:&quot;&quot;@s&quot;&quot;&#125;&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> o = JObject.Parse(tmpJsonStringBefore);</span><br><span class="line"><span class="keyword">var</span> s = <span class="string">&quot;A\&quot; string !@#$%^&amp;*()&#123;&#125;:\&quot;?/?/|\&quot;&#x27;:&gt;;&gt;&lt;&#123;\&quot;d\&quot;:\&quot;v\&quot; value&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> tmpJsonAfter = tmpJsonStringBefore.Replace(<span class="string">&quot;@s&quot;</span>, s);</span><br><span class="line"><span class="keyword">var</span> tmpJson = JObject.Parse(tmpJsonAfter);</span><br><span class="line">Console.WriteLine(tmpJson.ToString());</span><br></pre></td></tr></table></figure><br>  以上的 Code 一執行就會出「*Newtonsoft.Json.JsonReaderException: ‘After parsing a value an unexpected character was encountered: s. Path ‘s’, line 1, position 7.’*」</p> 
+      <p class="article-more-link">
+        <a href="/2018/04/17/2018015/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JSON</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Replace</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">special character</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JavaScriptStringEncode</a>
+        		</li>
+      		
+		</ul>
+	</div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+ <aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside> 
+
+  
+    <article
   id="post-2018014"
   class="article article-type-post  article-index"
   itemscope
@@ -686,80 +760,6 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">DialogModule</a>
-        		</li>
-      		
-		</ul>
-	</div>
- 
-  
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
- <aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside> 
-
-  
-    <article
-  id="post-2018007"
-  class="article article-type-post  article-index"
-  itemscope
-  itemprop="blogPost"
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/01/2018007/">The bot&#39;s MSA appId or password is incorrect.</a>
-    </h1>
-  
-  <a href="/2018/02/01/2018007/" class="archive-article-date">
-  	<time datetime="2018-02-01T03:52:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-01</time>
-</a> 
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-         <p>今天使用 botframework-emulator 在 local 測試 bot 時， botframework-emulator 居然出現 The bot’s MSA appId or password is incorrect. 的錯誤，如下圖， </p> 
-      <p class="article-more-link">
-        <a href="/2018/02/01/2018007/#more"> more &gt;&gt; </a>
-      </p>
-         
-    </div>
-    <div class="article-info article-info-index">
-       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">botframework</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">MSA appId or password is incorrect</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">c#</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">botframework-emulator</a>
         		</li>
       		
 		</ul>
@@ -8029,6 +8029,30 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">BYOK</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Memory Optimization</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">RecyclableMemoryStream</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Connection String Cache</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Garbage Collection Pressure</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">.NET Stream Pooling</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">LOH</a>
               </li>
             
             <div class="clearfix"></div>

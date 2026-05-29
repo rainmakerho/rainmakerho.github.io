@@ -152,6 +152,92 @@
             
   
     <article
+  id="post-oAuth2-PKCE"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/02/18/oAuth2-PKCE/">OAuth 2.0 - Proof Key for Code Exchange (PKCE)</a>
+    </h1>
+  
+  <a href="/2022/02/18/oAuth2-PKCE/" class="archive-article-date">
+  	<time datetime="2022-02-18T00:42:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-18</time>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 Native applications 因為是安裝在個人的設備上面，例如 手機，個人電腦。<br>這些 Native applications 通常會跟作業系統註冊 App-Claimed https URL (<a target="_blank" rel="noopener" href="https://app.exp.com/">https://app.exp.com</a> 會開啟該 application) 或是使用 Custom URL Scheme(myapp:&#x2F;&#x2F;callback#token&#x3D;…)。<br>因為<a href="https://rainmakerho.github.io/2022/02/17/oAuth2-implicit-flow/">OAuth 2.0 - Implicit Flow</a>可以用在 public client，<br>因為 Implicit Flow 比較不安全，所以現在大多改使用 PKCE，它是擴充自 Authorization Code Flow 。<br>在 <a href="https://rainmakerho.github.io/2022/02/15/oAuth2-Basic/">OAuth 2.0 - Authorization Code Flow</a> 在取得 Token 時，需要將 client_secret 一併傳出來取得 access token ，如果是 public client 就有可能會被知道 client_secret 的值，所以 PKCE 就是動態建立 Code Verifier 來取代 client_secret。<br>以下使用<a target="_blank" rel="noopener" href="https://www.oauth.com/playground/authorization-code-with-pkce.html">OAuth 2.0 Playground - pkce</a>來演示。</p> 
+      <p class="article-more-link">
+        <a href="/2022/02/18/oAuth2-PKCE/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Private-Use URI Scheme</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OAuth 2.0</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">PKCE</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Proof Key for Code Exchange</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">claiming URLs</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Custom URL Scheme</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">public client</a>
+        		</li>
+      		
+		</ul>
+	</div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+ <aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside> 
+
+  
+    <article
   id="post-oAuth2-implicit-flow"
   class="article article-type-post  article-index"
   itemscope
@@ -646,92 +732,6 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">digital envelope routines::initialization error</a>
-        		</li>
-      		
-		</ul>
-	</div>
- 
-  
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
- <aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside> 
-
-  
-    <article
-  id="post-error-TS2307-Cannot-find-module"
-  class="article article-type-post  article-index"
-  itemscope
-  itemprop="blogPost"
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/01/10/error-TS2307-Cannot-find-module/">error TS2307 Cannot find module</a>
-    </h1>
-  
-  <a href="/2022/01/10/error-TS2307-Cannot-find-module/" class="archive-article-date">
-  	<time datetime="2022-01-10T03:10:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-10</time>
-</a> 
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-         <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>透過 CentOS 8 來 compile ts 檔時，居然噴<code>error TS2307 Cannot find module</code>的錯誤</p> 
-      <p class="article-more-link">
-        <a href="/2022/01/10/error-TS2307-Cannot-find-module/#more"> more &gt;&gt; </a>
-      </p>
-         
-    </div>
-    <div class="article-info article-info-index">
-       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">tsc</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">TS2307</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Cannot find module</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">import</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">CASE-SENSITIVE</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">CentOS</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">forceConsistentCasingInFileNames</a>
         		</li>
       		
 		</ul>
@@ -8001,6 +8001,30 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">BYOK</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Memory Optimization</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">RecyclableMemoryStream</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Connection String Cache</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Garbage Collection Pressure</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">.NET Stream Pooling</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">LOH</a>
               </li>
             
             <div class="clearfix"></div>

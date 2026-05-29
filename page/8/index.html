@@ -152,6 +152,80 @@
             
   
     <article
+  id="post-windows-task-dont-work"
+  class="article article-type-post  article-index"
+  itemscope
+  itemprop="blogPost"
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2024/11/29/windows-task-dont-work/">Windows 工作排程器中的排程忽然不跑了?</a>
+    </h1>
+  
+  <a href="/2024/11/29/windows-task-dont-work/" class="archive-article-date">
+  	<time datetime="2024-11-29T05:26:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-11-29</time>
+</a> 
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+         <h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>今天同事詢問客戶端將工作排程器中的一個排程更換執行人員後，<br>設定每天週期執行、每天隔 5 分去跑一次。<br>但是，設定完成後，一直都沒有跑。</p> 
+      <p class="article-more-link">
+        <a href="/2024/11/29/windows-task-dont-work/#more"> more &gt;&gt; </a>
+      </p>
+         
+    </div>
+    <div class="article-info article-info-index">
+       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Windows</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Task</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">工作排程器</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Duration</a>
+        		</li>
+      		
+		</ul>
+	</div>
+ 
+  
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+ <aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside> 
+
+  
+    <article
   id="post-aspnet-authorize-policy-override"
   class="article article-type-post  article-index"
   itemscope
@@ -670,88 +744,6 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">手寫辨識</a>
-        		</li>
-      		
-		</ul>
-	</div>
- 
-  
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
- <aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside> 
-
-  
-    <article
-  id="post-sk-multi-agent-system-using-semantic-kernel"
-  class="article article-type-post  article-index"
-  itemscope
-  itemprop="blogPost"
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2024/07/05/sk-multi-agent-system-using-semantic-kernel/">Semantic Kernel | Multi-Agent system using Semantic Kernel</a>
-    </h1>
-  
-  <a href="/2024/07/05/sk-multi-agent-system-using-semantic-kernel/" class="archive-article-date">
-  	<time datetime="2024-07-05T09:40:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-05</time>
-</a> 
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>Semantic Kernel 允許載入許多 Plugin，當啟用<strong>Function calling</strong>(<code>ToolCallBehavior = ToolCallBehavior.AutoInvokeKernelFunctions</code>)後，<br>會讓 LLM 將解析用戶的問題，看看是否需要呼叫<strong>Plugin</strong>來完成用戶的問題。<br>例如要 onboard 一位新員工時，需要 1.建立員工帳號(MIS), 2.購買筆電(MIS), 3.申請識別證(HR), 4.寄送歡迎信件(HR) …等工作，<br>如果在一個 Agent 的狀況下，我們需要將這些工作全都轉成 Function 來讓 LLM 排出要完成的計劃(組合各個 Function)。<br>或是建立多個 Agent (<code>ChatCompletionAgent</code>)來協同完成用戶的問題。<br>之前<a href="https://rainmakerho.github.io/2024/04/02/sk-exploring-application-in-customer-service-bots/">探索 Semantic Kernel 在客服 ChatBot 中的應用(我的客服 Bot 除了會說，還會做)</a>中已說明一個 Agent 的方式，<br>接下來，就來實作多個 Agent 一起來完成企業中的問題。</p> 
-      <p class="article-more-link">
-        <a href="/2024/07/05/sk-multi-agent-system-using-semantic-kernel/#more"> more &gt;&gt; </a>
-      </p>
-         
-    </div>
-    <div class="article-info article-info-index">
-       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">SK</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Semantic Kernel</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">ChatCompletionAgent</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">AutoGen</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">AgentGroupChat</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ApprovalTerminationStrategy</a>
         		</li>
       		
 		</ul>
@@ -8021,6 +8013,30 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">BYOK</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Memory Optimization</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">RecyclableMemoryStream</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Connection String Cache</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Garbage Collection Pressure</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">.NET Stream Pooling</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">LOH</a>
               </li>
             
             <div class="clearfix"></div>
