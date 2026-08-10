@@ -6,7 +6,7 @@
   <link href="https://rainmakerho.github.io/atom.xml" rel="self"/>
   
   <link href="https://rainmakerho.github.io/"/>
-  <updated>2026-07-30T06:34:52.088Z</updated>
+  <updated>2026-08-10T08:04:19.182Z</updated>
   <id>https://rainmakerho.github.io/</id>
   
   <author>
@@ -15,6 +15,46 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MSSQL 使用Index Seek了，為什麼還是慢？ CONVERT_IMPLICIT 導致全表 Seek</title>
+    <link href="https://rainmakerho.github.io/2026/08/10/mssql-index-seek-range-search-performance-analysis/"/>
+    <id>https://rainmakerho.github.io/2026/08/10/mssql-index-seek-range-search-performance-analysis/</id>
+    <published>2026-08-10T03:41:30.000Z</published>
+    <updated>2026-08-10T08:04:19.182Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p>最近在看一個 MSSQL 的效能問題，多筆的 <code>select COUNT(1) ...</code> 會分別花費 <strong>2~6</strong>秒，如下圖，</p><img src="/2026/08/10/mssql-index-seek-range-search-performance-analysis/01.png" class="" title="sql trace file"><h3 id="問題解析"><a href="#問題解析" class="headerlink" title="問題解析"></a>問題解析</h3><p>它的SQL及執行計畫，如下圖，</p><img src="/2026/08/10/mssql-index-seek-range-search-performance-analysis/02.png" class="" title="sql plan"><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sp_executesql <span class="variable">@statement</span><span class="operator">=</span></span><br><span class="line">N<span class="string">&#x27;select COUNT(1) as &quot;Count&quot; from [DialogHistory] </span></span><br><span class="line"><span class="string">where [ConversationId] = @p0 </span></span><br><span class="line"><span class="string">and [Watermark] &gt; @p1 and &quot;ActivityContent&quot; &amp; 4 &gt; 0&#x27;</span></span><br><span class="line">,<span class="variable">@params</span><span class="operator">=</span>N<span class="string">&#x27;@p0 nvarchar(1), @p1 int&#x27;</span>,<span class="variable">@p0</span><span class="operator">=</span>N<span class="string">&#x27;&#x27;</span>,<span class="variable">@p1</span><span class="operator">=</span><span class="number">0</span></span><br></pre></td></tr></table></figure><p>針對成本最高的節點來看，如下圖，</p><img src="/2026/08/10/mssql-index-seek-range-search-performance-analysis/03.png" class="" title="索引搜尋"><ol><li>它是<strong>索引搜尋</strong>(Index Seek)</li><li>它的述詞為<code>([ActivityContent]&amp;(4))&gt;(0)</code></li><li>實際批次數目為<strong>0</strong></li><li>實際讀取的資料列數為<strong>4,376,257</strong>(如果用到 Index Seek，怎麼還會讀取那麼多的資料?)</li><li><code>select count(*) from [DialogHistory]</code> 值為 <strong>4,376,257</strong></li><li>搜尋述詞為<ol><li>起點(StartRange): <code>ConversationId &gt; 純量運算子([Expr1007])</code></li><li>終點(EndRange): <code>ConversationId &lt; 純量運算子([Expr1008])</code></li></ol></li><li>整個SQL的邏輯讀取為 <code>34,255</code></li></ol><p>從上述幾點來看，雖然是<strong>索引搜尋</strong>，但它實際上還是找了整個Table的資料(<code>Actual Rows Read=4,376,257、Actual Rows=0</code>)。<br><strong>ConversationId</strong>在Table中是唯一的，資料型別為<strong>VARCHAR</strong>，查詢條件是<code>CONVERT_IMPLICIT(nvarchar(250),[ConversationId],0)=[@p0]</code>，找資料會用<strong>Range Search</strong>(<code>ConversationId &gt; 純量運算子([Expr1007]) AND ConversationId &lt; 純量運算子([Expr1008])</code>)</p><h3 id="問題驗證"><a href="#問題驗證" class="headerlink" title="問題驗證"></a>問題驗證</h3><p>有可能是因為<strong>CONVERT_IMPLICIT</strong>的問題，所以將查詢條件從將它轉回<strong>VARCHAR</strong>來看看它的效果如何，SQL如下，</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sp_executesql <span class="variable">@statement</span><span class="operator">=</span></span><br><span class="line">N<span class="string">&#x27;select COUNT(1) as &quot;Count&quot; from [DialogHistory] </span></span><br><span class="line"><span class="string">where [ConversationId] = CAST(@p0 AS VARCHAR(250)) </span></span><br><span class="line"><span class="string">and [Watermark] &gt; @p1 and &quot;ActivityContent&quot; &amp; 4 &gt; 0&#x27;</span></span><br><span class="line">,<span class="variable">@params</span><span class="operator">=</span>N<span class="string">&#x27;@p0 nvarchar(1), @p1 int&#x27;</span>,<span class="variable">@p0</span><span class="operator">=</span>N<span class="string">&#x27;&#x27;</span>,<span class="variable">@p1</span><span class="operator">=</span><span class="number">0</span></span><br></pre></td></tr></table></figure><ul><li>將 <code>@p0</code> 改成 <code>CAST(@p0 AS VARCHAR(250))</code></li></ul><p>針對成本最高的節點來看，如下圖，</p><img src="/2026/08/10/mssql-index-seek-range-search-performance-analysis/04.png" class="" title="索引搜尋-2"><ol><li>它是<strong>索引搜尋(Index Seek)</strong></li><li>它的述詞為<code>[Watermark]&gt;CONVERT_IMPLICIT(bigint,[@p1],0) AND CONVERT_IMPLICIT(nvarchar(250),[ConversationId],0)=[@p0] AND ([ActivityContent]&amp;(4))&gt;(0)</code></li><li>實際批次數目為<strong>0</strong></li><li>搜尋述詞為<ol><li>前置詞(Prefix): <code>ConversationId = 純量運算子(CONVERT(varchar(250),[@p0],0))</code></li><li>起點(StartRange): <code>Watermark &gt; 純量運算子(CONVERT_IMPLICIT(bigint,[@p1],0))</code></li></ol></li><li>整個SQL的邏輯讀取為 <code>5</code></li></ol><p>另外值得注意的是，<strong>ConversationId</strong>在Table中是唯一的，應該不會有空字串的查詢，如果將<code>&#39;&#39;</code>改成<code>&#39;8051f015-06a8-4547-b2a7-7c478fca7739&#39;</code>，它的<strong>邏輯讀取</strong>會從<code>34,255</code>降到<code>2,802</code>，<strong>實際讀取的資料列數</strong>降為<code>357,889</code>，所以在程式中，如果<strong>ConversationId</strong>為空值，直接回傳<code>0</code>，不用再進DB查詢。</p><h3 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h3><p>當看到<strong>索引搜尋(Index Seek)<strong>，但 <code>Actual Rows Read</code>（實際讀取的資料列數）遠大於 <code>Actual Rows</code>（實際輸出的資料列數），<br>且 Seek 使用的是</strong>Range Search</strong>而非<strong>等值搜尋</strong>時，根本原因通常是**隱式型別轉換(CONVERT_IMPLICIT)**。</p><p>本例中，<code>ConversationId</code> 欄位為 <code>VARCHAR</code>，但應用程式傳入的參數型別為 <code>NVARCHAR</code>，<br>SQL Server 為了完成比較，將欄位值轉換為 <code>NVARCHAR</code>，破壞了 SARGability，<br>導致原本應該是等值 Seek 的查詢改為 Range Search，而查詢的值又為空字串，導致掃描了整個 Index。</p><p><strong>解決方案：</strong> 確保應用程式端傳入的參數型別與欄位型別一致，或在 SQL 中明確用 <code>CAST</code>&#x2F;<code>CONVERT</code> 轉換參數（而非欄位），<br>本例改為 <code>CAST(@p0 AS VARCHAR(250))</code> 後，邏輯讀取從 <code>34,255</code> 降至 <code>5</code>。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h3&gt;&lt;p&gt;最近在看一個 MSSQL 的效能問題，多筆的 &lt;code&gt;select COUNT(1) ...&lt;/code&gt; 會分別花費 &lt;strong&gt;</summary>
+      
+    
+    
+    
+    
+    <category term="MSSQL" scheme="https://rainmakerho.github.io/tags/MSSQL/"/>
+    
+    <category term="Index Seek" scheme="https://rainmakerho.github.io/tags/Index-Seek/"/>
+    
+    <category term="Range Search" scheme="https://rainmakerho.github.io/tags/Range-Search/"/>
+    
+    <category term="Actual Rows Read" scheme="https://rainmakerho.github.io/tags/Actual-Rows-Read/"/>
+    
+    <category term="Actual Rows" scheme="https://rainmakerho.github.io/tags/Actual-Rows/"/>
+    
+    <category term="CONVERT_IMPLICIT" scheme="https://rainmakerho.github.io/tags/CONVERT-IMPLICIT/"/>
+    
+    <category term="SARGability" scheme="https://rainmakerho.github.io/tags/SARGability/"/>
+    
+    <category term="Execution Plan" scheme="https://rainmakerho.github.io/tags/Execution-Plan/"/>
+    
+    <category term="Logical Reads" scheme="https://rainmakerho.github.io/tags/Logical-Reads/"/>
+    
+    <category term="SQL Server Performance" scheme="https://rainmakerho.github.io/tags/SQL-Server-Performance/"/>
+    
+  </entry>
   
   <entry>
     <title>MCP Inspector V2 連 https fetch-failed</title>
@@ -680,38 +720,6 @@
     <category term="GPT API" scheme="https://rainmakerho.github.io/tags/GPT-API/"/>
     
     <category term="AI pricing guide" scheme="https://rainmakerho.github.io/tags/AI-pricing-guide/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>C# 用 Enum + Dictionary 實作 狀態機：以會員狀態轉換為例</title>
-    <link href="https://rainmakerho.github.io/2025/08/06/csharp-state-machine-enum-dictionary/"/>
-    <id>https://rainmakerho.github.io/2025/08/06/csharp-state-machine-enum-dictionary/</id>
-    <published>2025-08-06T09:30:35.000Z</published>
-    <updated>2025-08-06T09:43:52.450Z</updated>
-    
-    <content type="html"><![CDATA[<p>在軟體開發中，有限狀態機（Finite State Machine, FSM） 是處理狀態之間有明確規則的轉換時非常常用的設計。例如，會員從「入會」可以轉為「暫停」或「退會」，「退會」又可以重新「入會」等。若直接用 if-else 判斷，不僅難以維護，日後擴充更易出錯。本文將介紹如何利用 C# 的 Enum 搭配 Dictionary，簡潔又彈性地實作狀態轉換邏輯。</p><h3 id="實作練習"><a href="#實作練習" class="headerlink" title="實作練習"></a>實作練習</h3><h5 id="1-用-Enum-定義所有狀態"><a href="#1-用-Enum-定義所有狀態" class="headerlink" title="1.用 Enum 定義所有狀態"></a>1.用 Enum 定義所有狀態</h5><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="built_in">enum</span> MemberStatus</span><br><span class="line">&#123;</span><br><span class="line">    入會,</span><br><span class="line">    暫停,</span><br><span class="line">    退會</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h5 id="2-用-Dictionary-定義合法狀態轉換"><a href="#2-用-Dictionary-定義合法狀態轉換" class="headerlink" title="2.用 Dictionary 定義合法狀態轉換"></a>2.用 Dictionary 定義合法狀態轉換</h5><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">MemberStatusExtensions</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">readonly</span> Dictionary&lt;MemberStatus, List&lt;MemberStatus&gt;&gt; AllowedTransitions = <span class="keyword">new</span>()</span><br><span class="line">    &#123;</span><br><span class="line">        [<span class="meta">MemberStatus.入會</span>] = [MemberStatus.暫停, MemberStatus.退會],</span><br><span class="line">        [<span class="meta">MemberStatus.暫停</span>] = [MemberStatus.入會, MemberStatus.退會],</span><br><span class="line">        [<span class="meta">MemberStatus.退會</span>] = [MemberStatus.入會]</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="built_in">bool</span> <span class="title">CanTransitionTo</span>(<span class="params"><span class="keyword">this</span> MemberStatus current, MemberStatus target</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> AllowedTransitions.TryGetValue(current, <span class="keyword">out</span> <span class="keyword">var</span> nexts) &amp;&amp; nexts.Contains(target);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h5 id="3-使用"><a href="#3-使用" class="headerlink" title="3.使用"></a>3.使用</h5><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> current = MemberStatus.入會;</span><br><span class="line"><span class="keyword">var</span> target = MemberStatus.退會;</span><br><span class="line"><span class="keyword">if</span> (current.CanTransitionTo(target))</span><br><span class="line">&#123;</span><br><span class="line">    Console.WriteLine(<span class="string">&quot;允許轉換&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    Console.WriteLine(<span class="string">&quot;不允許轉換&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h3><p>這種設計方式具有以下優點：</p><ul><li>可讀性高：狀態與轉換規則集中管理，一目瞭然。</li><li>易於擴充：日後如需新增狀態，只需修改 Enum 與 Dictionary 即可。</li><li>易於維護：轉換規則變更時，不需翻找大量 if-else，只需調整字典內容。</li></ul>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;在軟體開發中，有限狀態機（Finite State Machine, FSM） 是處理狀態之間有明確規則的轉換時非常常用的設計。例如，會員從「入會」可以轉為「暫停」或「退會」，「退會」又可以重新「入會」等。若直接用 if-else 判斷，不僅難以維護，日後擴充更易出錯。本文</summary>
-      
-    
-    
-    
-    
-    <category term="C#" scheme="https://rainmakerho.github.io/tags/C/"/>
-    
-    <category term="Dictionary" scheme="https://rainmakerho.github.io/tags/Dictionary/"/>
-    
-    <category term="Finite State Machine" scheme="https://rainmakerho.github.io/tags/Finite-State-Machine/"/>
-    
-    <category term="Enum" scheme="https://rainmakerho.github.io/tags/Enum/"/>
-    
-    <category term="狀態轉換" scheme="https://rainmakerho.github.io/tags/%E7%8B%80%E6%85%8B%E8%BD%89%E6%8F%9B/"/>
-    
-    <category term="會員管理" scheme="https://rainmakerho.github.io/tags/%E6%9C%83%E5%93%A1%E7%AE%A1%E7%90%86/"/>
     
   </entry>
   
